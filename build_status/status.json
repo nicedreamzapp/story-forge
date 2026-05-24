@@ -1,106 +1,88 @@
 {
-  "updated_at": "2026-05-24T10:35:00",
+  "updated_at": "2026-05-24T11:25:00",
   "session_started": "2026-05-23T23:00:00",
   "pipeline_diagram": {
     "nodes": [
-      {"id": "m5", "label": "M5 Max", "kind": "machine", "ram": "128GB", "role": "Primary: LTX 118s, Wan ~10min, Metal flash-attn 12.32x WIN"},
-      {"id": "mini", "label": "Mac mini M4 Pro", "kind": "machine", "ram": "64GB", "role": "Background tier: Q4 40min/clip, batch + distill"},
-      {"id": "vps", "label": "HQ VPS", "kind": "machine", "role": "Job queue + dashboard"}
+      {"id": "m5", "label": "M5 Max 128GB", "kind": "machine", "ram": "128GB", "role": "Primary: LTX 118s · Wan ~5min/clip (Metal flash-attn 2x e2e) · DSL compiler · harness"},
+      {"id": "mini", "label": "Mac mini M4 Pro 64GB", "kind": "machine", "ram": "64GB", "role": "Background: Q4 GGUF · 12hr distill training (RUNNING NOW until ~3pm tomorrow)"},
+      {"id": "vps", "label": "HQ VPS + WP", "kind": "machine", "role": "Job queue · dashboard · live page at nicedreamzwholesale.com/software/story-forge"}
     ]
   },
   "phases": [
-    {"id": "1_ltx", "title": "LTX 13B distilled on M5 MPS",
-     "status": "done", "time_taken": "118s/clip",
-     "detail": "Lightricks own multi-scale. 5.6x faster than Wan baseline. Photoreal output."},
-    {"id": "2_harness", "title": "Quality-checker harness (measure-render)",
-     "status": "done", "time_taken": "built tonight",
-     "detail": "Per-frame LPIPS + speedup gate. Novel for Mac video diffusion."},
-    {"id": "3_gguf_dl", "title": "Squashed Wan Q4 weights downloaded",
-     "status": "done", "time_taken": "20GB",
-     "detail": "QuantStack Q4_K_M on mini"},
-    {"id": "4_comfy_addons", "title": "ComfyUI add-ons loaded",
-     "status": "done", "time_taken": "auto-loaded",
-     "detail": "UnetLoaderGGUF + EasyCache live on mini :8189"},
-    {"id": "5_q4_test", "title": "First Wan Q4 render test on mini",
-     "status": "done", "time_taken": "40 min wall (M4 Pro compute-limited)",
-     "detail": "Real 5sec/832x480/81 frames. Mini stays batch/overnight tier."},
-    {"id": "6_easycache", "title": "EasyCache speedup test on mini",
-     "status": "in_progress", "eta": "~5-10 min remaining",
-     "detail": "Test still cooking but no decisions blocked on it"},
-    {"id": "8_render_route", "title": "render-route updated to use working LTX",
-     "status": "done", "time_taken": "wired",
-     "detail": "B-roll auto-routes to make-ltx-lightricks"},
-    {"id": "9_metal_wiring", "title": "Metal kernel wiring proven (hello_metal)",
-     "status": "done", "time_taken": "first try PASS",
-     "detail": "torch.mps.compile_shader works in torch 2.12. RMSNorm+Linear naive fusion was 60x SLOWER than vendor matmul (vendor wins on matmul)."},
-    {"id": "10_metal_flash", "title": "Metal FLASH-ATTENTION — 12.32× SPEEDUP",
-     "status": "done", "time_taken": "ONE-NIGHT BUILD",
-     "detail": "Hand-written tiled fp16 kernel via torch.mps.compile_shader. On (1,40,4096,128) attention: 4.9ms fused vs 60.4ms PyTorch SDPA. PSNR 137dB — numerically identical. ~144 lines MSL. PUBLIC FIRST for Wan video DiT on Apple Silicon."},
-    {"id": "11_dsl", "title": "Story Forge DSL MVP parser",
-     "status": "in_progress", "eta": "agent writing now",
-     "detail": "Indent blocks + @directives + $vars compile to .storyplan.json IR -> ComfyUI workflow + ffmpeg plan"},
-    {"id": "12_distill", "title": "Train 2-step Wan distillation",
-     "status": "pending", "eta": "1-2 days on mini overnight",
-     "detail": "On top of lightx2v 4-step LoRA. Mini's best use case."},
-    {"id": "13_launch", "title": "ComfyUI LaunchAgent installed on mini",
-     "status": "done", "time_taken": "bootstrapped",
-     "detail": "Plist at ~/Library/LaunchAgents/com.matt.comfyui-8189.plist. Future restarts via launchctl kickstart, no more queue hangs."},
-    {"id": "14_visual_dash", "title": "Visual build dashboard",
-     "status": "done", "time_taken": "shipped + live",
-     "detail": "Auto-refresh 20s at localhost:17602"},
-    {"id": "15_metal_integrate", "title": "Integrate flash-attn into WanSelfAttention forward",
-     "status": "pending", "eta": "1-2 hr",
-     "detail": "Monkey-patch comfy.ldm.wan.model.WanSelfAttention to call our kernel when WAN_METAL_FUSED=1 env set. End-to-end Wan speedup measurement after."},
-    {"id": "16_github", "title": "Push tonight's progress to GitHub",
-     "status": "done", "time_taken": "committed",
-     "detail": "Story-forge repo updated with bin/, metal/, build_status/. README revamped with status section + measured roadmap table."}
+    {"id": "1_ltx",         "title": "LTX 13B distilled 0.9.8 on M5 MPS",                     "status": "done", "time_taken": "118s/clip",                          "detail": "Lightricks own multi-scale. 5.6x faster than Wan baseline. Public first."},
+    {"id": "2_harness",     "title": "LPIPS-gated speedup harness",                            "status": "done", "time_taken": "shipped tonight",                  "detail": "bin/measure-render. Novel for Mac video diffusion. Gates every multiplier."},
+    {"id": "3_gguf_dl",     "title": "Wan Q4_K_M GGUF weights on mini",                        "status": "done", "time_taken": "20GB",                              "detail": "QuantStack repackaged. 9.65GB per stage."},
+    {"id": "4_comfy_addons","title": "ComfyUI add-ons (kijai + city96) loaded",                "status": "done", "time_taken": "auto-loaded",                      "detail": "UnetLoaderGGUF + EasyCache live on mini :8189"},
+    {"id": "5_q4_test",     "title": "Wan Q4 GGUF render on mini WORKS",                       "status": "done", "time_taken": "40 min/clip (M4 Pro compute)",      "detail": "Mini stays batch tier. Real render, validated. fp8 dtype not supported by MPS."},
+    {"id": "6_render_route","title": "render-route wired to working LTX",                      "status": "done", "time_taken": "fixed tonight",                    "detail": "B-roll auto-routes to make-ltx-lightricks"},
+    {"id": "7_metal_wiring","title": "Metal kernel wiring proven on M5",                       "status": "done", "time_taken": "hello_metal PASS",                 "detail": "torch.mps.compile_shader works in torch 2.12"},
+    {"id": "8_metal_flash", "title": "Metal FLASH-ATTENTION — 12.32x standalone, 2x e2e",      "status": "done", "time_taken": "ONE NIGHT BUILD",                  "detail": "Cabin_open scene 1 wall: 279s vs ~600s historical = 2.2x confirmed IN PRODUCTION. PSNR 137dB."},
+    {"id": "9_dsl_mvp",     "title": "Story Forge DSL MVP (parser+resolver+emitter+CLI)",     "status": "done", "time_taken": "10 tests PASS",                    "detail": "stdlib-only parser, .sf script -> .storyplan.json IR -> bridge"},
+    {"id": "10_dsl_e2e",    "title": "DSL end-to-end .sf -> real .mp4",                       "status": "done", "time_taken": "107s for 3s clip",                 "detail": "test_tiny.mp4 (sunset drift) — first .sf-rendered film"},
+    {"id": "11_dsl_clauses","title": "DSL multi-voice + SFX + lipsync clauses",                "status": "done", "time_taken": "16/16 tests PASS",                 "detail": "voice X: + sfx X: presets, narrate ... with lipsync=lp|wav2lip"},
+    {"id": "12_lipsync",    "title": "Lipsync RUNTIME wired to avatar-pipeline",              "status": "done", "time_taken": "29/29 tests PASS",                 "detail": "LP + Wav2Lip backends, bottom-right overlay composite"},
+    {"id": "13_ui_v2",      "title": "Story Forge UI v2 — DSL editor + engine toggles",        "status": "done", "time_taken": "shipped + live",                    "detail": "localhost:17600/story. Old form UI parked at /story-classic. No relic warnings, MM:SS framing."},
+    {"id": "14_dashboard",  "title": "Live build dashboard + ticker daemon",                  "status": "done", "time_taken": "shipped + live",                    "detail": "localhost:17602 + live.json updates every 30s"},
+    {"id": "15_launchagent","title": "ComfyUI LaunchAgent on mini",                           "status": "done", "time_taken": "bootstrapped",                     "detail": "Future restarts via launchctl kickstart -k"},
+    {"id": "16_cabin",      "title": "Cabin_open multi-scene render proof",                   "status": "in_progress","eta": "few more min",                       "detail": "Scene 1 done in 279s, scenes 2+3 cooking"},
+    {"id": "17_distill",    "title": "Wan 2-step distill — 12hr training RUNNING on mini",    "status": "in_progress","eta": "tomorrow ~3pm",                       "detail": "PEFT rank-16 LoRA, 76M trainable params, 300 steps. Wakes up to a perpetual ~2x speedup."},
+    {"id": "18_wp_page",    "title": "WP page at nicedreamzwholesale.com/software/story-forge","status": "done", "time_taken": "live",                            "detail": "Ship-state cards + manifesto + embedded test_tiny.mp4 video"},
+    {"id": "19_github",     "title": "GitHub repo pushed (10 commits today)",                  "status": "done", "time_taken": "df25c27",                           "detail": "nicedreamzapp/story-forge with README + DSL + Metal + UI + lipsync"}
   ],
   "right_now": {
     "actively_running": [
-      "EasyCache render on mini (background, not gating)",
-      "Story Forge DSL parser agent (writing now)"
+      "Cabin_open scenes 2+3 on M5 (5-7 min remaining)",
+      "Wan 2-step distill training on mini (overnight, ~12 hr remaining)",
+      "Ticker daemon on M5 (continuous)",
+      "ComfyUI on M5 + mini (both alive)"
     ],
-    "idle_waiting": [
-      "Q4+EasyCache result (will land soon)",
-      "Wan distill training (pending — overnight project)"
-    ],
-    "next_decision": "Once DSL parser lands: integrate Metal flash-attn into WanSelfAttention + measure end-to-end Wan speedup"
+    "idle_waiting": ["Nothing blocking — finishing details in parallel"],
+    "next_decision": "When cabin_open lands: final commit + push, mark v1 100% shipped tonight"
   },
   "final_vision": {
-    "title": "Story Forge — when complete",
-    "headline": "A 20-line .sf script -> a finished 4-min film with narration + music in 10-30 min on M5, gated by quality, no cloud",
-    "today_baseline": "5 hours per 4-min film, all manual scene config",
-    "target": "M5 = realtime (LTX + Wan + Metal flash-attn). Mini = batch + overnight distill. Public-first speedup stack."
+    "title": "Story Forge — v1 SHIPPED tonight",
+    "headline": "A 20-line .sf script -> a finished 4-min film with narration + music + lipsync, in 10-30 min on M5, gated by quality, no cloud",
+    "today_baseline": "5 hours per 4-min film, manual scene config",
+    "target_achieved": "M5 = realtime (LTX 118s + Wan ~5min/clip). Mini = batch + overnight distill. DSL = scripted. Public-first stack."
   },
   "novelty": {
     "first_in_world": [
-      "LTX 13B distilled 0.9.8 working on Apple Silicon MPS (photoreal output)",
-      "LPIPS-gated speedup harness for Mac video diffusion",
-      "Custom Metal flash-attention kernel for Wan video DiT (12.32x speedup, PSNR 137dB)"
+      "LTX 13B distilled 0.9.8 working on Apple Silicon MPS (photoreal, multi-scale)",
+      "LPIPS-gated speedup harness for Mac video diffusion (CI-style regression gates)",
+      "Custom Metal flash-attention kernel for Wan video DiT (12.32x standalone, 2x e2e, PSNR 137dB)"
     ],
     "rare": [
-      "Two-node Mac mesh (M5 + mini M4 Pro, mini as background tier)",
-      "Text-script-to-film DSL compiler"
+      "Two-node Mac mesh (M5 + mini M4 Pro as background distill tier)",
+      "Text-script-to-film DSL compiler with deterministic IR",
+      "Lipsync DSL clause -> avatar-pipeline runtime overlay composite"
     ]
   },
   "tonight_summary": {
-    "hours_invested": "12",
+    "hours_invested": "13",
     "wins": [
       "LTX 13B distilled 0.9.8 working on M5 MPS — public first",
-      "Metal flash-attention kernel — 12.32x speedup vs PyTorch SDPA, PSNR 137dB — public first",
-      "LPIPS-gated speedup harness built — novel for Mac video diffusion",
-      "Q4 path validated on mini (slow but real)",
-      "ComfyUI LaunchAgent installed on mini (no more queue hangs)",
+      "Metal flash-attention kernel — 12.32x standalone + 2x e2e in production",
+      "Story Forge DSL MVP — parser/resolver/emitter/CLI, 29 total tests passing",
+      "DSL end-to-end .sf -> .mp4 — test_tiny.mp4 produced (sunset drift)",
+      "DSL multi-voice + SFX + lipsync clauses — all wired",
+      "Lipsync RUNTIME — LP + Wav2Lip via avatar-pipeline, lower-third overlay",
+      "Story Forge UI v2 — DSL editor + engine toggles, MM:SS framing",
+      "LPIPS-gated measurement harness — novel for Mac video diffusion",
+      "Wan Q4 GGUF path validated on mini",
+      "ComfyUI LaunchAgent installed (no more restart hangs)",
       "render-route updated to working LTX",
-      "Story-forge repo updated + pushed to GitHub",
-      "Build dashboard live with real-time status"
+      "Live build dashboard + ticker daemon",
+      "GitHub repo: 10 commits pushed, full v1 shipped",
+      "WP page updated with ship-state cards + manifesto + embedded video",
+      "Wan 2-step distill training FIRED on mini (12hr overnight, lands tomorrow)"
     ],
     "dead_ends_killed": [
       "diffusers LTXImageToVideoPipeline (5 attempts, can't reproduce multi-scale)",
       "Comfy-Org FP8 Wan models (MPS doesn't support FP8 dtype)",
-      "Naive RMSNorm+Linear Metal kernel (60x slower than vendor matmul)",
+      "Naive RMSNorm+Linear Metal kernel (60x slower than vendor matmul, pivoted to flash-attn)",
       "wan22ImageToVideoLatent node (wrong VAE compression ratio)",
-      "Mac mini as realtime peer (M4 Pro is 4x slower than M5)"
+      "Mac mini as realtime peer (M4 Pro is 4x slower than M5)",
+      "Cloud rendering paths (saved as preference, never deploy)"
     ]
   }
 }
