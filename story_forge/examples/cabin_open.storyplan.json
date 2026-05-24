@@ -1,0 +1,258 @@
+{
+  "schema_version": "0.1",
+  "film_meta": {
+    "title": "Cabin Open",
+    "slug": "cabin_open",
+    "target": "m5+mini",
+    "scene_duration": 8.5,
+    "extras": {}
+  },
+  "voice_presets": {
+    "warm": {
+      "value": "piper/en_US-libritts_r-medium",
+      "attrs": {
+        "speaker": 0,
+        "length": 1.18
+      }
+    },
+    "gravel": {
+      "value": "piper/en_US-libritts_r-medium",
+      "attrs": {
+        "speaker": 14,
+        "length": 1.05
+      }
+    },
+    "child": {
+      "value": "piper/en_US-amy-medium",
+      "attrs": {
+        "length": 1.3
+      }
+    }
+  },
+  "music_presets": {
+    "wintry": {
+      "value": "ace/wintry-soft-piano",
+      "attrs": {
+        "vol": 0.35
+      }
+    }
+  },
+  "sfx_presets": {
+    "fire_crackle": {
+      "value": "ace/sfx",
+      "attrs": {
+        "prompt": "fire crackling, warm hearth",
+        "duration": 8,
+        "vol": 0.25
+      }
+    },
+    "wind_low": {
+      "value": "ace/sfx",
+      "attrs": {
+        "prompt": "low wind through pines",
+        "duration": 10,
+        "vol": 0.2
+      }
+    }
+  },
+  "transitions": [
+    {
+      "name": "xfade",
+      "args": [],
+      "attrs": {
+        "dur": 0.5
+      }
+    }
+  ],
+  "mixes": [
+    {
+      "args": [
+        "duck",
+        "voice",
+        "->",
+        "music"
+      ],
+      "attrs": {
+        "threshold": -22,
+        "ratio": 4
+      }
+    }
+  ],
+  "vars": {
+    "style": "Studio Ghibli watercolor, soft snowfall, golden hour, painterly, 4k",
+    "child": "a small child in a red hooded cloak, mittens, breath visible in cold air",
+    "cabin": "a hand-built wooden cabin with warm yellow window light and smoke from the chimney"
+  },
+  "scenes": {
+    "snow_walk": {
+      "still_spec": {
+        "engine": "flux",
+        "attrs": {},
+        "prompt": "Studio Ghibli watercolor, soft snowfall, golden hour, painterly, 4k, wide shot of a small child in a red hooded cloak, mittens, breath visible in cold air walking across a deep snowfield toward a distant glowing a hand-built wooden cabin with warm yellow window light and smoke from the chimney, pine forest framing the path",
+        "seed": 2119586878
+      },
+      "motion_spec": {
+        "engine": "wan",
+        "attrs": {},
+        "prompt": "gentle handheld push-in, soft falling snow, child takes slow steps forward, breath plumes",
+        "duration": 5.0,
+        "seed": 2348579433
+      },
+      "narration_spec": {
+        "engine": "warm",
+        "attrs": {},
+        "line": "The snow came down like a hush, and the path home was longer than she remembered.",
+        "lipsync": false,
+        "voice": "warm",
+        "seed": 2430139262
+      },
+      "narration_specs": [
+        {
+          "engine": "warm",
+          "attrs": {},
+          "line": "The snow came down like a hush, and the path home was longer than she remembered.",
+          "lipsync": false,
+          "voice": "warm",
+          "seed": 2430139262
+        }
+      ],
+      "music_spec": {
+        "preset": "wintry",
+        "value": "ace/wintry-soft-piano",
+        "attrs": {
+          "vol": 0.3
+        }
+      },
+      "sfx_specs": [
+        {
+          "preset": "wind_low",
+          "value": "ace/sfx",
+          "attrs": {
+            "prompt": "low wind through pines",
+            "duration": 10,
+            "vol": 0.2,
+            "at": 0.0
+          }
+        }
+      ],
+      "attrs": {},
+      "extras": {}
+    },
+    "cabin_glow": {
+      "still_spec": {
+        "engine": "flux",
+        "attrs": {},
+        "prompt": "Studio Ghibli watercolor, soft snowfall, golden hour, painterly, 4k, medium shot of a hand-built wooden cabin with warm yellow window light and smoke from the chimney at dusk, frost on the windowpanes, lantern hanging by the door, footprints leading up to the porch",
+        "seed": 1655994473
+      },
+      "motion_spec": {
+        "engine": "wan",
+        "attrs": {},
+        "prompt": "slow dolly toward the cabin door, warm light flickering through the windows, a few snowflakes drifting across the lens",
+        "duration": 5.0,
+        "seed": 267942509
+      },
+      "narration_spec": {
+        "engine": "warm",
+        "attrs": {},
+        "line": "But the windows were lit, and somewhere inside, the kettle was already on.",
+        "lipsync": false,
+        "voice": "warm",
+        "seed": 622660824
+      },
+      "narration_specs": [
+        {
+          "engine": "warm",
+          "attrs": {},
+          "line": "But the windows were lit, and somewhere inside, the kettle was already on.",
+          "lipsync": false,
+          "voice": "warm",
+          "seed": 622660824
+        },
+        {
+          "engine": "child",
+          "attrs": {},
+          "line": "Mama? Are you home?",
+          "lipsync": false,
+          "voice": "child",
+          "seed": 1353127224
+        }
+      ],
+      "music_spec": {
+        "preset": "wintry",
+        "value": "ace/wintry-soft-piano",
+        "attrs": {
+          "vol": 0.35
+        }
+      },
+      "sfx_specs": [
+        {
+          "preset": "wind_low",
+          "value": "ace/sfx",
+          "attrs": {
+            "prompt": "low wind through pines",
+            "duration": 10,
+            "vol": 0.2,
+            "at": 0.0
+          }
+        }
+      ],
+      "attrs": {},
+      "extras": {}
+    },
+    "fireside": {
+      "still_spec": {
+        "engine": "flux",
+        "attrs": {},
+        "prompt": "Studio Ghibli watercolor, soft snowfall, golden hour, painterly, 4k, interior of the cabin, a small child in a red hooded cloak, mittens, breath visible in cold air unwrapping her cloak by a stone fireplace, soft amber firelight on her cheeks, kettle steaming on the hearth",
+        "seed": 2175558245
+      },
+      "motion_spec": {
+        "engine": "wan",
+        "attrs": {},
+        "prompt": "intimate close shot, firelight flickers, child exhales and smiles, slow zoom to the dancing flames",
+        "duration": 5.0,
+        "seed": 2177113199
+      },
+      "narration_spec": {
+        "engine": "warm",
+        "attrs": {},
+        "line": "And the cold outside became a story she would only tell on warm nights.",
+        "lipsync": true,
+        "voice": "warm",
+        "seed": 678811593
+      },
+      "narration_specs": [
+        {
+          "engine": "warm",
+          "attrs": {},
+          "line": "And the cold outside became a story she would only tell on warm nights.",
+          "lipsync": true,
+          "voice": "warm",
+          "seed": 678811593
+        }
+      ],
+      "music_spec": {
+        "preset": "wintry",
+        "value": "ace/wintry-soft-piano",
+        "attrs": {
+          "vol": 0.4
+        }
+      },
+      "sfx_specs": [
+        {
+          "preset": "fire_crackle",
+          "value": "ace/sfx",
+          "attrs": {
+            "prompt": "fire crackling, warm hearth",
+            "duration": 8,
+            "vol": 0.25,
+            "at": 2.0
+          }
+        }
+      ],
+      "attrs": {},
+      "extras": {}
+    }
+  }
+}

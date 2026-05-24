@@ -40,7 +40,10 @@ AST shape — a list of nodes. Each node is a dict:
     {"type":"narrate", "preset":"warm", "attrs":{}, "children":[...], "line":N}
     {"type":"voice", "name":"warm", "value":"piper/...", "attrs":{...}, "line":N}
     {"type":"music", "name":"wintry", "value":"ace/...", "attrs":{...}, "line":N}
+    {"type":"sfx",   "name":"fire_crackle", "value":"ace/sfx", "attrs":{...}, "line":N}
     {"type":"music_ref", "name":"wintry", "attrs":{"vol":0.35}, "line":N}
+    {"type":"sfx_ref",   "name":"fire_crackle", "attrs":{"at":2.0}, "line":N}
+    {"type":"narrate", "preset":"warm", "lipsync":False, "attrs":{...}, "children":[...], "line":N}
     {"type":"var", "name":"child", "value":"a small child...", "line":N}
     {"type":"directive", "name":"transition", "args":["xfade"], "attrs":{"dur":0.5}, "line":N}
     {"type":"kv", "key":"prompt", "value":"...", "line":N}
@@ -175,7 +178,7 @@ def _indent_of(raw: str) -> int:
 # Line classification
 # ---------------------------------------------------------------------------
 
-_HEAD_TOKENS = {"film", "scene", "still", "motion", "narrate", "voice", "music"}
+_HEAD_TOKENS = {"film", "scene", "still", "motion", "narrate", "voice", "music", "sfx"}
 
 
 def _classify(stripped: str, lineno: int) -> dict[str, Any]:
@@ -262,10 +265,42 @@ def _build_block_head(word: str, tail: str, after_colon: str,
         return {"type": "scene", "name": args[0], "attrs": attrs,
                 "children": [], "line": lineno}
 
-    if word in ("still", "motion", "narrate"):
+    if word in ("still", "motion"):
         engine = args[0] if args else None
         return {"type": "block", "kind": word, "engine": engine,
                 "attrs": attrs, "children": [], "line": lineno}
+
+    if word == "narrate":
+        # narrate <voice>:                         (block w/ line: child)
+        # narrate <voice> with lipsync:            (lipsync flag set)
+        # narrate <voice>: "Inline line text"      (inline single-line form)
+        # narrate <voice> with lipsync: "..."      (inline + lipsync)
+        lipsync = False
+        # Strip "with lipsync" from args, if present.
+        cleaned_args: list[str] = []
+        i = 0
+        while i < len(args):
+            tok = args[i]
+            if tok == "with" and i + 1 < len(args) and args[i + 1] == "lipsync":
+                lipsync = True
+                i += 2
+                continue
+            cleaned_args.append(tok)
+            i += 1
+        preset = cleaned_args[0] if cleaned_args else None
+        # If there's content after the colon, treat it as an inline "line".
+        node: dict[str, Any] = {"type": "block", "kind": "narrate",
+                                "engine": preset, "lipsync": lipsync,
+                                "attrs": attrs, "children": [], "line": lineno}
+        if after_colon.strip():
+            # Inline: the value after the colon is the spoken line. Use the
+            # quoted-string-or-bareword logic to capture it cleanly.
+            inline_args, _ = _parse_kvs(after_colon)
+            inline_value = inline_args[0] if inline_args else after_colon.strip()
+            node["children"].append({"type": "kv", "key": "line",
+                                     "value": _coerce(inline_value) if not isinstance(inline_value, str) else inline_value,
+                                     "line": lineno})
+        return node
 
     if word == "voice":
         # voice <name>: piper/model speaker=0 ...
@@ -284,6 +319,15 @@ def _build_block_head(word: str, tail: str, after_colon: str,
         m_attrs = {**attrs, **m_attrs}
         return {"type": "music", "name": name, "value": value,
                 "attrs": m_attrs, "line": lineno}
+
+    if word == "sfx":
+        # sfx <name>: ace/sfx prompt="..." duration=8 vol=0.25   (preset definition)
+        name = args[0] if args else "default"
+        s_args, s_attrs = _parse_kvs(after_colon)
+        value = s_args[0] if s_args else None
+        s_attrs = {**attrs, **s_attrs}
+        return {"type": "sfx", "name": name, "value": value,
+                "attrs": s_attrs, "line": lineno}
 
     raise ParseError(f"unknown block head: {word}", lineno)
 
@@ -322,6 +366,14 @@ def parse(source: str | Path) -> list[dict[str, Any]]:
             args, attrs = _parse_kvs(tail)
             name = args[0] if args else "default"
             node = {"type": "music_ref", "name": name,
+                    "attrs": attrs, "line": i}
+        # Special: bare "sfx <name> at=2.0 vol=0.3" inside a scene — no colon, treat as sfx_ref.
+        elif (content.startswith("sfx ") and ":" not in content
+                and not content.startswith("@")):
+            tail = content[len("sfx"):].strip()
+            args, attrs = _parse_kvs(tail)
+            name = args[0] if args else "default"
+            node = {"type": "sfx_ref", "name": name,
                     "attrs": attrs, "line": i}
         # Special: colon-less film header — `film "Title" slug=foo target=m5+mini scene_dur=8.5`
         elif content.startswith("film ") and ":" not in _split_first_colon(content)[0]:

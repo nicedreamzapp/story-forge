@@ -91,6 +91,89 @@ class TestStoryForgeMVP(unittest.TestCase):
         self.assertEqual(meta["target"], "m5+mini")
         self.assertAlmostEqual(meta["scene_duration"], 8.5, places=3)
 
+    # ------------------------------------------------------------------
+    # Multi-voice routing
+    # ------------------------------------------------------------------
+
+    def test_multi_voice_presets_defined(self):
+        """All three top-level voice presets should be registered."""
+        vp = self.plan["voice_presets"]
+        self.assertIn("warm", vp)
+        self.assertIn("gravel", vp)
+        self.assertIn("child", vp)
+        # gravel uses speaker=14, child uses length=1.30
+        self.assertEqual(vp["gravel"]["attrs"]["speaker"], 14)
+        self.assertAlmostEqual(vp["child"]["attrs"]["length"], 1.30, places=3)
+
+    def test_multi_voice_per_scene_narration_specs(self):
+        """cabin_glow has two narrate blocks: warm then child."""
+        scene = self.plan["scenes"]["cabin_glow"]
+        specs = scene["narration_specs"]
+        self.assertEqual(len(specs), 2)
+        self.assertEqual(specs[0]["voice"], "warm")
+        self.assertEqual(specs[1]["voice"], "child")
+        self.assertIn("kettle", specs[0]["line"])
+        self.assertEqual(specs[1]["line"], "Mama? Are you home?")
+        # Back-compat: singular narration_spec == first entry.
+        self.assertEqual(scene["narration_spec"]["voice"], "warm")
+        # Each line has its own deterministic seed.
+        self.assertNotEqual(specs[0]["seed"], specs[1]["seed"])
+
+    # ------------------------------------------------------------------
+    # SFX library
+    # ------------------------------------------------------------------
+
+    def test_sfx_presets_defined(self):
+        """Top-level sfx blocks should populate sfx_presets with engine + attrs."""
+        sp = self.plan["sfx_presets"]
+        self.assertIn("fire_crackle", sp)
+        self.assertIn("wind_low", sp)
+        self.assertEqual(sp["fire_crackle"]["value"], "ace/sfx")
+        self.assertEqual(sp["fire_crackle"]["attrs"]["duration"], 8)
+        self.assertEqual(
+            sp["fire_crackle"]["attrs"]["prompt"],
+            "fire crackling, warm hearth")
+        self.assertAlmostEqual(sp["wind_low"]["attrs"]["vol"], 0.20, places=3)
+
+    def test_sfx_per_scene_refs_with_offset(self):
+        """Scene-level `sfx <name> at=N.N` lands in sfx_specs with merged attrs."""
+        fireside = self.plan["scenes"]["fireside"]
+        sfx_specs = fireside["sfx_specs"]
+        self.assertEqual(len(sfx_specs), 1)
+        self.assertEqual(sfx_specs[0]["preset"], "fire_crackle")
+        self.assertEqual(sfx_specs[0]["value"], "ace/sfx")
+        # Preset attrs (prompt/duration/vol) and ref attrs (at) merge.
+        self.assertEqual(sfx_specs[0]["attrs"]["duration"], 8)
+        self.assertAlmostEqual(sfx_specs[0]["attrs"]["at"], 2.0, places=3)
+        # snow_walk has wind_low at=0.0
+        snow = self.plan["scenes"]["snow_walk"]
+        self.assertEqual(len(snow["sfx_specs"]), 1)
+        self.assertEqual(snow["sfx_specs"][0]["preset"], "wind_low")
+        self.assertAlmostEqual(snow["sfx_specs"][0]["attrs"]["at"], 0.0, places=3)
+
+    # ------------------------------------------------------------------
+    # Lip sync
+    # ------------------------------------------------------------------
+
+    def test_lipsync_flag_set_on_fireside_narration(self):
+        """`narrate warm with lipsync:` flips narration_spec.lipsync = True."""
+        fireside = self.plan["scenes"]["fireside"]
+        spec = fireside["narration_specs"][0]
+        self.assertTrue(spec["lipsync"])
+        self.assertEqual(spec["voice"], "warm")
+        # Sanity: the spoken line passes through.
+        self.assertIn("cold outside", spec["line"])
+
+    def test_lipsync_default_false_elsewhere(self):
+        """Narration blocks without `with lipsync` default to lipsync=False."""
+        snow_specs = self.plan["scenes"]["snow_walk"]["narration_specs"]
+        glow_specs = self.plan["scenes"]["cabin_glow"]["narration_specs"]
+        self.assertEqual(len(snow_specs), 1)
+        self.assertFalse(snow_specs[0]["lipsync"])
+        # Both narrates in cabin_glow are plain (no lipsync).
+        for s in glow_specs:
+            self.assertFalse(s["lipsync"])
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

@@ -7,9 +7,14 @@ $cabin = "a hand-built wooden cabin with warm yellow window light and smoke from
 
 film "Cabin Open" slug=cabin_open target=m5+mini scene_dur=8.5
 
-voice warm: piper/en_US-libritts_r-medium speaker=0 length=1.18
+voice warm:   piper/en_US-libritts_r-medium speaker=0 length=1.18
+voice gravel: piper/en_US-libritts_r-medium speaker=14 length=1.05
+voice child:  piper/en_US-amy-medium length=1.30
 
 music wintry: ace/wintry-soft-piano vol=0.35
+
+sfx fire_crackle: ace/sfx prompt="fire crackling, warm hearth" duration=8 vol=0.25
+sfx wind_low:     ace/sfx prompt="low wind through pines" duration=10 vol=0.20
 
 @transition xfade dur=0.5
 @mix duck voice -> music threshold=-22 ratio=4
@@ -23,6 +28,7 @@ scene snow_walk:
         duration: 5.0
     narrate warm:
         line: "The snow came down like a hush, and the path home was longer than she remembered."
+    sfx wind_low at=0.0
     music wintry vol=0.30
 
 scene cabin_glow:
@@ -34,6 +40,9 @@ scene cabin_glow:
         duration: 5.0
     narrate warm:
         line: "But the windows were lit, and somewhere inside, the kettle was already on."
+    narrate child:
+        line: "Mama? Are you home?"
+    sfx wind_low at=0.0
     music wintry vol=0.35
 
 scene fireside:
@@ -43,6 +52,7 @@ scene fireside:
     motion wan:
         prompt: "intimate close shot, firelight flickers, child exhales and smiles, slow zoom to the dancing flames"
         duration: 5.0
-    narrate warm:
+    narrate warm with lipsync:
         line: "And the cold outside became a story she would only tell on warm nights."
+    sfx fire_crackle at=2.0
     music wintry vol=0.40

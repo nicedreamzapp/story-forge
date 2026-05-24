@@ -28,6 +28,7 @@ def emit_storyplan(resolved: dict[str, Any]) -> dict[str, Any]:
         },
         "voice_presets": resolved.get("voice_presets", {}),
         "music_presets": resolved.get("music_presets", {}),
+        "sfx_presets": resolved.get("sfx_presets", {}),
         "transitions": resolved.get("transitions", []),
         "mixes": resolved.get("mixes", []),
         "vars": resolved.get("vars", {}),
@@ -38,8 +39,13 @@ def emit_storyplan(resolved: dict[str, Any]) -> dict[str, Any]:
         plan["scenes"][s["name"]] = {
             "still_spec": s.get("still"),
             "motion_spec": s.get("motion"),
+            # Back-compat: singular narration_spec is the first narrate block
+            # (or None if the scene has no narration). All narrate blocks live
+            # in the plural narration_specs list, in declaration order.
             "narration_spec": s.get("narrate"),
+            "narration_specs": s.get("narrates", []),
             "music_spec": s.get("music"),
+            "sfx_specs": s.get("sfx", []),
             "attrs": s.get("attrs", {}),
             "extras": s.get("extras", {}),
         }

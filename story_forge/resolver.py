@@ -68,6 +68,7 @@ def resolve(ast: list[dict[str, Any]]) -> dict[str, Any]:
     vars_: dict[str, Any] = {}
     voice_presets: dict[str, dict[str, Any]] = {}
     music_presets: dict[str, dict[str, Any]] = {}
+    sfx_presets: dict[str, dict[str, Any]] = {}
     transitions: list[dict[str, Any]] = []
     mixes: list[dict[str, Any]] = []
     scenes_raw: list[dict[str, Any]] = []
@@ -121,6 +122,12 @@ def resolve(ast: list[dict[str, Any]]) -> dict[str, Any]:
                 "attrs": _resolve_attrs(node.get("attrs", {}), vars_),
             }
 
+        elif t == "sfx":
+            sfx_presets[node["name"]] = {
+                "value": _interpolate(node.get("value"), vars_),
+                "attrs": _resolve_attrs(node.get("attrs", {}), vars_),
+            }
+
         elif t == "directive":
             if node["name"] == "transition":
                 transitions.append({
@@ -152,10 +159,13 @@ def resolve(ast: list[dict[str, Any]]) -> dict[str, Any]:
             "attrs": _resolve_attrs(s.get("attrs", {}), vars_),
             "still": None,
             "motion": None,
-            "narrate": None,
+            "narrate": None,        # back-compat: first narrate block
+            "narrates": [],         # all narrate blocks, in order
             "music": None,
+            "sfx": [],              # all sfx_refs in this scene, in order
         }
 
+        narrate_index = 0
         for child in s["children"]:
             ct = child["type"]
             if ct == "block":
@@ -165,11 +175,26 @@ def resolve(ast: list[dict[str, Any]]) -> dict[str, Any]:
                 spec = {"engine": engine,
                         "attrs": _resolve_attrs(child.get("attrs", {}), vars_),
                         **kv}
-                # Deterministic seed derivation if seed=auto or missing.
-                seed_val = spec.get("seed", "auto")
-                if seed_val == "auto" or seed_val is None:
-                    spec["seed"] = _deterministic_seed(slug, s["name"], kind)
-                scene[kind] = spec
+                if kind == "narrate":
+                    # Lipsync flag travels with each narrate block.
+                    spec["lipsync"] = bool(child.get("lipsync", False))
+                    spec["voice"] = engine  # preset name lookup convenience
+                    # Per-narrate deterministic seed — each line gets a unique seed.
+                    role = f"narrate_{narrate_index}"
+                    if spec.get("seed", "auto") in ("auto", None):
+                        spec["seed"] = _deterministic_seed(
+                            slug, s["name"], role)
+                    scene["narrates"].append(spec)
+                    if scene["narrate"] is None:
+                        scene["narrate"] = spec
+                    narrate_index += 1
+                else:
+                    # still / motion — deterministic seed if auto.
+                    seed_val = spec.get("seed", "auto")
+                    if seed_val == "auto" or seed_val is None:
+                        spec["seed"] = _deterministic_seed(
+                            slug, s["name"], kind)
+                    scene[kind] = spec
             elif ct == "music_ref":
                 ref_name = child["name"]
                 ref_attrs = _resolve_attrs(child.get("attrs", {}), vars_)
@@ -179,6 +204,15 @@ def resolve(ast: list[dict[str, Any]]) -> dict[str, Any]:
                     "value": preset["value"] if preset else None,
                     "attrs": {**(preset["attrs"] if preset else {}), **ref_attrs},
                 }
+            elif ct == "sfx_ref":
+                ref_name = child["name"]
+                ref_attrs = _resolve_attrs(child.get("attrs", {}), vars_)
+                preset = sfx_presets.get(ref_name)
+                scene["sfx"].append({
+                    "preset": ref_name,
+                    "value": preset["value"] if preset else None,
+                    "attrs": {**(preset["attrs"] if preset else {}), **ref_attrs},
+                })
             elif ct == "kv":
                 scene.setdefault("extras", {})[child["key"]] = _interpolate(
                     child["value"], vars_)
@@ -190,6 +224,7 @@ def resolve(ast: list[dict[str, Any]]) -> dict[str, Any]:
         "vars": vars_,
         "voice_presets": voice_presets,
         "music_presets": music_presets,
+        "sfx_presets": sfx_presets,
         "transitions": transitions,
         "mixes": mixes,
         "scenes": scenes_out,
