@@ -49,11 +49,24 @@ still/prompt/seed). The wall is measured at the same 192×192 resolution.
 | student step 125 | 0.1145 | ✅ |
 | **student step 150 (best)** | **0.0823** | ✅ |
 
-Every checkpoint beats the raw 1-step baseline; the best (step 150) cuts the perceptual gap to
+Every checkpoint beats the raw 1-step baseline; at 150 steps the best cuts the perceptual gap to
 **~40% of it** (0.082 vs 0.206) — a ~2.5× improvement. The single denoising step now lands much
 closer to the four-step teacher. Note the latent-MSE training loss fell monotonically, but LPIPS
-bottomed in a noisy ~0.11 band through step 125 before step 150 broke lower — reinforcing
-learning #3 below.
+bottomed in a noisy ~0.11 band through step 125 before step 150 broke lower.
+
+### Does more training help? (300-step extension)
+
+A second run to 300 steps (same config) tested whether step 150 was the ceiling. It wasn't —
+LPIPS kept dropping into new territory (8-sample eval, same-res wall = 0.218):
+
+| step | 150 | 200 | 250 | 300 |
+|---|---|---|---|---|
+| LPIPS | 0.070 | 0.061 | 0.054 | **0.052** |
+
+(Step-150 reads 0.070 here vs 0.082 at 11 samples — sample-count variance; the trend within one
+eval is what matters.) **New best: step 300 @ 0.052** — ~37% below the 150-step result and
+**~4.2× under the 0.218 wall**. The descent flattens at the end (250→300 is only −0.0014), so
+~300 steps is near the practical floor for this config — a 400-step run likely wouldn't pay off.
 
 ## Honest learnings (the stuff that bit us)
 
