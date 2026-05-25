@@ -65,6 +65,10 @@ DEFAULT_OUT_DIR = HOME / "AI" / "videopipe" / "outputs"
 PIPER = HOME / "Library" / "Python" / "3.9" / "bin" / "piper"
 PIPER_MODEL = (HOME / "Desktop" / "PROJECTS" / "Song Forge"
                / "piper_voices" / "en_US-libritts_r-medium.onnx")
+# ChatterBox character voices (cloned, consistent). A DSL voice preset of
+# `chatterbox/<character>` routes that character's lines through character_voice.py.
+CHATTERBOX_PY = HOME / "chatterbox-env" / "bin" / "python"
+CHARACTER_VOICE = HOME / "Desktop" / "PROJECTS" / "AI" / "videopipe" / "bin" / "character_voice.py"
 
 # --- Avatar pipeline (LivePortrait + Wav2Lip) --------------------------------
 # Layout per ~/.myavatar-local/app.py: LP and W2L live under avatar-pipeline/.
@@ -112,7 +116,7 @@ def storyplan_to_pipeline_config(plan: dict[str, Any]) -> dict[str, Any]:
     return {
         "title": meta.get("title", "Untitled"),
         "slug": meta.get("slug", "untitled"),
-        "style": "",
+        "style": (meta.get("style_pack") or {}).get("still_suffix", ""),
         "character": "",
         "scenes": pipeline_scenes,
         "voice": voice,
@@ -209,6 +213,20 @@ def _render_narration(line: str, voice_spec: dict[str, Any],
         return True
     if not line or not line.strip():
         return False
+    # ChatterBox character voices: a voice preset of `chatterbox/<character>`
+    # routes the line through character_voice.py (cloned, consistent voice).
+    value = ((voice_spec or {}).get("value") or "")
+    if value.startswith("chatterbox/"):
+        character = value.split("/", 1)[1].strip() or "hank"
+        out_wav.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            subprocess.run([str(CHATTERBOX_PY), str(CHARACTER_VOICE),
+                            "--character", character, "--line", line,
+                            "--out", str(out_wav)], check=True)
+        except subprocess.CalledProcessError as exc:
+            print(f"[narrate] chatterbox '{character}' failed: {exc}", flush=True)
+            return False
+        return out_wav.exists()
     if not PIPER.exists() or not PIPER_MODEL.exists():
         print(f"[narrate] piper or model missing; skipping line", flush=True)
         return False
@@ -403,7 +421,7 @@ def _overlay_lipsync_on_scene(scene_clip: Path, head_clip: Path,
 
 
 def _stitch(clips: list[Path], out_mp4: Path,
-            xfade: float = 0.5, scene_dur: float = 5.0) -> None:
+            xfade: float = 0.5, scene_dur: float = 5.0, fps: int = 30) -> None:
     """xfade-stitch the visual track (no audio) -> out_mp4."""
     if len(clips) == 1:
         shutil.copy2(clips[0], out_mp4)
@@ -425,7 +443,7 @@ def _stitch(clips: list[Path], out_mp4: Path,
          "-map", last,
          "-c:v", "libx264", "-pix_fmt", "yuv420p",
          "-preset", "medium", "-crf", "18",
-         "-r", "30", "-an", str(out_mp4)])
+         "-r", str(fps), "-an", str(out_mp4)])
 
 
 def _mux_narration(visuals: Path, vo_wav: Path | None, out: Path) -> None:
@@ -463,6 +481,17 @@ def render_lean(plan: dict[str, Any],
     slug = meta.get("slug", "untitled")
     scene_dur = float(meta.get("scene_duration", 5.0))
     scenes_all = plan["scenes"]  # dict preserves insertion order
+
+    # Format pack → target dimensions / fps. Absent a `format=` declaration these
+    # stay None/30 and the helpers keep their historic defaults (768x512 still,
+    # 1280x720 conform, 30fps) so films without a format render byte-identically.
+    fmt_width = int(meta.get("width", 0)) or None
+    fmt_height = int(meta.get("height", 0)) or None
+    fmt_fps = int(meta.get("fps", 0)) or 30
+    # Style pack → Flux still prompt suffix (only affects flux-generated stills;
+    # a scene that supplies its own image already carries its look).
+    style_pack = meta.get("style_pack") or {}
+    style_suffix = (style_pack.get("still_suffix") or "").strip()
 
     # Filter scenes if requested
     if scene_filter:
@@ -514,19 +543,36 @@ def render_lean(plan: dict[str, Any],
         raw_mp4 = work_dir / f"raw_{idx:02d}.mp4"
         conformed = work_dir / f"clip_{idx:02d}.mp4"
 
-        # 1. Still (skip if motion engine doesn't need one — but both Wan-i2v
-        #    and LTX-i2v do, so always render).
-        if still_prompt:
-            _render_still(still_prompt, still_png, seed=still_seed)
+        # 1. Still — use an EXISTING image if the DSL gave one
+        #    (`still image:` with `path:`), else Flux-generate from a prompt.
+        #    Both Wan-i2v and LTX-i2v need a still, so one path or the other runs.
+        still_image = still_spec.get("path") or still_spec.get("image")
+        if still_image:
+            src = Path(str(still_image)).expanduser()
+            if not src.is_file():
+                raise RuntimeError(f"scene {name}: still image not found: {src}")
+            if not still_png.exists():
+                shutil.copy2(src, still_png)
+            print(f"[still] using image: {src}")
+        elif still_prompt:
+            prompt = (f"{still_prompt}, {style_suffix}"
+                      if style_suffix else still_prompt)
+            still_kw: dict[str, Any] = {}
+            if fmt_width and fmt_height:
+                still_kw = {"width": fmt_width, "height": fmt_height}
+            _render_still(prompt, still_png, seed=still_seed, **still_kw)
         else:
-            raise RuntimeError(f"scene {name}: still.prompt is required")
+            raise RuntimeError(f"scene {name}: needs still.prompt (flux) or still.path (image)")
 
         # 2. Motion
         _render_motion(motion_prompt or still_prompt, still_png, raw_mp4,
                        engine=engine, duration=duration, label=label)
 
-        # 3. Conform
-        _conform_clip(raw_mp4, conformed, scene_dur=duration)
+        # 3. Conform (to format dims/fps when a format pack is active)
+        conform_kw: dict[str, Any] = {"fps": fmt_fps}
+        if fmt_width and fmt_height:
+            conform_kw.update(width=fmt_width, height=fmt_height)
+        _conform_clip(raw_mp4, conformed, scene_dur=duration, **conform_kw)
 
         # 4. Narration pieces + per-spec lipsync overlay (per scene, in order).
         scene_visual = conformed
@@ -570,7 +616,8 @@ def render_lean(plan: dict[str, Any],
     _stitch(enhanced_clips, visuals,
             xfade=0.5,
             scene_dur=float(next(iter(scenes.values()))
-                            .get("motion_spec", {}).get("duration", scene_dur)))
+                            .get("motion_spec", {}).get("duration", scene_dur)),
+            fps=fmt_fps)
 
     # 6. Build narration track (adelay+amix, scene-synced) if we have any
     vo_wav: Path | None = None

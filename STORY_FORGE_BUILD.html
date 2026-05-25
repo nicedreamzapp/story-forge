@@ -1,100 +1,82 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Story Forge — Build to 100%</title>
+<title>Story Forge — Generative Video System</title>
 <style>
 :root{--bg:#07050c;--fg:#f5f0ff;--muted:#8b83a1;--accent:#ec4899;--accent2:#a855f7;
 --card:rgba(255,255,255,.04);--border:rgba(255,255,255,.10);--ok:#34d399;--now:#fbbf24;--todo:#6b7691;--bad:#f87171;--gold:#f5c542}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(1200px 800px at 10% 0%,rgba(236,72,153,.16),transparent 60%),radial-gradient(1000px 800px at 90% 100%,rgba(168,85,247,.14),transparent 60%),var(--bg);color:var(--fg);font:14px/1.6 -apple-system,"SF Pro Text",Arial,sans-serif}
-.app{max-width:940px;margin:0 auto;padding:24px}
-h1{font-size:24px;margin:0 0 2px}h2{font-size:14px;color:var(--accent);text-transform:uppercase;letter-spacing:.09em;margin:28px 0 10px}
-.sub{color:var(--muted);margin:0 0 16px}
-.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-weight:600;font-size:12px;background:#a855f722;color:#a855f7;border:1px solid #a855f766}
-.bar{height:10px;background:rgba(255,255,255,.08);border-radius:6px;overflow:hidden;margin:14px 0 8px}
-.fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin:10px 0}
-.now{border:1px solid #fbbf2466;background:#fbbf240d}
-.vision{border:1px solid #f5c54255;background:#f5c5420c}
+.app{max-width:880px;margin:0 auto;padding:24px}
+h1{font-size:23px;margin:0 0 2px}h2{font-size:13px;color:var(--accent);text-transform:uppercase;letter-spacing:.09em;margin:26px 0 8px}
+.sub{color:var(--muted);margin:0 0 14px}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-weight:600;font-size:12px;background:#34d39922;color:var(--ok);border:1px solid #34d39966}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin:8px 0}
+.win{border:1px solid #34d39955;background:#34d3990d}.vision{border:1px solid #f5c54255;background:#f5c5420c}.rule{border:1px solid #f8717155;background:#f871710d}
 ul{list-style:none;padding:0;margin:0}
-li{padding:9px 0;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:flex-start}
+li{padding:6px 0;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:flex-start}
 li:last-child{border-bottom:none}
 .tag{flex:none;font-size:11px;font-weight:700;padding:2px 9px;border-radius:6px;margin-top:1px}
-.t-ok{background:#34d39922;color:var(--ok)}.t-now{background:#fbbf2422;color:var(--now)}.t-todo{background:#6b769122;color:#aab2c8}.t-bad{background:#f8717122;color:var(--bad)}
-.lesson{border-left:3px solid var(--bad);padding:6px 0 6px 14px;margin:12px 0}.lesson b{color:#ffb4b4}.lesson p{color:var(--muted);margin:4px 0 0}
-.win{border-left:3px solid var(--ok);padding:6px 0 6px 14px;margin:12px 0}.win b{color:#9ff5cf}.win p{color:var(--muted);margin:4px 0 0}
-.est{color:var(--muted);font-size:12px;margin-left:auto;flex:none}
-.foot{color:var(--muted);font-size:12px;margin-top:26px;text-align:center}
+.t-ok{background:#34d39922;color:var(--ok)}.t-todo{background:#6b769122;color:#aab2c8}.t-now{background:#fbbf2422;color:var(--now)}
+.est{flex:none;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-top:1px;background:#a855f722;color:#d7c3ff;border:1px solid #a855f744}
+.foot{color:var(--muted);font-size:12px;margin-top:24px;text-align:center}
 .mono{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#cfc7e0}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:6px 0}
-.grid>div{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px}
-.k{color:var(--muted);font-size:11px;text-transform:uppercase}.v{font-size:21px;font-weight:700}
+.tot{font-size:13px;color:var(--fg);margin-top:10px}.tot b{color:var(--gold)}
+b.k{color:#d7c3ff}
 </style></head><body><div class="app">
 
-<h1>Story Forge — Build to 100% <span class="badge">in progress</span></h1>
-<p class="sub">100% local generative cinema · single source of truth · <b>updated 14:35 · 2026-05-25</b></p>
+<h1>Story Forge — Generative Video System <span class="badge">Many phases done · hardening now</span></h1>
+<p class="sub">A robust <b>100% local</b> system for making video of <b>any kind</b> — narrated, ambient, promo, documentary, sagas, cartoons — from one readable script. <b>Not a cartoon studio.</b> Cartoons are just what it does well right now; talking characters are the hardest case, so they're the proof, not the limit. · <b>updated 17:20 · 2026-05-25</b></p>
+<p class="sub" style="margin-top:-6px"><b class="k">How we build:</b> perfect what works &amp; build off it · our own language (<span class="mono">.sf</span>), not slow generic tooling · built for our hardware (M5 Max + mini), 100% local, full advantage at all times.</p>
 
-<div class="grid">
-  <div><span class="k">Core engine</span><br><span class="v" style="color:var(--ok)">working</span></div>
-  <div><span class="k">First short</span><br><span class="v">shipped</span></div>
-  <div><span class="k">To full polish</span><br><span class="v">~3–4 hr</span></div>
+<h2>✅ Done — we're many phases deep</h2>
+<div class="card win"><ul>
+  <li><span class="tag t-ok">ENGINE</span><div>Finished video proven end-to-end: stills → motion → voices → mouth-match → score → title → strung piece. The <b class="k">.sf</b> language (parser/resolver/emitter/CLI) is the content-agnostic backbone.</div></li>
+  <li><span class="tag t-ok">RENDER</span><div><b class="k">render-route</b> auto-picks Wan 2.2 i2v / LTX 13B distilled (5.6× faster, M5 MPS). 1-step distillation merged (LPIPS 0.052). Cloned + built-in voices, warm narration EQ + ducking, saga-stitch, <b class="k">mouth_sync</b>.</div></li>
+  <li><span class="tag t-ok">PROOF</span><div>"Hank &amp; Doug" cartoon shipped — exercises every part of the engine. <span class="mono">~/Desktop/StoryForge-good-clips/HANK_AND_DOUG__COMPLETE.mp4</span></div></li>
+  <li><span class="tag t-ok">STUDIO</span><div>The generalization layer landed: <span class="mono">story-new &lt;name&gt;</span> scaffolds any project in one command; <b class="k">style &amp; format packs</b> (7 looks, 5 shapes) set look + shape from one keyword; the web editor surfaces them (live picker) plus multi-voice / SFX / fast-mode examples. 49 tests green; validated by a real 1-scene render.</div></li>
+</ul></div>
+
+<h2>🔒 Locked method — talking characters (the hardest case)</h2>
+<div class="card">
+The proven recipe for when characters speak on screen. Other video (narrated, ambient, promo) skips most of this.
+<ul style="margin-top:6px">
+  <li><span class="tag t-ok">1</span><div>One scene at a time → you OK it → LOCK the .mp4 → never touch it again.</div></li>
+  <li><span class="tag t-ok">2</span><div>Voice only over the untouched clip — <b>never repaint mouths</b> (Wav2Lip/face-models banned).</div></li>
+  <li><span class="tag t-ok">3</span><div>Match voice to the mouth by eye — density-matched, one talker per beat; never voice a closed mouth or leave a moving one silent.</div></li>
+  <li><span class="tag t-ok">4</span><div>Keep each line inside its clip; <span class="mono">silencedetect</span> confirms no bleed across cuts.</div></li>
+  <li><span class="tag t-ok">5</span><div>Agent self-verifies (frames + audio) before you ever see it. You are never the QC tester.</div></li>
+  <li><span class="tag t-ok">6</span><div>Assemble dialogue-only scenes → concat → ONE continuous song over the whole piece.</div></li>
+</ul>
+<p class="mono" style="margin-top:8px">Doug = your cloned voice · Hank = ChatterBox built-in seed 44 (never cloned) · 3 spares. Full doc: SCENE_BUILDING_METHOD.md</p>
 </div>
-<div class="bar"><div class="fill" style="width:60%"></div></div>
 
-<h2>⭐ What we're working toward (the unconventional edge)</h2>
-<div class="card vision">
-We are NOT building another cloud model-runner. The whole bet is to <b>beat the vendors by doing it 100% local with new pathways nobody else is using</b>:
-<ul style="margin-top:8px">
-  <li><span class="tag" style="background:#f5c54222;color:var(--gold)">LANG</span><div><b>Our own language — the <span class="mono">.sf</span> DSL.</b> Write a film in plain text (scenes, motion, voices, music); it compiles to the render plan. Nobody ships a film-director language; everyone ships node graphs.</div></li>
-  <li><span class="tag" style="background:#f5c54222;color:var(--gold)">QUANT</span><div><b>New quantization pathways — 1-step distillation.</b> We forged our own self-consistency objective and got Wan down to a single step (LPIPS 0.052, beats the wall). That's the frontier — distill-on-Apple-Silicon is unpublished territory.</div></li>
-  <li><span class="tag" style="background:#f5c54222;color:var(--gold)">VOICE</span><div><b>Cloned, consistent character voices (ChatterBox), fully local.</b> Each character = one frozen reference clip = same voice every time. No cloud TTS.</div></li>
-  <li><span class="tag" style="background:#f5c54222;color:var(--gold)">SPEED</span><div><b>Stacked local speedups</b> — LTX (5.6×) + 1-step distill + smart routing, all on the M5 (128GB). Goal: a 4-min film in minutes, not 5 hours.</div></li>
+<h2>🚀 Just shipped — the generalization layer</h2>
+<div class="card win"><ul>
+  <li><span class="tag t-ok">DONE</span><div><b class="k">New-project scaffold</b> — <span class="mono">story-new &lt;name&gt; [--style …] [--format …]</span> lays down a runnable project (stills/ + voices/ + starter <span class="mono">.sf</span> + README) for any project type. Renders out of the box.</div></li>
+  <li><span class="tag t-ok">DONE</span><div><b class="k">Style &amp; format packs</b> — one keyword sets the look (pixar-3d / flat-2d / photoreal / watercolor / anime / claymation / noir) and the shape (film / reel / square / narrated-doc / cinematic). Style rides the Flux prompt; format rides the dimensions. No new model, no new dependency.</div></li>
+  <li><span class="tag t-ok">DONE</span><div><b class="k">Web UI surfacing</b> (port 17600) — a live Styles &amp; Formats picker (click to set the film line) backed by <span class="mono">/api/packs</span>, plus one-click example scripts for multi-voice, SFX, and per-scene fast-mode.</div></li>
+</ul>
+<p class="tot" style="margin-top:6px">All three were on the roadmap as "planned, none implemented." Done, tested (49 green), and proven with a real render.</p>
+</div>
+
+<h2>🚀 What's left</h2>
+<div class="card vision"><ul>
+  <li><span class="tag t-todo">TODO</span><span class="est">~1–2 days</span><div><b class="k">Render speed</b> — validate mini parallel render, wire LTX into render-route, optional 2-step Wan distill (2× on motion). Cuts turnaround; doesn't change output.</div></li>
+  <li><span class="tag t-todo">R&amp;D</span><span class="est">research</span><div><b class="k">Mouths move to the plot</b> — render-time lip motion from dialogue; retires manual mouth-matching. Long-arc, off the critical path.</div></li>
+</ul>
+<p class="tot">⏱️ The general video studio is now usable end-to-end. Remaining work is speed (a day or two) plus the standing R&amp;D bet.</p>
+</div>
+
+<h2>⚠️ The rule — log everything, never repeat it</h2>
+<div class="card rule">
+Every build and <b>every mistake</b> is written down here (this page + SESSION_HANDOFF.md + SCENE_BUILDING_METHOD.md) so we never re-learn it the hard way. The standing never-agains:
+<ul style="margin-top:6px">
+  <li><span class="tag t-todo">×</span><div>Never repaint mouths (human face on a stylized muzzle = rejected on sight).</div></li>
+  <li><span class="tag t-todo">×</span><div>Never let voice carry across a scene cut (wrong character seems to talk) — verify with silencedetect.</div></li>
+  <li><span class="tag t-todo">×</span><div>Never trust the ChatterBox voice meter (degenerate); voice identity = you confirm once, then locked.</div></li>
+  <li><span class="tag t-todo">×</span><div>Never build all scenes at once, and never ship without self-QC'ing frames + audio first.</div></li>
+  <li><span class="tag t-todo">×</span><div>Dead ends, disabled, don't reopen: Metal flash-attn kernel (slower than MPS), Q4 on M5, wan_metal_fused node (crashed renders).</div></li>
 </ul>
 </div>
 
-<h2>🟡 Right now / next</h2>
-<div class="card now">
-First <b>Hank &amp; Doug</b> short is cut — character voices (Hank + Doug speaking their own lines), no narrator, no mouth-patching, animation untouched. Next: finish the software polish (UI, end-to-end speed run) and ship to GitHub + the site.
-</div>
-
-<h2>✅ Built &amp; working</h2>
-<div class="card"><ul>
-  <li><span class="tag t-ok">DONE</span><div><b>1-step distillation</b> — LPIPS 0.052, merged to main + working render path (<span class="mono">render_distill.py</span>).</div></li>
-  <li><span class="tag t-ok">DONE</span><div><b>The <span class="mono">.sf</span> DSL</b> — parser/resolver/emitter/CLI, 29 tests pass; now also animates existing stills (<span class="mono">still image:</span>).</div></li>
-  <li><span class="tag t-ok">DONE</span><div><b>Character voices (ChatterBox)</b> — 🐻 Hank + 🐕 Doug (your voice) locked, +3 spare voices cast. Tool: <span class="mono">character_voice.py</span>.</div></li>
-  <li><span class="tag t-ok">DONE</span><div><b>render-route</b> — auto Wan (hero) vs LTX (B-roll, 5.6×).</div></li>
-  <li><span class="tag t-ok">DONE</span><div><b>First Hank &amp; Doug short</b> — Pixar stills → motion → real character dialogue, stitched.</div></li>
-</ul></div>
-
-<h2>🧪 What we tried — and what we'll NEVER do again (and why)</h2>
-<div class="card">
-  <div class="lesson"><b>NEVER: repaint mouths (Wav2Lip / box / video-retalking).</b><p>These are trained on HUMAN mouths. Forced onto a stylized bear they paint a blurry human mouth on a muzzle = looks horrible, "a still with a mouth that doesn't match." Rejected on sight. Dead forever.</p></div>
-  <div class="lesson"><b>NEVER: narrator talking over characters whose mouths move.</b><p>A single narrator voice over characters visibly "talking" reads as nonsense. Every character gets their OWN voice speaking their OWN lines.</p></div>
-  <div class="lesson"><b>WON'T WORK: timing voice to the animation's ambient mouth motion.</b><p>Wan adds RANDOM idle jaw-flap to make a still feel alive — it's not forming words, so there's nothing to sync to. No timing trick can match arbitrary audio to random motion.</p></div>
-  <div class="lesson"><b>DEAD END: Metal flash-attention kernel.</b><p>2–4× slower than Apple's MPS SDPA; the "12× win" was a measurement bug. Documented, disabled, don't reopen.</p></div>
-  <div class="lesson"><b>SKIP on M5: Q4 quantization.</b><p>Was only a trick to fit the mini's 64GB. On the 128GB M5 we render full fp16. Don't quantize here.</p></div>
-</div>
-
-<h2>📋 Left to build</h2>
-<div class="card"><ul>
-  <li><span class="tag t-todo">TODO</span><div><b>UI: multi-voice + SFX + per-scene fast-mode</b> surfaced in the web form.</div><span class="est">~1 hr</span></li>
-  <li><span class="tag t-todo">TODO</span><div><b>End-to-end speed run</b> — real 4-min film time on the stacked stack.</div><span class="est">~1 hr</span></li>
-  <li><span class="tag t-todo">TODO</span><div><b>Full Hank &amp; Doug episode</b> + music bed + QC.</div><span class="est">~1 hr</span></li>
-  <li><span class="tag t-todo">TODO</span><div><b>Ship</b> — push to GitHub, update the nicedreamzwholesale.com page.</div><span class="est">~45 min</span></li>
-  <li><span class="tag t-bad">R&amp;D</b></span><div><b>"Perfect" talking animal mouths.</b> Not reachable with current local tools (all human-trained). Real fix = rigged characters w/ viseme shapes, OR a cartoon-capable audio-driven model we'd have to find/train. <b>Days–weeks, uncertain</b> — NOT a blocker for shipping episodes via voice + staging.</div></li>
-</ul></div>
-
-<h2>⏱️ Timeline if we just download &amp; install everything</h2>
-<div class="card">
-  <p><b>Software polish (UI, speed run, episode, ship):</b> ~3–4 hours — almost all already built, just finishing + rendering. No new installs needed.</p>
-  <p><b>Better B-roll motion models (extra variety/quality):</b> +1–2 hrs of downloads (weights from HuggingFace), local inference only.</p>
-  <p><b>The talking-character problem, done "perfectly":</b> this is the long pole and <b>no install fixes it overnight</b> — every off-the-shelf talker is human-face-trained. Path is either rigged 3D characters (animation-pipeline work, weeks) or sourcing/fine-tuning a cartoon-capable audio-driven model (R&D, days+). We ship great episodes WITHOUT it using voice + cartoon staging.</p>
-  <p class="muted">Bottom line: a complete, shippable Story Forge + Hank &amp; Doug episode is ~half a day out. "Frame-perfect animal lip-sync" is a separate research track, not a download.</p>
-</div>
-
-<h2>🖥️ Machine rules</h2>
-<div class="card"><ul>
-  <li><span class="tag t-ok">M5</span><div>All heavy work + training + rendering (128 GB). Fast jobs too.</div></li>
-  <li><span class="tag t-todo">MINI</span><div>Agents / automation only (64 GB). Second long render only if M5 is full.</div></li>
-</ul></div>
-
-<p class="foot">Story Forge build dashboard · regenerated at milestones (Cmd+R to refresh) · /Users/dtribe/Desktop/PROJECTS/story-forge/STORY_FORGE_BUILD.html</p>
+<p class="foot">Story Forge build status · regenerated at milestones (Cmd+R) · /Users/dtribe/Desktop/PROJECTS/story-forge/STORY_FORGE_BUILD.html</p>
 </div></body></html>

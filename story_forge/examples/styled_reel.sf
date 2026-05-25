@@ -1,0 +1,36 @@
+# styled_reel.sf — style + format packs, and per-scene FAST MODE.
+# Surfaces STYLE/FORMAT PACKS: `style=` sets the look (appended to every Flux
+# still prompt), `format=` sets the shape (here a 9:16 vertical reel).
+# Surfaces FAST MODE: `motion ltx` is the fast engine (~5x quicker than wan);
+# use it per scene for ambient/atmospheric beats. Use `motion wan` only when a
+# scene needs character action.
+#
+# List all packs anytime:  python3 -m story_forge.packs
+
+film "Styled Reel" slug=styled_reel target=m5 style=pixar-3d format=reel
+
+voice narrator: piper/en_US-libritts_r-medium speaker=0 length=1.10
+music score: ace/warm-cinematic-underscore vol=0.30
+
+@transition xfade dur=0.5
+@mix duck voice -> music threshold=-22 ratio=4
+
+scene establish:
+    still flux:
+        prompt: "a cozy treehouse village glowing at dusk, lanterns lit"
+    motion ltx:
+        prompt: "lanterns flicker, fireflies drift, gentle evening breeze"
+        duration: 5.0
+    narrate narrator:
+        line: "Up in the high branches, the whole village was getting ready for night."
+    music score vol=0.30
+
+scene reveal:
+    still flux:
+        prompt: "a small character on a rope bridge looking out over the village"
+    motion ltx:
+        prompt: "the rope bridge sways softly, warm light, dust motes drift"
+        duration: 5.0
+    narrate narrator:
+        line: "And one of them wasn't ready to sleep just yet."
+    music score vol=0.32

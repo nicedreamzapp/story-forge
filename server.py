@@ -727,6 +727,19 @@ def api_example(name):
     return Response(p.read_text(), mimetype="text/plain")
 
 
+@app.route("/api/packs")
+def api_packs():
+    """Style + format packs, straight from story_forge/packs.py (one source of
+    truth). The UI fetches this to populate the Styles & Formats picker, so a
+    new pack added in packs.py shows up in the editor automatically."""
+    try:
+        from story_forge import packs as _packs
+    except Exception as e:  # pragma: no cover - import guard
+        return jsonify({"error": f"packs import failed: {e}"}), 500
+    return jsonify({"styles": _packs.list_styles(),
+                    "formats": _packs.list_formats()})
+
+
 @app.route("/api/live")
 def api_live():
     """Serve the build_status/live.json ticker payload to the Story Forge UI."""

@@ -1,6 +1,8 @@
 # Story Forge — Dialogue Scene-Building Method (LOCKED 2026-05-25)
 
-The hard-won, Matt-approved way to build a talking cartoon. Follow this exactly.
+Story Forge is a general local video system; this doc covers ONE case within it: scenes where characters talk on screen (the hardest case — cartoons are just where we proved it). Other video types (narrated, ambient, promo) use the same engine without most of these steps.
+
+The hard-won, Matt-approved way to build a talking-character scene. Follow this exactly.
 Tools live in `~/Desktop/PROJECTS/AI/videopipe/bin/` (also see that dir's CLAUDE.md).
 
 ## Golden rules

@@ -1,6 +1,12 @@
-# Story Forge — local AI cinema pipeline
+# Story Forge — local AI generative video system
 
-This directory is the home of **Story Forge**, a local-only generative cinema pipeline. When Claude Code starts here, this file auto-loads to bring you up to speed.
+This directory is the home of **Story Forge**, a robust 100%-local generative VIDEO system — for making video of ANY kind (narrated explainers, ambient pieces, promos, documentary cuts, sagas, cartoons) in any style, from one readable `.sf` script. It is NOT a cartoon studio. Cartoons are just the case it works decently for right now — talking characters are the hardest case, so they're the proving ground, not the limit. When Claude Code starts here, this file auto-loads to bring you up to speed.
+
+## How we build (the ethos — apply this to every decision)
+- **Build off what we KNOW works.** Perfect the proven win, then extend from it. Never restart from scratch and never chase an unproven path when a working one exists. Every new feature stands on a tested foundation.
+- **This is OUR environment, running OUR language (`.sf`).** We do not lean on other people's systems that are slow, old, and not tuned to our machines. The DSL exists so we control the whole stack end-to-end.
+- **Built FOR our hardware, taking full advantage at all times.** M5 Max 128GB does the heavy lifting, the mini runs in parallel, everything is Apple-Silicon / MPS-native and 100% local — no cloud inference, ever. We know exactly what we have and make the most of it.
+- **The result: faster, fully owned, hardware-matched.** That's the whole point — escape generic, sluggish, mismatched tooling and run a pipeline that fits this hardware perfectly.
 
 **Live products:**
 - 🌐 Public site: https://nicedreamzwholesale.com/software/story-forge/
@@ -17,6 +23,8 @@ This directory is the home of **Story Forge**, a local-only generative cinema pi
 - `bin/make-video` — Wan inference CLI (works)
 - `bin/make-ltx-video` — LTX-Video fast-mode CLI (BROKEN, see SESSION_HANDOFF "Open problems #1")
 - `bin/render-route` — auto-picks Wan vs LTX per scene
+- `bin/story-new` — scaffold a new project in one command (`story-new "Name" --style … --format …`)
+- `story_forge/packs.py` — style + format packs (the "any style, any format" layer); `/api/packs` serves them to the UI
 
 **The frozen rules (lessons learned, don't re-derive):**
 1. Piper flag is `--noise-w-scale` (NOT `--noise-scale-w` — wrong order gets read aloud)
@@ -31,7 +39,7 @@ This directory is the home of **Story Forge**, a local-only generative cinema pi
 
 ## DIALOGUE SCENE-BUILDING WORKFLOW — THE locked way (2026-05-25, Matt-approved)
 
-Build a talking cartoon ONE SCENE AT A TIME. Do NOT do all scenes at once — that is what kept breaking.
+Build a talking-character scene ONE SCENE AT A TIME. Do NOT do all scenes at once — that is what kept breaking. (Applies to any video with characters speaking on screen, not just cartoons.)
 
 Per scene:
 1. Pull a CLEAN full frame, locate each character's mouth precisely (extension crops are easy to get wrong — always verify against the real frame).

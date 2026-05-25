@@ -122,7 +122,7 @@ For any new long-running job, compute peak memory FIRST (model_GB × stages + ac
 
 3. **Wan attention bench OOMs.** `bin/bench-wan-attention` loads all models simultaneously and overruns M5's 180GB MPS watermark. Needs sequential-load fix (unload TE before sampler runs, etc.) before we can get the Metal-kernel ROI numbers. Phase 0 effort: ~1 hour.
 
-4. **Story Forge UI extensions never built:** multi-voice routing, SFX library, fast-mode toggle per scene, Wav2Lip lip-sync. All planned, none implemented.
+4. **Story Forge UI extensions — mostly shipped 2026-05-25.** Multi-voice routing, SFX, and per-scene fast-mode were always supported by the DSL; they're now SURFACED in the web editor via one-click example scripts (`multi_voice.sf`, `sfx_demo.sf`, `styled_reel.sf`) plus a live Styles & Formats picker (`/api/packs`). New `story-new` scaffold CLI and `story_forge/packs.py` style/format packs added. Still TODO: Wav2Lip lip-sync toggle in the UI (deliberately deprioritized — mouth-repaint is banned for stylized characters anyway).
 
 ### Roadmap (in priority order, updated 2026-05-24)
 
