@@ -9,6 +9,7 @@ Selection logic:
 
 Usage:
   render-route --still S.png --duration 5 --label scene --engine [wan|ltx|auto] "motion prompt"
+  render-route --still A.png --last-frame B.png --label scene "motion prompt"   # FFLF, forces ltx
   render-route --still S.png --tag hero|broll  --label scene "motion prompt"
 
 Auto routing keywords (cheap heuristic):
@@ -16,6 +17,7 @@ Auto routing keywords (cheap heuristic):
   broll      → wind/snow/water/light/dust/atmosphere/distant/wide
 """
 import argparse
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -48,7 +50,10 @@ def classify(prompt: str) -> str:
 def get_args():
     p = argparse.ArgumentParser()
     p.add_argument("prompt", help="motion prompt")
-    p.add_argument("--still", required=True, help="input still PNG")
+    p.add_argument("--still", required=True, help="input still PNG (first frame)")
+    p.add_argument("--last-frame", default=None,
+                   help="optional still anchored at the last frame (FFLF). "
+                        "LTX only; Wan i2v conditions on the first frame alone.")
     p.add_argument("--duration", type=float, default=5.0)
     p.add_argument("--res", default=None, help="defaults: wan=832x480, ltx=768x512")
     p.add_argument("--label", default="scene")
@@ -70,6 +75,18 @@ def main():
         else:
             engine = classify(args.prompt)
 
+    # FFLF forces LTX: it is the engine that takes a conditioning item at an
+    # arbitrary frame index. Silently dropping the last frame would look like
+    # the feature working while doing nothing.
+    if args.last_frame and engine == "wan":
+        if args.engine == "wan":
+            print("[route] --last-frame ignored: wan i2v conditions on the "
+                  "first frame only. Pass --engine ltx to use it.")
+        else:
+            print("[route] --last-frame given, routing to ltx (wan cannot "
+                  "anchor a final frame)")
+            engine = "ltx"
+
     print(f"[route] engine: {engine}  (tag={args.tag})")
 
     if engine == "wan":
@@ -85,15 +102,18 @@ def main():
     else:  # ltx — Lightricks' own upstream code, multi-scale on MPS
         res = args.res or "768x512"
         # make-ltx-lightricks needs the venv that has its deps installed
-        ltx_py = Path.home() / "AI/ComfyUI/venv/bin/python"
+        ltx_py = Path(os.environ.get("SF_LTX_PYTHON")
+                      or Path.home() / "AI/ComfyUI/venv/bin/python")
         cmd = [
             str(ltx_py), str(LTX_BIN),
             "--i2v", args.still,
             "--duration", str(args.duration),
             "--res", res,
             "--label", args.label,
-            args.prompt,
         ]
+        if args.last_frame:
+            cmd += ["--last-frame", args.last_frame]
+        cmd.append(args.prompt)
 
     return subprocess.run(cmd).returncode
 

@@ -141,7 +141,8 @@ class TestRunLeanDispatch(unittest.TestCase):
         def fake_still(prompt, out_png, seed, **kw):
             _touch(out_png)
 
-        def fake_motion(prompt, still_png, out_mp4, engine, duration, label):
+        def fake_motion(prompt, still_png, out_mp4, engine, duration, label,
+                        last_frame=None):
             _touch(out_mp4)
 
         def fake_conform(src, dst, scene_dur, **kw):

@@ -66,6 +66,12 @@ def get_args():
     p.add_argument("--negative-prompt", default=(
         "worst quality, inconsistent motion, blurry, jittery, distorted, "
         "low quality, ugly, deformed"))
+    p.add_argument("--last-frame", default=None,
+                   help="optional still to anchor at the END of the clip. "
+                        "Sandwiching the shot between two accurate references "
+                        "is what stops identity drifting mid-clip.")
+    p.add_argument("--last-frame-strength", type=float, default=1.0,
+                   help="conditioning strength for --last-frame (default 1.0)")
     p.add_argument("--cond-strength", type=float, default=1.0,
                    help="how strongly the input still anchors frame 0 (0..1)")
     p.add_argument("--out-dir", default=str(Path.home() / "AI/videopipe/outputs"))
@@ -134,6 +140,21 @@ def main():
     with derived_cfg.open("w") as f:
         yaml.safe_dump(cfg_dict, f)
 
+    # Conditioning items. One still anchored at frame 0 is plain i2v. Adding a
+    # second still anchored at the final frame is FFLF: the model has to land on
+    # a reference we chose instead of wherever it drifted to.
+    cond_paths = [args.i2v]
+    cond_strengths = [args.cond_strength]
+    cond_starts = [0]
+    if args.last_frame:
+        lf = Path(args.last_frame)
+        if not lf.exists():
+            sys.exit(f"[ltxL] --last-frame not found: {lf}")
+        cond_paths.append(str(lf))
+        cond_strengths.append(args.last_frame_strength)
+        cond_starts.append(num_frames - 1)
+        print(f"[ltxL] FFLF: anchoring {lf.name} at frame {num_frames - 1}")
+
     config = InferenceConfig(
         prompt=args.prompt,
         output_path=str(staging),
@@ -144,10 +165,9 @@ def main():
         num_frames=num_frames,
         frame_rate=args.fps,
         negative_prompt=args.negative_prompt,
-        # The input still becomes a conditioning item anchored at frame 0.
-        conditioning_media_paths=[args.i2v],
-        conditioning_strengths=[args.cond_strength],
-        conditioning_start_frames=[0],
+        conditioning_media_paths=cond_paths,
+        conditioning_strengths=cond_strengths,
+        conditioning_start_frames=cond_starts,
     )
 
     print(f"[ltxL] seed={seed} frames={num_frames} {width}x{height} "

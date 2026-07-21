@@ -117,6 +117,38 @@ end-to-end loop. Once it produces an mp4, the heavier examples
 
 ---
 
+## Keyframe sandwich (FFLF)
+
+Plain image-to-video conditions on frame 0 and lets the model invent the rest.
+Over a few seconds that is exactly where a character stops being the same
+character. Anchoring the **last** frame as well gives the model a reference it
+has to land on, so drift has nowhere to go.
+
+```
+still flux:
+    prompt:     "a lone hiker in a red jacket on a rocky ridge at sunset"
+    end_prompt: "the same hiker further along the ridge, sun lower"
+    seed: 42
+motion ltx:
+    prompt: "the hiker walks steadily along the ridge"
+```
+
+`end_prompt` draws the closing frame reusing the opening seed, so it is the
+same look rather than a second character that merely matches the words.
+`end_path` points at an image you already trust, which is the move when a
+character has a locked reference and every shot should return to it.
+
+LTX only, since it takes a conditioning item at an arbitrary frame index. A
+scene with an end frame routes to LTX automatically; Wan i2v conditions on the
+first frame alone and says so rather than silently ignoring it.
+
+Directly: `bin/render-route --still A.png --last-frame B.png --label shot "…"`
+
+Working example: `story_forge/examples/keyframe_sandwich.sf`.
+Credit for the technique: foxdit on r/StableDiffusion.
+
+---
+
 ## Architecture
 
 ```
