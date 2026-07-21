@@ -160,8 +160,15 @@ def _render_still(prompt: str, out_png: Path, seed: int,
 
 
 def _render_motion(prompt: str, still_png: Path, out_mp4: Path,
-                   engine: str, duration: float, label: str) -> None:
-    """render-route i2v -> moves result into out_mp4. Idempotent."""
+                   engine: str, duration: float, label: str,
+                   last_frame: Path | None = None) -> None:
+    """render-route i2v -> moves result into out_mp4. Idempotent.
+
+    With `last_frame`, the shot is conditioned on two stills instead of one:
+    frame 0 and the final frame. The model then has to land on a reference we
+    picked, which is what keeps a character from becoming a different person by
+    the end of the clip.
+    """
     if out_mp4.exists():
         print(f"[motion] cached: {out_mp4}")
         return
@@ -170,12 +177,15 @@ def _render_motion(prompt: str, still_png: Path, out_mp4: Path,
     # render-route writes into WAN_OUT/<label>_*<ts>.mp4; we glob for it after.
     before = set(WAN_OUT.glob(f"{label}_*.mp4"))
     eng_arg = engine if engine in ("wan", "ltx") else "auto"
-    _sh(["python3", str(RENDER_ROUTE),
-         "--still", str(still_png),
-         "--duration", str(duration),
-         "--label", label,
-         "--engine", eng_arg,
-         prompt])
+    cmd = ["python3", str(RENDER_ROUTE),
+           "--still", str(still_png),
+           "--duration", str(duration),
+           "--label", label,
+           "--engine", eng_arg]
+    if last_frame:
+        cmd += ["--last-frame", str(last_frame)]
+    cmd.append(prompt)
+    _sh(cmd)
     after = sorted(set(WAN_OUT.glob(f"{label}_*.mp4")) - before,
                    key=lambda p: p.stat().st_mtime, reverse=True)
     if not after:
@@ -526,9 +536,27 @@ def render_lean(plan: dict[str, Any],
         else:
             raise RuntimeError(f"scene {name}: still.prompt is required")
 
+        # 1b. Optional end keyframe (FFLF). `still.end_path` uses an image you
+        #     already have; `still.end_prompt` draws one. Same seed as the
+        #     opening still by default, so it is the same look, not a new
+        #     character that happens to match the words.
+        end_still = None
+        end_path = still_spec.get("end_path")
+        end_prompt = still_spec.get("end_prompt")
+        if end_path:
+            end_still = Path(str(end_path)).expanduser()
+            if not end_still.exists():
+                raise RuntimeError(
+                    f"scene {name}: still.end_path not found: {end_still}")
+        elif end_prompt:
+            end_still = work_dir / f"still_{idx:02d}_end.png"
+            end_seed = int(still_spec.get("end_seed") or still_seed)
+            _render_still(end_prompt, end_still, seed=end_seed)
+
         # 2. Motion
         _render_motion(motion_prompt or still_prompt, still_png, raw_mp4,
-                       engine=engine, duration=duration, label=label)
+                       engine=engine, duration=duration, label=label,
+                       last_frame=end_still)
 
         # 3. Conform
         _conform_clip(raw_mp4, conformed, scene_dur=duration)
