@@ -117,12 +117,16 @@ end-to-end loop. Once it produces an mp4, the heavier examples
 
 ---
 
-## Keyframe sandwich (FFLF)
+## Keyframe sandwich (FFLF) — opt-in, and measure before you trust it
 
-Plain image-to-video conditions on frame 0 and lets the model invent the rest.
-Over a few seconds that is exactly where a character stops being the same
-character. Anchoring the **last** frame as well gives the model a reference it
-has to land on, so drift has nowhere to go.
+The idea, from foxdit on r/StableDiffusion: plain image-to-video conditions on
+frame 0 and lets the model invent the rest, so anchoring the **last** frame too
+should stop a character drifting into someone else.
+
+`still.end_prompt` draws the closing frame reusing the opening seed;
+`still.end_path` uses an image you already trust. LTX only, since it is the
+engine that takes a conditioning item at an arbitrary frame index. Wan i2v
+conditions on the first frame alone and says so instead of ignoring it.
 
 ```
 still flux:
@@ -133,19 +137,39 @@ motion ltx:
     prompt: "the hiker walks steadily along the ridge"
 ```
 
-`end_prompt` draws the closing frame reusing the opening seed, so it is the
-same look rather than a second character that merely matches the words.
-`end_path` points at an image you already trust, which is the move when a
-character has a locked reference and every shot should return to it.
+### What it measured here, honestly
 
-LTX only, since it takes a conditioning item at an arbitrary frame index. A
-scene with an end frame routes to LTX automatically; Wan i2v conditions on the
-first frame alone and says so rather than silently ignoring it.
+On this stack — LTX 13B **distilled**, 7+3 multi-scale steps, 768x512, MPS — a
+3s walking shot with a small human figure came out **worse with the anchor than
+without it**. Same seed, same keyframes, three runs:
+
+| end anchor | subject at the final frame |
+|---|---|
+| strength 1.0 | disintegrated into a smear |
+| strength 0.7 | blurred, damaged, better than 1.0 |
+| **none** | **intact, clean silhouette** |
+
+The worst frame was always the anchored one. Told to be exactly somewhere at
+frame N *and* to move, the sampler sacrifices the subject. So the feature is
+**off unless you ask for it**, the default strength is 0.7 rather than 1.0, and
+if you use it: keep the end frame a small delta from the start, and look at the
+last frame before trusting the shot.
+
+foxdit reports this working well on a 3090 running full-step models. Few-step
+distilled inference is a different animal, and the table above is what it did
+here, not what the technique is supposed to do.
+
+Two other findings from the same tests, both larger than the anchor:
+
+- **1216x704 collapses this config.** The image dissolved into colour bands by
+  frame 24, and cost 316s against 82s. Stay at 768x512 with the distilled
+  recipe.
+- **Frame the subject bigger.** Every failure was a small figure in a wide
+  shot. There are not enough pixels on a distant person to hold them together
+  for 73 frames.
 
 Directly: `bin/render-route --still A.png --last-frame B.png --label shot "…"`
-
-Working example: `story_forge/examples/keyframe_sandwich.sf`.
-Credit for the technique: foxdit on r/StableDiffusion.
+Example: `story_forge/examples/keyframe_sandwich.sf`.
 
 ---
 

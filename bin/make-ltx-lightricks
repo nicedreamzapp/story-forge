@@ -70,7 +70,7 @@ def get_args():
                    help="optional still to anchor at the END of the clip. "
                         "Sandwiching the shot between two accurate references "
                         "is what stops identity drifting mid-clip.")
-    p.add_argument("--last-frame-strength", type=float, default=1.0,
+    p.add_argument("--last-frame-strength", type=float, default=0.7,
                    help="conditioning strength for --last-frame (default 1.0)")
     p.add_argument("--cond-strength", type=float, default=1.0,
                    help="how strongly the input still anchors frame 0 (0..1)")
