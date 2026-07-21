@@ -55,26 +55,31 @@ import time
 from pathlib import Path
 from typing import Any
 
-REPO = Path("/Users/dtribe/Desktop/PROJECTS/AI/videopipe")
-PIPELINE = REPO / "story_pipeline.py"
-RENDER_ROUTE = REPO / "bin" / "render-route"
-HOME = Path.home()
-FLUX = HOME / "Scripts" / "flux_t2i.py"
-WAN_OUT = HOME / "AI" / "videopipe" / "outputs"
-DEFAULT_OUT_DIR = HOME / "AI" / "videopipe" / "outputs"
-PIPER = HOME / "Library" / "Python" / "3.9" / "bin" / "piper"
-PIPER_MODEL = (HOME / "Desktop" / "PROJECTS" / "Song Forge"
-               / "piper_voices" / "en_US-libritts_r-medium.onnx")
+# Every external path resolves through story_forge.config, which reads SF_*
+# environment variables and otherwise falls back to this repo. These names stay
+# module-level so tests can monkeypatch them the way they always have.
+from story_forge import config as _cfg  # noqa: E402
+
+REPO = _cfg.VIDEOPIPE
+PIPELINE = _cfg.PIPELINE
+RENDER_ROUTE = _cfg.RENDER_ROUTE
+HOME = _cfg.HOME
+FLUX = _cfg.FLUX_SCRIPT
+WAN_OUT = _cfg.OUT_DIR
+DEFAULT_OUT_DIR = _cfg.OUT_DIR
+PIPER = _cfg.PIPER
+PIPER_MODEL = _cfg.PIPER_MODEL
 
 # --- Avatar pipeline (LivePortrait + Wav2Lip) --------------------------------
-# Layout per ~/.myavatar-local/app.py: LP and W2L live under avatar-pipeline/.
-AVATAR_DIR = HOME / "Desktop" / "PROJECTS" / "avatar-pipeline"
-LP_DIR = AVATAR_DIR / "LivePortrait"
-LP_VENV_PYTHON = LP_DIR / ".venv" / "bin" / "python"
-LP_INFERENCE = LP_DIR / "inference.py"
-W2L_DIR = AVATAR_DIR / "Wav2Lip"
-W2L_CKPT = W2L_DIR / "checkpoints" / "wav2lip_gan.pth"
-DEFAULT_DRIVER_STILL = HOME / "AI" / "videopipe" / "test_stills" / "walk_frame.png"
+# Optional. Only `with lipsync` touches these; missing pieces fall back to
+# audio-only rather than failing the render.
+AVATAR_DIR = _cfg.AVATAR_DIR
+LP_DIR = _cfg.LP_DIR
+LP_VENV_PYTHON = _cfg.LP_VENV_PYTHON
+LP_INFERENCE = _cfg.LP_INFERENCE
+W2L_DIR = _cfg.W2L_DIR
+W2L_CKPT = _cfg.W2L_CKPT
+DEFAULT_DRIVER_STILL = _cfg.DRIVER_STILL
 
 # Lower-third overlay knobs (kept in module scope so tests can monkeypatch).
 LIPSYNC_OVERLAY_SCALE_W = "iw*0.30"   # ~30% of scene width
@@ -476,7 +481,7 @@ def render_lean(plan: dict[str, Any],
     else:
         scenes = scenes_all
 
-    work_dir = work_dir or (HOME / "Desktop" / "AI Videos" / slug)
+    work_dir = work_dir or (_cfg.WORK_DIR / slug)
     work_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_path or (DEFAULT_OUT_DIR / f"{slug}.mp4")
     out_path.parent.mkdir(parents=True, exist_ok=True)

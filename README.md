@@ -76,17 +76,44 @@ Live build dashboard: `http://127.0.0.1:17602` (served from [`build_status/`](bu
 
 ## Quickstart
 
-Four lines from clone to first film:
-
 ```bash
 git clone https://github.com/nicedreamzapp/story-forge
 cd story-forge
-./bin/sf parse story_forge/examples/test_tiny.sf   # parser sanity (instant)
-./bin/sf render story_forge/examples/test_tiny.sf  # ~2 min on M5 Max
-# output: ~/AI/videopipe/outputs/test_tiny.mp4
+./bin/sf doctor                                    # what's missing, before you burn an hour
+./bin/sf parse story_forge/examples/test_tiny.sf   # parser sanity (instant, no deps)
+./bin/sf render story_forge/examples/test_tiny.sf  # ~2 min on an M5 Max
+# output: ~/story-forge/outputs/test_tiny.mp4
 ```
 
-That's it. `test_tiny.sf` is a single LTX scene, 3 seconds, no narration — the smallest end-to-end loop the pipeline runs. Once it produces an mp4, the heavier examples (`cabin_open.sf`, multi-scene films) work the same way.
+`sf doctor` is the honest starting point. Story Forge is a glue layer, not a
+self-contained model runtime, so it shells out to a few things that have to
+exist on your machine first:
+
+| what | needed for | how it's found |
+|---|---|---|
+| **ComfyUI**, running | every still | `SF_COMFY_URL`, default `http://127.0.0.1:8188` |
+| **Flux** unet + CLIP + VAE, loaded in ComfyUI | every still | `SF_FLUX_UNET`, `SF_FLUX_CLIP1`, `SF_FLUX_CLIP2`, `SF_FLUX_VAE` |
+| **ffmpeg / ffprobe** | assembling scenes | `PATH` |
+| **Wan 2.2** and/or **LTX** in ComfyUI | motion | `bin/render-route` picks per scene |
+| **piper** + an `.onnx` voice | narration (optional) | `SF_PIPER`, `SF_PIPER_MODEL` |
+| avatar pipeline (LivePortrait / Wav2Lip) | `with lipsync` (optional) | `SF_AVATAR_DIR` |
+
+Model names must match what your ComfyUI actually lists, including subfolders.
+If a still fails with *value not in list*, run:
+
+```bash
+python3 tools/flux_t2i.py --list-models
+```
+
+and set the `SF_FLUX_*` variables to names from that output.
+
+Nothing in the repo points at an absolute home directory any more. Every path
+resolves through `story_forge/config.py`: an `SF_*` environment variable if you
+set one, otherwise a default inside this repo or a conventional `~/` location.
+
+`test_tiny.sf` is a single scene, 3 seconds, no narration — the smallest
+end-to-end loop. Once it produces an mp4, the heavier examples
+(`cabin_open.sf`, multi-scene films) work the same way.
 
 ---
 
