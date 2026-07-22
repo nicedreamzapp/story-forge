@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Story Forge — Director</title>
+<style>
+  :root {
+    --bg:#0e0f13; --panel:#15171e; --card:#1a1d26; --edge:#262a36;
+    --text:#e8eaf0; --dim:#8b91a3; --accent:#7aa2ff; --good:#4ade80;
+    --bad:#f87171; --warn:#fbbf24; --lock:#c084fc;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font:14px/1.45 -apple-system,system-ui,sans-serif; height:100vh; display:flex; flex-direction:column; overflow:hidden; }
+
+  header { display:flex; align-items:center; gap:12px; padding:10px 16px; background:var(--panel); border-bottom:1px solid var(--edge); flex-wrap:wrap; }
+  header h1 { font-size:16px; font-weight:700; letter-spacing:.3px; }
+  header h1 span { color:var(--accent); }
+  #title { color:var(--dim); font-size:14px; max-width:320px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .stages { display:flex; gap:4px; margin-left:auto; }
+  .stage { font-size:11px; padding:3px 9px; border-radius:20px; border:1px solid var(--edge); color:var(--dim); }
+  .stage.on { border-color:var(--accent); color:var(--accent); }
+  .stage.done { border-color:var(--good); color:var(--good); }
+  header .actions { display:flex; gap:6px; }
+  button { background:var(--card); color:var(--text); border:1px solid var(--edge); border-radius:8px; padding:6px 11px; font-size:12.5px; cursor:pointer; }
+  button:hover { border-color:var(--accent); }
+  button.primary { background:var(--accent); border-color:var(--accent); color:#0b1020; font-weight:600; }
+  button:disabled { opacity:.45; cursor:default; }
+
+  main { flex:1; display:flex; min-height:0; }
+
+  /* ── chat ── */
+  #chatPane { width:390px; min-width:300px; display:flex; flex-direction:column; background:var(--panel); border-right:1px solid var(--edge); }
+  #chatLog { flex:1; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:10px; }
+  .msg { max-width:88%; padding:9px 12px; border-radius:14px; white-space:pre-wrap; }
+  .msg.user { align-self:flex-end; background:var(--accent); color:#0b1020; border-bottom-right-radius:4px; }
+  .msg.assistant { align-self:flex-start; background:var(--card); border:1px solid var(--edge); border-bottom-left-radius:4px; }
+  .msg.thinking { color:var(--dim); font-style:italic; }
+  #chatForm { display:flex; gap:8px; padding:12px; border-top:1px solid var(--edge); }
+  #chatInput { flex:1; background:var(--card); border:1px solid var(--edge); border-radius:10px; color:var(--text); padding:10px 12px; font-size:14px; resize:none; height:44px; }
+  #chatInput:focus { outline:none; border-color:var(--accent); }
+
+  /* ── storyboard ── */
+  #boardPane { flex:1; overflow-y:auto; padding:16px; }
+  #conceptBar { background:var(--card); border:1px solid var(--edge); border-radius:12px; padding:12px 14px; margin-bottom:14px; font-size:12.5px; color:var(--dim); display:none; }
+  #conceptBar b { color:var(--text); }
+  .chip { display:inline-block; background:var(--panel); border:1px solid var(--edge); border-radius:12px; padding:2px 8px; margin:2px 3px 0 0; font-size:11.5px; }
+  #board { display:grid; grid-template-columns:repeat(auto-fill,minmax(255px,1fr)); gap:14px; }
+  .card { background:var(--card); border:1px solid var(--edge); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; }
+  .card.locked { border-color:var(--lock); }
+  .card.dragover { border-color:var(--accent); box-shadow:0 0 0 2px var(--accent); }
+  .card .head { display:flex; align-items:center; gap:6px; padding:8px 10px 6px; font-weight:600; font-size:13px; }
+  .card .head .lockicon { margin-left:auto; }
+  .thumb { position:relative; aspect-ratio:832/480; background:#0a0b0f; display:flex; align-items:center; justify-content:center; color:var(--dim); font-size:12px; cursor:pointer; }
+  .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .badges { display:flex; flex-wrap:wrap; gap:4px; padding:7px 10px 0; }
+  .badge { font-size:10.5px; padding:2px 7px; border-radius:10px; border:1px solid var(--edge); color:var(--dim); }
+  .badge.good { border-color:var(--good); color:var(--good); }
+  .badge.bad { border-color:var(--bad); color:var(--bad); }
+  .badge.warn { border-color:var(--warn); color:var(--warn); }
+  .badge.run { border-color:var(--warn); color:var(--warn); animation:pulse 1.2s infinite; }
+  .badge.lockb { border-color:var(--lock); color:var(--lock); }
+  @keyframes pulse { 50% { opacity:.35; } }
+  .card .body { padding:6px 10px 4px; font-size:12px; color:var(--dim); }
+  .card .body .dlg { color:var(--text); font-style:italic; margin-top:3px; }
+  .card .qcnote { padding:0 10px; font-size:11px; color:var(--warn); }
+  .card .btns { display:flex; flex-wrap:wrap; gap:5px; padding:9px 10px 11px; margin-top:auto; }
+  .card .btns button { padding:4px 9px; font-size:11.5px; border-radius:7px; }
+  .card .btns a { font-size:11.5px; color:var(--accent); align-self:center; text-decoration:none; }
+
+  #empty { color:var(--dim); text-align:center; margin-top:120px; font-size:15px; }
+  #empty .big { font-size:42px; margin-bottom:12px; }
+
+  #filmBar { background:var(--card); border:1px solid var(--edge); border-radius:12px; padding:12px 14px; margin-top:16px; font-size:13px; display:none; }
+  #filmBar a { color:var(--accent); }
+  #qcReport { white-space:pre-wrap; font:11px/1.5 ui-monospace,monospace; color:var(--dim); max-height:260px; overflow-y:auto; margin-top:8px; background:var(--bg); border-radius:8px; padding:10px; display:none; }
+
+  #toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#2a1215; border:1px solid var(--bad); color:#fecaca; padding:10px 18px; border-radius:10px; font-size:13px; opacity:0; transition:opacity .3s; pointer-events:none; max-width:80%; z-index:50; }
+  #toast.show { opacity:1; }
+  #toast.ok { background:#0f2318; border-color:var(--good); color:#bbf7d0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🎬 Story<span>Forge</span> Director</h1>
+  <div id="title"></div>
+  <div class="stages" id="stages"></div>
+  <div class="actions">
+    <button id="btnSong">🎵 Score</button>
+    <button id="btnAssemble">🎞 Assemble</button>
+    <button id="btnQC">✅ film_qc</button>
+    <button id="btnNew">＋ New Movie</button>
+  </div>
+</header>
+<main>
+  <div id="chatPane">
+    <div id="chatLog"></div>
+    <form id="chatForm">
+      <textarea id="chatInput" placeholder="Tell me the movie you want to make…"></textarea>
+      <button class="primary" type="submit">Send</button>
+    </form>
+  </div>
+  <div id="boardPane">
+    <div id="conceptBar"></div>
+    <div id="board"></div>
+    <div id="empty">
+      <div class="big">🎥</div>
+      Talk to the Director to start a movie.<br>
+      <span style="font-size:12.5px">Concept first → storyboard fills in → each scene renders, QCs, and locks.</span>
+    </div>
+    <div id="filmBar"></div>
+  </div>
+</main>
+<div id="toast"></div>
+
+<script>
+let P = null;          // current project state
+let busyChat = false;
+const $ = id => document.getElementById(id);
+
+function toast(msg, ok) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.className = ok ? 'show ok' : 'show';
+  setTimeout(() => t.className = '', 4200);
+}
+
+async function api(path, opts) {
+  const r = await fetch(path, opts);
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(j.error || r.statusText);
+  return j;
+}
+
+async function boot() {
+  try {
+    const list = await api('/api/dir/projects');
+    P = list.length ? await api('/api/dir/project/' + list[0].id)
+                    : await api('/api/dir/project', {method:'POST'});
+  } catch (e) { toast('Backend error: ' + e.message); return; }
+  render();
+  setInterval(poll, 2500);
+}
+
+async function poll() {
+  if (!P || busyChat) return;
+  try {
+    const fresh = await api('/api/dir/project/' + P.id);
+    if (JSON.stringify(fresh) !== JSON.stringify(P)) { P = fresh; render(); }
+  } catch (e) {}
+}
+
+/* ── chat ── */
+$('chatForm').addEventListener('submit', async ev => {
+  ev.preventDefault();
+  const inp = $('chatInput');
+  const msg = inp.value.trim();
+  if (!msg || busyChat || !P) return;
+  inp.value = '';
+  busyChat = true;
+  P.chat.push({role:'user', text:msg});
+  renderChat(true);
+  try {
+    P = await api('/api/dir/project/' + P.id + '/chat',
+      {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({message:msg})});
+  } catch (e) { toast(e.message); }
+  busyChat = false;
+  render();
+});
+$('chatInput').addEventListener('keydown', ev => {
+  if (ev.key === 'Enter' && !ev.shiftKey) { ev.preventDefault(); $('chatForm').requestSubmit(); }
+});
+
+function renderChat(thinking) {
+  const log = $('chatLog');
+  log.innerHTML = '';
+  if (!P.chat.length) {
+    const m = document.createElement('div');
+    m.className = 'msg assistant';
+    m.textContent = "What movie are we making? Give me the idea — characters, vibe, style — and I'll pitch the whole thing back with a scene list.";
+    log.appendChild(m);
+  }
+  for (const m of P.chat) {
+    const d = document.createElement('div');
+    d.className = 'msg ' + m.role;
+    d.textContent = m.text;
+    log.appendChild(d);
+  }
+  if (thinking) {
+    const d = document.createElement('div');
+    d.className = 'msg assistant thinking';
+    d.textContent = 'thinking…';
+    log.appendChild(d);
+  }
+  log.scrollTop = log.scrollHeight;
+}
+
+/* ── storyboard ── */
+const STAGES = ['Concept','Scenes','Score','Assemble','QC'];
+function stageStates() {
+  const c = P.concept, anyScene = P.scenes.length > 0;
+  const allLocked = anyScene && P.scenes.every(s => s.locked);
+  return [
+    c.title ? 'done' : 'on',
+    anyScene ? (allLocked ? 'done' : 'on') : '',
+    P.song.status === 'done' ? 'done' : (P.song.status === 'running' ? 'on' : ''),
+    P.film.status === 'done' ? 'done' : (P.film.status === 'running' ? 'on' : ''),
+    P.film.qc.status === 'pass' ? 'done' : (['running','fail'].includes(P.film.qc.status) ? 'on' : ''),
+  ];
+}
+
+function badge(cls, text, title) {
+  return `<span class="badge ${cls}" title="${(title||'').replace(/"/g,'&quot;')}">${text}</span>`;
+}
+
+function sceneCard(s) {
+  const asset = n => `/api/dir/asset/${P.id}/${n}?t=${Math.floor(P.updated)}`;
+  const b = [];
+  const st = s.still;
+  if (st.status === 'running') b.push(badge('run','still ⏳'));
+  else if (st.status === 'done') b.push(badge('good', st.source === 'upload' ? 'still (yours)' : 'still ✓'));
+  else if (st.status === 'error') b.push(badge('bad','still ✗'));
+  if (st.qc.status === 'running') b.push(badge('run','QC ⏳'));
+  else if (st.qc.status === 'pass') b.push(badge('good','QC ✓'));
+  else if (st.qc.status === 'fail') b.push(badge('bad','QC ✗', st.qc.notes));
+  else if (st.qc.status === 'unchecked') b.push(badge('warn','QC unchecked', st.qc.notes));
+  for (const k of ['draft','final']) {
+    if (s[k].status === 'running') b.push(badge('run', k + ' ⏳ ' + (s[k].pct != null ? s[k].pct + '%' : '') + (s[k].stage ? ' ' + s[k].stage : '')));
+    else if (s[k].status === 'done') b.push(badge('good', k + ' ✓'));
+    else if (s[k].status === 'error') b.push(badge('bad', k + ' ✗', s[k].error));
+  }
+  if (s.locked) b.push(badge('lockb','🔒 locked'));
+
+  const btns = [];
+  if (!s.locked) {
+    if (st.status === 'none' || st.status === 'error')
+      btns.push(`<button onclick="genStill(${s.idx},false)">🎨 Generate still</button>`);
+    if (st.status === 'done') {
+      btns.push(`<button onclick="genStill(${s.idx},true)">🎲 Re-roll</button>`);
+      btns.push(`<button onclick="approve(${s.idx})">✅ Approve + lock</button>`);
+    }
+    btns.push(`<button onclick="pickUpload(${s.idx})">📤</button>`);
+  } else {
+    btns.push(`<button onclick="unlock(${s.idx})" title="unlock">🔓</button>`);
+  }
+  if (st.status === 'done') {
+    if (s.draft.status !== 'running' && s.final.status !== 'running') {
+      btns.push(`<button onclick="animate(${s.idx},'draft')">🎬 Draft</button>`);
+      btns.push(`<button onclick="animate(${s.idx},'final')">🎥 Final</button>`);
+    }
+  }
+  for (const k of ['draft','final'])
+    if (s[k].status === 'done')
+      btns.push(`<a href="${asset(s[k].file)}" target="_blank">▶ ${k}</a>`);
+
+  const thumb = st.file && st.status === 'done'
+    ? `<img src="${asset(st.file)}" onclick="window.open('${asset(st.file)}')">`
+    : `<span>${st.status === 'running' ? 'painting the still…' : 'no still yet'}</span>`;
+
+  return `<div class="card ${s.locked ? 'locked' : ''}" data-idx="${s.idx}"
+       ondragover="event.preventDefault();this.classList.add('dragover')"
+       ondragleave="this.classList.remove('dragover')"
+       ondrop="dropImage(event,${s.idx})">
+    <div class="head"><span>${s.idx} · ${esc(s.title)}</span>
+      <span class="lockicon">${s.locked ? '🔒' : ''}</span></div>
+    <div class="thumb">${thumb}</div>
+    <div class="badges">${b.join('')}</div>
+    <div class="body">${esc(s.desc)}${s.dialogue ? `<div class="dlg">💬 ${esc(s.dialogue)}</div>` : ''}</div>
+    ${st.qc.status === 'fail' || st.qc.status === 'unchecked' ? `<div class="qcnote">${esc(st.qc.notes)}</div>` : ''}
+    <div class="btns">${btns.join('')}</div>
+  </div>`;
+}
+
+function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+function render() {
+  renderChat(false);
+  const c = P.concept;
+  $('title').textContent = c.title || 'untitled';
+
+  const states = stageStates();
+  $('stages').innerHTML = STAGES.map((n,i) =>
+    `<span class="stage ${states[i]}">${n}</span>`).join('');
+
+  if (c.title || c.style || c.characters.length) {
+    $('conceptBar').style.display = 'block';
+    $('conceptBar').innerHTML =
+      `<b>${esc(c.title) || 'untitled'}</b> — ${esc(c.style) || 'style TBD'}<br>` +
+      c.characters.map(ch => `<span class="chip">${esc(ch.name)} · ${esc(ch.species)}${ch.voice ? ' · 🎙 ' + esc(ch.voice) : ''}</span>`).join('') +
+      (c.mood ? `<span class="chip">🎵 ${esc(c.mood)}</span>` : '') +
+      `<span class="chip">score: ${P.song.status}${P.song.status==='error' ? ' — ' + esc(P.song.error) : ''}</span>`;
+  } else $('conceptBar').style.display = 'none';
+
+  $('board').innerHTML = P.scenes.map(sceneCard).join('');
+  $('empty').style.display = P.scenes.length ? 'none' : 'block';
+
+  const f = P.film, fb = $('filmBar');
+  if (f.status !== 'none' || f.qc.status !== 'none') {
+    fb.style.display = 'block';
+    let h = `<b>Film:</b> ${f.status}`;
+    if (f.status === 'done')
+      h += ` — <a href="/api/dir/asset/${P.id}/${f.file}" target="_blank">▶ watch ${esc(f.file)}</a>`;
+    if (f.qc.status !== 'none') {
+      const qcColor = {pass:'var(--good)', fail:'var(--bad)', running:'var(--warn)', unavailable:'var(--warn)'}[f.qc.status] || 'var(--dim)';
+      h += `<br><b>film_qc:</b> <span style="color:${qcColor}">${f.qc.status}</span>`;
+      if (['pass','fail'].includes(f.qc.status))
+        h += ` — ${f.qc.passed} passed, ${f.qc.failed} failed, ${f.qc.unchecked} unchecked`;
+      if (f.qc.error) h += ` — ${esc(f.qc.error)}`;
+      if (f.qc.report) h += ` <a href="#" onclick="toggleReport();return false">report</a>`;
+    }
+    fb.innerHTML = h + `<div id="qcReport">${esc(f.qc.report)}</div>`;
+  } else fb.style.display = 'none';
+}
+
+function toggleReport() {
+  const r = $('qcReport');
+  r.style.display = r.style.display === 'block' ? 'none' : 'block';
+}
+
+/* ── scene actions ── */
+async function act(path, body) {
+  try {
+    P = await api(path, {method:'POST', headers:{'Content-Type':'application/json'},
+                         body: JSON.stringify(body || {})});
+    render();
+  } catch (e) { toast(e.message); }
+}
+function genStill(i, reroll) { act(`/api/dir/scene/${P.id}/${i}/still`, {reroll}); }
+function approve(i)  { act(`/api/dir/scene/${P.id}/${i}/approve`); }
+function unlock(i)   { act(`/api/dir/scene/${P.id}/${i}/unlock`); }
+function animate(i, mode) { act(`/api/dir/scene/${P.id}/${i}/animate`, {mode}); }
+
+function pickUpload(i) {
+  const inp = document.createElement('input');
+  inp.type = 'file'; inp.accept = 'image/*';
+  inp.onchange = () => inp.files[0] && uploadStill(i, inp.files[0]);
+  inp.click();
+}
+function dropImage(ev, i) {
+  ev.preventDefault();
+  ev.currentTarget.classList.remove('dragover');
+  const f = ev.dataTransfer.files[0];
+  if (f && f.type.startsWith('image/')) uploadStill(i, f);
+}
+async function uploadStill(i, file) {
+  const fd = new FormData();
+  fd.append('image', file);
+  try {
+    P = await (await fetch(`/api/dir/scene/${P.id}/${i}/upload`, {method:'POST', body:fd})).json();
+    if (P.error) throw new Error(P.error);
+    render();
+    toast('Image loaded onto scene ' + i, true);
+  } catch (e) { toast(e.message); boot(); }
+}
+
+/* ── header actions ── */
+$('btnNew').onclick = async () => {
+  if (!confirm('Start a new movie? (current one stays saved)')) return;
+  P = await api('/api/dir/project', {method:'POST'});
+  render();
+};
+$('btnSong').onclick = () => act(`/api/dir/project/${P.id}/song`);
+$('btnAssemble').onclick = () => {
+  const allFinal = P.scenes.length && P.scenes.every(s => s.final.status === 'done');
+  act(`/api/dir/project/${P.id}/assemble`, {mode: allFinal ? 'final' : 'preview'});
+};
+$('btnQC').onclick = () => act(`/api/dir/project/${P.id}/qc`);
+
+boot();
+</script>
+</body>
+</html>

@@ -57,6 +57,55 @@ Pipeline: **Flux** (stills) → **LTX-2 distilled** (motion) → **Piper** (narr
 
 ---
 
+## 🎬 The Director — talk to it, get a movie (new, 2026-07-22)
+
+The newest layer: a chat + storyboard UI at `http://127.0.0.1:17600/` that puts
+the whole formula behind a conversation. You tell it the movie you want; a
+local LLM (any OpenAI-compatible server, `SF_LLM_URL`) locks the concept with
+you — title, style, characters, mood — then fills a storyboard. Each scene card
+then walks itself through the pipeline with a paper trail:
+
+```
+still (Flux) ─► vision-QC gate ─► approve & LOCK ─► draft i2v (~3 min, cheap gate)
+                                                        │
+                                                        ▼
+                              final i2v (Wan 2.2) ─► score (ACE-Step, instrumental)
+                                                        │
+                                                        ▼
+                                    assemble (xfade + music bed) ─► film_qc verdict
+```
+
+Design decisions that came from making real films, not from speculation:
+
+- **Approve-and-lock per scene.** A locked scene can never be re-rendered by
+  accident. Building one scene at a time, locking wins, is the only workflow
+  that survived contact with actual production.
+- **Cheap gates before expensive renders.** Every still faces a vision-model QC
+  check (seconds) before you spend minutes animating it; a low-res draft render
+  (~3 min) catches dead staging before the full render (~9 min). When the QC
+  judge is offline the card says **unchecked** — it never fakes a pass.
+- **film_qc has the last word.** The assembled film goes to
+  [`pipeline-tools/film_qc.py`](pipeline-tools/film_qc.py) — a local
+  vision-language judge plus whisper ears — and the UI reports its pass/fail
+  counts verbatim.
+- **A memory governor, not vibes.** Stages declare what they need before
+  touching the GPU: queued stills batch together ahead of video renders so
+  model weights load once, the 32B QC judge refuses to share the machine with
+  resident video weights (it evicts an idle ComfyUI first), and stages wait for
+  headroom instead of shoving the box into swap. One 128 GB machine runs image
+  gen, video gen, music gen, an LLM director and a VL judge — sequenced, never
+  stacked.
+- **Drag your own images onto a card** to replace generated stills; re-roll
+  anything unlocked with one click. The old single-clip page lives at `/classic`.
+
+Requirements beyond the base pipeline: a running ComfyUI for stills + i2v, an
+OpenAI-compatible LLM server for the chat director, and optionally an ACE-Step
+server (`SF_FORGE_URL`) for scores and a vision-judge server (`SF_PE_URL`) for
+the still gate. All endpoints are env-overridable; see the top of
+[`director.py`](director.py).
+
+---
+
 ## 🚀 Status — 2026-05-24 SHIP STATE
 
 The v1 ship state is live. The DSL compiles, the routes work, the kernel is in:
