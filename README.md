@@ -410,6 +410,14 @@ Combining two independently-rendered films into one saga uses `xfade=transition=
 
 `bin/render-route` picks Wan vs LTX automatically based on the motion prompt — hero shots with character action go to Wan, atmospheric B-roll goes to LTX (~5.6× faster). The DSL also lets you pin the engine explicitly with `motion wan:` or `motion ltx:`.
 
+### 7. The film watches itself — local QC judges (`pipeline-tools/film_qc.py`)
+
+Generative pipelines fail silently: a character's body warps for one second of action, the wrong mouth moves on a line, scene 3's dog doesn't quite match scene 1's. You find out after you've shipped it — or your viewers do.
+
+Story Forge now runs a **local judge stage** before any film counts as done. A vision-language model (Qwen3-VL) is shown frames pulled at every dialogue line's exact timestamp and asked *whose mouth is open*; it compares the same character across scenes for identity drift; it sweeps the whole film at 1-second intervals for deformities (merged bodies, extra limbs, smeared faces). Whisper transcribes the final mix and verifies every scripted line is audible within tolerance of its planned timestamp. Out comes a defect report with timestamps — pass/fail, no vibes.
+
+It runs as three gates so failures die cheap: judge the stills and voice takes **before** animating (seconds), QC a small draft **before** committing to a long render (minutes), and QC each scene as it completes so a broken scene stops the queue instead of being discovered at final assembly. All of it on-device — the models that make the movie and the models that check it live on the same laptop.
+
 ---
 
 ## Roadmap — the 30× faster build-out
