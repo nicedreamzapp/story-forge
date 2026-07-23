@@ -1,6 +1,6 @@
 # Story Forge
 
-> A local-only generative cinema pipeline. Animated films on one laptop. No cloud.
+> A local-only generative video system. Any kind of video, any style, on one laptop. No cloud.
 
 ```
    ╔══════════════════════════════════════════════════╗
@@ -12,7 +12,9 @@
    ╚══════════════════════════════════════════════════╝
 ```
 
-Story Forge is a self-contained pipeline that takes a structured story description and produces a finished animated film — with motion, narration, original music, title and credits — entirely on local hardware. Five open-source models composed by `ffmpeg`. **Zero cloud calls. Zero API charges. Zero rate limits.** Run it once, run it a thousand times.
+Story Forge is a self-contained generative VIDEO system — for making video of **any kind**: narrated explainers, ambient pieces, promos, documentary cuts, music-driven shorts, sagas, and yes, fully animated films — in any style, from one readable script. Motion, narration, original music, titles and credits, entirely on local hardware. Five open-source models composed by `ffmpeg`. **Zero cloud calls. Zero API charges. Zero rate limits.** Run it once, run it a thousand times.
+
+Animation is the *proving ground*, not the limit — talking characters are the hardest case a video system can face, so that's where the pipeline gets battle-tested. Everything it learns there (QC gates, judge models, scene locking, character consistency) applies to every other kind of video it renders.
 
 > First public-confirmed LTX 13B distilled 0.9.8 working on Apple Silicon MPS. We also tried a hand-written Metal flash-attention kernel for Wan — turned out PyTorch's MPS SDPA is already too well-tuned to beat at our shapes. The kernel is preserved in [`metal/`](metal/) as documented learning (see its README for what we tried, what we measured wrong, and what actually works for Wan speedup).
 
@@ -603,7 +605,7 @@ Stacked target: **today's 5-hour render → ~10-30 min per 4-min film on M5.**
 
 ## Why local
 
-The whole thing is the point. A 4-minute animated film with custom score and synced narration runs on **one laptop you can carry in your bag**. No upload step. No "your queue position is 47." No subscription. No telemetry.
+The whole thing is the point. A 4-minute video — an animated film, a narrated documentary cut, an ambient piece with an original score — runs on **one laptop you can carry in your bag**. No upload step. No "your queue position is 47." No subscription. No telemetry.
 
 ### What the cloud would actually cost
 
