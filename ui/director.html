@@ -305,6 +305,11 @@ function render() {
       h += `<br><b>film_qc:</b> <span style="color:${qcColor}">${f.qc.status}</span>`;
       if (['pass','fail'].includes(f.qc.status))
         h += ` — ${f.qc.passed} passed, ${f.qc.failed} failed, ${f.qc.unchecked} unchecked`;
+      if (f.qc.note) h += `<br><span style="color:var(--dim)">${esc(f.qc.note)}</span>`;
+      if ((f.qc.rounds||[]).some(r => r.rerolled.length))
+        h += `<br><span style="color:var(--dim)">auto-fixed: ` +
+             f.qc.rounds.filter(r => r.rerolled.length)
+               .map(r => `round ${r.round} re-rolled scene ${r.rerolled.join(', ')}`).join('; ') + `</span>`;
       if (f.qc.error) h += ` — ${esc(f.qc.error)}`;
       if (f.qc.report) h += ` <a href="#" onclick="toggleReport();return false">report</a>`;
     }

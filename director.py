@@ -166,6 +166,49 @@ def _new_project():
     return p
 
 
+# ── recipe bank — the system gets better with every approval ─────
+# Every Matt-approved still and every film that passes film_qc banks its
+# recipe (style, prompt, seed, motion). The chat director reads a digest of
+# proven recipes, so wins compound instead of being re-derived per movie.
+
+BANK_FILE = PROJ_DIR / "recipe_bank.json"
+
+
+def _bank_add(kind, entry):
+    with _LOCK:
+        bank = []
+        if BANK_FILE.exists():
+            try:
+                bank = json.loads(BANK_FILE.read_text())
+            except Exception:
+                bank = []
+        entry.update({"kind": kind, "ts": time.time()})
+        bank.append(entry)
+        BANK_FILE.parent.mkdir(parents=True, exist_ok=True)
+        BANK_FILE.write_text(json.dumps(bank[-500:], indent=1))
+
+
+def _bank_digest(max_items=6):
+    """Short 'what already worked' block for the chat director's context."""
+    if not BANK_FILE.exists():
+        return ""
+    try:
+        bank = json.loads(BANK_FILE.read_text())
+    except Exception:
+        return ""
+    films = [b for b in bank if b["kind"] == "film_pass"][-3:]
+    stills = [b for b in bank if b["kind"] == "still_approved"][-max_items:]
+    if not films and not stills:
+        return ""
+    lines = ["PROVEN RECIPES (Matt approved these — reuse their exact phrasing when they fit):"]
+    for f in films:
+        lines.append(f"- full film passed QC: style=\"{f['style']}\" mood=\"{f.get('mood','')}\"")
+    for s in stills:
+        lines.append(f"- approved still: style=\"{s['style']}\" scene=\"{s['desc'][:70]}\""
+                     + (f" motion=\"{s['motion'][:60]}\"" if s.get("motion") else ""))
+    return "\n".join(lines)
+
+
 def _blank_scene(idx, s=None):
     s = s or {}
     return {
@@ -216,6 +259,10 @@ def _project_context(p):
         for s in p["scenes"]:
             lines.append(f"  {s['idx']}. {s['title']}: {s['desc'][:90]}"
                          + (f" [locked]" if s["locked"] else ""))
+    digest = _bank_digest()
+    if digest:
+        lines.append("")
+        lines.append(digest)
     return "\n".join(lines)
 
 
@@ -554,22 +601,23 @@ def _assemble(pid, mode):
     """Stitch scene clips (xfade) + lay the score under. mode: preview|final."""
     p = _load(pid)
     d = _pdir(pid)
-    clips, manifest_scenes = [], []
+    clips, manifest_scenes, clip_modes = [], [], []
     try:
         for s in p["scenes"]:
-            pick = None
+            pick = used = None
             if mode == "final":
                 if s["final"]["status"] == "done":
-                    pick = d / s["final"]["file"]
+                    pick, used = d / s["final"]["file"], "final"
             else:
                 for k in ("final", "draft"):
                     if s[k]["status"] == "done":
-                        pick = d / s[k]["file"]
+                        pick, used = d / s[k]["file"], k
                         break
             if not pick:
                 raise RuntimeError(f"scene {s['idx']} has no rendered clip"
                                    + ("" if mode == "final" else " (draft or final)"))
             clips.append(pick)
+            clip_modes.append(used)
 
         xfade = 0.5
         durs = [_clip_dur(c) for c in clips]
@@ -618,6 +666,8 @@ def _assemble(pid, mode):
             p = _load(pid)
             p["film"]["status"] = "done"
             p["film"]["file"] = out.name
+            p["film"]["mode"] = mode
+            p["film"]["clip_modes"] = clip_modes
             p["film"]["qc"] = {"status": "none", "passed": 0, "failed": 0,
                                "unchecked": 0, "report": "", "error": None}
             p["stage"] = "assembled"
@@ -652,30 +702,106 @@ def _evict_idle_comfy():
         pass  # ComfyUI not running = nothing to free
 
 
-def _run_film_qc(pid):
+def _qc_once(pid):
+    """One film_qc pass. Returns (status, counts, report_text, defects)."""
     p = _load(pid)
     d = _pdir(pid)
     film = d / p["film"]["file"]
     report = d / "film_qc.md"
+    with _GPU:
+        _prepare_memory("vl_qc")
+        r = subprocess.run(
+            [str(QC_PYTHON), str(FILM_QC), str(film), str(d / "manifest.json"),
+             "--report", str(report)],
+            capture_output=True, text=True, timeout=3600)
+    text = report.read_text() if report.exists() else (r.stdout + r.stderr)[-2000:]
+    counts = {"passed": len(re.findall(r"\[PASS\]", text)),
+              "failed": len(re.findall(r"\[FAIL\]", text)),
+              "unchecked": len(re.findall(r"\bUNCHECKED\b", text))}
+    status = {0: "pass", 1: "fail"}.get(r.returncode, "unavailable")
+    defects = re.findall(r"\[FAIL\]\s*([\w-]+)@([\d.]+)s", text)  # (check, t)
+    return status, counts, text, [(c, float(t)) for c, t in defects]
+
+
+def _classify_defects(pid, defects):
+    """Split timestamped defects into transition ghosts (benign — the xfade
+    blends two scenes, the judge sees 'two overlapping characters') vs defects
+    inside a scene's core, mapped to that scene's index for auto re-roll."""
+    man = json.loads((_pdir(pid) / "manifest.json").read_text())
+    scenes = man["scenes"]
+    zones = [(scenes[i + 1]["start"] - 0.2, scenes[i]["end"] + 0.2)
+             for i in range(len(scenes) - 1)]
+    benign, core = [], {}
+    for check, t in defects:
+        if any(a <= t <= b for a, b in zones):
+            benign.append((check, t))
+            continue
+        for i, sc in enumerate(scenes):
+            if sc["start"] <= t <= sc["end"]:
+                core.setdefault(i + 1, []).append((check, t))
+                break
+    return benign, core
+
+
+def _run_film_qc(pid, autofix=True, max_fix_rounds=2):
+    """The closed loop: verify → re-roll only the scenes that failed →
+    re-assemble → re-verify. Matt sees the final verdict plus what got fixed
+    on the way, not the broken intermediates."""
+    rounds = []
     try:
-        with _GPU:
-            _prepare_memory("vl_qc")
-            r = subprocess.run(
-                [str(QC_PYTHON), str(FILM_QC), str(film), str(d / "manifest.json"),
-                 "--report", str(report)],
-                capture_output=True, text=True, timeout=3600)
-        text = report.read_text() if report.exists() else (r.stdout + r.stderr)[-2000:]
-        passed = len(re.findall(r"\bPASS\b", text))
-        failed = len(re.findall(r"\bFAIL\b", text))
-        unchecked = len(re.findall(r"\bUNCHECKED\b", text))
-        status = {0: "pass", 1: "fail"}.get(r.returncode, "unavailable")
-        with _LOCK:
+        for rnd in range(max_fix_rounds + 1):
+            status, counts, text, defects = _qc_once(pid)
+            benign, core = ([], {}) if status != "fail" else _classify_defects(pid, defects)
+            effective = "pass" if (status == "fail" and defects and not core
+                                   and len(benign) == counts["failed"]) else status
+            rounds.append({"round": rnd + 1, "status": status, **counts,
+                           "benign_transition": len(benign),
+                           "rerolled": sorted(core.keys())})
+            note = (f"{len(benign)} flagged frame(s) are crossfade ghosting "
+                    f"(two scenes mid-blend) — benign" if benign else "")
+            with _LOCK:
+                p = _load(pid)
+                p["film"]["qc"] = {"status": effective, **counts,
+                                   "report": text[-4000:], "rounds": rounds,
+                                   "note": note,
+                                   "error": None if status in ("pass", "fail")
+                                   else "QC could not run (exit 2) — NOT a pass"}
+                _save(p)
+            if effective != "fail" or not core or not autofix or rnd == max_fix_rounds:
+                return
+            if _forge_busy():
+                with _LOCK:
+                    p = _load(pid)
+                    p["film"]["qc"]["note"] = ("auto-fix paused — Song Forge is "
+                                               "rendering a customer song; re-run QC later")
+                    _save(p)
+                return
+            # re-roll ONLY the failed scenes' animations (fresh noise seed),
+            # from their locked stills — the still itself is never touched
             p = _load(pid)
-            p["film"]["qc"] = {"status": status, "passed": passed, "failed": failed,
-                               "unchecked": unchecked, "report": text[-4000:],
-                               "error": None if r.returncode in (0, 1)
-                               else "QC could not run (exit 2) — NOT a pass"}
-            _save(p)
+            film_mode = p["film"].get("mode", "preview")
+            clip_modes = p["film"].get("clip_modes", [])
+            for idx in sorted(core.keys()):
+                m = clip_modes[idx - 1] if idx - 1 < len(clip_modes) else "draft"
+                with _LOCK:
+                    q = _load(pid)
+                    q["scenes"][idx - 1][m] = {"file": None, "status": "running",
+                                               "error": None}
+                    q["film"]["qc"]["note"] = (f"auto-fixing scene {idx} "
+                                               f"(round {rnd + 1}): re-rolling {m}")
+                    _save(q)
+                _animate(pid, idx, m)
+                q = _load(pid)
+                if q["scenes"][idx - 1][m]["status"] != "done":
+                    with _LOCK:
+                        q["film"]["qc"]["note"] = (f"auto-fix stopped: scene {idx} "
+                                                   f"re-render failed")
+                        _save(q)
+                    return
+            _assemble(pid, film_mode)
+            p = _load(pid)
+            if p["film"]["status"] != "done":
+                return
     except Exception as e:
         with _LOCK:
             p = _load(pid)
@@ -808,8 +934,15 @@ def register(app, ui_dir):
             return jsonify({"error": "no still to approve"}), 400
         with _LOCK:
             p = _load(pid)
-            p["scenes"][idx - 1]["locked"] = True
+            s = p["scenes"][idx - 1]
+            s["locked"] = True
             _save(p)
+        if s["still"].get("source") == "flux":
+            _bank_add("still_approved", {
+                "project": pid, "style": p["concept"]["style"],
+                "desc": s["desc"], "motion": s["motion"],
+                "seed": s["still"]["seed"],
+                "prompt": _still_prompt(p, s)})
         return jsonify(_load(pid))
 
     @app.route("/api/dir/scene/<pid>/<int:idx>/unlock", methods=["POST"])
@@ -882,11 +1015,12 @@ def register(app, ui_dir):
             return jsonify({"error": "no such project"}), 404
         if p["film"]["status"] != "done":
             return jsonify({"error": "assemble the film first"}), 400
+        autofix = bool((request.get_json(silent=True) or {}).get("autofix", True))
         with _LOCK:
             p = _load(pid)
             p["film"]["qc"]["status"] = "running"
             _save(p)
-        _spawn(_run_film_qc, pid)
+        _spawn(_run_film_qc, pid, autofix)
         return jsonify(_load(pid))
 
     @app.route("/api/dir/asset/<pid>/<path:name>")

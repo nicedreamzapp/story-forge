@@ -97,6 +97,15 @@ Design decisions that came from making real films, not from speculation:
   stacked.
 - **Drag your own images onto a card** to replace generated stills; re-roll
   anything unlocked with one click. The old single-clip page lives at `/classic`.
+- **The loop closes itself.** Every approved still banks its recipe (style,
+  prompt, seed, motion) into `projects/director/recipe_bank.json`, and the chat
+  director reads a digest of proven recipes — wins compound instead of being
+  re-derived per movie. On the verification side, film_qc failures that map
+  inside a scene's core trigger an automatic re-roll of just that scene's
+  animation (fresh noise, same locked still), re-assembly, and re-verification
+  — up to two rounds — while crossfade-ghost flags (the judge seeing two scenes
+  mid-blend) are classified benign instead of failing the film. You see the
+  final verdict and a note of what was auto-fixed, not the broken intermediates.
 
 Requirements beyond the base pipeline: a running ComfyUI for stills + i2v, an
 OpenAI-compatible LLM server for the chat director, and optionally an ACE-Step
