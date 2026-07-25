@@ -87,13 +87,33 @@ Lessons paid for on the first four takes — do not re-derive:
    "only a half cartwheel, and the clip is so short." 81 frames (5s) covering wind-up →
    apex → landing → recovery is what he approved. Verify the arc on the QC sheet BEFORE
    spending render minutes; the pose sheet is the cheapest gate we have.
-4. **Identity is NOT locked by this.** The character drifts toward a generic version of
+4. **Pick LATERAL source motion — the performer must stay at roughly constant
+   distance from camera.** Wan scales the character to the skeleton, so a move that
+   charges TOWARD camera blows the character up until a shapeless close-up rump fills
+   the frame and the action becomes unreadable (action_test shot A, run-and-dive,
+   2026-07-25 — dead on arrival). Side-on and stationary is what works: the approved
+   cartwheel and the karate strike combo both hold scale across the whole clip. Also
+   reject sources with more than one person in frame — the tracker locks onto the
+   largest body, which is often a bystander closer to camera.
+5. **Identity is NOT locked by this.** The character drifts toward a generic version of
    itself — a per-character video LoRA is the open fix (rule 10 still governs: derive
    from the locked master). Say "Hank-ish, not Hank" out loud; never paper over it.
    Also unfixed: fast-motion smear at draft res, and the face can stay upright while the
    body inverts (`face_video` input unused so far).
 
-Approved reference clip + its pose track: `good-clips/motion_transfer_*` (chmod 444).
+**Coverage comes free.** The close-up in the approved action scene is a STATIC ffmpeg
+crop of the wide shot, not a second render — the multi-shot rule's crop path (default
+rule 1a) applies to motion-transfer clips exactly as it does to stills. Static crops
+only; frozen rule 12 still bans zoompan/fake pushes.
+
+**Doug and other quadrupeds cannot take a human skeleton** — they get plain i2v reaction
+shots. OPEN BUG (2026-07-25): `make-video --i2v` has no GGUF path, so it loads two 27GB
+fp16 MoE stages and killed ComfyUI mid-render during the action scene. Give i2v a GGUF
+variant before attempting another quadruped reaction shot.
+
+Approved clips + pose track: `good-clips/motion_transfer_*` (chmod 444) — the bear
+cartwheel, the strike combo, and the 3-beat action scene Matt approved 2026-07-25
+("yes this really works"). Project scraps in `projects/action_test/`.
 
 ## DIALOGUE SCENE-BUILDING WORKFLOW — THE locked way (2026-05-25, Matt-approved)
 

@@ -40,6 +40,11 @@ def main():
     ap.add_argument("--frames", type=int, default=81, help="output frames, must be 4k+1 (default 81 = 5s)")
     ap.add_argument("--canvas", type=int, default=768, help="square canvas size")
     ap.add_argument("--fps", type=int, default=16, help="output fps (Wan native = 16)")
+    ap.add_argument("--zoom", type=float, default=0.0, metavar="PAD",
+                    help="tighten the square crop to the action bounding box times PAD "
+                         "(e.g. 1.4). Default 0 = full-height crop. Use when the "
+                         "performer is small/far in frame, so the character fills the "
+                         "shot instead of being a speck.")
     args = ap.parse_args()
 
     if (args.frames - 1) % 4:
@@ -99,11 +104,19 @@ def main():
 
         H, W = frames[0].shape[:2]
         allp = np.vstack(all_pts)
-        side = H
-        cx = (allp[:, 0].min() + allp[:, 0].max()) / 2
+        bx0, by0 = allp.min(0)
+        bx1, by1 = allp.max(0)
+        cx, cy = (bx0 + bx1) / 2, (by0 + by1) / 2
+
+        if args.zoom:
+            side = int(min(H, W, max(bx1 - bx0, by1 - by0) * args.zoom))
+        else:
+            side = H
         left = int(np.clip(cx - side / 2, 0, max(0, W - side)))
+        top = int(np.clip(cy - side / 2, 0, max(0, H - side))) if args.zoom else 0
         scale = args.canvas / side
-        print(f"[motion_pose] square crop x[{left},{left+side}] → {args.canvas}px")
+        print(f"[motion_pose] square crop x[{left},{left+side}] y[{top},{top+side}] "
+              f"→ {args.canvas}px")
 
         out.parent.mkdir(parents=True, exist_ok=True)
         vw = cv2.VideoWriter(str(out), cv2.VideoWriter_fourcc(*"mp4v"),
@@ -114,12 +127,12 @@ def main():
             if best is not None:
                 k = kpts[best:best + 1].copy()
                 k[..., 0] = (k[..., 0] - left) * scale
-                k[..., 1] = k[..., 1] * scale
+                k[..., 1] = (k[..., 1] - top) * scale
                 canvas = draw_skeleton(canvas, k, scores[best:best + 1],
                                        openpose_skeleton=True, kpt_thr=0.3, line_width=4)
             vw.write(canvas)
             if n % max(1, args.frames // 8) == 0:
-                crop = cv2.resize(frames[i][:, left:left + side], (256, 256))
+                crop = cv2.resize(frames[i][top:top + side, left:left + side], (256, 256))
                 qc.append(np.hstack([crop, cv2.resize(canvas, (256, 256))]))
         vw.release()
 
