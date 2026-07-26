@@ -116,6 +116,116 @@ def mem_gate(label: str) -> bool:
 FLUX_I2I = Path.home() / "Scripts" / "flux_img2img.py"
 
 
+
+
+# ── cumulative memory: the pipeline gets better every film, not every retry ──
+# Project lessons are shot-specific ("s2_thecall came out as a happy train"). Those
+# die with the project. HOUSE lessons are the generalised version, kept in the repo
+# root and matched by keyword against any future shot's beat/prompt, so film #4
+# starts out knowing what films #1-3 paid to learn. Same idea for timings: every
+# step's duration is appended to METRICS.jsonl, so the bottleneck to streamline
+# next time is a measured number instead of a hunch.
+HOUSE_LESSONS = SF / "LESSONS.json"
+HOUSE_METRICS = SF / "METRICS.jsonl"
+STOP_WORDS = {"the", "a", "an", "and", "of", "in", "on", "into", "with", "his", "her",
+              "its", "is", "are", "that", "this", "it", "so", "to", "at", "from", "for",
+              "they", "them", "he", "she", "as", "by", "up", "out", "not", "no", "who",
+              "then", "than", "there", "their", "was", "were", "be", "been", "has", "have"}
+
+
+def _keywords(text: str, n: int = 4) -> list:
+    words = [w for w in re.findall(r"[a-z]{4,}", text.lower()) if w not in STOP_WORDS]
+    seen, out = set(), []
+    for w in words:
+        if w not in seen:
+            seen.add(w)
+            out.append(w)
+    return out[:n]
+
+
+def house_lessons(shot: dict) -> list:
+    """Lessons earned on OTHER shots/films that apply to this one."""
+    if not HOUSE_LESSONS.is_file():
+        return []
+    try:
+        book = json.loads(HOUSE_LESSONS.read_text())
+    except Exception:
+        return []
+    hay = f"{shot.get('beat','')} {shot.get('prompt','')}".lower()
+    hits = []
+    for entry in book.get("lessons", []):
+        when = [w.lower() for w in entry.get("when", [])]
+        if when and sum(1 for w in when if w in hay) >= max(1, len(when) // 2):
+            hits.append(entry["lesson"])
+    return hits
+
+
+def save_house_lesson(shot: dict, lesson: str) -> None:
+    lesson = " ".join(lesson.split())[:400]
+    if not lesson:
+        return
+    book = {"_note": "House rules earned the hard way. Matched by keyword against any "
+                     "future shot's beat/prompt so a lesson is paid for once, ever.",
+            "lessons": []}
+    if HOUSE_LESSONS.is_file():
+        try:
+            book = json.loads(HOUSE_LESSONS.read_text())
+        except Exception:
+            pass
+    for entry in book["lessons"]:
+        if entry["lesson"] == lesson:
+            return
+    book["lessons"].append({"when": _keywords(shot.get("beat", "")), "lesson": lesson,
+                            "learned_on": shot.get("id", "?")})
+    HOUSE_LESSONS.write_text(json.dumps(book, indent=1) + "\n")
+
+
+def metric(shot_id: str, step: str, seconds: float, verdict: str = "") -> None:
+    row = {"shot": shot_id, "step": step, "seconds": round(seconds, 1), "verdict": verdict}
+    with open(HOUSE_METRICS, "a") as f:
+        f.write(json.dumps(row) + "\n")
+
+
+LESSONS_FILE = "shot_lessons.json"
+
+
+def load_lessons(proj: Path) -> dict:
+    """Why this shot was rejected before — carried across runs, not just retries.
+
+    Retrying a seed with the same prompt is not learning: the same wrong picture
+    comes back with different noise. The judge already says WHY it failed ("the
+    train is travelling normally with no signs of distress"), so that sentence is
+    fed into the next attempt as a correction, and persisted so a future run
+    starts knowing it instead of paying for the mistake twice.
+    """
+    f = proj / LESSONS_FILE
+    if not f.is_file():
+        return {}
+    try:
+        return json.loads(f.read_text())
+    except Exception:
+        return {}
+
+
+def save_lesson(proj: Path, shot_id: str, reason: str) -> None:
+    reason = " ".join(reason.split())[:400]
+    if not reason:
+        return
+    data = load_lessons(proj)
+    prior = data.setdefault(shot_id, [])
+    if reason not in prior:
+        prior.append(reason)
+    (proj / LESSONS_FILE).write_text(json.dumps(data, indent=1) + "\n")
+
+
+def corrected_prompt(base: str, lessons: list) -> str:
+    if not lessons:
+        return base
+    fixes = " ".join(f"({i + 1}) {t}" for i, t in enumerate(lessons[-4:]))
+    return (f"{base}. CORRECTIONS — earlier attempts at this exact shot were REJECTED "
+            f"for these reasons, do not repeat them: {fixes}")
+
+
 def gen_still(shot: dict, proj: Path, seed: int, out: Path) -> bool:
     # Composite-then-weld path (frozen rule 10): a character who already has a
     # locked master is never re-generated from scratch — a rough PIL composite of
@@ -219,26 +329,55 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool) -> dict:
         if v["verdict"] == "PASS" and identity_ok(shot, proj, cand):
             locked = cand
     else:
-        for seed in seeds:
-            if not mem_gate(f"{shot['id']} still seed {seed}"):
-                log("  mem-gate refused — stopping this shot")
+        base_prompt = shot["prompt"]
+        cycles = shot.get("retry_cycles", defaults.get("retry_cycles", 2))
+        lessons = load_lessons(proj).get(shot["id"], [])
+        inherited = house_lessons(shot)
+        for h in inherited:
+            if h not in lessons:
+                lessons.append(h)
+        if lessons:
+            log(f"  carrying {len(lessons)} lesson(s) "
+                f"({len(inherited)} inherited from earlier films) into this shot")
+        for cycle in range(cycles + 1):
+            if locked:
                 break
-            cand = wip / f"{shot['id']}_{seed}.png"
-            if not gen_still(shot, proj, seed, cand):
-                continue
-            v = judge({"id": f"{shot['id']}_{seed}", "image": str(cand.relative_to(proj)),
-                       "beat": shot["beat"], "must_not": shot.get("must_not", [])}, proj, votes)
-            log(f"  seed {seed}: beat {v['verdict']} ({v.get('votes')}) — {v['why'][:140]}")
-            roll = {"seed": seed, "beat": v["verdict"], "votes": v.get("votes")}
-            if v["verdict"] == "PASS":
-                if identity_ok(shot, proj, cand):
-                    roll["identity"] = "MATCH"
-                    out["rolls"].append(roll)
-                    locked = cand
+            shot["prompt"] = corrected_prompt(base_prompt, lessons)
+            if cycle:
+                log(f"  retry cycle {cycle} with {len(lessons)} correction(s) applied")
+            for seed in [s + cycle * 1000 for s in seeds]:
+                if not mem_gate(f"{shot['id']} still seed {seed}"):
+                    log("  mem-gate refused — stopping this shot")
                     break
-                roll["identity"] = "DRIFT"
-            out["rolls"].append(roll)
-            cand.unlink(missing_ok=True)       # rule 13: losers don't linger
+                cand = wip / f"{shot['id']}_{seed}.png"
+                t0 = time.time()
+                if not gen_still(shot, proj, seed, cand):
+                    continue
+                metric(shot["id"], "still", time.time() - t0)
+                v = judge({"id": f"{shot['id']}_{seed}", "image": str(cand.relative_to(proj)),
+                           "beat": shot["beat"], "must_not": shot.get("must_not", [])},
+                          proj, votes)
+                metric(shot["id"], "judge_still", time.time() - t0, v["verdict"])
+                log(f"  seed {seed}: beat {v['verdict']} ({v.get('votes')}) — {v['why'][:140]}")
+                roll = {"seed": seed, "cycle": cycle, "beat": v["verdict"], "votes": v.get("votes")}
+                if v["verdict"] == "PASS":
+                    if identity_ok(shot, proj, cand):
+                        roll["identity"] = "MATCH"
+                        out["rolls"].append(roll)
+                        locked = cand
+                        break
+                    roll["identity"] = "DRIFT"
+                    lesson = ("the character must be drawn ON-MODEL and large enough in frame "
+                              "to read as the same character as the locked master")
+                else:
+                    lesson = v["why"].split("FAIL.")[-1].strip() or v["why"]
+                if lesson not in lessons:
+                    lessons.append(lesson)
+                save_lesson(proj, shot["id"], lesson)
+                save_house_lesson(shot, lesson)
+                out["rolls"].append(roll)
+                cand.unlink(missing_ok=True)   # rule 13: losers don't linger
+        shot["prompt"] = base_prompt
 
     if locked is None:
         log(f"  {shot['id']}: NO candidate passed — reported UNBUILT, nothing locked")
@@ -265,9 +404,11 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool) -> dict:
     wait_for_songforge()
     clip_tmp = proj / "clips" / f"{shot['id']}_raw.mp4"
     clip_tmp.parent.mkdir(parents=True, exist_ok=True)
+    t_anim = time.time()
     r = run([MAKE_VIDEO, "--i2v", lock_path, "--res", res,
              "--duration", defaults.get("duration", 5), "--seed", seeds[0],
              "--label", shot["id"], shot["animate"]], timeout=5400)
+    metric(shot["id"], "animate", time.time() - t_anim)
     m = re.search(r"done in [\d.]+s → (\S+)", r.stdout or "")
     if not m:
         log(f"  animation failed: {(r.stdout or '')[-300:]} {(r.stderr or '')[-200:]}")
@@ -294,8 +435,14 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool) -> dict:
             out.update(state="CLIP_TRIMMED", clip=str(final.relative_to(proj)),
                        window=[lo, hi])
         else:
-            log(f"  {shot['id']}: animation never holds the beat — clip DROPPED, "
-                f"still stays locked for another attempt")
+            failed_dir = proj / "clips" / "_failed"
+            failed_dir.mkdir(parents=True, exist_ok=True)
+            keep = failed_dir / f"{shot['id']}_failed.mp4"
+            keep.write_bytes(clip_tmp.read_bytes())
+            save_lesson(proj, shot["id"] + "_animation",
+                        v["why"].split("FAIL.")[-1].strip() or v["why"])
+            log(f"  {shot['id']}: animation never holds the beat — clip NOT used; kept at "
+                f"{keep.relative_to(proj)} so the failure can be diagnosed, still stays locked")
             out["state"] = "CLIP_FAILED"
     clip_tmp.unlink(missing_ok=True)
     return out

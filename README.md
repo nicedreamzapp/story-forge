@@ -14,9 +14,133 @@
 
 Story Forge is a self-contained pipeline that takes a structured story description and produces a finished animated film — with motion, narration, original music, title and credits — entirely on local hardware. Five open-source models composed by `ffmpeg`. **Zero cloud calls. Zero API charges. Zero rate limits.** Run it once, run it a thousand times.
 
+**And it reviews its own work.** A local vision-language model judges every shot against the story beat it is supposed to depict, votes across frames, holds characters and sets to locked designs, re-rolls with the rejection reason fed back into the prompt, and refuses to assemble a film out of shots that don't tell the story — all on the same laptop, with nothing leaving the machine. [Jump to the review loop ↓](#-it-reviews-its-own-work--the-verification-loop)
+
 > First public-confirmed LTX 13B distilled 0.9.8 working on Apple Silicon MPS. We also tried a hand-written Metal flash-attention kernel for Wan — turned out PyTorch's MPS SDPA is already too well-tuned to beat at our shapes. The kernel is preserved in [`metal/`](metal/) as documented learning (see its README for what we tried, what we measured wrong, and what actually works for Wan speedup).
 
 ---
+
+---
+
+## 🔍 It reviews its own work — the verification loop
+
+Generating a shot is the easy half. The hard half is knowing whether the shot you got is
+the shot the story needed — and that is where every AI film pipeline quietly breaks.
+
+We learned it the expensive way. An episode of ours passed **91 automated checks, 86 of
+them green**, and was still incoherent. The checks verified that the right character's
+mouth moved on the right line, that no faces melted, that no limbs multiplied, that every
+voice landed on its timestamp. All true. Meanwhile the shot meant to show a bear driving
+his shoulder into a jammed door showed a bear idly poking the wall with a stick, the door
+never opened anywhere in the film, the rescued character never appeared on screen, and the
+ending was four talking heads in a forest bragging about a rescue the audience never saw.
+
+Every individual check passed. The film made no sense. **Technical QC cannot see story.**
+
+So Story Forge grew a second kind of review — one that asks what a shot *depicts*, not
+whether its pixels are clean. It runs entirely locally on Apple Silicon (MLX +
+Qwen3-VL-32B 4-bit as the eyes, mlx-whisper as the ears) and it is wired in as a hard
+stop, not a warning.
+
+### The gates, cheapest first
+
+| Gate | Question it answers | Where |
+|---|---|---|
+| **Beat gate** | Does this picture actually depict the beat the script says it is? | [`pipeline-tools/beat_gate.py`](pipeline-tools/beat_gate.py) |
+| **Forbidden elements** | Is anything present that disqualifies the shot outright (a tool in the paws that should be empty, a relaxed pose where there should be strain)? | per-shot `must_not` in `beats.json` |
+| **Identity gate** | Is this still the same character as the locked master — same head, ears, muzzle, colours? | [`bin/forge-shot`](bin/forge-shot) |
+| **Set canon** | Is this the same *train* as the last scene, or did the model invent a new one? | `set_masters` in `beats.json` |
+| **Story spine** | Are all the beats the film cannot exist without actually on screen — or was one never shot at all? | `spine` in `beats.json` |
+| **Technical QC** | Right mouth moving on the right line, mouths shut in silence, no artifacts, every line audible on time | [`pipeline-tools/film_qc.py`](pipeline-tools/film_qc.py) |
+| **Memory gate** | Can this machine actually afford this render, or will it swap-storm and panic? | `core.memory_gate()` / [`bin/mem-gate`](bin/mem-gate) |
+
+### Four rules that make the review honest
+
+**1. Judge blind first.** The model describes what is physically happening in the frame
+with no knowledge of the intended beat — every body's posture and effort, every object in
+or near their hands, anything unusual in the air. *Only then* does the beat go in for a
+PASS/FAIL ruling. Told the answer up front, a vision model simply agrees with you. This
+ordering is the difference between a check and a rubber stamp.
+
+**2. One instant is not a verdict.** The same clip sampled at 1.1s and at 2.7s produced
+opposite rulings — and days earlier, single-instant sampling had failed seven perfectly
+good lip-sync clips. Every judgement now votes across multiple frames, majority rules, and
+**every individual ballot is printed**. Nothing hides behind an average.
+
+**3. Rejection reasons are fed back, and remembered.** Re-rolling a seed with the same
+prompt is not learning; the same wrong picture returns with different noise. The judge says
+*why* it failed in words — "the train is travelling normally with no visible signs of
+distress" — and that sentence is appended to the next attempt as a correction, then
+persisted to `shot_lessons.json` so a future run starts already knowing it. The mistake
+gets paid for once.
+
+**4. Nothing silently lowers a bar.** A shot that never passes is reported **UNBUILT**, not
+quietly used. A clip that only partly holds its beat is trimmed to the stretch that does,
+and the trim is declared. Failed clips are kept for diagnosis instead of deleted. Anything
+the judge cannot assess is reported UNCHECKED — never as a pass.
+
+### The self-proving shot builder
+
+[`bin/forge-shot`](bin/forge-shot) is the loop those gates live inside. Per shot:
+
+```
+roll a seed → beat gate (majority vote) → identity gate vs locked master
+   ↓ fail                                        ↓ pass
+feed the reason into the prompt, roll again    LOCK (chmod 444)
+   ↓ still failing after N cycles                ↓
+report UNBUILT, lock nothing                  animate (memory-gated)
+                                                 ↓
+                                        re-judge the CLIP across its length
+                                                 ↓ partial
+                                        keep only the stretch that holds the beat
+```
+
+Cheap gates run before expensive ones on purpose. A still costs about a minute to roll and
+judge; animating it costs seventeen. Refusing a bad shot at the still stage spends one
+minute instead of eighteen — **the review pays for itself in saved render time**, and adds
+about a minute per shot in overhead.
+
+### It gets better every film, not just every retry
+
+Nothing learned is allowed to die with the project it was learned on.
+
+- **`shot_lessons.json`** (per project) — why each specific shot was rejected, fed back into
+  its next attempt.
+- **`LESSONS.json`** (repo root, versioned, shipped) — the generalised version. Each entry
+  carries the keywords it applies to, so a lesson earned on film #1 is matched against any
+  future shot whose beat mentions the same things. Film #4 starts out knowing what films
+  #1–3 paid to learn. Render tricks live here too, not just story mistakes — a faster
+  sampler, a quant that held up, a resolution ladder that survived the quality gate.
+- **`METRICS.jsonl`** (repo root, append-only) — every step's real duration and verdict.
+  Which stage is the bottleneck is a measured number that accumulates across films, not a
+  hunch: right now it says a still costs ~1 minute to roll and judge, an animation costs
+  ~17, so refusing bad shots at the still stage is where the time is won.
+- **Speedups must earn their way in.** Any multiplier — quantisation, caching, step
+  distillation, a hand-written kernel — has to clear [`bin/measure-render`](bin/measure-render),
+  an LPIPS-gated harness: per-frame LPIPS < 0.05 **and** speedup > 1.10× or it doesn't ship.
+  That's how a hand-written Metal flash-attention kernel ended up documented as a null
+  result in [`metal/`](metal/) instead of quietly making renders worse.
+
+Same discipline as the story gates: the pipeline is allowed to get faster and smarter over
+time, but only in ways it can prove.
+
+### The numbers, published as measured
+
+First run of the beat gate over an existing "finished" episode: **2 of 11 shots passed.**
+It found the stick in the door unprompted, describing it as "a small metallic object
+embedded in the door." It failed the establishing shot that was supposed to read as trouble
+("no visible signs of distress"). It failed the arrival for showing "a cheerful train that
+appears to be running fine." It caught a character turning away from the door mid-clip. And
+it failed two stills built the same night by the same author — which is the point.
+
+Then, rebuilding the broken scene through `forge-shot`: three of four candidates passed the
+beat, **two of those three failed the identity gate** for drifting off-model, and the one
+that passed both got locked and animated — then the clip was trimmed to the 2.4-second
+window where the gate votes 4/5 that the effort is real. Human verdict on the result:
+*"looks like he's leaning in and trying to push a door open."*
+
+That is the whole thesis. Not "the AI got it right." **The pipeline caught itself getting it
+wrong, said so in numbers, and fixed it — on a laptop, offline.**
 
 ## The manifesto
 
