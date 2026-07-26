@@ -115,6 +115,41 @@ those parameters would need re-tuning for our 2-step GGUF path.
 - **Never prompt an impact.** Wan cannot render collisions; "splinters bursting" became a
   five-second particle spray that reads as drilling. Felt-not-shown, always.
 
+---
+
+## Closing the gap to frontier video (2026-07-26)
+
+Honest position: our output looks worse than frontier models, and the reasons are specific
+and mostly self-inflicted rather than a hardware ceiling.
+
+| Why ours looks weaker | Fix, with what we already own |
+|---|---|
+| **832×480 everywhere.** Frontier demos are 1080p+. Half our "AI look" is just resolution. | LTX-2.3 handles high res natively; Real-ESRGAN is already installed for a ladder. Raise the finish res on locked shots. |
+| **2-step lightx2v drafts shipped as finals.** A 4-step-collapsed-to-2 sample is a preview, not a finish. | Reserve the distilled path for drafts/gates; finish approved shots at full steps (`--hq`). The draft gate exists precisely so finals are rare. |
+| **Wan 2.2 i2v for talking characters.** Wan can't do lip sync, so dialogue is voice laid over prompted jaw motion — density-matched by hand. That reads as amateur no matter how good the still is. | **LTX-2.3 generates audio and video jointly**, natively — not a post step. We already have LTX-2-distilled downloaded (101GB) and the a2v path proven end-to-end here at ~40 s/clip, with all 12 dialogue close-ups passing lip-sync QC. It is our strongest asset and the episode barely uses it. |
+| **Static camera, 5-second held shots.** Frontier reels move. | The multi-shot coverage rule already calls for crops + camera moves per beat; enforce it as a gate (a scene with one framing fails), and use `bin/ken_burns.py` for real glides. |
+| **No shot-level aesthetic bar.** We gate story and identity, not craft. | Add a craft ballot to `beat_gate`: composition, lighting, and "does this read as a finished film frame or a diffusion sample" — the plumbing is already there. |
+
+**Model landscape, as of July 2026.** Wan 2.2 leads open-source photorealism (faces, skin,
+hair) and is Apache-2.0; HunyuanVideo 1.5 leads natural motion; **LTX-2.3 (22B DiT) is the
+only one doing 4K with natively synced audio, and it's the fastest locally.** Apple Silicon
+support is the catch: Wan 2.2 and Hunyuan have no stable MPS path, Metal has no
+`Float8_e4m3fn` so FP8 checkpoints are out, and LTX on an M2/M3 Max runs at roughly 1/8 the
+speed of a 4090. There are now **pure-MLX ports of LTX-2.3** worth evaluating against our
+ComfyUI path ([dgrauet/ltx-2-mlx](https://github.com/dgrauet/ltx-2-mlx),
+[Acelogic/LTX-2-MLX](https://github.com/Acelogic/LTX-2-MLX)) — MLX would drop the ComfyUI
+model-thrash entirely, which is 15% of our wall clock.
+
+**Concrete plan, cheapest first:** (1) make LTX-2 a2v the default for any shot with a
+character speaking, since it's proven here and fixes lip sync structurally; (2) finish
+locked shots at full steps and higher res instead of shipping drafts; (3) add the craft
+ballot so a frame that looks like a diffusion sample fails; (4) evaluate the MLX LTX-2 ports
+against our ComfyUI path with `bin/measure-render`.
+
+The audience assumption behind all of it: our AI video posts have been downvoted to nothing
+and removed. Assume viewers are hostile to slop. Coherent story, clean synced audio, no
+morphing, and real resolution are the price of entry — not extras.
+
 ## Next concrete step
 
 Tier 1 items 1 and 2 are pure scheduling and cost nothing to try — do them before any model

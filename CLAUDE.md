@@ -58,6 +58,22 @@ This directory is the home of **Story Forge**, a robust 100%-local generative VI
    final clips, approved audio, ledger/scripts — nothing else. First sweep of
    circus_train reclaimed 850MB of corpses.
 
+15. LEARN WITHOUT BEING ASKED (Matt, 2026-07-26: "I shouldn't have to tell you
+   these special notes to take from here on out"). Every rejection — his, or a gate's —
+   becomes a written lesson BEFORE the session ends, not when someone requests it:
+   - a shot-level reason goes to the project `shot_lessons.json` (automatic in forge-shot),
+   - the generalised version goes to `LESSONS.json` at the repo root with the keywords it
+     applies to, so it fires on the next film,
+   - a pipeline-level mistake (a gate that lied, a beat written wrong, a scheduling
+     bottleneck) goes into THIS file as a numbered rule plus a fix in code,
+   - a speed/quality candidate goes into `RENDER_SPEED_RESEARCH.md` with a MEASUREMENT,
+     never a vendor claim, and must clear `bin/measure-render` before it ships.
+   Standing job, no prompting: hunt for new tools and techniques that streamline renders
+   or raise quality, log them the same way, and try them. The bar Matt set is not "it
+   renders" — it is a film that survives a public audience. Our AI video posts have been
+   downvoted into nothing and removed; assume the audience is hostile to slop and that
+   story coherence, clean audio and no morphing are the price of entry.
+
 14. THE PICTURE MUST SHOW THE BEAT — and a machine has to say so, not a human
    eyeball (2026-07-25, the "stick in the door" episode). film_qc checks mouths,
    faces, limb counts and audio timing; ALL of them pass on a shot that depicts

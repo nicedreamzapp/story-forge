@@ -415,8 +415,13 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool) -> dict:
         return out
     clip_tmp.write_bytes(Path(m.group(1)).read_bytes())
 
+    # A frame cannot show a CHANGE. If the still's beat describes motion ("she steps
+    # down", "the crack widens"), judging frames against it fails every probe — which
+    # is what happened to s6_interior and s7_dooropen on 2026-07-26. `clip_beat` is the
+    # state-based restatement used to judge the animation.
+    clip_beat = shot.get("clip_beat", shot["beat"])
     v = judge({"id": shot["id"] + "_clip", "clip": str(clip_tmp.relative_to(proj)),
-               "beat": shot["beat"], "must_not": shot.get("must_not", [])},
+               "beat": clip_beat, "must_not": shot.get("must_not", [])},
               proj, max(5, votes))
     log(f"  clip: beat {v['verdict']} ({v.get('votes')})")
     final = proj / shot["clip"]
@@ -425,7 +430,7 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool) -> dict:
                         str(final), "-y"], check=True)
         out.update(state="CLIP_KEPT", clip=str(final.relative_to(proj)), clip_votes=v.get("votes"))
     else:
-        win = best_window(shot, proj, clip_tmp, votes)
+        win = best_window({**shot, "beat": clip_beat}, proj, clip_tmp, votes)
         if win:
             lo, hi = win
             subprocess.run(["ffmpeg", "-v", "error", "-ss", str(lo), "-i", str(clip_tmp),
