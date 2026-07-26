@@ -1,6 +1,81 @@
+## 2026-07-25 LATE — THE STORY GATE (read before touching Episode 1)
+
+Matt watched EPISODE_v1 and rejected it: "none of it makes sense." He was right, and
+the diagnosis is bigger than one bad shot.
+
+**What was actually wrong.** The film asserted its own story in dialogue and never
+showed it. After the (rejected) heave shot the cut goes straight to four talking-head
+close-ups IN A FOREST — no train in frame — where Hank takes credit for opening a door
+that never opens anywhere in the episode, and Doug jokes about a turtle claiming a water
+tank that was never shot. Ellie, the reason for the episode, is never on screen. The
+middle of the film was never built and talking heads were stitched over the hole.
+
+**Why nothing caught it.** film_qc checks mouths, faces, limbs, audio timing — every one
+passes on a shot depicting the wrong action. Sets were never held to canon, so the
+episode has four different trains. And "locking" a still was a human eyeball plus a
+ledger line, which is how a bear poking a wall with a stick became canon.
+
+**What shipped tonight (all on this branch):**
+- `pipeline-tools/beat_gate.py` — blind description then PASS/FAIL against the intended
+  beat, with per-shot `must_not` disqualifiers, majority voting over several frames
+  (one instant is NOT a verdict — proven again here), optional set-canon check, and an
+  episode-level `spine` check for beats that were never shot at all.
+- `bin/build-episode` — beat_gate runs in preflight as a HARD STOP.
+- `bin/forge-shot` — self-proving shot builder: roll seeds → beat gate → identity gate
+  → lock → animate → re-judge → keep only the stretch that holds the beat, or report
+  UNBUILT. Loads the VL judge once for a whole queue.
+- `projects/circus_train/beats.json` (11 shots + 9-beat spine) and `shots.json`
+  (the reshoot queue) as the worked examples.
+- CLAUDE.md frozen rule 14.
+
+**First run of the gate on the existing episode: 2 of 11 shots pass.** It found the
+stick unprompted ("a small metallic object embedded in the door"), the peaceful train
+that was supposed to read as trouble, the cheerful intact train at the arrival, Doug
+turning away from the door mid-clip, and both outro heads stranded in a forest. It also
+failed two stills built the same night, which is the point.
+
+**S6 rebuilt and verified:** old still/clip/segment DELETED (not trimmed). New still
+passed beat + identity where two other candidates drifted off-model; clip cut to the
+2.4s window where the gate votes 4/5 that he is straining. Matt's eyes: "looks like
+he's leaning in and trying to push a door open." EDL points at `clips/s6_final_v2.mp4`.
+
+**Still to do:** the reshoot queue (`shots.json`) covers s7 door-open payoff, Ellie's
+eye, the call, the arrival, the interior bang, the goodbye, and re-animating s5. The
+outro a2v close-ups still need replating at the train — they carry baked dialogue audio,
+so they need the a2v path, not i2v.
+
+---
+
 # Story Forge — Session Handoff
 
 > Read this first when resuming the build. Captures exact state as of the last commit.
+
+---
+
+## ⏸ PAUSED HERE 2026-07-23 (Matt traveling) — Circus Train resume point
+
+**Where the film stands (projects/circus_train/):**
+- 5 scene finals rendered + film_qc PASS 26/26 (identity + artifact sweep clean): `clips/s{1,2,3,5,6}_final.mp4`, review reel `finals_reel.mp4`. SILENT by design.
+- All 12 dialogue close-ups rendered via LTX-2 a2v WITH synced voice audio: `a2v/L*.mp4`, reel `a2v_reel.mp4`. film_qc 40/47; the 7 fails reviewed frame-by-frame = FALSE ALARMS (single-instant lip-sync sampling hit the clips' ~0.5s silent lead-in; two transcript-matcher quirks). Matt has SEEN both reels; no explicit approval given yet — treat nothing as locked beyond the ledger.
+- Still needed: S4/S7/S8 staging rethink (see APPROVED_LEDGER.md), Ellie/bird VO placement (L03/L08/L12/L16 wavs exist, off-screen by design), assembly + one continuous song.
+- ROUGH CUT v1 built + scored (`rough_cut_v1_music.mp4`, 48s, Song Forge acoustic bed ducked under dialogue, saved as `music_bed.wav`). Matt watched it 2026-07-23 night. His verdict: story doesn't make sense — no call to adventure, Ellie never on screen, door never opens. He's right; see agreed plan.
+- AGREED PLAN (Matt approved the ordering, one still-approval at a time): (1) design Ellie master still + lock; (2) S4 "the call" — leaning distant train whistle + smoke over treeline, NO new bird character unless Matt opts in; (3) Ellie-through-the-crack insert; (4) S7 payoff door-bursts-open Ellie steps out; (5) S8 goodbye wide "The Wild Rescue rolls"; (6) final assembly w/ Ellie/bird VO, title/credits, film_qc, Matt's final watch.
+- CLEANUP DONE + NEW FROZEN RULE 13: unapproved takes get deleted the same session a winner locks. Project swept 1.0GB→171MB (2026-07-23). Doug LoRA production copy verified at ~/.hankdoug_seeds/ before deleting training scraps.
+
+**2026-07-24 late-night progress (Matt delegated — "dont care" — then went to bed):**
+- ✓ ELLIE LOCKED: canon/ellie_canon.png (chmod 444, ledger updated). Seed-101 Flux gen: front master, circus crown, red plume, amber eyes, warm gray skin.
+- S4 "the call" candidates rendered: stills/wip/s4_call_11.png is strong (circus train crossing a trestle over the river at golden hour, smoke plume — plays as the boys SEEING it from the fishing spot). Flaw: gibberish lettering "FLWAIS" on one car — inpaint or reroll before showing Matt. s4_call_22 unreviewed.
+- ELLIE-THROUGH-CRACK: recipe proven, color NOT yet. Direct img2img from the portrait master (denoise .55-.72) does NOT restage composition — it just re-renders her portrait. What works: PIL rough composite (eye-region crop behind plank slit; see stills/wip/crack_composite2.png) → img2img weld at ~0.62. weld2/weld3 in wip/ have PERFECT composition but skin drifts PORCELAIN-WHITE (master is warm gray) + a stray gold collar. Next fix: tint the composite's face crop toward Ellie's actual gray (sample master RGB) before welding, keep denoise ≤0.6, then side-by-side color QC vs canon BEFORE Matt sees (rule 10).
+- S7 door-open: not started properly — needs the same composite-then-weld recipe (boxcar doorway plate + Ellie placed in it), direct img2img confirmed useless for it.
+- NOTHING from tonight shown to Matt yet; nothing new locked except Ellie canon.
+- S6 FINAL IS BAD — Matt caught it (2026-07-24, "him drilling a stick in the box car... senseless"). Full-clip review confirms: Hank casually leans a paw on the WALL while sawdust sprays continuously = reads as drilling, not a door-slam. Root cause: the prompt asked for an impact ("pushes hard, door shuddering, splinters bursting") — frozen rule 7 says Wan CANNOT do collisions/physics; it converted the hit into ambient particle spray. film_qc passed it because artifacts-only checks don't judge action logic. The LOCKED STILL is fine (wind-up pose, stays). PROPOSED FIX (Matt said "not sure" — confirm before building): cut around the impact — (a) re-roll S6 animation as simple brace-and-heave body motion, no splinter prompt; (b) the BANG happens inside the dark boxcar shot (frame shudder, dust rains, light-crack widens — build with the Ellie interior); (c) cut to S7 door-open payoff. Never prompt Wan for the hit itself.
+- LTX-2-distilled fully downloaded (101GB, transformer/config.json present) — a2v pipeline proven end-to-end, ~40s/clip.
+
+**Machine safety (2026-07-23 kernel panic post-mortem — READ CLAUDE.md rule 11):**
+- Cause: overnight fp16 render queue + 45GB resident Song Forge + piled-on work → swap storm → WindowServer starved → panic. S6 died mid-render at 74%.
+- Fix shipped: `core.memory_gate()` wired inside `queue_prompt` (covers server jobs + CLIs), `bin/mem-gate` for shell steps, guard patterns fixed (old `pkill -f "ComfyUI/main.py"` NEVER matched the real process `./venv/bin/python main.py --listen` — every historical "restart" silently left the old one alive; pattern is now `main.py --listen`). gpu_clear no longer matches the always-on mlx_lm server or "train" in project paths.
+- `~/AI/videopipe/core.py` and `story-forge/core.py` are synced IDENTICAL copies (videopipe is what server.py actually imports — keep them synced or symlink one day).
+- film_qc: transcript check now SKIPs (as UNCHECKED) when manifest has no lines. QC-validation-queue data point: single-instant lip-sync sampling produces false FAILs — should sample 2-3 frames per line.
 
 ---
 
@@ -215,3 +290,29 @@ Then `mcp__chrome-devtools__*` tools work. YouTube + Facebook Reels upload was v
 ```
 
 Resume from "Validate mini Wan inference" in the roadmap above.
+
+---
+## QC pipeline — RESEARCH & VALIDATION QUEUE (added 2026-07-22, Matt's directive)
+The judge stage exists (pipeline-tools/film_qc.py, smoke-tested once) but is NOT yet a
+proven instrument. Before trusting it on real films, validate the validator:
+
+1. **Judge accuracy first.** Build a small labeled set: ~10 clips with PLANTED defects
+   (wrong mouth moving, silent clip with flapping mouth, morphed bear from a violent-
+   action render, off-model character swap) + ~10 known-good clips. Run film_qc on all;
+   measure false-pass and false-fail rates. A judge that passes bad work is worse than
+   no judge. Tune the VL prompts until planted defects are caught reliably.
+2. **Frame density vs cost.** 1s artifact sweep = ~60 VL calls/min of film. Measure
+   wall-clock per film-minute; find the density where catch-rate plateaus.
+3. **Draft-gate predictiveness.** Render N shot pairs (480x256 draft + full 960x512,
+   same prompt/audio/seed); measure how often the draft's defects predict the full
+   render's. If correlation is weak, the draft gate is theater — find out.
+4. **Nemotron-3-Nano-Omni-30B integration** (downloaded 2026-07-22, 19GB, mlx-community
+   4bit): can mlx-vlm run it? Prototype a true audio+video sync check; compare its
+   lip-sync verdicts against Qwen3-VL frame judgments on the labeled set.
+5. **Wire the scene gate** into the render-queue template: film_qc after each scene,
+   queue halts on exit 1, and exit 2 (QC broken) also halts — never treated as pass.
+6. **End-to-end dry run:** one deliberately simple 2-scene film through all three gates;
+   measure total added wall-clock and whether the reports would have caught the
+   2026-07-22 "Every Day" defects.
+Rule while this queue is open: film_qc verdicts are ADVISORY + Matt's eyes remain the
+final gate. Only after (1) shows strong catch rates does a PASS start meaning something.

@@ -58,6 +58,39 @@ This directory is the home of **Story Forge**, a robust 100%-local generative VI
    final clips, approved audio, ledger/scripts — nothing else. First sweep of
    circus_train reclaimed 850MB of corpses.
 
+14. THE PICTURE MUST SHOW THE BEAT — and a machine has to say so, not a human
+   eyeball (2026-07-25, the "stick in the door" episode). film_qc checks mouths,
+   faces, limb counts and audio timing; ALL of them pass on a shot that depicts
+   completely the wrong action. Episode 1 shipped a bear idly poking a plank wall
+   with a stick — 91 checks, 86 passed — for the beat "he drives his shoulder
+   into a jammed door," and the wrong still had been LOCKED days earlier with a
+   ledger note saying it was fine. So:
+   - `pipeline-tools/beat_gate.py` is now a MANDATORY gate. It describes each
+     frame BLIND (told the intended beat first, a VL model just agrees), then
+     rules PASS/FAIL against the beat plus per-shot `must_not` disqualifiers.
+     It is wired into `bin/build-episode` preflight as a HARD STOP — a cut is
+     never assembled out of shots that don't tell the story.
+   - `beats.json` per project carries every shot's intended beat AND a `spine`:
+     the beats the film cannot exist without. Per-shot checks cannot catch a beat
+     that was never shot at all — Episode 1 had no door ever opening and Ellie
+     never on screen, and every shot present passed on its own terms.
+   - `bin/forge-shot` builds shots that PROVE themselves: roll seeds → beat gate
+     → identity gate vs the character master → lock → animate → re-judge the
+     clip → keep only the stretch that holds the beat. A shot that never passes
+     is reported UNBUILT, never quietly used.
+   - ONE INSTANT IS NOT A VERDICT. The same clip sampled at 1.1s vs 2.7s produced
+     opposite rulings — the identical noise that sent seven good lip-sync clips to
+     "failed" on 2026-07-23. Every judgement votes over several frames and prints
+     each ballot.
+   - Sets need canon too. Nothing ever locked the train, so Episode 1 has four
+     different ones (sunset steam train, colourful passenger cars, brown plank
+     wall, red steel boxcar). beat_gate takes `set_masters` and holds shots to
+     them the way rule 10 holds characters.
+   - NEVER prompt an impact. "Splinters bursting" became a five-second continuous
+     particle spray that reads as drilling, because Wan cannot render collisions
+     (rule 6). The bang is felt from inside the dark car — shudder, falling dust,
+     a widening crack of light — and never shown.
+
 ## MOTION TRANSFER — real footage drives a character (2026-07-25, Matt-approved)
 
 Breaks frozen rule 6's action ceiling. Take ANY video of a real person doing something

@@ -1,0 +1,87 @@
+{
+ "_note": "Reshoot queue for Episode 1, built and judged by bin/forge-shot. Story-critical first.",
+ "defaults": {"res": "832x480", "duration": 5, "seeds": [11, 47, 82, 119], "votes": 3},
+ "shots": [
+  {
+   "id": "s7_dooropen",
+   "init": "stills/wip/s7_composite.png",
+   "denoise": 0.32,
+   "prompt": "Pixar-style 3D animated film still, golden hour: a young gray circus elephant wearing a small red and gold pointed circus cap with a red feather plume is free in the wide open doorway of a weathered red circus boxcar, blinking in the warm sunlight, big amber eyes with long lashes, NO tusks, big soft ears, dust in the air, desert canyon behind, cinematic children's movie lighting",
+   "beat": "the boxcar door stands wide open and the young circus elephant who was trapped inside is free, out in the open doorway in the daylight",
+   "must_not": ["a closed or jammed door", "tusks", "a spiky metal crown"],
+   "identity": {"master": "canon/ellie_canon.png", "subject": "Ellie the young circus elephant"},
+   "lock": "stills/LOCKED_s7_dooropen.png",
+   "animate": "the young elephant steps forward out of the open boxcar doorway and down into the sunlight, ears swaying, trunk lifting, dust drifting in the warm light, camera holds steady",
+   "clip": "clips/s7_dooropen_final.mp4",
+   "min_window": 2.0
+  },
+  {
+   "id": "ellie_eye",
+   "init": "stills/wip/ellie_crack_composite_v3.png",
+   "denoise": 0.5,
+   "prompt": "Pixar-style 3D animated film still, extreme close-up through a narrow vertical gap between rough dark wooden boxcar planks: a frightened young circus elephant's enormous amber eye, wide and glistening with fear, brow pinched with worry, WARM GRAY elephant skin, one blade of golden daylight across the eye, dark planks, dust motes in the light, cinematic children's movie lighting",
+   "beat": "seen through a narrow gap between boxcar planks, the enormous eye of a FRIGHTENED young elephant shut inside the dark car finds the daylight",
+   "must_not": ["a calm or happy expression", "porcelain white or pink skin", "a collar"],
+   "identity": {"master": "canon/ellie_canon.png", "subject": "Ellie the young circus elephant"},
+   "lock": "stills/LOCKED_ellie_eye.png",
+   "animate": "the frightened eye blinks slowly and shifts as she looks toward the light, dust drifting through the blade of sunlight, the planks perfectly still, camera holds steady",
+   "clip": "clips/ellie_eye_final.mp4",
+   "min_window": 1.6
+  },
+  {
+   "id": "s2_thecall",
+   "prompt": "Pixar-style 3D animated film still, late afternoon: a circus train stopped dead on the tracks far across a valley, thick alarming smoke pouring up from its stalled locomotive into the sky, painted red and yellow circus cars sitting motionless in the heat, hazy heat shimmer, seen from a green creek bank in the foreground, something is clearly wrong, cinematic children's movie lighting",
+   "beat": "something is clearly WRONG in the distance: a circus train stopped dead with alarming smoke, the moment a viewer understands there is an emergency down the line",
+   "must_not": ["a train travelling normally and peacefully", "a calm scenic postcard with nothing wrong", "a happy sunset with no problem"],
+   "lock": "stills/LOCKED_s2_call.png",
+   "animate": "the smoke billows and drifts upward from the stalled train, heat shimmer rippling over the motionless cars, grass moving slightly in the wind, camera holds steady",
+   "clip": "clips/s2_call_final.mp4",
+   "min_window": 2.0
+  },
+  {
+   "id": "s4_arrival",
+   "prompt": "Pixar-style 3D animated film still: a big round brown bear with a cream muzzle and a lanky orange-tan bloodhound stand looking up at a dead circus train broken down and baking in the blazing sun, weathered red boxcars with SHUT doors and no windows, heat shimmer off the roofs, dust, not a single animal visible outside, the train is silent and going nowhere, cinematic children's movie lighting",
+   "beat": "the two heroes arrive at a dead circus train that has broken down and is baking in the heat with its doors shut and the animals stuck inside",
+   "must_not": ["animals leaning comfortably out of open windows", "a cheerful brightly painted passenger train that appears to be running fine", "open doors"],
+   "loras": ["~/.hankdoug_seeds/HANK_LORA.safetensors", "~/.hankdoug_seeds/DOUG_LORA_V2.safetensors"],
+   "lora_scales": [0.8, 0.8],
+   "identity": {"master": "canon/hank_canon.png", "subject": "Hank the bear"},
+   "lock": "stills/LOCKED_s4_arrival.png",
+   "animate": "heat shimmer ripples off the boxcar roofs, dust drifts across the gravel, the bear's head turns slowly as he takes in the length of the dead train, the dog shifts his weight, camera holds steady",
+   "clip": "clips/s4_arrival_final.mp4",
+   "min_window": 2.0
+  },
+  {
+   "id": "s6_interior",
+   "prompt": "Pixar-style 3D animated film still, interior of a dark wooden boxcar: a single blade of golden daylight cuts through a crack at the sliding door, fine dust and straw sifting down through the light, dark plank walls and floor, the crack of light at the door slightly wider than before, tense and quiet, cinematic children's movie lighting, no characters",
+   "beat": "inside the dark boxcar, dust sifts down through a blade of daylight and the crack of light at the door is widening — the impact is felt from in here, never shown",
+   "must_not": ["any animal or character visible", "a bright open door", "a person"],
+   "lock": "stills/LOCKED_s6_interior.png",
+   "animate": "dust and straw sift down through the blade of light, the shaft of daylight at the door slowly widens, motes drifting, camera holds perfectly steady",
+   "clip": "clips/s6_interior_final.mp4",
+   "min_window": 2.0
+  },
+  {
+   "id": "s8_goodbye",
+   "prompt": "Pixar-style 3D animated film still, golden late light: a big round brown bear with a cream muzzle and a lanky orange-tan bloodhound bump paws in front of their loaded horse-drawn fire-engine wagon, the rescued circus train alive and steaming happily on the tracks behind them, warm dust in the air, a job well done, cinematic children's movie lighting",
+   "beat": "at the end of the rescue, in golden light, the bear and the dog bump paws with the rescued circus train alive behind them",
+   "must_not": ["a forest or woods with no train anywhere", "a broken down or smoking train"],
+   "loras": ["~/.hankdoug_seeds/HANK_LORA.safetensors", "~/.hankdoug_seeds/DOUG_LORA_V2.safetensors"],
+   "lora_scales": [0.8, 0.8],
+   "identity": {"master": "canon/hank_canon.png", "subject": "Hank the bear"},
+   "lock": "stills/LOCKED_s8_goodbye.png",
+   "animate": "the two friends hold the paw bump and lower their paws, the horse shifts, warm dust drifts through the golden light, steam rises from the train behind, camera holds steady",
+   "clip": "clips/s8_goodbye_final.mp4",
+   "min_window": 2.0
+  },
+  {
+   "id": "s5_door",
+   "init": "stills/LOCKED_s5.png",
+   "beat": "the dog presses his nose to a narrow gap in a jammed boxcar door, trying to reach the frightened animal shut inside",
+   "lock": "stills/LOCKED_s5.png",
+   "animate": "the bloodhound keeps his nose pressed to the gap between the planks and sniffs, his long ears swaying, one paw testing the door, he does NOT turn away from the door, warm dust in the air, camera holds steady",
+   "clip": "clips/s5_final.mp4",
+   "min_window": 2.0
+  }
+ ]
+}

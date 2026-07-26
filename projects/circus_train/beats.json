@@ -1,0 +1,154 @@
+{
+ "_note": "Intended beat for every shot in Episode 1. Run: beat_gate.py beats.json",
+ "shots": [
+  {
+   "id": "s1_coldopen",
+   "clip": "clips/s1_final.mp4",
+   "t": 2.0,
+   "beat": "a bear and a dog idle away a lazy warm afternoon fishing by a creek, nothing happening, completely at ease"
+  },
+  {
+   "id": "s2_thecall",
+   "clip": "clips/s2_call_final.mp4",
+   "t": 2.0,
+   "beat": "something is clearly WRONG in the distance: a circus train stopped or in trouble, alarming smoke, the moment a viewer understands there is an emergency somewhere down the line",
+   "must_not": [
+    "a train travelling normally and peacefully",
+    "a purely calm scenic postcard with nothing wrong"
+   ]
+  },
+  {
+   "id": "s3_rollout",
+   "clip": "clips/s2_final.mp4",
+   "t": 2.0,
+   "beat": "the rescue wagon charges out at speed, urgent and committed, dust flying, on its way to an emergency"
+  },
+  {
+   "id": "s4_arrival",
+   "clip": "clips/s3_final.mp4",
+   "t": 2.0,
+   "beat": "the heroes arrive at a dead circus train that has broken down and is baking in the heat with animals trapped inside and unable to get out",
+   "must_not": [
+    "animals leaning comfortably out of open windows",
+    "a cheerful train that appears to be running fine",
+    "the heroes standing around with nothing wrong"
+   ]
+  },
+  {
+   "id": "s5_door",
+   "clip": "clips/s5_final.mp4",
+   "t": 2.0,
+   "beat": "the dog presses his nose to a narrow gap in a jammed boxcar door, trying to reach the frightened animal shut inside"
+  },
+  {
+   "id": "s6_heave",
+   "image": "stills/LOCKED_s6.png",
+   "beat": "a big bear drives his shoulder into a stuck boxcar door and strains against it with his entire body weight, feet planted and dug in, real physical effort",
+   "must_not": [
+    "holding or using a stick, tool, rod or any object",
+    "standing upright and relaxed",
+    "sawdust or debris spraying out of the wall",
+    "poking, prying or fiddling at the wood"
+   ]
+  },
+  {
+   "id": "s6_heave_animated",
+   "clip": "clips/s6_final_v2.mp4",
+   "beat": "a big bear drives his shoulder into a stuck boxcar door and strains against it with his entire body weight, feet planted and dug in, real physical effort",
+   "must_not": [
+    "holding or using a stick, tool, rod or any object",
+    "standing upright and relaxed",
+    "sawdust or debris spraying out of the wall",
+    "poking, prying or fiddling at the wood"
+   ]
+  },
+  {
+   "id": "new_ellie_eye",
+   "image": "stills/wip/ellie_eye_w_202_0.55.png",
+   "beat": "seen through a narrow gap between boxcar planks, the enormous eye of a frightened young elephant shut inside finds the daylight \u2014 the viewer finally sees who is trapped"
+  },
+  {
+   "id": "new_s7_dooropen",
+   "image": "stills/wip/s7_weld_313_0.32.png",
+   "beat": "the boxcar door now stands open and the young circus elephant is free, stepping down out of the car into the sunlight"
+  },
+  {
+   "id": "outro_hank_brag",
+   "clip": "build/seg15_L11.mp4",
+   "t": 0.6,
+   "beat": "immediately after the rescue, at the train, the bear takes dry credit for having just forced the door open",
+   "must_not": [
+    "standing in a forest or woods with no train anywhere",
+    "a location unrelated to the train"
+   ]
+  },
+  {
+   "id": "outro_signoff",
+   "clip": "build/seg17_L14.mp4",
+   "t": 0.6,
+   "beat": "the sign-off at the end of the rescue, with the rescued circus train visible behind them as they head home",
+   "must_not": [
+    "standing in a forest or woods with no train anywhere"
+   ]
+  }
+ ],
+ "spine": [
+  {
+   "beat": "a calm ordinary day is established so the interruption costs something",
+   "shots": [
+    "s1_coldopen"
+   ]
+  },
+  {
+   "beat": "the heroes SEE that something is wrong \u2014 the call to adventure",
+   "shots": [
+    "s2_thecall"
+   ]
+  },
+  {
+   "beat": "they commit and roll out",
+   "shots": [
+    "s3_rollout"
+   ]
+  },
+  {
+   "beat": "they arrive at the broken-down train and the trouble is visible",
+   "shots": [
+    "s4_arrival"
+   ]
+  },
+  {
+   "beat": "we SEE who is trapped \u2014 the audience gets someone to root for",
+   "shots": [
+    "ellie_eye",
+    "new_ellie_eye"
+   ]
+  },
+  {
+   "beat": "the effort: the door is forced with real physical weight",
+   "shots": [
+    "s6_heave_animated",
+    "s6_heave"
+   ]
+  },
+  {
+   "beat": "the bang is felt from inside the dark car",
+   "shots": [
+    "s6_interior"
+   ]
+  },
+  {
+   "beat": "THE PAYOFF: the door opens and the trapped animal is free on screen",
+   "shots": [
+    "s7_dooropen",
+    "new_s7_dooropen"
+   ]
+  },
+  {
+   "beat": "the goodbye, with the rescued train alive behind them",
+   "shots": [
+    "s8_goodbye"
+   ]
+  }
+ ]
+}

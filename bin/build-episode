@@ -1,0 +1,571 @@
+#!/usr/bin/env python3
+"""
+build-episode — assemble a finished cartoon from approved assets, end to end.
+
+Stages, cheapest first, each one gated so a stage never starts work the machine
+can't finish:
+
+  0  PREFLIGHT   services up, memory healthy, every asset present and non-zero
+  1  SONG        pause and commission an original score from Song Forge
+  2  CARDS       title + credit cards (Flux still, or a clean typeset fallback)
+  3  SEGMENTS    normalise every scene/insert to one spec; place off-screen VO
+  4  ASSEMBLE    concat in story order, score underneath, ducked under dialogue
+  5  QC          film_qc over the finished cut; report verbatim, never paper over
+
+Design rules it follows (all learned the hard way, see CLAUDE.md):
+  - Song Forge customer jobs OUTRANK renders. Stage 1 waits them out.
+  - Every heavy step passes bin/mem-gate first; it refuses rather than swap-storm.
+  - Rejected assets are never silently shipped. A scene Matt rejected is either
+    trimmed to its good portion (declared in EDL) or dropped, and the run reports it.
+  - Missing assets do not abort the film. The stage logs the gap and builds what
+    it can — "only do what it knows it can".
+
+State lives in build_state.json, so a rerun skips completed stages. --from resets.
+
+    bin/build-episode projects/circus_train
+    bin/build-episode projects/circus_train --from song    # redo score onward
+"""
+import argparse
+import json
+import os
+import shutil
+import subprocess
+import sys
+import time
+import urllib.request
+from pathlib import Path
+
+SF = Path(__file__).resolve().parent.parent
+MEM_GATE = SF / "bin" / "mem-gate"
+FILM_QC = SF / "pipeline-tools" / "film_qc.py"
+BEAT_GATE = SF / "pipeline-tools" / "beat_gate.py"
+MLX_PY = Path.home() / ".local/mlx-server/bin/python"
+SONGFORGE = os.environ.get("SONGFORGE_URL", "http://127.0.0.1:8767")
+
+W, H, FPS, AR = 832, 480, 24, 44100
+STAGES = ["preflight", "song", "cards", "segments", "assemble", "qc"]
+
+
+def log(msg):
+    print(f"[build-episode] {msg}", flush=True)
+
+
+def run(cmd, **kw):
+    return subprocess.run(cmd, capture_output=True, text=True, **kw)
+
+
+def ff(args, label=""):
+    r = run(["ffmpeg", "-y", "-loglevel", "error", *args])
+    if r.returncode:
+        raise RuntimeError(f"ffmpeg failed {label}: {r.stderr[-600:]}")
+
+
+def probe(path, entries, stream=False):
+    sel = ["-select_streams", "v:0"] if stream else []
+    r = run(["ffprobe", "-v", "error", *sel, "-show_entries", entries,
+             "-of", "default=nw=1:nk=1", str(path)])
+    return r.stdout.strip()
+
+
+def duration(path):
+    try:
+        return float(probe(path, "format=duration"))
+    except ValueError:
+        return 0.0
+
+
+def has_audio(path):
+    r = run(["ffprobe", "-v", "error", "-select_streams", "a",
+             "-show_entries", "stream=codec_name", "-of", "csv=p=0", str(path)])
+    return bool(r.stdout.strip())
+
+
+def mem_gate(label):
+    """Refuse to start heavy work the machine can't afford (frozen rule 11)."""
+    if not MEM_GATE.is_file():
+        return True
+    r = run([str(MEM_GATE), label])
+    for line in (r.stdout + r.stderr).splitlines():
+        if line.strip():
+            log(f"  mem-gate: {line.strip()}")
+    return r.returncode == 0
+
+
+def sf_status():
+    try:
+        with urllib.request.urlopen(f"{SONGFORGE}/api/status", timeout=8) as r:
+            return json.load(r)
+    except Exception:
+        return None
+
+
+# ───────────────────────── the edit ─────────────────────────
+# Declarative EDL. Each entry is one segment of the finished film.
+#   kind: scene | insert | card
+#   vo:   (wav, offset_seconds) laid over a silent scene — this is how the
+#         off-screen characters (bird, Ellie) speak without a mouth on screen.
+#   trim: seconds to keep from the head, for a partially-usable take.
+EDL = [
+    {"kind": "card", "id": "title"},
+
+    {"kind": "scene", "id": "s1_coldopen", "src": "clips/s1_final.mp4"},
+    {"kind": "insert", "id": "L01", "src": "a2v/L01_hank.mp4",
+     "say": ("hank", "Doug. The fish are winning again.")},
+    {"kind": "insert", "id": "L02", "src": "a2v/L02_doug.mp4",
+     "say": ("doug", "That's cause they practice, Hank.")},
+
+    # THE CALL — the boys see the trouble. Bird's warning rides over it as VO.
+    {"kind": "scene", "id": "s2_thecall", "src": "clips/s2_call_final.mp4",
+     "vo": ("voices/L03_bird.wav", 0.7),
+     "say": ("bird", "Help! The circus train broke down", 0.7)},
+    {"kind": "insert", "id": "L04", "src": "a2v/L04_doug.mp4",
+     "say": ("doug", "Circus train? Hank, we're rolling.")},
+
+    {"kind": "scene", "id": "s3_rollout", "src": "clips/s2_final.mp4"},
+
+    {"kind": "scene", "id": "s4_arrival", "src": "clips/s3_final.mp4"},
+    {"kind": "insert", "id": "L05", "src": "a2v/L05_hank.mp4",
+     "say": ("hank", "Whole train's cooking out here.")},
+    {"kind": "insert", "id": "L06", "src": "a2v/L06_doug.mp4",
+     "say": ("doug", "Easy everybody! The Wild Rescue's here!")},
+
+    # Ellie answers from inside the car — VO over Doug at the crack.
+    {"kind": "scene", "id": "s5_door", "src": "clips/s5_final.mp4",
+     "vo": ("voices/L08_ellie.wav", 2.6),
+     "say": ("ellie", "I can't, it's too heavy", 2.6)},
+    {"kind": "insert", "id": "L07", "src": "a2v/L07_doug.mp4",
+     "say": ("doug", "Pin's jammed tight.")},
+    {"kind": "insert", "id": "L09", "src": "a2v/L09_doug.mp4",
+     "say": ("doug", "Ellie? It's Doug. One push, girl.")},
+    {"kind": "insert", "id": "L10", "src": "a2v/L10_doug.mp4",
+     "say": ("doug", "Three, two, one, push!")},
+
+    # S6 REBUILT 2026-07-25. The old take (bear + stick + sawdust spray) is deleted,
+    # not trimmed — prompting the impact is what produced it, and Wan cannot render
+    # a collision. This one is pure body effort, cut to the 2.4s window where
+    # beat_gate votes 4/5 that he is actually straining against the door.
+    {"kind": "scene", "id": "s6_heave", "src": "clips/s6_final_v2.mp4"},
+    {"kind": "insert", "id": "L11", "src": "a2v/L11_hank.mp4",
+     "say": ("hank", "Doors don't argue with bears.")},
+
+    {"kind": "insert", "id": "L13", "src": "a2v/L13_doug.mp4",
+     "say": ("doug", "Turtle called dibs on the tank an hour ago.")},
+    {"kind": "insert", "id": "L14", "src": "a2v/L14_doug.mp4",
+     "say": ("doug", "Anybody, anywhere, any trouble at all")},
+    {"kind": "insert", "id": "L15", "src": "a2v/L15_hank.mp4",
+     "say": ("hank", "the Wild Rescue rolls.")},
+
+    {"kind": "card", "id": "credits", "vo": ("voices/L16_bird.wav", 1.0),
+     "say": ("bird", "Can I get a hat like this?", 1.0)},
+]
+
+
+# ───────────────────────── stages ─────────────────────────
+
+def stage_preflight(proj, st):
+    ok = True
+    services = sf_status()
+    if services:
+        log(f"  Song Forge: ace={services.get('ace_up')} llm={services.get('llm_up')} "
+            f"jobs_running={services.get('jobs_running')}")
+    else:
+        log("  Song Forge: UNREACHABLE — score stage will fall back to the saved bed")
+
+    missing, present = [], 0
+    for e in EDL:
+        if e["kind"] == "card":
+            continue
+        p = proj / e["src"]
+        if not p.is_file() or p.stat().st_size < 1000:
+            missing.append(e["src"])
+        else:
+            present += 1
+        if e.get("vo"):
+            v = proj / e["vo"][0]
+            if not v.is_file():
+                missing.append(e["vo"][0])
+    log(f"  assets: {present} clips present, {len(missing)} missing")
+    for m in missing:
+        log(f"    MISSING → {m} (its segment will be skipped)")
+    st["missing"] = missing
+    if present == 0:
+        log("  ABORT: no usable footage at all")
+        ok = False
+    if not mem_gate("build-episode preflight"):
+        log("  ABORT: memory gate refused")
+        ok = False
+
+    # STORY GATE (added 2026-07-25 after the "stick in the door" cut). film_qc
+    # judges mouths, faces, limbs and audio timing — all of which PASS on a shot
+    # that depicts the wrong action entirely. beat_gate asks the only question
+    # that catches that: does this picture show its beat. It is a hard stop:
+    # a cut is never assembled out of shots that don't tell the story.
+    beats = proj / "beats.json"
+    if not beats.is_file():
+        log("  story gate: no beats.json — shots are UNCHECKED against the script")
+        st["beat_gate"] = "UNCHECKED — no beats.json"
+    elif not MLX_PY.is_file() or not BEAT_GATE.is_file():
+        log("  story gate: UNAVAILABLE (beat_gate or its interpreter missing) — UNCHECKED")
+        st["beat_gate"] = "UNAVAILABLE"
+    else:
+        log("  running beat_gate (does every shot depict its beat?)…")
+        r = run([str(MLX_PY), str(BEAT_GATE), str(beats),
+                 "--report", str(proj / "BEAT_GATE_report.md")])
+        tail = (r.stdout or "").strip().splitlines()
+        for line in tail[-40:]:
+            if line.startswith(("[PASS]", "[FAIL]", "[ERR")):
+                log("    " + line)
+        st["beat_gate"] = "\n".join(tail[-40:])
+        st["beat_gate_exit"] = r.returncode
+        if r.returncode == 1:
+            log("  ABORT: shots that do not depict their beat are in the EDL — "
+                "reshoot them or drop them from the EDL before assembling")
+            ok = False
+        elif r.returncode != 0:
+            log("  story gate COULD NOT RUN — treat every shot as UNCHECKED, never as a pass")
+    return ok
+
+
+def stage_song(proj, st, want_song=True):
+    """Pause the build and commission an original score. Customer jobs come first."""
+    out = proj / "score.wav"
+    if not want_song:
+        log("  --no-song: using the existing music bed")
+        st["score"] = "music_bed.wav"
+        return True
+
+    s = sf_status()
+    if not s or not (s.get("ace_up") and s.get("llm_up")):
+        log("  Song Forge not healthy — falling back to music_bed.wav")
+        st["score"] = "music_bed.wav"
+        return True
+
+    waited = 0
+    while (sf_status() or {}).get("jobs_running", 0) > 0 and waited < 1800:
+        log("  a customer song is rendering — waiting (customers outrank us)")
+        time.sleep(60)
+        waited += 60
+
+    body = json.dumps({
+        "title": "The Wild Rescue",
+        "style": ("instrumental, no vocal, warm acoustic folk, playful, organic, dusty, "
+                  "downtempo adventure, banjo and ukulele, light whistling melody, "
+                  "gentle percussion, storybook feel, 88 bpm, clean mix"),
+        "bpm": 88, "duration": 150, "guidance_scale": 6,
+        "inference_steps": 32, "lyrics": "[instrumental]",
+    }).encode()
+    try:
+        req = urllib.request.Request(f"{SONGFORGE}/api/song", data=body,
+                                     headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=60) as r:
+            j = json.load(r)
+        # Song Forge answers {"id": ...}; older builds said task_id. Accept both,
+        # and REFUSE to poll a null id (that silently wasted a whole run 2026-07-25).
+        jid = j.get("id") or j.get("task_id") or (j.get("ids") or [None])[0]
+        if not jid:
+            raise RuntimeError(f"no job id in response: {j}")
+    except Exception as e:
+        log(f"  song request failed ({e}) — falling back to music_bed.wav")
+        st["score"] = "music_bed.wav"
+        return True
+
+    log(f"  commissioned score {jid} — polling")
+    t0 = time.time()
+    while time.time() - t0 < 2400:
+        try:
+            with urllib.request.urlopen(f"{SONGFORGE}/api/song/{jid}", timeout=20) as r:
+                j = json.load(r)
+        except Exception:
+            time.sleep(15)
+            continue
+        if j.get("status") == "done":
+            url = f"{SONGFORGE}{j['audio']}"
+            urllib.request.urlretrieve(url, out)
+            log(f"  score ready: {duration(out):.0f}s → score.wav")
+            st["score"] = "score.wav"
+            st["score_job"] = jid
+            return True
+        if j.get("status") == "error":
+            break
+        time.sleep(20)
+    log("  score did not finish — falling back to music_bed.wav")
+    st["score"] = "music_bed.wav"
+    return True
+
+
+def _card(path, title, subtitle, seconds):
+    """Typeset card. drawtext is NOT installed in this ffmpeg — build with PIL."""
+    from PIL import Image, ImageDraw, ImageFont
+    im = Image.new("RGB", (W, H), (18, 14, 12))
+    d = ImageDraw.Draw(im)
+    for y in range(H):  # warm vertical wash so it doesn't read as a flat slate
+        t = y / H
+        d.line([(0, y), (W, y)], fill=(int(24 + 26 * t), int(17 + 15 * t), int(14 + 9 * t)))
+
+    def font(sz):
+        for f in ("/System/Library/Fonts/Supplemental/Georgia Bold.ttf",
+                  "/System/Library/Fonts/Supplemental/Georgia.ttf",
+                  "/System/Library/Fonts/Helvetica.ttc"):
+            if Path(f).is_file():
+                try:
+                    return ImageFont.truetype(f, sz)
+                except Exception:
+                    pass
+        return ImageFont.load_default()
+
+    def centre(text, y, f, fill):
+        bb = d.textbbox((0, 0), text, font=f)
+        d.text(((W - (bb[2] - bb[0])) / 2, y), text, font=f, fill=fill)
+
+    centre(title, H * 0.34, font(52), (247, 226, 186))
+    if subtitle:
+        centre(subtitle, H * 0.52, font(24), (196, 160, 122))
+    png = path.with_suffix(".png")
+    im.save(png)
+    # color_range MUST be declared. A card encoded with range "unknown" concatenated
+    # against scenes tagged "tv" produces a stream QuickTime refuses to decode past
+    # the first segment — it holds the title frame for the whole film while ffmpeg
+    # reads it fine. That shipped a "59 seconds of intro screen" cut on 2026-07-25.
+    ff(["-loop", "1", "-t", str(seconds), "-i", str(png),
+        "-f", "lavfi", "-t", str(seconds), "-i", f"anullsrc=r={AR}:cl=stereo",
+        "-vf", f"scale={W}:{H},fps={FPS},setsar=1,format=yuv420p",
+        "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p",
+        "-color_range", "tv", "-colorspace", "bt709",
+        "-color_primaries", "bt709", "-color_trc", "bt709",
+        "-c:a", "aac", "-b:a", "160k", "-shortest", str(path)], "card")
+    png.unlink(missing_ok=True)
+
+
+def stage_cards(proj, st):
+    work = proj / "build"
+    work.mkdir(exist_ok=True)
+    _card(work / "card_title.mp4", "Hank & Doug's Wild Rescue", "The Circus Train", 4.0)
+    _card(work / "card_credits.mp4", "The Wild Rescue rolls.",
+          "Made locally on Story Forge", 5.0)
+    log("  title + credit cards built")
+    return True
+
+
+def stage_segments(proj, st):
+    """Normalise everything to one spec and place off-screen VO."""
+    work = proj / "build"
+    work.mkdir(exist_ok=True)
+    built, skipped = [], []
+    timeline, scenes, clock = [], [], 0.0
+
+    for idx, e in enumerate(EDL):
+        out = work / f"seg{idx:02d}_{e['id']}.mp4"
+        if e["kind"] == "card":
+            src = work / ("card_title.mp4" if e["id"] == "title" else "card_credits.mp4")
+        else:
+            src = proj / e["src"]
+        if not src.is_file():
+            skipped.append(e["id"])
+            continue
+
+        dur = duration(src)
+        if e.get("trim"):
+            dur = min(dur, e["trim"])
+
+        vf = (f"scale={W}:{H}:force_original_aspect_ratio=decrease,"
+              f"pad={W}:{H}:(ow-iw)/2:(oh-ih)/2,fps={FPS},setsar=1,format=yuv420p")
+        args = ["-t", f"{dur:.3f}", "-i", str(src)]
+        vo = e.get("vo")
+        vo_path = proj / vo[0] if vo else None
+        if vo and not vo_path.is_file():
+            vo, vo_path = None, None
+
+        if vo:
+            delay_ms = int(vo[1] * 1000)
+            args += ["-i", str(vo_path)]
+            if has_audio(src):
+                fc = (f"[0:v]{vf}[v];"
+                      f"[0:a]aresample={AR},aformat=channel_layouts=stereo[a0];"
+                      f"[1:a]aresample={AR},aformat=channel_layouts=stereo,"
+                      f"adelay={delay_ms}|{delay_ms},volume=1.25[a1];"
+                      f"[a0][a1]amix=inputs=2:duration=first:dropout_transition=0,"
+                      f"apad,atrim=duration={dur:.3f}[a]")
+            else:
+                fc = (f"[0:v]{vf}[v];"
+                      f"[1:a]aresample={AR},aformat=channel_layouts=stereo,"
+                      f"adelay={delay_ms}|{delay_ms},volume=1.25,"
+                      f"apad,atrim=duration={dur:.3f}[a]")
+        else:
+            if has_audio(src):
+                fc = (f"[0:v]{vf}[v];[0:a]aresample={AR},"
+                      f"aformat=channel_layouts=stereo,apad,atrim=duration={dur:.3f}[a]")
+            else:
+                args += ["-f", "lavfi", "-t", f"{dur:.3f}",
+                         "-i", f"anullsrc=r={AR}:cl=stereo"]
+                fc = f"[0:v]{vf}[v];[1:a]aresample={AR}[a]"
+
+        ff([*args, "-filter_complex", fc, "-map", "[v]", "-map", "[a]",
+            "-c:v", "libx264", "-crf", "18", "-preset", "medium",
+            "-c:a", "aac", "-b:a", "160k", str(out)], e["id"])
+        built.append(out.name)
+        # Track the running timeline so QC can be told exactly WHEN each line lands.
+        seg_dur = duration(out)
+        if e.get("say"):
+            say = e["say"]
+            offset = say[2] if len(say) > 2 else 0.15
+            # A line carried by VO has no mouth on screen — mark it so QC checks the
+            # audio and skips lip sync instead of failing a character who is, by
+            # design, behind a door or out of frame.
+            # dur lets QC measure mouth coverage across the WHOLE line rather than
+            # sampling an instant — the difference between catching a character who
+            # talks with a shut muzzle and rubber-stamping it.
+            line_span = duration(proj / e["vo"][0]) if e.get("vo") else seg_dur
+            timeline.append({"t": round(clock + offset, 2),
+                             "speaker": say[0], "text": say[1],
+                             "dur": round(max(0.6, line_span - offset), 2),
+                             "offscreen": bool(e.get("vo"))})
+        if e["kind"] == "scene":
+            scenes.append({"name": e["id"], "start": round(clock, 2),
+                           "end": round(clock + seg_dur, 2)})
+        clock += seg_dur
+        tag = " +VO" if vo else ""
+        tag += f" (trimmed to {dur:.1f}s)" if e.get("trim") else ""
+        log(f"  {e['id']}: {dur:.2f}s{tag}")
+
+    st["segments"] = built
+    st["skipped"] = skipped
+    st["lines"] = timeline
+    st["scenes"] = scenes
+    if skipped:
+        log(f"  SKIPPED (asset missing): {', '.join(skipped)}")
+    log(f"  {len(built)} segments normalised to {W}x{H}@{FPS}")
+    return bool(built)
+
+
+def stage_assemble(proj, st):
+    work = proj / "build"
+    segs = sorted(work.glob("seg*.mp4"))
+    if not segs:
+        return False
+    lst = work / "concat.txt"
+    lst.write_text("".join(f"file '{s}'\n" for s in segs))
+
+    # RE-ENCODE, never -c copy. Stream-copy concat only works if every segment
+    # matches on profile/level/pix_fmt/color-range/timebase; one stray parameter and
+    # strict players (QuickTime) freeze on the first frame for the whole runtime.
+    # One clean encode of a 60s 832x480 cut costs seconds and always plays.
+    silent = work / "cut_nomusic.mp4"
+    ff(["-f", "concat", "-safe", "0", "-i", str(lst),
+        "-c:v", "libx264", "-crf", "18", "-preset", "medium",
+        "-pix_fmt", "yuv420p", "-color_range", "tv", "-colorspace", "bt709",
+        "-color_primaries", "bt709", "-color_trc", "bt709",
+        "-r", str(FPS), "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart",
+        str(silent)], "concat")
+    total = duration(silent)
+    log(f"  cut assembled: {total:.1f}s from {len(segs)} segments")
+
+    score = proj / st.get("score", "music_bed.wav")
+    out = proj / "EPISODE_v1.mp4"
+    if score.is_file():
+        # Music sits under everything and ducks itself out of the way whenever
+        # a voice is present — sidechain keyed off the dialogue bus.
+        fc = (f"[1:a]aloop=loop=-1:size=2e9,atrim=duration={total:.3f},"
+              f"volume=0.42,aresample={AR},aformat=channel_layouts=stereo[m];"
+              f"[0:a]aresample={AR},aformat=channel_layouts=stereo,asplit=2[d][key];"
+              f"[m][key]sidechaincompress=threshold=0.035:ratio=9:attack=12:release=420[mq];"
+              f"[d][mq]amix=inputs=2:duration=first:normalize=0,"
+              f"alimiter=limit=0.95,afade=t=out:st={max(0, total-2.2):.2f}:d=2.2[a]")
+        ff(["-i", str(silent), "-i", str(score), "-filter_complex", fc,
+            "-map", "0:v", "-map", "[a]", "-c:v", "copy",
+            "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart",
+            str(out)], "score-mux")
+        log(f"  score laid under and ducked: {score.name}")
+    else:
+        shutil.copy(silent, out)
+        log("  no score available — cut is dialogue-only")
+
+    st["film"] = str(out)
+    st["runtime"] = duration(out)
+    log(f"  FILM: {out}  ({st['runtime']:.1f}s)")
+    return True
+
+
+def stage_qc(proj, st):
+    """MANDATORY. Never report 'done' without this; exit 2 is NOT a pass."""
+    film = Path(st.get("film", ""))
+    if not film.is_file():
+        return False
+    # film_qc wants characters as a DICT (name -> visual description) and every
+    # line stamped at its position in the FINAL timeline. Passing a list silently
+    # crashed the whole QC stage on 2026-07-25 — the film shipped UNCHECKED.
+    manifest = proj / "build" / "qc_manifest.json"
+    manifest.write_text(json.dumps({
+        "characters": {
+            "hank": "large round brown bear standing upright, cream muzzle",
+            "doug": "lanky tan bloodhound dog with long dark floppy ears, no collar",
+            "ellie": "young circus elephant, warm grey, red-plumed crown",
+            "bird": "off-screen only, never visible",
+        },
+        "scenes": st.get("scenes", []),
+        "lines": st.get("lines", []),
+    }, indent=2))
+    log(f"  manifest: {len(st.get('lines', []))} lines, {len(st.get('scenes', []))} scenes")
+    if not MLX_PY.is_file() or not FILM_QC.is_file():
+        st["qc"] = "UNAVAILABLE — film_qc or its interpreter is missing; film is UNCHECKED"
+        log(f"  {st['qc']}")
+        return True
+    if not mem_gate("film_qc"):
+        st["qc"] = "SKIPPED — memory gate refused; film is UNCHECKED"
+        log(f"  {st['qc']}")
+        return True
+    log("  running film_qc (vision + audio judge)…")
+    r = run([str(MLX_PY), str(FILM_QC), str(film), str(manifest)], timeout=3600)
+    tail = (r.stdout or r.stderr).strip().splitlines()[-14:]
+    st["qc"] = "\n".join(tail)
+    st["qc_exit"] = r.returncode
+    for line in tail:
+        log(f"    {line}")
+    if r.returncode == 2:
+        log("  film_qc COULD NOT RUN — treat as UNCHECKED, never as a pass")
+    return True
+
+
+def main():
+    ap = argparse.ArgumentParser(description="Assemble a finished cartoon end to end.")
+    ap.add_argument("project", help="project dir, e.g. projects/circus_train")
+    ap.add_argument("--from", dest="start", choices=STAGES, default=None,
+                    help="rerun from this stage onward")
+    ap.add_argument("--no-song", action="store_true",
+                    help="skip commissioning a score; use the saved music bed")
+    args = ap.parse_args()
+
+    proj = Path(args.project).expanduser().resolve()
+    if not proj.is_dir():
+        sys.exit(f"no such project: {proj}")
+    state_p = proj / "build_state.json"
+    st = json.loads(state_p.read_text()) if state_p.is_file() else {}
+    done = set(st.get("done", []))
+    if args.start:
+        done -= set(STAGES[STAGES.index(args.start):])
+
+    fns = {"preflight": stage_preflight, "song": lambda p, s: stage_song(p, s, not args.no_song),
+           "cards": stage_cards, "segments": stage_segments,
+           "assemble": stage_assemble, "qc": stage_qc}
+
+    t0 = time.time()
+    for name in STAGES:
+        if name in done:
+            log(f"{name.upper()} — already done, skipping")
+            continue
+        log(f"{name.upper()} —")
+        if not fns[name](proj, st):
+            log(f"STOPPED at {name}")
+            st["done"] = sorted(done)
+            state_p.write_text(json.dumps(st, indent=2))
+            sys.exit(1)
+        done.add(name)
+        st["done"] = sorted(done)
+        state_p.write_text(json.dumps(st, indent=2))
+
+    log(f"COMPLETE in {(time.time()-t0)/60:.1f} min → {st.get('film')}")
+    if st.get("skipped"):
+        log(f"NOT INCLUDED (assets missing): {', '.join(st['skipped'])}")
+
+
+if __name__ == "__main__":
+    main()

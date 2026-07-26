@@ -144,19 +144,56 @@ def main():
         print(qc_log[-1], flush=True)
 
     # ---- 1. lip sync per line -------------------------------------------
+    # COVERAGE, not presence. The question is not "does the mouth open at some
+    # instant during this line" — it is "is the mouth moving for MOST of the line".
+    # A single open frame in forty is exactly the defect a viewer reads as a
+    # character talking with a shut muzzle, and an any-sample rule PASSES it.
+    # (2026-07-25: an any-of-three rule was introduced to suppress false FAILs and
+    # instead silently green-lit Doug's "three, two, one, push" playing over a
+    # closed mouth for a full second. Matt caught it on screen. Never loosen this
+    # gate to make the number look better.)
+    #
+    # So: sample the WHOLE line at LIPSYNC_HZ, and require the speaker's mouth to
+    # be open in at least LIPSYNC_MIN_COVERAGE of the samples. The report always
+    # states the ratio, so a marginal line is visible rather than a bare PASS.
+    # Lines flagged "offscreen" are voice-only by design (a character behind a
+    # door, a bird out of frame) — audio-verified only, never mouth-checked.
+    LIPSYNC_HZ = 5.0
+    LIPSYNC_MIN_COVERAGE = 0.5
     for i, ln in enumerate(lines):
-        mid = ln["t"] + 0.5
-        f = tmp / f"line_{i}.png"
-        if not extract_frame(film, mid, f):
-            check(f"line{i}-frame", False, f"could not extract frame @{mid:.1f}s")
+        if ln.get("offscreen"):
+            qc_log.append(f"[SKIP] lipsync@{ln['t']:.1f}s: {ln['speaker']} is "
+                          f"off-screen by design — audio-only line")
+            print(qc_log[-1], flush=True)
             continue
-        q = (f"Characters: {char_desc}. In this frame, ONE character should be "
-             f"speaking. Which character has an open or clearly moving mouth? "
-             f"Answer with just the character name, or 'none', or 'both'.")
-        ans = vl_ask(f, q).lower()
-        ok = ln["speaker"].lower() in ans and "both" not in ans
-        check(f"lipsync@{ln['t']:.1f}s", ok,
-              f"expected {ln['speaker']} speaking, model saw: {ans[:80]}")
+        span = float(ln.get("dur") or 1.2)
+        n = max(3, int(span * LIPSYNC_HZ))
+        open_hits, wrong, samples = 0, 0, 0
+        for k in range(n):
+            t = ln["t"] + span * (k + 0.5) / n
+            f = tmp / f"line_{i}_{k}.png"
+            if not extract_frame(film, t, f):
+                continue
+            samples += 1
+            q = (f"Characters: {char_desc}. In this frame, which character has an "
+                 f"open or clearly moving mouth, as if mid-speech? Answer with just "
+                 f"the character name, or 'none', or 'both'.")
+            ans = vl_ask(f, q).lower()
+            if ln["speaker"].lower() in ans and "both" not in ans:
+                open_hits += 1
+            elif "none" not in ans:
+                wrong += 1
+        if not samples:
+            check(f"line{i}-frame", False, f"could not extract any frame @{ln['t']:.1f}s")
+            continue
+        cov = open_hits / samples
+        ok = cov >= LIPSYNC_MIN_COVERAGE and wrong == 0
+        detail = (f"{ln['speaker']}'s mouth moving in {open_hits}/{samples} samples "
+                  f"({cov*100:.0f}% of a {span:.1f}s line; need "
+                  f"{LIPSYNC_MIN_COVERAGE*100:.0f}%)")
+        if wrong:
+            detail += f" — and {wrong} sample(s) showed the WRONG character speaking"
+        check(f"lipsync@{ln['t']:.1f}s", ok, detail)
 
     # ---- 2. mouths shut during silence ----------------------------------
     sil = []
@@ -206,8 +243,18 @@ def main():
         k += 1
 
     # ---- 5. transcript timing -------------------------------------------
+    # Silent reels (no manifest lines) legitimately have no audio track —
+    # running whisper on them produced a false FAIL (2026-07-23 finals reel).
+    # No lines = nothing to verify = skip, stated in the report as UNCHECKED.
+    if not lines:
+        print("[film_qc] no dialogue lines in manifest — transcript check "
+              "SKIPPED (audio UNCHECKED, not passed)", flush=True)
+        qc_log.append("[SKIP] transcript: no dialogue lines in manifest — "
+                      "audio UNCHECKED")
+        segs = None
     try:
-        segs = whisper_transcribe(film)
+        if lines:
+            segs = whisper_transcribe(film)
         for ln in lines:
             words = [w for w in ln["text"].lower().split() if len(w) > 3][:3]
             hit = None

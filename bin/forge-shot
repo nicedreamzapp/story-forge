@@ -1,0 +1,340 @@
+#!/usr/bin/env python3
+"""forge-shot — build a shot that PROVES it depicts its beat before it is kept.
+
+Run with the mlx interpreter so the vision judge loads ONCE for the whole queue:
+    ~/.local/mlx-server/bin/python bin/forge-shot projects/circus_train/shots.json
+    ... --only s2_call        # one shot
+    ... --dry-run             # show the plan, generate nothing
+
+Why this exists (2026-07-25). Every failure in this pipeline so far came from a
+picture nobody checked against the story: a bear idly poking a wall with a stick
+passed 91 automated checks and shipped, because the checks looked at mouths,
+faces, limbs and audio — never at what the shot DEPICTS. Locking a still was a
+human eyeball and a note in a ledger. So:
+
+    a still is not locked until the judge says it shows the beat,
+    a clip is not kept until the judge says it still shows the beat moving,
+    and anything that can't prove it gets re-rolled, trimmed, or dropped.
+
+Per shot, cheapest gate first:
+  1. STILL     mflux (+ character LoRAs) rolls seed after seed
+  2. BEAT      beat_gate votes on the still; forbidden elements hard-fail
+  3. IDENTITY  side-by-side against the locked character master (frozen rule 10)
+  4. LOCK      chmod 444 + ledger line — only now is it canon
+  5. ANIMATE   make-video --i2v, GGUF by default, memory-gated (frozen rule 11)
+  6. RE-BEAT   the clip is judged across its length, majority rules
+  7. TRIM      if only part of the clip holds the beat, keep the longest run that
+               does (>= min_window seconds) instead of shipping the whole thing
+
+Nothing here silently lowers a bar. Every roll, vote and trim is logged to
+forge_shot.log and the run's JSON result, and a shot that never passes is
+reported as UNBUILT rather than quietly used.
+
+Shot spec (shots.json):
+{
+ "defaults": {"res": "832x480", "duration": 5, "seeds": [11,22,33,44], "votes": 3},
+ "shots": [
+  {"id": "s2_call",
+   "prompt": "flux prompt for the still",
+   "beat": "what the shot must depict",
+   "must_not": ["a peaceful train", "..."],
+   "loras": ["~/.hankdoug_seeds/HANK_LORA.safetensors"], "lora_scales": [0.9],
+   "identity": {"master": "canon/hank_canon.png", "subject": "Hank the bear"},
+   "lock": "stills/LOCKED_s2_call.png",
+   "animate": "i2v motion prompt, never an impact or collision",
+   "clip": "clips/s2_call_final.mp4",
+   "min_window": 2.0}
+ ]
+}
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+SF = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(SF / "pipeline-tools"))
+from beat_gate import check_shot, side_by_side, clip_duration, grab_frame  # noqa: E402
+from film_qc import vl_ask, _state, PE_URL  # noqa: E402
+
+MFLUX = Path.home() / "mflux-venv/bin/mflux-generate-flux2"
+MFLUX_MODEL = "AITRADER/FLUX2-klein-9B-mlx-8bit"
+MAKE_VIDEO = SF / "bin" / "make-video"
+MEM_GATE = SF / "bin" / "mem-gate"
+SONGFORGE = os.environ.get("SONGFORGE_URL", "http://127.0.0.1:8767")
+
+IDENT_Q = ("The LEFT image is the official locked design of {subject}. Look at the same "
+           "character in the RIGHT image. Is it the SAME character — same head shape, same "
+           "ears, same muzzle, same colours and markings, same face style? Answer YES or NO "
+           "first, then one sentence.")
+
+LOG: list[str] = []
+
+
+def log(msg: str) -> None:
+    line = f"[{time.strftime('%H:%M:%S')}] {msg}"
+    print(line, flush=True)
+    LOG.append(line)
+
+
+def run(cmd, timeout=1800):
+    return subprocess.run([str(c) for c in cmd], capture_output=True, text=True, timeout=timeout)
+
+
+def songforge_busy() -> bool:
+    """Customer jobs outrank renders — always (CLAUDE.md)."""
+    import urllib.request
+    try:
+        with urllib.request.urlopen(f"{SONGFORGE}/api/status", timeout=6) as r:
+            return int(json.load(r).get("jobs_running", 0)) > 0
+    except Exception:
+        return False
+
+
+def wait_for_songforge() -> None:
+    while songforge_busy():
+        log("  Song Forge has a customer job running — holding the render")
+        time.sleep(60)
+
+
+def mem_gate(label: str) -> bool:
+    if not MEM_GATE.is_file():
+        return True
+    r = run([MEM_GATE, label], timeout=1200)
+    for line in (r.stdout + r.stderr).splitlines():
+        if line.strip():
+            log(f"  mem-gate: {line.strip()}")
+    return r.returncode == 0
+
+
+FLUX_I2I = Path.home() / "Scripts" / "flux_img2img.py"
+
+
+def gen_still(shot: dict, proj: Path, seed: int, out: Path) -> bool:
+    # Composite-then-weld path (frozen rule 10): a character who already has a
+    # locked master is never re-generated from scratch — a rough PIL composite of
+    # the master is welded at LOW denoise so colour and texture survive. High
+    # denoise drifts (porcelain Ellie, tusks, a king's crown instead of her cap).
+    if shot.get("init"):
+        init = proj / shot["init"]
+        dn = shot.get("denoise", 0.45)
+        r = run(["python3", FLUX_I2I, shot["prompt"], "--init", init,
+                 "--denoise", dn, "--seed", seed, "--out", out], timeout=1800)
+        if r.returncode or not out.is_file():
+            log(f"  img2img weld failed (seed {seed}, denoise {dn}): {(r.stderr or '')[-200:]}")
+            return False
+        return True
+
+    cmd = ["nice", "-n", "10", MFLUX, "-m", MFLUX_MODEL,
+           "--guidance", "1.0", "--steps", "24", "--seed", seed,
+           "--width", shot["_w"], "--height", shot["_h"],
+           "--output", out, "--prompt", shot["prompt"]]
+    loras = [str(Path(p).expanduser()) for p in shot.get("loras", [])]
+    if loras:
+        cmd += ["--lora-paths", *loras,
+                "--lora-scales", *[str(s) for s in shot.get("lora_scales", [0.9] * len(loras))]]
+    r = run(cmd)
+    if r.returncode or not out.is_file():
+        log(f"  mflux failed (seed {seed}): {(r.stderr or '')[-200:]}")
+        return False
+    return True
+
+
+def identity_ok(shot: dict, proj: Path, img: Path) -> bool:
+    ident = shot.get("identity")
+    if not ident:
+        return True
+    master = proj / ident["master"]
+    if not master.is_file():
+        log(f"  identity: master missing ({master.name}) — UNCHECKED, not a pass")
+        return False
+    cmp_png = img.with_name(img.stem + "_vs_canon.png")
+    side_by_side(master, img, cmp_png)
+    ans = vl_ask(cmp_png, IDENT_Q.format(subject=ident["subject"])).strip().replace("\n", " ")
+    ok = bool(re.match(r"^\W*YES", ans, re.I))
+    log(f"  identity vs {master.name}: {'MATCH' if ok else 'DRIFT'} — {ans[:160]}")
+    cmp_png.unlink(missing_ok=True)
+    return ok
+
+
+def judge(spec: dict, proj: Path, votes: int) -> dict:
+    return check_shot(spec, proj, {}, votes=votes)
+
+
+def best_window(shot: dict, proj: Path, clip: Path, votes: int) -> tuple[float, float] | None:
+    """Longest stretch of the clip that actually holds the beat."""
+    dur = clip_duration(clip)
+    n = max(5, votes)
+    times = [round(dur * (i + 0.5) / n, 2) for i in range(n)]
+    marks = []
+    for t in times:
+        r = judge({"id": f"{shot['id']}@{t}", "clip": str(clip.relative_to(proj)),
+                   "t": t, "beat": shot["beat"], "must_not": shot.get("must_not", [])},
+                  proj, votes=1)
+        marks.append(r["verdict"] == "PASS")
+        log(f"  window probe t={t}s: {r['verdict']}")
+    best, cur = None, None
+    for i, ok in enumerate(marks):
+        if ok and cur is None:
+            cur = i
+        if (not ok or i == len(marks) - 1) and cur is not None:
+            end = i if ok else i - 1
+            span = (times[cur] - dur / (2 * n), times[end] + dur / (2 * n))
+            if best is None or (span[1] - span[0]) > (best[1] - best[0]):
+                best = span
+            cur = None
+    if best is None:
+        return None
+    lo, hi = max(0.0, best[0]), min(dur, best[1])
+    return (lo, hi) if hi - lo >= shot.get("min_window", 2.0) else None
+
+
+def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool) -> dict:
+    res = defaults.get("res", "832x480")
+    shot["_w"], shot["_h"] = res.lower().split("x")
+    seeds = shot.get("seeds", defaults.get("seeds", [11, 22, 33, 44]))
+    votes = shot.get("votes", defaults.get("votes", 3))
+    wip = proj / "stills" / "wip"
+    wip.mkdir(parents=True, exist_ok=True)
+    out = {"id": shot["id"], "state": "UNBUILT", "rolls": []}
+
+    log(f"=== {shot['id']} — beat: {shot['beat'][:90]}")
+    if dry:
+        out["state"] = "DRY"
+        return out
+
+    locked = None
+    if shot.get("init") and not shot.get("prompt"):   # supplied plate, nothing to roll
+        cand = proj / shot["init"]
+        v = judge({"id": shot["id"], "image": str(cand.relative_to(proj)),
+                   "beat": shot["beat"], "must_not": shot.get("must_not", [])}, proj, votes)
+        log(f"  supplied still: {v['verdict']} ({v.get('votes')})")
+        out["rolls"].append({"src": shot["init"], "beat": v["verdict"], "votes": v.get("votes")})
+        if v["verdict"] == "PASS" and identity_ok(shot, proj, cand):
+            locked = cand
+    else:
+        for seed in seeds:
+            if not mem_gate(f"{shot['id']} still seed {seed}"):
+                log("  mem-gate refused — stopping this shot")
+                break
+            cand = wip / f"{shot['id']}_{seed}.png"
+            if not gen_still(shot, proj, seed, cand):
+                continue
+            v = judge({"id": f"{shot['id']}_{seed}", "image": str(cand.relative_to(proj)),
+                       "beat": shot["beat"], "must_not": shot.get("must_not", [])}, proj, votes)
+            log(f"  seed {seed}: beat {v['verdict']} ({v.get('votes')}) — {v['why'][:140]}")
+            roll = {"seed": seed, "beat": v["verdict"], "votes": v.get("votes")}
+            if v["verdict"] == "PASS":
+                if identity_ok(shot, proj, cand):
+                    roll["identity"] = "MATCH"
+                    out["rolls"].append(roll)
+                    locked = cand
+                    break
+                roll["identity"] = "DRIFT"
+            out["rolls"].append(roll)
+            cand.unlink(missing_ok=True)       # rule 13: losers don't linger
+
+    if locked is None:
+        log(f"  {shot['id']}: NO candidate passed — reported UNBUILT, nothing locked")
+        return out
+
+    lock_path = proj / shot["lock"]
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    if lock_path.exists():
+        lock_path.chmod(0o644)
+    lock_path.write_bytes(locked.read_bytes())
+    lock_path.chmod(0o444)
+    if locked.parent.name == "wip":
+        locked.unlink(missing_ok=True)
+    out["locked_still"] = str(lock_path.relative_to(proj))
+    out["state"] = "STILL_LOCKED"
+    log(f"  LOCKED {out['locked_still']}")
+
+    if not shot.get("animate"):
+        return out
+
+    if not mem_gate(f"{shot['id']} i2v"):
+        log("  mem-gate refused the animation — still is locked, clip UNBUILT")
+        return out
+    wait_for_songforge()
+    clip_tmp = proj / "clips" / f"{shot['id']}_raw.mp4"
+    clip_tmp.parent.mkdir(parents=True, exist_ok=True)
+    r = run([MAKE_VIDEO, "--i2v", lock_path, "--res", res,
+             "--duration", defaults.get("duration", 5), "--seed", seeds[0],
+             "--label", shot["id"], shot["animate"]], timeout=5400)
+    m = re.search(r"done in [\d.]+s → (\S+)", r.stdout or "")
+    if not m:
+        log(f"  animation failed: {(r.stdout or '')[-300:]} {(r.stderr or '')[-200:]}")
+        return out
+    clip_tmp.write_bytes(Path(m.group(1)).read_bytes())
+
+    v = judge({"id": shot["id"] + "_clip", "clip": str(clip_tmp.relative_to(proj)),
+               "beat": shot["beat"], "must_not": shot.get("must_not", [])},
+              proj, max(5, votes))
+    log(f"  clip: beat {v['verdict']} ({v.get('votes')})")
+    final = proj / shot["clip"]
+    if v["verdict"] == "PASS":
+        subprocess.run(["ffmpeg", "-v", "error", "-i", str(clip_tmp), "-c", "copy",
+                        str(final), "-y"], check=True)
+        out.update(state="CLIP_KEPT", clip=str(final.relative_to(proj)), clip_votes=v.get("votes"))
+    else:
+        win = best_window(shot, proj, clip_tmp, votes)
+        if win:
+            lo, hi = win
+            subprocess.run(["ffmpeg", "-v", "error", "-ss", str(lo), "-i", str(clip_tmp),
+                            "-t", str(round(hi - lo, 2)), "-c:v", "libx264", "-crf", "18",
+                            "-pix_fmt", "yuv420p", str(final), "-y"], check=True)
+            log(f"  kept only the stretch that holds the beat: {lo}s–{hi}s")
+            out.update(state="CLIP_TRIMMED", clip=str(final.relative_to(proj)),
+                       window=[lo, hi])
+        else:
+            log(f"  {shot['id']}: animation never holds the beat — clip DROPPED, "
+                f"still stays locked for another attempt")
+            out["state"] = "CLIP_FAILED"
+    clip_tmp.unlink(missing_ok=True)
+    return out
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("shots")
+    ap.add_argument("--only", default=None)
+    ap.add_argument("--dry-run", action="store_true")
+    args = ap.parse_args()
+
+    spec_path = Path(args.shots).resolve()
+    spec = json.loads(spec_path.read_text())
+    proj = spec_path.parent
+    shots = spec["shots"]
+    if args.only:
+        shots = [s for s in shots if s["id"] == args.only]
+        if not shots:
+            return 2
+
+    try:
+        import requests
+        _state["use_server"] = requests.get(f"{PE_URL}/status", timeout=3).json().get("loaded", False)
+    except Exception:
+        _state["use_server"] = False
+    log(f"judge via {'server :8181' if _state['use_server'] else 'in-process VL'}")
+
+    results = [build_shot(s, proj, spec.get("defaults", {}), args.dry_run) for s in shots]
+
+    (proj / "forge_shot_results.json").write_text(json.dumps(results, indent=1) + "\n")
+    with open(proj / "forge_shot.log", "a") as f:
+        f.write("\n".join(LOG) + "\n")
+    kept = [r for r in results if r["state"] in ("CLIP_KEPT", "CLIP_TRIMMED", "STILL_LOCKED")]
+    log(f"DONE — {len(kept)}/{len(results)} shots produced usable, judged assets")
+    for r in results:
+        log(f"  {r['id']}: {r['state']}")
+    return 0 if len(kept) == len(results) else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
