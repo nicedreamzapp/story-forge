@@ -59,12 +59,29 @@ def write_json(p, data):
     Path(p).write_text(json.dumps(data, indent=1) + "\n")
 
 
+def declared_clip(proj: Path, sid: str) -> Path | None:
+    """Where a shot's finished clip actually lives, per the specs.
+
+    Spine ids do not always match filenames — s1_coldopen's clip is s1_final.mp4 —
+    so the director must read the declared path instead of guessing from the id.
+    Guessing marked two finished scenes as missing on 2026-07-26.
+    """
+    for spec_file in ("beats.json", "shots.json"):
+        for sh in read_json(proj / spec_file, {}).get("shots", []):
+            if sh.get("id") == sid and sh.get("clip"):
+                return proj / sh["clip"]
+    return None
+
+
 def has_footage(proj: Path, shot_ids: list) -> str | None:
     """A beat is covered only by a clip that exists and is non-trivial."""
     for sid in shot_ids:
-        for cand in sorted((proj / "clips").glob(f"{sid}*.mp4")):
-            if cand.is_file() and cand.stat().st_size > 50_000 and "_failed" not in str(cand):
-                return cand.name
+        cand = declared_clip(proj, sid)
+        if cand and cand.is_file() and cand.stat().st_size > 50_000:
+            return cand.name
+        for g in sorted((proj / "clips").glob(f"{sid}*.mp4")):
+            if g.is_file() and g.stat().st_size > 50_000 and "_failed" not in str(g):
+                return g.name
     return None
 
 
@@ -195,7 +212,8 @@ def main() -> int:
         calibrate(proj)
 
     while True:
-        todo = gaps(proj, state)
+        todo = [t for t in gaps(proj, state) if t[1] not in state.get("_dry_seen", [])] \
+            if args.dry_run else gaps(proj, state)
         review(proj)
         write_questions(proj, state)
         if not args.dry_run:
@@ -226,7 +244,20 @@ def main() -> int:
         attempt = state["attempts"].get(shot_id, 0)
         if args.dry_run:
             log(f"  would run {shot_id}, attempt {attempt}")
-            state["blocked"][shot_id] = "dry run"
+            state.setdefault("_dry_seen", []).append(shot_id)
+            if len(state["_dry_seen"]) > 20:
+                break
+            continue
+
+        # HARD anti-regression: a spec that repeats a known mistake never reaches the GPU.
+        lint = subprocess.run([sys.executable, str(SF / "pipeline-tools" / "spec_lint.py"),
+                               str(proj / "shots.json")], capture_output=True, text=True)
+        if lint.returncode == 1 and shot_id in lint.stdout:
+            for line in lint.stdout.splitlines():
+                if shot_id in line:
+                    log(f"  SPEC REJECTED before rendering — {line.strip()[:180]}")
+            state["blocked"][shot_id] = "spec repeats a known mistake — see spec_lint output"
+            write_json(proj / "director_state.json", state)
             continue
 
         res = run_shot(proj, escalate(spec, attempt))

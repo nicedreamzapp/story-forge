@@ -50,6 +50,16 @@ def metrics_rollup(since_hours=24):
     return agg, total
 
 
+def declared_clip(proj: Path, sid: str):
+    """Read the clip path a shot DECLARES — ids and filenames differ (s1_coldopen →
+    s1_final.mp4) and guessing reported two finished scenes as missing."""
+    for spec_file in ("beats.json", "shots.json"):
+        for sh in read_json(proj / spec_file, {}).get("shots", []):
+            if sh.get("id") == sid and sh.get("clip"):
+                return proj / sh["clip"]
+    return None
+
+
 def spine_coverage(proj: Path):
     beats = read_json(proj / "beats.json", {})
     spine = beats.get("spine", [])
@@ -57,9 +67,14 @@ def spine_coverage(proj: Path):
     for need in spine:
         clip = None
         for sid in need.get("shots", []):
-            for cand in proj.glob(f"clips/{sid}*.mp4"):
-                clip = cand.name
+            d = declared_clip(proj, sid)
+            if d and d.is_file() and d.stat().st_size > 50_000:
+                clip = d.name
                 break
+            for cand in proj.glob(f"clips/{sid}*.mp4"):
+                if "_failed" not in str(cand):
+                    clip = cand.name
+                    break
             if clip:
                 break
         still = any((proj / "stills").glob(f"LOCKED_*{s.split('_')[0]}*.png")

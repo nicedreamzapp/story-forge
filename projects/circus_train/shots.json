@@ -94,8 +94,8 @@
   },
   {
    "id": "s6_interior",
-   "prompt": "Pixar-style 3D animated film still, interior of a dark wooden boxcar: a single blade of golden daylight cuts through a crack at the sliding door, fine dust and straw sifting down through the light, dark plank walls and floor, the crack of light at the door slightly wider than before, tense and quiet, cinematic children's movie lighting, no characters",
-   "beat": "the dark inside of a wooden boxcar with a bright blade of daylight cutting in at the door edge and dust hanging in the light",
+   "prompt": "Pixar-style 3D animated film still, interior of a dark wooden boxcar: a single blade of golden daylight cuts through a crack at the sliding door, fine dust and straw sifting down through the light, dark plank walls and floor, the crack of light at the door slightly wider than before, tense and quiet, cinematic children's movie lighting, deserted and empty of any creature",
+   "beat": "the dark interior of a wooden boxcar with a bright blade of daylight cutting in at the door edge and dust hanging in the light",
    "must_not": [
     "any animal or character visible",
     "a bright open door",
@@ -104,7 +104,8 @@
    "lock": "stills/LOCKED_s6_interior.png",
    "animate": "dust and straw sift down through the blade of light, the shaft of daylight at the door slowly widens, motes drifting, camera holds perfectly steady",
    "clip": "clips/s6_interior_final.mp4",
-   "min_window": 2.0
+   "min_window": 2.0,
+   "_no_characters": true
   },
   {
    "id": "s8_goodbye",
@@ -138,7 +139,11 @@
    "lock": "stills/LOCKED_s5.png",
    "animate": "the bloodhound keeps his nose pressed to the gap between the planks and sniffs, his long ears swaying, one paw testing the door, he does NOT turn away from the door, warm dust in the air, camera holds steady",
    "clip": "clips/s5_final.mp4",
-   "min_window": 2.0
+   "min_window": 2.0,
+   "identity": {
+    "master": "canon/doug_canon.png",
+    "subject": "Doug the bloodhound"
+   }
   }
  ]
 }
