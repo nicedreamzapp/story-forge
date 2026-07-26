@@ -1,0 +1,50 @@
+{
+ "_note": "Reshoot queue for Episode 1, built and judged by bin/forge-shot. Story-critical first.",
+ "defaults": {
+  "res": "832x480",
+  "duration": 5,
+  "seeds": [
+   11,
+   47,
+   82,
+   119
+  ],
+  "votes": 3
+ },
+ "shots": [
+  {
+   "id": "s4_arrival_plate",
+   "prompt": "Pixar-style 3D animated film still: a deserted stretch of railway track in blazing afternoon sun, a weathered dark red circus freight train standing motionless with its sliding boxcar doors closed, abandoned and silent, not a soul in sight, empty dry gravel and scrub, heat shimmer rising off the roofs, dust hanging in the still air, plain unmarked wooden panels",
+   "beat": "an empty scene of a weathered red freight train standing still on the tracks in harsh sunlight with dust in the air and no animals or people in the frame",
+   "must_not": [
+    "any animal or person in the frame",
+    "readable letters, words or numbers on the train"
+   ],
+   "lock": "stills/PLATE_s4_arrival.png",
+   "min_window": 2.0,
+   "seeds": [
+    13,
+    29,
+    61,
+    97
+   ]
+  },
+  {
+   "id": "s8_goodbye_plate",
+   "prompt": "Pixar-style 3D animated film still: a deserted dirt road beside railway tracks in golden late-afternoon light, an empty horse-drawn wooden fire-engine wagon parked at the roadside with nobody near it, a circus train standing quietly on the tracks behind with light steam rising, warm dust in the still air, plain unmarked wood, silent and empty",
+   "beat": "an empty golden-hour scene of a wooden wagon parked beside railway tracks with a circus train standing behind it and no animals or people in the frame",
+   "must_not": [
+    "any animal or person in the frame",
+    "readable letters, words or numbers"
+   ],
+   "lock": "stills/PLATE_s8_goodbye.png",
+   "min_window": 2.0,
+   "seeds": [
+    13,
+    29,
+    61,
+    97
+   ]
+  }
+ ]
+}

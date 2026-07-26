@@ -1,0 +1,7 @@
+[10:47:13] waiting for s6 redo
+sysmon request failed with error: sysmond service not found
+pgrep: Cannot get process list
+[10:51:15] s6 redo finished: 
+[10:51:15] waiting for LTX-2 download
+sysmon request failed with error: sysmond service not found
+pgrep: Cannot get process list

@@ -1,0 +1,11 @@
+/Users/dtribe/mflux-venv/lib/python3.14/site-packages/huggingface_hub/constants.py:298: FutureWarning: The `HF_HUB_ENABLE_HF_TRANSFER` environment variable is deprecated as 'hf_transfer' is not used anymore. Please use `HF_XET_HIGH_PERFORMANCE` instead to enable high performance transfer with Xet. Visit https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfxethighperformance for more details.
+  warnings.warn(
+/Users/dtribe/ai-video-bench/mlxvid-venv/lib/python3.11/site-packages/huggingface_hub/constants.py:298: FutureWarning: The `HF_HUB_ENABLE_HF_TRANSFER` environment variable is deprecated as 'hf_transfer' is not used anymore. Please use `HF_XET_HIGH_PERFORMANCE` instead to enable high performance transfer with Xet. Visit https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfxethighperformance for more details.
+  warnings.warn(
+Fetching 53 files:   0%|          | 0/53 [00:00<?, ?it/s]Fetching 53 files:  11%|█▏        | 6/53 [00:01<00:10,  4.34it/s]Error while downloading from https://huggingface.co/prince-canuma/LTX-2-distilled/resolve/60135212a1e96122922a15bf249356a3ff38cde0/text_encoder/model-00004-of-00011.safetensors: The read operation timed out
+Trying to resume download...
+Error while downloading from https://huggingface.co/prince-canuma/LTX-2-distilled/resolve/60135212a1e96122922a15bf249356a3ff38cde0/text_encoder/model-00001-of-00011.safetensors: The read operation timed out
+Trying to resume download...
+Error while downloading from https://huggingface.co/prince-canuma/LTX-2-distilled/resolve/60135212a1e96122922a15bf249356a3ff38cde0/text_encoder/model-00006-of-00011.safetensors: peer closed connection without sending complete message body (received 3165858617 bytes, expected 4954909792)
+Trying to resume download...
+Fetching 53 files:  13%|█▎        | 7/53 [26:47<3:56:57, 309.09s/it]Fetching 53 files:  74%|███████▎  | 39/53 [27:15<07:32, 32.35s/it]  Fetching 53 files:  75%|███████▌  | 40/53 [29:12<07:42, 35.61s/it]Fetching 53 files: 100%|██████████| 53/53 [29:12<00:00, 33.06s/it]

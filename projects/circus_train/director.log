@@ -1,0 +1,14 @@
+[keepalive 12:15:22] starting director on projects/circus_train (max 8h)
+[director 12:15:22] calibrating the gates against known human verdicts before trusting them
+[director 12:19:11]   CALIBRATION: agrees with 5/6 known human verdicts (83%)
+[director 12:19:11]   GT_pass_s5_door: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies a bloodhound with its nose pressed against a narrow gap between planks of a wooden boxcar door, 
+[director 12:19:11] WIP reel updated: 2 passing shots → WIP_REEL.mp4
+[director 12:19:11] 4 beats still open — working: they arrive at the broken-down train and the trouble is visible
+[keepalive 12:41:47] director died (exit 143) — restart #1 in 30s
+[keepalive 12:41:49] starting director on projects/circus_train (max 8h)
+[director 12:41:49] calibrating the gates against known human verdicts before trusting them
+[director 12:51:14]   CALIBRATION: agrees with 5/6 known human verdicts (83%)
+[director 12:51:14]   GT_pass_s5_door: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies a bloodhound with its nose pressed against a narrow gap between planks of a wooden boxcar door, 
+[director 12:51:16] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 12:51:16] 3 beats still open — working: we SEE who is trapped — the audience gets someone to root for
+[keepalive 13:09:07] director died (exit 143) — restart #1 in 30s

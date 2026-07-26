@@ -1,0 +1,16 @@
+=== s1 final
+s1 job f81071aaae79
+s1 FINAL DONE
+=== s2 final
+s2 job 65933f7d3a29
+s2 FINAL DONE
+=== s3 final
+s3 job 70d89c7a31a7
+s3 FINAL DONE
+=== s5 final
+s5 job 5c1ccb52dfd4
+s5 FINAL DONE
+=== s6 final
+s6 job fc69f5bbe903
+s6 FINAL FAILED: {"duration":5.0,"elapsed":448,"error":"ComfyUI stopped responding mid-render (likely crashed) \u2014 check logs/comfyui.log","eta":156,"load_s":60,"mp4":null,"mp4_name":null,"pct":74,"prompt":"the bear pushes hard against the wooden door with his shoulder, the door shuddering, splinters and dust bursting from the frame, his fur rippling with effort, camera holding steady","quality":"fast","resolution":"832x480","sec_per_step":109.83673469387755,"setup_s":20,"stage":"error","started_at":1784827384.520641,"state":"error","step":4,"total_s":605,"total_steps":4,"vae_decode_s":85}
+FINALS_DONE

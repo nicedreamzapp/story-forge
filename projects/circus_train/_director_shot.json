@@ -1,0 +1,35 @@
+{
+ "defaults": {
+  "res": "832x480",
+  "duration": 5,
+  "seeds": [
+   11,
+   47,
+   82,
+   119
+  ],
+  "votes": 3
+ },
+ "shots": [
+  {
+   "id": "ellie_eye",
+   "init": "stills/wip/ellie_crack_composite_v3.png",
+   "denoise": 0.5,
+   "prompt": "Pixar-style 3D animated film still, extreme close-up through a narrow vertical gap between rough dark wooden boxcar planks: a frightened young circus elephant's enormous amber eye, wide and glistening with fear, brow pinched with worry, WARM GRAY elephant skin, one blade of golden daylight across the eye, dark planks, dust motes in the light, cinematic children's movie lighting",
+   "beat": "one large amber elephant eye, wide open, seen through a narrow vertical gap between dark wooden planks",
+   "must_not": [
+    "a calm or happy expression",
+    "porcelain white or pink skin",
+    "a collar"
+   ],
+   "identity": {
+    "master": "canon/ellie_canon.png",
+    "subject": "Ellie the young circus elephant"
+   },
+   "lock": "stills/LOCKED_ellie_eye.png",
+   "animate": "the frightened eye blinks slowly and shifts as she looks toward the light, dust drifting through the blade of sunlight, the planks perfectly still, camera holds steady",
+   "clip": "clips/ellie_eye_final.mp4",
+   "min_window": 1.6
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/little_robot/final/scene1.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/little_robot/final/scene2.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/little_robot/final/scene3.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/little_robot/final/scene4.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/little_robot/final/scene5.mp4'

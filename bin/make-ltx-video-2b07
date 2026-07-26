@@ -1,0 +1,114 @@
+#!/usr/bin/env python3
+"""make-ltx-video-2b07 — fallback i2v render via LTX-Video 0.9.7 distilled.
+
+Known-good fallback when the 13B 0.9.8 distilled checkpoint produces psychedelic
+noise on M5 Max MPS. The 0.9.7 line (last release before 13B) is widely reported
+as the most Mac-stable LTX checkpoint via diffusers.
+
+Loads `Lightricks/LTX-Video-0.9.7-distilled` via `from_pretrained` (auto-pulls
+transformer + vae + text_encoder + tokenizer + scheduler from HF — ~48GB on first
+run, cached after).
+
+Usage:
+  make-ltx-video-2b07 --i2v INPUT.png --duration 5.0 --res 768x512 --label scene_01 "motion prompt"
+
+Output: writes ~/AI/videopipe/outputs/<label>_ltx2b_<timestamp>.mp4
+"""
+import argparse
+import sys
+import time
+from pathlib import Path
+
+import torch
+from PIL import Image
+from diffusers import LTXImageToVideoPipeline
+from diffusers.utils import export_to_video
+
+LTX_REPO = "Lightricks/LTX-Video-0.9.7-distilled"
+
+
+def get_args():
+    p = argparse.ArgumentParser()
+    p.add_argument("prompt", help="motion prompt")
+    p.add_argument("--i2v", required=True, help="input still PNG/JPEG")
+    p.add_argument("--duration", type=float, default=5.0)
+    p.add_argument("--res", default="768x512")
+    p.add_argument("--label", default="ltx2b")
+    p.add_argument("--steps", type=int, default=8,
+                   help="LTX 0.9.7 distilled needs 4-10 steps")
+    p.add_argument("--guidance", type=float, default=1.0,
+                   help="LTX distilled is single-pass, MUST be 1.0 (no CFG)")
+    p.add_argument("--decode-timestep", type=float, default=0.05,
+                   help="Lightricks-recommended for distilled checkpoint")
+    p.add_argument("--decode-noise-scale", type=float, default=0.025,
+                   help="Lightricks-recommended for distilled checkpoint")
+    p.add_argument("--negative-prompt", default=(
+        "worst quality, inconsistent motion, blurry, jittery, distorted, "
+        "low quality, ugly, deformed"))
+    p.add_argument("--seed", type=int, default=None)
+    p.add_argument("--out-dir", default=str(Path.home() / "AI/videopipe/outputs"))
+    return p.parse_args()
+
+
+def main():
+    args = get_args()
+    w, h = (int(x) for x in args.res.split("x"))
+    fps = 24
+    num_frames = int(args.duration * fps)
+
+    # Round to LTX's required multiples (32 for width/height, 8 for frames+1)
+    w = max(256, (w // 32) * 32)
+    h = max(256, (h // 32) * 32)
+    num_frames = max(9, ((num_frames - 1) // 8) * 8 + 1)
+
+    out_dir = Path(args.out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    ts = int(time.time())
+    out_path = out_dir / f"{args.label}_ltx2b_{ts:08d}.mp4"
+
+    print(f"[ltx2b] loading LTX-Video 0.9.7 distilled from HF: {LTX_REPO}")
+    print(f"[ltx2b] (first run downloads ~48GB into HF cache; cached after)")
+    t0 = time.time()
+
+    # NOTE: the repo's model_index.json declares LTXConditionPipeline, but the
+    # underlying components (scheduler, vae, text_encoder, tokenizer, transformer)
+    # are identical, so LTXImageToVideoPipeline.from_pretrained loads them fine.
+    # diffusers may emit a class-mismatch warning — safe to ignore.
+    pipe = LTXImageToVideoPipeline.from_pretrained(
+        LTX_REPO,
+        torch_dtype=torch.bfloat16,
+    ).to("mps")
+    print(f"[ltx2b] model loaded in {time.time()-t0:.1f}s")
+
+    print(f"[ltx2b] loading input still: {args.i2v}")
+    image = Image.open(args.i2v).convert("RGB").resize((w, h), Image.LANCZOS)
+
+    generator = torch.Generator(device="mps")
+    if args.seed is not None:
+        generator.manual_seed(args.seed)
+
+    print(f"[ltx2b] rendering {num_frames} frames @ {w}x{h}, {args.steps} steps...")
+    t1 = time.time()
+    result = pipe(
+        prompt=args.prompt,
+        negative_prompt=args.negative_prompt,
+        image=image,
+        height=h,
+        width=w,
+        num_frames=num_frames,
+        num_inference_steps=args.steps,
+        guidance_scale=args.guidance,
+        decode_timestep=args.decode_timestep,
+        decode_noise_scale=args.decode_noise_scale,
+        generator=generator,
+    )
+    print(f"[ltx2b] inference: {time.time()-t1:.1f}s")
+
+    export_to_video(result.frames[0], str(out_path), fps=fps)
+    print(f"[ltx2b] done -> {out_path}")
+    print(f"[ltx2b] total: {time.time()-t0:.1f}s")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

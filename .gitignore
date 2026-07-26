@@ -5,3 +5,16 @@ venv/
 .DS_Store
 *.tmp
 node_modules/
+
+# --- heavy / regenerable assets: keep the repo pushable (GitHub 100MB/file limit) ---
+outputs/
+measurements/
+LTX-Video/
+samples/
+logs/
+projects/*/sizzle/
+*.mp4
+*.mov
+*.wav
+*.safetensors
+*.gguf

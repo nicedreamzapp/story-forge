@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.1",
+  "film_meta": {
+    "title": "wolves howling at neon moon",
+    "slug": "vf_wolves_howling_at_neon_moon_28038",
+    "target": "m5",
+    "scene_duration": 5.0,
+    "extras": {
+      "format": "reel"
+    },
+    "format": "reel",
+    "width": 720,
+    "height": 1280,
+    "fps": 30,
+    "aspect": "9:16"
+  },
+  "voice_presets": {},
+  "music_presets": {
+    "bed": {
+      "value": "ace/ethereal-dark-ambient-pulse",
+      "attrs": {
+        "vol": 0.32
+      }
+    }
+  },
+  "sfx_presets": {},
+  "transitions": [
+    {
+      "name": "xfade",
+      "args": [],
+      "attrs": {
+        "dur": 0.4
+      }
+    }
+  ],
+  "mixes": [],
+  "vars": {
+    "style": "hyper-detailed cinematic 3D animation, neon bioluminescent glow, dramatic rim light, 8k resolution"
+  },
+  "scenes": {
+    "beat_0": {
+      "still_spec": {
+        "engine": "flux",
+        "attrs": {},
+        "prompt": "hyper-detailed cinematic 3D animation, neon bioluminescent glow, dramatic rim light, 8k resolution, a pack of sleek gray wolves standing on a misty forest clearing, their mouths open in unison howling directly at a vibrant pink and purple neon moon hanging low in the midnight sky, dew drops glisten on their fur",
+        "seed": 1772610285
+      },
+      "motion_spec": {
+        "engine": "ltx",
+        "attrs": {},
+        "prompt": "camera slowly orbits the wolves while they maintain their howling pose, the moon's neon light flickers with their collective sound waves",
+        "duration": 4.0,
+        "seed": 4024061130
+      },
+      "narration_spec": null,
+      "narration_specs": [],
+      "music_spec": {
+        "preset": "bed",
+        "value": "ace/ethereal-dark-ambient-pulse",
+        "attrs": {
+          "vol": 0.32
+        }
+      },
+      "sfx_specs": [],
+      "attrs": {},
+      "extras": {}
+    }
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "missing": [],
+  "done": [
+    "assemble",
+    "cards",
+    "preflight",
+    "qc",
+    "segments",
+    "song"
+  ],
+  "score": "score.wav",
+  "segments": [
+    "seg00_title.mp4",
+    "seg01_s1_coldopen.mp4",
+    "seg02_L01.mp4",
+    "seg03_L02.mp4",
+    "seg04_s2_thecall.mp4",
+    "seg05_L04.mp4",
+    "seg06_s3_rollout.mp4",
+    "seg07_s4_arrival.mp4",
+    "seg08_L05.mp4",
+    "seg09_L06.mp4",
+    "seg10_s5_door.mp4",
+    "seg11_L07.mp4",
+    "seg12_L09.mp4",
+    "seg13_L10.mp4",
+    "seg14_s6_heave.mp4",
+    "seg15_L11.mp4",
+    "seg16_L13.mp4",
+    "seg17_L14.mp4",
+    "seg18_L15.mp4",
+    "seg19_credits.mp4"
+  ],
+  "skipped": [],
+  "film": "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4",
+  "runtime": 59.268005,
+  "qc": "[PASS] audio@29.8s: 'Whole train's cooking out here' expected @29.8s, heard @30.0s\n[PASS] audio@31.1s: 'Easy everybody! The Wild Rescu' expected @31.1s, heard @30.0s\n[PASS] audio@35.8s: 'I can't, it's too heavy' expected @35.8s, heard @36.0s\n[PASS] audio@38.4s: 'Pin's jammed tight.' expected @38.4s, heard @38.0s\n[FAIL] audio@40.1s: 'Ellie? It's Doug. One push, gi' expected @40.1s, heard @36.0s\n[PASS] audio@43.2s: 'Three, two, one, push!' expected @43.2s, heard @43.0s\n[PASS] audio@47.5s: 'Doors don't argue with bears.' expected @47.5s, heard @47.0s\n[PASS] audio@49.0s: 'Turtle called dibs on the tank' expected @49.0s, heard @49.0s\n[FAIL] audio@51.1s: 'Anybody, anywhere, any trouble' expected @51.1s, heard @49.0s\n[FAIL] audio@53.0s: 'the Wild Rescue rolls.' expected @53.0s, heard @30.0s\n[PASS] audio@55.2s: 'Can I get a hat like this?' expected @55.2s, heard @55.0s\n\nFAIL \u2014 6 defect(s)\nreport: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1_qc.md",
+  "qc_exit": 1,
+  "score_job": "22c04ef7ef054bcfa10b065d055fbbfe",
+  "lines": [
+    {
+      "t": 9.23,
+      "speaker": "hank",
+      "text": "Doug. The fish are winning again.",
+      "dur": 1.49,
+      "offscreen": false
+    },
+    {
+      "t": 10.87,
+      "speaker": "doug",
+      "text": "That's cause they practice, Hank.",
+      "dur": 1.53,
+      "offscreen": false
+    },
+    {
+      "t": 13.1,
+      "speaker": "bird",
+      "text": "Help! The circus train broke down",
+      "dur": 3.18,
+      "offscreen": true
+    },
+    {
+      "t": 17.64,
+      "speaker": "doug",
+      "text": "Circus train? Hank, we're rolling.",
+      "dur": 1.81,
+      "offscreen": false
+    },
+    {
+      "t": 29.76,
+      "speaker": "hank",
+      "text": "Whole train's cooking out here.",
+      "dur": 1.17,
+      "offscreen": false
+    },
+    {
+      "t": 31.08,
+      "speaker": "doug",
+      "text": "Easy everybody! The Wild Rescue's here!",
+      "dur": 2.09,
+      "offscreen": false
+    },
+    {
+      "t": 35.77,
+      "speaker": "ellie",
+      "text": "I can't, it's too heavy",
+      "dur": 0.6,
+      "offscreen": true
+    },
+    {
+      "t": 38.41,
+      "speaker": "doug",
+      "text": "Pin's jammed tight.",
+      "dur": 1.57,
+      "offscreen": false
+    },
+    {
+      "t": 40.13,
+      "speaker": "doug",
+      "text": "Ellie? It's Doug. One push, girl.",
+      "dur": 2.89,
+      "offscreen": false
+    },
+    {
+      "t": 43.17,
+      "speaker": "doug",
+      "text": "Three, two, one, push!",
+      "dur": 1.89,
+      "offscreen": false
+    },
+    {
+      "t": 47.54,
+      "speaker": "hank",
+      "text": "Doors don't argue with bears.",
+      "dur": 1.33,
+      "offscreen": false
+    },
+    {
+      "t": 49.02,
+      "speaker": "doug",
+      "text": "Turtle called dibs on the tank an hour ago.",
+      "dur": 1.93,
+      "offscreen": false
+    },
+    {
+      "t": 51.1,
+      "speaker": "doug",
+      "text": "Anybody, anywhere, any trouble at all",
+      "dur": 1.77,
+      "offscreen": false
+    },
+    {
+      "t": 53.02,
+      "speaker": "hank",
+      "text": "the Wild Rescue rolls.",
+      "dur": 1.21,
+      "offscreen": false
+    },
+    {
+      "t": 55.23,
+      "speaker": "bird",
+      "text": "Can I get a hat like this?",
+      "dur": 0.6,
+      "offscreen": true
+    }
+  ],
+  "scenes": [
+    {
+      "name": "s1_coldopen",
+      "start": 4.0,
+      "end": 9.08
+    },
+    {
+      "name": "s2_thecall",
+      "start": 12.4,
+      "end": 17.49
+    },
+    {
+      "name": "s3_rollout",
+      "start": 19.45,
+      "end": 24.53
+    },
+    {
+      "name": "s4_arrival",
+      "start": 24.53,
+      "end": 29.61
+    },
+    {
+      "name": "s5_door",
+      "start": 33.17,
+      "end": 38.26
+    },
+    {
+      "name": "s6_heave",
+      "start": 45.06,
+      "end": 47.39
+    }
+  ]
+}

@@ -56,6 +56,15 @@ Voices (ChatterBox, ~/chatterbox-env, via bin/character_voice.py):
 
 Assembly: build DIALOGUE-ONLY scenes, concat, then lay ONE continuous song over the whole episode (music strings across all scenes; only mouth+voice need per-scene perfection). Intro = LTX-animated scenic title card + PIL text overlays (title + credits) faded in.
 
+## DEFAULT MOVIE-MAKING RULES — GIVENS on every video (Matt, 2026-05-25, never ask)
+These are standing direction. Apply them automatically to every film; do not make Matt re-explain.
+
+1. **Dynamic multi-shot coverage.** Every scene is a SEQUENCE of shots, never one static clip, so it reads as fully animated film — the viewer can't tell it came from stills. Cover each beat with varied framings + camera moves that keep returning to the same scene: wide establish → push-in close-up → side/parallax move → pull back wider → return to the action. Source the shots: (a) CROPS of the locked still into close/medium/wide framings (instant, perfectly consistent), (b) i2v CAMERA MOVES (push-in, pull-back, pan, parallax, gentle orbit), (c) FRESHLY GENERATED stills for true new angles (behind/side/above/low) when a beat needs one — on-model via per-character LoRAs so characters stay identical across angles. Assume MAXIMAL coverage by default.
+2. **Prompt the mouth motion to the dialogue.** On any shot with a line, write the i2v motion prompt to make that character's mouth move when we want the line ("Doug's mouth opens and closes as he speaks"). Direct mouth motion on purpose so it lands with the dialogue, then lay voice over the untouched result and density-match. NOT repainting mouths (still banned) — we prompt the motion, then voice it. i2v gives open/close jaw motion, not phonetic lip-sync; time it + density-match rather than expecting perfect sync.
+3. **Character consistency via LoRAs.** For true new angles / new poses, generate on-model using per-character LoRAs (Doug, Hank, etc.). Build the LoRA the first time a film needs real new angles; reuse forever after.
+
+Full detail: SCENE_BUILDING_METHOD.md.
+
 **Active services on this machine:**
 - Story Forge UI: `localhost:17600` · `localhost:17600/story` for narrative mode
 - ComfyUI: `localhost:8188`

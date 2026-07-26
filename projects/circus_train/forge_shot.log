@@ -1,0 +1,388 @@
+[23:26:30] judge via in-process VL
+[23:26:30] === s7_dooropen — beat: the boxcar door stands wide open and the young circus elephant who was trapped inside is f
+[23:28:20]   seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The young circus elephant is clearly depicted sitting in the open doorway of the boxcar, facing
+[23:28:24]   identity vs ellie_canon.png: MATCH — YES. The character in the right image is the same as in the left, with identical head shape, ear size and shape, muzzle structure, eye style, and coloration, in
+[23:28:24]   LOCKED stills/LOCKED_s7_dooropen.png
+[23:30:17]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen i2v' (free=36% swap=10.4GB pressure=2)
+[23:30:17]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen i2v' (free=51% swap=10.4GB pressure=2)
+[23:30:17]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen i2v' (free=51% swap=10.4GB pressure=2)
+[23:30:17]   mem-gate: [mem-gate] healthy but 10GB parked in swap — bouncing idle ComfyUI to release it
+[23:30:17]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[23:30:17]   mem-gate: [mem-gate] ComfyUI back up
+[23:46:13]   clip: beat FAIL (1/5)
+[23:46:22]   window probe t=0.51s: FAIL
+[23:46:33]   window probe t=1.52s: FAIL
+[23:46:45]   window probe t=2.53s: FAIL
+[23:46:56]   window probe t=3.54s: FAIL
+[23:47:04]   window probe t=4.56s: FAIL
+[23:47:04]   s7_dooropen: animation never holds the beat — clip DROPPED, still stays locked for another attempt
+[23:47:04] === ellie_eye — beat: seen through a narrow gap between boxcar planks, the enormous eye of a FRIGHTENED young el
+[23:47:52]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=45% swap=19.5GB pressure=2)
+[23:47:52]   mem-gate: [mem-gate] healthy but 19GB parked in swap — bouncing idle ComfyUI to release it
+[23:47:52]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[23:47:52]   mem-gate: [mem-gate] ComfyUI back up
+[23:49:27]   seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s eye is wide and expressive, but its overall expression lacks the specific emotio
+[23:49:46]   mem-gate: [mem-gate] healthy but 19GB parked in swap — bouncing idle ComfyUI to release it
+[23:49:46]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[23:49:46]   mem-gate: [mem-gate] ComfyUI back up
+[23:51:17]   seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a wide, alert eye with a slightly raised eyebrow, which suggests surprise or al
+[23:51:35]   mem-gate: [mem-gate] healthy but 19GB parked in swap — bouncing idle ComfyUI to release it
+[23:51:35]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[23:51:35]   mem-gate: [mem-gate] ComfyUI back up
+[23:53:02]   seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s expression, while wide-eyed, does not clearly convey fear; instead, it appears 
+[23:53:20]   mem-gate: [mem-gate] healthy but 19GB parked in swap — bouncing idle ComfyUI to release it
+[23:53:20]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[23:53:20]   mem-gate: [mem-gate] ComfyUI back up
+[23:54:53]   seed 119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style animal resembling a dog or wolf, not a young elephant, and the 
+[23:54:53]   ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[23:54:53] === s2_thecall — beat: something is clearly WRONG in the distance: a circus train stopped dead with alarming smok
+[23:55:11]   mem-gate: [mem-gate] healthy but 19GB parked in swap — bouncing idle ComfyUI to release it
+[23:55:11]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[23:55:11]   mem-gate: [mem-gate] ComfyUI back up
+[23:56:02]   seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted traveling along the track with no visible signs of stopping or distress, 
+[23:56:57]   seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted as moving along the track with no visible signs of stopping or mechanical
+[23:57:47]   seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted moving along the track with no visible signs of stopping or distress, and
+[23:58:45]   seed 119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted as moving along a curved track, crossing a bridge over a stream, with no 
+[23:58:45]   s2_thecall: NO candidate passed — reported UNBUILT, nothing locked
+[23:58:45] === s4_arrival — beat: the two heroes arrive at a dead circus train that has broken down and is baking in the hea
+[00:00:15]   seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a sun-baked, abandoned train with closed, weathered doors marked “SHU
+[00:00:20]   identity vs hank_canon.png: DRIFT — NO. The character in the right image has a different head shape, smaller ears, a more rounded muzzle, and a different color palette, indicating it is not the sa
+[00:01:45]   seed 47: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a broken-down circus train baking in the heat with its doors shut, an
+[00:01:49]   identity vs hank_canon.png: DRIFT — NO. The character on the right has a different head shape, smaller ears, a longer muzzle, and a lighter, more orange-brown fur color compared to the darker, rou
+[00:03:05]   seed 82: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a broken-down circus train baking in the heat with its doors shut and
+[00:03:09]   identity vs hank_canon.png: DRIFT — NO. The character on the right has a different head shape, smaller ears, a different muzzle, and a lighter, more golden fur color compared to the darker, rounde
+[00:04:33]   seed 119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train cars have their doors shut, which aligns with the beat, but the image does not clearl
+[00:04:33]   s4_arrival: NO candidate passed — reported UNBUILT, nothing locked
+[00:04:33] === s6_interior — beat: inside the dark boxcar, dust sifts down through a blade of daylight and the crack of light
+[00:05:27]   seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The door is shown as partially open, allowing a wide crack of light, but the beat specifies tha
+[00:06:19]   seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a bright beam of sunlight entering through a slightly ajar door, but the crack 
+[00:07:12]   seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a bright open door with sunlight streaming in, which contradicts the beat’s req
+[00:08:04]   seed 119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a dark interior with sunlight streaming through a slightly ajar door,
+[00:08:04]   LOCKED stills/LOCKED_s6_interior.png
+[00:24:27]   clip: beat FAIL (1/5)
+[00:24:35]   window probe t=0.51s: FAIL
+[00:24:43]   window probe t=1.52s: FAIL
+[00:24:50]   window probe t=2.53s: FAIL
+[00:24:59]   window probe t=3.54s: FAIL
+[00:25:07]   window probe t=4.56s: FAIL
+[00:25:07]   s6_interior: animation never holds the beat — clip DROPPED, still stays locked for another attempt
+[00:25:07] === s8_goodbye — beat: at the end of the rescue, in golden light, the bear and the dog bump paws with the rescued
+[00:26:35]   seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a horse-drawn cart with a human figure operating it, and a steam locomotive in 
+[00:27:58]   seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear and dog are not bumping paws; instead, the bear’s paw is resting gently on the dog’s b
+[00:29:24]   seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear and dog are standing still and not bumping paws, which is the required action in the b
+[00:30:49]   seed 119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear and dog are not bumping paws; instead, the dog is standing on hind legs with front paw
+[00:30:49]   s8_goodbye: NO candidate passed — reported UNBUILT, nothing locked
+[00:30:49] === s5_door — beat: the dog presses his nose to a narrow gap in a jammed boxcar door, trying to reach the frig
+[00:31:35]   supplied still: FAIL (0/3)
+[00:31:35]   s5_door: NO candidate passed — reported UNBUILT, nothing locked
+[00:48:01] judge via in-process VL
+[00:48:01] === s7_dooropen — beat: a wide open boxcar door with a young gray elephant wearing a small red circus cap standing
+[00:52:31]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 11' (free=55% swap=13.8GB pressure=2)
+[00:52:31]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 11' (free=55% swap=13.8GB pressure=2)
+[00:52:31]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 11' (free=55% swap=13.8GB pressure=2)
+[00:52:31]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 11' (free=55% swap=13.8GB pressure=2)
+[00:52:31]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 11' (free=55% swap=13.8GB pressure=2)
+[00:52:31]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 11' (free=55% swap=13.8GB pressure=2)
+[00:52:31]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 11' (free=55% swap=13.8GB pressure=2)
+[00:52:31]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 11' (free=55% swap=13.8GB pressure=2)
+[00:52:31]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 11' (free=55% swap=13.8GB pressure=2)
+[00:54:24]   seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a young gray elephant wearing a small red circus-style cap (with a fe
+[00:54:28]   identity vs ellie_canon.png: MATCH — YES   The character in the right image is the same design as Ellie — same species, build, head and ear shape, color scheme, and art style, despite being viewed 
+[00:54:28]   LOCKED stills/LOCKED_s7_dooropen.png
+[00:59:16]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen i2v' (free=39% swap=10.5GB pressure=2)
+[00:59:16]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen i2v' (free=53% swap=10.5GB pressure=2)
+[00:59:16]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen i2v' (free=50% swap=10.5GB pressure=2)
+[00:59:16]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen i2v' (free=44% swap=21.1GB pressure=2)
+[00:59:16]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen i2v' (free=44% swap=21.1GB pressure=2)
+[00:59:16]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen i2v' (free=50% swap=21.3GB pressure=2)
+[00:59:16]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen i2v' (free=50% swap=21.3GB pressure=2)
+[00:59:16]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen i2v' (free=50% swap=21.2GB pressure=2)
+[00:59:16]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen i2v' (free=35% swap=21.2GB pressure=2)
+[00:59:16]   mem-gate: [mem-gate] healthy but 21GB parked in swap — bouncing idle ComfyUI to release it
+[00:59:16]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:59:16]   mem-gate: [mem-gate] ComfyUI back up
+[01:16:01]   clip: beat FAIL (0/5)
+[01:16:09]   window probe t=0.51s: FAIL
+[01:16:20]   window probe t=1.52s: FAIL
+[01:16:31]   window probe t=2.53s: FAIL
+[01:16:41]   window probe t=3.54s: FAIL
+[01:16:49]   window probe t=4.56s: FAIL
+[01:16:49]   s7_dooropen: animation never holds the beat — clip NOT used; kept at clips/_failed/s7_dooropen_failed.mp4 so the failure can be diagnosed, still stays locked
+[01:16:49] === ellie_eye — beat: one large amber elephant eye, wide open, seen through a narrow vertical gap between dark w
+[01:16:49]   carrying 4 lesson(s) (0 inherited from earlier films) into this shot
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=42% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.8GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.7GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.7GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=57% swap=23.7GB pressure=2)
+[01:29:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=56% swap=22.6GB pressure=2)
+[01:31:12]   seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s eye is wide open and expressive, but the overall expression appears curious or a
+[01:31:30]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[01:31:30]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[01:31:30]   mem-gate: [mem-gate] ComfyUI back up
+[01:33:17]   seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The eye is wide open and appears alert, but the surrounding skin is light-toned and smooth, whi
+[01:33:47]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 82' (free=43% swap=13.6GB pressure=2)
+[01:35:04]   seed 82: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye, wide open, peeking through a narrow verti
+[01:35:07]   identity vs ellie_canon.png: MATCH — YES   The character in the right image shares the same species, build, head and ear shape, color scheme, and art style as the locked design on the left, despite
+[01:35:07]   LOCKED stills/LOCKED_ellie_eye.png
+[01:51:02]   clip: beat FAIL (1/5)
+[01:51:11]   window probe t=0.51s: FAIL
+[01:51:22]   window probe t=1.52s: FAIL
+[01:51:34]   window probe t=2.53s: FAIL
+[01:51:45]   window probe t=3.54s: FAIL
+[01:51:57]   window probe t=4.56s: FAIL
+[01:51:57]   ellie_eye: animation never holds the beat — clip NOT used; kept at clips/_failed/ellie_eye_failed.mp4 so the failure can be diagnosed, still stays locked
+[01:51:57] === s2_thecall — beat: a circus train stopped still on the tracks with thick dark smoke pouring up from it, seen 
+[01:51:57]   carrying 5 lesson(s) (1 inherited from earlier films) into this shot
+[01:52:15]   mem-gate: [mem-gate] healthy but 35GB parked in swap — bouncing idle ComfyUI to release it
+[01:52:15]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[01:52:15]   mem-gate: [mem-gate] ComfyUI back up
+[01:53:04]   seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted moving across a bridge in a scenic, peaceful setting with no indication o
+[01:53:54]   seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted in motion, traveling along a curved track through a scenic, peaceful land
+[01:54:46]   seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted in motion along a curved track through a lush, green landscape, which con
+[01:55:38]   seed 119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted in motion, crossing a bridge over a stream, with no indication that it is
+[01:55:38]   retry cycle 1 with 9 correction(s) applied
+[01:56:33]   seed 1011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted as moving along the tracks, not stopped still, and the scene lacks any vi
+[01:57:22]   seed 1047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted moving along the tracks, as evidenced by the dynamic smoke plume and the 
+[01:58:13]   seed 1082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted moving along a curved track in a scenic, peaceful landscape with no indic
+[01:59:06]   seed 1119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted as moving along the tracks, not stopped still, as evidenced by the dynami
+[01:59:06]   retry cycle 2 with 13 correction(s) applied
+[02:00:02]   seed 2011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted in motion along a curved track through a scenic, peaceful landscape, whic
+[02:00:55]   seed 2047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted in motion, traveling along the tracks, which contradicts the beat requiri
+[02:01:54]   seed 2082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted in motion, moving along the tracks through a scenic landscape, which cont
+[02:02:47]   seed 2119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted in motion, traveling through a lush, scenic landscape with no indication 
+[02:02:47]   s2_thecall: NO candidate passed — reported UNBUILT, nothing locked
+[02:02:47] === s4_arrival — beat: a bear and a dog standing in front of a weathered circus train whose doors are all shut, i
+[02:02:47]   carrying 15 lesson(s) (13 inherited from earlier films) into this shot
+[02:04:05]   seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts a single fox-like animal, not a bear and a dog as required by the beat, and t
+[02:05:21]   seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image does not depict a dog alongside the bear, and the train is a red freight train moving
+[02:06:52]   seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon dog sitting calmly beside the train, but there is no bear present, an
+[02:08:13]   seed 119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is emitting thick, dark smoke and appears to be in motion, which contradicts the beat
+[02:08:13]   retry cycle 1 with 19 correction(s) applied
+[02:09:30]   seed 1011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing in front of a weathered red freight train w
+[02:09:34]   identity vs hank_canon.png: MATCH — YES   The character in the right image matches Hank’s design in species, build, head and ear shape, color scheme, and art style, despite the different lighting,
+[02:09:34]   LOCKED stills/LOCKED_s4_arrival.png
+[02:25:15]   clip: beat PASS (5/5)
+[02:25:15] === s6_interior — beat: the dark inside of a wooden boxcar with a bright blade of daylight cutting in at the door 
+[02:25:15]   carrying 3 lesson(s) (0 inherited from earlier films) into this shot
+[02:25:33]   mem-gate: [mem-gate] healthy but 28GB parked in swap — bouncing idle ComfyUI to release it
+[02:25:33]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[02:25:33]   mem-gate: [mem-gate] ComfyUI back up
+[02:26:29]   seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a bright, open door (ajar but clearly open) allowing sunlight to stream in, whi
+[02:27:12]   seed 47: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a dark interior of a wooden structure with a narrow vertical gap in a
+[02:27:12]   LOCKED stills/LOCKED_s6_interior.png
+[02:43:57]   clip: beat PASS (5/5)
+[02:43:57] === s8_goodbye — beat: a bear and a dog touching paws together in golden light with a circus train visible behind
+[02:43:57]   carrying 16 lesson(s) (16 inherited from earlier films) into this shot
+[02:45:10]   seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear and dog are not touching paws together; instead, the bear has its paws on its hips and
+[02:46:22]   seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear and dog are not touching paws together; their paws are on the ground and separated, an
+[02:47:37]   seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear and dog are not touching paws together; they are positioned separately on the tracks w
+[02:48:53]   seed 119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear and dog are not touching paws together; instead, the bear’s paws are resting on the tr
+[02:48:53]   retry cycle 1 with 20 correction(s) applied
+[02:50:12]   seed 1011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear and dog are not touching paws together; instead, the bear has its hands on its hips an
+[02:51:31]   seed 1047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear and dog are not touching paws together; they are positioned facing each other but with
+[02:52:49]   seed 1082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear and dog are not touching paws together; instead, the bear’s paws are on its chest and 
+[02:54:07]   seed 1119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The bear and dog are clearly touching paws (the bear’s paw rests gently on the dog’s back) in g
+[02:54:11]   identity vs hank_canon.png: MATCH — YES   The bear in the right image matches the locked design in species, build, head and ear shape, color scheme, and art style, despite being in a wider, warmer
+[02:54:11]   LOCKED stills/LOCKED_s8_goodbye.png
+[03:11:37]   clip: beat FAIL (1/5)
+[03:11:49]   window probe t=0.51s: FAIL
+[03:12:00]   window probe t=1.52s: FAIL
+[03:12:11]   window probe t=2.53s: FAIL
+[03:12:23]   window probe t=3.54s: FAIL
+[03:12:35]   window probe t=4.56s: FAIL
+[03:12:35]   s8_goodbye: animation never holds the beat — clip NOT used; kept at clips/_failed/s8_goodbye_failed.mp4 so the failure can be diagnosed, still stays locked
+[03:12:35] === s5_door — beat: a bloodhound with his nose pressed against a narrow gap between the planks of a wooden box
+[03:13:14]   supplied still: FAIL (0/3)
+[03:13:14]   s5_door: NO candidate passed — reported UNBUILT, nothing locked
+[10:29:35] judge via in-process VL
+[10:29:35] === s4_arrival_plate — beat: an empty scene of a weathered red freight train standing still on the tracks in harsh sunl
+[10:29:35]   carrying 18 lesson(s) (18 inherited from earlier films) into this shot
+[10:30:34]   seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly depicts a small dog sitting on the ground beside the train, which violates th
+[10:31:34]   seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly shows a small dog sitting beside the train tracks, which violates the require
+[10:32:04]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 82' (free=42% swap=29.4GB pressure=2)
+[10:33:01]   seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly depicts a large bear and a small dog sitting beside the train tracks, which v
+[10:35:31]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 119' (free=38% swap=30.7GB pressure=2)
+[10:35:31]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 119' (free=52% swap=30.7GB pressure=2)
+[10:35:31]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 119' (free=52% swap=30.7GB pressure=2)
+[10:35:31]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 119' (free=52% swap=30.7GB pressure=2)
+[10:35:31]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 119' (free=53% swap=30.7GB pressure=2)
+[10:36:31]   seed 119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly contains a small dog sitting beside the train tracks, which violates the requ
+[10:36:31]   retry cycle 1 with 22 correction(s) applied
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=35% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=50% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=51% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=50% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=50% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=51% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=50% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=50% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=50% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=51% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=50% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=51% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=52% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=51% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=51% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=51% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=52% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=51% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=52% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=50% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=50% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=50% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=50% swap=32.5GB pressure=2)
+[10:48:32]   mem-gate: [mem-gate] waiting for memory before 's4_arrival_plate still seed 1011' (free=51% swap=32.5GB pressure=2)
+[10:49:29]   seed 1011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly depicts a small dog standing on the railroad tracks, facing the moving train,
+[10:50:15]   seed 1047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly shows a small dog lying beside the train tracks, which violates the requireme
+[10:51:13]   seed 1082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly depicts a small dog sitting on the gravel beside the tracks, which violates t
+[10:51:59]   seed 1119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly shows a small dog sitting beside the tracks, which violates the requirement t
+[10:51:59]   retry cycle 2 with 26 correction(s) applied
+[10:53:03]   seed 2011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly depicts a small dog sitting beside the train tracks, which violates the requi
+[10:53:55]   seed 2047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly contains a dog sitting beside the train tracks, which violates the requiremen
+[10:55:00]   seed 2082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly depicts a light-brown dog sitting beside the tracks, which violates the requi
+[10:56:03]   seed 2119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly depicts a small dog sitting beside the tracks, which violates the requirement
+[10:56:03]   s4_arrival_plate: NO candidate passed — reported UNBUILT, nothing locked
+[10:56:03] === s8_goodbye_plate — beat: an empty golden-hour scene of a wooden wagon parked beside railway tracks with a circus tr
+[10:56:03]   carrying 24 lesson(s) (24 inherited from earlier films) into this shot
+[10:57:02]   seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly contains a small dog sitting near the tracks, which violates the requirement 
+[10:58:00]   seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly depicts a small puppy sitting beside the tracks, which violates the requireme
+[10:58:57]   seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly depicts a brown dog sitting beside the railway tracks, which violates the req
+[11:00:08]   seed 119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly contains a small brown dog sitting beside the tracks and at least two people 
+[11:00:08]   retry cycle 1 with 28 correction(s) applied
+[11:01:10]   seed 1011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly shows a small dog sitting beside the wooden wagon and an engineer in the loco
+[11:02:12]   seed 1047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly contains a small dog on the gravel beside the tracks and two people visible i
+[11:03:12]   seed 1082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly shows a small brown puppy sitting on the ground near the wagon, which violate
+[11:04:21]   seed 1119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly contains a small brown dog sitting beside the tracks and a person in a red ha
+[11:04:21]   retry cycle 2 with 32 correction(s) applied
+[11:05:23]   seed 2011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly depicts a person in the cab of the locomotive and a dog sitting near the trac
+[11:06:40]   seed 2047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly contains a small brown dog sitting beside the tracks and two people visible i
+[11:07:40]   seed 2082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly contains two puppies and a person leaning out of the train window, which viol
+[11:08:52]   seed 2119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly contains a small brown puppy sitting on the ground and two people leaning out
+[11:08:52]   s8_goodbye_plate: NO candidate passed — reported UNBUILT, nothing locked
+[11:14:43] judge via in-process VL
+[11:14:43] === s4_arrival_plate — beat: an empty scene of a weathered red freight train standing still on the tracks in harsh sunl
+[11:14:43]   carrying 40 lesson(s) (40 inherited from earlier films) into this shot
+[11:14:44]   mflux failed (seed 7): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:14:45]   mflux failed (seed 23): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:14:46]   mflux failed (seed 55): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:14:47]   mflux failed (seed 91): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:14:47]   retry cycle 1 with 40 correction(s) applied
+[11:14:48]   mflux failed (seed 1007): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:14:49]   mflux failed (seed 1023): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:14:50]   mflux failed (seed 1055): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:14:51]   mflux failed (seed 1091): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:14:51]   retry cycle 2 with 40 correction(s) applied
+[11:14:52]   mflux failed (seed 2007): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:14:53]   mflux failed (seed 2023): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:14:53]   mflux failed (seed 2055): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:14:54]   mflux failed (seed 2091): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:14:54]   s4_arrival_plate: NO candidate passed — reported UNBUILT, nothing locked
+[11:14:54] === s8_goodbye_plate — beat: an empty golden-hour scene of a wooden wagon parked beside railway tracks with a circus tr
+[11:14:54]   carrying 36 lesson(s) (36 inherited from earlier films) into this shot
+[11:14:55]   mflux failed (seed 7): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:14:56]   mflux failed (seed 23): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:14:57]   mflux failed (seed 55): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:14:58]   mflux failed (seed 91): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:14:58]   retry cycle 1 with 36 correction(s) applied
+[11:14:59]   mflux failed (seed 1007): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:15:00]   mflux failed (seed 1023): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:15:01]   mflux failed (seed 1055): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:15:02]   mflux failed (seed 1091): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:15:02]   retry cycle 2 with 36 correction(s) applied
+[11:15:03]   mflux failed (seed 2007): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:15:04]   mflux failed (seed 2023): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:15:04]   mflux failed (seed 2055): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:15:05]   mflux failed (seed 2091): PUT]
+                            [--stepwise-image-output-dir STEPWISE_IMAGE_OUTPUT_DIR]
+mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
+
+[11:15:05]   s8_goodbye_plate: NO candidate passed — reported UNBUILT, nothing locked

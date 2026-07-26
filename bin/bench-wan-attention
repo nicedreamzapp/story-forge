@@ -1,0 +1,491 @@
+#!/usr/bin/env -S /Users/dtribe/Desktop/PROJECTS/AI/ComfyUI/venv/bin/python
+"""bench-wan-attention — Phase 0 of the Wan 2.2 Metal-kernel roadmap.
+
+GOAL: prove (or disprove) that self-attention is >=50% of UNet step latency
+on the M5 Max BEFORE writing any custom Metal kernels.
+
+Drives the same modules ComfyUI uses (no diffusers, no HTTP API): we import
+comfy.sd / comfy.sample / comfy_extras.nodes_wan and call the loaders +
+sampler directly. Forward hooks instrument WanSelfAttention,
+WanI2VCrossAttention, and the per-block FFN (nn.Sequential) so we can
+attribute step time to attn vs cross-attn vs FFN.
+
+Outputs:
+  - ~/AI/videopipe/measurements/wan_phase0_bench.json   (machine-readable)
+  - human-readable summary on stdout
+
+Config matches the lightx2v 4-step recipe:
+  - 832x480, 81 frames, 4 total steps (dual-stage: 2 high-noise + 2 low-noise)
+  - Wan 2.2 i2v 14B FP16 high + low noise UNets
+  - umT5 XXL bf16 text encoder (no fp8 weight is on disk; closest available)
+  - wan_2.1_vae.safetensors (the i2v 14B uses the 2.1 VAE)
+  - lightx2v 4-step LoRAs applied to both high + low noise stages
+"""
+from __future__ import annotations
+
+import json
+import os
+import sys
+import time
+import argparse
+from collections import defaultdict
+from pathlib import Path
+
+# ---- ComfyUI bootstrap -------------------------------------------------------
+COMFY_ROOT = "/Users/dtribe/Desktop/PROJECTS/AI/ComfyUI"
+sys.path.insert(0, COMFY_ROOT)
+
+# Headless: keep ComfyUI from trying to spin up its server / progress UI.
+os.environ.setdefault("COMFYUI_DISABLE_PROGRESS_BAR", "1")
+
+import torch
+import numpy as np
+from PIL import Image
+
+# folder_paths reads CLI args by default; preempt argparse before importing.
+sys.argv = [sys.argv[0]]
+import folder_paths  # noqa: E402
+import comfy.sd  # noqa: E402
+import comfy.sample  # noqa: E402
+import comfy.samplers  # noqa: E402
+import comfy.utils  # noqa: E402
+import comfy.model_management  # noqa: E402
+import node_helpers  # noqa: E402
+from comfy.ldm.wan.model import (  # noqa: E402
+    WanSelfAttention,
+    WanI2VCrossAttention,
+    WanT2VCrossAttention,
+    WanAttentionBlock,
+)
+
+# ---- paths -------------------------------------------------------------------
+HIGH_UNET = Path.home() / "AI/ComfyUI/models/diffusion_models/wan2.2_i2v_high_noise_14B_fp16.safetensors"
+LOW_UNET  = Path.home() / "AI/ComfyUI/models/diffusion_models/wan2.2_i2v_low_noise_14B_fp16.safetensors"
+TEXT_ENCODER = Path.home() / "AI/ComfyUI/models/diffusion_models/wan22/umt5-xxl-enc-bf16.safetensors"
+VAE_PATH = Path.home() / "AI/ComfyUI/models/vae/wan_2.1_vae.safetensors"
+HI_LORA = Path.home() / "AI/ComfyUI/models/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors"
+LO_LORA = Path.home() / "AI/ComfyUI/models/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors"
+
+TEST_STILL = Path.home() / "AI/videopipe/test_stills/walk_frame.png"
+OUT_JSON   = Path.home() / "AI/videopipe/measurements/wan_phase0_bench.json"
+
+WIDTH, HEIGHT, LENGTH = 832, 480, 81
+TOTAL_STEPS = 4              # lightx2v 4-step
+HIGH_STEPS_END = 2           # high noise covers steps 0..1, low noise 2..3
+SAMPLER_NAME = "euler"
+SCHEDULER = "simple"
+CFG = 1.0                    # lightx2v is CFG=1
+SEED = 42
+PROMPT = "a person walking forward, cinematic, gentle motion, soft natural light"
+NEG_PROMPT = "blurry, distorted, static, low quality"
+
+DEVICE = torch.device("mps") if torch.backends.mps.is_available() else torch.device("cpu")
+
+
+# ---- timing helpers ----------------------------------------------------------
+def _sync():
+    if DEVICE.type == "mps":
+        torch.mps.synchronize()
+
+
+class PhaseTimer:
+    def __init__(self):
+        self.events = []
+    def __call__(self, label):
+        return _PhaseCtx(self, label)
+
+class _PhaseCtx:
+    def __init__(self, parent, label):
+        self.parent, self.label = parent, label
+    def __enter__(self):
+        _sync()
+        self.t0 = time.perf_counter()
+        return self
+    def __exit__(self, *exc):
+        _sync()
+        dt = time.perf_counter() - self.t0
+        self.parent.events.append((self.label, dt))
+        print(f"  [{self.label}] {dt:.3f}s")
+
+
+# ---- hook bookkeeping --------------------------------------------------------
+# Per-call (forward) wall time, aggregated per module type. We use pre/post
+# forward hooks and sync MPS at both ends to get an honest GPU-inclusive
+# wall-clock attribution (PyTorch hooks run on the launching CPU thread, so
+# without sync we'd only measure kernel-launch time).
+class HookAccumulator:
+    def __init__(self):
+        self.totals = defaultdict(float)   # tag -> total seconds
+        self.counts = defaultdict(int)     # tag -> num forward calls
+        self._stack = []                   # (tag, t0) pairs (re-entrancy safe)
+
+    def pre(self, tag):
+        def hook(_module, _inputs):
+            _sync()
+            self._stack.append((tag, time.perf_counter()))
+        return hook
+
+    def post(self, tag):
+        def hook(_module, _inputs, _output):
+            _sync()
+            if not self._stack:
+                return
+            t_tag, t0 = self._stack.pop()
+            if t_tag != tag:
+                # mismatched stack — record under whatever popped
+                pass
+            dt = time.perf_counter() - t0
+            self.totals[tag] += dt
+            self.counts[tag] += 1
+        return hook
+
+    def reset(self):
+        self.totals.clear()
+        self.counts.clear()
+        self._stack.clear()
+
+
+def install_hooks(diffusion_model, accum: HookAccumulator):
+    """Register fwd hooks on every Wan attention/FFN sub-module in this UNet.
+
+    Targets (see comfy/ldm/wan/model.py):
+      - WanSelfAttention.forward         (line 30)  -> tag "self_attn"
+      - WanI2VCrossAttention.forward     (line 119) -> tag "cross_attn"
+      - WanT2VCrossAttention.forward     (line 99)  -> tag "cross_attn"  (just in case)
+      - WanAttentionBlock.ffn (Sequential, line 210) -> tag "ffn"
+    """
+    handles = []
+    for m in diffusion_model.modules():
+        if isinstance(m, WanSelfAttention) and not isinstance(m, (WanI2VCrossAttention, WanT2VCrossAttention)):
+            handles.append(m.register_forward_pre_hook(accum.pre("self_attn")))
+            handles.append(m.register_forward_hook(accum.post("self_attn")))
+        elif isinstance(m, (WanI2VCrossAttention, WanT2VCrossAttention)):
+            handles.append(m.register_forward_pre_hook(accum.pre("cross_attn")))
+            handles.append(m.register_forward_hook(accum.post("cross_attn")))
+        elif isinstance(m, WanAttentionBlock):
+            handles.append(m.ffn.register_forward_pre_hook(accum.pre("ffn")))
+            handles.append(m.ffn.register_forward_hook(accum.post("ffn")))
+    return handles
+
+
+def remove_hooks(handles):
+    for h in handles:
+        h.remove()
+
+
+# ---- step-counting callback --------------------------------------------------
+class StepCounter:
+    def __init__(self):
+        self.steps = 0
+        self.step_times = []
+        self._last_t = None
+    def __call__(self, step, x0, x, total_steps):
+        _sync()
+        now = time.perf_counter()
+        if self._last_t is not None:
+            self.step_times.append(now - self._last_t)
+        self._last_t = now
+        self.steps += 1
+
+
+# ---- loaders -----------------------------------------------------------------
+def load_text_encoder():
+    clip = comfy.sd.load_clip(
+        ckpt_paths=[str(TEXT_ENCODER)],
+        embedding_directory=folder_paths.get_folder_paths("embeddings"),
+        clip_type=comfy.sd.CLIPType.WAN,
+    )
+    return clip
+
+
+def load_vae():
+    sd = comfy.utils.load_torch_file(str(VAE_PATH))
+    return comfy.sd.VAE(sd=sd)
+
+
+def load_unet(path: Path):
+    return comfy.sd.load_diffusion_model(str(path))
+
+
+def apply_lora(model_patcher, lora_path: Path, strength: float = 1.0):
+    lora_sd = comfy.utils.load_torch_file(str(lora_path))
+    # load_lora_for_models expects a clip too; for model-only we pass None and
+    # ignore the clip-side return.
+    new_model, _ = comfy.sd.load_lora_for_models(model_patcher, None, lora_sd, strength, 0.0)
+    return new_model
+
+
+# ---- image -> tensor (HWC, [0,1], float32) -----------------------------------
+def load_image(path: Path) -> torch.Tensor:
+    img = Image.open(path).convert("RGB")
+    arr = np.asarray(img).astype(np.float32) / 255.0
+    return torch.from_numpy(arr).unsqueeze(0)  # [1, H, W, 3]
+
+
+# ---- WanImageToVideo conditioning (cloned from comfy_extras/nodes_wan.py) ----
+def wan_i2v_condition(positive, negative, vae, width, height, length, start_image):
+    latent = torch.zeros(
+        [1, 16, ((length - 1) // 4) + 1, height // 8, width // 8],
+        device=comfy.model_management.intermediate_device(),
+    )
+    start = comfy.utils.common_upscale(
+        start_image[:length].movedim(-1, 1), width, height, "bilinear", "center"
+    ).movedim(1, -1)
+    image = torch.ones((length, height, width, start.shape[-1]),
+                       device=start.device, dtype=start.dtype) * 0.5
+    image[: start.shape[0]] = start
+    concat_latent = vae.encode(image[:, :, :, :3])
+    mask = torch.ones(
+        (1, 1, latent.shape[2], concat_latent.shape[-2], concat_latent.shape[-1]),
+        device=start.device, dtype=start.dtype,
+    )
+    mask[:, :, : ((start.shape[0] - 1) // 4) + 1] = 0.0
+    positive = node_helpers.conditioning_set_values(
+        positive, {"concat_latent_image": concat_latent, "concat_mask": mask}
+    )
+    negative = node_helpers.conditioning_set_values(
+        negative, {"concat_latent_image": concat_latent, "concat_mask": mask}
+    )
+    return positive, negative, {"samples": latent}
+
+
+# ---- sampler driver ----------------------------------------------------------
+def sample_stage(model, positive, negative, latent, start_step, end_step, seed,
+                 callback):
+    """Mirrors common_ksampler() but exposes start/last step and callback."""
+    latent_image = latent["samples"]
+    latent_image = comfy.sample.fix_empty_latent_channels(model, latent_image)
+    noise = comfy.sample.prepare_noise(latent_image, seed, None) if start_step == 0 \
+        else torch.zeros_like(latent_image, device="cpu")
+    samples = comfy.sample.sample(
+        model, noise, TOTAL_STEPS, CFG, SAMPLER_NAME, SCHEDULER,
+        positive, negative, latent_image,
+        denoise=1.0,
+        disable_noise=(start_step != 0),
+        start_step=start_step,
+        last_step=end_step,
+        force_full_denoise=(end_step == TOTAL_STEPS),
+        noise_mask=latent.get("noise_mask"),
+        callback=callback,
+        disable_pbar=True,
+        seed=seed,
+    )
+    return {"samples": samples}
+
+
+# ---- main --------------------------------------------------------------------
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--skip-vae-decode", action="store_true",
+                    help="Skip final VAE decode (latent-only timing)")
+    args = ap.parse_args()
+
+    print(f"# bench-wan-attention -- device={DEVICE}")
+    print(f"# UNet HIGH: {HIGH_UNET.name}")
+    print(f"# UNet LOW : {LOW_UNET.name}")
+    print(f"# umT5 TE  : {TEXT_ENCODER.name}")
+    print(f"# VAE      : {VAE_PATH.name}")
+    print(f"# LoRAs    : lightx2v 4-step (hi+lo)")
+    print(f"# render   : {WIDTH}x{HEIGHT} x {LENGTH}f @ {TOTAL_STEPS} steps")
+
+    timer = PhaseTimer()
+    accum_hi = HookAccumulator()
+    accum_lo = HookAccumulator()
+
+    t_total0 = time.perf_counter()
+    _sync()
+
+    # --- text encode -----------------------------------------------------
+    with timer("load_text_encoder"):
+        clip = load_text_encoder()
+    with timer("text_encode"):
+        tokens_p = clip.tokenize(PROMPT)
+        positive = clip.encode_from_tokens_scheduled(tokens_p)
+        tokens_n = clip.tokenize(NEG_PROMPT)
+        negative = clip.encode_from_tokens_scheduled(tokens_n)
+    # Free text encoder
+    del clip
+    comfy.model_management.soft_empty_cache()
+
+    # --- VAE load + encode start frame -----------------------------------
+    with timer("load_vae"):
+        vae = load_vae()
+    with timer("vae_encode"):
+        start_img = load_image(TEST_STILL)
+        positive, negative, latent = wan_i2v_condition(
+            positive, negative, vae, WIDTH, HEIGHT, LENGTH, start_img
+        )
+
+    # --- stage 1: high noise UNet (steps 0..HIGH_STEPS_END) --------------
+    with timer("load_unet_high"):
+        model_hi = load_unet(HIGH_UNET)
+    with timer("apply_lora_high"):
+        model_hi = apply_lora(model_hi, HI_LORA, 1.0)
+    hooks_hi = install_hooks(model_hi.model.diffusion_model, accum_hi)
+    counter_hi = StepCounter()
+    with timer("sample_stage_high"):
+        latent = sample_stage(
+            model_hi, positive, negative, latent,
+            start_step=0, end_step=HIGH_STEPS_END,
+            seed=SEED, callback=counter_hi,
+        )
+    remove_hooks(hooks_hi)
+    del model_hi
+    comfy.model_management.soft_empty_cache()
+
+    # --- stage 2: low noise UNet (steps HIGH_STEPS_END..TOTAL_STEPS) -----
+    with timer("load_unet_low"):
+        model_lo = load_unet(LOW_UNET)
+    with timer("apply_lora_low"):
+        model_lo = apply_lora(model_lo, LO_LORA, 1.0)
+    hooks_lo = install_hooks(model_lo.model.diffusion_model, accum_lo)
+    counter_lo = StepCounter()
+    with timer("sample_stage_low"):
+        latent = sample_stage(
+            model_lo, positive, negative, latent,
+            start_step=HIGH_STEPS_END, end_step=TOTAL_STEPS,
+            seed=SEED, callback=counter_lo,
+        )
+    remove_hooks(hooks_lo)
+    del model_lo
+    comfy.model_management.soft_empty_cache()
+
+    # --- VAE decode ------------------------------------------------------
+    if not args.skip_vae_decode:
+        with timer("vae_decode"):
+            frames = vae.decode(latent["samples"])
+            _sync()
+            n_frames_out = int(frames.shape[0]) if frames.ndim >= 4 else -1
+    else:
+        n_frames_out = -1
+
+    _sync()
+    total_wall = time.perf_counter() - t_total0
+
+    # --- assemble report ------------------------------------------------
+    phase = dict(timer.events)
+
+    def step_breakdown(accum: HookAccumulator, sampler_total: float, n_steps: int):
+        # Each block has 1 self_attn + 1 cross_attn + 1 ffn call per UNet
+        # forward. So self_attn.count / n_steps == number of blocks.
+        n_blocks = (accum.counts["self_attn"] // max(n_steps, 1)) or 1
+        per_step_self = accum.totals["self_attn"] / max(n_steps, 1)
+        per_step_cross = accum.totals["cross_attn"] / max(n_steps, 1)
+        per_step_ffn = accum.totals["ffn"] / max(n_steps, 1)
+        per_block_self = per_step_self / n_blocks
+        per_block_cross = per_step_cross / n_blocks
+        per_block_ffn = per_step_ffn / n_blocks
+        accounted = per_step_self + per_step_cross + per_step_ffn
+        per_step_total = sampler_total / max(n_steps, 1)
+        return {
+            "n_blocks": n_blocks,
+            "n_steps": n_steps,
+            "per_step_unet_s": per_step_total,
+            "per_step_self_attn_s": per_step_self,
+            "per_step_cross_attn_s": per_step_cross,
+            "per_step_ffn_s": per_step_ffn,
+            "per_block_self_attn_s": per_block_self,
+            "per_block_cross_attn_s": per_block_cross,
+            "per_block_ffn_s": per_block_ffn,
+            "pct_self_attn_of_step": 100.0 * per_step_self / max(per_step_total, 1e-9),
+            "pct_cross_attn_of_step": 100.0 * per_step_cross / max(per_step_total, 1e-9),
+            "pct_ffn_of_step": 100.0 * per_step_ffn / max(per_step_total, 1e-9),
+            "pct_unaccounted_of_step": 100.0 * (per_step_total - accounted) / max(per_step_total, 1e-9),
+            "hook_self_attn_calls": accum.counts["self_attn"],
+            "hook_cross_attn_calls": accum.counts["cross_attn"],
+            "hook_ffn_calls": accum.counts["ffn"],
+        }
+
+    hi_break = step_breakdown(accum_hi, phase["sample_stage_high"], HIGH_STEPS_END)
+    lo_steps = TOTAL_STEPS - HIGH_STEPS_END
+    lo_break = step_breakdown(accum_lo, phase["sample_stage_low"], lo_steps)
+
+    # Combined per-step averages weighted by step count
+    def combo(key):
+        return (hi_break[key] * HIGH_STEPS_END + lo_break[key] * lo_steps) / TOTAL_STEPS
+    combined = {
+        "per_step_unet_s": combo("per_step_unet_s"),
+        "per_step_self_attn_s": combo("per_step_self_attn_s"),
+        "per_step_cross_attn_s": combo("per_step_cross_attn_s"),
+        "per_step_ffn_s": combo("per_step_ffn_s"),
+        "pct_self_attn_of_step": combo("pct_self_attn_of_step"),
+        "pct_cross_attn_of_step": combo("pct_cross_attn_of_step"),
+        "pct_ffn_of_step": combo("pct_ffn_of_step"),
+    }
+
+    # % of total wall
+    sampler_total = phase["sample_stage_high"] + phase["sample_stage_low"]
+    text_total = phase["text_encode"] + phase.get("load_text_encoder", 0)
+    vae_enc_total = phase["vae_encode"] + phase.get("load_vae", 0)
+    vae_dec_total = phase.get("vae_decode", 0.0)
+    unet_load_total = phase["load_unet_high"] + phase["load_unet_low"] + \
+                      phase.get("apply_lora_high", 0) + phase.get("apply_lora_low", 0)
+
+    overall_pct = {
+        "text_encode_pct": 100.0 * text_total / total_wall,
+        "vae_encode_pct": 100.0 * vae_enc_total / total_wall,
+        "unet_sample_pct": 100.0 * sampler_total / total_wall,
+        "vae_decode_pct": 100.0 * vae_dec_total / total_wall,
+        "unet_load_pct": 100.0 * unet_load_total / total_wall,
+    }
+
+    report = {
+        "schema_version": 1,
+        "device": str(DEVICE),
+        "render": {
+            "width": WIDTH, "height": HEIGHT, "frames": LENGTH,
+            "total_steps": TOTAL_STEPS,
+            "high_stage_steps": HIGH_STEPS_END,
+            "low_stage_steps": lo_steps,
+            "sampler": SAMPLER_NAME, "scheduler": SCHEDULER, "cfg": CFG,
+            "seed": SEED,
+            "decoded_frames": n_frames_out,
+        },
+        "weights": {
+            "unet_high": str(HIGH_UNET),
+            "unet_low": str(LOW_UNET),
+            "text_encoder": str(TEXT_ENCODER),
+            "vae": str(VAE_PATH),
+            "lora_high": str(HI_LORA),
+            "lora_low": str(LO_LORA),
+        },
+        "phase_seconds": phase,
+        "total_render_s": total_wall,
+        "overall_pct_of_total": overall_pct,
+        "high_stage_breakdown": hi_break,
+        "low_stage_breakdown": lo_break,
+        "combined_per_step": combined,
+        "callback_step_times_high": counter_hi.step_times,
+        "callback_step_times_low": counter_lo.step_times,
+    }
+
+    OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
+    OUT_JSON.write_text(json.dumps(report, indent=2))
+
+    # --- human summary ---------------------------------------------------
+    print("\n" + "=" * 64)
+    print(f"  Wan 2.2 i2v 14B Phase-0 bench — {WIDTH}x{HEIGHT} x {LENGTH}f, {TOTAL_STEPS} steps")
+    print("=" * 64)
+    print(f"  total render        : {total_wall:6.2f}s")
+    print(f"  text encode         : {text_total:6.2f}s   ({overall_pct['text_encode_pct']:5.1f}% of total)")
+    print(f"  VAE encode          : {vae_enc_total:6.2f}s   ({overall_pct['vae_encode_pct']:5.1f}% of total)")
+    print(f"  UNet sampling (all) : {sampler_total:6.2f}s   ({overall_pct['unet_sample_pct']:5.1f}% of total)")
+    print(f"  VAE decode          : {vae_dec_total:6.2f}s   ({overall_pct['vae_decode_pct']:5.1f}% of total)")
+    print(f"  (UNet load+LoRA)    : {unet_load_total:6.2f}s   ({overall_pct['unet_load_pct']:5.1f}% of total)")
+    print()
+    print(f"  -- per-step UNet breakdown (combined, {TOTAL_STEPS} steps) --")
+    print(f"    per-step total    : {combined['per_step_unet_s']:6.2f}s")
+    print(f"    self-attn         : {combined['per_step_self_attn_s']:6.2f}s  ({combined['pct_self_attn_of_step']:5.1f}% of step)")
+    print(f"    cross-attn        : {combined['per_step_cross_attn_s']:6.2f}s  ({combined['pct_cross_attn_of_step']:5.1f}% of step)")
+    print(f"    FFN               : {combined['per_step_ffn_s']:6.2f}s  ({combined['pct_ffn_of_step']:5.1f}% of step)")
+    print()
+    verdict = "GO — self-attn dominates" if combined["pct_self_attn_of_step"] >= 50 \
+        else "WAIT — self-attn is NOT >=50% of step"
+    print(f"  PHASE-0 VERDICT: {verdict}")
+    print()
+    print(f"  full JSON: {OUT_JSON}")
+    print()
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,439 @@
+{
+ "blocks": {
+  "STYLE": "cinematic documentary photograph, National Geographic style, epic scale, dramatic natural light, ultra detailed, shot on large-format cinema camera, atmospheric haze",
+  "VIZ": "scientific visualization render of real survey data, satellite relief style, photoreal terrain, dramatic lighting"
+ },
+ "stills": {
+  "a_storm": {
+   "scene": 1,
+   "p": "aerial view of the Antarctic coastline in a katabatic windstorm, sheets of snow streaming off a vast white ice sheet into a dark Southern Ocean, late golden light breaking through storm clouds. {STYLE}"
+  },
+  "a_ice_wall": {
+   "scene": 1,
+   "p": "a towering blue-white ice shelf wall rising from a calm dark ocean, seabirds tiny against its face, overcast polar light, immense scale. {STYLE}"
+  },
+  "a_title": {
+   "scene": 1,
+   "p": "Antarctica seen from low orbit at dawn, the white continent ringed by sea ice and swirling cloud, thin blue atmosphere limb glowing at the horizon. {STYLE}"
+  },
+  "a_old_map": {
+   "scene": 1,
+   "p": "an antique hand-drawn map of Antarctica spread on a wooden expedition table, mostly blank interior labeled with sparse markings, brass compass and oil lamp beside it, warm lamplight. {STYLE}"
+  },
+  "a_survey_plane": {
+   "scene": 1,
+   "p": "a red and white polar survey aircraft flying low over an endless white ice sheet, towing radar antennas, long shadow racing over sastrugi snow ridges, low sun. {STYLE}"
+  },
+  "a_bed_map": {
+   "scene": 1,
+   "p": "the bedrock landscape of Antarctica with ALL ice completely removed, bare brown and grey rock terrain of mountain ranges, deep basins and trenches, no snow, no ice, no white anywhere, seen from high orbit against dark ocean. {VIZ}"
+  },
+  "a_hidden_range": {
+   "scene": 1,
+   "p": "a vast unexplored mountain range of dark jagged rock revealed beneath a translucent ghostly ice sheet that fades upward like glass, god rays falling on unnamed peaks. {VIZ}"
+  },
+  "a_canyon": {
+   "scene": 1,
+   "p": "an immense bedrock canyon plunging into shadow, sheer rock walls kilometers deep, a thin ribbon of meltwater far below, dramatic raking light across the rim. {VIZ}"
+  },
+  "a_mars": {
+   "scene": 1,
+   "p": "the red planet Mars seen from orbit, rust-colored canyons and craters in crisp detail, black space behind. {STYLE}"
+  },
+  "b_white_plain": {
+   "scene": 2,
+   "p": "an endless flat white snow plain under a low polar sun, wind-carved snow ridges glowing gold and blue, one distant flag marker. {STYLE}"
+  },
+  "b_lakes_viz": {
+   "scene": 2,
+   "p": "cross-section visualization beneath a translucent ice sheet: dozens of glowing deep-blue lakes nested in dark bedrock hollows, connected by thin luminous water channels. {VIZ}"
+  },
+  "b_river_cavern": {
+   "scene": 2,
+   "p": "a dark river flowing through a sculpted blue ice cavern deep beneath a glacier, smooth scalloped ice walls, water black and glassy, faint cold light. {STYLE}"
+  },
+  "b_drill_camp": {
+   "scene": 2,
+   "p": "a remote polar drill camp at night, glowing canvas tents and a drill tower on a starlit ice plain, green aurora curtains overhead. {STYLE}"
+  },
+  "b_microbes": {
+   "scene": 2,
+   "p": "extreme microscope view of living microbial mats, golden and rust-orange colonies clinging to dark mineral grains, glowing softly against blackness, scientific photography. {STYLE}"
+  },
+  "b_borehole": {
+   "scene": 2,
+   "p": "looking down a perfectly round borehole drilled through deep glacier ice, walls glowing translucent blue, a shaft of light descending into darkness. {STYLE}"
+  },
+  "b_cam_descend": {
+   "scene": 2,
+   "p": "a tethered camera probe descending through pitch-black water beneath an ice ceiling, its light beam full of drifting sediment sparkles, deep cold gloom. {STYLE}"
+  },
+  "b_boulder": {
+   "scene": 2,
+   "p": "a lone boulder on a dark deep-sea floor caught in a probe's light beam, covered in pale sponges and delicate stalked filter-feeding creatures, marine snow drifting, blackness beyond. {STYLE}"
+  },
+  "b_sponge_close": {
+   "scene": 2,
+   "p": "close-up of pale white and cream deep-sea sponges and tiny stalked creatures attached to dark rock, fine filter tendrils extended into the dark water, probe light falloff. {STYLE}"
+  },
+  "c_core_hands": {
+   "scene": 3,
+   "p": "gloved hands of a scientist cradling a freshly cut seabed sediment core section, dark layered mud and fossil root traces, ship laboratory light. {STYLE}"
+  },
+  "c_rainforest": {
+   "scene": 3,
+   "p": "a primeval temperate rainforest of towering tree ferns and ancient conifers in drifting mist, soft green light, mossy swampy ground, no animals, Cretaceous period. {STYLE}"
+  },
+  "c_gamburtsev": {
+   "scene": 3,
+   "p": "jagged granite mountain peaks seen THROUGH a thick wall of deep blue glacial ice, the rock entombed inside the ice like insects in amber, blue depth gradient darkening downward, no sky visible. {VIZ}"
+  },
+  "c_peaks": {
+   "scene": 3,
+   "p": "razor-sharp alpine rock peaks with fresh unweathered faces, dramatic side light and long shadows, thin clouds streaming past the summits. {STYLE}"
+  },
+  "c_rivers_ghost": {
+   "scene": 3,
+   "p": "aerial relief visualization of ancient branching river valleys carved into bedrock, dendritic channels etched in shadow across a vast plain, amber raking light. {VIZ}"
+  },
+  "c_pangaea": {
+   "scene": 3,
+   "p": "a vast wild prehistoric supercontinent seen from orbit, untouched green forests, brown mountain ranges and red deserts, shallow turquoise seas, swirling clouds, no fields, no roads, no cities, primeval Earth. {STYLE}"
+  },
+  "c_ice_core": {
+   "scene": 3,
+   "p": "gloved hands holding a long thin transparent CYLINDER of ancient glacier ice, a drill core sample one meter long, thousands of tiny air bubbles sparkling inside the clear cylinder, held up to polar light. {STYLE}"
+  },
+  "c_bubbles": {
+   "scene": 3,
+   "p": "macro photograph inside crystal-clear ancient ice, constellations of tiny trapped air bubbles backlit amber and blue, frozen depth. {STYLE}"
+  },
+  "d_thwaites": {
+   "scene": 4,
+   "p": "vast aerial of a fractured glacier surface, endless fields of deep blue crevasses and shattered seracs stretching to the horizon, harsh polar light. {STYLE}"
+  },
+  "d_calving_front": {
+   "scene": 4,
+   "p": "the towering calving front of a giant glacier meeting the sea, sheer fractured ice cliffs, mist and seabirds at the waterline, brooding sky. {STYLE}"
+  },
+  "d_drill_tent": {
+   "scene": 4,
+   "p": "a glowing geodesic drill tent on bare ice at polar dusk, steam rising from hot-water drill equipment, two distant figures in red parkas, deep blue twilight. {STYLE}"
+  },
+  "d_icefin": {
+   "scene": 4,
+   "p": "a slender torpedo-shaped yellow research robot being lowered by cable into a round borehole in the ice, gloved hands guiding it, polar light. {STYLE}"
+  },
+  "d_under_ice": {
+   "scene": 4,
+   "p": "beneath the ice shelf: a vast dark ocean cavity with a glowing blue-green ice ceiling overhead, a small robot's lights cutting the blackness below. {STYLE}"
+  },
+  "d_grounding": {
+   "scene": 4,
+   "p": "the hidden grounding line where glacier ice meets dark bedrock underwater, a wall of ancient blue ice pressing onto sediment, robot light beam, drifting particles. {STYLE}"
+  },
+  "d_staircase": {
+   "scene": 4,
+   "p": "underwater terraces and staircase shapes melted into the underside of an ice shelf, scalloped glowing blue ice steps receding into dark water. {STYLE}"
+  },
+  "d_retreat_viz": {
+   "scene": 4,
+   "p": "satellite visualization of a great glacier from above with glowing colored retreat lines marking its grounding zone moving inland over two decades. {VIZ}"
+  },
+  "d_sunset": {
+   "scene": 4,
+   "p": "golden low sun skimming an endless Antarctic ice field, long violet shadows, blowing snow glittering like sparks, serene and vast. {STYLE}"
+  },
+  "d_earth": {
+   "scene": 4,
+   "p": "Antarctica from high orbit at night-edge, green aurora australis ringing the dark continent, stars beyond the curve of the Earth. {STYLE}"
+  }
+ },
+ "shots": [
+  {
+   "id": "s01",
+   "still": "a_storm",
+   "m": "ltx",
+   "mp": "sheets of snow stream across the ice in the wind, storm clouds drift, golden light shifts",
+   "d": 6
+  },
+  {
+   "id": "s02",
+   "still": "a_ice_wall",
+   "m": "ltx",
+   "mp": "gentle ocean swell against the ice wall, seabirds glide slowly, mist drifts",
+   "d": 5
+  },
+  {
+   "id": "s03",
+   "still": "a_title",
+   "m": "ltx",
+   "mp": "clouds swirl slowly around the white continent, the atmosphere limb glows, very slow drift",
+   "d": 7,
+   "title": "ANTARCTICA\nThe Continent We Just Met"
+  },
+  {
+   "id": "s04",
+   "still": "a_old_map",
+   "m": "kb",
+   "kb": "in",
+   "d": 6.5
+  },
+  {
+   "id": "s05",
+   "still": "a_survey_plane",
+   "m": "ltx",
+   "mp": "the plane glides low over the ice, its shadow racing across snow ridges, snow drifts in the wind",
+   "d": 5
+  },
+  {
+   "id": "s06",
+   "still": "a_bed_map",
+   "m": "ltx",
+   "mp": "slow majestic drift across the ice-free terrain, light sweeping across mountain ranges and basins",
+   "d": 6
+  },
+  {
+   "id": "s07",
+   "still": "a_hidden_range",
+   "m": "ltx",
+   "mp": "god rays sweep slowly across the buried peaks, the ghostly ice above shimmers faintly",
+   "d": 6
+  },
+  {
+   "id": "s08",
+   "still": "a_canyon",
+   "m": "kb",
+   "kb": "in_slow",
+   "d": 7.5
+  },
+  {
+   "id": "s09",
+   "still": "a_mars",
+   "m": "kb",
+   "kb": "left",
+   "d": 4
+  },
+  {
+   "id": "s10",
+   "still": "b_white_plain",
+   "m": "ltx",
+   "mp": "fine snow drifts low across the plain, the flag flutters in the distance, light glitters",
+   "d": 6
+  },
+  {
+   "id": "s11",
+   "still": "b_lakes_viz",
+   "m": "ltx",
+   "mp": "the buried lakes pulse with soft blue light, water glows along the connecting channels",
+   "d": 6
+  },
+  {
+   "id": "s12",
+   "still": "b_river_cavern",
+   "m": "ltx",
+   "mp": "dark water flows steadily through the ice cavern, faint ripples catch the cold light",
+   "d": 6
+  },
+  {
+   "id": "s13",
+   "still": "b_drill_camp",
+   "m": "ltx",
+   "mp": "green aurora curtains ripple slowly overhead, tent light glows warm, stars shimmer",
+   "d": 6
+  },
+  {
+   "id": "s14",
+   "still": "b_microbes",
+   "m": "ltx",
+   "mp": "the microbial colonies shimmer softly, fine particles drift past in the dark fluid",
+   "d": 6
+  },
+  {
+   "id": "s15",
+   "still": "b_borehole",
+   "m": "kb",
+   "kb": "in",
+   "d": 6
+  },
+  {
+   "id": "s16",
+   "still": "b_cam_descend",
+   "m": "ltx",
+   "mp": "the probe descends slowly, its light beam sweeping through drifting sediment sparkles",
+   "d": 6
+  },
+  {
+   "id": "s17",
+   "still": "b_boulder",
+   "m": "ltx",
+   "mp": "marine snow drifts down through the light beam, the light sways gently across the boulder",
+   "d": 6
+  },
+  {
+   "id": "s18",
+   "still": "b_sponge_close",
+   "m": "kb",
+   "kb": "in_slow",
+   "d": 8
+  },
+  {
+   "id": "s19",
+   "still": "c_core_hands",
+   "m": "kb",
+   "kb": "in",
+   "d": 6.5
+  },
+  {
+   "id": "s20",
+   "still": "c_rainforest",
+   "m": "ltx",
+   "mp": "mist drifts slowly between the tree ferns, fronds sway gently, soft light shafts move",
+   "d": 6
+  },
+  {
+   "id": "s21",
+   "still": "c_rainforest",
+   "m": "kb",
+   "kb": "right",
+   "d": 6
+  },
+  {
+   "id": "s22",
+   "still": "c_gamburtsev",
+   "m": "ltx",
+   "mp": "blue depth light shifts slowly through the ice dome above the entombed peaks",
+   "d": 5
+  },
+  {
+   "id": "s23",
+   "still": "c_peaks",
+   "m": "ltx",
+   "mp": "thin clouds stream past the sharp summits, light and shadow slide across the rock faces",
+   "d": 5
+  },
+  {
+   "id": "s24",
+   "still": "c_rivers_ghost",
+   "m": "kb",
+   "kb": "right",
+   "d": 7.5
+  },
+  {
+   "id": "s25",
+   "still": "c_pangaea",
+   "m": "ltx",
+   "mp": "clouds swirl slowly over the ancient supercontinent, the planet drifts almost imperceptibly",
+   "d": 6
+  },
+  {
+   "id": "s26",
+   "still": "c_ice_core",
+   "m": "ltx",
+   "mp": "the ice core turns slightly in the light, trapped bubbles sparkle and glint",
+   "d": 6
+  },
+  {
+   "id": "s27",
+   "still": "c_bubbles",
+   "m": "kb",
+   "kb": "in_slow",
+   "d": 8
+  },
+  {
+   "id": "s28",
+   "still": "d_thwaites",
+   "m": "ltx",
+   "mp": "slow aerial drift over the endless crevasse fields, light shifting across blue ice fractures",
+   "d": 6
+  },
+  {
+   "id": "s29",
+   "still": "d_calving_front",
+   "m": "ltx",
+   "mp": "mist drifts along the waterline, seabirds wheel slowly, the sea heaves gently against the cliffs",
+   "d": 5
+  },
+  {
+   "id": "s30",
+   "still": "d_drill_tent",
+   "m": "ltx",
+   "mp": "steam rises and drifts from the drill gear, the tent glows, twilight deepens slowly",
+   "d": 5
+  },
+  {
+   "id": "s31",
+   "still": "d_icefin",
+   "m": "kb",
+   "kb": "in",
+   "d": 5
+  },
+  {
+   "id": "s32",
+   "still": "d_under_ice",
+   "m": "ltx",
+   "mp": "the robot's lights sweep slowly through the black water beneath the glowing ice ceiling",
+   "d": 6
+  },
+  {
+   "id": "s33",
+   "still": "d_grounding",
+   "m": "ltx",
+   "mp": "particles drift through the light beam, the beam glides slowly along the ancient ice wall",
+   "d": 6
+  },
+  {
+   "id": "s34",
+   "still": "d_staircase",
+   "m": "kb",
+   "kb": "left",
+   "d": 5
+  },
+  {
+   "id": "s35",
+   "still": "d_retreat_viz",
+   "m": "kb",
+   "kb": "in",
+   "d": 5
+  },
+  {
+   "id": "s36",
+   "still": "d_sunset",
+   "m": "ltx",
+   "mp": "blowing snow glitters across the golden ice field, long shadows stretch, the sun sinks slowly",
+   "d": 6
+  },
+  {
+   "id": "s37",
+   "still": "a_hidden_range",
+   "m": "kb",
+   "kb": "right",
+   "d": 4,
+   "sc": 4
+  },
+  {
+   "id": "s38",
+   "still": "b_boulder",
+   "m": "kb",
+   "kb": "in",
+   "d": 4,
+   "sc": 4
+  },
+  {
+   "id": "s39",
+   "still": "c_rainforest",
+   "m": "kb",
+   "kb": "in",
+   "d": 4,
+   "sc": 4
+  },
+  {
+   "id": "s40",
+   "still": "d_earth",
+   "m": "ltx",
+   "mp": "the aurora ring ripples slowly around the dark continent, stars drift, serene and vast",
+   "d": 6,
+   "credits": true
+  }
+ ]
+}

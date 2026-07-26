@@ -1,0 +1,130 @@
+{
+ "characters": {
+  "hank": "huge round brown bear with a tan muzzle and belly",
+  "doug": "lanky orange-brown bloodhound dog with long smooth floppy ears"
+ },
+ "scenes": [
+  {
+   "name": "L01_hank",
+   "start": 0.0,
+   "end": 1.64
+  },
+  {
+   "name": "L02_doug",
+   "start": 1.64,
+   "end": 3.32
+  },
+  {
+   "name": "L04_doug",
+   "start": 3.32,
+   "end": 5.28
+  },
+  {
+   "name": "L05_hank",
+   "start": 5.28,
+   "end": 6.6
+  },
+  {
+   "name": "L06_doug",
+   "start": 6.6,
+   "end": 8.84
+  },
+  {
+   "name": "L07_doug",
+   "start": 8.84,
+   "end": 10.56
+  },
+  {
+   "name": "L09_doug",
+   "start": 10.56,
+   "end": 13.6
+  },
+  {
+   "name": "L10_doug",
+   "start": 13.6,
+   "end": 15.64
+  },
+  {
+   "name": "L11_hank",
+   "start": 15.64,
+   "end": 17.12
+  },
+  {
+   "name": "L13_doug",
+   "start": 17.12,
+   "end": 19.2
+  },
+  {
+   "name": "L14_doug",
+   "start": 19.2,
+   "end": 21.12
+  },
+  {
+   "name": "L15_hank",
+   "start": 21.12,
+   "end": 22.48
+  }
+ ],
+ "lines": [
+  {
+   "t": 0.1,
+   "speaker": "hank",
+   "text": "Doug, the fish are winning again."
+  },
+  {
+   "t": 1.74,
+   "speaker": "doug",
+   "text": "That's because they practice Hank."
+  },
+  {
+   "t": 3.42,
+   "speaker": "doug",
+   "text": "Circus Train, Hank, we're rolling."
+  },
+  {
+   "t": 5.38,
+   "speaker": "hank",
+   "text": "Whole train's cooking out here."
+  },
+  {
+   "t": 6.7,
+   "speaker": "doug",
+   "text": "Easy everybody, the Wild Rescue's here."
+  },
+  {
+   "t": 8.94,
+   "speaker": "doug",
+   "text": "This latch is jam tight."
+  },
+  {
+   "t": 10.66,
+   "speaker": "doug",
+   "text": "Ellie, it's Doug. One push, girl. I'll count you down."
+  },
+  {
+   "t": 13.7,
+   "speaker": "doug",
+   "text": "3, 2, 1, push!"
+  },
+  {
+   "t": 15.74,
+   "speaker": "hank",
+   "text": "Doors don't argue with bears."
+  },
+  {
+   "t": 17.22,
+   "speaker": "doug",
+   "text": "Turtle called dibs on the tank an hour ago."
+  },
+  {
+   "t": 19.3,
+   "speaker": "doug",
+   "text": "anybody, anywhere, any trouble at all."
+  },
+  {
+   "t": 21.22,
+   "speaker": "hank",
+   "text": "The Wild Rescue rolls."
+  }
+ ]
+}

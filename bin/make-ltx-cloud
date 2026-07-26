@@ -1,0 +1,193 @@
+#!/usr/bin/env python3
+"""make-ltx-cloud — cloud LTX-Video i2v render via fal.ai.
+
+Hybrid backup for `make-ltx-video` while local LTX is broken on M5 MPS.
+Posts the input still + motion prompt to fal.ai's official
+`fal-ai/ltxv-13b-098-distilled/image-to-video` queue endpoint, polls until
+COMPLETED, downloads the resulting mp4 to ~/AI/videopipe/outputs/.
+
+Drop-in CLI with make-ltx-video (same args). Intended for B-roll scenes
+(ambient, atmosphere, wide establishing shots) routed by render-route while
+hero scenes stay local on Wan.
+
+Pricing: $0.02/sec billed at 24fps → ~$0.10 per 5-sec scene.
+Typical latency: ~60s cold, ~30-45s warm.
+
+Auth: requires FAL_KEY env var (https://fal.ai/dashboard/keys).
+        export FAL_KEY="key_id:key_secret"
+
+Usage:
+  make-ltx-cloud --i2v INPUT.png --duration 5.0 --res 768x512 --label scene_01 "motion prompt"
+
+Output: writes ~/AI/videopipe/outputs/<label>_ltxcloud_<timestamp>.mp4
+"""
+import argparse
+import base64
+import json
+import mimetypes
+import os
+import sys
+import time
+import urllib.error
+import urllib.request
+from pathlib import Path
+
+ENDPOINT_ID = "fal-ai/ltxv-13b-098-distilled/image-to-video"
+QUEUE_BASE = "https://queue.fal.run"
+SUBMIT_URL = f"{QUEUE_BASE}/{ENDPOINT_ID}"
+ENV_KEY = "FAL_KEY"
+
+# fal.ai queue API: poll status every POLL_INTERVAL seconds, give up after MAX_WAIT.
+POLL_INTERVAL = 3.0
+MAX_WAIT = 600.0
+
+
+def get_args():
+    p = argparse.ArgumentParser()
+    p.add_argument("prompt", help="motion prompt")
+    p.add_argument("--i2v", required=True, help="input still PNG/JPEG")
+    p.add_argument("--duration", type=float, default=5.0)
+    p.add_argument("--res", default="768x512",
+                   help="WxH; fal aspect-ratio is auto-derived from input image")
+    p.add_argument("--label", default="ltxcloud")
+    p.add_argument("--negative-prompt", default=(
+        "worst quality, inconsistent motion, blurry, jittery, distorted, "
+        "low quality, ugly, deformed"))
+    p.add_argument("--seed", type=int, default=None)
+    p.add_argument("--out-dir", default=str(Path.home() / "AI/videopipe/outputs"))
+    p.add_argument("--dry-run", action="store_true",
+                   help="build the request payload and print it; don't call the API")
+    return p.parse_args()
+
+
+def encode_image_data_uri(path: str) -> str:
+    """fal.ai accepts either a public URL or a base64 data: URI for image_url."""
+    p = Path(path).expanduser()
+    if not p.exists():
+        sys.exit(f"[ltxcloud] input image not found: {p}")
+    mime, _ = mimetypes.guess_type(str(p))
+    if mime is None:
+        mime = "image/png"
+    b64 = base64.b64encode(p.read_bytes()).decode("ascii")
+    return f"data:{mime};base64,{b64}"
+
+
+def fal_request(url: str, *, method: str = "GET", body: dict | None = None,
+                key: str) -> dict:
+    headers = {"Authorization": f"Key {key}"}
+    data = None
+    if body is not None:
+        headers["Content-Type"] = "application/json"
+        data = json.dumps(body).encode("utf-8")
+    req = urllib.request.Request(url, data=data, method=method, headers=headers)
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        detail = e.read().decode("utf-8", errors="replace")
+        sys.exit(f"[ltxcloud] HTTP {e.code} from {url}: {detail}")
+    except urllib.error.URLError as e:
+        sys.exit(f"[ltxcloud] network error contacting {url}: {e}")
+
+
+def download(url: str, dest: Path) -> None:
+    """Stream-download the result mp4 — fal stores it on GCS, no auth needed."""
+    with urllib.request.urlopen(url, timeout=120) as resp, open(dest, "wb") as f:
+        while True:
+            chunk = resp.read(1 << 16)
+            if not chunk:
+                break
+            f.write(chunk)
+
+
+def main() -> int:
+    args = get_args()
+
+    # Aspect-ratio is auto-derived by fal from the input image, but the
+    # endpoint accepts an explicit `resolution` hint mapped from our --res.
+    w, h = (int(x) for x in args.res.split("x"))
+    fps = 24
+    num_frames = int(args.duration * fps)
+    # LTX requires (frames - 1) % 8 == 0
+    num_frames = max(9, ((num_frames - 1) // 8) * 8 + 1)
+
+    out_dir = Path(args.out_dir).expanduser()
+    out_dir.mkdir(parents=True, exist_ok=True)
+    ts = int(time.time())
+    out_path = out_dir / f"{args.label}_ltxcloud_{ts:08d}.mp4"
+
+    image_uri = encode_image_data_uri(args.i2v)
+
+    payload = {
+        "prompt": args.prompt,
+        "negative_prompt": args.negative_prompt,
+        "image_url": image_uri,
+        "num_frames": num_frames,
+        "resolution": f"{w}p" if h <= w else f"{h}p",  # fal uses short-side preset
+        "aspect_ratio": "auto",
+        "enable_safety_checker": False,
+    }
+    if args.seed is not None:
+        payload["seed"] = args.seed
+
+    if args.dry_run:
+        # Truncate data: URI for readability
+        printable = dict(payload)
+        printable["image_url"] = printable["image_url"][:80] + "...[truncated]"
+        print(json.dumps(printable, indent=2))
+        print(f"[ltxcloud] would POST -> {SUBMIT_URL}")
+        print(f"[ltxcloud] would write -> {out_path}")
+        return 0
+
+    key = os.environ.get(ENV_KEY)
+    if not key:
+        sys.exit(f"[ltxcloud] missing {ENV_KEY} env var. "
+                 f"Get a key at https://fal.ai/dashboard/keys then "
+                 f'export {ENV_KEY}="key_id:key_secret"')
+
+    print(f"[ltxcloud] submitting {num_frames} frames @ {w}x{h} -> {ENDPOINT_ID}")
+    t0 = time.time()
+    submit_resp = fal_request(SUBMIT_URL, method="POST", body=payload, key=key)
+    request_id = submit_resp.get("request_id")
+    if not request_id:
+        sys.exit(f"[ltxcloud] submit response missing request_id: {submit_resp}")
+
+    status_url = submit_resp.get("status_url") or \
+        f"{QUEUE_BASE}/{ENDPOINT_ID}/requests/{request_id}/status"
+    result_url = submit_resp.get("response_url") or \
+        f"{QUEUE_BASE}/{ENDPOINT_ID}/requests/{request_id}"
+
+    print(f"[ltxcloud] queued request_id={request_id}")
+    deadline = t0 + MAX_WAIT
+    last_status = None
+    while time.time() < deadline:
+        status_resp = fal_request(status_url, key=key)
+        status = status_resp.get("status")
+        if status != last_status:
+            print(f"[ltxcloud] status: {status} (t={time.time()-t0:.1f}s)")
+            last_status = status
+        if status == "COMPLETED":
+            break
+        if status in ("FAILED", "ERROR", "CANCELLED"):
+            sys.exit(f"[ltxcloud] job ended with status={status}: {status_resp}")
+        time.sleep(POLL_INTERVAL)
+    else:
+        sys.exit(f"[ltxcloud] timed out after {MAX_WAIT}s waiting for completion")
+
+    result = fal_request(result_url, key=key)
+    video = result.get("video") or {}
+    video_url = video.get("url")
+    if not video_url:
+        sys.exit(f"[ltxcloud] result missing video.url: {result}")
+
+    print(f"[ltxcloud] downloading {video_url}")
+    download(video_url, out_path)
+    elapsed = time.time() - t0
+    cost_est = args.duration * 0.02
+    print(f"[ltxcloud] done -> {out_path}")
+    print(f"[ltxcloud] total: {elapsed:.1f}s, est cost: ${cost_est:.3f}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

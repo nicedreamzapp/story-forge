@@ -1,0 +1,44 @@
+# hank_doug.sf — Hank & Doug's Wild Rescue (opening)
+# Doug the bloodhound + Hank the bear, a Pixar-style rescue crew.
+# Uses the existing Hank & Doug Pixar stills via `still image:` (i2v), no Flux.
+
+$stills = "/Users/dtribe/Desktop/PROJECTS/AI/distill/hank_doug_stills"
+
+film "Hank and Doug" slug=hank_doug target=m5 scene_dur=5.0
+
+voice warm: piper/en_US-libritts_r-medium speaker=0 length=1.15
+
+music adventure: ace/warm-orchestral-adventure vol=0.32
+
+@transition xfade dur=0.5
+@mix duck voice -> music threshold=-22 ratio=4
+
+scene doug_spots_hank:
+    still image:
+        path: "{$stills}/05_doug_spots_hank.png"
+    motion wan:
+        prompt: "gentle camera push-in, the bloodhound's ears sway softly, warm morning light, dust motes drifting"
+        duration: 5.0
+    narrate warm:
+        line: "Doug could smell trouble from a mile off. Today, it smelled a lot like his old friend Hank."
+    music adventure vol=0.30
+
+scene paw_bump:
+    still image:
+        path: "{$stills}/f04_paw_bump_pixar.png"
+    motion wan:
+        prompt: "slow zoom in, a soft breeze ruffles fur, warm golden light, gentle ambient motion"
+        duration: 5.0
+    narrate warm:
+        line: "Some partners you choose. Some just bump into you and never let go."
+    music adventure vol=0.34
+
+scene sunset_crew:
+    still image:
+        path: "{$stills}/f07_sunset_crew_pixar.png"
+    motion wan:
+        prompt: "slow dolly back, warm sunset glow, gentle wind, soft particles drifting through the air"
+        duration: 5.0
+    narrate warm:
+        line: "By sundown, the whole crew had a story to tell. And Doug was already sniffing out the next one."
+    music adventure vol=0.36

@@ -30,7 +30,8 @@
    "lock": "stills/LOCKED_s7_dooropen.png",
    "animate": "the young elephant steps forward out of the open boxcar doorway and down into the sunlight, ears swaying, trunk lifting, dust drifting in the warm light, camera holds steady",
    "clip": "clips/s7_dooropen_final.mp4",
-   "min_window": 2.0
+   "min_window": 2.0,
+   "set": "circus boxcar"
   },
   {
    "id": "ellie_eye",
@@ -50,7 +51,8 @@
    "lock": "stills/LOCKED_ellie_eye.png",
    "animate": "the frightened eye blinks slowly and shifts as she looks toward the light, dust drifting through the blade of sunlight, the planks perfectly still, camera holds steady",
    "clip": "clips/ellie_eye_final.mp4",
-   "min_window": 1.6
+   "min_window": 1.6,
+   "set": "circus boxcar"
   },
   {
    "id": "s2_thecall",
@@ -64,7 +66,8 @@
    "lock": "stills/LOCKED_s2_call.png",
    "animate": "the smoke billows and drifts upward from the stalled train, heat shimmer rippling over the motionless cars, grass moving slightly in the wind, camera holds steady",
    "clip": "clips/s2_call_final.mp4",
-   "min_window": 2.0
+   "min_window": 2.0,
+   "set": "circus boxcar"
   },
   {
    "id": "s4_arrival",
@@ -90,7 +93,8 @@
    "lock": "stills/LOCKED_s4_arrival.png",
    "animate": "heat shimmer ripples off the boxcar roofs, dust drifts across the gravel, the bear's head turns slowly as he takes in the length of the dead train, the dog shifts his weight, camera holds steady",
    "clip": "clips/s4_arrival_final.mp4",
-   "min_window": 2.0
+   "min_window": 2.0,
+   "set": "circus boxcar"
   },
   {
    "id": "s6_interior",
@@ -105,7 +109,8 @@
    "animate": "dust and straw sift down through the blade of light, the shaft of daylight at the door slowly widens, motes drifting, camera holds perfectly steady",
    "clip": "clips/s6_interior_final.mp4",
    "min_window": 2.0,
-   "_no_characters": true
+   "_no_characters": true,
+   "set": "circus boxcar"
   },
   {
    "id": "s8_goodbye",
@@ -130,7 +135,8 @@
    "lock": "stills/LOCKED_s8_goodbye.png",
    "animate": "the two friends hold the paw bump and lower their paws, the horse shifts, warm dust drifts through the golden light, steam rises from the train behind, camera holds steady",
    "clip": "clips/s8_goodbye_final.mp4",
-   "min_window": 2.0
+   "min_window": 2.0,
+   "set": "circus boxcar"
   },
   {
    "id": "s5_door",
@@ -143,7 +149,11 @@
    "identity": {
     "master": "canon/doug_canon.png",
     "subject": "Doug the bloodhound"
-   }
+   },
+   "set": "circus boxcar"
   }
- ]
+ ],
+ "set_masters": {
+  "circus boxcar": "canon/boxcar_canon.png"
+ }
 }

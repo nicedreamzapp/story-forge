@@ -5,6 +5,22 @@ Story Forge is a general local video system; this doc covers ONE case within it:
 The hard-won, Matt-approved way to build a talking-character scene. Follow this exactly.
 Tools live in `~/Desktop/PROJECTS/AI/videopipe/bin/` (also see that dir's CLAUDE.md).
 
+## Default: dynamic multi-shot coverage (a GIVEN — never ask, always do)
+Every scene is built as a SEQUENCE of shots, never a single static clip, so the result reads as fully animated film — the viewer can't tell it was built from stills. This is Matt's standing direction (2026-05-25): assume MAXIMAL dynamic coverage on every video. He never has to request it — it's simply how we make movies.
+
+Cover each beat with varied framings + camera moves that keep returning to the same scene. A typical coverage pass:
+- wide establish → push-in to a close-up → a side / parallax move → pull back to a wider angle → return to the action.
+
+Source the shots, in order of preference:
+1. **Crops** of the locked still into different framings (close / medium / wide) — instant, perfectly consistent, no new art.
+2. **i2v camera moves** (push-in, pull-back, slow pan, parallax, gentle orbit) — adds motion and apparent angle change.
+3. **Freshly generated stills** for TRUE new angles (from behind / side / above / low) when a beat needs one — generated on-model via the per-character **LoRAs** so Doug/Hank/etc. stay identical across angles. (LoRA training is the unlock for unlimited consistent angles; build it when a film first needs real new angles.)
+
+The dialogue rules below still apply per shot: voice only over untouched animation, density-matched, one talker per beat.
+
+### Prompt the mouth motion to the dialogue (don't just react to it) — also a GIVEN
+For any shot that carries a line, WRITE THE i2v MOTION PROMPT so that character's mouth moves exactly when we want the line — e.g. "Doug's mouth opens and closes as he speaks," "the bear's muzzle moves gently as if talking." Direct the mouth movement on purpose so it lands where the dialogue lands; then lay the voice over those open beats. We are NOT repainting mouths (still banned) — we PROMPT the i2v to generate the mouth motion, then place voice over the untouched result. i2v gives believable open/close jaw motion, not phonetic lip-sync, so density-match the line to that motion (rule 3 below) rather than expecting perfect sync. Standing direction (Matt, 2026-05-25): prompt for mouth motion at the intended dialogue moments on every talking shot, automatically.
+
 ## Golden rules
 1. **One scene at a time.** Perfect a scene's mouth+voice, get Matt's OK, LOCK it (save the .mp4), then move on. Never build all scenes at once — that is what kept breaking.
 2. **Never touch a locked scene.** Once approved it is frozen. Don't regenerate it for "consistency" or anything else.

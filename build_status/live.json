@@ -1,0 +1,45 @@
+{
+  "ticker_updated_at": "2026-05-24T14:35:59",
+  "m5_comfy": {
+    "alive": false,
+    "running": 0,
+    "pending": 0
+  },
+  "mini_comfy": {
+    "alive": true,
+    "running": 0,
+    "pending": 0
+  },
+  "active_python_procs": [],
+  "key_files": [
+    {
+      "path": "~/AI/videopipe/outputs",
+      "mb": 0.0
+    }
+  ],
+  "log_tails": {
+    "bench_wan_e2e": [
+      "warnings.warn(msg)",
+      "--- DISPATCH LOG (off pass) ---",
+      "--- DISPATCH LOG (on pass) ---",
+      "wall (vanilla SDPA): 144.1s",
+      "wall (Metal fused) : 2.0s",
+      "speedup            : 71.67x   (target > 1.5x)",
+      "mean per-frame LPIPS: 0.0000   (target < 0.05)",
+      "GATE: PASS  (perf_ok=True, lpips_ok=True)"
+    ],
+    "m5_comfy": [
+      "File \"/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/threading.py\", line 1032 in _bootstrap",
+      "Extension modules: sqlalchemy.cyextension.collections, sqlalchemy.cyextension.immutabledict, sqlalchemy.cyextension.processors, sqlalchemy.cyextension.resultproxy, sqlalchemy.cyextension.util, markupsafe._speedups, yaml._yaml, PIL._imaging, multidict._multidict, yarl._quoting_c, propcache._helpers_c, aiohttp._http_writer, aiohttp._http_parser, aiohttp._websocket.mask, aiohttp._websocket.reader_c, frozenlist._frozenlist, chardet.models, chardet.pipeline.ascii, chardet.pipeline.confusion, chardet.pipeline.escape, chardet.pipeline.magic, chardet.pipeline.statistical, chardet.pipeline.structural, chardet.pipeline.utf8, chardet.pipeline.utf1632, chardet.pipeline.validity, chardet.pipeline.orchestrator, charset_normalizer.md, charset_normalizer.cd, requests.packages.chardet.models, requests.packages.chardet.pipeline.ascii, requests.packages.chardet.pipeline.confusion, requests.packages.chardet.pipeline.escape, requests.packages.chardet.pipeline.magic, requests.packages.chardet.pipeline.statistical, requests.packages.chardet.pipeline.structural, requests.packages.chardet.pipeline.utf8, requests.packages.chardet.pipeline.utf1632, requests.packages.chardet.pipeline.validity, requests.packages.chardet.pipeline.orchestrator, numpy._core._multiarray_umath, numpy.linalg._umath_linalg, torch._C, torch._C._dynamo.autograd_compiler, torch._C._dynamo.eval_frame, torch._C._dynamo.guards, torch._C._dynamo.utils, torch._C._fft, torch._C._linalg, torch._C._nested, torch._C._nn, torch._C._sparse, torch._C._special, numpy.random._common, numpy.random.bit_generator, numpy.random._bounded_integers, numpy.random._pcg64, numpy.random._generator, numpy.random._mt19937, numpy.random._philox, numpy.random._sfc64, numpy.random.mtrand, psutil._psutil_osx, PIL._imagingft, _cyutility, scipy._cyutility, scipy._lib._ccallback_c, scipy.ndimage._nd_image, scipy.ndimage._rank_filter_1d, scipy.special._ufuncs_cxx, scipy.special._ellip_harm_2, scipy.special._special_ufuncs, scipy.special._gufuncs, scipy.special._ufuncs, scipy.special._specfun, scipy.special._comb, _ni_label, scipy.ndimage._ni_label, regex._regex, scipy.integrate._odepack, scipy.integrate._quadpack, scipy.integrate._vode, scipy.integrate._dop, scipy.sparse._sparsetools, _csparsetools, scipy.sparse._csparsetools, scipy.linalg._fblas, scipy.linalg._flapack, scipy.linalg.cython_lapack, scipy.linalg._cythonized_array_utils, scipy.linalg._solve_toeplitz, scipy.linalg._batched_linalg, scipy.linalg._decomp_lu_cython, scipy.linalg._matfuncs_schur_sqrtm, scipy.linalg._matfuncs_expm, scipy.linalg._linalg_pythran, scipy.linalg.cython_blas, scipy.linalg._decomp_update, scipy.sparse.linalg._dsolve._superlu, scipy.sparse.linalg._eigen.arpack._arpacklib, scipy.sparse.linalg._propack, scipy.optimize._group_columns, scipy._lib.messagestream, scipy.optimize._trlib._trlib, scipy.optimize._lbfgsb, _moduleTNC, scipy.optimize._moduleTNC, scipy.optimize._slsqplib, scipy.optimize._minpack, scipy.optimize._lsq.givens_elimination, scipy.optimize._zeros, scipy._lib._uarray._uarray, scipy.linalg._decomp_interpolative, scipy.optimize._bglu_dense, scipy.optimize._lsap, scipy.spatial._ckdtree, scipy.spatial._qhull, scipy.spatial._voronoi, scipy.spatial._hausdorff, scipy.spatial._distance_wrap, scipy.spatial.transform._rotation_cy, scipy.spatial.transform._rigid_transform_cy, scipy.optimize._direct, scipy.interpolate._fitpack, scipy.interpolate._dfitpack, scipy.interpolate._dierckx, scipy.interpolate._ppoly, scipy.interpolate._interpnd, scipy.interpolate._rbfinterp_pythran, scipy.interpolate._rgi_cython, scipy.special.cython_special, scipy.stats._stats, scipy.stats._biasedurn, scipy.stats._stats_pythran, scipy.stats._levy_stable.levyst, scipy.stats._ansari_swilk_statistics, scipy.sparse.csgraph._tools, scipy.sparse.csgraph._shortest_path, scipy.sparse.csgraph._traversal, scipy.sparse.csgraph._min_spanning_tree, scipy.sparse.csgraph._flow, scipy.sparse.csgraph._matching, scipy.sparse.csgraph._reordering, scipy.stats._sobol, scipy.stats._qmc_cy, scipy.stats._rcont.rcont, scipy.stats._qmvnt_cy, av._core, av.logging, av.buffer, av.audio.format, av.error, av.dictionary, av.container.pyio, av.option, av.descriptor, av.format, av.index, av.utils, av.stream, av.container.streams, av.sidedata.encparams, av.sidedata.motionvectors, av.sidedata.sidedata, av.opaque, av.packet, av.container.input, av.container.output, av.container.core, av.codec.context, av.video.format, av.video.reformatter, av.plane, av.video.plane, av.video.frame, av.video.stream, av.codec.hwaccel, av.codec.codec, av.frame, av.audio.layout, av.audio.plane, av.audio.frame, av.audio.stream, av.filter.link, av.filter.context, av.filter.graph, av.filter.filter, av.filter.loudnorm, av.audio.resampler, av.audio.codeccontext, av.audio.fifo, av.bitstream, av.device, av.video.codeccontext, av.subtitles.stream, kiwisolver._cext, sentencepiece._sentencepiece, sklearn.__check_build._check_build, sklearn._cyutility, sklearn.utils._isfinite, sklearn.utils.sparsefuncs_fast, sklearn.utils.murmurhash, sklearn.utils._openmp_helpers, sklearn.metrics.cluster._expected_mutual_info_fast, sklearn.metrics._dist_metrics, sklearn.metrics._pairwise_distances_reduction._datasets_pair, sklearn.utils._cython_blas, sklearn.metrics._pairwise_distances_reduction._base, sklearn.metrics._pairwise_distances_reduction._middle_term_computer, sklearn.utils._heap, sklearn.utils._sorting, sklearn.metrics._pairwise_distances_reduction._argkmin, sklearn.metrics._pairwise_distances_reduction._argkmin_classmode, sklearn.utils._vector_sentinel, sklearn.metrics._pairwise_distances_reduction._radius_neighbors, sklearn.metrics._pairwise_distances_reduction._radius_neighbors_classmode, sklearn.metrics._pairwise_fast, sklearn.preprocessing._csr_polynomial_expansion, sklearn.preprocessing._target_encoder_fast, _cffi_backend, scipy.signal._sigtools, scipy.signal._max_len_seq_inner, scipy.signal._upfirdn_apply, scipy.signal._spline, scipy.signal._sosfilt, scipy.signal._peak_finding_utils, google._upb._message, scipy.io.matlab._mio_utils, scipy.io.matlab._streams, scipy.io.matlab._mio5_utils, numba.core.typeconv._typeconv, numba._helperlib, numba._dynfunc, numba._dispatcher, numba.core.runtime._nrt_python, numba.np.ufunc._internal, numba.experimental.jitclass._box, msgpack._cmsgpack, PIL._imagingmath (total: 239)",
+      "./start.sh: line 14: 54540 Abort trap: 6           python main.py --listen 127.0.0.1 --port 8188 --preview-method auto \"$@\"",
+      "/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown",
+      "  warnings.warn('resource_tracker: There appear to be %d '"
+    ],
+    "ticker": [
+      "[ticker] tick 2026-05-24T14:30:10  m5_running=0  mini_running=0  procs=0",
+      "[ticker] tick 2026-05-24T14:30:42  m5_running=0  mini_running=0  procs=0",
+      "[ticker] tick 2026-05-24T14:31:15  m5_running=0  mini_running=0  procs=0",
+      "[ticker] tick 2026-05-24T14:31:59  m5_running=0  mini_running=0  procs=0"
+    ]
+  }
+}

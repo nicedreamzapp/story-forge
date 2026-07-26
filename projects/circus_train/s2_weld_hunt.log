@@ -1,0 +1,20 @@
+[23:39:17] using pre-built wide-gap rough
+[23:39:17] weld strength=0.28 seed=9001
+[23:39:52]   dog(vs canon): FAIL — NO.  While the dog in the RIGHT image shares some superficial similarities with Doug the bloodhound (such as the general color palette and breed type)
+[23:39:52] weld strength=0.28 seed=9007
+[23:40:27]   dog(vs canon): FAIL — NO.  While the dog in the RIGHT image shares some visual similarities with Doug the bloodhound (such as the general color palette and lanky build), it
+[23:40:27] weld strength=0.28 seed=9013
+[23:41:05]   dog(vs canon): FAIL — NO.  While the dog in the RIGHT image shares some superficial similarities with Doug the bloodhound (such as the general coloration and breed type), i
+[23:41:05] weld strength=0.33 seed=9001
+[23:41:41]   dog(vs canon): FAIL — NO.  While the dog in the RIGHT image shares some general coloration (orange-tan coat, dark-brown ears) and is in a similar lanky build, the **ear sha
+[23:41:41] weld strength=0.33 seed=9007
+[23:42:18]   dog(vs canon): FAIL — NO.  While the dog in the right image shares some superficial similarities with Doug the bloodhound (orange-tan coat, lanky build, long ears), it **fa
+[23:42:18] weld strength=0.33 seed=9013
+[23:42:54]   dog(vs canon): FAIL — NO.  While the dog in the RIGHT image shares some visual similarities with Doug the bloodhound (such as the general color palette and lanky build), it
+[23:42:54] weld strength=0.24 seed=9001
+[23:43:33]   dog(vs canon): FAIL — NO.  While the dog in the RIGHT image shares some superficial similarities with Doug the bloodhound (such as being a hound-like dog with long ears and
+[23:43:33] weld strength=0.24 seed=9007
+[23:44:12]   dog(vs canon): FAIL — NO.  While the dog in the RIGHT image shares some general features with Doug the bloodhound — such as the long snout, tan coat, and lanky build — ther
+[23:44:12] weld strength=0.24 seed=9013
+[23:44:51]   dog(vs canon): FAIL — NO.  While the dog in the RIGHT image shares some superficial similarities with Doug the bloodhound (such as the general color palette and lanky build
+[23:44:51] hunt done, 0 passed

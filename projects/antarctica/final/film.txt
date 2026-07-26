@@ -1,0 +1,4 @@
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/antarctica/final/scene1.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/antarctica/final/scene2.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/antarctica/final/scene3.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/antarctica/final/scene4.mp4'

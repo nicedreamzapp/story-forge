@@ -1,0 +1,14 @@
+{
+  "characters": {
+    "hank": "huge round brown bear with a tan muzzle and belly",
+    "doug": "lanky orange-brown bloodhound dog with long smooth floppy ears"
+  },
+  "scenes": [
+    {"name": "s1_fishing", "start": 0.0, "end": 5.06},
+    {"name": "s2_wagon", "start": 5.06, "end": 10.13},
+    {"name": "s3_arrival", "start": 10.13, "end": 15.19},
+    {"name": "s5_doug_moment", "start": 15.19, "end": 20.25},
+    {"name": "s6_hank_moment", "start": 20.25, "end": 25.31}
+  ],
+  "lines": []
+}

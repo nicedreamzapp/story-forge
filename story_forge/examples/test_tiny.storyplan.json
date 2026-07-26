@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1",
+  "film_meta": {
+    "title": "Test Tiny",
+    "slug": "test_tiny",
+    "target": "m5",
+    "scene_duration": 3.0,
+    "extras": {}
+  },
+  "voice_presets": {},
+  "music_presets": {},
+  "sfx_presets": {},
+  "transitions": [],
+  "mixes": [],
+  "vars": {},
+  "scenes": {
+    "drifting_clouds": {
+      "still_spec": {
+        "engine": "flux",
+        "attrs": {},
+        "prompt": "wide cinematic shot of distant mountain ridges at sunset, soft golden light, painterly atmosphere, 4k",
+        "seed": 42
+      },
+      "motion_spec": {
+        "engine": "ltx",
+        "attrs": {},
+        "prompt": "slow ambient drift, light clouds move gently across the sky, gentle wind, no camera movement",
+        "duration": 3.0,
+        "seed": 3301588207
+      },
+      "narration_spec": null,
+      "narration_specs": [],
+      "music_spec": null,
+      "sfx_specs": [],
+      "attrs": {},
+      "extras": {}
+    }
+  }
+}

@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>OHM — Live</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root {
+  --bg: #07050c;
+  --fg: #f5f0ff;
+  --muted: #8b83a1;
+  --dim: #5a526e;
+  --accent: #ec4899;
+  --accent2: #a855f7;
+  --gold: #f59e0b;
+  --good: #22c55e;
+  --bad: #ef4444;
+  --card: rgba(255,255,255,0.04);
+  --card-hi: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.10);
+  --border-hi: rgba(236,72,153,0.6);
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background:
+    radial-gradient(1400px 1000px at 10% 0%, rgba(236,72,153,0.18), transparent 60%),
+    radial-gradient(1100px 900px at 90% 100%, rgba(168,85,247,0.16), transparent 60%),
+    radial-gradient(700px 600px at 50% 50%, rgba(245,158,11,0.05), transparent 60%),
+    var(--bg);
+  color: var(--fg);
+  font: 13px/1.5 -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  overflow-y: auto;
+}
+
+.app { max-width: 900px; margin: 0 auto; padding: 18px 18px 30px; }
+
+/* ───── Header ───── */
+header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 14px;
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+}
+.brand .mark {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: grid; place-items: center;
+  font-weight: 700; font-size: 18px; letter-spacing: -0.02em;
+  color: white;
+  box-shadow: 0 8px 24px rgba(236,72,153,0.35);
+}
+.brand .name { font-size: 16px; font-weight: 600; letter-spacing: 0.02em; }
+.brand .tag  { font-size: 11px; color: var(--muted); }
+.fingerprint {
+  font-size: 10px;
+  color: var(--muted);
+  font-family: "SF Mono", ui-monospace, Menlo, monospace;
+  text-align: right;
+  line-height: 1.4;
+}
+.fingerprint .h { color: var(--gold); }
+
+/* ───── Hero row: countdown + bar + step ───── */
+.hero {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 22px;
+  align-items: center;
+  background: linear-gradient(180deg, var(--card-hi), var(--card));
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px 24px;
+  margin-bottom: 16px;
+}
+.countdown {
+  font-size: 56px; font-weight: 700; line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(135deg, #fff, #ec4899 80%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-info { min-width: 0; }
+.hero-title { font-size: 14px; font-weight: 500; color: var(--fg); margin-bottom: 4px; }
+.hero-step  { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+.bigbar { height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+.bigbar .fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  width: 0%;
+  transition: width 0.8s ease;
+  box-shadow: 0 0 16px rgba(236,72,153,0.4);
+}
+
+/* ───── Scene grid ───── */
+.grid-label {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin: 6px 4px 8px;
+}
+.grid-label .l { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+.grid-label .r { font-size: 11px; color: var(--dim); font-variant-numeric: tabular-nums; }
+
+.scenes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.scene-card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 12px 12px 12px;
+  min-height: 140px;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  transition: border-color 0.3s, background 0.3s;
+}
+.scene-card.done {
+  background: rgba(34,197,94,0.06);
+  border-color: rgba(34,197,94,0.3);
+}
+.scene-card.current {
+  border-color: var(--border-hi);
+  background: linear-gradient(180deg, rgba(236,72,153,0.12), rgba(168,85,247,0.08));
+  box-shadow: 0 0 0 1px rgba(236,72,153,0.3), 0 8px 28px rgba(236,72,153,0.25);
+}
+.scene-card.current::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--accent2), transparent);
+  animation: pulse-bar 1.8s ease-in-out infinite;
+}
+@keyframes pulse-bar {
+  0%, 100% { opacity: 0.3; transform: translateX(-10%); }
+  50% { opacity: 1; transform: translateX(10%); }
+}
+.scene-card .head {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); margin-bottom: 6px;
+}
+.scene-card .head .ix {
+  display: inline-block;
+  background: rgba(255,255,255,0.08);
+  padding: 2px 7px; border-radius: 999px;
+  color: var(--fg); font-weight: 600;
+}
+.scene-card.done .head .ix { background: var(--good); color: white; }
+.scene-card.current .head .ix { background: var(--accent); color: white; }
+.scene-card .kind {
+  font-size: 12px; font-weight: 600; color: var(--fg);
+  margin-bottom: 6px;
+}
+.scene-card .prompt {
+  font-size: 11px; color: var(--muted); line-height: 1.45;
+  flex: 1; min-height: 0;
+  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.scene-card .eta {
+  font-size: 10px; color: var(--dim); margin-top: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.scene-card .badge-anim {
+  position: absolute; top: 10px; right: 10px;
+  font-size: 9px; padding: 2px 6px; border-radius: 999px;
+  background: rgba(245,158,11,0.18); color: var(--gold);
+  text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600;
+}
+
+/* ───── Tone strip (live frequency bar) ───── */
+.tones {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+}
+.tones .label {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.tones .freqs {
+  display: flex; gap: 4px; align-items: flex-end;
+  height: 26px;
+}
+.tones .bar {
+  flex: 1;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  transition: height 0.4s, background 0.4s;
+  min-width: 5px;
+}
+.tones .bar.active {
+  background: linear-gradient(180deg, var(--gold), var(--accent));
+  box-shadow: 0 0 6px rgba(245,158,11,0.6);
+}
+.tones .now {
+  font-size: 11px; color: var(--fg); font-family: "SF Mono", ui-monospace, Menlo, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+footer {
+  margin-top: 14px;
+  font-size: 10px; color: var(--dim); text-align: center;
+  font-family: "SF Mono", ui-monospace, Menlo, monospace;
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<header>
+  <div class="brand">
+    <div class="mark">Ω</div>
+    <div>
+      <div class="name">OHM <span style="color:var(--muted); font-weight:400;">— live</span></div>
+      <div class="tag" id="sub">connecting…</div>
+    </div>
+  </div>
+  <div class="fingerprint" id="fp">
+    <div>machine</div>
+    <div class="h" id="fp-hex">—</div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="countdown" id="time-left">—</div>
+  <div class="hero-info">
+    <div class="hero-title" id="hero">Waiting for a render</div>
+    <div class="hero-step" id="current-step">Idle</div>
+    <div class="bigbar"><div class="fill" id="overall-fill"></div></div>
+  </div>
+</div>
+
+<div class="grid-label">
+  <div class="l">scenes</div>
+  <div class="r" id="scene-count">—</div>
+</div>
+<div class="scenes-grid" id="scenes-grid"></div>
+
+<div class="tones">
+  <div>
+    <div class="label">tone now</div>
+    <div class="now" id="tone-now">—</div>
+  </div>
+  <div class="freqs" id="tone-freqs"></div>
+  <div>
+    <div class="label" style="text-align:right;">op</div>
+    <div class="now" id="tone-op">—</div>
+  </div>
+</div>
+
+<footer id="foot">OHM v0 · ~/.local/bin/ohm · score is the fingerprint</footer>
+
+</div>
+
+<script>
+// Plain-English labels per scene kind
+const KIND_LABEL = {
+  title_card: "Title card",
+  outro: "End card",
+  color_card: "Color card",
+  ai_image: "AI photo",
+  ai_broll: "AI video clip",
+  highlight: "Zoom highlight",
+  screen_recording: "Screen recording",
+};
+const KIND_ETA = {
+  title_card: 5,
+  outro: 5,
+  color_card: 5,
+  ai_image: 60,
+  ai_broll: 12 * 60,          // i2v + lightx2v 4-step ≈ 12 min
+  highlight: 8,
+  screen_recording: 6,
+};
+// Tones table — must match ohm runtime
+const TONES = {
+  start:  [261.63, 329.63, 392.00],
+  say:    [440.00],
+  image:  [523.25],
+  video:  [392.00],
+  cinema: [349.23],
+  shell:  [880.00],
+  wait:   [261.63],
+  phone:  [659.25, 987.77],
+  end:    [261.63, 329.63, 392.00, 523.25],
+};
+// Map scene kind → tone op name (for the live tone strip)
+const KIND_TO_OP = {
+  ai_broll: "video",
+  ai_image: "image",
+  title_card: "say",
+  outro: "say",
+};
+
+const FINISH_OVERHEAD_S = 30;
+
+function fmtDur(s) {
+  if (s == null || isNaN(s) || s < 0) return "—";
+  s = Math.round(s);
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const sec = s % 60;
+  if (h) return `${h}h ${m}m`;
+  if (m && sec > 30) return `${m + 1}m`;
+  if (m) return `${m}m`;
+  return `${sec}s`;
+}
+
+function totalEtaSeconds(scenes) {
+  if (!scenes || !scenes.length) return 0;
+  let t = FINISH_OVERHEAD_S;
+  for (const sc of scenes) t += KIND_ETA[sc.kind] ?? 30;
+  return t;
+}
+
+function elapsedForScene(sc, scenes) {
+  let t = 0;
+  for (const s of scenes) {
+    if (s.index < sc.index) t += KIND_ETA[s.kind] ?? 30;
+  }
+  const within = sc.started_at ? Math.max(0, Date.now()/1000 - sc.started_at) : 0;
+  const cap = KIND_ETA[sc.kind] ?? 30;
+  return t + Math.min(within, cap);
+}
+
+// Build a steady set of 8 bars representing the tone palette;
+// bars highlight when their corresponding op is the current tone.
+function renderToneStrip(activeOp) {
+  const freqsEl = document.getElementById("tone-freqs");
+  const palette = ["start", "say", "image", "video", "cinema", "shell", "phone", "end"];
+  const heights = {start: 12, say: 18, image: 22, video: 16, cinema: 14, shell: 26, phone: 24, end: 12};
+  freqsEl.innerHTML = "";
+  for (const op of palette) {
+    const div = document.createElement("div");
+    div.className = "bar" + (op === activeOp ? " active" : "");
+    div.style.height = `${heights[op]}px`;
+    div.title = op;
+    freqsEl.appendChild(div);
+  }
+  const t = TONES[activeOp];
+  if (t && activeOp) {
+    document.getElementById("tone-now").textContent = t.map(f => `${f.toFixed(0)} Hz`).join(" + ");
+    document.getElementById("tone-op").textContent = activeOp;
+  } else {
+    document.getElementById("tone-now").textContent = "silent";
+    document.getElementById("tone-op").textContent = "—";
+  }
+}
+
+let fingerprintFetched = false;
+async function fetchFingerprint() {
+  if (fingerprintFetched) return;
+  fingerprintFetched = true;
+  try {
+    const r = await fetch("/api/short-status", { cache: "no-store" });
+    const d = await r.json();
+    // No fingerprint endpoint yet — synthesize a short hex from output path
+    const text = (d.output || "") + (d.title || "");
+    let h = 0;
+    for (const c of text) h = ((h << 5) - h + c.charCodeAt(0)) | 0;
+    const hex = (h >>> 0).toString(16).padStart(8, "0");
+    document.getElementById("fp-hex").textContent = hex.slice(0, 8) + "…";
+  } catch (e) {}
+}
+
+async function tick() {
+  let state;
+  try {
+    const r = await fetch("/api/short-status", { cache: "no-store" });
+    state = await r.json();
+  } catch (e) {
+    document.getElementById("sub").textContent = "lost connection";
+    return;
+  }
+  const now = new Date();
+  document.getElementById("sub").textContent = now.toLocaleTimeString();
+
+  const phase = state.phase || "idle";
+  const scenes = state.scenes || [];
+  const cs = state.current_scene;
+  const targetSec = state.target_video_seconds || 0;
+  const totalEta = totalEtaSeconds(scenes);
+
+  // Hero text
+  const heroEl = document.getElementById("hero");
+  if (phase === "idle") {
+    heroEl.textContent = "Waiting for a render";
+  } else if (phase === "done") {
+    heroEl.textContent = `Done — ${Math.round(targetSec)}-sec video ready`;
+  } else if (phase === "error") {
+    heroEl.textContent = "Something broke";
+  } else {
+    heroEl.textContent = `${Math.round(targetSec)}-sec film — ${state.title || ""}`;
+  }
+
+  // Progress
+  let progressSec = 0;
+  if (cs) progressSec = elapsedForScene(cs, scenes);
+  else if (phase === "concatenating" || phase === "music" || phase === "narration") {
+    progressSec = totalEta - FINISH_OVERHEAD_S;
+  } else if (phase === "done") {
+    progressSec = totalEta;
+  }
+  const timeLeft = phase === "done" ? 0 : Math.max(0, totalEta - progressSec);
+  document.getElementById("time-left").textContent = phase === "done" ? "DONE" : fmtDur(timeLeft);
+  const pct = totalEta > 0 ? Math.min(100, (progressSec / totalEta) * 100) : 0;
+  document.getElementById("overall-fill").style.width = pct.toFixed(1) + "%";
+
+  // Step text
+  const stepEl = document.getElementById("current-step");
+  if (phase === "idle") stepEl.textContent = "Idle";
+  else if (phase === "starting") stepEl.textContent = "Getting set up";
+  else if (phase === "rendering_scene" && cs) {
+    stepEl.textContent = `Scene ${cs.index} of ${scenes.length} · ${KIND_LABEL[cs.kind] || cs.kind}`;
+  } else if (phase === "concatenating") stepEl.textContent = "Stitching";
+  else if (phase === "music") stepEl.textContent = "Music bed";
+  else if (phase === "narration") stepEl.textContent = "Voice over";
+  else if (phase === "done") stepEl.textContent = "All done";
+  else if (phase === "error") stepEl.textContent = state.error || "Error";
+  else stepEl.textContent = phase;
+
+  // Scenes grid
+  const grid = document.getElementById("scenes-grid");
+  document.getElementById("scene-count").textContent = scenes.length ? `${scenes.length} total` : "—";
+  grid.innerHTML = "";
+  const currentIdx = cs ? cs.index : (phase === "done" ? scenes.length + 1 : 0);
+  for (const sc of scenes) {
+    const isCurrent = sc.index === currentIdx && phase === "rendering_scene";
+    const isDone = sc.index < currentIdx;
+    const card = document.createElement("div");
+    card.className = "scene-card" + (isCurrent ? " current" : isDone ? " done" : "");
+    const animated = sc.kind === "ai_broll";
+    const techLabel = animated ? "Wan 2.2 i2v" : (sc.kind === "ai_image" ? "Flux" : "");
+    card.innerHTML = `
+      <div class="head">
+        <div class="ix">${isDone ? "✓" : sc.index}</div>
+        <div>${techLabel}</div>
+      </div>
+      <div class="kind">${KIND_LABEL[sc.kind] || sc.kind}</div>
+      <div class="prompt">${(sc.prompt || "").replace(/</g, "&lt;")}</div>
+      <div class="eta">~${fmtDur(KIND_ETA[sc.kind] ?? 30)}</div>
+    `;
+    grid.appendChild(card);
+  }
+
+  // Tone strip
+  const activeOp = cs ? (KIND_TO_OP[cs.kind] || "video") :
+    (phase === "narration" ? "say" : phase === "music" ? "cinema" :
+     phase === "concatenating" ? "shell" : phase === "done" ? "end" : null);
+  renderToneStrip(activeOp);
+
+  fetchFingerprint();
+}
+
+tick();
+setInterval(tick, 2000);
+</script>
+</body>
+</html>

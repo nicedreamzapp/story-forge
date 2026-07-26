@@ -1,0 +1,16 @@
+=== s1: uploading
+s1 job eb44afdc503e
+s1 DRAFT DONE
+=== s2: uploading
+s2 job f3b917cd0a01
+s2 DRAFT DONE
+=== s3: uploading
+s3 job 920aa8683d7a
+s3 DRAFT DONE
+=== s5: uploading
+s5 job 207fcd388290
+s5 DRAFT DONE
+=== s6: uploading
+s6 job 8190d0c96200
+s6 DRAFT DONE
+BATCH_DONE

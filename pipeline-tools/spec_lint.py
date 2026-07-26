@@ -78,6 +78,16 @@ def lint_shot(shot: dict, project: Path) -> list:
             "every named character is checked against its locked master, or a dog that is "
             "not Doug walks straight through (2026-07-26)")
 
+    # a shot in a locked location must be held to that location
+    sets = list((project / "canon").glob("*_canon.png"))
+    set_names = [p.stem.replace("_canon", "") for p in sets]
+    place = re.search(r"\b(boxcar|train|wagon|carriage|door)\b", beat, re.I)
+    if place and set_names and not shot.get("set") and not shot.get("_no_set"):
+        problems.append(
+            f"{shot.get('id','?')}: is set at the {place.group(0)} but declares no `set` — "
+            "the door Hank pushed and the door that opened were different cars entirely "
+            "because nothing locked the set (2026-07-26)")
+
     # generating a character who already has a locked master, instead of deriving
     canon = {p.stem.replace('_canon', '').lower() for p in (project / "canon").glob("*_canon.png")}
     if canon & named and not (shot.get("init") or shot.get("parts")):

@@ -132,6 +132,17 @@
    ],
    "lesson": "FLUX.2 accepts NO negative prompt and treats 'NO animals/people' in a positive prompt as an instruction to draw them. To get an empty plate, describe it positively \u2014 deserted, abandoned, silent, not a soul in sight \u2014 and let the gate's must_not do the rejecting.",
    "learned_on": "s4/s8 plates 2026-07-26"
+  },
+  {
+   "when": [
+    "set",
+    "train",
+    "boxcar",
+    "door",
+    "location"
+   ],
+   "lesson": "LOCK THE SET, not just the characters. The door Hank pushes and the door that opens were different cars entirely \u2014 sliding wooden panel on a plain red car vs double hinged doors on a yellow-banded car in a different landscape. beat_gate supports set_masters and this film never armed it. Any shot sharing a location declares its set and is checked against the locked plate.",
+   "learned_on": "circus_train door continuity 2026-07-26"
   }
  ]
 }

@@ -1,0 +1,380 @@
+[03:01:29] === s2_rollout ===
+[03:01:29]   attempt 1/8 seed=6852
+[03:02:12]     dog(vs canon): ok — YES  The dog in the candidate frame (RIGHT) maintains the essential visual characteristics of Doug the bloodhound as defined in the official character (LEFT). Specifically:  - **Ears**: The ears hang 
+[03:02:19]     bear(vs canon): ok — YES.  The bear in the RIGHT image matches the official character design of Hank the bear in all key features:   - **Round head** and **small rounded ears** — consistent with the official design.   - *
+[03:02:25]     anatomy: ok — PASS  The image depicts a stylized, Pixar-esque cartoon scene with a bear and a dog in a wooden wagon being pulled by a horse through a sun-dappled forest. The characters exhibit the intended design t
+[03:02:33]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several telltale signs of AI generation or digital compositing rather than a naturally rendered animation frame:  - **Ligh
+[03:02:33]   attempt 2/8 seed=6859
+[03:03:16]     dog(vs canon): FAIL — NO.  The dog in the "CANDIDATE FRAME" (right) has ears that are **puffy, fluffy, and appear plush-textured**, with a **wavy, ruffled, and outwardly flared** shape — significantly different from the **
+[03:03:16]   attempt 3/8 seed=6866
+[03:03:59]     dog(vs canon): ok — YES  The dog in the candidate frame (RIGHT) maintains the essential visual characteristics of Doug the bloodhound as defined in the official design (LEFT). While the lighting is warmer and the scene i
+[03:04:07]     bear(vs canon): ok — YES.  The bear in the RIGHT image is drawn on-model with the same key characteristics as the OFFICIAL CHARACTER (Hank the bear) in the LEFT image:  - **Round head and small rounded ears**: Both images
+[03:04:14]     anatomy: ok — PASS  The image depicts a stylized, Pixar-inspired cartoon scene featuring a bear and a dog in a wooden wagon pulled by a horse, all rendered with exaggerated, rounded forms, oversized heads, and simp
+[03:04:23]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several telltale signs of AI generation rather than being a naturally rendered animation frame:  - **Lighting and Atmosphe
+[03:04:23]   attempt 4/8 seed=6873
+[03:05:07]     dog(vs canon): FAIL — NO.  The dog in the "CANDIDATE FRAME" on the right has ears that are significantly different from the official design. While the official Doug has long, straight, smooth, flat ears hanging down like l
+[03:05:07]   attempt 5/8 seed=6880
+[03:05:50]     dog(vs canon): ok — YES  The dog in the candidate frame (RIGHT) maintains the essential design of Doug the bloodhound as seen in the official character (LEFT). The ears, while slightly more dynamic due to motion and pers
+[03:05:58]     bear(vs canon): ok — YES.  The bear in the RIGHT image matches the official design of Hank the bear in all key features:   - **Round head** and **small rounded ears** — consistent with the official character.   - **Light 
+[03:06:04]     anatomy: ok — PASS  The image is a stylized Pixar-style cartoon with intentionally exaggerated features: round bodies, stubby limbs, oversized heads, and simplified anatomy — all consistent with the requested style
+[03:06:13]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several telltale signs of AI generation or digital compositing rather than a naturally rendered animation frame:  - **Inco
+[03:06:13]   attempt 6/8 seed=6887
+[03:06:55]     dog(vs canon): ok — YES  The dog in the candidate frame (RIGHT) maintains the essential visual characteristics of Doug the bloodhound as defined in the official design (LEFT). His ears, while slightly less sharply define
+[03:07:02]     bear(vs canon): ok — YES.  The bear in the RIGHT image matches the official design of Hank the bear in all key features:   - **Round head** and **small rounded ears** — consistent with the official character.   - **Light 
+[03:07:09]     anatomy: ok — PASS  The image depicts a stylized, Pixar-inspired cartoon scene featuring a bear and a dog in a wooden wagon being pulled by a horse. The characters exhibit the intended design traits: round bodies, 
+[03:07:18]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several telltale signs of AI generation rather than a naturally rendered animation frame:  - **Unrealistic lighting and at
+[03:07:18]   attempt 7/8 seed=6894
+[03:07:59]     dog(vs canon): FAIL — NO.  The dog in the "CANDIDATE FRAME" on the right has ears that are noticeably puffy, fluffy, and textured—resembling soft, plush fur rather than the smooth, flat, leather-like ears shown in the offi
+[03:07:59]   attempt 8/8 seed=6901
+[03:08:42]     dog(vs canon): ok — YES  The dog in the candidate frame (RIGHT) maintains the same essential ear shape as the official character: long, floppy, and hanging straight down with smooth, flat, leather-like appearance. While 
+[03:08:49]     bear(vs canon): ok — YES.  The bear in the RIGHT image matches the official character design in all key features:   - **Round head** and **small rounded ears** — consistent with the official design.   - **Light tan muzzle
+[03:08:56]     anatomy: ok — PASS  The image depicts a stylized, Pixar-inspired cartoon scene featuring a large bear and a dog riding in a wooden wagon pulled by a horse, all rendered with exaggerated, rounded forms, oversized he
+[03:09:05]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several telltale signs of AI generation or digital compositing rather than a naturally rendered animation frame:  - **Inco
+[03:09:05] === s3_arrival ===
+[03:09:05]   attempt 1/8 seed=2806
+[03:09:46]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are noticeably puffy and plush-textured, with a soft, rounded, and slightly ruffled appearance, unlike the official design’s heavy, flat, smooth, leather-li
+[03:09:46]   attempt 2/8 seed=2813
+[03:10:28]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are visibly puffy and fluffy, with a textured, plush appearance that differs significantly from the official design’s smooth, flat, leather-like ears. They 
+[03:10:28]   attempt 3/8 seed=2820
+[03:11:11]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are noticeably puffy and fluffy, with a textured, plush appearance that differs significantly from the official design’s smooth, flat, leather-like ears tha
+[03:11:11]   attempt 4/8 seed=2827
+[03:11:53]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are puffy, plush-textured, and appear to be rounded and soft, resembling a teddy bear rather than the flat, smooth, leather-like ears of the official charac
+[03:11:53]   attempt 5/8 seed=2834
+[03:12:36]     dog(vs canon): ok — YES  The dog in the candidate frame (RIGHT) maintains the essential design of Doug the bloodhound as seen in the official character (LEFT). The ears, while slightly softer in rendering due to lighting
+[03:12:43]     bear(vs canon): ok — YES.  The bear in the RIGHT image matches the official design of Hank the bear in all key features:   - **Round head** and **small rounded ears** — consistent with the official character.   - **Light 
+[03:12:49]     anatomy: ok — PASS  The image features a stylized Pixar-style cartoon with round bodies, stubby limbs, oversized heads, and simplified anatomy — all of which are intentional and consistent with the requested art st
+[03:12:57]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several telltale signs of AI generation or digital compositing rather than a naturally rendered animation frame:  - **Inco
+[03:12:57]   attempt 6/8 seed=2841
+[03:13:40]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are noticeably puffy and fluffy, with a textured, plush appearance that differs significantly from the official design’s smooth, flat, leather-like ears. Th
+[03:13:40]   attempt 7/8 seed=2848
+[03:14:23]     dog(vs canon): FAIL — NO.  The dog on the right has ears that are significantly different from the official design. Instead of hanging straight down like heavy, flat, smooth leather straps with clean outlines, the ears on 
+[03:14:23]   attempt 8/8 seed=2855
+[03:15:04]     dog(vs canon): ok — YES  The dog on the right matches the official character Doug the bloodhound in key features. His ears hang straight down, appearing as smooth, flat, leather-like straps with clean outlines — consiste
+[03:15:13]     bear(vs canon): ok — YES.  The bear in the RIGHT image is drawn on-model with the same key characteristics as the OFFICIAL CHARACTER (Hank the bear) in the LEFT image:  - **Round head and small rounded ears**: Both images
+[03:15:19]     anatomy: ok — PASS  The image features a stylized Pixar-style cartoon with round bodies, stubby limbs, oversized heads, and simplified anatomy — all of which are intentional and consistent with the requested art st
+[03:15:25]     natural: ok — PASS  The image appears to be a naturally rendered animation frame with consistent lighting, realistic ground contact, and no floating or pasted elements. The lighting is warm and directional, suggest
+[03:15:29]     train: ok — YES. The image clearly shows a stopped circus train with colorful, wooden-style cars and visible rails. The train cars have a vintage, handcrafted appearance with bright, striped patterns, and the tra
+[03:15:29]     *** PASS -> banked (1/2)
+[03:15:29] === s4_problem ===
+[03:15:29]   attempt 1/8 seed=7722
+[03:16:11]     dog(vs canon): ok — YES  The dog in the RIGHT frame (Candidate Frame) maintains the same essential ear shape as the OFFICIAL CHARACTER: long, floppy, and hanging straight down with smooth, flat, leather-like texture and 
+[03:16:16]     anatomy: ok — PASS  The image features a stylized, Pixar-like cartoon aesthetic with round bodies, stubby limbs, oversized heads, and simplified anatomy — all of which are intentional and consistent with the reques
+[03:16:24]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several telltale signs of AI generation or non-natural rendering:  - **Inconsistent lighting and shadows**: The lighting o
+[03:16:24]   attempt 2/8 seed=7729
+[03:17:05]     dog(vs canon): ok — YES  The dog in the RIGHT frame (Candidate Frame) maintains the same core design as the OFFICIAL CHARACTER (Doug the bloodhound). The ears, while slightly more rounded and soft due to lighting and ang
+[03:17:12]     anatomy: ok — PASS  The image depicts a stylized, Pixar-style cartoon dog with a round body, stubby limbs, and an oversized head — all consistent with the intended design. The dog is interacting with a wooden slatt
+[03:17:20]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several telltale signs of AI generation or digital compositing rather than a naturally rendered animation frame:  1. **Inc
+[03:17:20]   attempt 3/8 seed=7736
+[03:18:01]     dog(vs canon): FAIL — NO.  The ears on the RIGHT frame are noticeably puffy and plush-textured, with a soft, rounded, and slightly ruffled appearance, especially near the base and edges. They do not hang straight down like
+[03:18:01]   attempt 4/8 seed=7743
+[03:18:40]     dog(vs canon): FAIL — NO.  The ears on the RIGHT dog are noticeably puffy and fluffy, with a textured, plush appearance that differs significantly from the official design’s smooth, flat, leather-like ears. They also appea
+[03:18:40]   attempt 5/8 seed=7750
+[03:19:21]     dog(vs canon): ok — YES  The dog in the RIGHT frame (Candidate Frame) maintains the same core design as the OFFICIAL CHARACTER (Doug the bloodhound). The ears, while slightly more voluminous due to lighting and angle, st
+[03:19:29]     anatomy: ok — PASS  The image depicts a stylized, Pixar-esque cartoon dog with a round body, stubby limbs, oversized head, and simplified anatomy — all of which are intentional and consistent with the requested sty
+[03:19:37]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several signs of being AI-generated or digitally manipulated rather than a naturally rendered animation frame:  1. **Incon
+[03:19:37]   attempt 6/8 seed=7757
+[03:20:18]     dog(vs canon): ok — YES  The dog in the candidate frame (RIGHT) maintains the same essential design as the official character (LEFT). The ears, while slightly more rounded and soft due to lighting and angle, still hang s
+[03:20:26]     anatomy: ok — PASS  The image depicts two stylized cartoon dogs in a Pixar-esque animation style, featuring round bodies, oversized heads, and simplified anatomy — all of which are intentional and consistent with t
+[03:20:34]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several telltale signs of AI generation or digital compositing rather than a naturally rendered animation frame:  1. **Inc
+[03:20:34]   attempt 7/8 seed=7764
+[03:21:15]     dog(vs canon): FAIL — NO.  The ears on the RIGHT dog are significantly different from the official design. Instead of hanging straight down like heavy, flat, smooth leather straps with clean outlines, the ears appear puffy
+[03:21:15]   attempt 8/8 seed=7771
+[03:21:55]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are not consistent with the official design. They appear puffy, textured, and slightly ruffled, with a more voluminous, plush-like quality compared to the f
+[03:21:55] === s5_doug_moment ===
+[03:21:55]   attempt 1/8 seed=4871
+[03:22:36]     dog(vs canon): ok — YES  The candidate frame on the right shows the same character, Doug the bloodhound, with ears that hang straight down, consistent with the official design—smooth, flat, and strap-like, without puffin
+[03:22:42]     anatomy: ok — PASS  The image depicts a stylized, Pixar-style cartoon dog with exaggerated features typical of the genre: a large, rounded head, oversized expressive eyes, stubby limbs, and simplified anatomy. Thes
+[03:22:47]     natural: ok — PASS  The image appears to be a naturally rendered animation frame with consistent lighting, realistic shadows, and believable ground contact. The dog is positioned realistically under a wooden struct
+[03:22:51]     door: ok — YES. The dog's nose is positioned very close to the edge or crack of a wooden door or panel, appearing to sniff or nuzzle it. The lighting and shadows emphasize the proximity, and the dog’s expression
+[03:22:51]     *** PASS -> banked (1/2)
+[03:22:51]   attempt 2/8 seed=4878
+[03:23:32]     dog(vs canon): ok — YES  The ears on the right frame maintain the same general shape and style as the official character: long, floppy, and hanging straight down with smooth, clean outlines. While there is some softness 
+[03:23:39]     anatomy: ok — PASS  The image depicts a stylized, Pixar-style cartoon dog with exaggerated features: a large, rounded head, floppy ears, stubby limbs, and a simplified, smooth body — all consistent with the intende
+[03:23:45]     natural: ok — PASS  The image appears to be a naturally rendered animation frame with consistent lighting, realistic shadows, and believable ground contact. The dog is standing on a wooden platform with subtle cont
+[03:23:48]     door: ok — YES. The dog's nose is very close to the edge of a wooden door, specifically near a vertical crack or seam between two wooden panels. The dog appears to be sniffing or nuzzling the door, with its nose
+[03:23:48]     *** PASS -> banked (2/2)
+[03:23:48] === s6_hank_moment ===
+[03:23:48]   attempt 1/8 seed=8491
+[03:24:26]     bear(vs canon): ok — YES. The bear in the RIGHT image is the same character drawn on-model. It retains the same round head, small rounded ears, light tan muzzle, brown fuzzy coat with a tan belly patch, and gentle facial 
+[03:24:32]     anatomy: ok — PASS  The image depicts a stylized, Pixar-style cartoon bear with round body, stubby limbs, oversized head, and simplified anatomy — all of which are intentional and consistent with the requested styl
+[03:24:39]     natural: ok — PASS  The image appears to be a naturally rendered animation frame with consistent lighting, realistic ground contact, and no floating or pasted elements. The bear’s fur has detailed shading and highl
+[03:24:42]     push: ok — YES. The bear is pushing its shoulder into a wooden door, and its facial expression and body posture—such as the strained eyes, furrowed brow, and the way its arms are braced—indicate visible effort. 
+[03:24:42]     *** PASS -> banked (1/2)
+[03:24:42]   attempt 2/8 seed=8498
+[03:25:20]     bear(vs canon): ok — YES. The bear in the RIGHT image is the same character drawn on-model. It retains the same round head, small rounded ears, light tan muzzle, brown fuzzy coat with a tan belly patch, and gentle facial 
+[03:25:27]     anatomy: ok — PASS  The image depicts a stylized, Pixar-style cartoon bear with round body, stubby limbs, oversized head, and simplified anatomy — all of which are intentional design choices and not errors. The bea
+[03:25:32]     natural: ok — PASS  The image appears to be a naturally rendered animation frame with consistent lighting, realistic shadows, and believable ground contact. The bear’s fur has detailed texture with proper lighting 
+[03:25:34]     push: ok — YES. The bear is pushing its shoulder into a wooden door, and there is visible effort indicated by the wood splintering and flying outward, along with the bear’s strained facial expression and body po
+[03:25:34]     *** PASS -> banked (2/2)
+[03:25:34] === s7_cooldown ===
+[03:25:34]   attempt 1/8 seed=1690
+[03:26:16]     dog(vs canon): ok — YES  The dog on the right matches the official character Doug the bloodhound in key features: the ears hang straight down with a smooth, flat, leather-like appearance, consistent with the official des
+[03:26:24]     bear(vs canon): ok — YES.  The bear in the RIGHT image is drawn on-model with the same key features as the OFFICIAL CHARACTER (Hank the bear) in the LEFT image:  - **Round head** and **small rounded ears** – both images s
+[03:26:31]     anatomy: ok — PASS  The image is a stylized, Pixar-inspired cartoon featuring anthropomorphic animals and children in a cheerful outdoor carnival setting. The characters exhibit the intended design traits: round bo
+[03:26:40]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several signs of being AI-generated or digitally composited rather than a naturally rendered animation frame:  1. **Incons
+[03:26:40]   attempt 2/8 seed=1697
+[03:27:22]     dog(vs canon): ok — YES  The dog on the right retains the essential design features of Doug the bloodhound as shown in the official image: the same coat color (light brown with darker shading), the same facial structure,
+[03:27:26]     bear(vs canon): ok — YES.  The bear in the RIGHT image is drawn on-model with the same key characteristics as the official Hank the bear in the LEFT image:   - Round head and small, rounded ears   - Light tan muzzle   - B
+[03:27:35]     anatomy: ok — PASS  The image features a group of stylized, cartoonish animals in a cheerful outdoor scene, consistent with a Pixar-style aesthetic. All characters exhibit round bodies, stubby limbs, oversized head
+[03:27:43]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several telltale signs of AI generation or digital compositing rather than a naturally rendered animation frame:  - **Inco
+[03:27:43]   attempt 3/8 seed=1704
+[03:28:28]     dog(vs canon): FAIL — NO.  The dog in the RIGHT frame (Candidate Frame) has ears that are significantly different from the official design. While the official Doug has long, straight, smooth, flat, leather-like ears hangin
+[03:28:28]   attempt 4/8 seed=1711
+[03:29:10]     dog(vs canon): FAIL — NO.  The dog on the right has ears that are puffy, fluffy, and appear plush-textured with a wavy, ruffled outline—significantly different from the official character’s smooth, flat, leather-like ears 
+[03:29:10]   attempt 5/8 seed=1718
+[03:29:52]     dog(vs canon): FAIL — NO.  The dog on the right has ears that are puffy, fluffy, and appear to have a plush-textured, wavy, ruffled quality—clearly different from the official design’s heavy, flat, smooth, leather-like ear
+[03:29:52]   attempt 6/8 seed=1725
+[03:30:34]     dog(vs canon): FAIL — NO.  The dog in the "CANDIDATE FRAME" on the right has ears that are visibly puffy, fluffy, and textured—resembling plush or soft, rounded fur—rather than the smooth, flat, leather-like, straight-down
+[03:30:34]   attempt 7/8 seed=1732
+[03:31:15]     dog(vs canon): FAIL — NO.  The dog on the right has ears that are puffy, fluffy, and appear to have a plush-textured, wavy, ruffled quality—clearly different from the official design’s heavy, flat, smooth, leather-like ear
+[03:31:15]   attempt 8/8 seed=1739
+[03:31:57]     dog(vs canon): ok — YES  The dog on the right retains the core design of Doug the bloodhound: the same tan coat color, the same facial structure, and the same overall body type. While the ears appear slightly softer and 
+[03:32:02]     bear(vs canon): ok — YES.  The bear in the RIGHT image is drawn on-model with the same key characteristics as the official Hank the bear in the LEFT image:   - Round head and small, rounded ears   - Light tan muzzle   - B
+[03:32:09]     anatomy: ok — PASS  The image features a group of stylized, cartoon animals in a cheerful, sunlit outdoor setting with a train and circus-like tents in the background. The characters — a giraffe, elephant, bear, do
+[03:32:18]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several signs of being AI-generated or digitally composited rather than a naturally rendered animation frame:  - **Inconsi
+[03:32:18] === s8_pawbump ===
+[03:32:18]   attempt 1/8 seed=1882
+[03:33:00]     dog(vs canon): ok — YES  The dog on the right maintains the core design of Doug the bloodhound: the same light brown coat, long muzzle, and overall body structure. The ears, while slightly softer and more rounded due to 
+[03:33:07]     bear(vs canon): ok — YES.  The bear in the RIGHT image is the same character, Hank, drawn on-model. He retains the same key design features: a round head with small, rounded ears; a light tan muzzle; a brown, fuzzy coat; 
+[03:33:14]     anatomy: ok — PASS  The image features two stylized cartoon animals — a bear and a dog — in a friendly handshake, with a small blue bird perched on the bear’s head. The characters exhibit the intended Pixar-style d
+[03:33:22]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several signs of being a digitally generated or AI-rendered image rather than a naturally rendered animation frame from a 
+[03:33:22]   attempt 2/8 seed=1889
+[03:34:07]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are significantly different from the official design. While the official character (LEFT) has long, straight, smooth, flat, leather-like ears hanging down w
+[03:34:07]   attempt 3/8 seed=1896
+[03:34:48]     dog(vs canon): ok — YES  The dog on the right retains the essential design of Doug the bloodhound: the same tan coat, black nose, and overall body structure. The ears, while slightly softer and more rounded due to lighti
+[03:34:56]     bear(vs canon): ok — YES.  The bear in the RIGHT image is drawn on-model with the same key characteristics as the OFFICIAL CHARACTER (Hank the bear) in the LEFT image:  - **Round head** and **small rounded ears** – both i
+[03:35:04]     anatomy: ok — PASS  The image features two anthropomorphic animals — a bear and a dog — rendered in a stylized, Pixar-esque cartoon aesthetic. Their bodies are round, limbs are stubby, heads are oversized, and anat
+[03:35:12]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several signs of being a composite or AI-generated render rather than a naturally rendered animation frame:  1. **Inconsis
+[03:35:12]   attempt 4/8 seed=1903
+[03:35:54]     dog(vs canon): ok — YES  The dog on the right maintains the same essential features as the official character Doug: the same light brown coat, the same long, floppy ears that hang straight down with smooth, clean outline
+[03:36:01]     bear(vs canon): ok — YES.  The bear in the RIGHT image is the same character as the official Hank the bear on the LEFT. Both share the same key design traits:  - **Round head** and **small, rounded ears** — consistent in 
+[03:36:08]     anatomy: ok — PASS  The image features two stylized cartoon animals — a bear and a dog — rendered in a Pixar-style aesthetic with round bodies, stubby limbs, oversized heads, and simplified anatomy, which are inten
+[03:36:17]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several telltale signs of AI generation or digital compositing rather than a naturally rendered animation frame:  1. **Inc
+[03:36:17]   attempt 5/8 seed=1910
+[03:36:59]     dog(vs canon): ok — YES  The dog on the right maintains the core design of Doug the bloodhound: the same tan coat, black nose, and overall body structure. The ears, while slightly softer and more rounded due to lighting 
+[03:37:05]     bear(vs canon): ok — YES.  The bear in the RIGHT image is the same character as the OFFICIAL CHARACTER (Hank the bear) drawn on-model. It retains the same key design features: a round head, small rounded ears, a light tan
+[03:37:12]     anatomy: ok — PASS  The image features stylized, Pixar-style cartoon characters with intentionally round bodies, stubby limbs, oversized heads, and simplified anatomy — all consistent with the requested aesthetic. 
+[03:37:20]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several signs of being AI-generated or digitally composited rather than a naturally rendered animation frame:  1. **Incons
+[03:37:20]   attempt 6/8 seed=1917
+[03:38:03]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are noticeably puffy, fluffy, and have a plush-textured, rounded appearance, with a slight outward winging from the head. This contrasts sharply with the of
+[03:38:03]   attempt 7/8 seed=1924
+[03:38:45]     dog(vs canon): ok — YES  The dog on the right retains the core design of Doug the bloodhound: the same tan coat, black muzzle, and overall body structure. The ears, while slightly softer and more rounded due to lighting 
+[03:38:52]     bear(vs canon): ok — YES.  The bear in the RIGHT image is drawn on-model with the same key characteristics as the OFFICIAL CHARACTER (Hank the bear) in the LEFT image:  - **Round head** and **small rounded ears** – both i
+[03:38:59]     anatomy: ok — PASS  The image features two stylized cartoon animals — a bear and a dog — rendered in a Pixar-style aesthetic with round bodies, stubby limbs, oversized heads, and simplified anatomy, which are inten
+[03:39:08]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several signs of being AI-generated or digitally composited rather than a naturally rendered animation frame:  1. **Incons
+[03:39:08]   attempt 8/8 seed=1931
+[03:39:50]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are visibly puffy, plush-textured, and appear to have a soft, rounded, almost ruffled quality, especially at the edges, which contrasts sharply with the off
+[03:39:50] SCENES DONE
+[03:40:42] === s2_rollout ===
+[03:40:42]   attempt 1/8 seed=7857
+[03:41:23]     dog(vs canon): ok — YES  The dog in the "Candidate Frame" (right) retains the essential design features of Doug the bloodhound as shown in the "Official Character" (left). His ears, while slightly less rigid due to motio
+[03:41:31]     bear(vs canon): ok — YES.  The bear in the RIGHT image is drawn on-model with the same key characteristics as the OFFICIAL CHARACTER (Hank the bear) in the LEFT image:  - **Round head and small rounded ears**: Both images
+[03:41:38]     anatomy: ok — PASS  The image depicts a stylized, Pixar-inspired cartoon scene with a bear and a dog in a horse-drawn wagon, moving through a sun-dappled forest. The characters exhibit the intended design traits: r
+[03:41:47]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several telltale signs of AI generation rather than a naturally rendered animation frame:  - **Lighting and Atmosphere**: 
+[03:41:47]   attempt 2/8 seed=7864
+[03:42:29]     dog(vs canon): ok — YES  The dog in the right frame (Candidate Frame) maintains the same essential ear shape as the official character: long, floppy, and hanging straight down with smooth, clean outlines. While there is 
+[03:42:36]     bear(vs canon): ok — YES.  The bear in the RIGHT image matches the official character design in all key features:   - **Round head** and **small rounded ears** — consistent with the official design.   - **Light tan muzzle
+[03:42:43]     anatomy: ok — PASS  The image depicts a stylized, Pixar-inspired cartoon scene with a bear driving a wooden cart pulled by a horse, and a small dog sitting in the back. The characters exhibit the intended design tr
+[03:42:51]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several telltale signs of AI generation or digital compositing rather than a naturally rendered animation frame:  - **Inco
+[03:42:51]   attempt 3/8 seed=7871
+[03:43:34]     dog(vs canon): FAIL — NO.  The dog in the "CANDIDATE FRAME" (right) has ears that are puffy, fluffy, and appear to have a plush-textured, ruffled quality, with a slight outward winging from the head — significantly differe
+[03:43:34]   attempt 4/8 seed=7878
+[03:44:18]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are significantly different from the official design. Instead of hanging straight down like heavy, flat, smooth leather straps with clean, simple outlines, 
+[03:44:18]   attempt 5/8 seed=7885
+[03:45:02]     dog(vs canon): FAIL — NO.  The dog in the RIGHT frame (Candidate Frame) has ears that are significantly different from the official design. While the official Doug has long, straight, smooth, flat, leather-like ears hangin
+[03:45:02]   attempt 6/8 seed=7892
+[03:45:44]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are noticeably puffy and fluffy, with a textured, plush appearance that differs significantly from the official design’s smooth, flat, leather-like ears. Th
+[03:45:44]   attempt 7/8 seed=7899
+[03:46:28]     dog(vs canon): ok — YES  The dog in the "CANDIDATE FRAME" (right) retains the essential visual characteristics of Doug the bloodhound as defined in the "OFFICIAL CHARACTER" (left). Specifically:  - **Ears**: The ears han
+[03:46:37]     bear(vs canon): ok — YES.  The bear in the RIGHT image is drawn on-model with the same key characteristics as the OFFICIAL CHARACTER (Hank the bear) in the LEFT image:  - **Round head and small rounded ears**: Both images
+[03:46:44]     anatomy: ok — PASS  The image depicts a stylized, Pixar-inspired cartoon scene featuring a bear and a dog riding in a wooden cart pulled by a horse, all rendered with exaggerated, rounded forms, stubby limbs, and o
+[03:46:52]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several telltale signs of AI generation rather than being a naturally rendered animation frame:  - **Unrealistic lighting 
+[03:46:52]   attempt 8/8 seed=7906
+[03:47:37]     dog(vs canon): ok — YES  The dog in the "CANDIDATE FRAME" on the right retains the essential visual characteristics of Doug the bloodhound as defined in the "OFFICIAL CHARACTER" on the left. Specifically:  - **Ears**: Th
+[03:47:45]     bear(vs canon): ok — YES.  The bear in the RIGHT image is drawn on-model with the same key characteristics as the OFFICIAL CHARACTER (Hank the bear) in the LEFT image:  - **Round head and small rounded ears**: Both images
+[03:47:52]     anatomy: ok — PASS  The image depicts a stylized, Pixar-inspired cartoon scene featuring a bear driving a wooden wagon pulled by a horse, with a small dog sitting in the back. The characters exhibit the intended de
+[03:48:00]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several telltale signs of AI generation or digital compositing rather than a naturally rendered animation frame:  - **Unre
+[03:48:00] === s3_arrival ===
+[03:48:00]   attempt 1/8 seed=1744
+[03:48:42]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are noticeably puffy, fluffy, and have a plush-textured, ruffled appearance, especially compared to the official design on the LEFT, which features smooth, 
+[03:48:42]   attempt 2/8 seed=1751
+[03:49:24]     dog(vs canon): FAIL — NO.  The dog in the "CANDIDATE FRAME" on the right has ears that are noticeably puffy, fluffy, and textured—resembling plush or soft fur rather than the smooth, flat, leather-like ears shown in the of
+[03:49:24]   attempt 3/8 seed=1758
+[03:50:06]     dog(vs canon): ok — YES  The dog in the candidate frame (RIGHT) maintains the same essential design as the official character (LEFT). The ears, while slightly softer in rendering due to lighting and perspective, still ha
+[03:50:15]     bear(vs canon): FAIL — NO.  While the bear in the RIGHT image shares some general similarities with Hank (such as being a large, friendly-looking bear with a light-colored muzzle and a tan belly patch), there are significan
+[03:50:15]   attempt 4/8 seed=1765
+[03:50:57]     dog(vs canon): FAIL — NO.  The dog in the "CANDIDATE FRAME" (right) has ears that are noticeably puffy, fluffy, and textured—resembling plush or soft fur—rather than the smooth, flat, leather-like, straight-hanging ears sh
+[03:50:57]   attempt 5/8 seed=1772
+[03:51:39]     dog(vs canon): ok — YES  The dog in the RIGHT frame (Candidate Frame) maintains the same essential design as the OFFICIAL CHARACTER (Doug the bloodhound). The ears, while slightly more voluminous due to lighting and pers
+[03:51:48]     bear(vs canon): FAIL — NO.  While the bear in the RIGHT image shares some general characteristics with Hank (such as being a brown bear with a light muzzle and rounded ears), it is **not** drawn on-model with the same speci
+[03:51:48]   attempt 6/8 seed=1779
+[03:52:33]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are noticeably puffy, fluffy, and have a plush-textured, ruffled appearance, especially compared to the official design. In the official image (LEFT), the e
+[03:52:33]   attempt 7/8 seed=1786
+[03:53:15]     dog(vs canon): FAIL — NO.  The dog on the right has ears that are noticeably puffy, fluffy, and textured—resembling soft, plush material rather than the smooth, flat, leather-like ears of the official character. The ears a
+[03:53:15]   attempt 8/8 seed=1793
+[03:53:57]     dog(vs canon): ok — YES  The dog on the right matches the official character Doug the bloodhound in key features. His ears hang straight down, consistent with the "heavy flat smooth leather straps" description — they are
+[03:54:05]     bear(vs canon): ok — YES.  The bear in the RIGHT image is drawn on-model with the same key characteristics as the OFFICIAL CHARACTER (Hank the bear) on the LEFT:  - **Round head** and **small rounded ears** – both images 
+[03:54:11]     anatomy: ok — PASS  The image features stylized, Pixar-style cartoon animals with round bodies, stubby limbs, oversized heads, and simplified anatomy — all of which are intentional and consistent with the requested
+[03:54:20]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several telltale signs of AI generation or digital compositing rather than a naturally rendered animation frame:  - **Inco
+[03:54:20] === s4_problem ===
+[03:54:20]   attempt 1/8 seed=5612
+[03:55:00]     dog(vs canon): FAIL — NO.  The ears on the RIGHT dog are significantly different from the official design. While the official character (LEFT) has ears that hang straight down like heavy, flat, smooth leather straps with c
+[03:55:00]   attempt 2/8 seed=5619
+[03:55:43]     dog(vs canon): FAIL — NO.  The ears on the RIGHT frame are noticeably puffy and plush-textured, with a soft, rounded, and slightly ruffled appearance, especially near the base and edges. They do not hang straight down like
+[03:55:43]   attempt 3/8 seed=5626
+[03:56:26]     dog(vs canon): FAIL — NO.  The ears on the RIGHT dog are not hanging straight down like heavy flat smooth leather straps as in the OFFICIAL CHARACTER. Instead, they appear puffy, with a softer, more rounded, and slightly r
+[03:56:26]   attempt 4/8 seed=5633
+[03:57:06]     dog(vs canon): ok — YES  The ears on the right frame maintain the same general shape and style as the official character: they hang down, are smooth, and have clean outlines, consistent with the "heavy flat smooth leathe
+[03:57:14]     anatomy: ok — PASS  The image depicts a stylized, Pixar-esque cartoon dog with a round body, stubby limbs, oversized head, and simplified anatomy — all of which are intentional and consistent with the requested sty
+[03:57:22]     natural: FAIL — FAIL.  While the image is highly detailed and visually compelling, it exhibits several telltale signs of AI generation or digital compositing rather than a naturally rendered animation frame:  - **Inc
+[03:57:22]   attempt 5/8 seed=5640
+[03:58:03]     dog(vs canon): ok — YES  The dog on the right maintains the same core design as the official character: the ears hang straight down, appearing as smooth, flat, leather-like straps with clean outlines—consistent with the 
+[03:58:10]     anatomy: ok — PASS  The image depicts a stylized, Pixar-esque cartoon dog with a round body, stubby limbs, and an oversized head — all consistent with the requested aesthetic. The dog is interacting with a wooden t
+[03:58:19]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several telltale signs of AI generation or digital compositing rather than a naturally rendered animation frame:  - **Inco
+[03:58:19]   attempt 6/8 seed=5647
+[03:58:59]     dog(vs canon): ok — YES  The dog in the RIGHT frame (Candidate Frame) maintains the same essential design as the OFFICIAL CHARACTER (Doug the bloodhound). The ears, while slightly more voluminous due to the angle and lig
+[03:59:06]     anatomy: ok — PASS  The image depicts a stylized, Pixar-style cartoon scene featuring a brown dog with oversized head, stubby limbs, and simplified anatomy — all consistent with the requested style. The dog is stan
+[03:59:15]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several telltale signs of AI generation rather than a naturally rendered animation frame:  - **Inconsistent lighting and s
+[03:59:15]   attempt 7/8 seed=5654
+[03:59:57]     dog(vs canon): FAIL — NO.  The ears on the RIGHT dog are significantly different from the official design. While the official character (LEFT) has ears that hang straight down like heavy, flat, smooth leather straps with c
+[03:59:57]   attempt 8/8 seed=5661
+[04:00:37]     dog(vs canon): ok — YES  The dog on the right maintains the same overall body structure, coat color (light brown with white chest), and facial features as the official character on the left. The ears, while slightly more
+[04:00:44]     anatomy: ok — PASS  The image depicts a stylized cartoon dog in a Pixar-esque design, featuring a round body, stubby limbs, an oversized head, and simplified anatomy — all of which are intentional and consistent wi
+[04:00:52]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several telltale signs of AI generation rather than a naturally rendered animation frame:  - **Unnatural lighting and shad
+[04:00:52] s5_doug_moment: already has 2 — skip
+[04:00:52] s6_hank_moment: already has 2 — skip
+[04:00:52] === s7_cooldown ===
+[04:00:52]   attempt 1/8 seed=2200
+[04:01:35]     dog(vs canon): ok — YES  The dog on the right retains the essential design features of Doug the bloodhound as shown in the official image: the ears hang straight down, appearing as smooth, flat, leather-like straps with 
+[04:01:39]     bear(vs canon): ok — YES. The bear in the RIGHT image is the same character as the official Hank the bear on the LEFT. It maintains the same on-model features: round head, small rounded ears, light tan muzzle, brown fuzzy
+[04:01:48]     anatomy: ok — PASS  The image features a group of stylized, cartoonish animals in a cheerful outdoor scene, consistent with a Pixar-style aesthetic. All characters have round bodies, stubby limbs, oversized heads, 
+[04:01:56]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several signs of being AI-generated or digitally composited rather than a naturally rendered animation frame:  - **Inconsi
+[04:01:56]   attempt 2/8 seed=2207
+[04:02:39]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are noticeably puffy, fluffy, and have a plush-textured, ruffled appearance, especially at the edges, which contrasts sharply with the official design’s hea
+[04:02:39]   attempt 3/8 seed=2214
+[04:03:20]     dog(vs canon): FAIL — NO.  The dog on the right has ears that are puffy, fluffy, and appear plush-textured, with a wavy, ruffled look that flares outward from the head — significantly different from the official character’
+[04:03:20]   attempt 4/8 seed=2221
+[04:04:02]     dog(vs canon): FAIL — NO.  The dog in the "CANDIDATE FRAME" on the right has ears that are noticeably puffy, fluffy, and textured—resembling plush or soft, rounded flaps rather than the flat, smooth, leather-like straps se
+[04:04:02]   attempt 5/8 seed=2228
+[04:04:44]     dog(vs canon): ok — YES  The dog on the right retains the core design of Doug the bloodhound: the same light brown coat, long body, and characteristic facial structure. His ears, while slightly more rounded and soft in t
+[04:04:51]     bear(vs canon): ok — YES.  The bear in the RIGHT image is drawn on-model with the same key characteristics as the OFFICIAL CHARACTER (Hank the bear) in the LEFT image:  - **Round head** and **small rounded ears** – both i
+[04:04:59]     anatomy: ok — PASS  The image features a group of stylized, cartoonish animals in a vibrant, sunlit outdoor scene with a train in the background. The characters — a giraffe, bear, dog, elephant, and turtle — are re
+[04:05:08]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several telltale signs of AI generation or digital compositing rather than a naturally rendered animation frame:  - **Inco
+[04:05:08]   attempt 6/8 seed=2235
+[04:05:49]     dog(vs canon): FAIL — NO.  The dog on the right has ears that are puffy, fluffy, and appear plush-textured, with a rounded, voluminous shape that flares outward from the head—contrasting sharply with the official design’s 
+[04:05:49]   attempt 7/8 seed=2242
+[04:06:30]     dog(vs canon): FAIL — NO.  The dog on the right has ears that are puffy, fluffy, and appear plush-textured, with a ruffled, wavy outline that flares outward from the head — significantly different from the official charact
+[04:06:30]   attempt 8/8 seed=2249
+[04:07:12]     dog(vs canon): FAIL — NO.  The dog in the "CANDIDATE FRAME" on the right has ears that are visibly puffy, fluffy, and textured—resembling plush or soft fur—rather than the smooth, flat, leather-like, straight-down ears sho
+[04:07:12] === s8_pawbump ===
+[04:07:12]   attempt 1/8 seed=1591
+[04:07:56]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are noticeably puffy and fluffy, with a textured, plush appearance that differs significantly from the official design’s smooth, flat, leather-like ears tha
+[04:07:56]   attempt 2/8 seed=1598
+[04:08:38]     dog(vs canon): ok — YES  The dog on the right retains the essential design of Doug the bloodhound: the same tan coat, the same facial structure, and the same overall body proportions. The ears, while slightly softer and 
+[04:08:46]     bear(vs canon): ok — YES.  The bear in the RIGHT image is the same character as the official Hank the bear on the LEFT. Both share the same key design traits:  - **Round head** and **small, rounded ears** — consistent in 
+[04:08:52]     anatomy: ok — PASS  The image features two stylized cartoon animals — a bear and a dog — rendered in a Pixar-style aesthetic with round bodies, stubby limbs, oversized heads, and simplified anatomy, which are inten
+[04:09:01]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several signs of being AI-generated or digitally composited rather than a naturally rendered animation frame:  1. **Unreal
+[04:09:01]   attempt 3/8 seed=1605
+[04:09:43]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are noticeably puffy, fluffy, and have a plush-textured, ruffled appearance, especially at the edges, which contrasts sharply with the official design’s hea
+[04:09:43]   attempt 4/8 seed=1612
+[04:10:27]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are not hanging straight down like heavy flat smooth leather straps as in the OFFICIAL CHARACTER. Instead, they appear puffy, slightly rounded, and have a s
+[04:10:27]   attempt 5/8 seed=1619
+[04:11:11]     dog(vs canon): ok — YES  The dog on the right maintains the same essential design as the official character Doug the bloodhound. His ears, while slightly softer in rendering due to lighting and animation style, still han
+[04:11:20]     bear(vs canon): ok — YES.  The bear in the RIGHT image is drawn on-model with the same key characteristics as the official character in the LEFT image:  - **Round head and small rounded ears**: Both bears have a soft, rou
+[04:11:27]     anatomy: ok — PASS  The image features a stylized Pixar-style cartoon with round bodies, stubby limbs, oversized heads, and simplified anatomy — all of which are intentional and consistent with the requested style.
+[04:11:36]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several telltale signs of AI generation or digital compositing rather than a naturally rendered animation frame:  - **Unre
+[04:11:36]   attempt 6/8 seed=1626
+[04:12:18]     dog(vs canon): ok — YES  The dog on the right maintains the core design of Doug the bloodhound: the same light brown coat, the same facial structure, and the same overall body proportions. While the ears appear slightly 
+[04:12:24]     bear(vs canon): ok — YES.  The bear in the RIGHT image is the same character, Hank, drawn on-model. He retains the same key design features: a round head with small, rounded ears; a light tan muzzle; a brown, fuzzy coat; 
+[04:12:30]     anatomy: ok — PASS  The image features two stylized cartoon animals — a bear and a dog — rendered in a Pixar-style aesthetic with round bodies, stubby limbs, oversized heads, and simplified anatomy, which are inten
+[04:12:39]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several signs of being AI-generated or digitally composited rather than a naturally rendered animation frame:  1. **Unnatu
+[04:12:39]   attempt 7/8 seed=1633
+[04:13:20]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are noticeably puffy, fluffy, and have a plush-textured, ruffled appearance, especially at the edges, which contrasts sharply with the official design’s smo
+[04:13:20]   attempt 8/8 seed=1640
+[04:14:02]     dog(vs canon): ok — YES  The dog in the RIGHT frame (Candidate Frame) maintains the same essential design as the OFFICIAL CHARACTER (Doug the bloodhound). The ears, while slightly softer in rendering due to lighting and 
+[04:14:11]     bear(vs canon): ok — YES.  The bear in the RIGHT image is drawn on-model with the same key characteristics as the OFFICIAL CHARACTER (Hank the bear) in the LEFT image:  - **Round head** and **small rounded ears** – both i
+[04:14:19]     anatomy: ok — PASS  The image features two anthropomorphized animals — a bear and a dog — in a warm, stylized Pixar-esque animation style. Both characters exhibit the intended design traits: round bodies, stubby li
+[04:14:28]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several signs of being AI-generated or digitally composited rather than a naturally rendered animation frame:  1. **Unreal
+[04:14:28] SCENES DONE
+[08:49:30] === s2_rollout ===
+[08:49:30]   attempt 1/20 seed=27156
+[08:50:13]     dog(vs canon): ok — YES  The dog in the candidate frame (RIGHT) maintains the essential visual identity of Doug the bloodhound as defined in the official character (LEFT). The ears, while slightly softer in rendering due
+[08:50:21]     bear(vs canon): FAIL — NO.  While the bear in the RIGHT image shares some general characteristics with the official Hank (such as being a brown bear with a light muzzle and rounded ears), there are significant differences i
+[08:50:22]   attempt 2/20 seed=27163
+[08:51:00]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are puffy, fluffy, and appear plush-textured, with a ruffled, wavy, and outwardly flared shape — significantly different from the official design’s heavy, f
+[08:51:00]   attempt 3/20 seed=27170
+[08:51:41]     dog(vs canon): ok — YES  The dog in the candidate frame (RIGHT) maintains the same essential ear shape as the official character: long, floppy, and hanging straight down with smooth, flat appearance—consistent with the "
+[08:51:46]     bear(vs canon): ok — YES.  The bear in the RIGHT image is the same character as the OFFICIAL CHARACTER (Hank the bear) drawn on-model. It retains the same key features: a round head with small, rounded ears; a light tan m
+[08:51:53]     anatomy: ok — PASS  The image depicts a stylized, Pixar-inspired cartoon scene featuring a bear and a dog in a wooden wagon pulled by a horse, all rendered with exaggerated, rounded forms, stubby limbs, and oversiz
+[08:52:01]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several telltale signs of AI generation or digital compositing rather than a naturally rendered animation frame:  - **Ligh
+[08:52:01]   attempt 4/20 seed=27177
+[08:52:39]     dog(vs canon): FAIL — NO.  The dog in the "CANDIDATE FRAME" (right) has ears that are noticeably puffy, fluffy, and textured—resembling soft, plush material rather than the smooth, flat, leather-like ears shown in the offi
+[08:52:39]   attempt 5/20 seed=27184
+[08:53:19]     dog(vs canon): FAIL — NO.  The dog in the "CANDIDATE FRAME" (right) has ears that are noticeably puffy, fluffy, and textured—resembling soft, plush fur rather than the smooth, flat, leather-like ears shown in the official 
+[08:53:19]   attempt 6/20 seed=27191
+[08:53:58]     dog(vs canon): ok — YES  The dog in the RIGHT frame (Candidate Frame) maintains the same essential ear shape as the OFFICIAL CHARACTER: long, floppy, hanging straight down with smooth, flat, leather-like appearance and c
+[08:54:05]     bear(vs canon): ok — YES.  The bear in the RIGHT image matches the official character design in key features:   - **Round head** and **small rounded ears** — consistent with the official design.   - **Light tan muzzle** —
+[08:54:12]     anatomy: ok — PASS  The image depicts a stylized, Pixar-like cartoon scene featuring a large brown bear driving a wooden wagon pulled by a horse, with a small dachshund sitting in the back. The characters exhibit t
+[08:54:20]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several telltale signs of AI generation rather than a naturally rendered animation frame:  - **Unrealistic lighting and at
+[08:54:20]   attempt 7/20 seed=27198
+[08:55:01]     dog(vs canon): ok — YES  The dog in the right frame (Candidate Frame) maintains the essential visual identity of Doug the bloodhound as defined in the official character design. While the perspective is different (side p
+[08:55:07]     bear(vs canon): ok — YES.  The bear in the RIGHT image matches the official design of Hank the bear in all key features:   - **Round head** and **small rounded ears** — consistent with the official character.   - **Light 
+[08:55:14]     anatomy: ok — PASS  The image depicts a stylized, Pixar-esque cartoon scene featuring a bear and a dog riding in a wooden wagon pulled by a horse. The characters exhibit the intended design traits: round bodies, st
+[08:55:22]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several telltale signs of AI generation rather than a naturally rendered animation frame:  - **Unrealistic lighting and at
+[08:55:22]   attempt 8/20 seed=27205
+[08:56:03]     dog(vs canon): ok — YES  The dog in the candidate frame (right) maintains the essential visual characteristics of Doug the bloodhound as defined in the official character design. While the perspective is dynamic (side vi
+[08:56:10]     bear(vs canon): ok — YES.  The bear in the RIGHT image matches the official character design in all key features:   - **Round head** and **small rounded ears** — consistent with the LEFT image.   - **Light tan muzzle** — 
+[08:56:16]     anatomy: ok — PASS  The image depicts a stylized, Pixar-like cartoon scene with a bear driving a wooden wagon pulled by a horse, and a dog sitting in the back. The characters exhibit the intended design traits: rou
+[08:56:24]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several telltale signs of AI generation rather than a naturally rendered animation frame:  - **Unrealistic lighting and sh
+[08:56:24]   attempt 9/20 seed=27212
+[08:57:05]     dog(vs canon): ok — YES  The dog in the candidate frame (RIGHT) maintains the essential visual characteristics of Doug the bloodhound as defined in the official character (LEFT). His ears, while slightly less rigid due t
+[08:57:12]     bear(vs canon): ok — YES.  The bear in the RIGHT image matches the official character design in all key features:   - **Round head** and **small rounded ears** — consistent with the official design.   - **Light tan muzzle
+[08:57:18]     anatomy: ok — PASS  The image depicts a stylized, Pixar-inspired cartoon scene with a bear and a dog riding in a wooden wagon pulled by a horse, all rendered with exaggerated, rounded forms, oversized heads, and si
+[08:57:26]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several telltale signs of AI generation rather than being a naturally rendered animation frame:  - **Unrealistic lighting 
+[08:57:26]   attempt 10/20 seed=27219
+[08:58:07]     dog(vs canon): ok — YES  The dog in the candidate frame (RIGHT) maintains the essential visual characteristics of Doug the bloodhound as defined in the official design (LEFT). His ears, while slightly less sharply define
+[08:58:13]     bear(vs canon): ok — YES.  The bear in the RIGHT image matches the official character design in all key features:   - **Round head** and **small rounded ears** — consistent with the official design.   - **Light tan muzzle
+[08:58:20]     anatomy: ok — PASS  The image depicts a stylized, Pixar-like cartoon scene featuring a bear and a dog in a wooden wagon being pulled by a horse through a sun-dappled forest. The characters exhibit the intended desi
+[08:58:28]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several telltale signs of AI generation rather than a naturally rendered animation frame:  - **Inconsistent lighting and s
+[08:58:28]   attempt 11/20 seed=27226
+[08:59:09]     dog(vs canon): ok — YES  The dog in the "CANDIDATE FRAME" on the right retains the essential visual characteristics of Doug the bloodhound as shown in the official design. His ears, while slightly less defined due to mot
+[08:59:16]     bear(vs canon): ok — YES.  The bear in the RIGHT image matches the official character design of Hank the bear in all key features:   - **Round head** and **small rounded ears** — consistent with the official design.   - *
+[08:59:22]     anatomy: ok — PASS  The image depicts a stylized, Pixar-inspired cartoon scene featuring a bear and a dog in a wooden wagon being pulled by a horse through a sun-dappled forest. The characters exhibit the intended 
+[08:59:30]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several telltale signs of AI generation rather than a naturally rendered animation frame:  - **Lighting and Atmosphere**: 
+[08:59:30]   attempt 12/20 seed=27233
+[09:00:13]     dog(vs canon): FAIL — NO.  The dog in the "CANDIDATE FRAME" (right) has ears that are noticeably puffy, fluffy, and textured—resembling soft, plush fur rather than the smooth, flat, leather-like ears shown in the official 
+[09:00:13]   attempt 13/20 seed=27240
+[09:00:56]     dog(vs canon): FAIL — NO.  The dog in the "CANDIDATE FRAME" on the right has ears that are **puffy, fluffy, and appear plush-textured**, with a **wavy, ruffled, and outwardly flared** shape — significantly different from t
+[09:00:56]   attempt 14/20 seed=27247
+[09:01:37]     dog(vs canon): ok — YES  The dog in the candidate frame (RIGHT) maintains the same essential design as the official character (LEFT). The ears, while slightly softer in rendering due to lighting and motion, still hang st
+[09:01:44]     bear(vs canon): ok — YES.  The bear in the RIGHT image matches the official character design in all key features:   - **Round head** and **small rounded ears** — consistent with the official design.   - **Light tan muzzle
+[09:01:50]     anatomy: ok — PASS  The image depicts a stylized, Pixar-esque cartoon scene featuring a horse pulling a wooden cart through a sun-dappled forest. On the cart are a bear and a dog, both rendered with exaggerated, ro
+[09:01:58]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several telltale signs of AI generation or digital compositing rather than a naturally rendered animation frame:  - **Ligh
+[09:01:58]   attempt 15/20 seed=27254
+[09:02:41]     dog(vs canon): FAIL — NO.  The dog in the RIGHT frame (Candidate Frame) has ears that are noticeably puffy, fluffy, and appear to have a plush, textured quality—quite different from the official design’s smooth, flat, leat
+[09:02:41]   attempt 16/20 seed=27261
+[09:03:22]     dog(vs canon): FAIL — NO.  The dog in the "CANDIDATE FRAME" (right) has ears that are puffy, fluffy, and appear plush-textured, with a ruffled, wavy quality that flares outward from the head — significantly different from 
+[09:03:22]   attempt 17/20 seed=27268
+[09:04:03]     dog(vs canon): FAIL — NO.  The dog in the "CANDIDATE FRAME" on the right has ears that are noticeably puffy, fluffy, and textured—resembling soft, plush fur rather than the smooth, flat, leather-like ears shown in the offi
+[09:04:03]   attempt 18/20 seed=27275
+[09:04:45]     dog(vs canon): FAIL — NO.  The ears on the dog in the RIGHT frame are noticeably puffy and fluffy, with a textured, plush appearance that differs significantly from the official design’s smooth, flat, leather-like ears tha
+[09:04:45]   attempt 19/20 seed=27282
+[09:05:29]     dog(vs canon): ok — YES  The dog in the RIGHT frame (Candidate Frame) maintains the essential visual characteristics of Doug the bloodhound as defined in the OFFICIAL CHARACTER (canon) image. Specifically:  - **Ears**: T
+[09:05:35]     bear(vs canon): ok — YES.  The bear in the RIGHT image matches the official design of Hank the bear in all key features:   - **Round head** and **small rounded ears** — consistent with the left image.   - **Light tan muzz
+[09:05:42]     anatomy: ok — PASS  The image depicts a stylized, Pixar-esque cartoon scene featuring a bear driving a wooden wagon, with a small dog sitting beside it, and a horse pulling the wagon from the front. The characters 
+[09:05:50]     natural: FAIL — FAIL.  While the image is highly stylized and visually appealing, it exhibits several telltale signs of AI generation or digital compositing rather than a naturally rendered animation frame:  - **Ligh
+[09:05:50]   attempt 20/20 seed=27289
+[09:06:32]     dog(vs canon): ok — YES  The dog in the candidate frame (RIGHT) maintains the essential visual identity of Doug the bloodhound as defined in the official character (LEFT). While the scene is dynamic — with motion blur, d
+[09:06:38]     bear(vs canon): ok — YES.  The bear in the RIGHT image matches the official design of Hank the bear in all key features:   - **Round head** and **small rounded ears** — consistent with the official character.   - **Light 
+[09:06:45]     anatomy: ok — PASS  The image depicts a stylized, Pixar-esque cartoon scene with a bear and a dog in a horse-drawn wagon, moving through a sun-dappled forest. The characters exhibit the intended design traits: roun
+[09:06:54]     natural: FAIL — FAIL.  While the image is highly detailed and visually appealing, it exhibits several telltale signs of AI generation rather than a naturally rendered animation frame:  - **Unrealistic lighting and at
+[09:06:54] === s3_arrival ===
+[09:06:54]   attempt 1/20 seed=24312
+[09:07:35]     dog(vs canon): FAIL — NO.  The dog in the RIGHT frame (Candidate Frame) has ears that are puffy, fluffy, and plush-textured, with a rounded, voluminous shape that differs significantly from the official character’s straigh
+[09:07:35]   attempt 2/20 seed=24319
+[09:08:16]     dog(vs canon): FAIL — NO.  The dog in the RIGHT frame (Candidate Frame) has ears that are noticeably puffy, fluffy, and textured—resembling plush or soft fur—rather than the smooth, flat, leather-like, straight-down ears s
+[09:08:16]   attempt 3/20 seed=24326
+[09:09:00]     dog(vs canon): FAIL — NO.  The dog in the RIGHT frame (Candidate Frame) has ears that are significantly different from the official design. While the official Doug has long, straight, smooth, flat ears hanging down like le
+[09:09:00]   attempt 4/20 seed=24333
+[10:33:02] === s2_rollout ===
+[10:33:02] swap limit — stop
