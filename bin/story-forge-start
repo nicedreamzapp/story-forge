@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+# story-forge-start — what the Story Forge app actually launches.
+#
+# Before 2026-07-26 the app opened a web form and that was all: every rule we had
+# learned lived in a chat log, and the machine only worked while someone was
+# watching it. Now the app boots the whole self-driving stack, and the rules are
+# enforced by the code it starts, not by whoever happens to be at the keyboard.
+#
+# What it starts, in order:
+#   1. ComfyUI                  — the renderer
+#   2. Story Forge server       — the authoring UI on :17600
+#   3. THE DIRECTOR (keepalive) — reads the story spine, builds every missing beat,
+#                                 gates every shot, escalates on failure, never idles
+#   4. opens STATUS.md + the current WIP reel so there is always something to see
+#
+# The director only runs for a project marked ACTIVE_FILM, so opening the app never
+# starts a render you didn't ask for.
+set -u
+SF="$HOME/Desktop/PROJECTS/story-forge"
+COMFY="$HOME/Desktop/PROJECTS/AI/ComfyUI"
+LOG="$SF/story-forge-start.log"
+say() { echo "[start $(date '+%H:%M:%S')] $*" | tee -a "$LOG"; }
+
+say "Story Forge starting"
+
+# 1. renderer
+if ! curl -s -m 3 http://127.0.0.1:8188/system_stats >/dev/null 2>&1; then
+  say "starting ComfyUI"
+  ( cd "$COMFY" && nohup ./venv/bin/python main.py --listen >> /tmp/comfyui_overnight.log 2>&1 & )
+else
+  say "ComfyUI already up"
+fi
+
+# 2. authoring UI
+if ! curl -s -m 3 http://127.0.0.1:17600/ >/dev/null 2>&1; then
+  say "starting Story Forge server on :17600"
+  ( cd "$SF" && nohup ./venv/bin/python server.py >> /tmp/storyforge_server.log 2>&1 & ) 2>/dev/null \
+    || ( cd "$SF" && nohup python3 server.py >> /tmp/storyforge_server.log 2>&1 & )
+else
+  say "Story Forge server already up"
+fi
+
+# 3. the director — for whichever film is marked active
+ACTIVE=""
+for d in "$SF"/projects/*/; do
+  [ -f "$d/ACTIVE_FILM" ] && ACTIVE="$d"
+done
+
+if [ -n "$ACTIVE" ]; then
+  if pgrep -f "forge-director" >/dev/null 2>&1; then
+    say "director already working on $(basename "$ACTIVE")"
+  elif [ -f "$ACTIVE/STOP_DIRECTOR" ]; then
+    say "director held: STOP_DIRECTOR present in $(basename "$ACTIVE") — remove it to resume"
+  else
+    say "starting the director on $(basename "$ACTIVE") — it will not stop until the film is done"
+    nohup bash "$SF/bin/forge-keepalive" "$ACTIVE" 8 >> "$ACTIVE/director.log" 2>&1 &
+  fi
+else
+  say "no project marked ACTIVE_FILM — nothing will render. touch projects/<name>/ACTIVE_FILM to arm one"
+fi
+
+# 4. always show something
+sleep 2
+if [ -n "$ACTIVE" ]; then
+  [ -f "$ACTIVE/STATUS.md" ] && open -a "TextEdit" "$ACTIVE/STATUS.md" 2>/dev/null
+  [ -f "$ACTIVE/WIP_REEL.mp4" ] && open "$ACTIVE/WIP_REEL.mp4" 2>/dev/null
+fi
+open -a "Brave Browser" "http://127.0.0.1:17600/story" 2>/dev/null
+say "ready"
