@@ -69,10 +69,18 @@ MAKE_VIDEO = SF / "bin" / "make-video"
 MEM_GATE = SF / "bin" / "mem-gate"
 SONGFORGE = os.environ.get("SONGFORGE_URL", "http://127.0.0.1:8767")
 
-IDENT_Q = ("The LEFT image is the official locked design of {subject}. Look at the same "
-           "character in the RIGHT image. Is it the SAME character — same head shape, same "
-           "ears, same muzzle, same colours and markings, same face style? Answer YES or NO "
-           "first, then one sentence.")
+# Scale honesty (2026-07-26): the master is a close portrait; a wide shot puts the
+# character 20 pixels tall. Comparing those literally makes every wide "drift" — two
+# otherwise-good arrival candidates were rejected for "a smaller head and lighter fur",
+# which is what distance and haze DO to a character. The question now allows for scale,
+# distance and lighting and asks about DESIGN, which is what canon actually governs.
+IDENT_Q = ("The LEFT image is the official locked design of {subject}. Find the same "
+           "character in the RIGHT image, which may be a wider shot where the character is "
+           "smaller, further away, differently lit or partly turned. Allowing for scale, "
+           "distance, lighting and angle, is it the same character DESIGN — same species and "
+           "build, same head and ear shape, same colour scheme and markings, same art style? "
+           "Do not fail it merely for being smaller, hazier or warmer-lit than the master. "
+           "Answer YES or NO first, then one sentence.")
 
 LOG: list[str] = []
 

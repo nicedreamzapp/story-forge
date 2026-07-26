@@ -212,6 +212,8 @@ def main() -> int:
     for s in shots:
         try:
             r = check_shot(s, root, masters, votes=args.votes)
+            if s.get("expect"):
+                r["expect"] = s["expect"]
         except Exception as e:                                  # noqa: BLE001
             r = {"id": s["id"], "verdict": "ERROR", "why": f"{type(e).__name__}: {e}"}
         results.append(r)
@@ -220,6 +222,27 @@ def main() -> int:
 
     fails = [r for r in results if r["verdict"] == "FAIL"]
     errs = [r for r in results if r["verdict"] == "ERROR"]
+
+    # ---- AUDIT THE AUDITOR ---------------------------------------------------
+    # A gate nobody checks is just a different kind of guess. Shots may carry an
+    # `expect` (PASS/FAIL) recorded from a HUMAN verdict; the gate is trustworthy
+    # only while it agrees with those. First run: 5/6 agreement, and the lone
+    # disagreement was a beat worded for something not visible in frame — i.e. the
+    # spec was wrong, not the judge. Re-run this whenever prompts or wording change.
+    graded = [r for r in results if r.get("expect")]
+    agree = [r for r in graded if r["verdict"] == r["expect"]]
+    if graded:
+        pct = round(100 * len(agree) / len(graded))
+        print(f"[beat_gate] CALIBRATION: agrees with {len(agree)}/{len(graded)} known human "
+              f"verdicts ({pct}%)", flush=True)
+        for r in graded:
+            if r["verdict"] != r["expect"]:
+                print(f"[MISCAL] {r['id']}: gate said {r['verdict']}, human said {r['expect']} "
+                      f"— {r.get('why','')[:160]}", flush=True)
+        if pct < 80:
+            print("[beat_gate] WARNING: the gate disagrees with humans too often to be trusted "
+                  "— fix the gate or the beat wording before believing any verdict above",
+                  flush=True)
 
     # ---- STORY SPINE ---------------------------------------------------------
     # Per-shot checks cannot catch a beat that was never shot at all. Episode 1

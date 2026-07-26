@@ -5,13 +5,13 @@
    "id": "s1_coldopen",
    "clip": "clips/s1_final.mp4",
    "t": 2.0,
-   "beat": "a bear and a dog idle away a lazy warm afternoon fishing by a creek, nothing happening, completely at ease"
+   "beat": "a bear and a dog sit relaxed by a green creek with fishing rods, calm and unhurried"
   },
   {
    "id": "s2_thecall",
    "clip": "clips/s2_call_final.mp4",
    "t": 2.0,
-   "beat": "something is clearly WRONG in the distance: a circus train stopped or in trouble, alarming smoke, the moment a viewer understands there is an emergency somewhere down the line",
+   "beat": "a circus train stopped still on the tracks with thick dark smoke pouring up from it, seen across a valley",
    "must_not": [
     "a train travelling normally and peacefully",
     "a purely calm scenic postcard with nothing wrong"
@@ -21,13 +21,13 @@
    "id": "s3_rollout",
    "clip": "clips/s2_final.mp4",
    "t": 2.0,
-   "beat": "the rescue wagon charges out at speed, urgent and committed, dust flying, on its way to an emergency"
+   "beat": "a horse-drawn wooden wagon moving fast along a dirt road with dust kicking up behind it"
   },
   {
    "id": "s4_arrival",
    "clip": "clips/s3_final.mp4",
    "t": 2.0,
-   "beat": "the heroes arrive at a dead circus train that has broken down and is baking in the heat with animals trapped inside and unable to get out",
+   "beat": "a bear and a dog standing in front of a weathered circus train whose doors are all shut, in harsh sunlight with dust and heat haze",
    "must_not": [
     "animals leaning comfortably out of open windows",
     "a cheerful train that appears to be running fine",
@@ -38,12 +38,12 @@
    "id": "s5_door",
    "clip": "clips/s5_final.mp4",
    "t": 2.0,
-   "beat": "the dog presses his nose to a narrow gap in a jammed boxcar door, trying to reach the frightened animal shut inside"
+   "beat": "a bloodhound with his nose pressed against a narrow gap between the planks of a wooden boxcar door"
   },
   {
    "id": "s6_heave",
    "image": "stills/LOCKED_s6.png",
-   "beat": "a big bear drives his shoulder into a stuck boxcar door and strains against it with his entire body weight, feet planted and dug in, real physical effort",
+   "beat": "a big bear leaning his shoulder and both paws into a boxcar door, body angled low, hind feet braced in the gravel, nothing in his paws",
    "must_not": [
     "holding or using a stick, tool, rod or any object",
     "standing upright and relaxed",
@@ -54,7 +54,7 @@
   {
    "id": "s6_heave_animated",
    "clip": "clips/s6_final_v2.mp4",
-   "beat": "a big bear drives his shoulder into a stuck boxcar door and strains against it with his entire body weight, feet planted and dug in, real physical effort",
+   "beat": "a big bear leaning his shoulder and both paws into a boxcar door, body angled low, hind feet braced in the gravel, nothing in his paws",
    "must_not": [
     "holding or using a stick, tool, rod or any object",
     "standing upright and relaxed",
@@ -65,12 +65,12 @@
   {
    "id": "new_ellie_eye",
    "image": "stills/wip/ellie_eye_w_202_0.55.png",
-   "beat": "seen through a narrow gap between boxcar planks, the enormous eye of a frightened young elephant shut inside finds the daylight \u2014 the viewer finally sees who is trapped"
+   "beat": "one large amber elephant eye, wide open, seen through a narrow vertical gap between dark wooden planks"
   },
   {
    "id": "new_s7_dooropen",
    "image": "stills/wip/s7_weld_313_0.32.png",
-   "beat": "the boxcar door now stands open and the young circus elephant is free, stepping down out of the car into the sunlight"
+   "beat": "a wide open boxcar door with a young gray elephant wearing a small red circus cap standing in the opening in daylight"
   },
   {
    "id": "outro_hank_brag",

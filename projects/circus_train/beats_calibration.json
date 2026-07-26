@@ -1,0 +1,44 @@
+{
+ "_note": "Ground truth. expect=PASS are shots Matt approved; expect=FAIL are shots he rejected.",
+ "shots": [
+  {
+   "id": "GT_pass_s1_coldopen",
+   "clip": "clips/s1_final.mp4",
+   "expect": "PASS",
+   "beat": "a bear and a dog sit relaxed by a green creek with fishing rods, calm and unhurried"
+  },
+  {
+   "id": "GT_pass_s3_rollout",
+   "clip": "clips/s2_final.mp4",
+   "expect": "PASS",
+   "beat": "a horse-drawn wooden wagon moving fast along a dirt road with dust kicking up behind it"
+  },
+  {
+   "id": "GT_pass_s6_heave_v2",
+   "clip": "clips/s6_final_v2.mp4",
+   "expect": "PASS",
+   "beat": "a big bear leaning his shoulder and both paws into a boxcar door, body angled low, hind feet braced in the gravel, nothing in his paws"
+  },
+  {
+   "id": "GT_pass_s5_door",
+   "image": "stills/LOCKED_s5.png",
+   "expect": "PASS",
+   "beat": "a bloodhound with his nose pressed against a narrow gap between the planks of a wooden boxcar door"
+  },
+  {
+   "id": "GT_fail_outro_forest",
+   "clip": "build/seg15_L11.mp4",
+   "expect": "FAIL",
+   "beat": "a bear standing beside a circus train at the end of a rescue",
+   "must_not": [
+    "standing in a forest or woods with no train anywhere"
+   ]
+  },
+  {
+   "id": "GT_fail_s7_sitting",
+   "image": "stills/LOCKED_s7_dooropen.png",
+   "expect": "PASS",
+   "beat": "a wide open boxcar door with a young gray elephant wearing a small red circus cap standing in the opening in daylight"
+  }
+ ]
+}

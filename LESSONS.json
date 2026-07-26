@@ -55,6 +55,72 @@
    ],
    "lesson": "batch a queue BY MODEL, not by shot \u2014 all stills first, then all animations. Alternating mflux and Wan GGUF per shot pushes the box into swap and the memory gate bounces ComfyUI (~90s, six times in one hour = ~15% of wall clock).",
    "learned_on": "forge-shot first instrumented run 2026-07-26"
+  },
+  {
+   "when": [
+    "beat",
+    "shot",
+    "depict",
+    "frame",
+    "judge"
+   ],
+   "lesson": "a beat is a VISIBLE STATE. No intent ('trying to reach'), no offscreen facts ('the frightened animal inside'), no change over time ('the door widens'). Anything a viewer with no script cannot see in one frame will fail every probe and the fault is the spec, not the judge.",
+   "learned_on": "whole queue 0/7 2026-07-26"
+  },
+  {
+   "when": [
+    "identity",
+    "canon",
+    "master",
+    "wide",
+    "distance"
+   ],
+   "lesson": "identity questions must allow for scale, distance, lighting and angle. Comparing a close portrait master to a wide shot literally makes every wide 'drift' \u2014 ask about DESIGN (species, build, head/ear shape, colour scheme, art style), never about apparent size or warmth.",
+   "learned_on": "s4_arrival 2026-07-26"
+  },
+  {
+   "when": [
+    "gate",
+    "check",
+    "verdict",
+    "trust",
+    "calibrate"
+   ],
+   "lesson": "audit the auditor: keep a calibration set of shots with KNOWN human verdicts and re-run it whenever wording changes. First run agreed 5/6; the single disagreement was a badly worded beat. A gate that disagrees with the human under 80% of the time is not strict, it is broken.",
+   "learned_on": "beat_gate calibration 2026-07-26"
+  },
+  {
+   "when": [
+    "vote",
+    "ballot",
+    "frame",
+    "sample",
+    "majority"
+   ],
+   "lesson": "majority voting is load-bearing, not a nicety: two shots Matt approved scored 2/3 with one pedantic dissent ('the stick is not a fishing rod'). Single-frame judging would have rejected work he had already accepted.",
+   "learned_on": "calibration run 2026-07-26"
+  },
+  {
+   "when": [
+    "quality",
+    "grain",
+    "upscale",
+    "resolution",
+    "steps"
+   ],
+   "lesson": "the local-AI videos that actually earn thousands of upvotes use MANY steps (up to 60) and finish at high resolution with ZERO film grain \u2014 grain is how people hide smeared texture after upscaling. 24 steps at 832x480 is a draft, not a finish.",
+   "learned_on": "r/StableDiffusion 1774-upvote Wan 2.2 realism post"
+  },
+  {
+   "when": [
+    "consistency",
+    "character",
+    "scene",
+    "long",
+    "chain"
+   ],
+   "lesson": "what earns upvotes is CONSISTENCY across a whole scene, not one pretty clip \u2014 the 2.6k-upvote local anime post chained image-to-video off the last frame to reach 30-second continuous scenes with the same characters.",
+   "learned_on": "r/StableDiffusion 2610-upvote Wan 2.1 anime post"
   }
  ]
 }
