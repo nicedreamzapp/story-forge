@@ -74,13 +74,22 @@ SONGFORGE = os.environ.get("SONGFORGE_URL", "http://127.0.0.1:8767")
 # otherwise-good arrival candidates were rejected for "a smaller head and lighter fur",
 # which is what distance and haze DO to a character. The question now allows for scale,
 # distance and lighting and asks about DESIGN, which is what canon actually governs.
-IDENT_Q = ("The LEFT image is the official locked design of {subject}. Find the same "
-           "character in the RIGHT image, which may be a wider shot where the character is "
-           "smaller, further away, differently lit or partly turned. Allowing for scale, "
-           "distance, lighting and angle, is it the same character DESIGN — same species and "
-           "build, same head and ear shape, same colour scheme and markings, same art style? "
-           "Do not fail it merely for being smaller, hazier or warmer-lit than the master. "
-           "Answer YES or NO first, then one sentence.")
+IDENT_Q = ("The LEFT image is the official locked design of {subject}. Find that character "
+           "in the RIGHT image, which may be a wider shot where they are smaller, further "
+           "away, differently lit or turned away. Ignore differences that are only scale, "
+           "haze, warmth of light or camera angle. But the DESIGN must match: same species "
+           "and body proportions, same head and ear shape and length, same coat colour, and "
+           "the same distinctive markings. A generic cartoon animal of roughly the right "
+           "colour is NOT the same character. Answer YES or NO first, then one sentence "
+           "naming the specific feature that matches or does not.")
+
+# Any legible lettering is an automatic reject. Diffusion paints prompt words onto
+# props: "SHUT doors" became doors with SHUT painted on them twice (2026-07-26), and
+# a train car earlier carried gibberish reading FLWAIS. Signage has to be added
+# deliberately, never left to the sampler.
+TEXT_Q = ("Look carefully at every surface in this image — signs, doors, crates, banners, "
+          "vehicle panels. Is there any readable or partly-readable writing, lettering, "
+          "numbers or logos anywhere in the frame? Answer YES or NO first, then say where.")
 
 LOG: list[str] = []
 
@@ -227,9 +236,11 @@ def save_lesson(proj: Path, shot_id: str, reason: str) -> None:
 
 
 def corrected_prompt(base: str, lessons: list) -> str:
+    # Cap hard. Injecting 40 accumulated complaints into a prompt is worse than
+    # injecting none — the description drowns. Two most recent, nothing else.
     if not lessons:
         return base
-    fixes = " ".join(f"({i + 1}) {t}" for i, t in enumerate(lessons[-4:]))
+    fixes = " ".join(f"({i + 1}) {t}" for i, t in enumerate(lessons[-2:]))
     return (f"{base}. CORRECTIONS — earlier attempts at this exact shot were REJECTED "
             f"for these reasons, do not repeat them: {fixes}")
 
@@ -249,10 +260,19 @@ def gen_still(shot: dict, proj: Path, seed: int, out: Path) -> bool:
             return False
         return True
 
+    # Two dead ends, both paid for on 2026-07-26: "NO animals, NO people" in a POSITIVE
+    # prompt draws animals and people (nine seeds running), and FLUX.2 REJECTS
+    # --negative-prompt outright ("not supported for FLUX.2. Focus on describing what you
+    # want"). The only lever is positive description — "deserted", "abandoned", "not a
+    # soul in sight" — with the beat gate's must_not doing the actual rejecting.
+    guidance = str(shot.get("guidance", 1.0))
     cmd = ["nice", "-n", "10", MFLUX, "-m", MFLUX_MODEL,
-           "--guidance", "1.0", "--steps", "24", "--seed", seed,
+           "--guidance", guidance, "--steps", str(shot.get("steps", 24)), "--seed", seed,
            "--width", shot["_w"], "--height", shot["_h"],
            "--output", out, "--prompt", shot["prompt"]]
+    if shot.get("negative"):
+        log("  ignoring `negative`: FLUX.2 does not accept a negative prompt — "
+            "describe what you DO want and let must_not reject the rest")
     loras = [str(Path(p).expanduser()) for p in shot.get("loras", [])]
     if loras:
         cmd += ["--lora-paths", *loras,
@@ -265,20 +285,41 @@ def gen_still(shot: dict, proj: Path, seed: int, out: Path) -> bool:
 
 
 def identity_ok(shot: dict, proj: Path, img: Path) -> bool:
-    ident = shot.get("identity")
-    if not ident:
+    """Every named character in the shot, not just the first one.
+
+    s4_arrival passed identity while containing a dog that was not Doug, because the
+    shot only listed Hank. A cast list is checked in full or the check is theatre.
+    """
+    idents = shot.get("identity")
+    if not idents:
         return True
-    master = proj / ident["master"]
-    if not master.is_file():
-        log(f"  identity: master missing ({master.name}) — UNCHECKED, not a pass")
-        return False
-    cmp_png = img.with_name(img.stem + "_vs_canon.png")
-    side_by_side(master, img, cmp_png)
-    ans = vl_ask(cmp_png, IDENT_Q.format(subject=ident["subject"])).strip().replace("\n", " ")
-    ok = bool(re.match(r"^\W*YES", ans, re.I))
-    log(f"  identity vs {master.name}: {'MATCH' if ok else 'DRIFT'} — {ans[:160]}")
-    cmp_png.unlink(missing_ok=True)
-    return ok
+    if isinstance(idents, dict):
+        idents = [idents]
+    ok_all = True
+    for ident in idents:
+        master = proj / ident["master"]
+        if not master.is_file():
+            log(f"  identity: master missing ({master.name}) — UNCHECKED, not a pass")
+            return False
+        cmp_png = img.with_name(f"{img.stem}_vs_{master.stem}.png")
+        side_by_side(master, img, cmp_png)
+        ans = vl_ask(cmp_png, IDENT_Q.format(subject=ident["subject"])).strip().replace("\n", " ")
+        ok = bool(re.match(r"^\W*YES", ans, re.I))
+        log(f"  identity {ident['subject'].split()[0]} vs {master.name}: "
+            f"{'MATCH' if ok else 'DRIFT'} — {ans[:150]}")
+        cmp_png.unlink(missing_ok=True)
+        ok_all = ok_all and ok
+    return ok_all
+
+
+def text_free(shot: dict, proj: Path, img: Path) -> bool:
+    if shot.get("allow_text"):
+        return True
+    ans = vl_ask(img, TEXT_Q).strip().replace("\n", " ")
+    clean = not bool(re.match(r"^\W*YES", ans, re.I))
+    if not clean:
+        log(f"  TEXT IN FRAME — rejected: {ans[:150]}")
+    return clean
 
 
 def judge(spec: dict, proj: Path, votes: int) -> dict:
@@ -334,13 +375,13 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool) -> dict:
                    "beat": shot["beat"], "must_not": shot.get("must_not", [])}, proj, votes)
         log(f"  supplied still: {v['verdict']} ({v.get('votes')})")
         out["rolls"].append({"src": shot["init"], "beat": v["verdict"], "votes": v.get("votes")})
-        if v["verdict"] == "PASS" and identity_ok(shot, proj, cand):
+        if v["verdict"] == "PASS" and text_free(shot, proj, cand) and identity_ok(shot, proj, cand):
             locked = cand
     else:
         base_prompt = shot["prompt"]
         cycles = shot.get("retry_cycles", defaults.get("retry_cycles", 2))
         lessons = load_lessons(proj).get(shot["id"], [])
-        inherited = house_lessons(shot)
+        inherited = house_lessons(shot)[:2]
         for h in inherited:
             if h not in lessons:
                 lessons.append(h)
@@ -369,7 +410,7 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool) -> dict:
                 log(f"  seed {seed}: beat {v['verdict']} ({v.get('votes')}) — {v['why'][:140]}")
                 roll = {"seed": seed, "cycle": cycle, "beat": v["verdict"], "votes": v.get("votes")}
                 if v["verdict"] == "PASS":
-                    if identity_ok(shot, proj, cand):
+                    if text_free(shot, proj, cand) and identity_ok(shot, proj, cand):
                         roll["identity"] = "MATCH"
                         out["rolls"].append(roll)
                         locked = cand
@@ -382,7 +423,6 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool) -> dict:
                 if lesson not in lessons:
                     lessons.append(lesson)
                 save_lesson(proj, shot["id"], lesson)
-                save_house_lesson(shot, lesson)
                 out["rolls"].append(roll)
                 cand.unlink(missing_ok=True)   # rule 13: losers don't linger
         shot["prompt"] = base_prompt
@@ -489,6 +529,14 @@ def main() -> int:
     (proj / "forge_shot_results.json").write_text(json.dumps(results, indent=1) + "\n")
     with open(proj / "forge_shot.log", "a") as f:
         f.write("\n".join(LOG) + "\n")
+    # Never leave an unattended run with nothing to read in the morning (2026-07-26).
+    try:
+        subprocess.run([sys.executable, str(SF / "bin" / "forge-review"), str(proj)],
+                       capture_output=True, text=True, timeout=180)
+        log(f"status report written → {proj/'STATUS.md'}")
+    except Exception as e:                                            # noqa: BLE001
+        log(f"status report failed: {type(e).__name__}")
+
     kept = [r for r in results if r["state"] in ("CLIP_KEPT", "CLIP_TRIMMED", "STILL_LOCKED")]
     log(f"DONE — {len(kept)}/{len(results)} shots produced usable, judged assets")
     for r in results:

@@ -121,6 +121,17 @@
    ],
    "lesson": "what earns upvotes is CONSISTENCY across a whole scene, not one pretty clip \u2014 the 2.6k-upvote local anime post chained image-to-video off the last frame to reach 30-second continuous scenes with the same characters.",
    "learned_on": "r/StableDiffusion 2610-upvote Wan 2.1 anime post"
+  },
+  {
+   "when": [
+    "empty",
+    "plate",
+    "deserted",
+    "no characters",
+    "scene"
+   ],
+   "lesson": "FLUX.2 accepts NO negative prompt and treats 'NO animals/people' in a positive prompt as an instruction to draw them. To get an empty plate, describe it positively \u2014 deserted, abandoned, silent, not a soul in sight \u2014 and let the gate's must_not do the rejecting.",
+   "learned_on": "s4/s8 plates 2026-07-26"
   }
  ]
 }
