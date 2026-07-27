@@ -35,10 +35,10 @@
    ]
   },
   {
-   "id": "GT_fail_s7_sitting",
-   "image": "stills/LOCKED_s7_dooropen.png",
+   "id": "GT_pass_s6_heave_still",
+   "image": "stills/LOCKED_s6.png",
    "expect": "PASS",
-   "beat": "a wide open boxcar door with a young gray elephant wearing a small red circus cap standing in the opening in daylight"
+   "beat": "a big bear leaning his shoulder and both paws into a boxcar door, body angled low, hind feet braced in the gravel, nothing in his paws"
   }
  ]
 }

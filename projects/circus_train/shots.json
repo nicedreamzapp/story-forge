@@ -16,7 +16,7 @@
    "id": "s7_dooropen",
    "init": "stills/wip/s7_composite.png",
    "denoise": 0.32,
-   "prompt": "Pixar-style 3D animated film still, golden hour: a young gray circus elephant wearing a small red and gold pointed circus cap with a red feather plume is free in the wide open doorway of a weathered red circus boxcar, blinking in the warm sunlight, big amber eyes with long lashes, NO tusks, big soft ears, dust in the air, desert canyon behind, cinematic children's movie lighting",
+   "prompt": "Pixar-style 3D animated film still: ONE young gray circus elephant wearing a small red and gold rounded circus cap with a red feather plume, standing in the wide open sliding doorway of a BRIGHT RED wooden boxcar with a plain tan wooden sliding door, plain unmarked wood with no lettering or numbers anywhere, big amber eyes with long lashes, no tusks, gravel track bed, green treeline, warm afternoon light",
    "beat": "a wide open boxcar door with a young gray elephant wearing a small red circus cap standing in the opening in daylight",
    "must_not": [
     "a closed or jammed door",
@@ -31,16 +31,16 @@
    "animate": "the young elephant steps forward out of the open boxcar doorway and down into the sunlight, ears swaying, trunk lifting, dust drifting in the warm light, camera holds steady",
    "clip": "clips/s7_dooropen_final.mp4",
    "min_window": 2.0,
-   "set": "circus boxcar"
+   "set": "circus boxcar",
+   "_motion_subject": "the elephant"
   },
   {
    "id": "ellie_eye",
    "init": "stills/wip/ellie_crack_composite_v3.png",
    "denoise": 0.5,
    "prompt": "Pixar-style 3D animated film still, extreme close-up through a narrow vertical gap between rough dark wooden boxcar planks: a frightened young circus elephant's enormous amber eye, wide and glistening with fear, brow pinched with worry, WARM GRAY elephant skin, one blade of golden daylight across the eye, dark planks, dust motes in the light, cinematic children's movie lighting",
-   "beat": "one large amber elephant eye, wide open, seen through a narrow vertical gap between dark wooden planks",
+   "beat": "one large amber elephant eye visible through a narrow vertical gap between dark wooden planks",
    "must_not": [
-    "a calm or happy expression",
     "porcelain white or pink skin",
     "a collar"
    ],
@@ -52,7 +52,8 @@
    "animate": "the frightened eye blinks slowly and shifts as she looks toward the light, dust drifting through the blade of sunlight, the planks perfectly still, camera holds steady",
    "clip": "clips/ellie_eye_final.mp4",
    "min_window": 1.6,
-   "set": "circus boxcar"
+   "set": "circus boxcar",
+   "_motion_subject": "the elephant"
   },
   {
    "id": "s2_thecall",
@@ -94,7 +95,8 @@
    "animate": "heat shimmer ripples off the boxcar roofs, dust drifts across the gravel, the bear's head turns slowly as he takes in the length of the dead train, the dog shifts his weight, camera holds steady",
    "clip": "clips/s4_arrival_final.mp4",
    "min_window": 2.0,
-   "set": "circus boxcar"
+   "set": "circus boxcar",
+   "_motion_subject": "the bear and the dog"
   },
   {
    "id": "s6_interior",
@@ -136,7 +138,8 @@
    "animate": "the two friends hold the paw bump and lower their paws, the horse shifts, warm dust drifts through the golden light, steam rises from the train behind, camera holds steady",
    "clip": "clips/s8_goodbye_final.mp4",
    "min_window": 2.0,
-   "set": "circus boxcar"
+   "set": "circus boxcar",
+   "_motion_subject": "the bear and the dog"
   },
   {
    "id": "s5_door",

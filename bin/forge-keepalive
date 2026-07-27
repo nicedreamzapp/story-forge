@@ -31,6 +31,10 @@ while true; do
     echo "[keepalive $(date '+%H:%M:%S')] film complete — done" | tee -a "$LOG"
     break
   fi
+  if tail -40 "$LOG" | grep -q "STOPPING —"; then
+    echo "[keepalive $(date '+%H:%M:%S')] stopped with beats BLOCKED — film NOT complete, see QUESTIONS.md" | tee -a "$LOG"
+    break
+  fi
   if [ "$CODE" -eq 0 ]; then
     echo "[keepalive $(date '+%H:%M:%S')] director exited cleanly with work still open — done" | tee -a "$LOG"
     break

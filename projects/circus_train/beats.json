@@ -36,7 +36,8 @@
     "a cheerful train that appears to be running fine",
     "the heroes standing around with nothing wrong"
    ],
-   "set": "circus boxcar"
+   "set": "circus boxcar",
+   "_motion_subject": "the bear and the dog"
   },
   {
    "id": "s5_door",
@@ -72,8 +73,10 @@
   {
    "id": "new_ellie_eye",
    "image": "stills/wip/ellie_eye_w_202_0.55.png",
-   "beat": "one large amber elephant eye, wide open, seen through a narrow vertical gap between dark wooden planks",
-   "set": "circus boxcar"
+   "beat": "one large amber elephant eye visible through a narrow vertical gap between dark wooden planks",
+   "set": "circus boxcar",
+   "must_not": [],
+   "_motion_subject": "the elephant"
   },
   {
    "id": "new_s7_dooropen",

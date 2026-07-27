@@ -41,7 +41,7 @@ FORGE_SHOT = SF / "bin" / "forge-shot"
 FORGE_REVIEW = SF / "bin" / "forge-review"
 BUILD_EPISODE = SF / "bin" / "build-episode"
 MLX_PY = Path.home() / ".local/mlx-server/bin/python"
-MAX_ATTEMPTS = 3
+MAX_ATTEMPTS = 4
 
 
 def log(m: str) -> None:
@@ -80,7 +80,8 @@ def has_footage(proj: Path, shot_ids: list) -> str | None:
         if cand and cand.is_file() and cand.stat().st_size > 50_000:
             return cand.name
         for g in sorted((proj / "clips").glob(f"{sid}*.mp4")):
-            if g.is_file() and g.stat().st_size > 50_000 and "_failed" not in str(g):
+            if g.is_file() and g.stat().st_size > 50_000 and not any(
+                    x in g.name for x in ("_failed", "_raw")):
                 return g.name
     return None
 
@@ -100,17 +101,41 @@ def gaps(proj: Path, state: dict) -> list:
 
 
 def escalate(spec: dict, attempt: int) -> dict:
-    """Never re-run the identical thing twice. Each attempt changes something real."""
+    """Never re-run the identical thing twice — and never fall back to a held frame.
+
+    Matt, 2026-07-27: keep hunting REAL motion. So every rung stays animated and
+    instead attacks the actual cause of drift: length, and motion prompts that add
+    action instead of preserving the shot. A 5-second i2v wanders off its own beat;
+    2 seconds of one small movement does not.
+    """
     spec = dict(spec)
+    base_seeds = spec.get("seeds", [11, 47, 82, 119])
+    anim = spec.get("animate", "")
+    subject = spec.get("_motion_subject", "the scene")
     if attempt == 1:
-        # animations drift over 5s far more than over 3s
         spec["duration"] = 3
-        spec["seeds"] = [s + 3000 for s in spec.get("seeds", [11, 47, 82, 119])]
-        spec["_escalation"] = "shorter clip (3s), fresh seeds"
-    elif attempt >= 2:
-        # stop animating at all: a held frame that passes beats the best clip that doesn't
-        spec.pop("animate", None)
-        spec["_escalation"] = "still only — no animation attempt"
+        spec["seeds"] = [s + 3000 for s in base_seeds]
+        spec["animate"] = (f"{anim}. The camera does not move at all and the composition "
+                           f"stays exactly as it is; only small natural movement occurs.")
+        spec["min_window"] = min(spec.get("min_window", 2.0), 1.5)
+        spec["_escalation"] = "3s, camera locked, composition preserved"
+    elif attempt == 2:
+        spec["duration"] = 2
+        spec["seeds"] = [s + 6000 for s in base_seeds]
+        spec["animate"] = (f"almost still: the framing and every subject stay exactly where "
+                           f"they are, with only the faintest ambient motion — drifting dust, "
+                           f"a slow breath, an ear or tail shifting a little. No camera move, "
+                           f"no one walks, nothing enters or leaves the frame.")
+        spec["min_window"] = 1.2
+        spec["_escalation"] = "2s, ambient motion only"
+    elif attempt >= 3:
+        spec["duration"] = 2
+        spec["seeds"] = [s + 9000 for s in base_seeds]
+        spec["steps"] = 40
+        spec["animate"] = (f"the shot holds; {subject} breathes and blinks, fine dust drifts "
+                           f"through the light. Nothing else changes.")
+        spec["min_window"] = 1.0
+        spec["_escalation"] = "2s, breath-and-blink only, higher step count"
     return spec
 
 
@@ -219,13 +244,29 @@ def main() -> int:
         if not args.dry_run:
             wip_reel(proj)
         if not todo:
-            log("every required beat has footage — assembling the cut")
+            # An empty gap list means one of two very different things. Saying the
+            # wrong one is the exact failure this whole system exists to prevent —
+            # it logged FILM COMPLETE at 01:53 with four beats blocked (2026-07-27).
+            blocked = state.get("blocked", {})
+            covered = [n for n in read_json(proj / "beats.json", {}).get("spine", [])
+                       if has_footage(proj, n.get("shots", []))]
+            spine_n = len(read_json(proj / "beats.json", {}).get("spine", []))
+            if blocked:
+                log(f"STOPPING — {len(covered)}/{spine_n} beats have footage and "
+                    f"{len(blocked)} are BLOCKED. This film is NOT complete.")
+                for k, v in blocked.items():
+                    log(f"  blocked: {k} — {v}")
+                log(f"decisions needed: {proj/'QUESTIONS.md'}")
+                if not args.dry_run:
+                    wip_reel(proj)
+                break
+            log(f"all {spine_n} required beats have footage — assembling the cut")
             if not args.dry_run:
                 r = subprocess.run([sys.executable, str(BUILD_EPISODE), str(proj)],
                                    capture_output=True, text=True, timeout=7200)
                 log((r.stdout or "").strip().splitlines()[-1] if r.stdout else "build finished")
             review(proj)
-            log("FILM COMPLETE — stopping because there is nothing left to build")
+            log(f"FILM COMPLETE — every required beat has judged footage and the cut is assembled")
             break
 
         if time.time() > deadline:
