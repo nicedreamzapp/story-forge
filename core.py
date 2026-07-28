@@ -50,7 +50,13 @@ def _download(path: str, dest: Path) -> Path:
 def queue_prompt(workflow: dict, client_id: str | None = None) -> str:
     """Submit workflow, return prompt_id. Passes the memory gate first —
     queue_prompt is the ONE choke point every render path shares (run_workflow,
-    server.py jobs, ad-hoc scripts), so the gate lives here."""
+    server.py jobs, ad-hoc scripts), so the gate lives here.
+
+    Order matters: never start a render on top of a customer's song, then evict
+    what this workflow cannot coexist with, and only then let mem-gate judge what
+    is left. The dam runs before the mop."""
+    wait_for_customers()
+    prepare_for_stage(_workflow_model_gb(workflow), "queue_prompt")
     memory_gate("queue_prompt")
     client_id = client_id or str(uuid.uuid4())
     resp = _post("/prompt", {"prompt": workflow, "client_id": client_id})
@@ -60,8 +66,13 @@ def queue_prompt(workflow: dict, client_id: str | None = None) -> str:
 
 
 def wait_for(prompt_id: str, poll_s: float = 2.0, timeout_s: float = 3600) -> dict:
-    """Poll /history until the prompt finishes. Returns the history entry."""
+    """Poll /history until the prompt finishes. Returns the history entry.
+
+    Also watches Song Forge: a customer job arriving mid-render interrupts this
+    render rather than fighting it for the GPU (CLAUDE.md — customer jobs
+    outrank renders). Raises CustomerJobPreempted so the caller can re-queue."""
     deadline = time.time() + timeout_s
+    next_customer_check = time.time() + CUSTOMER_POLL_S
     while time.time() < deadline:
         hist = _get(f"/history/{prompt_id}")
         entry = hist.get(prompt_id)
@@ -69,6 +80,13 @@ def wait_for(prompt_id: str, poll_s: float = 2.0, timeout_s: float = 3600) -> di
             return entry
         if entry and entry.get("status", {}).get("status_str") == "error":
             raise RuntimeError(f"Workflow error: {entry['status']}")
+        if time.time() >= next_customer_check:
+            next_customer_check = time.time() + CUSTOMER_POLL_S
+            if songforge_busy():
+                _comfy_interrupt()
+                raise CustomerJobPreempted(
+                    "a Song Forge customer job arrived — this render yielded the GPU"
+                )
         time.sleep(poll_s)
     raise TimeoutError(f"Prompt {prompt_id} timed out after {timeout_s}s")
 
@@ -262,14 +280,216 @@ def memory_gate(label: str = "clip") -> None:
         time.sleep(30)
 
 
+# ───────────────────── The dam: evict BEFORE, don't mop after ─────────────────────
+# 2026-07-27 kernel panic. mem-gate bounced ComfyUI 100 times in one day, every
+# bounce triggered by 10-19GB ALREADY parked in swap — it reacts to a mountain
+# instead of refusing to build one. The box finally could not page a swapped-out
+# page back in, handed SIGBUS/KERN_MEMORY_ERROR to two node processes and an MLX
+# server, then to launchd, and pid 1 dying is an automatic kernel panic.
+#
+# So: before a render is submitted, work out what it is about to load, compare it
+# to what is genuinely available, and EVICT what it cannot coexist with. Song
+# Forge's ACE-Step (:8001) and gemma (:9420) are the paid App Store product and
+# are NEVER evicted — this M5 is the primary node and losing them is a customer
+# outage. See CLAUDE.md rule 16.
+
+STAGE_HEADROOM_GB = float(os.environ.get("SF_STAGE_HEADROOM_GB", "12"))
+MODEL_OVERHEAD = float(os.environ.get("SF_MODEL_OVERHEAD", "1.2"))
+MODEL_SUFFIXES = (".safetensors", ".gguf", ".ckpt", ".pt", ".sft", ".bin")
+MODEL_SUBDIRS = ("diffusion_models", "unet", "checkpoints", "vae", "text_encoders",
+                 "clip", "clip_vision", "loras", "LLM", "audio_encoders", "")
+
+
+def _available_gb() -> float:
+    """RAM that can be handed out without pushing anything to swap: free +
+    inactive + speculative + purgeable. free% alone is deceptive when tens of GB
+    are already swapped (feedback_watch_memory_before_heavy_ml)."""
+    import re
+    import subprocess
+    try:
+        out = subprocess.run(["vm_stat"], capture_output=True, text=True, timeout=10).stdout
+        page = int(re.search(r"page size of (\d+) bytes", out).group(1))
+        want = ("Pages free", "Pages inactive", "Pages speculative", "Pages purgeable")
+        total = 0
+        for line in out.splitlines():
+            k, _, v = line.partition(":")
+            if k.strip() in want:
+                total += int(v.strip().rstrip("."))
+        return total * page / 1024 ** 3
+    except Exception:
+        return float("inf")  # can't measure → don't block the render
+
+
+def _workflow_model_gb(workflow: dict) -> float:
+    """What this workflow is about to load, from the on-disk size of every model
+    file it references. Reading the actual files means new models and new quants
+    are costed correctly the day they appear — no table to forget to update."""
+    names: set[str] = set()
+
+    def walk(node):
+        if isinstance(node, dict):
+            for v in node.values():
+                walk(v)
+        elif isinstance(node, list):
+            for v in node:
+                walk(v)
+        elif isinstance(node, str) and node.lower().endswith(MODEL_SUFFIXES):
+            names.add(node)
+
+    walk(workflow)
+    total = 0
+    for name in names:
+        for sub in MODEL_SUBDIRS:
+            p = COMFY_ROOT / "models" / sub / name
+            try:
+                if p.is_file():
+                    total += p.stat().st_size
+                    break
+            except OSError:
+                continue
+    return total / 1024 ** 3 * MODEL_OVERHEAD
+
+
+def _rss_gb(pattern: str) -> float:
+    import subprocess
+    try:
+        pids = subprocess.run(["pgrep", "-f", pattern],
+                              capture_output=True, text=True, timeout=10).stdout.split()
+        if not pids:
+            return 0.0
+        out = subprocess.run(["ps", "-o", "rss=", "-p", ",".join(pids)],
+                             capture_output=True, text=True, timeout=10).stdout
+        return sum(int(x) for x in out.split()) / 1048576
+    except Exception:
+        return 0.0
+
+
+def _evict_comfy_cache() -> float:
+    """Drop ComfyUI's cached model weights. Never while it is mid-render."""
+    held = _comfy_rss_gb()
+    if held < 5 or _comfy_busy():
+        return 0.0
+    print(f"[dam] evicting {held:.0f}GB of ComfyUI cached models before the next stage",
+          flush=True)
+    _restart_comfy()
+    return held
+
+
+def _evict_picture_eyes() -> float:
+    """Drop the Picture Eyes VL server (:8181). It reloads on demand; a 32B VL
+    model and Wan weights must never be resident together (rule: storyforge runs
+    smart memory). Only when it is idle."""
+    import subprocess
+    held = _rss_gb("picture_eyes|picture-eyes")
+    if held < 5:
+        return 0.0
+    try:
+        import urllib.request as _u
+        with _u.urlopen(f"{PICTURE_EYES_URL}/status", timeout=3) as r:
+            if json.loads(r.read()).get("busy"):
+                return 0.0
+    except Exception:
+        pass
+    print(f"[dam] evicting the {held:.0f}GB Picture Eyes VL server — it reloads on demand",
+          flush=True)
+    subprocess.run(["pkill", "-f", "picture_eyes"], capture_output=True)
+    time.sleep(5)
+    return held
+
+
+PICTURE_EYES_URL = os.environ.get("PE_URL", "http://127.0.0.1:8181")
+EVICTORS = (_evict_comfy_cache, _evict_picture_eyes)
+
+
+def prepare_for_stage(need_gb: float, label: str = "stage") -> None:
+    """THE DAM. Evict what the coming stage cannot coexist with, BEFORE it runs.
+    Never touches Song Forge. Falls through quietly if it cannot free enough —
+    memory_gate still gets its say and will wait or refuse."""
+    if os.environ.get("SF_MEM_GATE", "1") == "0" or need_gb <= 0:
+        return
+    target = need_gb + STAGE_HEADROOM_GB
+    avail = _available_gb()
+    if avail >= target:
+        return
+    print(f"[dam] '{label}' wants {need_gb:.0f}GB + {STAGE_HEADROOM_GB:.0f}GB headroom "
+          f"but only {avail:.0f}GB is available without swapping — evicting", flush=True)
+    for evict in EVICTORS:
+        try:
+            if evict():
+                avail = _available_gb()
+        except Exception as e:  # an evictor must never take the render down with it
+            print(f"[dam] evictor {evict.__name__} failed: {e}", flush=True)
+        if avail >= target:
+            print(f"[dam] {avail:.0f}GB available — clear to run '{label}'", flush=True)
+            return
+    print(f"[dam] still only {avail:.0f}GB available for '{label}' after eviction "
+          f"— handing over to mem-gate", flush=True)
+
+
+# ───────────────────── Customer jobs preempt renders ─────────────────────
+# CLAUDE.md: "Song Forge customer jobs outrank renders." That was one check
+# before the i2v step and nothing during the 20 minutes it ran. Now a customer
+# job interrupts the render in flight, and the render re-queues once they are done.
+
+SONGFORGE_URL = os.environ.get("SONGFORGE_URL", "http://127.0.0.1:8767")
+CUSTOMER_POLL_S = float(os.environ.get("SF_CUSTOMER_POLL_S", "20"))
+
+
+class CustomerJobPreempted(RuntimeError):
+    """A Song Forge customer job arrived; the render was interrupted for it."""
+
+
+def songforge_busy() -> bool:
+    try:
+        with urllib.request.urlopen(f"{SONGFORGE_URL}/api/status", timeout=6) as r:
+            return int(json.loads(r.read()).get("jobs_running", 0)) > 0
+    except Exception:
+        return False  # forge unreachable = no customer to protect
+
+
+def wait_for_customers() -> None:
+    announced = False
+    while songforge_busy():
+        if not announced:
+            print("[customer] Song Forge has a paying job running — renders hold", flush=True)
+            announced = True
+        time.sleep(CUSTOMER_POLL_S)
+    if announced:
+        print("[customer] customer job finished — renders resume", flush=True)
+
+
+def _comfy_interrupt() -> None:
+    try:
+        req = urllib.request.Request(f"{COMFY_URL}/interrupt", data=b"{}",
+                                     headers={"Content-Type": "application/json"})
+        urllib.request.urlopen(req, timeout=15).read()
+        print("[customer] interrupted the ComfyUI render to free the GPU", flush=True)
+    except Exception as e:
+        print(f"[customer] could not interrupt ComfyUI: {e}", flush=True)
+
+
 def run_workflow(workflow: dict, label: str = "clip", timeout_s: float = 3600) -> list[Path]:
-    """One-call helper: submit, wait, download outputs."""
-    pid = queue_prompt(workflow)
-    print(f"[videopipe] queued {pid}", flush=True)
-    entry = wait_for(pid, timeout_s=timeout_s)
-    files = collect_outputs(entry, label)
-    print(f"[videopipe] saved: {[str(f) for f in files]}", flush=True)
-    return files
+    """One-call helper: submit, wait, download outputs. If a Song Forge customer
+    job lands mid-render the render is interrupted, waits its turn, and re-queues
+    — the paying job never queues behind a 20-minute animate."""
+    for attempt in range(1, 4):
+        pid = queue_prompt(workflow)
+        print(f"[videopipe] queued {pid}", flush=True)
+        try:
+            entry = wait_for(pid, timeout_s=timeout_s)
+        except CustomerJobPreempted:
+            wait_for_customers()
+            if attempt < 3:
+                print(f"[videopipe] re-queueing '{label}' after the customer job "
+                      f"(attempt {attempt + 1}/3)", flush=True)
+            continue
+        files = collect_outputs(entry, label)
+        print(f"[videopipe] saved: {[str(f) for f in files]}", flush=True)
+        return files
+    raise RuntimeError(
+        f"'{label}' was preempted by Song Forge customer jobs 3 times running — "
+        "the render is yielding as designed, but this shot needs a quieter window."
+    )
 
 
 # ───────────────────── Workflow builders ─────────────────────

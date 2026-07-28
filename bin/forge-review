@@ -72,7 +72,7 @@ def spine_coverage(proj: Path):
                 clip = d.name
                 break
             for cand in proj.glob(f"clips/{sid}*.mp4"):
-                if "_failed" not in str(cand):
+                if not any(x in cand.name for x in ("_failed", "_raw")):
                     clip = cand.name
                     break
             if clip:
