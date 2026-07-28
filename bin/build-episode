@@ -454,6 +454,20 @@ def stage_segments(proj, st):
     """Normalise everything to one spec and place off-screen VO."""
     work = proj / "build"
     work.mkdir(exist_ok=True)
+
+    # WIPE stale segments first. Segment files are named seg<index>_<id>.mp4, so
+    # dropping ONE shot from the EDL renumbers everything after it — the new files
+    # land beside the old ones instead of replacing them. Assembly then globbed the
+    # directory and swept up both sets, which on 2026-07-28 shipped a cut containing
+    # the s5_door shot that had been DROPPED for failing its beat 0/3, four dialogue
+    # lines played twice, and the credits card in the MIDDLE of the film.
+    # The log said "23 segments normalised" and then "assembled from 29 segments".
+    stale = sorted(work.glob("seg*.mp4"))
+    for p in stale:
+        p.unlink()
+    if stale:
+        log(f"  cleared {len(stale)} segment(s) from a previous build")
+
     built, skipped = [], []
     timeline, scenes, clock = [], [], 0.0
 
@@ -538,14 +552,29 @@ def stage_segments(proj, st):
     if skipped:
         log(f"  SKIPPED (asset missing): {', '.join(skipped)}")
     log(f"  {len(built)} segments normalised to {W}x{H}@{FPS}")
+    st["segments"] = [str(b) for b in built]      # the authoritative cut list
     return bool(built)
 
 
 def stage_assemble(proj, st):
     work = proj / "build"
-    segs = sorted(work.glob("seg*.mp4"))
+    # Assemble EXACTLY what stage_segments built, in EDL order. This used to be
+    # sorted(work.glob("seg*.mp4")) — the directory, not the edit. Anything left on
+    # disk from an earlier build got concatenated as if it were part of the film
+    # (2026-07-28: a dropped shot, four doubled lines, credits in the middle).
+    # The edit decides what is in the film; the filesystem does not get a vote.
+    segs = [work / s for s in st.get("segments", [])]
     if not segs:
+        log("  no segment list from the segments stage — refusing to guess from disk")
         return False
+    missing = [s for s in segs if not s.is_file()]
+    if missing:
+        log(f"  ABORT: {len(missing)} segment(s) named by the edit are missing")
+        return False
+    extra = sorted(set(work.glob("seg*.mp4")) - set(segs))
+    if extra:
+        log(f"  {len(extra)} stray segment file(s) on disk are NOT in the edit "
+            f"and are being ignored: {', '.join(p.name for p in extra[:6])}")
     lst = work / "concat.txt"
     lst.write_text("".join(f"file '{s}'\n" for s in segs))
 
