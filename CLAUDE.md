@@ -107,6 +107,63 @@ This directory is the home of **Story Forge**, a robust 100%-local generative VI
      (rule 6). The bang is felt from inside the dark car — shudder, falling dust,
      a widening crack of light — and never shown.
 
+16. SWAP IS THE PANIC, AND THE GATE FIRES TOO LATE (2026-07-27, second panic in
+   four days, both during circus_train). The box died mid-`s7_dooropen` animate:
+   19GB in swap, the kernel could not page a swapped-out page back in, handed
+   SIGBUS/KERN_MEMORY_ERROR to two `node` processes, an MLX server, and finally
+   to `launchd` — pid 1 dying forces a kernel panic. It read as hardware and was
+   not: `memoryPressure: false` and 46GB free in the panic snapshot, because the
+   pressure had already drained by the time it died. Signature and diagnosis
+   recipe live in the agent memory note `reference_m5_swap_pagein_panic_signature`.
+   - `mem-gate` bounced ComfyUI **100 times that day**, every one triggered by
+     10–19GB ALREADY parked in swap. It is a mop, not a dam: `_swap_heavy()` is
+     checked *after* the mountain exists. The fix is scheduling, not a bigger mop —
+     never let ACE-Step (~17GB) + gemma :9420 (~17GB) + ComfyUI/WAN + the VL judge
+     be resident at once. Rule 11's "plan renders inside what's left of 128GB
+     after Song Forge's ~45GB" is the budget; nothing enforces it yet.
+   - Song Forge customer jobs are the paid App Store product and this M5 is the
+     PRIMARY node — a panic here is a customer-facing outage (the mini covered it
+     on 7/27 only because `FORGES` lists two distinct nodes). `wait_for_songforge()`
+     was called ONCE, before the i2v step; it now also runs before every still seed
+     (`bin/forge-shot`). Still open: nothing re-checks during a 20-minute animate,
+     and SIGSTOP on the make-video client would not pause ComfyUI's GPU work anyway —
+     a real mid-render pause needs ComfyUI's interrupt API.
+
+17. THE EDL IS A SHOT THAT NOBODY GATES (2026-07-27). Every gate we have judges an
+   ASSET — does this still/clip depict its beat. Nothing judged the *pointer*. Episode 1's
+   EDL had `s4_arrival` pointing at `clips/s3_final.mp4`: the cheerful colourful passenger
+   train with animals leaning comfortably out of open windows — literally all three of that
+   shot's own `must_not` entries in `beats.json`, and the fourth different train that made
+   rule 14 complain about set drift. The CORRECT take, `clips/s4_arrival_final.mp4`
+   (weathered red boxcars, doors shut, black smoke, heat haze), had been sitting on disk
+   unused. A gate that judges `clips/s3_final.mp4` against `s3_rollout`'s beat and passes
+   is telling the truth about the wrong question.
+   - `beats.json` shot ids and EDL entry ids MUST agree on the src path. build-episode
+     preflight now has to cross-check the EDL against `beats.json` by id and HARD STOP on
+     a mismatch, before it ever calls the VL model — it is a string compare, not a render.
+   - A beat in the `spine` whose shot id has no entry in `shots[]` is invisible to
+     beat_gate. `ellie_eye`, `s6_interior`, `s7_dooropen` and `s8_goodbye` were all in the
+     spine, all had assets, and none had a shots[] entry — so the gate had nothing to
+     judge and reported no problem. Spine ids with no shots[] entry = a hard error.
+   - Corollary to rule 13: an asset that lost is deleted, but an asset that WON and was
+     never wired in is just as bad. Check `clips/` against the EDL for orphans.
+
+18. WHEN i2v CANNOT HOLD A BEAT, SHIP THE LOCKED STILL ON A REAL CAMERA MOVE
+   (2026-07-27). `ellie_eye`, `s7_dooropen` and `s8_goodbye` each had a still that passed
+   every gate and an animate that failed the clip beat-gate every time — 3 shots, 15
+   animate runs, 201 minutes, zero usable clips. All three are things Wan structurally
+   cannot do (rule 6): a door swinging open, an animal walking out of it, a close-up eye
+   holding identity. The answer is not attempt 5 at 13 minutes a go.
+   - `bin/ken_burns.py` on the LOCKED still — sub-pixel float sampling, no jitter, frozen
+     rule 12 honoured — produces a shippable shot in ~4 seconds instead of 13 minutes.
+   - Cut IN on the state already achieved. The door is already open when we cut to it; we
+     never try to render it opening. Same reason we never show the impact (rule 14).
+   - This is a first-class finishing move, not a defeat. Mixing real i2v motion with
+     still-on-a-move is how live-action cuts too. What is NOT allowed is a fake shake
+     (rule 12) or quietly shipping a beat with no footage at all (rule 14).
+   - Judge the ken_burns clip with beat_gate like any other shot. A move on a still that
+     depicts the wrong thing is still the wrong thing.
+
 ## MOTION TRANSFER — real footage drives a character (2026-07-25, Matt-approved)
 
 Breaks frozen rule 6's action ceiling. Take ANY video of a real person doing something
@@ -156,9 +213,19 @@ rule 1a) applies to motion-transfer clips exactly as it does to stills. Static c
 only; frozen rule 12 still bans zoompan/fake pushes.
 
 **Doug and other quadrupeds cannot take a human skeleton** — they get plain i2v reaction
-shots. OPEN BUG (2026-07-25): `make-video --i2v` has no GGUF path, so it loads two 27GB
-fp16 MoE stages and killed ComfyUI mid-render during the action scene. Give i2v a GGUF
-variant before attempting another quadruped reaction shot.
+shots. ~~OPEN BUG (2026-07-25): `make-video --i2v` has no GGUF path~~ **CLOSED, verified
+2026-07-27:** `wan22_i2v_gguf_ready()` returns True and `build_wan22_i2v_gguf` is the
+DEFAULT i2v path (`bin/make-video:72`); fp16 now requires an explicit `--fp16-i2v`.
+Two Q6_K stages are ~12GB each rather than ~27GB.
+
+**But GGUF alone is not enough headroom.** ComfyUI still died loading Wan at 20:39 on
+2026-07-27 with the GGUF path active, because ~24GB was already parked in swap. The
+reliable pattern, measured across every animate that night: an i2v render succeeds when
+it starts right after a ComfyUI bounce has reclaimed swap, and dies when it starts on a
+box that has been running a while. `mem-gate` before the animate is necessary and NOT
+sufficient — it checks free RAM and swap totals, and 93% free RAM with a nearly-full
+swap file still kills the render. Bounce ComfyUI immediately before any i2v, not merely
+when the gate complains.
 
 Approved clips + pose track: `good-clips/motion_transfer_*` (chmod 444) — the bear
 cartwheel, the strike combo, and the 3-beat action scene Matt approved 2026-07-25

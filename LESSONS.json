@@ -143,6 +143,80 @@
    ],
    "lesson": "LOCK THE SET, not just the characters. The door Hank pushes and the door that opens were different cars entirely \u2014 sliding wooden panel on a plain red car vs double hinged doors on a yellow-banded car in a different landscape. beat_gate supports set_masters and this film never armed it. Any shot sharing a location declares its set and is checked against the locked plate.",
    "learned_on": "circus_train door continuity 2026-07-26"
+  },
+  {
+   "lesson": "Never put a word in CAPITAL LETTERS in an image prompt \u2014 the model renders capitalised words as literal painted signage. 'boxcars with SHUT doors' put the word SHUT in yellow capitals across two train cars. Use lower case, and add 'no lettering or writing anywhere' for vehicles.",
+   "learned_on": "circus_train s4_arrival 2026-07-27",
+   "when": [
+    "flux",
+    "still",
+    "prompt",
+    "mflux",
+    "text",
+    "signage",
+    "caps",
+    "lettering"
+   ]
+  },
+  {
+   "lesson": "A beat must name PHYSICAL VISIBLE facts. A single frame cannot show absence-of-motion ('stopped') or an internal state ('clearly worried') \u2014 both failed every ballot until restated. If independent runs fail with the SAME words, the beat is wrong, not the roll: stop re-rolling.",
+   "learned_on": "circus_train s2_thecall + s4_arrival 2026-07-27",
+   "when": [
+    "beat",
+    "beat_gate",
+    "spec",
+    "judge",
+    "fail",
+    "re-roll"
+   ]
+  },
+  {
+   "lesson": "A set-continuity master only works against shots at COMPARABLE SCALE. One master cannot serve both: a door close-up flunks every wide shot, a wide establishing view flunks every close-up. Keep a wide master and a detail master, and have each shot name the one at its scale.",
+   "learned_on": "circus_train 2026-07-27",
+   "when": [
+    "set",
+    "continuity",
+    "master",
+    "canon",
+    "scale",
+    "close-up",
+    "wide"
+   ]
+  },
+  {
+   "lesson": "A gate that writes the WRONG lesson is worse than no gate. Distinct rejection reasons must stay distinct \u2014 text-in-frame recorded as identity DRIFT taught 'draw the character on-model and larger', a correction unrelated to the defect, saved permanently and carried into later films.",
+   "learned_on": "circus_train s4_arrival 2026-07-27",
+   "when": [
+    "gate",
+    "lesson",
+    "learning",
+    "identity",
+    "drift"
+   ]
+  },
+  {
+   "lesson": "i2v dies silently with NO crash log when jetsam SIGKILLs it, while memory_pressure reports 93% free \u2014 the nearly-full swap file is what runs out, and nothing measures it. Bounce ComfyUI immediately before every animate, and reclaim on BOTH sides of the render, not just before.",
+   "learned_on": "circus_train 2026-07-27",
+   "when": [
+    "i2v",
+    "wan",
+    "memory",
+    "jetsam",
+    "swap",
+    "comfyui",
+    "animate"
+   ]
+  },
+  {
+   "lesson": "Gates judge ASSETS; nothing judges the POINTER. An EDL entry aimed at the wrong file gets a truthful verdict to the wrong question. Cross-check EDL ids against beats.json by id before any model loads \u2014 it is a string compare.",
+   "learned_on": "circus_train s4_arrival 2026-07-27",
+   "when": [
+    "edl",
+    "pointer",
+    "assembly",
+    "cut",
+    "beats"
+   ]
   }
  ]
 }
