@@ -321,13 +321,33 @@ def _main():
         if len(shots) >= 2:
             sheet = tmp / "identity.png"
             tile(shots, sheet)
+            # VERDICT FIRST. The old prompt ended "answer 'consistent' or list every
+            # difference you can see" — an invitation to enumerate, which the model
+            # accepted: it opened "Let's analyze each character across the 9 scenes..."
+            # and hit the 200-token cap mid-sentence without ever reaching a verdict.
+            # The scorer wanted "consistent" in the first 60 characters, so a truncated
+            # ramble scored FAIL and the report showed a defect that was really an
+            # unanswered question (2026-07-28). Every other gate in this pipeline
+            # learned the same lesson: demand the ruling first, reasons after.
             ans = vl_ask(sheet,
                          f"This sheet shows the same two characters ({char_desc}) "
-                         f"in {len(shots)} different scenes. For EACH character, do "
-                         f"they look like the SAME individual in every tile (same "
-                         f"build, proportions, colors, face)? Answer 'consistent' "
-                         f"or list every difference you can see.")
-            check("identity-across-scenes", "consistent" in ans.lower()[:60], ans[:200])
+                         f"in {len(shots)} different scenes. Do they look like the "
+                         f"SAME individuals in every tile (same build, proportions, "
+                         f"colours, face)? Reply with ONE word first — CONSISTENT or "
+                         f"DRIFT — then ONE short sentence naming the single biggest "
+                         f"difference. Do not analyse the tiles one by one.")
+            verdict = ans.strip().lower()
+            ok = verdict.startswith("consistent")
+            unparsed = not (verdict.startswith("consistent") or verdict.startswith("drift"))
+            if unparsed:
+                # An unanswered question is UNCHECKED, not a defect. Saying "identity
+                # drifted" when the judge never ruled is the same lie as calling a
+                # killed QC a pass.
+                check("identity-across-scenes", False,
+                      f"UNCHECKED — the judge never returned a verdict (got: "
+                      f"'{ans.strip()[:90]}...'). Identity is UNVERIFIED, not failed.")
+            else:
+                check("identity-across-scenes", ok, ans[:200])
 
     # ---- 4. artifact sweep ----------------------------------------------
     t = 0.5
