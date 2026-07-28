@@ -18,3 +18,4 @@ projects/*/sizzle/
 *.wav
 *.safetensors
 *.gguf
+story-forge-start.log
