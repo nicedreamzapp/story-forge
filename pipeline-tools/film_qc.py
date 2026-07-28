@@ -181,7 +181,12 @@ def main():
     # (e.g. after killing ComfyUI). Not an env var and not a default: the refusal is
     # the behaviour, this is a decision someone made out loud on a specific run.
     override = "--allow-critical-memory" in sys.argv
-    with _mem_reserve("film-qc-vl", 26, timeout=1800, ttl=3600) as lease:
+    # Don't block 30 minutes for a lease we have already decided to run without.
+    # With the override set, ask once and proceed; without it, wait properly for a
+    # seat. (2026-07-28: an overridden run sat idle at 28MB RSS for 30 minutes
+    # waiting for a denial it was going to ignore.)
+    _timeout = 5 if override else 1800
+    with _mem_reserve("film-qc-vl", 26, timeout=_timeout, ttl=3600) as lease:
         if override and lease is None:
             print("[film_qc] --allow-critical-memory: guard denied the lease, running "
                   "anyway by explicit operator decision. If this is killed the film is "
