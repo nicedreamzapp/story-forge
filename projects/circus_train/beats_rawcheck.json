@@ -1,0 +1,18 @@
+{
+ "set_masters": {
+  "circus boxcar": "canon/boxcar_canon.png"
+ },
+ "shots": [
+  {
+   "id": "s6_interior",
+   "clip": "clips/s6_interior_raw.mp4",
+   "t": 2.0,
+   "beat": "the dark interior of a closed boxcar, dust falling in a thin blade of light coming through the door seam",
+   "must_not": [
+    "a bright cheerful daylit exterior",
+    "the impact itself shown on screen",
+    "splinters or debris spraying"
+   ]
+  }
+ ]
+}

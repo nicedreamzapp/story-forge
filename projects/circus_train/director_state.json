@@ -1,13 +1,176 @@
 {
- "attempts": {},
- "blocked": {},
- "history": [],
+ "attempts": {
+  "s4_arrival": 0,
+  "ellie_eye": 4,
+  "s7_dooropen": 2
+ },
+ "blocked": {
+  "ellie_eye": "still never passed the gates after 4 escalating attempts"
+ },
+ "history": [
+  {
+   "shot": "s4_arrival",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "23:18"
+  },
+  {
+   "shot": "s4_arrival",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "23:33"
+  },
+  {
+   "shot": "s4_arrival",
+   "attempt": 2,
+   "state": "STILL_LOCKED",
+   "at": "23:40"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "00:07"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "00:30"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "00:55"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 0,
+   "state": "CLIP_FAILED",
+   "at": "01:12"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 1,
+   "state": "CLIP_FAILED",
+   "at": "01:22"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 2,
+   "state": "STILL_LOCKED",
+   "at": "01:25"
+  },
+  {
+   "shot": "s8_goodbye",
+   "attempt": 0,
+   "state": "CLIP_FAILED",
+   "at": "01:41"
+  },
+  {
+   "shot": "s8_goodbye",
+   "attempt": 1,
+   "state": "CLIP_FAILED",
+   "at": "01:52"
+  },
+  {
+   "shot": "s8_goodbye",
+   "attempt": 2,
+   "state": "STILL_LOCKED",
+   "at": "01:53"
+  },
+  {
+   "shot": "s4_arrival",
+   "attempt": 0,
+   "state": "CLIP_KEPT",
+   "at": "09:47"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "10:15"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "10:45"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "11:08"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "12:15"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "12:43"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "13:17"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 3,
+   "state": "UNBUILT",
+   "at": "13:43"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 0,
+   "state": "STILL_LOCKED",
+   "at": "15:00"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "15:00"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "15:00"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 3,
+   "state": "UNBUILT",
+   "at": "15:00"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 0,
+   "state": "CLIP_FAILED",
+   "at": "15:29"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 1,
+   "state": "CLIP_FAILED",
+   "at": "15:48"
+  }
+ ],
  "catalog": {
   "s7_dooropen": {
    "id": "s7_dooropen",
    "init": "stills/wip/s7_composite.png",
    "denoise": 0.32,
-   "prompt": "Pixar-style 3D animated film still, golden hour: a young gray circus elephant wearing a small red and gold pointed circus cap with a red feather plume is free in the wide open doorway of a weathered red circus boxcar, blinking in the warm sunlight, big amber eyes with long lashes, NO tusks, big soft ears, dust in the air, desert canyon behind, cinematic children's movie lighting",
+   "prompt": "Pixar-style 3D animated film still: ONE young gray circus elephant wearing a small red and gold rounded circus cap with a red feather plume, standing in the wide open sliding doorway of a BRIGHT RED wooden boxcar with a plain tan wooden sliding door, plain unmarked wood with no lettering or numbers anywhere, big amber eyes with long lashes, no tusks, gravel track bed, green treeline, warm afternoon light",
    "beat": "a wide open boxcar door with a young gray elephant wearing a small red circus cap standing in the opening in daylight",
    "must_not": [
     "a closed or jammed door",
@@ -21,27 +184,30 @@
    "lock": "stills/LOCKED_s7_dooropen.png",
    "animate": "the young elephant steps forward out of the open boxcar doorway and down into the sunlight, ears swaying, trunk lifting, dust drifting in the warm light, camera holds steady",
    "clip": "clips/s7_dooropen_final.mp4",
-   "min_window": 2.0
+   "min_window": 2.0,
+   "set": "circus boxcar",
+   "_motion_subject": "the elephant"
   },
   "ellie_eye": {
    "id": "ellie_eye",
    "init": "stills/wip/ellie_crack_composite_v3.png",
    "denoise": 0.5,
    "prompt": "Pixar-style 3D animated film still, extreme close-up through a narrow vertical gap between rough dark wooden boxcar planks: a frightened young circus elephant's enormous amber eye, wide and glistening with fear, brow pinched with worry, WARM GRAY elephant skin, one blade of golden daylight across the eye, dark planks, dust motes in the light, cinematic children's movie lighting",
-   "beat": "one large amber elephant eye, wide open, seen through a narrow vertical gap between dark wooden planks",
+   "beat": "one large amber elephant eye visible through a narrow vertical gap between dark wooden planks",
    "must_not": [
-    "a calm or happy expression",
     "porcelain white or pink skin",
     "a collar"
    ],
    "identity": {
-    "master": "canon/ellie_canon.png",
-    "subject": "Ellie the young circus elephant"
+    "master": "canon/ellie_eye_canon.png",
+    "subject": "Ellie's eye and brow in close-up"
    },
    "lock": "stills/LOCKED_ellie_eye.png",
    "animate": "the frightened eye blinks slowly and shifts as she looks toward the light, dust drifting through the blade of sunlight, the planks perfectly still, camera holds steady",
    "clip": "clips/ellie_eye_final.mp4",
-   "min_window": 1.6
+   "min_window": 1.6,
+   "set": "circus boxcar",
+   "_motion_subject": "the elephant"
   },
   "s2_thecall": {
    "id": "s2_thecall",
@@ -55,7 +221,8 @@
    "lock": "stills/LOCKED_s2_call.png",
    "animate": "the smoke billows and drifts upward from the stalled train, heat shimmer rippling over the motionless cars, grass moving slightly in the wind, camera holds steady",
    "clip": "clips/s2_call_final.mp4",
-   "min_window": 2.0
+   "min_window": 2.0,
+   "set": "circus boxcar"
   },
   "s4_arrival": {
    "id": "s4_arrival",
@@ -81,12 +248,14 @@
    "lock": "stills/LOCKED_s4_arrival.png",
    "animate": "heat shimmer ripples off the boxcar roofs, dust drifts across the gravel, the bear's head turns slowly as he takes in the length of the dead train, the dog shifts his weight, camera holds steady",
    "clip": "clips/s4_arrival_final.mp4",
-   "min_window": 2.0
+   "min_window": 2.0,
+   "set": "circus boxcar",
+   "_motion_subject": "the bear and the dog"
   },
   "s6_interior": {
    "id": "s6_interior",
-   "prompt": "Pixar-style 3D animated film still, interior of a dark wooden boxcar: a single blade of golden daylight cuts through a crack at the sliding door, fine dust and straw sifting down through the light, dark plank walls and floor, the crack of light at the door slightly wider than before, tense and quiet, cinematic children's movie lighting, no characters",
-   "beat": "the dark inside of a wooden boxcar with a bright blade of daylight cutting in at the door edge and dust hanging in the light",
+   "prompt": "Pixar-style 3D animated film still, interior of a dark wooden boxcar: a single blade of golden daylight cuts through a crack at the sliding door, fine dust and straw sifting down through the light, dark plank walls and floor, the crack of light at the door slightly wider than before, tense and quiet, cinematic children's movie lighting, deserted and empty of any creature",
+   "beat": "the dark interior of a wooden boxcar with a bright blade of daylight cutting in at the door edge and dust hanging in the light",
    "must_not": [
     "any animal or character visible",
     "a bright open door",
@@ -95,7 +264,9 @@
    "lock": "stills/LOCKED_s6_interior.png",
    "animate": "dust and straw sift down through the blade of light, the shaft of daylight at the door slowly widens, motes drifting, camera holds perfectly steady",
    "clip": "clips/s6_interior_final.mp4",
-   "min_window": 2.0
+   "min_window": 2.0,
+   "_no_characters": true,
+   "set": "circus boxcar"
   },
   "s8_goodbye": {
    "id": "s8_goodbye",
@@ -120,7 +291,9 @@
    "lock": "stills/LOCKED_s8_goodbye.png",
    "animate": "the two friends hold the paw bump and lower their paws, the horse shifts, warm dust drifts through the golden light, steam rises from the train behind, camera holds steady",
    "clip": "clips/s8_goodbye_final.mp4",
-   "min_window": 2.0
+   "min_window": 2.0,
+   "set": "circus boxcar",
+   "_motion_subject": "the bear and the dog"
   },
   "s5_door": {
    "id": "s5_door",
@@ -129,7 +302,12 @@
    "lock": "stills/LOCKED_s5.png",
    "animate": "the bloodhound keeps his nose pressed to the gap between the planks and sniffs, his long ears swaying, one paw testing the door, he does NOT turn away from the door, warm dust in the air, camera holds steady",
    "clip": "clips/s5_final.mp4",
-   "min_window": 2.0
+   "min_window": 2.0,
+   "identity": {
+    "master": "canon/doug_canon.png",
+    "subject": "Doug the bloodhound"
+   },
+   "set": "circus boxcar"
   }
  }
 }

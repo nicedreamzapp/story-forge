@@ -1,0 +1,18 @@
+[20:55:09] judge via in-process VL
+[20:55:09] === s4_arrival — beat: a bear and a dog standing in front of a weathered circus train whose doors are all shut, i
+[20:55:09]   carrying 22 lesson(s) (2 inherited from earlier films) into this shot
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 12701.46it/s]
+[20:56:15]   seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing in front of a weathered train with all door
+[20:56:22]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive round head shape, small rounded ears, and light beige muzzle with a dark nose, consistent 
+[20:56:22]   LOCKED stills/LOCKED_s4_arrival.png
+[20:56:22]   released the in-process VL judge before handing the GPU to Wan
+[20:56:40]   animation failed: [make-video] uploading LOCKED_s4_arrival.png → ComfyUI
+[videopipe] queued 911d65f2-7662-4a55-9b43-ca4d827ccb7f
+ ramework/Versions/3.14/lib/python3.14/socket.py", line 729, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+ConnectionResetError: [Errno 54] Connection reset by peer
+
+[20:56:40] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[20:56:40] DONE — 1/1 shots produced usable, judged assets
+[20:56:40]   s4_arrival: STILL_LOCKED

@@ -1,12 +1,16 @@
 [
  {
-  "id": "s4_arrival_plate",
-  "state": "UNBUILT",
-  "rolls": []
- },
- {
-  "id": "s8_goodbye_plate",
-  "state": "UNBUILT",
-  "rolls": []
+  "id": "s4_arrival",
+  "state": "STILL_LOCKED",
+  "rolls": [
+   {
+    "seed": 11,
+    "cycle": 0,
+    "beat": "PASS",
+    "votes": "3/3",
+    "identity": "MATCH"
+   }
+  ],
+  "locked_still": "stills/LOCKED_s4_arrival.png"
  }
 ]

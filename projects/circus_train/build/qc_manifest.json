@@ -14,27 +14,42 @@
     {
       "name": "s2_thecall",
       "start": 12.4,
-      "end": 17.49
+      "end": 17.4
     },
     {
       "name": "s3_rollout",
-      "start": 19.45,
-      "end": 24.53
+      "start": 19.36,
+      "end": 24.45
     },
     {
       "name": "s4_arrival",
-      "start": 24.53,
-      "end": 29.61
+      "start": 24.45,
+      "end": 29.45
     },
     {
-      "name": "s5_door",
-      "start": 33.17,
-      "end": 38.26
+      "name": "ellie_eye",
+      "start": 33.01,
+      "end": 37.01
     },
     {
-      "name": "s6_heave",
-      "start": 45.06,
-      "end": 47.39
+      "name": "s6_heave_animated",
+      "start": 43.81,
+      "end": 46.18
+    },
+    {
+      "name": "s6_interior",
+      "start": 46.18,
+      "end": 50.68
+    },
+    {
+      "name": "s7_dooropen",
+      "start": 50.68,
+      "end": 55.68
+    },
+    {
+      "name": "s8_goodbye",
+      "start": 62.52,
+      "end": 67.52
     }
   ],
   "lines": [
@@ -60,84 +75,84 @@
       "offscreen": true
     },
     {
-      "t": 17.64,
+      "t": 17.55,
       "speaker": "doug",
       "text": "Circus train? Hank, we're rolling.",
       "dur": 1.81,
       "offscreen": false
     },
     {
-      "t": 29.76,
+      "t": 29.6,
       "speaker": "hank",
       "text": "Whole train's cooking out here.",
       "dur": 1.17,
       "offscreen": false
     },
     {
-      "t": 31.08,
+      "t": 30.92,
       "speaker": "doug",
       "text": "Easy everybody! The Wild Rescue's here!",
       "dur": 2.09,
       "offscreen": false
     },
     {
-      "t": 35.77,
+      "t": 34.21,
       "speaker": "ellie",
       "text": "I can't, it's too heavy",
-      "dur": 0.6,
+      "dur": 0.76,
       "offscreen": true
     },
     {
-      "t": 38.41,
+      "t": 37.16,
       "speaker": "doug",
       "text": "Pin's jammed tight.",
       "dur": 1.57,
       "offscreen": false
     },
     {
-      "t": 40.13,
+      "t": 38.88,
       "speaker": "doug",
       "text": "Ellie? It's Doug. One push, girl.",
       "dur": 2.89,
       "offscreen": false
     },
     {
-      "t": 43.17,
+      "t": 41.92,
       "speaker": "doug",
       "text": "Three, two, one, push!",
       "dur": 1.89,
       "offscreen": false
     },
     {
-      "t": 47.54,
+      "t": 55.83,
       "speaker": "hank",
       "text": "Doors don't argue with bears.",
       "dur": 1.33,
       "offscreen": false
     },
     {
-      "t": 49.02,
+      "t": 57.31,
       "speaker": "doug",
       "text": "Turtle called dibs on the tank an hour ago.",
       "dur": 1.93,
       "offscreen": false
     },
     {
-      "t": 51.1,
+      "t": 59.39,
       "speaker": "doug",
       "text": "Anybody, anywhere, any trouble at all",
       "dur": 1.77,
       "offscreen": false
     },
     {
-      "t": 53.02,
+      "t": 61.31,
       "speaker": "hank",
       "text": "the Wild Rescue rolls.",
       "dur": 1.21,
       "offscreen": false
     },
     {
-      "t": 55.23,
+      "t": 68.52,
       "speaker": "bird",
       "text": "Can I get a hat like this?",
       "dur": 0.6,

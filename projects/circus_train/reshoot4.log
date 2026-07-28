@@ -1,0 +1,7 @@
+[20:37:04] judge via in-process VL
+[20:37:04] === s2_thecall — beat: a circus train stopped still on the tracks with thick dark smoke pouring up from it, seen 
+[20:37:04]   carrying 17 lesson(s) (1 inherited from earlier films) into this shot
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 17614.90it/s]
+[20:37:50]   seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted as moving forward along the tracks, with visible motion blur and steam ne
+/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

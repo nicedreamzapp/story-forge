@@ -1,0 +1,18 @@
+[beat_gate] VL via in-process
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 14285.24it/s]
+[PASS] s1_coldopen: 2 of 3 sampled frames depict the beat. FAIL. The bear holds a stick vertically, which is not a fishing rod, and there is no visible fishing line or ho
+[FAIL] s2_thecall: 0 of 3 sampled frames depict the beat. FAIL. The train is depicted moving across a bridge in a peaceful, scenic setting, which contradicts the require
+[PASS] s3_rollout: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a horse-drawn wooden wagon moving rapidly along a dirt road, with visible dust 
+[FAIL] s4_arrival: BEAT FAIL (1/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image differs in construction
+[FAIL] s5_door: BEAT FAIL (0/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image differs in construction
+[PASS] ellie_eye: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows an extreme close-up of one large, frightened amber elephant eye peering through a
+[PASS] s6_heave_animated: 2 of 3 sampled frames depict the beat. FAIL. The bear is standing upright and relaxed, with no visible effort or strain in its posture, which contradi
+[FAIL] s6_interior: BEAT FAIL (0/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows a different boxcar with darker wood, a
+[FAIL] s7_dooropen: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The boxcar in the right image has a different color scheme (
+[PASS] s8_goodbye: 2 of 3 sampled frames depict the beat. FAIL. The image shows a fire truck on the tracks instead of a repaired circus train, and the train in the backg
+[beat_gate] story spine: 5/9 required beats are on screen
+[HOLE] the heroes SEE that something is wrong — the call to adventure — no passing shot (s2_thecall)
+[HOLE] they arrive at the broken-down train and the trouble is visible — no passing shot (s4_arrival)
+[HOLE] the bang is felt from inside the dark car — no passing shot (s6_interior)
+[HOLE] THE PAYOFF: the door opens and the trapped animal is free on screen — no passing shot (s7_dooropen, new_s7_dooropen)
+[beat_gate] report → projects/circus_train/BEAT_GATE_report.md

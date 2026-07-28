@@ -1,0 +1,61 @@
+[build-episode] PREFLIGHT —
+[build-episode]   Song Forge: ace=True llm=True jobs_running=0
+[build-episode]   assets: 21 clips present, 0 missing
+[build-episode]   pointer gate: 9 scenes agree with beats.json
+[build-episode]   story gate scope: 9 shots in the cut; not in the cut, not judged: s5_door, s6_heave, new_ellie_eye, new_s7_dooropen, outro_hank_brag, outro_signoff
+[build-episode]   running beat_gate (does every shot depict its beat?)…
+[build-episode]     [PASS] s1_coldopen: 2 of 3 sampled frames depict the beat. FAIL. The bear holds a stick vertically, which is not a fishing rod, and there is no visible fishing line or ho
+[build-episode]     [PASS] s2_thecall: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a train in motion through an arid landscape, emitting a thick, dark plume of bl
+[build-episode]     [PASS] s3_rollout: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a horse-drawn wooden wagon moving rapidly along a dirt road, with visible dust 
+[build-episode]     [FAIL] s4_arrival: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image differs significantly i
+[build-episode]     [PASS] ellie_eye: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows an extreme close-up of one large, frightened amber elephant eye peering through a
+[build-episode]     [PASS] s6_heave_animated: 2 of 3 sampled frames depict the beat. FAIL. The bear is standing upright and relaxed, with no visible effort or strain in its posture, which contradi
+[build-episode]     [PASS] s6_interior: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a dark interior with a thin blade of light entering through a seam in an open w
+[build-episode]     [PASS] s7_dooropen: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a young gray elephant standing in the open doorway of a red boxcar, wearing a sma
+[build-episode]     [PASS] s8_goodbye: 2 of 3 sampled frames depict the beat. FAIL. The image shows a fire truck on the tracks instead of a repaired circus train, and the train in the backg
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] s4_arrival: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image diff
+[build-episode]   1 shot(s) fail SET CONTINUITY only — the story is intact, assembling and reporting them as known defects
+[build-episode] SONG —
+[build-episode]   commissioned score 9bfb261356a64215b9447d40b8095b1d — polling
+[build-episode]   score ready: 150s → score.wav
+[build-episode] CARDS —
+[build-episode]   title + credit cards built
+[build-episode] SEGMENTS —
+[build-episode]   title: 4.00s
+[build-episode]   s1_coldopen: 5.06s
+[build-episode]   L01: 1.64s
+[build-episode]   L02: 1.68s
+[build-episode]   s2_thecall: 5.00s +VO
+[build-episode]   L04: 1.96s
+[build-episode]   s3_rollout: 5.06s
+[build-episode]   s4_arrival: 5.00s
+[build-episode]   L05: 1.32s
+[build-episode]   L06: 2.24s
+[build-episode]   ellie_eye: 4.00s +VO
+[build-episode]   L07: 1.72s
+[build-episode]   L09: 3.04s
+[build-episode]   L10: 2.04s
+[build-episode]   s6_heave_animated: 2.38s
+[build-episode]   s6_interior: 4.50s
+[build-episode]   s7_dooropen: 5.00s
+[build-episode]   L11: 1.48s
+[build-episode]   L13: 2.08s
+[build-episode]   L14: 1.92s
+[build-episode]   L15: 1.36s
+[build-episode]   s8_goodbye: 5.00s
+[build-episode]   credits: 5.00s +VO
+[build-episode]   23 segments normalised to 832x480@24
+[build-episode] ASSEMBLE —
+[build-episode]   cut assembled: 89.5s from 29 segments
+[build-episode]   score laid under and ducked: score.wav
+[build-episode]   FILM: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4  (89.5s)
+[build-episode] QC —
+[build-episode]   manifest: 15 lines, 9 scenes
+[build-episode]   running film_qc (vision + audio judge)…
+[build-episode]     [mem] film-qc-vl: not granted (machine critical (swap 6.4GB)) — proceeding carefully
+[build-episode]     
+[build-episode]     Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]
+[build-episode]     Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 9939.11it/s]
+[build-episode]     /opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+[build-episode]       warnings.warn('resource_tracker: There appear to be %d '
+[build-episode] COMPLETE in 36.3 min → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4

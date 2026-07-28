@@ -1,0 +1,17 @@
+[beat_gate] VL via in-process
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 13334.06it/s]
+[PASS] s1_coldopen: 2 of 3 sampled frames depict the beat. FAIL. The bear holds a stick vertically, which is not a fishing rod, and there is no visible fishing line or ho
+[PASS] s2_thecall: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a train in motion through an arid landscape, emitting a thick, dark plume of bl
+[PASS] s3_rollout: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a horse-drawn wooden wagon moving rapidly along a dirt road, with visible dust 
+[FAIL] s4_arrival: BEAT FAIL (0/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image differs significantly i
+[FAIL] s5_door: BEAT FAIL (0/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image is not the same as the 
+[FAIL] ellie_eye: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows a close-up of a character’s face peeki
+[FAIL] s6_heave_animated: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image differs significantly i
+[PASS] s6_interior: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a dark interior with a thin blade of light entering through a seam in an open w
+[PASS] s7_dooropen: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a young gray elephant standing in the open doorway of a red boxcar, wearing a sma
+[PASS] s8_goodbye: 2 of 3 sampled frames depict the beat. FAIL. The image shows a fire truck on the tracks instead of a repaired circus train, and the train in the backg
+[beat_gate] story spine: 6/9 required beats are on screen
+[HOLE] they arrive at the broken-down train and the trouble is visible — no passing shot (s4_arrival)
+[HOLE] we SEE who is trapped — the audience gets someone to root for — no passing shot (ellie_eye, new_ellie_eye)
+[HOLE] the effort: the door is forced with real physical weight — no passing shot (s6_heave_animated, s6_heave)
+[beat_gate] report → projects/circus_train/BEAT_GATE_report.md

@@ -39,74 +39,6 @@
    "_motion_subject": "the bear and the dog"
   },
   {
-   "id": "s5_door",
-   "clip": "clips/s5_final.mp4",
-   "t": 2.0,
-   "beat": "a bloodhound with his nose pressed against a narrow gap between the planks of a wooden boxcar door",
-   "set": "boxcar door detail"
-  },
-  {
-   "id": "s6_heave",
-   "image": "stills/LOCKED_s6.png",
-   "beat": "a big bear leaning his shoulder and both paws into a boxcar door, body angled low, hind feet braced in the gravel, nothing in his paws",
-   "must_not": [
-    "holding or using a stick, tool, rod or any object",
-    "standing upright and relaxed",
-    "sawdust or debris spraying out of the wall",
-    "poking, prying or fiddling at the wood"
-   ],
-   "set": "boxcar door detail"
-  },
-  {
-   "id": "s6_heave_animated",
-   "clip": "clips/s6_final_v2.mp4",
-   "beat": "a big bear leaning his shoulder and both paws into a boxcar door, body angled low, hind feet braced in the gravel, nothing in his paws",
-   "must_not": [
-    "holding or using a stick, tool, rod or any object",
-    "standing upright and relaxed",
-    "sawdust or debris spraying out of the wall",
-    "poking, prying or fiddling at the wood"
-   ],
-   "set": "boxcar door detail"
-  },
-  {
-   "id": "new_ellie_eye",
-   "image": "stills/wip/ellie_eye_w_202_0.55.png",
-   "beat": "one large amber elephant eye visible through a narrow vertical gap between dark wooden planks",
-   "set": "boxcar door detail",
-   "must_not": [],
-   "_motion_subject": "the elephant",
-   "identity": {
-    "master": "canon/ellie_eye_canon.png",
-    "subject": "Ellie's eye and brow in close-up"
-   }
-  },
-  {
-   "id": "new_s7_dooropen",
-   "image": "stills/wip/s7_weld_313_0.32.png",
-   "beat": "a wide open boxcar door with a young gray elephant wearing a small red circus cap standing in the opening in daylight",
-   "set": "circus boxcar"
-  },
-  {
-   "id": "outro_hank_brag",
-   "clip": "build/seg15_L11.mp4",
-   "t": 0.6,
-   "beat": "immediately after the rescue, at the train, the bear takes dry credit for having just forced the door open",
-   "must_not": [
-    "standing in a forest or woods with no train anywhere",
-    "a location unrelated to the train"
-   ]
-  },
-  {
-   "id": "outro_signoff",
-   "clip": "build/seg17_L14.mp4",
-   "t": 0.6,
-   "beat": "the sign-off at the end of the rescue, with the rescued circus train visible behind them as they head home",
-   "must_not": [
-    "standing in a forest or woods with no train anywhere"
-   ]
-  },
-  {
    "id": "ellie_eye",
    "clip": "clips/ellie_eye_final.mp4",
    "t": 2.0,
@@ -121,6 +53,18 @@
     "master": "canon/ellie_eye_canon.png",
     "subject": "Ellie's eye and brow in close-up"
    }
+  },
+  {
+   "id": "s6_heave_animated",
+   "clip": "clips/s6_final_v2.mp4",
+   "beat": "a big bear leaning his shoulder and both paws into a boxcar door, body angled low, hind feet braced in the gravel, nothing in his paws",
+   "must_not": [
+    "holding or using a stick, tool, rod or any object",
+    "standing upright and relaxed",
+    "sawdust or debris spraying out of the wall",
+    "poking, prying or fiddling at the wood"
+   ],
+   "set": "boxcar door detail"
   },
   {
    "id": "s6_interior",

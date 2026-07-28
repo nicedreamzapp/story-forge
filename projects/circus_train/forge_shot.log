@@ -386,3 +386,1111 @@ mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focu
 mflux-generate-flux2: error: --negative-prompt is not supported for FLUX.2. Focus on describing what you want.
 
 [11:15:05]   s8_goodbye_plate: NO candidate passed — reported UNBUILT, nothing locked
+[22:39:15] judge via in-process VL
+[22:39:15] === s4_arrival — beat: a bear and a dog standing in front of a weathered circus train whose doors are all shut, i
+[22:39:15]   carrying 12 lesson(s) (2 inherited from earlier films) into this shot
+[22:40:21]   seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear standing in front of a weathered circus train with all doors s
+[22:40:25]   TEXT IN FRAME — rejected: YES  The word "SHUT" is clearly visible in large, yellow, capital letters on the side of two red train carriages. It appears on the first red carriage
+[22:41:28]   seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The beat requires both a bear and a dog, but only a bear is present in the image; the dog is mi
+[22:42:46]   seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train cars are not all shut — the red car in the foreground clearly has a door marked "SHUT
+[22:44:04]   seed 119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear-like creature and a dog-like creature (though only one is visi
+[22:44:08]   TEXT IN FRAME — rejected: YES  The readable writing is on the side of the red train car in the foreground. The word "SHUT" is clearly visible in white, uppercase letters on the
+[22:44:08]   retry cycle 1 with 14 correction(s) applied
+[22:44:38]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1011' (free=45% swap=21.5GB pressure=2)
+[22:45:55]   seed 1011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing in front of a weathered red train car with 
+[22:45:58]   TEXT IN FRAME — rejected: YES.   The word "SHUT" is clearly visible in white capital letters on the side of the red train car, near the door. It is located on the wooden paneli
+[22:47:09]   seed 1047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image contains an open door on one of the train cars with the word “SALTY” above it, which 
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=38% swap=21.5GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=53% swap=21.5GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=53% swap=21.5GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=53% swap=21.5GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=53% swap=21.5GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=53% swap=21.5GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=53% swap=21.5GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=53% swap=21.5GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=53% swap=21.5GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=53% swap=21.5GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=53% swap=21.5GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=53% swap=21.5GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=53% swap=21.5GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=53% swap=21.5GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=53% swap=21.5GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=52% swap=21.5GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=52% swap=21.5GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=53% swap=21.4GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=41% swap=21.4GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=34% swap=31.8GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=36% swap=36.0GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=37% swap=36.7GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=47% swap=36.7GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=32% swap=36.7GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=48% swap=36.7GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=47% swap=36.6GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=32% swap=36.6GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=48% swap=36.6GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=48% swap=36.6GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1082' (free=48% swap=36.6GB pressure=2)
+[23:02:10]   mem-gate: [mem-gate] mem-gate: refusing to start 's4_arrival still seed 1082' — machine still short after 900s (free=48% swap=36.5GB pressure=2). Free memory (quit heavy apps, wait for training/downloads to finish) and re-run.
+[23:02:10]   mem-gate refused — stopping this shot
+[23:02:10]   retry cycle 2 with 15 correction(s) applied
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=48% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=49% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=48% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=48% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=48% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=48% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=48% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=48% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=48% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=48% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=48% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=48% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=48% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=48% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=49% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=49% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=48% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=48% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=49% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=49% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=49% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=49% swap=36.5GB pressure=2)
+[23:13:41]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 2011' (free=47% swap=35.1GB pressure=2)
+[23:14:50]   seed 2011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train doors are open, which violates the requirement that all doors must be shut, and the p
+[23:15:57]   seed 2047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a large, orange, furry bear-like creature standing in front of a weat
+[23:16:06]   TEXT IN FRAME — rejected: YES.  The readable writing appears on the red train cars:  - On the side of the first red car (from the right), the word "SALTY" is written in white c
+[23:17:10]   seed 2082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train doors are not all shut — one door is visibly open, revealing the interior, which viol
+[23:18:15]   seed 2119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train car’s side door is open, which violates the explicit requirement that all doors must 
+[23:18:15]   s4_arrival: NO candidate passed — reported UNBUILT, nothing locked
+[23:18:17] judge via in-process VL
+[23:18:17] === s4_arrival — beat: a bear and a dog standing in front of a weathered circus train whose doors are all shut, i
+[23:18:17]   carrying 18 lesson(s) (2 inherited from earlier films) into this shot
+[23:19:28]   seed 3011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a cartoon-style dog standing in front of a weathered red train with c
+[23:19:35]   identity Hank vs hank_canon.png: DRIFT — NO. The character in the right image has a different head and ear shape — the ears are longer and more floppy, resembling a dog rather than the rounde
+[23:20:41]   seed 3047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train cars are not all shut — one of the red cars clearly has an open window, which violate
+[23:21:59]   seed 3082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows two dogs, not a bear and a dog, and while the train is weathered and the doors 
+[23:23:14]   seed 3119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows only a bear, not a dog, and while the train cars are shut and the scene is dust
+[23:23:14]   retry cycle 1 with 21 correction(s) applied
+[23:24:26]   seed 4011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a small, orange bear standing on all fours in front of a weathered tr
+[23:24:33]   TEXT IN FRAME — rejected: YES.  The most prominent readable text is on the side of the red train car, where the word "SHUT" is clearly visible in large, yellow, capital letters
+[23:25:46]   seed 4047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts two bears, not a bear and a dog, and the train is a freight train with closed
+[23:26:56]   seed 4082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing still in front of a weathered red train wit
+[23:27:00]   TEXT IN FRAME — rejected: YES  The readable writing appears on the red train cars in the background. The word "SHUT" is clearly visible in large, white, capital letters on the 
+[23:28:11]   seed 4119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing upright in front of a weathered red freight
+[23:28:15]   TEXT IN FRAME — rejected: YES.   The word "SHUT" is clearly visible in white capital letters on the side of the red train car, near the open doorway. It is painted directly ont
+[23:28:15]   retry cycle 2 with 22 correction(s) applied
+[23:29:19]   seed 5011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a bear standing alone in front of a weathered train with closed doors, but ther
+[23:30:28]   seed 5047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing still and observant in front of a weathered
+[23:30:34]   TEXT IN FRAME — rejected: YES.  There is readable writing on the red train cars in the background. Specifically:  - On the side of the closest red train car, there is a yellow 
+[23:31:43]   seed 5082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing in front of a weathered red freight train w
+[23:31:51]   TEXT IN FRAME — rejected: YES.  The readable or partly-readable writing is located on the red train cars in the background:  1. On the second red freight car from the left, abo
+[23:32:59]   seed 5119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing in front of a weathered red circus train wi
+[23:33:03]   TEXT IN FRAME — rejected: YES  The word "SHUT" is visible in yellow capital letters on the side of the red train cars, repeated on at least two of the visible carriages. The te
+[23:33:03]   s4_arrival: NO candidate passed — reported UNBUILT, nothing locked
+[23:33:05] judge via in-process VL
+[23:33:05] === s4_arrival — beat: a bear and a dog standing in front of a weathered circus train whose doors are all shut, i
+[23:33:05]   carrying 23 lesson(s) (2 inherited from earlier films) into this shot
+[23:34:13]   seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear standing in front of a weathered circus train with all doors s
+[23:34:17]   TEXT IN FRAME — rejected: YES  The word "SHUT" is clearly visible in large, yellow, capital letters on the side of two red train carriages. It appears on the first red carriage
+[23:35:23]   seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The beat requires both a bear and a dog, but only a bear is present in the image; the dog is mi
+[23:36:37]   seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train cars are not all shut — the red car in the foreground clearly has a door marked "SHUT
+[23:37:49]   seed 119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear-like creature and a dog-like creature (though only one is visi
+[23:37:54]   TEXT IN FRAME — rejected: YES  The readable writing is on the side of the red train car in the foreground. The word "SHUT" is clearly visible in white, uppercase letters on the
+[23:37:54]   retry cycle 1 with 23 correction(s) applied
+[23:39:06]   seed 1011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing calmly beside a weathered red train car wit
+[23:39:08]   TEXT IN FRAME — rejected: YES.   The word "SHUT" is clearly visible in white capital letters on the side of the red train car, near the door. It is painted directly onto the wo
+[23:40:19]   seed 1047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing in front of a weathered circus train with a
+[23:40:26]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive round head shape, small rounded ears, light beige muzzle, and brown fur with a lighter bel
+[23:40:26]   LOCKED stills/LOCKED_s4_arrival.png
+[23:40:28] judge via in-process VL
+[23:40:28] === ellie_eye — beat: one large amber elephant eye, wide open, seen through a narrow vertical gap between dark w
+[23:40:28]   carrying 13 lesson(s) (0 inherited from earlier films) into this shot
+[23:42:53]   seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s eye is wide open and expressive, but the visible portion of its face, including 
+[23:43:41]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 47' (free=45% swap=10.8GB pressure=2)
+[23:43:41]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[23:43:41]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[23:43:41]   mem-gate: [mem-gate] ComfyUI back up
+[23:45:43]   seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The eye is wide open and appears alert, but the surrounding skin is smooth and light-toned, whi
+[23:46:01]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[23:46:01]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[23:46:01]   mem-gate: [mem-gate] ComfyUI back up
+[23:47:34]   seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s skin is porcelain white, which is explicitly forbidden by the shot’s criteria.
+[23:47:52]   mem-gate: [mem-gate] healthy but 12GB parked in swap — bouncing idle ComfyUI to release it
+[23:47:52]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[23:47:52]   mem-gate: [mem-gate] ComfyUI back up
+[23:49:31]   seed 119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The animal’s expression appears alert and curious, which is not forbidden, but the description 
+[23:49:31]   retry cycle 1 with 17 correction(s) applied
+[23:50:19]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1011' (free=44% swap=12.7GB pressure=2)
+[23:50:19]   mem-gate: [mem-gate] healthy but 13GB parked in swap — bouncing idle ComfyUI to release it
+[23:50:19]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[23:50:19]   mem-gate: [mem-gate] ComfyUI back up
+[23:51:55]   seed 1011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s eye is wide open and alert, but the overall expression lacks the specific "curi
+[23:52:43]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1047' (free=44% swap=14.7GB pressure=2)
+[23:52:43]   mem-gate: [mem-gate] healthy but 15GB parked in swap — bouncing idle ComfyUI to release it
+[23:52:43]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[23:52:43]   mem-gate: [mem-gate] ComfyUI back up
+[23:54:16]   seed 1047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a large, wide-open amber eye through a narrow gap in wooden planks, but the sur
+[23:55:05]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1082' (free=46% swap=14.8GB pressure=2)
+[23:55:05]   mem-gate: [mem-gate] healthy but 15GB parked in swap — bouncing idle ComfyUI to release it
+[23:55:05]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[23:55:05]   mem-gate: [mem-gate] ComfyUI back up
+[23:56:41]   seed 1082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s skin tone is light grayish-white, which qualifies as "porcelain white" per the 
+[23:57:29]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1119' (free=45% swap=15.6GB pressure=2)
+[23:57:29]   mem-gate: [mem-gate] healthy but 16GB parked in swap — bouncing idle ComfyUI to release it
+[23:57:29]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[23:57:29]   mem-gate: [mem-gate] ComfyUI back up
+[23:59:05]   seed 1119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s skin tone is porcelain white, which is explicitly forbidden by the shot’s crite
+[23:59:05]   retry cycle 2 with 21 correction(s) applied
+[23:59:24]   mem-gate: [mem-gate] healthy but 17GB parked in swap — bouncing idle ComfyUI to release it
+[23:59:24]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[23:59:24]   mem-gate: [mem-gate] ComfyUI back up
+[00:01:11]   seed 2011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The eye is wide open and the surrounding skin shows wrinkles, but the expression is not clearly
+[00:01:29]   mem-gate: [mem-gate] healthy but 17GB parked in swap — bouncing idle ComfyUI to release it
+[00:01:29]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:01:29]   mem-gate: [mem-gate] ComfyUI back up
+[00:03:07]   seed 2047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single, large, wide-open amber eye through a narrow vertical gap betw
+[00:03:16]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie because the visible eye and facial structure do not match the distinctive large, expressive eyes and
+[00:03:34]   mem-gate: [mem-gate] healthy but 17GB parked in swap — bouncing idle ComfyUI to release it
+[00:03:34]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:03:34]   mem-gate: [mem-gate] ComfyUI back up
+[00:05:08]   seed 2082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style eye with a light, smooth skin tone that appears porcelain white
+[00:05:26]   mem-gate: [mem-gate] healthy but 18GB parked in swap — bouncing idle ComfyUI to release it
+[00:05:26]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:05:26]   mem-gate: [mem-gate] ComfyUI back up
+[00:07:00]   seed 2119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single, large, cartoon-style amber eye peering through a narrow verti
+[00:07:09]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie, as the visible eye and facial structure do not match Ellie’s distinctive large, round, expressive e
+[00:07:09]   ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[00:07:11] judge via in-process VL
+[00:07:11] === ellie_eye — beat: one large amber elephant eye, wide open, seen through a narrow vertical gap between dark w
+[00:07:11]   carrying 23 lesson(s) (0 inherited from earlier films) into this shot
+[00:07:29]   mem-gate: [mem-gate] healthy but 18GB parked in swap — bouncing idle ComfyUI to release it
+[00:07:29]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:07:29]   mem-gate: [mem-gate] ComfyUI back up
+[00:09:08]   seed 3011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s eye is wide open and expressive, but the overall expression appears curious or c
+[00:09:27]   mem-gate: [mem-gate] healthy but 18GB parked in swap — bouncing idle ComfyUI to release it
+[00:09:27]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:09:27]   mem-gate: [mem-gate] ComfyUI back up
+[00:10:57]   seed 3047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s eye is wide open and alert, but the visible portion of the face shows a slight s
+[00:11:15]   mem-gate: [mem-gate] healthy but 18GB parked in swap — bouncing idle ComfyUI to release it
+[00:11:15]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:11:15]   mem-gate: [mem-gate] ComfyUI back up
+[00:13:00]   seed 3082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s eye is wide open and expressive, but the overall expression appears curious or c
+[00:13:18]   mem-gate: [mem-gate] healthy but 18GB parked in swap — bouncing idle ComfyUI to release it
+[00:13:18]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:13:18]   mem-gate: [mem-gate] ComfyUI back up
+[00:14:57]   seed 3119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s skin tone is light gray with subtle shading, not porcelain white or pink, and t
+[00:14:57]   retry cycle 1 with 27 correction(s) applied
+[00:15:15]   mem-gate: [mem-gate] healthy but 13GB parked in swap — bouncing idle ComfyUI to release it
+[00:15:15]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:15:15]   mem-gate: [mem-gate] ComfyUI back up
+[00:17:26]   seed 4011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s expression appears calm and slightly curious, not conveying any sense of tension
+[00:18:26]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4047' (free=31% swap=11.8GB pressure=2)
+[00:18:26]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4047' (free=46% swap=11.8GB pressure=2)
+[00:19:52]   seed 4047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The eye is wide open and appears alert, but the surrounding skin is light gray and smooth, whic
+[00:21:18]   seed 4082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s expression appears calm and slightly smiling, which violates the automatic failu
+[00:22:48]   seed 4119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s eye is wide open and the expression appears alert or curious, but the descripti
+[00:22:48]   retry cycle 2 with 31 correction(s) applied
+[00:24:21]   seed 5011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts a stylized animated animal face with large expressive eyes, but the descripti
+[00:24:39]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[00:24:39]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:24:39]   mem-gate: [mem-gate] ComfyUI back up
+[00:26:19]   seed 5047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s eye and facial features suggest a calm or happy expression, with a curved, smil
+[00:26:37]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[00:26:37]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:26:37]   mem-gate: [mem-gate] ComfyUI back up
+[00:28:07]   seed 5082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The eye is wide open and the surrounding facial area is visible, but the skin tone is porcelain
+[00:28:26]   mem-gate: [mem-gate] healthy but 13GB parked in swap — bouncing idle ComfyUI to release it
+[00:28:26]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:28:26]   mem-gate: [mem-gate] ComfyUI back up
+[00:30:10]   seed 5119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s expression appears curious or slightly mischievous, not calm or happy, but the s
+[00:30:10]   ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[00:30:12] judge via in-process VL
+[00:30:12] === ellie_eye — beat: one large amber elephant eye, wide open, seen through a narrow vertical gap between dark w
+[00:30:12]   carrying 35 lesson(s) (0 inherited from earlier films) into this shot
+[00:30:30]   mem-gate: [mem-gate] healthy but 13GB parked in swap — bouncing idle ComfyUI to release it
+[00:30:30]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:30:30]   mem-gate: [mem-gate] ComfyUI back up
+[00:32:06]   seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s eye is wide open and expressive, but the overall expression appears curious or a
+[00:32:24]   mem-gate: [mem-gate] healthy but 13GB parked in swap — bouncing idle ComfyUI to release it
+[00:32:24]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:32:24]   mem-gate: [mem-gate] ComfyUI back up
+[00:33:52]   seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts a human-like eye, not an elephant eye, and the skin tone is light and smooth,
+[00:34:10]   mem-gate: [mem-gate] healthy but 13GB parked in swap — bouncing idle ComfyUI to release it
+[00:34:10]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:34:10]   mem-gate: [mem-gate] ComfyUI back up
+[00:35:43]   seed 82: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single large, wide-open amber eye through a narrow vertical gap betwe
+[00:35:49]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are inconsistent with the large, expressive, round e
+[00:36:38]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 119' (free=45% swap=13.3GB pressure=2)
+[00:36:38]   mem-gate: [mem-gate] healthy but 13GB parked in swap — bouncing idle ComfyUI to release it
+[00:36:38]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:36:38]   mem-gate: [mem-gate] ComfyUI back up
+[00:38:19]   seed 119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s eye is wide open, but the visible facial features—including the smooth, light-c
+[00:38:19]   retry cycle 1 with 38 correction(s) applied
+[00:39:07]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1011' (free=46% swap=14.7GB pressure=2)
+[00:39:07]   mem-gate: [mem-gate] healthy but 15GB parked in swap — bouncing idle ComfyUI to release it
+[00:39:07]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:39:07]   mem-gate: [mem-gate] ComfyUI back up
+[00:40:47]   seed 1011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s expression, while cautious, is not clearly "calm or happy" as forbidden, but th
+[00:41:05]   mem-gate: [mem-gate] healthy but 16GB parked in swap — bouncing idle ComfyUI to release it
+[00:41:05]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:41:05]   mem-gate: [mem-gate] ComfyUI back up
+[00:42:45]   seed 1047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single, large, wide-open amber elephant eye peering through a narrow 
+[00:42:53]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are inconsistent with the wide, expressive eyes seen
+[00:43:12]   mem-gate: [mem-gate] healthy but 16GB parked in swap — bouncing idle ComfyUI to release it
+[00:43:12]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:43:12]   mem-gate: [mem-gate] ComfyUI back up
+[00:44:44]   seed 1082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies a large amber elephant eye, but the image shows a stylized animated human ey
+[00:45:02]   mem-gate: [mem-gate] healthy but 16GB parked in swap — bouncing idle ComfyUI to release it
+[00:45:02]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:45:02]   mem-gate: [mem-gate] ComfyUI back up
+[00:46:55]   seed 1119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The eye is wide open and the character appears to be peering cautiously, but the skin tone is l
+[00:46:55]   retry cycle 2 with 41 correction(s) applied
+[00:47:14]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[00:47:14]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:47:14]   mem-gate: [mem-gate] ComfyUI back up
+[00:48:46]   seed 2011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts a calm or happy expression, as indicated by the curved eyebrow and hint of a 
+[00:49:04]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[00:49:04]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:49:04]   mem-gate: [mem-gate] ComfyUI back up
+[00:50:42]   seed 2047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single, large, wide-open amber eye of a cartoon-style elephant peerin
+[00:50:50]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie because the visible eye and facial structure do not match the distinctive large, expressive eyes and
+[00:51:08]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[00:51:08]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:51:08]   mem-gate: [mem-gate] ComfyUI back up
+[00:52:44]   seed 2082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s skin is light-colored and smooth, which could be interpreted as porcelain white
+[00:53:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 2119' (free=44% swap=12.6GB pressure=2)
+[00:53:32]   mem-gate: [mem-gate] healthy but 13GB parked in swap — bouncing idle ComfyUI to release it
+[00:53:32]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:53:32]   mem-gate: [mem-gate] ComfyUI back up
+[00:55:06]   seed 2119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single, large, cartoon-style amber eye peering through a narrow verti
+[00:55:14]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie, as the visible eye and facial structure do not match Ellie’s distinctive large, expressive eyes wit
+[00:55:14]   ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[00:55:16] judge via in-process VL
+[00:55:16] === s7_dooropen — beat: a wide open boxcar door with a young gray elephant wearing a small red circus cap standing
+[00:55:16]   carrying 1 lesson(s) (1 inherited from earlier films) into this shot
+[00:55:34]   mem-gate: [mem-gate] healthy but 14GB parked in swap — bouncing idle ComfyUI to release it
+[00:55:34]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:55:34]   mem-gate: [mem-gate] ComfyUI back up
+[00:57:17]   seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a young gray elephant wearing a small red circus-style cap (with a fe
+[00:57:25]   identity Ellie vs ellie_canon.png: MATCH — YES. The character in the right image matches Ellie in every key design aspect, including the same head shape, ear size and curvature, gray coat color
+[00:57:25]   LOCKED stills/LOCKED_s7_dooropen.png
+[00:57:43]   mem-gate: [mem-gate] healthy but 14GB parked in swap — bouncing idle ComfyUI to release it
+[00:57:43]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:57:43]   mem-gate: [mem-gate] ComfyUI back up
+[01:11:43]   clip: beat FAIL (0/5)
+[01:11:51]   window probe t=0.51s: FAIL
+[01:12:00]   window probe t=1.52s: FAIL
+[01:12:09]   window probe t=2.53s: FAIL
+[01:12:20]   window probe t=3.54s: FAIL
+[01:12:29]   window probe t=4.56s: FAIL
+[01:12:29]   s7_dooropen: animation never holds the beat — clip NOT used; kept at clips/_failed/s7_dooropen_failed.mp4 so the failure can be diagnosed, still stays locked
+[01:12:30] judge via in-process VL
+[01:12:30] === s7_dooropen — beat: a wide open boxcar door with a young gray elephant wearing a small red circus cap standing
+[01:12:30]   carrying 1 lesson(s) (1 inherited from earlier films) into this shot
+[01:14:04]   seed 3011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a young gray elephant wearing a small red circus cap with a feather, st
+[01:14:11]   identity Ellie vs ellie_canon.png: MATCH — YES. The character in the right image matches Ellie in head and ear shape, body proportions, coat color, and the distinctive red and gold circus hat w
+[01:14:11]   LOCKED stills/LOCKED_s7_dooropen.png
+[01:14:30]   mem-gate: [mem-gate] healthy but 38GB parked in swap — bouncing idle ComfyUI to release it
+[01:14:30]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[01:14:30]   mem-gate: [mem-gate] ComfyUI back up
+[01:22:14]   clip: beat FAIL (1/5)
+[01:22:23]   window probe t=0.31s: PASS
+[01:22:31]   window probe t=0.92s: FAIL
+[01:22:39]   window probe t=1.53s: FAIL
+[01:22:50]   window probe t=2.14s: PASS
+[01:22:58]   window probe t=2.76s: FAIL
+[01:22:58]   s7_dooropen: animation never holds the beat — clip NOT used; kept at clips/_failed/s7_dooropen_failed.mp4 so the failure can be diagnosed, still stays locked
+[01:23:00] judge via in-process VL
+[01:23:00] === s7_dooropen — beat: a wide open boxcar door with a young gray elephant wearing a small red circus cap standing
+[01:23:00]   carrying 1 lesson(s) (1 inherited from earlier films) into this shot
+[01:23:18]   mem-gate: [mem-gate] healthy but 42GB parked in swap — bouncing idle ComfyUI to release it
+[01:23:18]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[01:23:18]   mem-gate: [mem-gate] ComfyUI back up
+[01:24:54]   seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a young gray elephant wearing a small red circus-style cap (with a fe
+[01:25:02]   identity Ellie vs ellie_canon.png: MATCH — YES. The character in the right image matches Ellie in every key design aspect, including the same head shape, ear size and curvature, gray coat color
+[01:25:02]   LOCKED stills/LOCKED_s7_dooropen.png
+[01:25:03] judge via in-process VL
+[01:25:03] === s8_goodbye — beat: a bear and a dog touching paws together in golden light with a circus train visible behind
+[01:25:03]   carrying 7 lesson(s) (0 inherited from earlier films) into this shot
+[01:25:22]   mem-gate: [mem-gate] healthy but 42GB parked in swap — bouncing idle ComfyUI to release it
+[01:25:22]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[01:25:22]   mem-gate: [mem-gate] ComfyUI back up
+[01:26:31]   seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The bear and dog are clearly touching paws (specifically, the bear’s paw is gently on the dog’s
+[01:26:37]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive white chest patch and rounded ear shape, which are consistent with the locked design.
+[01:26:37]   LOCKED stills/LOCKED_s8_goodbye.png
+[01:40:45]   clip: beat FAIL (0/5)
+[01:40:56]   window probe t=0.51s: FAIL
+[01:41:09]   window probe t=1.52s: FAIL
+[01:41:20]   window probe t=2.53s: FAIL
+[01:41:32]   window probe t=3.54s: FAIL
+[01:41:43]   window probe t=4.56s: FAIL
+[01:41:43]   s8_goodbye: animation never holds the beat — clip NOT used; kept at clips/_failed/s8_goodbye_failed.mp4 so the failure can be diagnosed, still stays locked
+[01:41:45] judge via in-process VL
+[01:41:45] === s8_goodbye — beat: a bear and a dog touching paws together in golden light with a circus train visible behind
+[01:41:45]   carrying 7 lesson(s) (0 inherited from earlier films) into this shot
+[01:42:03]   mem-gate: [mem-gate] healthy but 57GB parked in swap — bouncing idle ComfyUI to release it
+[01:42:03]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[01:42:03]   mem-gate: [mem-gate] ComfyUI back up
+[01:43:17]   seed 3011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The bear and dog are clearly touching paws (specifically, the bear’s paw gently touching the pu
+[01:43:23]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive rounded head shape and ear placement, which are consistent with the locked design.
+[01:43:23]   LOCKED stills/LOCKED_s8_goodbye.png
+[01:51:16]   clip: beat FAIL (0/5)
+[01:51:28]   window probe t=0.31s: FAIL
+[01:51:38]   window probe t=0.92s: FAIL
+[01:51:49]   window probe t=1.53s: FAIL
+[01:51:58]   window probe t=2.14s: FAIL
+[01:52:08]   window probe t=2.76s: FAIL
+[01:52:08]   s8_goodbye: animation never holds the beat — clip NOT used; kept at clips/_failed/s8_goodbye_failed.mp4 so the failure can be diagnosed, still stays locked
+[01:52:09] judge via in-process VL
+[01:52:09] === s8_goodbye — beat: a bear and a dog touching paws together in golden light with a circus train visible behind
+[01:52:09]   carrying 7 lesson(s) (0 inherited from earlier films) into this shot
+[01:53:24]   seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The bear and dog are clearly touching paws (specifically, the bear’s paw is gently on the dog’s
+[01:53:31]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive white chest patch and rounded ear shape, which are consistent with the locked design.
+[01:53:31]   LOCKED stills/LOCKED_s8_goodbye.png
+[09:08:18] judge via in-process VL
+[09:08:18] === s4_arrival — beat: a bear and a dog standing in front of a weathered circus train whose doors are all shut, i
+[09:08:18]   carrying 23 lesson(s) (2 inherited from earlier films) into this shot
+[09:09:27]   seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear standing in front of a weathered circus train with all doors s
+[09:09:31]   TEXT IN FRAME — rejected: YES  The word "SHUT" is clearly visible in large, yellow, capital letters on the side of two red train carriages. It appears on the first red carriage
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=40% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=54% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=55% swap=22.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=44% swap=23.0GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=41% swap=28.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=41% swap=28.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 47' (free=41% swap=28.8GB pressure=2)
+[09:24:33]   mem-gate: [mem-gate] mem-gate: refusing to start 's4_arrival still seed 47' — machine still short after 900s (free=41% swap=28.8GB pressure=2). Free memory (quit heavy apps, wait for training/downloads to finish) and re-run.
+[09:24:33]   mem-gate refused — stopping this shot
+[09:24:33]   retry cycle 1 with 23 correction(s) applied
+[09:27:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1011' (free=41% swap=28.8GB pressure=2)
+[09:27:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1011' (free=41% swap=28.8GB pressure=2)
+[09:27:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1011' (free=41% swap=28.8GB pressure=2)
+[09:27:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1011' (free=41% swap=28.8GB pressure=2)
+[09:27:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1011' (free=41% swap=28.8GB pressure=2)
+[09:27:33]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1011' (free=39% swap=28.8GB pressure=2)
+[09:28:47]   seed 1011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing calmly beside a weathered red train car wit
+[09:28:50]   TEXT IN FRAME — rejected: YES.   The word "SHUT" is clearly visible in white capital letters on the side of the red train car, near the door. It is painted directly onto the wo
+[09:29:20]   mem-gate: [mem-gate] waiting for memory before 's4_arrival still seed 1047' (free=47% swap=29.4GB pressure=2)
+[09:30:32]   seed 1047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing in front of a weathered circus train with a
+[09:30:39]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive round head shape, small rounded ears, light beige muzzle, and brown fur with a lighter bel
+[09:30:39]   LOCKED stills/LOCKED_s4_arrival.png
+[09:31:09]   mem-gate: [mem-gate] waiting for memory before 's4_arrival i2v' (free=44% swap=34.9GB pressure=2)
+[09:47:12]   clip: beat PASS (4/5)
+[09:47:15] judge via in-process VL
+[09:47:15] === ellie_eye — beat: one large amber elephant eye visible through a narrow vertical gap between dark wooden pla
+[09:47:15]   carrying 43 lesson(s) (0 inherited from earlier films) into this shot
+[09:49:13]   seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a narrow vertical gap betw
+[09:49:23]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are significantly different, and the visible portion
+[09:49:41]   mem-gate: [mem-gate] healthy but 48GB parked in swap — bouncing idle ComfyUI to release it
+[09:49:41]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[09:49:41]   mem-gate: [mem-gate] ComfyUI back up
+[09:51:18]   seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style eye with a brown iris, but the surrounding skin is porcelain wh
+[09:51:36]   mem-gate: [mem-gate] healthy but 48GB parked in swap — bouncing idle ComfyUI to release it
+[09:51:36]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[09:51:36]   mem-gate: [mem-gate] ComfyUI back up
+[09:53:17]   seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style elephant with light-colored skin, which is not porcelain white 
+[09:53:35]   mem-gate: [mem-gate] healthy but 36GB parked in swap — bouncing idle ComfyUI to release it
+[09:53:35]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[09:53:35]   mem-gate: [mem-gate] ComfyUI back up
+[09:55:28]   seed 119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a narrow vertical gap betw
+[09:55:37]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are significantly different, and the visible portion
+[09:55:37]   retry cycle 1 with 45 correction(s) applied
+[09:58:25]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1011' (free=36% swap=22.5GB pressure=2)
+[09:58:25]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1011' (free=50% swap=22.5GB pressure=2)
+[09:58:25]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1011' (free=50% swap=22.5GB pressure=2)
+[09:58:25]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1011' (free=50% swap=22.4GB pressure=2)
+[09:58:25]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1011' (free=49% swap=20.1GB pressure=2)
+[09:58:25]   mem-gate: [mem-gate] healthy but 16GB parked in swap — bouncing idle ComfyUI to release it
+[09:58:25]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[09:58:25]   mem-gate: [mem-gate] ComfyUI back up
+[10:00:11]   seed 1011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber-colored eye of a cartoon-style animal peeking through a
+[10:00:21]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are significantly different, and the visible portion
+[10:00:39]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[10:00:39]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:00:39]   mem-gate: [mem-gate] ComfyUI back up
+[10:02:27]   seed 1047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a narrow vertical gap betw
+[10:02:37]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie because the visible eye and surrounding facial structure do not match Ellie’s distinctive large, rou
+[10:03:07]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1082' (free=45% swap=13.2GB pressure=2)
+[10:04:33]   seed 1082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style human face, not an elephant, and the eye is not amber but brown
+[10:06:06]   seed 1119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a narrow vertical gap betw
+[10:06:15]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie because the visible eye lacks the distinctive large, round, warm brown iris with a clear reflection 
+[10:06:15]   retry cycle 2 with 46 correction(s) applied
+[10:06:46]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 2011' (free=44% swap=13.0GB pressure=2)
+[10:08:18]   seed 2011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vertical gap between dark
+[10:08:26]   TEXT IN FRAME — rejected: YES.  There is readable writing on the wooden planks flanking the central gap. On the left plank, near the top, there is a small, stylized symbol rese
+[10:08:44]   mem-gate: [mem-gate] healthy but 13GB parked in swap — bouncing idle ComfyUI to release it
+[10:08:44]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:08:44]   mem-gate: [mem-gate] ComfyUI back up
+[10:10:30]   seed 2047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a narrow vertical gap betw
+[10:10:40]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie because the visible eye and facial structure do not match the distinctive large, expressive eyes and
+[10:11:28]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 2082' (free=43% swap=12.9GB pressure=2)
+[10:11:28]   mem-gate: [mem-gate] healthy but 13GB parked in swap — bouncing idle ComfyUI to release it
+[10:11:28]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:11:28]   mem-gate: [mem-gate] ComfyUI back up
+[10:13:10]   seed 2082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a narrow vertical gap betw
+[10:13:18]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and iris pattern are significantly different, and the visible
+[10:14:06]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 2119' (free=45% swap=13.8GB pressure=2)
+[10:14:06]   mem-gate: [mem-gate] healthy but 14GB parked in swap — bouncing idle ComfyUI to release it
+[10:14:06]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:14:06]   mem-gate: [mem-gate] ComfyUI back up
+[10:15:42]   seed 2119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber-colored cartoon eye peering through a narrow vertical g
+[10:15:49]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie, as the visible eye and facial structure do not match Ellie’s distinctive large, expressive eyes wit
+[10:15:49]   ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[10:15:52] judge via in-process VL
+[10:15:52] === ellie_eye — beat: one large amber elephant eye visible through a narrow vertical gap between dark wooden pla
+[10:15:52]   carrying 46 lesson(s) (0 inherited from earlier films) into this shot
+[10:16:10]   mem-gate: [mem-gate] healthy but 14GB parked in swap — bouncing idle ComfyUI to release it
+[10:16:10]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:16:10]   mem-gate: [mem-gate] ComfyUI back up
+[10:17:40]   seed 3011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon character with porcelain white skin, which is explicitly forbidden by
+[10:17:58]   mem-gate: [mem-gate] healthy but 14GB parked in swap — bouncing idle ComfyUI to release it
+[10:17:58]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:17:58]   mem-gate: [mem-gate] ComfyUI back up
+[10:19:35]   seed 3047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single large, cartoon-style amber eye peering through a narrow vertic
+[10:19:43]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are significantly different, and the visible portion
+[10:20:01]   mem-gate: [mem-gate] healthy but 14GB parked in swap — bouncing idle ComfyUI to release it
+[10:20:01]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:20:01]   mem-gate: [mem-gate] ComfyUI back up
+[10:21:33]   seed 3082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a narrow vertical gap betw
+[10:21:41]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are significantly different, and the visible portion
+[10:22:00]   mem-gate: [mem-gate] healthy but 15GB parked in swap — bouncing idle ComfyUI to release it
+[10:22:00]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:22:00]   mem-gate: [mem-gate] ComfyUI back up
+[10:23:44]   seed 3119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single large, cartoon-style amber eye with long black eyelashes peeri
+[10:23:55]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie because the distinctive red and gold circus hat with a red feather, which is a key part of Ellie’s d
+[10:23:55]   retry cycle 1 with 47 correction(s) applied
+[10:28:56]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4011' (free=39% swap=21.4GB pressure=2)
+[10:28:56]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4011' (free=54% swap=21.1GB pressure=2)
+[10:28:56]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4011' (free=54% swap=21.0GB pressure=2)
+[10:28:56]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4011' (free=54% swap=21.0GB pressure=2)
+[10:28:56]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4011' (free=54% swap=21.0GB pressure=2)
+[10:28:56]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4011' (free=54% swap=21.0GB pressure=2)
+[10:28:56]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4011' (free=54% swap=20.9GB pressure=2)
+[10:28:56]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4011' (free=54% swap=20.9GB pressure=2)
+[10:28:56]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4011' (free=54% swap=20.9GB pressure=2)
+[10:28:56]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4011' (free=54% swap=20.9GB pressure=2)
+[10:30:30]   seed 4011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a narrow vertical gap betw
+[10:30:39]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are significantly different, and the visible portion
+[10:30:57]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[10:30:57]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:30:57]   mem-gate: [mem-gate] ComfyUI back up
+[10:32:43]   seed 4047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a narrow vertical gap betw
+[10:32:51]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and size are significantly different—Ellie in the left ima
+[10:33:09]   mem-gate: [mem-gate] healthy but 12GB parked in swap — bouncing idle ComfyUI to release it
+[10:33:09]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:33:09]   mem-gate: [mem-gate] ComfyUI back up
+[10:34:48]   seed 4082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a narrow vertical gap betw
+[10:34:56]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are significantly different, and the visible portion
+[10:35:14]   mem-gate: [mem-gate] healthy but 14GB parked in swap — bouncing idle ComfyUI to release it
+[10:35:14]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:35:14]   mem-gate: [mem-gate] ComfyUI back up
+[10:36:44]   seed 4119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a narrow vertical gap betw
+[10:36:52]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and iris pattern are different, and the visible portion of th
+[10:36:52]   retry cycle 2 with 47 correction(s) applied
+[10:37:40]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 5011' (free=45% swap=14.8GB pressure=2)
+[10:37:40]   mem-gate: [mem-gate] healthy but 15GB parked in swap — bouncing idle ComfyUI to release it
+[10:37:40]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:37:40]   mem-gate: [mem-gate] ComfyUI back up
+[10:39:10]   seed 5011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies an "elephant eye," but the image clearly shows a stylized, animated feline f
+[10:39:28]   mem-gate: [mem-gate] healthy but 16GB parked in swap — bouncing idle ComfyUI to release it
+[10:39:28]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:39:28]   mem-gate: [mem-gate] ComfyUI back up
+[10:41:02]   seed 5047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a narrow vertical gap betw
+[10:41:11]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie, as the visible eye and facial structure do not match Ellie’s distinctive large, round, expressive e
+[10:41:29]   mem-gate: [mem-gate] healthy but 16GB parked in swap — bouncing idle ComfyUI to release it
+[10:41:29]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:41:29]   mem-gate: [mem-gate] ComfyUI back up
+[10:43:01]   seed 5082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber-brown eye of a stylized animated character peeking thro
+[10:43:09]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are inconsistent with the wide, expressive eyes seen
+[10:43:27]   mem-gate: [mem-gate] healthy but 16GB parked in swap — bouncing idle ComfyUI to release it
+[10:43:27]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:43:27]   mem-gate: [mem-gate] ComfyUI back up
+[10:44:55]   seed 5119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber-brown elephant eye visible through a narrow vertical ga
+[10:45:03]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are significantly different, and the visible portion
+[10:45:03]   ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[10:45:05] judge via in-process VL
+[10:45:05] === ellie_eye — beat: one large amber elephant eye visible through a narrow vertical gap between dark wooden pla
+[10:45:05]   carrying 48 lesson(s) (0 inherited from earlier films) into this shot
+[10:46:33]   seed 6011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a narrow vertical gap betw
+[10:46:41]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are inconsistent with the large, expressive, round e
+[10:46:59]   mem-gate: [mem-gate] healthy but 18GB parked in swap — bouncing idle ComfyUI to release it
+[10:46:59]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:46:59]   mem-gate: [mem-gate] ComfyUI back up
+[10:48:31]   seed 6047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style animal face, but it is not an elephant — it has features more c
+[10:48:49]   mem-gate: [mem-gate] healthy but 17GB parked in swap — bouncing idle ComfyUI to release it
+[10:48:49]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:48:49]   mem-gate: [mem-gate] ComfyUI back up
+[10:50:23]   seed 6082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vertical gap between dark
+[10:50:31]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie because the distinctive red and gold circus hat with a red feather, which is a key part of Ellie’s d
+[10:50:49]   mem-gate: [mem-gate] healthy but 17GB parked in swap — bouncing idle ComfyUI to release it
+[10:50:49]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:50:49]   mem-gate: [mem-gate] ComfyUI back up
+[10:52:21]   seed 6119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peeking through a narrow vertical gap betw
+[10:52:29]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are significantly different, and the visible portion
+[10:52:29]   retry cycle 1 with 49 correction(s) applied
+[10:52:47]   mem-gate: [mem-gate] healthy but 18GB parked in swap — bouncing idle ComfyUI to release it
+[10:52:47]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:52:47]   mem-gate: [mem-gate] ComfyUI back up
+[10:54:25]   seed 7011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style face with porcelain white skin, which is explicitly forbidden b
+[10:54:43]   mem-gate: [mem-gate] healthy but 10GB parked in swap — bouncing idle ComfyUI to release it
+[10:54:43]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:54:43]   mem-gate: [mem-gate] ComfyUI back up
+[10:56:26]   seed 7047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a narrow vertical gap betw
+[10:56:35]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie, as the visible eye and facial structure do not match the distinctive large, expressive eyes and rou
+[10:56:53]   mem-gate: [mem-gate] healthy but 13GB parked in swap — bouncing idle ComfyUI to release it
+[10:56:53]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[10:56:53]   mem-gate: [mem-gate] ComfyUI back up
+[10:58:30]   seed 7082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style animal with light gray fur and large brown eyes peeking through
+[10:59:00]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 7119' (free=44% swap=15.1GB pressure=2)
+[11:00:24]   seed 7119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single large, cartoon-style amber eye peering through a narrow vertic
+[11:00:32]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are significantly different, and the visible portion
+[11:00:32]   retry cycle 2 with 51 correction(s) applied
+[11:01:58]   seed 8011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style animal face, but it is not an elephant; it resembles a rabbit o
+[11:02:16]   mem-gate: [mem-gate] healthy but 10GB parked in swap — bouncing idle ComfyUI to release it
+[11:02:16]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[11:02:16]   mem-gate: [mem-gate] ComfyUI back up
+[11:03:56]   seed 8047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vertical gap between dark
+[11:04:03]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are inconsistent with the large, expressive, round e
+[11:04:21]   mem-gate: [mem-gate] healthy but 10GB parked in swap — bouncing idle ComfyUI to release it
+[11:04:21]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[11:04:21]   mem-gate: [mem-gate] ComfyUI back up
+[11:06:02]   seed 8082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a narrow vertical gap betw
+[11:06:11]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie, as the visible eye and facial structure do not match Ellie’s distinctive large, expressive eyes wit
+[11:06:29]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[11:06:29]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[11:06:29]   mem-gate: [mem-gate] ComfyUI back up
+[11:08:07]   seed 8119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber cartoon-style eye peering through a narrow vertical gap
+[11:08:16]   identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are inconsistent with the large, expressive, round e
+[11:08:16]   ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[11:37:54] judge via in-process VL
+[11:37:54] === ellie_eye — beat: one large amber elephant eye visible through a narrow vertical gap between dark wooden pla
+[11:37:54]   carrying 56 lesson(s) (0 inherited from earlier films) into this shot
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=50% swap=10.6GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=50% swap=10.6GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=50% swap=10.6GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=50% swap=10.5GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=50% swap=10.5GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.5GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=50% swap=10.5GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.5GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.5GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=50% swap=10.5GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=50% swap=10.5GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=50% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=49% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=50% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 11' (free=50% swap=10.4GB pressure=2)
+[11:52:55]   mem-gate: [mem-gate] mem-gate: refusing to start 'ellie_eye still seed 11' — machine still short after 900s (free=49% swap=10.4GB pressure=2). Free memory (quit heavy apps, wait for training/downloads to finish) and re-run.
+[11:52:55]   mem-gate refused — stopping this shot
+[11:52:55]   retry cycle 1 with 56 correction(s) applied
+[11:55:13]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1011' (free=49% swap=10.4GB pressure=2)
+[11:55:13]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1011' (free=50% swap=10.4GB pressure=2)
+[11:55:13]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1011' (free=50% swap=10.4GB pressure=2)
+[11:55:13]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1011' (free=47% swap=9.9GB pressure=2)
+[11:55:13]   mem-gate: [mem-gate] healthy but 10GB parked in swap — bouncing idle ComfyUI to release it
+[11:55:13]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[11:55:13]   mem-gate: [mem-gate] ComfyUI back up
+[11:56:52]   seed 1011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber-colored eye of a cartoon-style character with light gra
+[11:57:02]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and brow structure are different—specifically, the eyelash
+[12:02:02]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1047' (free=40% swap=10.2GB pressure=2)
+[12:02:02]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1047' (free=54% swap=10.2GB pressure=2)
+[12:02:02]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1047' (free=54% swap=10.2GB pressure=2)
+[12:02:02]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1047' (free=54% swap=10.2GB pressure=2)
+[12:02:02]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1047' (free=54% swap=10.2GB pressure=2)
+[12:02:02]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1047' (free=54% swap=10.2GB pressure=2)
+[12:02:02]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1047' (free=54% swap=10.2GB pressure=2)
+[12:02:02]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1047' (free=54% swap=10.2GB pressure=2)
+[12:02:02]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1047' (free=54% swap=10.1GB pressure=2)
+[12:02:02]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 1047' (free=54% swap=10.1GB pressure=2)
+[12:03:26]   seed 1047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a narrow vertical gap betw
+[12:03:35]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape, iris pattern, and brow structure are significantly different, an
+[12:03:53]   mem-gate: [mem-gate] healthy but 10GB parked in swap — bouncing idle ComfyUI to release it
+[12:03:53]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[12:03:53]   mem-gate: [mem-gate] ComfyUI back up
+[12:05:37]   seed 1082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style eye, but the surrounding face has porcelain white skin, which i
+[12:05:55]   mem-gate: [mem-gate] healthy but 13GB parked in swap — bouncing idle ComfyUI to release it
+[12:05:55]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[12:05:55]   mem-gate: [mem-gate] ComfyUI back up
+[12:07:37]   seed 1119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber cartoon-style eye peering through a narrow vertical gap
+[12:07:46]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and iris pattern are significantly different, lacking the 
+[12:07:46]   retry cycle 2 with 57 correction(s) applied
+[12:08:34]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 2011' (free=44% swap=13.3GB pressure=2)
+[12:08:34]   mem-gate: [mem-gate] healthy but 13GB parked in swap — bouncing idle ComfyUI to release it
+[12:08:34]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[12:08:34]   mem-gate: [mem-gate] ComfyUI back up
+[12:10:08]   seed 2011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vertical gap between dark
+[12:10:19]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape, brow structure, and overall facial proportions are differ
+[12:11:51]   seed 2047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vertical gap between dark
+[12:12:01]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and brow structure are different—specifically, the eyelash
+[12:13:30]   seed 2082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber-colored cartoon-style eye visible through a narrow vert
+[12:13:40]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The eye design does not match — the right image shows an eye with a distinct, intricate, sunburst-like iris pattern, while the left image displays
+[12:15:09]   seed 2119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber-colored cartoon eye peering through a narrow vertical g
+[12:15:19]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and brow structure are different—specifically, the eyelash
+[12:15:19]   ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[12:15:22] judge via in-process VL
+[12:15:22] === ellie_eye — beat: one large amber elephant eye visible through a narrow vertical gap between dark wooden pla
+[12:15:22]   carrying 57 lesson(s) (0 inherited from earlier films) into this shot
+[12:17:07]   seed 3011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vertical gap between dark
+[12:17:17]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and iris pattern are different, and the facial structure a
+[12:18:50]   seed 3047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a narrow vertical gap betw
+[12:19:01]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and iris pattern are different—specifically, the right ima
+[12:20:35]   seed 3082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a narrow vertical gap betw
+[12:20:44]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape and iris pattern are significantly different, with a more angular
+[12:22:20]   seed 3119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vertical gap between dark
+[12:22:31]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and brow structure are significantly different—specificall
+[12:22:31]   retry cycle 1 with 57 correction(s) applied
+[12:24:07]   seed 4011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single large, cartoon-style amber eye and part of a face peeking thro
+[12:24:19]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design in terms of eye shape and brow structure—specifically, the eyelashes are shorter
+[12:26:16]   seed 4047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a narrow vertical gap betw
+[12:26:26]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape and iris pattern are significantly different, with a more detaile
+[12:33:27]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4082' (free=33% swap=19.5GB pressure=2)
+[12:33:27]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4082' (free=47% swap=19.5GB pressure=2)
+[12:33:27]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4082' (free=48% swap=19.5GB pressure=2)
+[12:33:27]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4082' (free=48% swap=19.5GB pressure=2)
+[12:33:27]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4082' (free=48% swap=19.5GB pressure=2)
+[12:33:27]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4082' (free=48% swap=19.5GB pressure=2)
+[12:33:27]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4082' (free=48% swap=19.5GB pressure=2)
+[12:33:27]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4082' (free=48% swap=19.5GB pressure=2)
+[12:33:27]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4082' (free=48% swap=19.5GB pressure=2)
+[12:33:27]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4082' (free=48% swap=19.5GB pressure=2)
+[12:33:27]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4082' (free=48% swap=19.5GB pressure=2)
+[12:33:27]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4082' (free=48% swap=19.4GB pressure=2)
+[12:33:27]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4082' (free=48% swap=19.4GB pressure=2)
+[12:33:27]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 4082' (free=42% swap=16.8GB pressure=2)
+[12:34:45]   seed 4082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vertical gap between dark
+[12:34:53]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape, iris pattern, and brow structure are significantly different, an
+[12:36:17]   seed 4119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s skin is not porcelain white or pink, but the image clearly shows a collar-like 
+[12:36:17]   retry cycle 2 with 58 correction(s) applied
+[12:37:56]   seed 5011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies an "elephant eye," but the image clearly shows a stylized feline face, not a
+[12:38:14]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[12:38:14]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[12:38:14]   mem-gate: [mem-gate] ComfyUI back up
+[12:40:08]   seed 5047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a narrow vertical gap betw
+[12:40:16]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The eye color and iris pattern do not match the locked design; the right image shows a golden-yellow iris with a different pattern, while the left
+[12:41:46]   seed 5082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber eye of a stylized animated character peeking through a 
+[12:41:55]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The eye design in the right image does not match the locked set: the iris pattern is different, with a more detailed, textured, and segmented appe
+[12:43:25]   seed 5119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a narrow vertical gap betw
+[12:43:35]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The eye design does not match — the right image shows a character with a detailed, textured iris pattern and a different eyelid shape, while the l
+[12:43:35]   ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[12:43:37] judge via in-process VL
+[12:43:37] === ellie_eye — beat: one large amber elephant eye visible through a narrow vertical gap between dark wooden pla
+[12:43:37]   carrying 59 lesson(s) (0 inherited from earlier films) into this shot
+[12:45:32]   seed 6011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a narrow vertical gap betw
+[12:45:43]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The eye design in the right image does not match the locked set: the iris pattern, pupil shape, and eyelash style are significantly different, ind
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=36% swap=12.1GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=51% swap=12.1GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=51% swap=12.1GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=51% swap=12.1GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=49% swap=12.1GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=51% swap=12.1GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=50% swap=12.0GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=51% swap=12.0GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=52% swap=12.0GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=52% swap=12.0GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=51% swap=12.0GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=51% swap=12.0GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=52% swap=12.0GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=52% swap=12.0GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=52% swap=12.0GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=51% swap=12.0GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=52% swap=12.0GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=52% swap=12.0GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 6047' (free=52% swap=12.0GB pressure=2)
+[12:55:32]   mem-gate: [mem-gate] healthy but 12GB parked in swap — bouncing idle ComfyUI to release it
+[12:55:32]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[12:55:32]   mem-gate: [mem-gate] ComfyUI back up
+[12:57:28]   seed 6047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style animal face with a large amber eye peeking through a gap in woo
+[12:57:47]   mem-gate: [mem-gate] healthy but 10GB parked in swap — bouncing idle ComfyUI to release it
+[12:57:47]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[12:57:47]   mem-gate: [mem-gate] ComfyUI back up
+[12:59:27]   seed 6082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a narrow vertical gap betw
+[12:59:36]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape, iris pattern, and brow structure are significantly different, an
+[12:59:54]   mem-gate: [mem-gate] healthy but 13GB parked in swap — bouncing idle ComfyUI to release it
+[12:59:54]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[12:59:54]   mem-gate: [mem-gate] ComfyUI back up
+[13:01:31]   seed 6119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a narrow vertical gap betw
+[13:01:40]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape and iris pattern are significantly different, with a more detaile
+[13:01:40]   retry cycle 1 with 60 correction(s) applied
+[13:01:58]   mem-gate: [mem-gate] healthy but 15GB parked in swap — bouncing idle ComfyUI to release it
+[13:01:58]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[13:01:58]   mem-gate: [mem-gate] ComfyUI back up
+[13:03:29]   seed 7011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character has porcelain white skin, which is explicitly forbidden by the shot requirements.
+[13:03:47]   mem-gate: [mem-gate] healthy but 15GB parked in swap — bouncing idle ComfyUI to release it
+[13:03:47]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[13:03:47]   mem-gate: [mem-gate] ComfyUI back up
+[13:05:36]   seed 7047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single large amber elephant eye peering through a narrow vertical gap
+[13:05:46]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape, iris pattern, and brow structure are significantly different, an
+[13:06:04]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[13:06:04]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[13:06:04]   mem-gate: [mem-gate] ComfyUI back up
+[13:07:44]   seed 7082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a narrow vertical gap betw
+[13:07:54]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape and iris pattern are significantly different, with a more angular
+[13:08:24]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 7119' (free=44% swap=13.0GB pressure=2)
+[13:09:49]   seed 7119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single large, cartoon-style amber eye peering through a narrow vertic
+[13:09:58]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The eye design does not match — the right image shows a different iris pattern with a distinct ringed or segmented appearance, unlike the smooth, 
+[13:09:58]   retry cycle 2 with 61 correction(s) applied
+[13:11:27]   seed 8011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber-brown eye of a cartoon-style character peeking through 
+[13:11:38]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and brow structure are different—specifically, the right i
+[13:11:56]   mem-gate: [mem-gate] healthy but 13GB parked in swap — bouncing idle ComfyUI to release it
+[13:11:56]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[13:11:56]   mem-gate: [mem-gate] ComfyUI back up
+[13:13:38]   seed 8047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vertical gap between dark
+[13:13:47]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape, iris pattern, and brow structure are significantly different, an
+[13:14:05]   mem-gate: [mem-gate] healthy but 15GB parked in swap — bouncing idle ComfyUI to release it
+[13:14:05]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[13:14:05]   mem-gate: [mem-gate] ComfyUI back up
+[13:15:42]   seed 8082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s skin tone is porcelain white, which is explicitly forbidden by the shot’s rules
+[13:16:00]   mem-gate: [mem-gate] healthy but 16GB parked in swap — bouncing idle ComfyUI to release it
+[13:16:00]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[13:16:00]   mem-gate: [mem-gate] ComfyUI back up
+[13:17:41]   seed 8119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber eye of a stylized animated character peeking through a 
+[13:17:51]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and brow structure are different—specifically, the right i
+[13:17:51]   ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[13:17:53] judge via in-process VL
+[13:17:53] === ellie_eye — beat: one large amber elephant eye visible through a narrow vertical gap between dark wooden pla
+[13:17:53]   carrying 62 lesson(s) (0 inherited from earlier films) into this shot
+[13:18:12]   mem-gate: [mem-gate] healthy but 17GB parked in swap — bouncing idle ComfyUI to release it
+[13:18:12]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[13:18:12]   mem-gate: [mem-gate] ComfyUI back up
+[13:19:45]   seed 9011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a narrow vertical gap betw
+[13:19:54]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape and iris pattern are significantly different, with a more stylize
+[13:20:12]   mem-gate: [mem-gate] healthy but 17GB parked in swap — bouncing idle ComfyUI to release it
+[13:20:12]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[13:20:12]   mem-gate: [mem-gate] ComfyUI back up
+[13:21:48]   seed 9047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a narrow vertical gap betw
+[13:21:56]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape, iris pattern, and brow structure are significantly different, an
+[13:22:14]   mem-gate: [mem-gate] healthy but 17GB parked in swap — bouncing idle ComfyUI to release it
+[13:22:14]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[13:22:14]   mem-gate: [mem-gate] ComfyUI back up
+[13:23:50]   seed 9082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a narrow vertical gap betw
+[13:23:59]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape, iris pattern, and brow structure are significantly differ
+[13:24:18]   mem-gate: [mem-gate] healthy but 17GB parked in swap — bouncing idle ComfyUI to release it
+[13:24:18]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[13:24:18]   mem-gate: [mem-gate] ComfyUI back up
+[13:26:05]   seed 9119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a narrow vertical gap betw
+[13:26:15]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape, iris pattern, and brow structure are significantly different, an
+[13:26:15]   retry cycle 1 with 62 correction(s) applied
+[13:26:33]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[13:26:33]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[13:26:33]   mem-gate: [mem-gate] ComfyUI back up
+[13:28:15]   seed 10011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies an "elephant eye," but the image clearly shows a feline face (with whiskers,
+[13:28:33]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[13:28:33]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[13:28:33]   mem-gate: [mem-gate] ComfyUI back up
+[13:30:16]   seed 10047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large, cartoon-style amber eye peering through a narrow vertical ga
+[13:30:27]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and iris pattern are different—specifically, the right ima
+[13:30:45]   mem-gate: [mem-gate] healthy but 12GB parked in swap — bouncing idle ComfyUI to release it
+[13:30:45]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[13:30:45]   mem-gate: [mem-gate] ComfyUI back up
+[13:32:23]   seed 10082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber eye of a cartoon-style character with light gray skin p
+[13:32:32]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape, iris pattern, and brow structure are significantly different, an
+[13:33:20]   mem-gate: [mem-gate] waiting for memory before 'ellie_eye still seed 10119' (free=45% swap=15.4GB pressure=2)
+[13:33:20]   mem-gate: [mem-gate] healthy but 15GB parked in swap — bouncing idle ComfyUI to release it
+[13:33:20]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[13:33:20]   mem-gate: [mem-gate] ComfyUI back up
+[13:35:00]   seed 10119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single large amber elephant eye peering through a narrow vertical gap
+[13:35:10]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape and iris pattern are significantly different, with a more detaile
+[13:35:10]   retry cycle 2 with 63 correction(s) applied
+[13:35:28]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[13:35:28]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[13:35:28]   mem-gate: [mem-gate] ComfyUI back up
+[13:37:13]   seed 11011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a narrow vertical gap betw
+[13:37:22]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and brow structure are different—specifically, the right i
+[13:37:41]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[13:37:41]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[13:37:41]   mem-gate: [mem-gate] ComfyUI back up
+[13:39:20]   seed 11047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style white animal with a large amber eye peeking through a wooden ga
+[13:39:38]   mem-gate: [mem-gate] healthy but 13GB parked in swap — bouncing idle ComfyUI to release it
+[13:39:38]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[13:39:38]   mem-gate: [mem-gate] ComfyUI back up
+[13:41:17]   seed 11082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vertical gap between dark
+[13:41:25]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and brow structure are different—specifically, the eye is 
+[13:42:54]   seed 11119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single, large, animated amber eye peering through a narrow vertical g
+[13:43:04]   identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape, iris pattern, and brow structure are significantly different, an
+[13:43:04]   ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[14:45:20] judge via in-process VL
+[14:45:20] === s7_dooropen — beat: a wide open boxcar door with a young gray elephant wearing a small red circus cap standing
+[14:45:20]   carrying 1 lesson(s) (1 inherited from earlier films) into this shot
+[14:47:10]   seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a young gray elephant wearing a small red circus-style hat with gold tr
+[14:47:19]   identity Ellie vs ellie_canon.png: MATCH — YES. The character in the right image matches Ellie in every key design aspect, including the same head shape, ear size and curvature, trunk length, b
+[14:47:19]   LOCKED stills/LOCKED_s7_dooropen.png
+[14:47:49]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen i2v' (free=44% swap=0.0GB pressure=2)
+[15:00:47]   animation failed: [make-video] uploading LOCKED_s7_dooropen.png → ComfyUI
+[videopipe] queued 42d0777d-1d60-45ad-bb3b-ce73f324f223
+ 7d-1d60-45ad-bb3b-ce73f324f223', 'node_id': '11', 'node_type': 'KSamplerAdvanced', 'executed': ['10', '1S', '6', '1L', '2', '4', '5', '2L', '2S', 'Img', '7', '1', '3'], 'timestamp': 1785189646268}]]}
+
+[15:00:50] judge via in-process VL
+[15:00:50] === s7_dooropen — beat: a wide open boxcar door with a young gray elephant wearing a small red circus cap standing
+[15:00:50]   carrying 1 lesson(s) (1 inherited from earlier films) into this shot
+[15:00:52]   img2img weld failed (seed 3011, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:52]   img2img weld failed (seed 3047, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:52]   img2img weld failed (seed 3082, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:52]   img2img weld failed (seed 3119, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:52]   retry cycle 1 with 1 correction(s) applied
+[15:00:52]   img2img weld failed (seed 4011, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:52]   img2img weld failed (seed 4047, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:52]   img2img weld failed (seed 4082, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:53]   img2img weld failed (seed 4119, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:53]   retry cycle 2 with 1 correction(s) applied
+[15:00:53]   img2img weld failed (seed 5011, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:53]   img2img weld failed (seed 5047, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:53]   img2img weld failed (seed 5082, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:53]   img2img weld failed (seed 5119, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:53]   s7_dooropen: NO candidate passed — reported UNBUILT, nothing locked
+[15:00:54] judge via in-process VL
+[15:00:54] === s7_dooropen — beat: a wide open boxcar door with a young gray elephant wearing a small red circus cap standing
+[15:00:54]   carrying 1 lesson(s) (1 inherited from earlier films) into this shot
+[15:00:54]   img2img weld failed (seed 6011, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:54]   img2img weld failed (seed 6047, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:54]   img2img weld failed (seed 6082, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:55]   img2img weld failed (seed 6119, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:55]   retry cycle 1 with 1 correction(s) applied
+[15:00:55]   img2img weld failed (seed 7011, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:55]   img2img weld failed (seed 7047, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:55]   img2img weld failed (seed 7082, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:55]   img2img weld failed (seed 7119, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:55]   retry cycle 2 with 1 correction(s) applied
+[15:00:55]   img2img weld failed (seed 8011, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:55]   img2img weld failed (seed 8047, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:55]   img2img weld failed (seed 8082, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:55]   img2img weld failed (seed 8119, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:55]   s7_dooropen: NO candidate passed — reported UNBUILT, nothing locked
+[15:00:57] judge via in-process VL
+[15:00:57] === s7_dooropen — beat: a wide open boxcar door with a young gray elephant wearing a small red circus cap standing
+[15:00:57]   carrying 1 lesson(s) (1 inherited from earlier films) into this shot
+[15:00:57]   img2img weld failed (seed 9011, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:57]   img2img weld failed (seed 9047, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:57]   img2img weld failed (seed 9082, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:57]   img2img weld failed (seed 9119, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:57]   retry cycle 1 with 1 correction(s) applied
+[15:00:57]   img2img weld failed (seed 10011, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:57]   img2img weld failed (seed 10047, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:57]   img2img weld failed (seed 10082, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:57]   img2img weld failed (seed 10119, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:57]   retry cycle 2 with 1 correction(s) applied
+[15:00:58]   img2img weld failed (seed 11011, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:58]   img2img weld failed (seed 11047, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:58]   img2img weld failed (seed 11082, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:58]   img2img weld failed (seed 11119, denoise 0.32): /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[15:00:58]   s7_dooropen: NO candidate passed — reported UNBUILT, nothing locked
+[15:10:51] judge via in-process VL
+[15:10:51] === s7_dooropen — beat: a wide open boxcar door with a young gray elephant wearing a small red circus cap standing
+[15:10:51]   carrying 1 lesson(s) (1 inherited from earlier films) into this shot
+[15:12:39]   seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a young gray elephant wearing a small red circus-style hat with gold tr
+[15:12:48]   identity Ellie vs ellie_canon.png: MATCH — YES. The character in the right image matches Ellie in every key design aspect, including the same head shape, ear size and curvature, trunk length, b
+[15:12:48]   LOCKED stills/LOCKED_s7_dooropen.png
+[15:12:48]   released the in-process VL judge before handing the GPU to Wan
+[15:28:19]   clip: beat FAIL (0/5)
+[15:28:27]   window probe t=0.51s: FAIL
+[15:28:36]   window probe t=1.52s: FAIL
+[15:28:47]   window probe t=2.53s: FAIL
+[15:28:56]   window probe t=3.54s: FAIL
+[15:29:05]   window probe t=4.56s: FAIL
+[15:29:05]   s7_dooropen: animation never holds the beat — clip NOT used; kept at clips/_failed/s7_dooropen_failed.mp4 so the failure can be diagnosed, still stays locked
+[15:29:07] judge via in-process VL
+[15:29:07] === s7_dooropen — beat: a wide open boxcar door with a young gray elephant wearing a small red circus cap standing
+[15:29:07]   carrying 1 lesson(s) (1 inherited from earlier films) into this shot
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.7GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.7GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.7GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.6GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.6GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.6GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.6GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.6GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.6GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.6GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.6GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.6GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.6GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.6GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.6GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.6GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.6GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.6GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.6GB pressure=2)
+[15:39:08]   mem-gate: [mem-gate] waiting for memory before 's7_dooropen still seed 3011' (free=52% swap=19.6GB pressure=2)
+[15:40:44]   seed 3011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a young gray elephant wearing a small red circus-style cap (with a pom-
+[15:40:53]   identity Ellie vs ellie_canon.png: MATCH — YES. The character in the right image matches Ellie in head and ear shape, body proportions, and the distinctive red and gold circus hat with a red fe
+[15:40:53]   LOCKED stills/LOCKED_s7_dooropen.png
+[15:40:53]   released the in-process VL judge before handing the GPU to Wan
+[15:48:09]   clip: beat FAIL (1/5)
+[15:48:18]   window probe t=0.31s: PASS
+[15:48:27]   window probe t=0.92s: FAIL
+[15:48:35]   window probe t=1.53s: FAIL
+[15:48:44]   window probe t=2.14s: PASS
+[15:48:55]   window probe t=2.76s: FAIL
+[15:48:55]   s7_dooropen: animation never holds the beat — clip NOT used; kept at clips/_failed/s7_dooropen_failed.mp4 so the failure can be diagnosed, still stays locked
+[20:38:50] judge via in-process VL
+[20:38:50] === s2_thecall — beat: a circus train in open country with thick black smoke billowing from its engine, clearly i
+[20:38:50]   carrying 18 lesson(s) (1 inherited from earlier films) into this shot
+[20:39:38]   seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a train in open, arid country with thick black smoke billowing from i
+[20:39:42]   LOCKED stills/LOCKED_s2_call.png
+[20:39:43]   released the in-process VL judge before handing the GPU to Wan
+[20:39:59]   animation failed: [make-video] uploading LOCKED_s2_call.png → ComfyUI
+[videopipe] queued 2ba792d5-1883-46e3-b90a-21c044bc64d5
+ ramework/Versions/3.14/lib/python3.14/socket.py", line 729, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+ConnectionResetError: [Errno 54] Connection reset by peer
+
+[20:55:09] judge via in-process VL
+[20:55:09] === s4_arrival — beat: a bear and a dog standing in front of a weathered circus train whose doors are all shut, i
+[20:55:09]   carrying 22 lesson(s) (2 inherited from earlier films) into this shot
+[20:56:15]   seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing in front of a weathered train with all door
+[20:56:22]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive round head shape, small rounded ears, and light beige muzzle with a dark nose, consistent 
+[20:56:22]   LOCKED stills/LOCKED_s4_arrival.png
+[20:56:22]   released the in-process VL judge before handing the GPU to Wan
+[20:56:40]   animation failed: [make-video] uploading LOCKED_s4_arrival.png → ComfyUI
+[videopipe] queued 911d65f2-7662-4a55-9b43-ca4d827ccb7f
+ ramework/Versions/3.14/lib/python3.14/socket.py", line 729, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+ConnectionResetError: [Errno 54] Connection reset by peer
+
