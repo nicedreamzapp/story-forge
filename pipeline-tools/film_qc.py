@@ -356,17 +356,44 @@ def _main():
     try:
         if lines:
             segs = whisper_transcribe(film)
+        # Match INSIDE a window around the expected time, and score by how many
+        # words agree. This used to scan the whole transcript from t=0 and break on
+        # the FIRST segment containing ANY single word over three characters — so a
+        # repeated phrase always resolved to its earliest occurrence. On 2026-07-28
+        # that reported six false failures on a cut whose audio was provably correct:
+        # "Circus train? Hank, we're rolling" @17.6s matched the bird's "the circus
+        # train broke down" @13.0s, and "the Wild Rescue rolls" @61.3s matched
+        # "The Wild Rescue's here!" @31.0s. Verified by transcribing 3s windows at
+        # each timestamp — every line was exactly where the manifest said.
+        # A dialogue line is a CLAIM ABOUT A MOMENT; it has to be judged at that
+        # moment, not wherever similar words first appear in the film.
+        import re as _re
         for ln in lines:
-            words = [w for w in ln["text"].lower().split() if len(w) > 3][:3]
-            hit = None
+            words = [w for w in _re.sub(r"[^\w\s]", " ", ln["text"].lower()).split()
+                     if len(w) > 3][:4]
+            need = max(1, (len(words) + 1) // 2)      # majority of the sampled words
+            best, best_score = None, 0
             for s in segs:
-                if any(w in s["text"].lower() for w in words):
-                    hit = s
-                    break
-            ok = hit is not None and abs(hit["start"] - ln["t"]) <= TOL
-            det = (f"'{ln['text'][:30]}' expected @{ln['t']:.1f}s, "
-                   f"heard @{hit['start']:.1f}s" if hit else
-                   f"'{ln['text'][:30]}' NOT HEARD in audio")
+                st = s["start"]
+                en = s.get("end", st + 3.0)
+                # the segment must overlap the expected moment, allowing for
+                # whisper's coarse (~1s) segment boundaries
+                if en < ln["t"] - TOL or st > ln["t"] + TOL + 3.0:
+                    continue
+                score = sum(1 for w in words if w in s["text"].lower())
+                if score > best_score:
+                    best, best_score = s, score
+            ok = best is not None and best_score >= need
+            if best is None:
+                det = (f"'{ln['text'][:30]}' NOT HEARD anywhere near @{ln['t']:.1f}s "
+                       f"(no transcript segment covers that moment)")
+            elif not ok:
+                det = (f"'{ln['text'][:30]}' expected @{ln['t']:.1f}s — a segment is "
+                       f"there (@{best['start']:.1f}s) but only {best_score}/{len(words)} "
+                       f"words match (need {need}): heard '{best['text'].strip()[:40]}'")
+            else:
+                det = (f"'{ln['text'][:30]}' expected @{ln['t']:.1f}s, heard "
+                       f"@{best['start']:.1f}s ({best_score}/{len(words)} words)")
             check(f"audio@{ln['t']:.1f}s", ok, det)
     except Exception as e:
         check("transcript", False, f"whisper unavailable: {e}")
