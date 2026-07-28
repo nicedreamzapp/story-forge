@@ -105,6 +105,28 @@ def vl_ask(image_path, prompt):
     return (out.text if hasattr(out, "text") else str(out)).strip()
 
 
+def unload_vl() -> float:
+    """Drop the in-process VL model and return the GB released.
+
+    When Picture Eyes (:8181) is down, vl_ask loads the 32B VL model INSIDE the
+    calling process — so forge-shot carries ~18GB that no outside evictor can
+    reach, straight through a Wan render. That co-residency is what put the box
+    into swap before the 2026-07-27 panic (CLAUDE.md rule 16). Call this before
+    handing the GPU to a heavy render; the next vl_ask reloads it."""
+    if _state["model"] is None:
+        return 0.0
+    _state["model"] = None
+    _state["processor"] = None
+    import gc
+    gc.collect()
+    try:
+        import mlx.core as mx
+        mx.clear_cache()
+    except Exception:
+        pass
+    return 1.0  # freed (exact GB isn't measurable post-hoc; caller just logs it)
+
+
 def whisper_transcribe(video):
     """Return list of {start, end, text} segments via mlx whisper."""
     import mlx_whisper  # available in the mlx-server venv? fallback: CLI
@@ -113,11 +135,81 @@ def whisper_transcribe(video):
     return res.get("segments", [])
 
 
+# ── Song Forge keeps its seat (Matt, 2026-07-27) ────────────────────
+# The 32B VL judge on top of resident Wan weights froze the whole Mac on
+# 7/22, and sustained swap panicked it twice on 7/27. So QC asks forge_guard
+# for room out of what is left after ACE/gemma, and waits for it rather than
+# taking it. No guard installed = unchanged behaviour.
+sys.path.insert(0, str(Path.home() / "SongForgeM5"))
+_HAVE_GUARD = True
+try:
+    from mem_client import reserve as _mem_reserve
+except Exception:
+    _HAVE_GUARD = False
+    import contextlib
+
+    @contextlib.contextmanager
+    def _mem_reserve(name, gb, timeout=900, ttl=1800):
+        yield None
+
+
+def _guard_says_critical() -> bool:
+    """acquire() returns None for BOTH 'denied' and 'no guard reachable', so the
+    lease alone cannot tell us which. Ask the guard directly: only a reachable guard
+    reporting a bad level justifies refusing to run QC. If it is unreachable we
+    proceed (and say so) rather than block QC on a health endpoint being down."""
+    if not _HAVE_GUARD:
+        return False
+    try:
+        import json as _json
+        import urllib.request as _u
+        with _u.urlopen("http://127.0.0.1:8790/api/state", timeout=5) as r:
+            return _json.loads(r.read()).get("level") in ("critical", "high")
+    except Exception:
+        return False
+
+
 def main():
+    # `reserve` DENIED still runs the body — it logs "not granted … proceeding
+    # carefully" and yields anyway. On 2026-07-27 that meant loading a 26GB VL judge
+    # onto a box the guard had just called critical (swap 6.4GB); jetsam SIGTERMed it
+    # at -15, no report was written, and the build announced COMPLETE.
+    # Refusing is the only honest option: an UNCHECKED film reported as unchecked is
+    # recoverable, a film killed mid-QC and called done is not. Exit 2 = could not run,
+    # which callers must never treat as a pass.
+    # Deliberate, logged override for a HUMAN who has judged the box can afford it
+    # (e.g. after killing ComfyUI). Not an env var and not a default: the refusal is
+    # the behaviour, this is a decision someone made out loud on a specific run.
+    override = "--allow-critical-memory" in sys.argv
+    with _mem_reserve("film-qc-vl", 26, timeout=1800, ttl=3600) as lease:
+        if override and lease is None:
+            print("[film_qc] --allow-critical-memory: guard denied the lease, running "
+                  "anyway by explicit operator decision. If this is killed the film is "
+                  "UNCHECKED, not passed.", file=sys.stderr)
+        elif lease is None and _guard_says_critical():
+            print("[film_qc] REFUSING TO START: the memory guard would not grant 26GB "
+                  "for the vision judge and still reports the machine critical. Free "
+                  "memory (bounce ComfyUI, let Song Forge settle) and re-run. The film "
+                  "is UNCHECKED — never treat this as a pass.", file=sys.stderr)
+            return 2
+        elif lease is None and _HAVE_GUARD:
+            # Reachable-but-denied is handled above; this is the genuinely-unreachable
+            # case only. It was a bare `if` and printed "guard unreachable" on a run
+            # where the guard had answered and said critical — a log line that
+            # contradicted the line above it (2026-07-27).
+            print("[film_qc] no memory lease (guard did not answer) — running anyway; "
+                  "if this is killed, the film is UNCHECKED, not passed.", file=sys.stderr)
+        return _main()
+
+
+def _main():
     ap = argparse.ArgumentParser()
     ap.add_argument("film")
     ap.add_argument("manifest")
     ap.add_argument("--report", default=None)
+    ap.add_argument("--allow-critical-memory", action="store_true",
+                    help="run even if the memory guard denies the lease. Operator "
+                         "decision for a specific run; never a default, never scripted.")
     args = ap.parse_args()
 
     film = Path(args.film)
