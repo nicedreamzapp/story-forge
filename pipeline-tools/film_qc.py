@@ -185,6 +185,10 @@ def main():
     # With the override set, ask once and proceed; without it, wait properly for a
     # seat. (2026-07-28: an overridden run sat idle at 28MB RSS for 30 minutes
     # waiting for a denial it was going to ignore.)
+    # NOTE (2026-07-28): the override is nearly always the WRONG tool. A lease is
+    # PROTECTION, not permission — forge_guard SIGTERMs big unleased processes when
+    # it is unhappy, so running "anyway" is precisely what got film_qc killed three
+    # times. If the guard won't seat you, fix why it is unhappy; don't sneak past it.
     _timeout = 5 if override else 1800
     with _mem_reserve("film-qc-vl", 26, timeout=_timeout, ttl=3600) as lease:
         if override and lease is None:
