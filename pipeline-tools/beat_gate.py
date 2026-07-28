@@ -175,7 +175,14 @@ def check_shot(shot: dict, root: Path, masters: dict, votes: int = 3) -> dict:
         same = bool(re.match(r"^\W*YES", ans, re.I))
         res["set_check"] = {"set": name, "verdict": "PASS" if same else "FAIL", "why": ans}
         if not same:
+            # Say so. This override used to be silent, so a shot could be tagged FAIL
+            # while its own `why` line read "3 of 3 sampled frames depict the beat.
+            # PASS." — a gate contradicting itself is a gate nobody can act on
+            # (2026-07-27). The beat verdict and the set verdict are different
+            # questions and the report must never blur them.
             res["verdict"] = "FAIL"
+            res["why"] = (f"BEAT {'PASS' if passed else 'FAIL'} ({yes}/{len(ballots)} frames), "
+                          f"but FAILED SET CONTINUITY against the '{name}' master. " + ans)
     return res
 
 

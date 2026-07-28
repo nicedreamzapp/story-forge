@@ -36,12 +36,21 @@ import sys
 import time
 from pathlib import Path
 
+# ffmpeg by ABSOLUTE path. Under launchd/keepalive the PATH has no /opt/homebrew/bin,
+# so a bare "ffmpeg" raises FileNotFoundError — which is how forge-director died at
+# 19:25 on 2026-07-27 and keepalive then logged "film complete — done" (2026-07-27:
+# the third time in one day a crash was reported as a finished film).
+import shutil as _shutil
+FFMPEG = _shutil.which("ffmpeg") or "/opt/homebrew/bin/ffmpeg"
+
+
 SF = Path(__file__).resolve().parent.parent
 FORGE_SHOT = SF / "bin" / "forge-shot"
 FORGE_REVIEW = SF / "bin" / "forge-review"
 BUILD_EPISODE = SF / "bin" / "build-episode"
 MLX_PY = Path.home() / ".local/mlx-server/bin/python"
 MAX_ATTEMPTS = 4
+MAX_INFRA_STRIKES = 3   # backend deaths in a row before we call it a machine problem
 
 
 def log(m: str) -> None:
@@ -195,7 +204,7 @@ def wip_reel(proj: Path) -> None:
     lst = proj / "_wip_reel.txt"
     lst.write_text("".join(f"file '{c}'\n" for c in clips))
     out = proj / "WIP_REEL.mp4"
-    subprocess.run(["ffmpeg", "-v", "error", "-f", "concat", "-safe", "0", "-i", str(lst),
+    subprocess.run([FFMPEG, "-v", "error", "-f", "concat", "-safe", "0", "-i", str(lst),
                     "-c:v", "libx264", "-crf", "20", "-pix_fmt", "yuv420p", "-r", "24",
                     "-vf", "scale=832:480", str(out), "-y"], capture_output=True, timeout=900)
     lst.unlink(missing_ok=True)
@@ -231,12 +240,19 @@ def main() -> int:
     state = read_json(proj / "director_state.json",
                       {"attempts": {}, "blocked": {}, "history": []})
     state["catalog"] = catalog
+    infra_strikes: dict[str, int] = {}   # per-shot backend deaths, not persisted
     deadline = time.time() + args.max_hours * 3600
     if not args.dry_run:
         log("calibrating the gates against known human verdicts before trusting them")
         calibrate(proj)
 
     while True:
+        # Re-read the specs every cycle. The catalog used to be loaded once at start,
+        # so a fix written while the director was running had no effect until it was
+        # restarted — an eye-level canon master sat unused for two whole attempts
+        # (2026-07-27). A long-running loop must pick up edits.
+        catalog = {s["id"]: s for s in read_json(proj / "shots.json", {}).get("shots", [])}
+        state["catalog"] = catalog
         todo = [t for t in gaps(proj, state) if t[1] not in state.get("_dry_seen", [])] \
             if args.dry_run else gaps(proj, state)
         review(proj)
@@ -302,6 +318,23 @@ def main() -> int:
             continue
 
         res = run_shot(proj, escalate(spec, attempt))
+
+        # An INFRA result means the render backend died, not that the idea failed.
+        # Counting it burns the shot's escalation ladder against a dead server —
+        # exactly how s7_dooropen went from "has a locked still" to BLOCKED in five
+        # seconds on 2026-07-27. Retry the same attempt; bail if it keeps happening.
+        if res.get("state") == "INFRA":
+            infra_strikes[shot_id] = infra_strikes.get(shot_id, 0) + 1
+            log(f"  {shot_id}: render backend unavailable — NOT counting this as an "
+                f"attempt (strike {infra_strikes[shot_id]}/{MAX_INFRA_STRIKES})")
+            if infra_strikes[shot_id] >= MAX_INFRA_STRIKES:
+                state["blocked"][shot_id] = (
+                    "the render backend kept going away — this is a machine problem, "
+                    "not a story problem; check ComfyUI before re-running")
+                log(f"  BLOCKED {shot_id} — {state['blocked'][shot_id]}")
+                write_json(proj / "director_state.json", state)
+            continue
+
         state["attempts"][shot_id] = attempt + 1
         state["history"].append({"shot": shot_id, "attempt": attempt,
                                  "state": res.get("state"), "at": time.strftime("%H:%M")})

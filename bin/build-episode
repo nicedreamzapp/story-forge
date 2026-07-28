@@ -35,6 +35,14 @@ import time
 import urllib.request
 from pathlib import Path
 
+# ffmpeg by ABSOLUTE path. Under launchd/keepalive the PATH has no /opt/homebrew/bin,
+# so a bare "ffmpeg" raises FileNotFoundError — which is how forge-director died at
+# 19:25 on 2026-07-27 and keepalive then logged "film complete — done" (2026-07-27:
+# the third time in one day a crash was reported as a finished film).
+import shutil as _shutil
+FFMPEG = _shutil.which("ffmpeg") or "/opt/homebrew/bin/ffmpeg"
+
+
 SF = Path(__file__).resolve().parent.parent
 MEM_GATE = SF / "bin" / "mem-gate"
 FILM_QC = SF / "pipeline-tools" / "film_qc.py"
@@ -55,7 +63,7 @@ def run(cmd, **kw):
 
 
 def ff(args, label=""):
-    r = run(["ffmpeg", "-y", "-loglevel", "error", *args])
+    r = run([FFMPEG, "-y", "-loglevel", "error", *args])
     if r.returncode:
         raise RuntimeError(f"ffmpeg failed {label}: {r.stderr[-600:]}")
 
@@ -123,16 +131,35 @@ EDL = [
 
     {"kind": "scene", "id": "s3_rollout", "src": "clips/s2_final.mp4"},
 
-    {"kind": "scene", "id": "s4_arrival", "src": "clips/s3_final.mp4"},
+    # 2026-07-27: this pointed at clips/s3_final.mp4 — the CHEERFUL colourful passenger
+    # train with animals leaning comfortably out of open windows, i.e. all three of this
+    # shot's own must_not disqualifiers in beats.json, and a fourth different train on
+    # top of the set drift rule 14 called out. The right take was already on disk and
+    # unused: weathered red boxcars, doors shut, black smoke, heat haze.
+    {"kind": "scene", "id": "s4_arrival", "src": "clips/s4_arrival_final.mp4"},
     {"kind": "insert", "id": "L05", "src": "a2v/L05_hank.mp4",
      "say": ("hank", "Whole train's cooking out here.")},
     {"kind": "insert", "id": "L06", "src": "a2v/L06_doug.mp4",
      "say": ("doug", "Easy everybody! The Wild Rescue's here!")},
 
-    # Ellie answers from inside the car — VO over Doug at the crack.
-    {"kind": "scene", "id": "s5_door", "src": "clips/s5_final.mp4",
-     "vo": ("voices/L08_ellie.wav", 2.6),
-     "say": ("ellie", "I can't, it's too heavy", 2.6)},
+    # s5_door DROPPED 2026-07-27. Its beat was "a bloodhound with his nose pressed
+    # against a narrow gap between the planks"; the clip shows the dog sitting upright
+    # looking into the distance with no contact with the door at all — 0/3, and two
+    # ballots independently said "no physical interaction with the door". That is a
+    # genuine content mismatch, not an unjudgeable beat, so it is dropped rather than
+    # restated (rule 14: reshoot or drop; never soften the beat to make a shot fit).
+    # Its spine beat, "we SEE who is trapped", is carried by ellie_eye, which passes 3/3.
+
+    # WE SEE WHO IS TRAPPED. Episode 1's whole spine hole: Ellie was never on screen,
+    # so there was nobody to root for. i2v could never hold this beat (3 failed animates
+    # — the eye morphs), so it is the LOCKED still on a slow push via ken_burns.py:
+    # real sub-pixel camera move, frozen rule 12 honoured, no fake shake.
+    # Ellie's line moves here off the dropped shot — and lands better: she answers from
+    # inside over her OWN eye at the crack, instead of over a dog looking the wrong way.
+    {"kind": "scene", "id": "ellie_eye", "src": "clips/ellie_eye_final.mp4",
+     "vo": ("voices/L08_ellie.wav", 1.2),
+     "say": ("ellie", "I can't, it's too heavy", 1.2)},
+
     {"kind": "insert", "id": "L07", "src": "a2v/L07_doug.mp4",
      "say": ("doug", "Pin's jammed tight.")},
     {"kind": "insert", "id": "L09", "src": "a2v/L09_doug.mp4",
@@ -144,7 +171,16 @@ EDL = [
     # not trimmed — prompting the impact is what produced it, and Wan cannot render
     # a collision. This one is pure body effort, cut to the 2.4s window where
     # beat_gate votes 4/5 that he is actually straining against the door.
-    {"kind": "scene", "id": "s6_heave", "src": "clips/s6_final_v2.mp4"},
+    {"kind": "scene", "id": "s6_heave_animated", "src": "clips/s6_final_v2.mp4"},
+    # The bang is FELT, never shown — rule 14's last clause. We are inside the dark car.
+    {"kind": "scene", "id": "s6_interior", "src": "clips/s6_interior_final.mp4"},
+
+    # THE PAYOFF. The other half of the spine hole: no door in Episode 1 ever opened.
+    # Same story as ellie_eye — the animate never held it, so it is the locked still
+    # on a slow push. The door is ALREADY open when we cut to it; we never try to
+    # render it swinging, because Wan cannot (frozen rule 6).
+    {"kind": "scene", "id": "s7_dooropen", "src": "clips/s7_dooropen_final.mp4"},
+
     {"kind": "insert", "id": "L11", "src": "a2v/L11_hank.mp4",
      "say": ("hank", "Doors don't argue with bears.")},
 
@@ -154,6 +190,9 @@ EDL = [
      "say": ("doug", "Anybody, anywhere, any trouble at all")},
     {"kind": "insert", "id": "L15", "src": "a2v/L15_hank.mp4",
      "say": ("hank", "the Wild Rescue rolls.")},
+
+    # Closing image, wordless, rescued train alive behind them. Slow pull back.
+    {"kind": "scene", "id": "s8_goodbye", "src": "clips/s8_goodbye_final.mp4"},
 
     {"kind": "card", "id": "credits", "vo": ("voices/L16_bird.wav", 1.0),
      "say": ("bird", "Can I get a hat like this?", 1.0)},
@@ -195,6 +234,43 @@ def stage_preflight(proj, st):
         log("  ABORT: memory gate refused")
         ok = False
 
+    # POINTER GATE (added 2026-07-27, rule 17). Every other gate judges an ASSET.
+    # Nothing judged the POINTER, so s4_arrival sat in the EDL aimed at
+    # clips/s3_final.mp4 — a shot matching all three of its own must_not entries —
+    # and beat_gate dutifully judged the wrong file against the wrong beat and passed.
+    # This is a string compare. It runs before the VL model is ever loaded.
+    beats_p = proj / "beats.json"
+    if beats_p.is_file():
+        bd = json.loads(beats_p.read_text())
+        by_id = {s["id"]: s for s in bd.get("shots", [])}
+        problems = []
+        for e in EDL:
+            if e["kind"] != "scene":
+                continue
+            s = by_id.get(e["id"])
+            if not s:
+                problems.append(f"EDL scene {e['id']!r} has NO entry in beats.json — "
+                                "it ships completely ungated")
+                continue
+            declared = s.get("clip") or s.get("image")
+            if declared and declared != e["src"]:
+                problems.append(f"{e['id']}: EDL points at {e['src']} but beats.json "
+                                f"declares {declared} — one of them is the wrong shot")
+        # a spine beat whose shot id has no shots[] entry is invisible to beat_gate
+        for sp in bd.get("spine", []):
+            ids = sp.get("shots", [])
+            if ids and not any(i in by_id for i in ids):
+                problems.append(f"spine beat {sp['beat'][:50]!r} names {ids} — none has a "
+                                "shots[] entry, so nothing ever judges it")
+        for p_ in problems:
+            log(f"    POINTER → {p_}")
+        if problems:
+            log("  ABORT: the edit and the script disagree about which file is which shot")
+            ok = False
+        else:
+            log(f"  pointer gate: {sum(1 for e in EDL if e['kind']=='scene')} scenes agree "
+                "with beats.json")
+
     # STORY GATE (added 2026-07-25 after the "stick in the door" cut). film_qc
     # judges mouths, faces, limbs and audio timing — all of which PASS on a shot
     # that depicts the wrong action entirely. beat_gate asks the only question
@@ -208,6 +284,21 @@ def stage_preflight(proj, st):
         log("  story gate: UNAVAILABLE (beat_gate or its interpreter missing) — UNCHECKED")
         st["beat_gate"] = "UNAVAILABLE"
     else:
+        # Judge EXACTLY what the film ships, nothing else. beats.json accumulates
+        # entries for wip candidates and build intermediates that lost or were never
+        # wired in; judging those made a stale corpse able to ABORT a good cut
+        # (2026-07-27). Scope the gate to the EDL's scenes and write the filtered
+        # copy next to the report so the ruling is reproducible.
+        bd = json.loads(beats.read_text())
+        by_id = {s["id"]: s for s in bd.get("shots", [])}
+        edl_ids = [e["id"] for e in EDL if e["kind"] == "scene"]
+        shipped = [by_id[i] for i in edl_ids if i in by_id]
+        skipped = [s["id"] for s in bd.get("shots", []) if s["id"] not in edl_ids]
+        beats = proj / "beats_edl.json"
+        beats.write_text(json.dumps({**bd, "shots": shipped}, indent=1))
+        if skipped:
+            log(f"  story gate scope: {len(shipped)} shots in the cut; "
+                f"not in the cut, not judged: {', '.join(skipped)}")
         log("  running beat_gate (does every shot depict its beat?)…")
         r = run([str(MLX_PY), str(BEAT_GATE), str(beats),
                  "--report", str(proj / "BEAT_GATE_report.md")])
@@ -217,10 +308,23 @@ def stage_preflight(proj, st):
                 log("    " + line)
         st["beat_gate"] = "\n".join(tail[-40:])
         st["beat_gate_exit"] = r.returncode
-        if r.returncode == 1:
+        # Two questions, two proportionate consequences (2026-07-27). "Does this shot
+        # tell the story?" is rule 14 and stays a HARD STOP. "Is this the same paint
+        # as the other car?" is polish — real, worth reporting loudly, but it must not
+        # block a cut whose spine is intact. Conflating them meant a shot passing its
+        # beat 3/3 could abort the film over a shade of red, which pushes toward
+        # disabling the gate entirely — the worst outcome of the three.
+        beat_fails = [l for l in tail if l.startswith("[FAIL]") and "BEAT PASS" not in l]
+        set_only = [l for l in tail if l.startswith("[FAIL]") and "BEAT PASS" in l]
+        for l in set_only:
+            log(f"  SET DRIFT (not blocking, ships as a known defect): {l[:150]}")
+        if beat_fails:
             log("  ABORT: shots that do not depict their beat are in the EDL — "
                 "reshoot them or drop them from the EDL before assembling")
             ok = False
+        elif r.returncode == 1:
+            log(f"  {len(set_only)} shot(s) fail SET CONTINUITY only — the story is intact, "
+                "assembling and reporting them as known defects")
         elif r.returncode != 0:
             log("  story gate COULD NOT RUN — treat every shot as UNCHECKED, never as a pass")
     return ok
@@ -520,8 +624,24 @@ def stage_qc(proj, st):
     st["qc_exit"] = r.returncode
     for line in tail:
         log(f"    {line}")
-    if r.returncode == 2:
+    # ONLY exit 0 is a pass. This used to test `== 2` alone, so a film_qc that was
+    # SIGKILLed/SIGTERMed (negative returncode) fell straight through in silence and
+    # the run went on to print COMPLETE — which is exactly what happened on
+    # 2026-07-27: reservation denied, film_qc killed at -15, no report written since
+    # Jul 25, and the build announced a finished film. Same class as this morning's
+    # "stop calling a blocked stop FILM COMPLETE", in a different stage.
+    if r.returncode == 0:
+        st["qc_verdict"] = "PASS"
+    elif r.returncode == 1:
+        st["qc_verdict"] = "DEFECTS — read the _qc.md report"
+        log("  film_qc found DEFECTS — read the report before showing anyone")
+    elif r.returncode == 2:
+        st["qc_verdict"] = "UNCHECKED — film_qc could not run"
         log("  film_qc COULD NOT RUN — treat as UNCHECKED, never as a pass")
+    else:
+        st["qc_verdict"] = f"UNCHECKED — film_qc was KILLED (exit {r.returncode})"
+        log(f"  film_qc was KILLED (exit {r.returncode}) — the film is UNCHECKED, "
+            "not verified. Do NOT report it as done.")
     return True
 
 
@@ -562,7 +682,18 @@ def main():
         st["done"] = sorted(done)
         state_p.write_text(json.dumps(st, indent=2))
 
-    log(f"COMPLETE in {(time.time()-t0)/60:.1f} min → {st.get('film')}")
+    # "COMPLETE" is a claim about VERIFICATION, not about ffmpeg finishing. A cut whose
+    # QC never ran is ASSEMBLED, not complete, and saying otherwise is the single most
+    # expensive lie this pipeline can tell (2026-07-22 "Every Day", 2026-07-25 stick-in-
+    # the-door, and again tonight when film_qc was killed and the run said COMPLETE).
+    verdict = st.get("qc_verdict", "UNCHECKED — QC stage never recorded a verdict")
+    mins = (time.time() - t0) / 60
+    if verdict == "PASS":
+        log(f"COMPLETE in {mins:.1f} min → {st.get('film')}")
+    else:
+        log(f"ASSEMBLED (NOT VERIFIED) in {mins:.1f} min → {st.get('film')}")
+        log(f"  QC: {verdict}")
+        log("  This film has NOT passed QC. Do not publish or call it done.")
     if st.get("skipped"):
         log(f"NOT INCLUDED (assets missing): {', '.join(st['skipped'])}")
 
