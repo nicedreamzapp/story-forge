@@ -28,11 +28,12 @@
     "subject": "Ellie the young circus elephant"
    },
    "lock": "stills/LOCKED_s7_dooropen.png",
-   "animate": "the young elephant steps forward out of the open boxcar doorway and down into the sunlight, ears swaying, trunk lifting, dust drifting in the warm light, camera holds steady",
+   "animate": "the young elephant stands in the open doorway and her ears sway gently, her trunk lifts and lowers a little, dust drifts in the warm light, she stays in the doorway the whole time, camera locked off",
    "clip": "clips/s7_dooropen_final.mp4",
-   "min_window": 2.0,
+   "min_window": 1.6,
    "set": "circus boxcar",
-   "_motion_subject": "the elephant"
+   "_motion_subject": "the elephant",
+   "clip_beat": "a wide open boxcar door with a young gray elephant wearing a small red circus cap standing in the opening in daylight"
   },
   {
    "id": "ellie_eye",
@@ -49,11 +50,12 @@
     "subject": "Ellie's eye and brow in close-up"
    },
    "lock": "stills/LOCKED_ellie_eye.png",
-   "animate": "the frightened eye blinks slowly and shifts as she looks toward the light, dust drifting through the blade of sunlight, the planks perfectly still, camera holds steady",
+   "animate": "dust motes drift slowly through the blade of light, the eye blinks once, the wooden planks are perfectly still, nothing else moves, camera locked off",
    "clip": "clips/ellie_eye_final.mp4",
    "min_window": 1.6,
    "set": "circus boxcar",
-   "_motion_subject": "the elephant"
+   "_motion_subject": "the elephant",
+   "clip_beat": "an extreme close-up of one large amber elephant eye visible through a narrow vertical gap between dark wooden planks"
   },
   {
    "id": "s2_thecall",
@@ -66,10 +68,11 @@
     "a bridge over water"
    ],
    "lock": "stills/LOCKED_s2_call.png",
-   "animate": "the smoke billows and drifts upward from the stalled train, heat shimmer rippling over the motionless cars, grass moving slightly in the wind, camera holds steady",
+   "animate": "thick black smoke billows and rolls upward from the engine, heat shimmer ripples over the cars, dry brush stirs in the wind, the train stays exactly where it is, camera locked off",
    "clip": "clips/s2_call_final.mp4",
-   "min_window": 2.0,
-   "set": "circus boxcar"
+   "min_window": 1.6,
+   "set": "circus boxcar",
+   "clip_beat": "a circus train in open country with thick black smoke billowing from its engine"
   },
   {
    "id": "s6_interior",
@@ -83,10 +86,11 @@
     "a wide open door"
    ],
    "lock": "stills/LOCKED_s6_interior.png",
-   "animate": "dust and straw sift down through the blade of light, the shaft of daylight at the door slowly widens, motes drifting, camera holds perfectly steady",
+   "animate": "fine dust and bits of straw drift slowly down through the single shaft of light, the shaft stays exactly the same width, the dark plank walls are perfectly still, camera locked off",
    "clip": "clips/s6_interior_final.mp4",
-   "min_window": 2.0,
-   "_no_characters": true
+   "min_window": 1.6,
+   "_no_characters": true,
+   "clip_beat": "the dark interior of a boxcar with a thin blade of daylight at the door seam and dust hanging in the light"
   },
   {
    "id": "s5_door",
@@ -228,8 +232,8 @@
    ],
    "lock": "stills/LOCKED_s4_arrival.png",
    "clip": "clips/s4_arrival_final.mp4",
-   "animate": "heat shimmer ripples off the boxcar roofs, smoke drifts upward, dust blows across the gravel, the bear and dog breathe and shift their weight, camera holds steady",
-   "min_window": 2.0,
+   "animate": "heat shimmer ripples off the boxcar roofs, smoke drifts upward, dust blows across the gravel, the bear and the dog breathe and their ears stir, both stay standing in place, camera locked off",
+   "min_window": 1.6,
    "seeds": [
     901,
     947,
@@ -254,7 +258,8 @@
    "lora_scales": [
     0.85,
     0.85
-   ]
+   ],
+   "clip_beat": "a bear and a dog standing together in the foreground in front of a smoking broken-down train in harsh sunlight with dust and heat haze"
   },
   {
    "id": "s8_goodbye",
@@ -269,8 +274,8 @@
    ],
    "lock": "stills/LOCKED_s8_goodbye.png",
    "clip": "clips/s8_goodbye_final.mp4",
-   "animate": "the train's steam drifts upward, grass sways, the bear and dog breathe and their ears move gently, camera holds steady",
-   "min_window": 2.0,
+   "animate": "steam drifts up from the locomotive behind them, the grass sways, the bear and the dog breathe and their ears and fur stir gently, both stay where they are, camera locked off",
+   "min_window": 1.6,
    "seeds": [
     1101,
     1147,
@@ -295,7 +300,8 @@
    "lora_scales": [
     0.85,
     0.85
-   ]
+   ],
+   "clip_beat": "a bear and a dog together in warm light with the circus train alive and steaming behind them"
   }
  ],
  "set_masters": {
