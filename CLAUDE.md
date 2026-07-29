@@ -148,6 +148,24 @@ This directory is the home of **Story Forge**, a robust 100%-local generative VI
    - Corollary to rule 13: an asset that lost is deleted, but an asset that WON and was
      never wired in is just as bad. Check `clips/` against the EDL for orphans.
 
+19. ONE i2v RENDER PER PROCESS (2026-07-28, measured 6/6). Every FIRST animate in a
+   `forge-shot` process succeeded; every SECOND or later one died loading Wan with
+   "uploading ... -> ComfyUI / Connection refused". Six runs, no exceptions:
+   s6_heave(1st) OK; s1_coldopen(1st) OK, s3_rollout(2nd) died; s3_rollout(1st) OK,
+   s4_arrival(2nd) failed, s8_goodbye(3rd) failed; s7_dooropen(1st) OK,
+   ellie_eye(2nd) failed.
+   - Bouncing ComfyUI before each animate does NOT fix it — the bounce fired, the
+     backend answered, and the load still died 69s later. The residue is in the
+     CALLING process, not the render backend: `unload_vl()` drops the reference but
+     MLX allocations leave the address space fragmented enough that the next ~24GB
+     GGUF load cannot be satisfied.
+   - So: run ONE shot per `forge-shot` invocation for the animate pass. A fresh
+     interpreter costs ~20s and makes a 16-minute render deterministic instead of a
+     coin flip. Loop in the shell, not inside the process.
+   - This is why "18 animate runs, nothing usable" looked like an i2v capability
+     problem for two days. It was never i2v. The first render of every session
+     always worked.
+
 18. ~~WHEN i2v CANNOT HOLD A BEAT, SHIP THE LOCKED STILL ON A REAL CAMERA MOVE~~
    **OVERRULED BY MATT 2026-07-28: "I don't want any stills. They all look bad to me."**
    A ken_burns move on a locked still is NOT an acceptable shot in a finished film.
