@@ -1,0 +1,36 @@
+[20:49:35] judge via in-process VL
+[20:49:35] === s7_dooropen — beat: a wide open boxcar door with a young gray elephant wearing a small red circus cap standing
+[20:49:35]   --stage animate: using the locked still LOCKED_s7_dooropen.png
+[20:49:35]   LOCKED stills/LOCKED_s7_dooropen.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[20:49:53]   bounced ComfyUI so Wan loads into a clean process
+[20:49:53]   render backend is back
+[21:04:42]   mem-gate: [mem-gate] healthy but 13GB parked in swap — bouncing idle ComfyUI to release it
+[21:04:42]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[21:04:42]   mem-gate: [mem-gate] ComfyUI back up
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 9248.74it/s]
+[21:05:33]   clip: beat PASS (4/5)
+[21:05:33] === ellie_eye — beat: one large amber elephant eye visible through a narrow vertical gap between dark wooden pla
+[21:05:33]   --stage animate: using the locked still LOCKED_ellie_eye.png
+[21:05:33]   LOCKED stills/LOCKED_ellie_eye.png
+[21:05:33]   released the in-process VL judge before handing the GPU to Wan
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[21:05:51]   bounced ComfyUI so Wan loads into a clean process
+[21:05:51]   render backend is back
+[21:07:00]   animation failed: [make-video] uploading LOCKED_ellie_eye.png → ComfyUI
+[videopipe] queued 03b70717-c103-41ce-b644-31ea2d00ab2a
+ /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[21:07:00] === s2_thecall — beat: a circus train in open country with thick black smoke billowing from its engine, clearly i
+[21:07:00]   --stage animate: using the locked still LOCKED_s2_call.png
+[21:07:00]   LOCKED stills/LOCKED_s2_call.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[21:07:18]   bounced ComfyUI so Wan loads into a clean process
+[21:07:18]   render backend is back
+/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

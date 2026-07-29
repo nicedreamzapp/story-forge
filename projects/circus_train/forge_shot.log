@@ -1583,3 +1583,51 @@ urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
     raise URLError(err)
 urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
 
+[21:07:51] judge via in-process VL
+[21:07:51] === ellie_eye — beat: one large amber elephant eye visible through a narrow vertical gap between dark wooden pla
+[21:07:51]   --stage animate: using the locked still LOCKED_ellie_eye.png
+[21:07:51]   LOCKED stills/LOCKED_ellie_eye.png
+[21:08:10]   bounced ComfyUI so Wan loads into a clean process
+[21:08:10]   render backend is back
+[21:09:10]   animation failed: [make-video] uploading LOCKED_ellie_eye.png → ComfyUI
+[videopipe] queued 1b536519-c588-4426-ba91-4817662e5c71
+ /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[21:09:10] judge via in-process VL
+[21:09:10] === s2_thecall — beat: a circus train in open country with thick black smoke billowing from its engine, clearly i
+[21:09:10]   --stage animate: using the locked still LOCKED_s2_call.png
+[21:09:10]   LOCKED stills/LOCKED_s2_call.png
+[21:09:28]   bounced ComfyUI so Wan loads into a clean process
+[21:09:28]   render backend is back
+[21:10:41]   animation failed: [make-video] uploading LOCKED_s2_call.png → ComfyUI
+[videopipe] queued 449d81fb-18d9-4a5a-9870-7ffedd0ca576
+ /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[21:10:41] judge via in-process VL
+[21:10:41] === s4_arrival — beat: a bear and a dog standing together in the foreground in front of a smoking broken-down tra
+[21:10:41]   --stage animate: using the locked still LOCKED_s4_arrival.png
+[21:10:41]   LOCKED stills/LOCKED_s4_arrival.png
+[21:11:00]   bounced ComfyUI so Wan loads into a clean process
+[21:11:00]   render backend is back
+[21:12:02]   animation failed: [make-video] uploading LOCKED_s4_arrival.png → ComfyUI
+[videopipe] queued 47a04a98-67fc-4be6-ac90-5754564ec7c0
+ /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[21:13:16] judge via in-process VL
+[21:13:16] === s6_interior — beat: the dark interior of a wooden boxcar with a bright blade of daylight cutting in at the doo
+[21:13:16]   --stage animate: using the locked still LOCKED_s6_interior.png
+[21:13:16]   LOCKED stills/LOCKED_s6_interior.png
+[21:13:34]   bounced ComfyUI so Wan loads into a clean process
+[21:13:34]   render backend is back
+[21:14:45]   animation failed: [make-video] uploading LOCKED_s6_interior.png → ComfyUI
+[videopipe] queued 22417c8d-c714-4cb1-bd4f-98640d2a98c0
+ /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+

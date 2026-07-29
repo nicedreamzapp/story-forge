@@ -1,22 +1,8 @@
 [
  {
-  "id": "s3_rollout",
-  "state": "CLIP_KEPT",
-  "rolls": [],
-  "locked_still": "stills/LOCKED_s3_rollout.png",
-  "clip": "clips/s2_final.mp4",
-  "clip_votes": "5/5"
- },
- {
-  "id": "s4_arrival",
+  "id": "s6_interior",
   "state": "STILL_LOCKED",
   "rolls": [],
-  "locked_still": "stills/LOCKED_s4_arrival.png"
- },
- {
-  "id": "s8_goodbye",
-  "state": "STILL_LOCKED",
-  "rolls": [],
-  "locked_still": "stills/LOCKED_s8_goodbye.png"
+  "locked_still": "stills/LOCKED_s6_interior.png"
  }
 ]

@@ -1,16 +1,14 @@
 # Story Forge status — circus_train
 
-_generated 2026-07-28 19:33_
+_generated 2026-07-28 21:14_
 
 ## Last queue
 
-**1 of 3 shots produced a usable judged clip.**
+**0 of 1 shots produced a usable judged clip.**
 
 | shot | outcome | detail |
 |---|---|---|
-| s3_rollout | CLIP_KEPT | 5/5 |
-| s4_arrival | STILL_LOCKED |  |
-| s8_goodbye | STILL_LOCKED |  |
+| s6_interior | STILL_LOCKED |  |
 
 ## What the film still needs
 
@@ -33,9 +31,9 @@ _generated 2026-07-28 19:33_
 | step | runs | minutes | pass rate |
 |---|---|---|---|
 | judge_still | 261 | 379.5 | 48% |
-| animate | 25 | 277.9 | — |
+| animate | 31 | 298.0 | — |
 | still | 261 | 207.7 | — |
-| **total instrumented** | | **865** | |
+| **total instrumented** | | **885** | |
 
 ## What it learned
 
@@ -44,6 +42,12 @@ _generated 2026-07-28 19:33_
 
 ## What changed in the pipeline (24h)
 
+- 035e39d Rule 19 marked UNPROVEN — it broke on the next test
+- b3cade2 Rule 19: one i2v render per process — 6/6 measured
+- c991261 All six still-based scenes re-specced for real motion
+- 996cf89 Rule 18 OVERRULED: no stills in a finished film
+- ed55c9a film_qc PASSES: 107 checks, 107 passed — first clean verdict for this episode
+- a87a298 circus_train: every character shot rebuilt on-model — 106/107 checks pass
 - 2a08279 forge-shot: --stage animate uses the locked still instead of re-rolling it
 - 5b478f6 forge-shot: batch by model (--stage), repeatable --only, dry-run stops clobbering results
 - 1f1a1a1 forge-shot: bounce ComfyUI before EVERY animate, unconditionally
