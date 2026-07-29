@@ -148,7 +148,12 @@ This directory is the home of **Story Forge**, a robust 100%-local generative VI
    - Corollary to rule 13: an asset that lost is deleted, but an asset that WON and was
      never wired in is just as bad. Check `clips/` against the EDL for orphans.
 
-19. ONE i2v RENDER PER PROCESS (2026-07-28, measured 6/6). Every FIRST animate in a
+19. **UNPROVEN — DO NOT RELY ON THIS YET.** I wrote it as settled and it broke on the
+   very next test: ellie_eye was the FIRST animate in a brand-new process, on a healthy
+   box (63.6GB free, level ok, swap rate 0), and still failed at upload 60s after the
+   bounce. The correlation below is real but is NOT the whole cause, and I published it
+   before testing it. Treat as a lead, not a law.
+   ORIGINAL CLAIM — ONE i2v RENDER PER PROCESS (2026-07-28, observed 6/6). Every FIRST animate in a
    `forge-shot` process succeeded; every SECOND or later one died loading Wan with
    "uploading ... -> ComfyUI / Connection refused". Six runs, no exceptions:
    s6_heave(1st) OK; s1_coldopen(1st) OK, s3_rollout(2nd) died; s3_rollout(1st) OK,
