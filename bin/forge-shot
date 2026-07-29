@@ -387,7 +387,11 @@ def best_window(shot: dict, proj: Path, clip: Path, votes: int) -> tuple[float, 
     return (lo, hi) if hi - lo >= shot.get("min_window", 2.0) else None
 
 
-def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool) -> dict:
+def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
+                stage: str = "all") -> dict:
+    # NOTE: a --dry-run pass used to overwrite forge_shot_results.json with DRY
+    # entries, erasing the record of real builds (2026-07-28). main() now skips the
+    # write when dry.
     res = defaults.get("res", "832x480")
     shot["_w"], shot["_h"] = res.lower().split("x")
     seeds = shot.get("seeds", defaults.get("seeds", [11, 22, 33, 44]))
@@ -508,6 +512,11 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool) -> dict:
     if not shot.get("animate"):
         return out
 
+    if stage == "stills":
+        log("  --stage stills: locked, animation deferred to the animate pass")
+        out["state"] = "STILL_LOCKED"
+        return out
+
     # Hand the machine over to the render CLEAN. When Picture Eyes is down the VL
     # judge lives in THIS process (~18GB) and no outside evictor can reach it —
     # carrying it through a Wan render is half of what swamped the box on
@@ -603,8 +612,23 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool) -> dict:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("shots")
-    ap.add_argument("--only", default=None)
+    # ACCUMULATE. This was a plain overwrite, so `--only a --only b --only c` silently
+    # kept only the LAST one and the queue reported "DONE — 1/1 shots" as if that had
+    # been the whole job. Two four-shot sweeps on 2026-07-28 each built exactly one
+    # shot and announced success; the other three were never attempted and nothing
+    # said so. A flag that quietly discards work is worse than one that errors.
+    ap.add_argument("--only", action="append", default=None,
+                    help="shot id to build; repeatable")
     ap.add_argument("--dry-run", action="store_true")
+    # BATCH BY MODEL, NOT BY SHOT (RENDER_SPEED_RESEARCH.md Tier 1 #1, written
+    # 2026-07-26 and ignored until it bit). One shot at a time means mflux (~10GB)
+    # and Wan (~2x12GB GGUF) alternate on every shot, and each switch drives the box
+    # into swap. On 2026-07-28 the queue died loading mflux for s3_rollout seconds
+    # after finishing a 19-minute Wan render for s1_coldopen.
+    #   --stage stills   lock every still first (mflux loads ONCE)
+    #   --stage animate  then animate every locked still (Wan loads ONCE)
+    ap.add_argument("--stage", choices=["all", "stills", "animate"], default="all",
+                    help="run only the still pass or only the animate pass")
     args = ap.parse_args()
 
     spec_path = Path(args.shots).resolve()
@@ -612,7 +636,12 @@ def main() -> int:
     proj = spec_path.parent
     shots = spec["shots"]
     if args.only:
-        shots = [s for s in shots if s["id"] == args.only]
+        wanted = set(args.only)
+        shots = [s for s in shots if s["id"] in wanted]
+        missing = wanted - {s["id"] for s in shots}
+        if missing:
+            log(f"  --only named {len(missing)} shot(s) not in this file: "
+                f"{', '.join(sorted(missing))}")
         if not shots:
             return 2
 
@@ -623,9 +652,13 @@ def main() -> int:
         _state["use_server"] = False
     log(f"judge via {'server :8181' if _state['use_server'] else 'in-process VL'}")
 
-    results = [build_shot(s, proj, spec.get("defaults", {}), args.dry_run) for s in shots]
+    results = [build_shot(s, proj, spec.get("defaults", {}), args.dry_run, args.stage)
+               for s in shots]
 
-    (proj / "forge_shot_results.json").write_text(json.dumps(results, indent=1) + "\n")
+    if not args.dry_run:
+        (proj / "forge_shot_results.json").write_text(json.dumps(results, indent=1) + "\n")
+    else:
+        log("  --dry-run: results file left untouched")
     with open(proj / "forge_shot.log", "a") as f:
         f.write("\n".join(LOG) + "\n")
     # Never leave an unattended run with nothing to read in the morning (2026-07-26).
