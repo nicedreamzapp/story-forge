@@ -60,6 +60,7 @@ from pathlib import Path
 
 SF = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(SF / "pipeline-tools"))
+sys.path.insert(0, str(SF))
 from beat_gate import check_shot, side_by_side, clip_duration, grab_frame  # noqa: E402
 from film_qc import vl_ask, _state, PE_URL, unload_vl  # noqa: E402
 
@@ -515,6 +516,25 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool) -> dict:
         log("  released the in-process VL judge before handing the GPU to Wan")
     if not mem_gate(f"{shot['id']} i2v"):
         log("  mem-gate refused the animation — still is locked, clip UNBUILT")
+        return out
+
+    # BOUNCE ComfyUI immediately before every i2v, unconditionally.
+    # Measured across two days: an animate succeeds when it starts on a freshly
+    # restarted ComfyUI and dies loading Wan when it starts on one that has been
+    # up a while. It used to get bounced by accident — mem-gate thought the box was
+    # critical (a stale swap-size reading) and restarted it as a side effect. Fixing
+    # that reading on 2026-07-28 removed the accidental bounce, and the very next
+    # animate died on upload. A 20s restart is cheap against a 15-minute render that
+    # cannot load its weights; the previous shot's clip is already written, so
+    # nothing in flight is lost. See CLAUDE.md rule 16.
+    try:
+        import core as _core
+        _core._restart_comfy()
+        log("  bounced ComfyUI so Wan loads into a clean process")
+    except Exception as e:
+        log(f"  could not bounce ComfyUI ({e}) — continuing, the animate may fail")
+    if not wait_for_comfy(180):
+        log("  ComfyUI did not come back — still is locked, clip UNBUILT")
         return out
     wait_for_songforge()
     clip_tmp = proj / "clips" / f"{shot['id']}_raw.mp4"
