@@ -1,0 +1,26 @@
+#!/bin/bash
+# Resume circus_train after the 2026-07-28 reboot.
+# Five scenes need i2v clips; their stills are locked, on-model and gate-passed.
+# One shot per invocation, retried, because the failure mode is a memory-driven
+# silent kill of ComfyUI and a fresh boot gives the largest free block we get.
+cd /Users/dtribe/Desktop/PROJECTS/story-forge
+echo "=== free ram at start: $(vm_stat | awk '/Pages free/{gsub(/\./,"",$3); printf "%.1fGB", $3*16384/1073741824}') ==="
+for SHOT in s4_arrival s8_goodbye s2_thecall s6_interior ellie_eye; do
+  for TRY in 1 2 3; do
+    echo "=== $SHOT attempt $TRY $(date +%H:%M:%S) free=$(vm_stat | awk '/Pages free/{gsub(/\./,"",$3); printf "%.1fGB", $3*16384/1073741824}') ==="
+    ~/.local/mlx-server/bin/python bin/forge-shot projects/circus_train/shots.json \
+        --stage animate --only "$SHOT" 2>&1 \
+      | grep -E "clip: beat|CLIP_|animation failed|window probe|UNBUILT"
+    if python3 -c "
+import json,sys
+d=json.load(open('projects/circus_train/forge_shot_results.json'))
+sys.exit(0 if any(r['id']=='$SHOT' and r['state']=='CLIP_KEPT' for r in d) else 1)" 2>/dev/null; then
+      echo "=== $SHOT OK (attempt $TRY) ==="; break
+    fi
+    sleep 20
+  done
+done
+echo "=== rebuilding the cut ==="
+python3 bin/build-episode projects/circus_train --from segments --no-song 2>&1 \
+  | grep -E "^\[build-episode\] [A-Z]|assembled|FILM|QC:|ASSEMBLED|COMPLETE|passed|failed"
+echo "ALL DONE $(date +%H:%M:%S)"
