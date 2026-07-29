@@ -1,0 +1,30 @@
+=== [22:12:28] START s2_thecall ===
+[22:12:28] judge via in-process VL
+[22:12:28] === s2_thecall — beat: a circus train in open country with thick black smoke billowing from its engine, clearly i
+[22:12:28]   --stage animate: using the locked still LOCKED_s2_call.png
+[22:12:28]   LOCKED stills/LOCKED_s2_call.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[22:12:46]   bounced ComfyUI so Wan loads into a clean process
+[22:12:46]   render backend is back
+Python(24321) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(24327) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(24328) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(24329) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(24330) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(24331) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(24333) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(24344) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 10599.11it/s]
+/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+=== [22:34:22] END s2_thecall (exit 0) ===
+=== [22:34:22] START s4_arrival ===
+[22:34:22] judge via in-process VL
+[22:34:22] === s4_arrival — beat: a bear and a dog standing together in the foreground in front of a smoking broken-down tra
+[22:34:22]   --stage animate: using the locked still LOCKED_s4_arrival.png
+[22:34:22]   LOCKED stills/LOCKED_s4_arrival.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[22:34:40]   bounced ComfyUI so Wan loads into a clean process
+[22:34:40]   render backend is back

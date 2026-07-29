@@ -89,7 +89,7 @@
   },
   {
    "id": "outro_hank_brag",
-   "clip": "build/seg15_L11.mp4",
+   "clip": "a2v/L11_hank.mp4",
    "t": 0.6,
    "beat": "immediately after the rescue, at the train, the bear takes dry credit for having just forced the door open",
    "must_not": [
@@ -99,7 +99,7 @@
   },
   {
    "id": "outro_signoff",
-   "clip": "build/seg17_L14.mp4",
+   "clip": "a2v/L14_doug.mp4",
    "t": 0.6,
    "beat": "the sign-off at the end of the rescue, with the rescued circus train visible behind them as they head home",
    "must_not": [

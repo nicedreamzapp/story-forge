@@ -175,5 +175,9 @@
   "The image clearly contains a small brown dog sitting beside the tracks and two people visible in the train (one in a red hat leaning out, another in uniform in the driver\u2019s cabin), which violates the requirement of no animals or people in the frame.",
   "The image clearly contains two puppies and a person leaning out of the train window, which violates the requirement of an empty scene with no animals or people.",
   "The image clearly contains a small brown puppy sitting on the ground and two people leaning out of the train windows, which violates the requirement of having no animals or people in the frame. Additionally, readable letters and numbers (e.g., \"CRD 0.07 6\", \"BD\", \"L07\") are visible on the train, which also causes an automatic failure."
+ ],
+ "s6_interior_animation": [
+  "1 of 5 sampled frames depict the beat. PASS. The image clearly depicts a dark wooden interior, likely a boxcar, with a thin blade of light entering through a partially open door, illuminating dust particles and straw\u2014exactly matching the specified beat without any forbidden elements.",
+  "1 of 5 sampled frames depict the beat. PASS. The image clearly depicts a dark interior with a thin blade of daylight entering through a partially open wooden door, illuminating airborne dust particles and a pile of straw on the floor, matching the specified beat without any forbidden elements."
  ]
 }

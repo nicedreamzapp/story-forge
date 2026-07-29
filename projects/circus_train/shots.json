@@ -83,10 +83,12 @@
     "a bright or evenly lit interior",
     "a barn, shed, stable or house interior",
     "daylight filling the room",
-    "a wide open door"
+    "a wide open door",
+    "straw or debris bursting, spraying or exploding out",
+    "sparks, embers or fire"
    ],
    "lock": "stills/LOCKED_s6_interior.png",
-   "animate": "fine dust and bits of straw drift slowly down through the single shaft of light, the shaft stays exactly the same width, the dark plank walls are perfectly still, camera locked off",
+   "animate": "the camera does not move at all — no pan, no tilt, no zoom, no push in, no pull back, no rotation, no parallax; the framing and the walls are identical in every single frame. The ONLY thing that moves is a few fine dust motes sinking very slowly straight downward under gravity. Nothing blows or flows in from the doorway, nothing travels along the beam of light, no straw, no debris, no sparks, no fire, no wind. The door stays exactly where it is and never opens wider. The straw on the floor is completely still.",
    "clip": "clips/s6_interior_final.mp4",
    "min_window": 1.6,
    "_no_characters": true,
@@ -199,9 +201,9 @@
      "subject": "Hank the bear"
     }
    ],
-   "lock": "stills/LOCKED_s3_rollout.png",
+   "lock": "stills/LOCKED_s2_wide.png",
    "clip": "clips/s2_final.mp4",
-   "animate": "the wagon rolls forward, dust billowing behind the wheels, the horse's legs driving, the bear rocking with the motion, camera tracks alongside",
+   "animate": "the wooden wagon rolls forward along the road, wheels turning, dust billowing behind, the horse galloping, the bear's fur and the rope reins swaying with the motion, camera tracking alongside",
    "min_window": 2.0,
    "seeds": [
     801,

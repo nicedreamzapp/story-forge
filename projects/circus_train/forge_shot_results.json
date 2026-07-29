@@ -1,7 +1,7 @@
 [
  {
   "id": "s6_interior",
-  "state": "STILL_LOCKED",
+  "state": "CLIP_FAILED",
   "rolls": [],
   "locked_still": "stills/LOCKED_s6_interior.png"
  }

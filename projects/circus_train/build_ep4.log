@@ -1,0 +1,54 @@
+[build-episode] PREFLIGHT — already done, skipping
+[build-episode] SONG — already done, skipping
+[build-episode] CARDS — already done, skipping
+[build-episode] SEGMENTS —
+[build-episode]   cleared 23 segment(s) from a previous build
+[build-episode]   title: 4.00s
+[build-episode]   s1_coldopen: 5.06s
+[build-episode]   L01: 1.64s
+[build-episode]   L02: 1.68s
+[build-episode]   s2_thecall: 5.00s +VO
+[build-episode]   L04: 1.96s
+[build-episode]   s3_rollout: 5.06s
+[build-episode]   s4_arrival: 5.00s
+[build-episode]   L05: 1.32s
+[build-episode]   L06: 2.24s
+[build-episode]   ellie_eye: 4.00s +VO
+[build-episode]   L07: 1.72s
+[build-episode]   L09: 3.04s
+[build-episode]   L10: 2.04s
+[build-episode]   s6_heave_animated: 5.06s
+[build-episode]   s6_interior: 4.50s
+[build-episode]   s7_dooropen: 5.06s
+[build-episode]   L11: 1.48s
+[build-episode]   L13: 2.08s
+[build-episode]   L14: 1.92s
+[build-episode]   L15: 1.36s
+[build-episode]   s8_goodbye: 5.00s
+[build-episode]   credits: 5.00s +VO
+[build-episode]   23 segments normalised to 832x480@24
+[build-episode] ASSEMBLE —
+[build-episode]   cut assembled: 75.4s from 23 segments
+[build-episode]   score laid under and ducked: score.wav
+[build-episode]   FILM: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4  (75.4s)
+[build-episode] QC —
+[build-episode]   manifest: 15 lines, 9 scenes
+[build-episode]   running film_qc (vision + audio judge)…
+[build-episode]     [PASS] lipsync@30.9s: doug's mouth moving in 9/10 samples (90% of a 2.1s line; need 50%)
+[build-episode]     [SKIP] lipsync@34.2s: ellie is off-screen by design — audio-only line
+[build-episode]     [PASS] lipsync@37.2s: doug's mouth moving in 7/7 samples (100% of a 1.6s line; need 50%)
+[build-episode]     [PASS] lipsync@38.9s: doug's mouth moving in 14/14 samples (100% of a 2.9s line; need 50%)
+[build-episode]     [PASS] lipsync@41.9s: doug's mouth moving in 6/9 samples (67% of a 1.9s line; need 50%)
+[build-episode]     [PASS] lipsync@58.6s: hank's mouth moving in 6/6 samples (100% of a 1.3s line; need 50%)
+[build-episode]     [PASS] lipsync@60.1s: doug's mouth moving in 9/9 samples (100% of a 1.9s line; need 50%)
+[build-episode]     [PASS] lipsync@62.2s: doug's mouth moving in 8/8 samples (100% of a 1.8s line; need 50%)
+[build-episode]     [PASS] lipsync@64.1s: hank's mouth moving in 3/6 samples (50% of a 1.2s line; need 50%)
+[build-episode]     [SKIP] lipsync@71.3s: bird is off-screen by design — audio-only line
+[build-episode]     [PASS] silence@16.6s: no. none of the characters are depicted with their mouths wide open; they are al
+[build-episode]     [PASS] silence@24.8s: no. all visible characters (hank, doug, ellie) have closed mouths; no one appear
+[build-episode]     [PASS] silence@51.5s: no. none of the characters are depicted with their mouths wide open; they are al
+[build-episode]     [PASS] silence@69.0s: no. all visible characters (hank, doug, ellie) have their mouths closed or sligh
+[build-episode]   film_qc was KILLED (exit -15) — the film is UNCHECKED, not verified. Do NOT report it as done.
+[build-episode] ASSEMBLED (NOT VERIFIED) in 2.8 min → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4
+[build-episode]   QC: UNCHECKED — film_qc was KILLED (exit -15)
+[build-episode]   This film has NOT passed QC. Do not publish or call it done.

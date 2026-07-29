@@ -52,3 +52,6 @@
   (single-sample false FAILs sent 7 good a2v clips to "failed" 2026-07-23) and honours
   an "offscreen": true flag so voice-only characters are audio-verified, never
   mouth-checked. 11 defects → 5 with no change to the film itself.
+- ✓ LOCKED (Matt "good one" 2026-07-29 03:39): s3_rollout = clips/s2_final.mp4 — the
+  wagon animated from the Matt-approved LOCKED_s2_wide still (beat PASS 5/5). Replaces
+  the 2026-07-28 19:14 auto-reroll whose bear had crossed eyes. chmod 444.

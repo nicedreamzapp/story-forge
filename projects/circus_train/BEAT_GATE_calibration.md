@@ -34,26 +34,26 @@
 - ruling: 0 of 3 sampled frames depict the beat. FAIL. The beat specifies a bloodhound with its nose pressed against a narrow gap between planks of a wooden boxcar door, but the image shows a dachshund (not a bloodhound) with its nose near the edge of a plank, not pressed into a narrow gap, and the structure appears to be a cart or wagon, not a boxcar door.
 
 ## GT_fail_outro_forest — ERROR
-- ruling: FileNotFoundError: [Errno 2] No such file or directory: 'ffprobe'
+- ruling: missing or unreadable build/seg15_L11.mp4
 
 ## GT_pass_s6_heave_still — PASS
 - frames depicting the beat: 3/3
-  - [PASS] LOCKED_s6.png: A large, brown, cartoon-style bear is standing upright on its hind legs, leaning its upper body against a wooden door of a red train car. Its front paws are pressed firmly against the door, with its right paw slightly higher than the left, suggesting it is pushing or bracing itself. The bear’s body is angled slightly forward, with its weight shifted toward the door, and its legs are bent at the knees, indicating effort.
+  - [PASS] LOCKED_s6.png: A large, cartoon-style brown bear is standing upright on its hind legs, leaning forward with its front paws pressed against a wooden door set into a red metal train car. The bear’s body is angled forward, with its weight shifted toward the door, suggesting effort as it pushes against it with its paws and chest. Its mouth is open, showing teeth, and its eyes are narrowed, indicating strain.
 
-The bear’s paws are in direct contact with the wooden surface of the door; no tools, objects, or additional items are visible in or near its paws.
+The bear’s paws are flat against the wooden door, which has a metal latch and is framed by red metal panels. No other objects are visible in or near the bear’s paws.
 
-The scene is set on a gravel-covered railway track, with the red train car positioned on rails. A light haze or dust is visible near the ground, particularly around the bear’s feet and along the base of the train car, suggesting recent movement or disturbance. The lighting is warm and directional, casting soft shadows, but no smoke or debris is present in the air.
-    ruling: PASS. The bear is clearly leaning its shoulder and both paws into the boxcar door, body angled low with hind feet braced in the gravel, and no objects are in its paws—fully matching the specified beat.
-  - [PASS] LOCKED_s6.png: A large, brown, cartoon-style bear is standing upright on its hind legs, leaning its upper body against a wooden door of a red train car. Its front paws are pressed firmly against the door, with its right paw slightly higher than the left, suggesting it is pushing or bracing itself. The bear’s body is angled slightly forward, with its weight shifted toward the door, and its legs are bent at the knees, indicating effort.
+The scene is outdoors on a gravel surface, with another red train car visible in the background. A small amount of dust or gravel is visible near the bear’s feet, kicked up by its movement, and the air appears hazy, possibly from distance or light mist.
+    ruling: PASS. The bear is clearly leaning its shoulder and both paws into the boxcar door, body angled low, hind feet braced in gravel, with no objects in its paws, and its posture and facial expression convey effort, matching the described beat exactly.
+  - [PASS] LOCKED_s6.png: A large, cartoon-style brown bear is standing upright on its hind legs, leaning forward with its front paws pressed against a wooden door set into a red metal train car. The bear’s body is angled forward, with its weight shifted toward the door, suggesting effort as it pushes against it with its paws and chest. Its mouth is open, showing teeth, and its eyes are narrowed, indicating strain.
 
-The bear’s paws are in direct contact with the wooden surface of the door; no tools, objects, or additional items are visible in or near its paws.
+The bear’s paws are flat against the wooden door, which has a metal latch and is framed by red metal panels. No other objects are visible in or near the bear’s paws.
 
-The scene is set on a gravel-covered railway track, with the red train car positioned on rails. A light haze or dust is visible near the ground, particularly around the bear’s feet and along the base of the train car, suggesting recent movement or disturbance. The lighting is warm and directional, casting soft shadows, but no smoke or debris is present in the air.
-    ruling: PASS. The bear is clearly leaning its shoulder and both paws into the boxcar door, body angled low with hind feet braced in the gravel, and no objects are in its paws—fully matching the specified beat.
-  - [PASS] LOCKED_s6.png: A large, brown, cartoon-style bear is standing upright on its hind legs, leaning its upper body against a wooden door of a red train car. Its front paws are pressed firmly against the door, with its right paw slightly higher than the left, suggesting it is pushing or bracing itself. The bear’s body is angled slightly forward, with its weight shifted toward the door, and its legs are bent at the knees, indicating effort.
+The scene is outdoors on a gravel surface, with another red train car visible in the background. A small amount of dust or gravel is visible near the bear’s feet, kicked up by its movement, and the air appears hazy, possibly from distance or light mist.
+    ruling: PASS. The bear is clearly leaning its shoulder and both paws into the boxcar door, body angled low, hind feet braced in gravel, with no objects in its paws, and its posture and facial expression convey effort, matching the described beat exactly.
+  - [PASS] LOCKED_s6.png: A large, cartoon-style brown bear is standing upright on its hind legs, leaning forward with its front paws pressed against a wooden door set into a red metal train car. The bear’s body is angled forward, with its weight shifted toward the door, suggesting effort as it pushes against it with its paws and chest. Its mouth is open, showing teeth, and its eyes are narrowed, indicating strain.
 
-The bear’s paws are in direct contact with the wooden surface of the door; no tools, objects, or additional items are visible in or near its paws.
+The bear’s paws are flat against the wooden door, which has a metal latch and is framed by red metal panels. No other objects are visible in or near the bear’s paws.
 
-The scene is set on a gravel-covered railway track, with the red train car positioned on rails. A light haze or dust is visible near the ground, particularly around the bear’s feet and along the base of the train car, suggesting recent movement or disturbance. The lighting is warm and directional, casting soft shadows, but no smoke or debris is present in the air.
-    ruling: PASS. The bear is clearly leaning its shoulder and both paws into the boxcar door, body angled low with hind feet braced in the gravel, and no objects are in its paws—fully matching the specified beat.
-- ruling: 3 of 3 sampled frames depict the beat. PASS. The bear is clearly leaning its shoulder and both paws into the boxcar door, body angled low with hind feet braced in the gravel, and no objects are in its paws—fully matching the specified beat.
+The scene is outdoors on a gravel surface, with another red train car visible in the background. A small amount of dust or gravel is visible near the bear’s feet, kicked up by its movement, and the air appears hazy, possibly from distance or light mist.
+    ruling: PASS. The bear is clearly leaning its shoulder and both paws into the boxcar door, body angled low, hind feet braced in gravel, with no objects in its paws, and its posture and facial expression convey effort, matching the described beat exactly.
+- ruling: 3 of 3 sampled frames depict the beat. PASS. The bear is clearly leaning its shoulder and both paws into the boxcar door, body angled low, hind feet braced in gravel, with no objects in its paws, and its posture and facial expression convey effort, matching the described beat exactly.

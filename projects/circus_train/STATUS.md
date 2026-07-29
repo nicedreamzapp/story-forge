@@ -1,6 +1,6 @@
 # Story Forge status — circus_train
 
-_generated 2026-07-28 21:14_
+_generated 2026-07-29 01:08_
 
 ## Last queue
 
@@ -8,7 +8,7 @@ _generated 2026-07-28 21:14_
 
 | shot | outcome | detail |
 |---|---|---|
-| s6_interior | STILL_LOCKED |  |
+| s6_interior | CLIP_FAILED |  |
 
 ## What the film still needs
 
@@ -30,18 +30,20 @@ _generated 2026-07-28 21:14_
 
 | step | runs | minutes | pass rate |
 |---|---|---|---|
+| animate | 42 | 430.0 | — |
 | judge_still | 261 | 379.5 | 48% |
-| animate | 31 | 298.0 | — |
 | still | 261 | 207.7 | — |
-| **total instrumented** | | **885** | |
+| **total instrumented** | | **1017** | |
 
 ## What it learned
 
-- 157 shot-level lessons across 10 shots in this project
+- 159 shot-level lessons across 11 shots in this project
 - 19 curated house rules that carry to the next film
 
 ## What changed in the pipeline (24h)
 
+- ffbf39b bin/resume-circus-train: one command to finish the film after a reboot
+- 99e7cc5 Real cause of the animate failures: the box runs out of FREE ram, and the guard over-reports it
 - 035e39d Rule 19 marked UNPROVEN — it broke on the next test
 - b3cade2 Rule 19: one i2v render per process — 6/6 measured
 - c991261 All six still-based scenes re-specced for real motion

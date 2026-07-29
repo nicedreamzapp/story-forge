@@ -44,12 +44,12 @@
     {
       "name": "s7_dooropen",
       "start": 53.39,
-      "end": 58.39
+      "end": 58.47
     },
     {
       "name": "s8_goodbye",
-      "start": 65.23,
-      "end": 70.23
+      "start": 65.31,
+      "end": 70.31
     }
   ],
   "lines": [
@@ -124,35 +124,35 @@
       "offscreen": false
     },
     {
-      "t": 58.54,
+      "t": 58.62,
       "speaker": "hank",
       "text": "Doors don't argue with bears.",
       "dur": 1.33,
       "offscreen": false
     },
     {
-      "t": 60.02,
+      "t": 60.1,
       "speaker": "doug",
       "text": "Turtle called dibs on the tank an hour ago.",
       "dur": 1.93,
       "offscreen": false
     },
     {
-      "t": 62.1,
+      "t": 62.18,
       "speaker": "doug",
       "text": "Anybody, anywhere, any trouble at all",
       "dur": 1.77,
       "offscreen": false
     },
     {
-      "t": 64.02,
+      "t": 64.1,
       "speaker": "hank",
       "text": "the Wild Rescue rolls.",
       "dur": 1.21,
       "offscreen": false
     },
     {
-      "t": 71.23,
+      "t": 71.31,
       "speaker": "bird",
       "text": "Can I get a hat like this?",
       "dur": 0.6,

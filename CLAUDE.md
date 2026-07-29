@@ -203,6 +203,43 @@ This directory is the home of **Story Forge**, a robust 100%-local generative VI
    - Judge the ken_burns clip with beat_gate like any other shot. A move on a still that
      depicts the wrong thing is still the wrong thing.
 
+20. A SAFETY GUARD THAT GUESSES WRONG DESTROYS THE WORK IT PROTECTS (2026-07-28/29).
+   Between 22:00 and 01:20 not one render completed. It read as an i2v capability problem
+   and it was `forge_guard.py` killing every single attempt — six separate defects, all
+   introduced or exposed by one change made at 21:21 that night. Cost: ~4 hours, 8 dead
+   renders, swap driven to 19.4GB (the 7/27 panic level) TWICE.
+   - **A memory-mapped model load empties the free list on a HEALTHY box.** Loading a
+     ~24GB GGUF parks it in clean file-backed pages; `vm_stat` free collapses to ~3GB with
+     File-backed at 30.7GB and swap rate 0. Any "free RAM < N = critical" rule fires on
+     every render. Free pages ALONE are never distress — require swap actually MOVING.
+   - **Wan's weights are WIRED Metal/GPU memory, invisible to RSS.** The guard saw
+     ComfyUI at 9.8GB while it held ~32GB. Sizing policy off RSS under-measures a render
+     by 3x.
+   - **SIGSTOP on a renderer is not a gentler kill, it is a guaranteed one.** A stopped
+     process gets paged out (swap 4.5→17GB in two minutes), stays "critical" because it
+     cannot release anything, and is SIGTERMed on schedule. It also cannot release wired
+     GPU memory at all. Never pause a busy renderer, and never pause a process whose RSS
+     is still CLIMBING — that is a load in flight and pausing strands it forever.
+   - **A health check that fails closed kills what it is meant to protect.** `_comfy_busy()`
+     returned False on any exception, and ComfyUI's HTTP server does not answer while it
+     loads a 24GB GGUF — so the check failed exactly during the window it exists to cover,
+     and "I could not tell" authorised a SIGTERM six minutes into a job. Fail SAFE:
+     unreachable means BUSY. A wrongly-spared hog costs headroom that is reclaimable; a
+     wrongly-killed render costs 15 minutes of GPU work that is not.
+   - **Match processes on what they actually run.** ComfyUI was matched on
+     `"main.py --listen 127.0.0.1 --port 8188"`; its real argv is `main.py --listen`. It
+     never matched, so it was "unregistered" and the guard's own "never kill a busy
+     ComfyUI" protection never applied to it. Verify a pattern against live `ps` output
+     before trusting a protection built on it.
+   - **A lease buys nothing unless the enforcement path honours it.** `film_qc` held a
+     granted 26GB lease and was SIGSTOPped then SIGTERMed anyway: `asked` only affects
+     hog SORT ORDER, never `adjustable`. Admission control that the evictor ignores is
+     decorative.
+   - PROCESS LESSON: a wrapper reported `exit 0` for a SIGTERMed child, so the first hour
+     of failures looked like clean no-ops. Capture `$?` into a variable immediately after
+     the call and log it. And when a subsystem was edited hours before the symptoms
+     started, `diff` it against its backup BEFORE theorising about the renderer.
+
 ## MOTION TRANSFER — real footage drives a character (2026-07-25, Matt-approved)
 
 Breaks frozen rule 6's action ceiling. Take ANY video of a real person doing something

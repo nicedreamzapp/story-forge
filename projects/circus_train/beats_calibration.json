@@ -27,7 +27,7 @@
   },
   {
    "id": "GT_fail_outro_forest",
-   "clip": "build/seg15_L11.mp4",
+   "clip": "a2v/L11_hank.mp4",
    "expect": "FAIL",
    "beat": "a bear standing beside a circus train at the end of a rescue",
    "must_not": [
