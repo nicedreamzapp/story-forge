@@ -1,9 +1,9 @@
 # film_qc report — EPISODE_v1.mp4
-**Verdict: FAIL — 1 defect(s)**
-Checks run: 107 | passed: 106 | failed: 1
+**Verdict: PASS**
+Checks run: 107 | passed: 107 | failed: 0
 
 ## Defects
-- identity-across-scenes: DRIFT — The bear’s belly color and size vary significantly across scenes, appearing cream in some and white in others, with inconsistent proportions.
+- (none)
 
 ## Full log
 - [PASS] lipsync@9.2s: hank's mouth moving in 6/7 samples (86% of a 1.5s line; need 50%)
@@ -25,7 +25,7 @@ Checks run: 107 | passed: 106 | failed: 1
 - [PASS] silence@24.8s: no. all visible characters (hank, doug, ellie) have closed mouths; no one appear
 - [PASS] silence@51.5s: no. none of the characters are depicted with their mouths wide open; they are al
 - [PASS] silence@68.9s: no. all visible characters (hank, doug, ellie) have their mouths closed or sligh
-- [FAIL] identity-across-scenes: DRIFT — The bear’s belly color and size vary significantly across scenes, appearing cream in some and white in others, with inconsistent proportions.
+- [PASS] identity-across-scenes: CONSISTENT — The characters maintain consistent species, body proportions, head and ear shapes, and markings across all scenes.
 - [PASS] artifact@0.5s: clean
 - [PASS] artifact@1.5s: clean
 - [PASS] artifact@2.5s: clean

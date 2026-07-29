@@ -329,13 +329,24 @@ def _main():
             # ramble scored FAIL and the report showed a defect that was really an
             # unanswered question (2026-07-28). Every other gate in this pipeline
             # learned the same lesson: demand the ruling first, reasons after.
+            # SAME TOLERANCE AS THE PER-SHOT GATE. forge-shot's IDENT_Q explicitly
+            # forgives "scale, haze, warmth of light or camera angle" and asks about
+            # DESIGN, because that is what canon governs. This check had no such
+            # allowance, so on 2026-07-28 it ruled DRIFT on "cream in some tiles and
+            # white in others" across a golden-hour tile, a bright-daylight tile and a
+            # forest-shade tile — the same five shots the per-shot gate had just passed
+            # against canon. Two gates asking one question with different tolerances;
+            # one of them is wrong by construction. A film is LIT, and a character
+            # whose fur reads warmer at sunset has not drifted.
             ans = vl_ask(sheet,
                          f"This sheet shows the same two characters ({char_desc}) "
-                         f"in {len(shots)} different scenes. Do they look like the "
-                         f"SAME individuals in every tile (same build, proportions, "
-                         f"colours, face)? Reply with ONE word first — CONSISTENT or "
-                         f"DRIFT — then ONE short sentence naming the single biggest "
-                         f"difference. Do not analyse the tiles one by one.")
+                         f"in {len(shots)} different scenes, each lit differently and "
+                         f"shot at a different distance. Ignore differences that come "
+                         f"only from lighting, colour temperature, scale, haze or "
+                         f"camera angle. Judge DESIGN: same species and body "
+                         f"proportions, same head and ear shape, same markings. "
+                         f"Reply with ONE word first — CONSISTENT or DRIFT — then ONE "
+                         f"short sentence. Do not analyse the tiles one by one.")
             verdict = ans.strip().lower()
             ok = verdict.startswith("consistent")
             unparsed = not (verdict.startswith("consistent") or verdict.startswith("drift"))
