@@ -148,7 +148,23 @@ This directory is the home of **Story Forge**, a robust 100%-local generative VI
    - Corollary to rule 13: an asset that lost is deleted, but an asset that WON and was
      never wired in is just as bad. Check `clips/` against the EDL for orphans.
 
-18. WHEN i2v CANNOT HOLD A BEAT, SHIP THE LOCKED STILL ON A REAL CAMERA MOVE
+18. ~~WHEN i2v CANNOT HOLD A BEAT, SHIP THE LOCKED STILL ON A REAL CAMERA MOVE~~
+   **OVERRULED BY MATT 2026-07-28: "I don't want any stills. They all look bad to me."**
+   A ken_burns move on a locked still is NOT an acceptable shot in a finished film.
+   It was used for 6 of 9 scenes in circus_train Episode 1 — 38% of the runtime —
+   and he rejected all of them on sight. It reads as a slideshow, which is exactly
+   what default movie-making rule 1 exists to prevent ("the viewer can't tell it
+   came from stills"). film_qc passed that cut 107/107; a machine cannot see this.
+   - ken_burns.py stays for ANIMATICS, previz and WIP reels only — never a delivered shot.
+   - If i2v will not hold a beat, the answer is a better animate prompt, a different
+     staging, or a re-conceived shot. NOT a camera move on a frozen frame.
+   - Motion Wan reliably holds: drifting dust and smoke, heat shimmer, breathing,
+     ears and fur stirring, water, foliage, steam, slow head turns, weight shifts.
+     Ask for THOSE on a held camera rather than asking for the thing it cannot do.
+   - The original text is kept below because the reasoning about i2v's limits is
+     still true — what changed is that "ship the still" is not the remedy.
+
+   ORIGINAL (superseded): WHEN i2v CANNOT HOLD A BEAT, SHIP THE LOCKED STILL ON A REAL CAMERA MOVE
    (2026-07-27). `ellie_eye`, `s7_dooropen` and `s8_goodbye` each had a still that passed
    every gate and an animate that failed the clip beat-gate every time — 3 shots, 15
    animate runs, 201 minutes, zero usable clips. All three are things Wan structurally
