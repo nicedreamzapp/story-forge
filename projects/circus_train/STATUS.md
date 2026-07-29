@@ -1,14 +1,16 @@
 # Story Forge status — circus_train
 
-_generated 2026-07-27 20:56_
+_generated 2026-07-28 19:33_
 
 ## Last queue
 
-**0 of 1 shots produced a usable judged clip.**
+**1 of 3 shots produced a usable judged clip.**
 
 | shot | outcome | detail |
 |---|---|---|
+| s3_rollout | CLIP_KEPT | 5/5 |
 | s4_arrival | STILL_LOCKED |  |
+| s8_goodbye | STILL_LOCKED |  |
 
 ## What the film still needs
 
@@ -30,19 +32,32 @@ _generated 2026-07-27 20:56_
 
 | step | runs | minutes | pass rate |
 |---|---|---|---|
-| judge_still | 252 | 367.3 | 46% |
-| animate | 18 | 216.5 | — |
-| still | 252 | 202.3 | — |
-| **total instrumented** | | **786** | |
+| judge_still | 261 | 379.5 | 48% |
+| animate | 25 | 277.9 | — |
+| still | 261 | 207.7 | — |
+| **total instrumented** | | **865** | |
 
 ## What it learned
 
-- 155 shot-level lessons across 10 shots in this project
-- 13 curated house rules that carry to the next film
+- 157 shot-level lessons across 10 shots in this project
+- 19 curated house rules that carry to the next film
 
 ## What changed in the pipeline (24h)
 
-- f473a09 Stop calling a blocked stop 'FILM COMPLETE'; hunt real motion at every rung
+- 2a08279 forge-shot: --stage animate uses the locked still instead of re-rolling it
+- 5b478f6 forge-shot: batch by model (--stage), repeatable --only, dry-run stops clobbering results
+- 1f1a1a1 forge-shot: bounce ComfyUI before EVERY animate, unconditionally
+- 3bc22b6 film_qc: identity must RULE first, and an unanswered question is UNCHECKED
+- c08641e film_qc: judge a line at its MOMENT, not wherever similar words first appear
+- 53c4f2a assemble the EDIT, not the directory — the cut had a dropped shot and doubled lines
+- 8ef3018 film_qc: a lease is protection, not permission
+- 96865b5 film_qc: an overridden run shouldn't wait 30min for a denial it will ignore
+- 46591c6 gitignore: launcher log is runtime noise
+- 321cef8 The dam + spine-coverage fix (authored earlier 2026-07-27), plus the day's metrics
+- 09979e5 circus_train: the spine is finally on screen — 9/9 beats, film UNCHECKED
+- 578c80f Rules 17-18 and six house lessons, from a 13-hour day that shipped no motion
+- 0eab639 film_qc: refuse rather than get killed, and never let a kill read as a pass
+- a12a11c Gates: judge the pointer, split the verdicts, stop lying about completion
 
 ## Next
 

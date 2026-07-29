@@ -1,0 +1,24 @@
+[17:33:22] judge via in-process VL
+[17:33:22] === s6_heave — beat: a big round cartoon bear with a cream belly driving his shoulder against a wooden boxcar d
+[17:33:22]   carrying 1 lesson(s) (1 inherited from earlier films) into this shot
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 25758.26it/s]
+[17:36:20]   seed 501: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The bear is depicted in a steep forward lean, with both paws flat against the door and hind leg
+[17:36:40]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive white chest patch and rounded ear shape, which are consistent with the locked design.
+[17:36:40]   LOCKED stills/LOCKED_s6.png
+[17:36:40]   released the in-process VL judge before handing the GPU to Wan
+Python(16850) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(16856) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(20019) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(20025) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(20026) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(20027) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(20028) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(20029) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(20036) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 9297.72it/s]
+[17:54:38]   clip: beat PASS (4/5)
+Python(20199) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(20206) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+[17:54:38] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[17:54:38] DONE — 1/1 shots produced usable, judged assets
+[17:54:38]   s6_heave: CLIP_KEPT

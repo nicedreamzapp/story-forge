@@ -1,0 +1,20 @@
+[19:09:34] judge via in-process VL
+[19:09:34] === s3_rollout — beat: a horse-drawn wooden wagon moving fast along a dirt road with dust kicking up behind it
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 19103.61it/s]
+[19:10:43]   seed 801: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a horse-drawn wooden wagon moving fast along a dirt road, with dust v
+[19:10:50]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive round belly, light tan muzzle, and brown fur with the same ear shape and size, confirming 
+[19:10:50]   LOCKED stills/LOCKED_s3_rollout.png
+[19:10:50]   --stage stills: locked, animation deferred to the animate pass
+[19:10:50] === s4_arrival — beat: a bear and a dog standing together in the foreground in front of a smoking broken-down tra
+[19:10:50]   carrying 23 lesson(s) (2 inherited from earlier films) into this shot
+[19:11:58]   seed 901: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing together in the foreground in front of a sm
+[19:12:03]   TEXT IN FRAME — rejected: YES  The readable writing is on the side of the red train car in the background. There is a circular emblem or logo on the lower right side of the tra
+[19:13:12]   seed 947: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing together in the foreground in front of a sm
+[19:13:20]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive white chest patch and rounded ear shape, which are consistent with the locked design.
+[19:13:23]   identity Doug vs doug_canon.png: MATCH — YES. The dog in the right image matches Doug the bloodhound in head and ear shape, coat color, and body proportions, despite the different setting and
+[19:13:23]   LOCKED stills/LOCKED_s4_arrival.png
+[19:13:23]   --stage stills: locked, animation deferred to the animate pass
+[19:13:23] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[19:13:23] DONE — 2/2 shots produced usable, judged assets
+[19:13:23]   s3_rollout: STILL_LOCKED
+[19:13:23]   s4_arrival: STILL_LOCKED

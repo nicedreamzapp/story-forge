@@ -34,22 +34,22 @@
     {
       "name": "s6_heave_animated",
       "start": 43.81,
-      "end": 46.18
+      "end": 48.89
     },
     {
       "name": "s6_interior",
-      "start": 46.18,
-      "end": 50.68
+      "start": 48.89,
+      "end": 53.39
     },
     {
       "name": "s7_dooropen",
-      "start": 50.68,
-      "end": 55.68
+      "start": 53.39,
+      "end": 58.39
     },
     {
       "name": "s8_goodbye",
-      "start": 62.52,
-      "end": 67.52
+      "start": 65.23,
+      "end": 70.23
     }
   ],
   "lines": [
@@ -124,35 +124,35 @@
       "offscreen": false
     },
     {
-      "t": 55.83,
+      "t": 58.54,
       "speaker": "hank",
       "text": "Doors don't argue with bears.",
       "dur": 1.33,
       "offscreen": false
     },
     {
-      "t": 57.31,
+      "t": 60.02,
       "speaker": "doug",
       "text": "Turtle called dibs on the tank an hour ago.",
       "dur": 1.93,
       "offscreen": false
     },
     {
-      "t": 59.39,
+      "t": 62.1,
       "speaker": "doug",
       "text": "Anybody, anywhere, any trouble at all",
       "dur": 1.77,
       "offscreen": false
     },
     {
-      "t": 61.31,
+      "t": 64.02,
       "speaker": "hank",
       "text": "the Wild Rescue rolls.",
       "dur": 1.21,
       "offscreen": false
     },
     {
-      "t": 68.52,
+      "t": 71.23,
       "speaker": "bird",
       "text": "Can I get a hat like this?",
       "dur": 0.6,

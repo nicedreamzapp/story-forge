@@ -1,0 +1,54 @@
+[build-episode] PREFLIGHT — already done, skipping
+[build-episode] SONG — already done, skipping
+[build-episode] CARDS — already done, skipping
+[build-episode] SEGMENTS —
+[build-episode]   cleared 23 segment(s) from a previous build
+[build-episode]   title: 4.00s
+[build-episode]   s1_coldopen: 5.06s
+[build-episode]   L01: 1.64s
+[build-episode]   L02: 1.68s
+[build-episode]   s2_thecall: 5.00s +VO
+[build-episode]   L04: 1.96s
+[build-episode]   s3_rollout: 5.06s
+[build-episode]   s4_arrival: 5.00s
+[build-episode]   L05: 1.32s
+[build-episode]   L06: 2.24s
+[build-episode]   ellie_eye: 4.00s +VO
+[build-episode]   L07: 1.72s
+[build-episode]   L09: 3.04s
+[build-episode]   L10: 2.04s
+[build-episode]   s6_heave_animated: 5.06s
+[build-episode]   s6_interior: 4.50s
+[build-episode]   s7_dooropen: 5.00s
+[build-episode]   L11: 1.48s
+[build-episode]   L13: 2.08s
+[build-episode]   L14: 1.92s
+[build-episode]   L15: 1.36s
+[build-episode]   s8_goodbye: 5.00s
+[build-episode]   credits: 5.00s +VO
+[build-episode]   23 segments normalised to 832x480@24
+[build-episode] ASSEMBLE —
+[build-episode]   cut assembled: 75.3s from 23 segments
+[build-episode]   score laid under and ducked: score.wav
+[build-episode]   FILM: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4  (75.3s)
+[build-episode] QC —
+[build-episode]   manifest: 15 lines, 9 scenes
+[build-episode]   running film_qc (vision + audio judge)…
+[build-episode]     [PASS] audio@29.6s: 'Whole train's cooking out here' expected @29.6s, heard @29.0s (3/4 words)
+[build-episode]     [PASS] audio@30.9s: 'Easy everybody! The Wild Rescu' expected @30.9s, heard @31.0s (4/4 words)
+[build-episode]     [PASS] audio@34.2s: 'I can't, it's too heavy' expected @34.2s, heard @34.0s (1/1 words)
+[build-episode]     [PASS] audio@37.2s: 'Pin's jammed tight.' expected @37.2s, heard @37.0s (1/2 words)
+[build-episode]     [PASS] audio@38.9s: 'Ellie? It's Doug. One push, gi' expected @38.9s, heard @37.0s (4/4 words)
+[build-episode]     [PASS] audio@41.9s: 'Three, two, one, push!' expected @41.9s, heard @42.0s (2/2 words)
+[build-episode]     [PASS] audio@58.5s: 'Doors don't argue with bears.' expected @58.5s, heard @58.0s (4/4 words)
+[build-episode]     [PASS] audio@60.0s: 'Turtle called dibs on the tank' expected @60.0s, heard @60.0s (4/4 words)
+[build-episode]     [PASS] audio@62.1s: 'Anybody, anywhere, any trouble' expected @62.1s, heard @60.0s (3/3 words)
+[build-episode]     [PASS] audio@64.0s: 'the Wild Rescue rolls.' expected @64.0s, heard @64.0s (3/3 words)
+[build-episode]     [PASS] audio@71.2s: 'Can I get a hat like this?' expected @71.2s, heard @71.0s (2/2 words)
+[build-episode]     
+[build-episode]     FAIL — 1 defect(s)
+[build-episode]     report: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1_qc.md
+[build-episode]   film_qc found DEFECTS — read the report before showing anyone
+[build-episode] ASSEMBLED (NOT VERIFIED) in 3.4 min → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4
+[build-episode]   QC: DEFECTS — read the _qc.md report
+[build-episode]   This film has NOT passed QC. Do not publish or call it done.

@@ -113,7 +113,8 @@
   "The image depicts two bears, not a bear and a dog, and the train is a freight train with closed doors, but the presence of thick dark smoke and the bears\u2019 poses do not convey the specific \"harsh sunlight with dust and heat haze\" atmosphere as required by the beat, and the scene lacks the explicit visual cues of a circus train (e.g., circus branding, decorations, or specific design elements).",
   "The image shows a bear standing alone in front of a weathered train with closed doors, but there is no dog present, which is a required element of the beat.",
   "The image does not depict a dog alongside the bear, and while the train cars are weathered and the doors appear shut, the presence of thick smoke and the bear\u2019s upward gaze suggest an event or disturbance not specified in the beat, and the absence of the dog is a critical failure of the required composition.",
-  "The train car has an open doorway, which violates the requirement that all doors be shut, and smoke is billowing from the top, suggesting the train is active or recently used, contradicting the description of a weathered, inactive circus train."
+  "The train car has an open doorway, which violates the requirement that all doors be shut, and smoke is billowing from the top, suggesting the train is active or recently used, contradicting the description of a weathered, inactive circus train.",
+  "never write any word in CAPITAL LETTERS in the prompt \u2014 the image model draws capitalised words as literal signage in the picture; describe the state in lower case instead"
  ],
  "s6_interior": [
   "The door is shown as partially open, allowing a wide crack of light, but the beat specifies tha",

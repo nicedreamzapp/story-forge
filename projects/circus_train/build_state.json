@@ -36,9 +36,9 @@
   ],
   "skipped": [],
   "film": "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4",
-  "runtime": 89.482993,
-  "qc": "[mem] film-qc-vl: not granted (machine critical (swap 6.4GB)) \u2014 proceeding carefully\n\nFetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]\nFetching 18 files: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 18/18 [00:00<00:00, 9939.11it/s]\n/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown\n  warnings.warn('resource_tracker: There appear to be %d '",
-  "qc_exit": -15,
+  "runtime": 75.268005,
+  "qc": "[PASS] audio@29.6s: 'Whole train's cooking out here' expected @29.6s, heard @29.0s (3/4 words)\n[PASS] audio@30.9s: 'Easy everybody! The Wild Rescu' expected @30.9s, heard @31.0s (4/4 words)\n[PASS] audio@34.2s: 'I can't, it's too heavy' expected @34.2s, heard @34.0s (1/1 words)\n[PASS] audio@37.2s: 'Pin's jammed tight.' expected @37.2s, heard @37.0s (1/2 words)\n[PASS] audio@38.9s: 'Ellie? It's Doug. One push, gi' expected @38.9s, heard @37.0s (4/4 words)\n[PASS] audio@41.9s: 'Three, two, one, push!' expected @41.9s, heard @42.0s (2/2 words)\n[PASS] audio@58.5s: 'Doors don't argue with bears.' expected @58.5s, heard @58.0s (4/4 words)\n[PASS] audio@60.0s: 'Turtle called dibs on the tank' expected @60.0s, heard @60.0s (4/4 words)\n[PASS] audio@62.1s: 'Anybody, anywhere, any trouble' expected @62.1s, heard @60.0s (3/3 words)\n[PASS] audio@64.0s: 'the Wild Rescue rolls.' expected @64.0s, heard @64.0s (3/3 words)\n[PASS] audio@71.2s: 'Can I get a hat like this?' expected @71.2s, heard @71.0s (2/2 words)\n\nFAIL \u2014 1 defect(s)\nreport: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1_qc.md",
+  "qc_exit": 1,
   "score_job": "9bfb261356a64215b9447d40b8095b1d",
   "lines": [
     {
@@ -112,35 +112,35 @@
       "offscreen": false
     },
     {
-      "t": 55.83,
+      "t": 58.54,
       "speaker": "hank",
       "text": "Doors don't argue with bears.",
       "dur": 1.33,
       "offscreen": false
     },
     {
-      "t": 57.31,
+      "t": 60.02,
       "speaker": "doug",
       "text": "Turtle called dibs on the tank an hour ago.",
       "dur": 1.93,
       "offscreen": false
     },
     {
-      "t": 59.39,
+      "t": 62.1,
       "speaker": "doug",
       "text": "Anybody, anywhere, any trouble at all",
       "dur": 1.77,
       "offscreen": false
     },
     {
-      "t": 61.31,
+      "t": 64.02,
       "speaker": "hank",
       "text": "the Wild Rescue rolls.",
       "dur": 1.21,
       "offscreen": false
     },
     {
-      "t": 68.52,
+      "t": 71.23,
       "speaker": "bird",
       "text": "Can I get a hat like this?",
       "dur": 0.6,
@@ -176,24 +176,25 @@
     {
       "name": "s6_heave_animated",
       "start": 43.81,
-      "end": 46.18
+      "end": 48.89
     },
     {
       "name": "s6_interior",
-      "start": 46.18,
-      "end": 50.68
+      "start": 48.89,
+      "end": 53.39
     },
     {
       "name": "s7_dooropen",
-      "start": 50.68,
-      "end": 55.68
+      "start": 53.39,
+      "end": 58.39
     },
     {
       "name": "s8_goodbye",
-      "start": 62.52,
-      "end": 67.52
+      "start": 65.23,
+      "end": 70.23
     }
   ],
   "beat_gate": "[beat_gate] VL via in-process\n[PASS] s1_coldopen: 2 of 3 sampled frames depict the beat. FAIL. The bear holds a stick vertically, which is not a fishing rod, and there is no visible fishing line or ho\n[PASS] s2_thecall: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a train in motion through an arid landscape, emitting a thick, dark plume of bl\n[PASS] s3_rollout: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a horse-drawn wooden wagon moving rapidly along a dirt road, with visible dust \n[FAIL] s4_arrival: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image differs significantly i\n[PASS] ellie_eye: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows an extreme close-up of one large, frightened amber elephant eye peering through a\n[PASS] s6_heave_animated: 2 of 3 sampled frames depict the beat. FAIL. The bear is standing upright and relaxed, with no visible effort or strain in its posture, which contradi\n[PASS] s6_interior: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a dark interior with a thin blade of light entering through a seam in an open w\n[PASS] s7_dooropen: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a young gray elephant standing in the open doorway of a red boxcar, wearing a sma\n[PASS] s8_goodbye: 2 of 3 sampled frames depict the beat. FAIL. The image shows a fire truck on the tracks instead of a repaired circus train, and the train in the backg\n[beat_gate] story spine: 8/9 required beats are on screen\n[HOLE] they arrive at the broken-down train and the trouble is visible \u2014 no passing shot (s4_arrival)\n[beat_gate] report \u2192 /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/BEAT_GATE_report.md",
-  "beat_gate_exit": 1
+  "beat_gate_exit": 1,
+  "qc_verdict": "DEFECTS \u2014 read the _qc.md report"
 }

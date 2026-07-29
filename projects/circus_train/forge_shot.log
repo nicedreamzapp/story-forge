@@ -1494,3 +1494,92 @@ ConnectionResetError: [Errno 54] Connection reset by peer
            ~~~~~~~~~~~~~~~~~~~~^^^
 ConnectionResetError: [Errno 54] Connection reset by peer
 
+[17:33:22] judge via in-process VL
+[17:33:22] === s6_heave — beat: a big round cartoon bear with a cream belly driving his shoulder against a wooden boxcar d
+[17:33:22]   carrying 1 lesson(s) (1 inherited from earlier films) into this shot
+[17:36:20]   seed 501: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The bear is depicted in a steep forward lean, with both paws flat against the door and hind leg
+[17:36:40]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive white chest patch and rounded ear shape, which are consistent with the locked design.
+[17:36:40]   LOCKED stills/LOCKED_s6.png
+[17:36:40]   released the in-process VL judge before handing the GPU to Wan
+[17:54:38]   clip: beat PASS (4/5)
+[17:55:59] judge via in-process VL
+[17:55:59] === s8_goodbye — beat: a bear and a dog together saying goodbye in warm light with the repaired circus train aliv
+[17:55:59]   carrying 7 lesson(s) (0 inherited from earlier films) into this shot
+[17:57:11]   seed 1101: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing together in warm, golden light, with the be
+[17:57:17]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive round belly, light beige chest patch, and brown fur with the same ear shape and size as th
+[17:57:21]   identity Doug vs doug_canon.png: MATCH — YES. The dog in the right image matches Doug the bloodhound in head and ear shape, body proportions, and coat color, including the same long, floppy e
+[17:57:21]   LOCKED stills/LOCKED_s8_goodbye.png
+[17:57:21]   released the in-process VL judge before handing the GPU to Wan
+[18:05:37]   animation failed: [make-video] uploading LOCKED_s8_goodbye.png → ComfyUI
+[videopipe] queued 3fd3cbb7-9768-4d89-90a1-9368c0055c6f
+ /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[18:06:56] judge via in-process VL
+[18:06:56] === s1_coldopen — beat: a bear and a dog sit relaxed by a green creek with fishing rods, calm and unhurried
+[18:08:06]   seed 701: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog sitting relaxed by a green creek, each holding a fis
+[18:08:13]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive white chest patch and rounded ear shape, which are consistent with the locked design.
+[18:08:16]   identity Doug vs doug_canon.png: MATCH — YES. The dog in the right image matches Doug the bloodhound in head and ear shape, coat color, and body proportions, including the same floppy ears an
+[18:08:16]   LOCKED stills/LOCKED_s1.png
+[18:08:16]   released the in-process VL judge before handing the GPU to Wan
+[18:08:34]   bounced ComfyUI so Wan loads into a clean process
+[18:08:34]   render backend is back
+[18:10:50]   animation failed: [make-video] uploading LOCKED_s1.png → ComfyUI
+[videopipe] queued 938a4f46-8b7f-43ac-8b4f-e8d1aa9e12f4
+ /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[18:11:53] judge via in-process VL
+[18:11:53] === s3_rollout — beat: a horse-drawn wooden wagon moving fast along a dirt road with dust kicking up behind it
+[18:11:53] === s4_arrival — beat: a bear and a dog standing together in the foreground in front of a smoking broken-down tra
+[18:11:53] === s8_goodbye — beat: a bear and a dog together saying goodbye in warm light with the repaired circus train aliv
+[19:09:34] judge via in-process VL
+[19:09:34] === s3_rollout — beat: a horse-drawn wooden wagon moving fast along a dirt road with dust kicking up behind it
+[19:10:43]   seed 801: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a horse-drawn wooden wagon moving fast along a dirt road, with dust v
+[19:10:50]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive round belly, light tan muzzle, and brown fur with the same ear shape and size, confirming 
+[19:10:50]   LOCKED stills/LOCKED_s3_rollout.png
+[19:10:50]   --stage stills: locked, animation deferred to the animate pass
+[19:10:50] === s4_arrival — beat: a bear and a dog standing together in the foreground in front of a smoking broken-down tra
+[19:10:50]   carrying 23 lesson(s) (2 inherited from earlier films) into this shot
+[19:11:58]   seed 901: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing together in the foreground in front of a sm
+[19:12:03]   TEXT IN FRAME — rejected: YES  The readable writing is on the side of the red train car in the background. There is a circular emblem or logo on the lower right side of the tra
+[19:13:12]   seed 947: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing together in the foreground in front of a sm
+[19:13:20]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive white chest patch and rounded ear shape, which are consistent with the locked design.
+[19:13:23]   identity Doug vs doug_canon.png: MATCH — YES. The dog in the right image matches Doug the bloodhound in head and ear shape, coat color, and body proportions, despite the different setting and
+[19:13:23]   LOCKED stills/LOCKED_s4_arrival.png
+[19:13:23]   --stage stills: locked, animation deferred to the animate pass
+[19:14:44] judge via in-process VL
+[19:14:44] === s3_rollout — beat: a horse-drawn wooden wagon moving fast along a dirt road with dust kicking up behind it
+[19:14:44]   --stage animate: using the locked still LOCKED_s3_rollout.png
+[19:14:44]   LOCKED stills/LOCKED_s3_rollout.png
+[19:14:57]   bounced ComfyUI so Wan loads into a clean process
+[19:14:57]   render backend is back
+[19:29:25]   mem-gate: [mem-gate] healthy but 18GB parked in swap — bouncing idle ComfyUI to release it
+[19:29:25]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[19:29:25]   mem-gate: [mem-gate] ComfyUI back up
+[19:30:25]   clip: beat PASS (5/5)
+[19:30:25] === s4_arrival — beat: a bear and a dog standing together in the foreground in front of a smoking broken-down tra
+[19:30:25]   --stage animate: using the locked still LOCKED_s4_arrival.png
+[19:30:25]   LOCKED stills/LOCKED_s4_arrival.png
+[19:30:26]   released the in-process VL judge before handing the GPU to Wan
+[19:30:39]   bounced ComfyUI so Wan loads into a clean process
+[19:30:39]   render backend is back
+[19:31:46]   animation failed: [make-video] uploading LOCKED_s4_arrival.png → ComfyUI
+[videopipe] queued 5717a919-a787-4f3b-8b83-013a97185d5f
+ /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[19:31:46] === s8_goodbye — beat: a bear and a dog together saying goodbye in warm light with the repaired circus train aliv
+[19:31:46]   --stage animate: using the locked still LOCKED_s8_goodbye.png
+[19:31:46]   LOCKED stills/LOCKED_s8_goodbye.png
+[19:32:04]   bounced ComfyUI so Wan loads into a clean process
+[19:32:04]   render backend is back
+[19:33:07]   animation failed: [make-video] uploading LOCKED_s8_goodbye.png → ComfyUI
+[videopipe] queued 47b9f9ff-1663-4035-bd11-d3ac7f994c68
+ /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+

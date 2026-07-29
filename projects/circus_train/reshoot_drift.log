@@ -1,0 +1,18 @@
+[17:55:59] judge via in-process VL
+[17:55:59] === s8_goodbye — beat: a bear and a dog together saying goodbye in warm light with the repaired circus train aliv
+[17:55:59]   carrying 7 lesson(s) (0 inherited from earlier films) into this shot
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 42036.45it/s]
+[17:57:11]   seed 1101: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing together in warm, golden light, with the be
+[17:57:17]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive round belly, light beige chest patch, and brown fur with the same ear shape and size as th
+[17:57:21]   identity Doug vs doug_canon.png: MATCH — YES. The dog in the right image matches Doug the bloodhound in head and ear shape, body proportions, and coat color, including the same long, floppy e
+[17:57:21]   LOCKED stills/LOCKED_s8_goodbye.png
+[17:57:21]   released the in-process VL judge before handing the GPU to Wan
+[18:05:37]   animation failed: [make-video] uploading LOCKED_s8_goodbye.png → ComfyUI
+[videopipe] queued 3fd3cbb7-9768-4d89-90a1-9368c0055c6f
+ /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
+
+[18:05:37] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[18:05:37] DONE — 1/1 shots produced usable, judged assets
+[18:05:37]   s8_goodbye: STILL_LOCKED

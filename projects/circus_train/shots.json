@@ -72,41 +72,6 @@
    "set": "circus boxcar"
   },
   {
-   "id": "s4_arrival",
-   "prompt": "Pixar-style 3D animated film still: a big round brown bear with a cream muzzle stands beside a lanky orange-tan bloodhound dog with long dark floppy ears, the two side by side in the foreground looking up at a dead circus train broken down and baking in the blazing sun, weathered red boxcars whose sliding doors are all completely closed flush against the car, solid unbroken plank walls with no opening or dark gap anywhere, no doorway visible, heat shimmer off the roofs, dust in the air, no other animals, the train silent and going nowhere, no lettering or writing anywhere, cinematic children's movie lighting",
-   "beat": "a bear and a dog standing together in the foreground in front of a smoking broken-down train, in harsh sunlight with dust and heat haze",
-   "must_not": [
-    "a cheerful brightly painted passenger train that appears to be running fine",
-    "animals leaning comfortably out of windows",
-    "no train visible at all"
-   ],
-   "loras": [
-    "~/.hankdoug_seeds/HANK_LORA.safetensors",
-    "~/.hankdoug_seeds/DOUG_LORA_V2.safetensors"
-   ],
-   "lora_scales": [
-    0.8,
-    0.8
-   ],
-   "identity": {
-    "master": "canon/hank_canon.png",
-    "subject": "Hank the bear"
-   },
-   "lock": "stills/LOCKED_s4_arrival.png",
-   "animate": "heat shimmer ripples off the boxcar roofs, dust drifts across the gravel, the bear's head turns slowly as he takes in the length of the dead train, the dog shifts his weight, camera holds steady",
-   "clip": "clips/s4_arrival_final.mp4",
-   "min_window": 2.0,
-   "set": "circus boxcar",
-   "_motion_subject": "the bear and the dog",
-   "seeds": [
-    211,
-    247,
-    282,
-    319
-   ],
-   "votes": 3
-  },
-  {
    "id": "s6_interior",
    "prompt": "Pixar-style 3D animated film still, INTERIOR of a sealed dark wooden boxcar at night-dark exposure: the frame is almost entirely BLACK, rough plank walls barely visible in the gloom, ONE thin hard blade of golden daylight slicing in through the crack at the sliding door edge, fine dust and straw sifting down through that single shaft of light, deep heavy shadow everywhere else, claustrophobic and tense, cinematic children's movie lighting, empty of any creature",
    "beat": "the dark interior of a wooden boxcar with a bright blade of daylight cutting in at the door edge and dust hanging in the light",
@@ -124,33 +89,6 @@
    "_no_characters": true
   },
   {
-   "id": "s8_goodbye",
-   "prompt": "Pixar-style 3D animated film still, golden late light: a big round brown bear with a cream muzzle and a lanky orange-tan bloodhound bump paws in front of their loaded horse-drawn fire-engine wagon, the rescued circus train alive and steaming happily on the tracks behind them, warm dust in the air, a job well done, cinematic children's movie lighting",
-   "beat": "a bear and a dog touching paws together in golden light with a circus train visible behind them",
-   "must_not": [
-    "a forest or woods with no train anywhere",
-    "a broken down or smoking train"
-   ],
-   "loras": [
-    "~/.hankdoug_seeds/HANK_LORA.safetensors",
-    "~/.hankdoug_seeds/DOUG_LORA_V2.safetensors"
-   ],
-   "lora_scales": [
-    0.8,
-    0.8
-   ],
-   "identity": {
-    "master": "canon/hank_canon.png",
-    "subject": "Hank the bear"
-   },
-   "lock": "stills/LOCKED_s8_goodbye.png",
-   "animate": "the two friends hold the paw bump and lower their paws, the horse shifts, warm dust drifts through the golden light, steam rises from the train behind, camera holds steady",
-   "clip": "clips/s8_goodbye_final.mp4",
-   "min_window": 2.0,
-   "set": "circus boxcar",
-   "_motion_subject": "the bear and the dog"
-  },
-  {
    "id": "s5_door",
    "init": "stills/LOCKED_s5.png",
    "beat": "a bloodhound with his nose pressed against a narrow gap between the planks of a wooden boxcar door",
@@ -163,6 +101,201 @@
     "subject": "Doug the bloodhound"
    },
    "set": "circus boxcar"
+  },
+  {
+   "id": "s6_heave",
+   "prompt": "Pixar-style 3D animated film still, side view: a big round cartoon brown bear with a large cream-coloured belly patch, cream muzzle, small black nose, small rounded ears and a short snout, driving his SHOULDER hard against the closed wooden sliding door of a weathered red boxcar, his whole body leaning into it at a steep forward angle, spine diagonal, head lowered and pressed close to the wood, BOTH front paws flat against the door, hind legs stretched out behind him with his back feet dug into the gravel, teeth gritted with effort, straining with all his weight, dust in the air, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a big round cartoon bear with a cream belly driving his shoulder against a wooden boxcar door, body leaning at a steep forward angle with both paws flat on the door and hind legs stretched out behind, visibly straining",
+   "must_not": [
+    "holding or using a stick, tool, rod or any object",
+    "standing upright with a straight vertical body",
+    "a relaxed happy smiling bear",
+    "only one paw touching the door",
+    "sawdust or debris spraying out of the wall",
+    "a realistic grizzly bear with a long snout"
+   ],
+   "loras": [
+    "~/.hankdoug_seeds/HANK_LORA.safetensors"
+   ],
+   "lora_scales": [
+    0.9
+   ],
+   "identity": {
+    "master": "canon/hank_canon.png",
+    "subject": "Hank the bear"
+   },
+   "lock": "stills/LOCKED_s6.png",
+   "animate": "the bear pushes his shoulder harder into the door, muscles shifting under the fur, paws pressing flat, dust drifting in the light, camera holds steady",
+   "clip": "clips/s6_final_v2.mp4",
+   "min_window": 1.8,
+   "seeds": [
+    501,
+    547,
+    582,
+    619,
+    653,
+    691
+   ],
+   "votes": 3,
+   "set": "boxcar door detail",
+   "_motion_subject": "the bear"
+  },
+  {
+   "id": "s1_coldopen",
+   "prompt": "Pixar-style 3D animated film still: a big round cartoon brown bear with a large cream-coloured belly patch, cream muzzle, small black nose, small rounded ears and a short snout sitting relaxed on a green creek bank holding a fishing rod, beside him a lanky tan-and-orange bloodhound dog with a long narrow snout, long dark floppy ears hanging down past his jaw, and a slim body on long legs sitting upright watching the water, calm sunny afternoon, tall trees, a wooden cart behind them, unhurried and peaceful, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a bear and a dog sit relaxed by a green creek with fishing rods, calm and unhurried",
+   "must_not": [
+    "a bear with a long realistic snout",
+    "a short-legged dachshund or sausage dog",
+    "a dog with short upright ears",
+    "anything urgent or alarming happening"
+   ],
+   "lock": "stills/LOCKED_s1.png",
+   "clip": "clips/s1_final.mp4",
+   "animate": "the water ripples, leaves stir in the breeze, the bear breathes slowly and the dog's ears sway gently, camera holds steady",
+   "min_window": 2.0,
+   "seeds": [
+    701,
+    747,
+    782,
+    819
+   ],
+   "votes": 3,
+   "identity": [
+    {
+     "master": "canon/hank_canon.png",
+     "subject": "Hank the bear"
+    },
+    {
+     "master": "canon/doug_canon.png",
+     "subject": "Doug the bloodhound"
+    }
+   ],
+   "loras": [
+    "~/.hankdoug_seeds/HANK_LORA.safetensors",
+    "~/.hankdoug_seeds/DOUG_LORA_V2.safetensors"
+   ],
+   "lora_scales": [
+    0.85,
+    0.85
+   ]
+  },
+  {
+   "id": "s3_rollout",
+   "prompt": "Pixar-style 3D animated film still: a big round cartoon brown bear with a large cream-coloured belly patch, cream muzzle, small black nose, small rounded ears and a short snout sitting up in a wooden horse-drawn wagon holding the reins, a brown horse pulling it at speed along a dirt road, dust kicking up behind the wheels, forest either side, urgent forward motion, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a horse-drawn wooden wagon moving fast along a dirt road with dust kicking up behind it",
+   "must_not": [
+    "a bear with a long realistic snout",
+    "a stationary wagon with no dust",
+    "a bear standing on the ground"
+   ],
+   "identity": [
+    {
+     "master": "canon/hank_canon.png",
+     "subject": "Hank the bear"
+    }
+   ],
+   "lock": "stills/LOCKED_s3_rollout.png",
+   "clip": "clips/s2_final.mp4",
+   "animate": "the wagon rolls forward, dust billowing behind the wheels, the horse's legs driving, the bear rocking with the motion, camera tracks alongside",
+   "min_window": 2.0,
+   "seeds": [
+    801,
+    847,
+    882,
+    919
+   ],
+   "votes": 3,
+   "loras": [
+    "~/.hankdoug_seeds/HANK_LORA.safetensors",
+    "~/.hankdoug_seeds/DOUG_LORA_V2.safetensors"
+   ],
+   "lora_scales": [
+    0.85,
+    0.85
+   ]
+  },
+  {
+   "id": "s4_arrival",
+   "prompt": "Pixar-style 3D animated film still: a big round cartoon brown bear with a large cream-coloured belly patch, cream muzzle, small black nose, small rounded ears and a short snout stands beside a lanky tan-and-orange bloodhound dog with a long narrow snout, long dark floppy ears hanging down past his jaw, and a slim body on long legs, the two of them side by side in the foreground looking up at a broken-down circus train baking in the sun, weathered red boxcars, black smoke rising, heat shimmer and dust, no other animals, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a bear and a dog standing together in the foreground in front of a smoking broken-down train, in harsh sunlight with dust and heat haze",
+   "must_not": [
+    "a cheerful brightly painted passenger train that appears to be running fine",
+    "animals leaning comfortably out of windows",
+    "no train visible at all",
+    "a bear with a long realistic snout",
+    "a short-legged dachshund or sausage dog"
+   ],
+   "lock": "stills/LOCKED_s4_arrival.png",
+   "clip": "clips/s4_arrival_final.mp4",
+   "animate": "heat shimmer ripples off the boxcar roofs, smoke drifts upward, dust blows across the gravel, the bear and dog breathe and shift their weight, camera holds steady",
+   "min_window": 2.0,
+   "seeds": [
+    901,
+    947,
+    982,
+    1019
+   ],
+   "votes": 3,
+   "identity": [
+    {
+     "master": "canon/hank_canon.png",
+     "subject": "Hank the bear"
+    },
+    {
+     "master": "canon/doug_canon.png",
+     "subject": "Doug the bloodhound"
+    }
+   ],
+   "loras": [
+    "~/.hankdoug_seeds/HANK_LORA.safetensors",
+    "~/.hankdoug_seeds/DOUG_LORA_V2.safetensors"
+   ],
+   "lora_scales": [
+    0.85,
+    0.85
+   ]
+  },
+  {
+   "id": "s8_goodbye",
+   "prompt": "Pixar-style 3D animated film still: a big round cartoon brown bear with a large cream-coloured belly patch, cream muzzle, small black nose, small rounded ears and a short snout and a lanky tan-and-orange bloodhound dog with a long narrow snout, long dark floppy ears hanging down past his jaw, and a slim body on long legs standing together on the grass saying goodbye, the bear resting a paw under the dog's chin, both warm and happy, the repaired circus train alive and steaming behind them in golden evening light, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a bear and a dog together saying goodbye in warm light with the repaired circus train alive and steaming behind them",
+   "must_not": [
+    "a bear with a long realistic snout",
+    "a short-legged dachshund or sausage dog",
+    "a fire truck",
+    "a broken-down or wrecked train",
+    "the heroes in distress"
+   ],
+   "lock": "stills/LOCKED_s8_goodbye.png",
+   "clip": "clips/s8_goodbye_final.mp4",
+   "animate": "the train's steam drifts upward, grass sways, the bear and dog breathe and their ears move gently, camera holds steady",
+   "min_window": 2.0,
+   "seeds": [
+    1101,
+    1147,
+    1182,
+    1219
+   ],
+   "votes": 3,
+   "identity": [
+    {
+     "master": "canon/hank_canon.png",
+     "subject": "Hank the bear"
+    },
+    {
+     "master": "canon/doug_canon.png",
+     "subject": "Doug the bloodhound"
+    }
+   ],
+   "loras": [
+    "~/.hankdoug_seeds/HANK_LORA.safetensors",
+    "~/.hankdoug_seeds/DOUG_LORA_V2.safetensors"
+   ],
+   "lora_scales": [
+    0.85,
+    0.85
+   ]
   }
  ],
  "set_masters": {

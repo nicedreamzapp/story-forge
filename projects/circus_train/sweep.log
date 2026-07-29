@@ -1,0 +1,27 @@
+[18:31:43] judge via in-process VL
+[18:31:43] === s1_coldopen — beat: a bear and a dog sit relaxed by a green creek with fishing rods, calm and unhurried
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 16867.17it/s]
+[18:32:55]   seed 701: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog sitting relaxed by a green creek, each holding a fis
+[18:33:01]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive white chest patch and rounded ear shape, which are consistent with the locked design.
+[18:33:05]   identity Doug vs doug_canon.png: MATCH — YES. The dog in the right image matches Doug the bloodhound in head and ear shape, coat color, and body proportions, including the same floppy ears an
+[18:33:05]   LOCKED stills/LOCKED_s1.png
+[18:33:05]   released the in-process VL judge before handing the GPU to Wan
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[18:33:23]   bounced ComfyUI so Wan loads into a clean process
+[18:33:23]   render backend is back
+Python(30720) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(30726) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(30727) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(30728) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(30729) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(30731) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(30732) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 3584.36it/s]
+[18:52:06]   clip: beat PASS (5/5)
+Python(30861) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+[18:52:06] === s3_rollout — beat: a horse-drawn wooden wagon moving fast along a dirt road with dust kicking up behind it
+Python(30878) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+Python(30886) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
+/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
