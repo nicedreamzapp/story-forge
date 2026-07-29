@@ -406,7 +406,23 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
         return out
 
     locked = None
-    if shot.get("init") and not shot.get("prompt"):   # supplied plate, nothing to roll
+    # --stage animate: the still pass already locked and PROVED this frame. Re-rolling
+    # it would load mflux again, which is the exact model-thrash the two-pass split
+    # exists to avoid — and it would risk replacing a gate-passed still with a worse
+    # one. Use the lock as-is and go straight to Wan.
+    if stage == "animate":
+        lock_existing = proj / shot["lock"]
+        if not lock_existing.is_file():
+            log(f"  --stage animate: no locked still at {shot['lock']} — run the "
+                "stills pass first. Nothing built.")
+            out["state"] = "NO_LOCK"
+            return out
+        log(f"  --stage animate: using the locked still {lock_existing.name}")
+        locked = lock_existing
+
+    if locked is not None:
+        pass
+    elif shot.get("init") and not shot.get("prompt"):   # supplied plate, nothing to roll
         cand = proj / shot["init"]
         v = judge({"id": shot["id"], "image": str(cand.relative_to(proj)),
                    "beat": shot["beat"], "must_not": shot.get("must_not", [])}, proj, votes)
