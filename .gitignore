@@ -19,3 +19,18 @@ projects/*/sizzle/
 *.safetensors
 *.gguf
 story-forge-start.log
+
+# Third-party tools are fetched, not vendored. The Rhubarb macOS release is
+# ~83 MB zipped and ~276K lines of Sphinx acoustic model + After Effects
+# extras; it has its own license and does not belong in this repo's history.
+# Get it with rhubarb-pipeline/fetch-rhubarb.sh
+rhubarb-pipeline/Rhubarb-Lip-Sync-*-macOS/
+rhubarb-pipeline/Rhubarb-Lip-Sync-*.zip
+
+# Per-project render logs — useful locally, noise in git
+projects/*/*.log
+rhubarb-pipeline/*.log
+
+# Intermediate encodes and editor backups
+*.b64
+*.upsampler-backup

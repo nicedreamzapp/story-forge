@@ -1,15 +1,0 @@
-[beat_gate] VL via in-process
-Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 20712.61it/s]
-[PASS] s1_coldopen: 2 of 3 sampled frames depict the beat. FAIL. The bear holds a stick vertically, which is not a fishing rod, and there is no visible fishing line or ho
-[PASS] s2_thecall: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a train in motion through an arid landscape, emitting a thick, dark plume of bl
-[PASS] s3_rollout: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a horse-drawn wooden wagon moving rapidly along a dirt road, with visible dust 
-[FAIL] s4_arrival: BEAT FAIL (0/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image differs significantly i
-[FAIL] s5_door: BEAT FAIL (0/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The boxcar door in the right image differs in construct
-[PASS] ellie_eye: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows an extreme close-up of one large, frightened amber elephant eye peering through a
-[PASS] s6_heave_animated: 2 of 3 sampled frames depict the beat. FAIL. The bear is standing upright and relaxed, with no visible effort or strain in its posture, which contradi
-[PASS] s6_interior: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a dark interior with a thin blade of light entering through a seam in an open w
-[PASS] s7_dooropen: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a young gray elephant standing in the open doorway of a red boxcar, wearing a sma
-[PASS] s8_goodbye: 2 of 3 sampled frames depict the beat. FAIL. The image shows a fire truck on the tracks instead of a repaired circus train, and the train in the backg
-[beat_gate] story spine: 8/9 required beats are on screen
-[HOLE] they arrive at the broken-down train and the trouble is visible — no passing shot (s4_arrival)
-[beat_gate] report → projects/circus_train/BEAT_GATE_report.md

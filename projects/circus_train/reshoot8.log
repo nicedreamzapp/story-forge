@@ -1,7 +1,0 @@
-[21:28:26] judge via in-process VL
-[21:28:26] === s4_arrival — beat: a bear and a dog standing in front of a weathered circus train whose doors are all shut, i
-[21:28:26]   carrying 22 lesson(s) (2 inherited from earlier films) into this shot
-Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 11650.84it/s]
-[21:29:43]   seed 211: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train car has an open doorway, which violates the requirement that all doors be shut, and s
-/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '

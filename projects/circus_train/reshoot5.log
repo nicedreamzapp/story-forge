@@ -1,17 +1,0 @@
-[20:38:50] judge via in-process VL
-[20:38:50] === s2_thecall — beat: a circus train in open country with thick black smoke billowing from its engine, clearly i
-[20:38:50]   carrying 18 lesson(s) (1 inherited from earlier films) into this shot
-Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 10889.58it/s]
-[20:39:38]   seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a train in open, arid country with thick black smoke billowing from i
-[20:39:42]   LOCKED stills/LOCKED_s2_call.png
-[20:39:43]   released the in-process VL judge before handing the GPU to Wan
-[20:39:59]   animation failed: [make-video] uploading LOCKED_s2_call.png → ComfyUI
-[videopipe] queued 2ba792d5-1883-46e3-b90a-21c044bc64d5
- ramework/Versions/3.14/lib/python3.14/socket.py", line 729, in readinto
-    return self._sock.recv_into(b)
-           ~~~~~~~~~~~~~~~~~~~~^^^
-ConnectionResetError: [Errno 54] Connection reset by peer
-
-[20:39:59] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
-[20:39:59] DONE — 1/1 shots produced usable, judged assets
-[20:39:59]   s2_thecall: STILL_LOCKED

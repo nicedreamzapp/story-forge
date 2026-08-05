@@ -1,21 +1,0 @@
-[18:06:56] judge via in-process VL
-[18:06:56] === s1_coldopen — beat: a bear and a dog sit relaxed by a green creek with fishing rods, calm and unhurried
-Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 17890.40it/s]
-[18:08:06]   seed 701: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog sitting relaxed by a green creek, each holding a fis
-[18:08:13]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive white chest patch and rounded ear shape, which are consistent with the locked design.
-[18:08:16]   identity Doug vs doug_canon.png: MATCH — YES. The dog in the right image matches Doug the bloodhound in head and ear shape, coat color, and body proportions, including the same floppy ears an
-[18:08:16]   LOCKED stills/LOCKED_s1.png
-[18:08:16]   released the in-process VL judge before handing the GPU to Wan
-[mem-gate] restarting ComfyUI to release cached models
-[mem-gate] ComfyUI back up
-[18:08:34]   bounced ComfyUI so Wan loads into a clean process
-[18:08:34]   render backend is back
-[18:10:50]   animation failed: [make-video] uploading LOCKED_s1.png → ComfyUI
-[videopipe] queued 938a4f46-8b7f-43ac-8b4f-e8d1aa9e12f4
- /3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/urllib/request.py", line 1324, in do_open
-    raise URLError(err)
-urllib.error.URLError: <urlopen error [Errno 61] Connection refused>
-
-[18:10:50] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
-[18:10:50] DONE — 1/1 shots produced usable, judged assets
-[18:10:50]   s1_coldopen: STILL_LOCKED

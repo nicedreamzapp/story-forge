@@ -1,16 +1,0 @@
-[19:50:58] judge via in-process VL
-[19:50:58] === s6_interior — beat: the dark interior of a wooden boxcar with a bright blade of daylight cutting in at the doo
-[19:50:58]   carrying 5 lesson(s) (1 inherited from earlier films) into this shot
-Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 16762.32it/s]
-[19:51:43]   seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a dark wooden interior with a single, sharp beam of light entering fr
-[19:51:47]   LOCKED stills/LOCKED_s6_interior.png
-[19:51:47]   released the in-process VL judge before handing the GPU to Wan
-Python(35629) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
-Python(35630) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
-Python(35631) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
-Python(35632) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
-Python(35633) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
-Python(35634) MallocStackLogging: can't turn off malloc stack logging because it was not enabled.
-Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 4418.93it/s]
-/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '

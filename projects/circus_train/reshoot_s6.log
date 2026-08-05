@@ -1,10 +1,0 @@
-[17:31:28] judge via in-process VL
-[17:31:28] === s6_heave — beat: a big round cartoon bear with a cream belly leaning his shoulder and both paws into a wood
-[17:31:28]   carrying 1 lesson(s) (1 inherited from earlier films) into this shot
-Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 11649.05it/s]
-[17:32:29]   seed 301: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The bear is leaning its shoulder and both paws into the wooden boxcar door, body angled low wit
-[17:32:36]   identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive white chest patch and rounded ear shape, which are consistent with the locked design.
-[17:32:36]   LOCKED stills/LOCKED_s6.png
-[17:32:36]   released the in-process VL judge before handing the GPU to Wan
-/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '

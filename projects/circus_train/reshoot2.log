@@ -1,8 +1,0 @@
-[20:27:16] judge via in-process VL
-[20:27:16] === s4_arrival — beat: a bear and a dog standing in front of a weathered circus train whose doors are all shut, i
-[20:27:16]   carrying 23 lesson(s) (2 inherited from earlier films) into this shot
-Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 53888.27it/s]
-[20:28:41]   seed 11: beat PASS (5/5) — 5 of 5 sampled frames depict the beat. PASS. The image clearly depicts a bear standing in front of a weathered circus train with all doors s
-[20:28:45]   TEXT IN FRAME — rejected: YES  The word "SHUT" is clearly visible in large, yellow, capital letters on the side of two red train carriages. It appears on the first red carriage
-/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '

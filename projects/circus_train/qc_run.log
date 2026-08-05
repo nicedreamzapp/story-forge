@@ -1,6 +1,0 @@
-[mem] film-qc-vl: not granted (machine critical (swap 6.4GB)) — proceeding carefully
-[film_qc] --allow-critical-memory: guard denied the lease, running anyway by explicit operator decision. If this is killed the film is UNCHECKED, not passed.
-[film_qc] no memory lease (guard unreachable) — running anyway; if this is killed, the film is UNCHECKED, not passed.
-Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 20781.03it/s]
-/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '
