@@ -1,0 +1,37 @@
+# keyframe_sandwich.sf — anchoring the END of a shot, not just the start.
+#
+# Plain i2v conditions on frame 0 and lets the model invent everything after.
+# Over a few seconds that is where a character quietly turns into a different
+# person. Giving the shot a second reference at the final frame means the model
+# has to arrive somewhere you chose.
+#
+# Two ways to supply the end frame:
+#   end_prompt: "..."   draw one, reusing the opening seed so it is the same look
+#   end_path: "..."     use an image you already have (a locked character ref)
+#
+# LTX only. Wan i2v conditions on the first frame alone, so a scene with an end
+# frame routes to LTX automatically.
+
+film "Keyframe Sandwich" slug=keyframe_sandwich target=m5 scene_dur=3.0
+
+# Drawn end frame: same seed, so the hiker stays the same hiker.
+scene ridge_walk:
+    still flux:
+        prompt: "cinematic wide shot, a lone hiker in a red jacket standing on a rocky mountain ridge at sunset, golden light, painterly, 4k"
+        end_prompt: "cinematic wide shot, the same lone hiker in a red jacket further along the same rocky ridge at sunset, sun lower on the horizon, golden light, painterly, 4k"
+        seed: 42
+    motion ltx:
+        prompt: "the hiker walks steadily along the rocky ridge, gentle wind, sun setting"
+        duration: 3.0
+
+# Reused end frame: point at a still you already trust. Useful when a character
+# has a locked reference and you want every shot to land back on it.
+#
+# scene ridge_return:
+#     still flux:
+#         prompt: "the hiker crests the far end of the ridge, wide shot, golden light"
+#         end_path: "~/story-forge/refs/hiker_locked.png"
+#         seed: 42
+#     motion ltx:
+#         prompt: "the hiker steps up onto the crest and stops, wind moves the jacket"
+#         duration: 3.0

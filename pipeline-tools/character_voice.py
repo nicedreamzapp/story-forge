@@ -11,13 +11,17 @@ Casting (locked 2026-05-25):
 Add a character: drop a clean 3-10s reference wav and add an entry below.
 """
 import argparse
+import os
 from pathlib import Path
 
 import torch
 import torchaudio
 from chatterbox.tts import ChatterboxTTS
 
-VOICES_DIR = Path.home() / "Desktop" / "PROJECTS" / "story-forge" / "voices"
+# Reference clips live in <repo>/voices by default; SF_VOICES_DIR overrides
+# (same convention as story_forge/config.py, so a fresh clone can run).
+VOICES_DIR = Path(os.environ.get("SF_VOICES_DIR")
+                  or Path(__file__).resolve().parent.parent / "voices")
 
 VOICES = {
     # bear: Tone 4 = the BUILT-IN voice with NO clone + seed 44 (Matt's pick).

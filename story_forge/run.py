@@ -55,30 +55,35 @@ import time
 from pathlib import Path
 from typing import Any
 
-REPO = Path("/Users/dtribe/Desktop/PROJECTS/AI/videopipe")
-PIPELINE = REPO / "story_pipeline.py"
-RENDER_ROUTE = REPO / "bin" / "render-route"
-HOME = Path.home()
-FLUX = HOME / "Scripts" / "flux_t2i.py"
-WAN_OUT = HOME / "AI" / "videopipe" / "outputs"
-DEFAULT_OUT_DIR = HOME / "AI" / "videopipe" / "outputs"
-PIPER = HOME / "Library" / "Python" / "3.9" / "bin" / "piper"
-PIPER_MODEL = (HOME / "Desktop" / "PROJECTS" / "Song Forge"
-               / "piper_voices" / "en_US-libritts_r-medium.onnx")
+# Every external path resolves through story_forge.config, which reads SF_*
+# environment variables and otherwise falls back to this repo. These names stay
+# module-level so tests can monkeypatch them the way they always have.
+from story_forge import config as _cfg  # noqa: E402
+
+REPO = _cfg.VIDEOPIPE
+PIPELINE = _cfg.PIPELINE
+RENDER_ROUTE = _cfg.RENDER_ROUTE
+HOME = _cfg.HOME
+FLUX = _cfg.FLUX_SCRIPT
+WAN_OUT = _cfg.OUT_DIR
+DEFAULT_OUT_DIR = _cfg.OUT_DIR
+PIPER = _cfg.PIPER
+PIPER_MODEL = _cfg.PIPER_MODEL
 # ChatterBox character voices (cloned, consistent). A DSL voice preset of
 # `chatterbox/<character>` routes that character's lines through character_voice.py.
-CHATTERBOX_PY = HOME / "chatterbox-env" / "bin" / "python"
-CHARACTER_VOICE = HOME / "Desktop" / "PROJECTS" / "AI" / "videopipe" / "bin" / "character_voice.py"
+CHATTERBOX_PY = _cfg.CHATTERBOX_PY
+CHARACTER_VOICE = _cfg.CHARACTER_VOICE
 
 # --- Avatar pipeline (LivePortrait + Wav2Lip) --------------------------------
-# Layout per ~/.myavatar-local/app.py: LP and W2L live under avatar-pipeline/.
-AVATAR_DIR = HOME / "Desktop" / "PROJECTS" / "avatar-pipeline"
-LP_DIR = AVATAR_DIR / "LivePortrait"
-LP_VENV_PYTHON = LP_DIR / ".venv" / "bin" / "python"
-LP_INFERENCE = LP_DIR / "inference.py"
-W2L_DIR = AVATAR_DIR / "Wav2Lip"
-W2L_CKPT = W2L_DIR / "checkpoints" / "wav2lip_gan.pth"
-DEFAULT_DRIVER_STILL = HOME / "AI" / "videopipe" / "test_stills" / "walk_frame.png"
+# Optional. Only `with lipsync` touches these; missing pieces fall back to
+# audio-only rather than failing the render.
+AVATAR_DIR = _cfg.AVATAR_DIR
+LP_DIR = _cfg.LP_DIR
+LP_VENV_PYTHON = _cfg.LP_VENV_PYTHON
+LP_INFERENCE = _cfg.LP_INFERENCE
+W2L_DIR = _cfg.W2L_DIR
+W2L_CKPT = _cfg.W2L_CKPT
+DEFAULT_DRIVER_STILL = _cfg.DRIVER_STILL
 
 # Lower-third overlay knobs (kept in module scope so tests can monkeypatch).
 LIPSYNC_OVERLAY_SCALE_W = "iw*0.30"   # ~30% of scene width
@@ -159,8 +164,15 @@ def _render_still(prompt: str, out_png: Path, seed: int,
 
 
 def _render_motion(prompt: str, still_png: Path, out_mp4: Path,
-                   engine: str, duration: float, label: str) -> None:
-    """render-route i2v -> moves result into out_mp4. Idempotent."""
+                   engine: str, duration: float, label: str,
+                   last_frame: Path | None = None) -> None:
+    """render-route i2v -> moves result into out_mp4. Idempotent.
+
+    With `last_frame`, the shot is conditioned on two stills instead of one:
+    frame 0 and the final frame. The model then has to land on a reference we
+    picked, which is what keeps a character from becoming a different person by
+    the end of the clip.
+    """
     if out_mp4.exists():
         print(f"[motion] cached: {out_mp4}")
         return
@@ -169,12 +181,15 @@ def _render_motion(prompt: str, still_png: Path, out_mp4: Path,
     # render-route writes into WAN_OUT/<label>_*<ts>.mp4; we glob for it after.
     before = set(WAN_OUT.glob(f"{label}_*.mp4"))
     eng_arg = engine if engine in ("wan", "ltx") else "auto"
-    _sh(["python3", str(RENDER_ROUTE),
-         "--still", str(still_png),
-         "--duration", str(duration),
-         "--label", label,
-         "--engine", eng_arg,
-         prompt])
+    cmd = ["python3", str(RENDER_ROUTE),
+           "--still", str(still_png),
+           "--duration", str(duration),
+           "--label", label,
+           "--engine", eng_arg]
+    if last_frame:
+        cmd += ["--last-frame", str(last_frame)]
+    cmd.append(prompt)
+    _sh(cmd)
     after = sorted(set(WAN_OUT.glob(f"{label}_*.mp4")) - before,
                    key=lambda p: p.stat().st_mtime, reverse=True)
     if not after:
@@ -505,7 +520,7 @@ def render_lean(plan: dict[str, Any],
     else:
         scenes = scenes_all
 
-    work_dir = work_dir or (HOME / "Desktop" / "AI Videos" / slug)
+    work_dir = work_dir or (_cfg.WORK_DIR / slug)
     work_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_path or (DEFAULT_OUT_DIR / f"{slug}.mp4")
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -564,9 +579,27 @@ def render_lean(plan: dict[str, Any],
         else:
             raise RuntimeError(f"scene {name}: needs still.prompt (flux) or still.path (image)")
 
+        # 1b. Optional end keyframe (FFLF). `still.end_path` uses an image you
+        #     already have; `still.end_prompt` draws one. Same seed as the
+        #     opening still by default, so it is the same look, not a new
+        #     character that happens to match the words.
+        end_still = None
+        end_path = still_spec.get("end_path")
+        end_prompt = still_spec.get("end_prompt")
+        if end_path:
+            end_still = Path(str(end_path)).expanduser()
+            if not end_still.exists():
+                raise RuntimeError(
+                    f"scene {name}: still.end_path not found: {end_still}")
+        elif end_prompt:
+            end_still = work_dir / f"still_{idx:02d}_end.png"
+            end_seed = int(still_spec.get("end_seed") or still_seed)
+            _render_still(end_prompt, end_still, seed=end_seed)
+
         # 2. Motion
         _render_motion(motion_prompt or still_prompt, still_png, raw_mp4,
-                       engine=engine, duration=duration, label=label)
+                       engine=engine, duration=duration, label=label,
+                       last_frame=end_still)
 
         # 3. Conform (to format dims/fps when a format pack is active)
         conform_kw: dict[str, Any] = {"fps": fmt_fps}

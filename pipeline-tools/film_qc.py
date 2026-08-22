@@ -135,6 +135,32 @@ def whisper_transcribe(video):
     return res.get("segments", [])
 
 
+def whisper_relisten(video, t, pre=2.0, post=4.0):
+    """Transcribe ONLY a small window around t and return the joined text.
+
+    Long-form whisper over a whole film can skip an entire music-heavy block
+    (2026-07-31: six lines between 29.8s and 42.0s reported NOT HEARD while a
+    direct transcription of that window heard every one at the right moment).
+    A full-film transcript hole is therefore not proof of absent audio — the
+    line must be re-judged on its own window before a FAIL is allowed.
+    """
+    import subprocess as sp
+    import tempfile
+
+    import mlx_whisper
+    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as f:
+        wav = f.name
+    try:
+        sp.run(["ffmpeg", "-y", "-v", "error", "-ss", str(max(0.0, t - pre)),
+                "-to", str(t + post), "-i", str(video), "-vn", "-ac", "1",
+                "-ar", "16000", wav], check=True, capture_output=True)
+        res = mlx_whisper.transcribe(wav, path_or_hf_repo=WHISPER_ID,
+                                     word_timestamps=False)
+        return res.get("text", "")
+    finally:
+        Path(wav).unlink(missing_ok=True)
+
+
 # ── Song Forge keeps its seat (Matt, 2026-07-27) ────────────────────
 # The 32B VL judge on top of resident Wan weights froze the whole Mac on
 # 7/22, and sustained swap panicked it twice on 7/27. So QC asks forge_guard
@@ -415,6 +441,22 @@ def _main():
                 if score > best_score:
                     best, best_score = s, score
             ok = best is not None and best_score >= need
+            if not ok:
+                # Targeted re-listen before ruling FAIL: the full-film pass can
+                # skip a whole block (see whisper_relisten docstring). A miss in
+                # the global transcript is a lead, not a verdict.
+                try:
+                    heard = whisper_relisten(film, ln["t"]).lower()
+                    rescore = sum(1 for w in words if w in heard)
+                    if rescore >= need:
+                        ok = True
+                        check(f"audio@{ln['t']:.1f}s", True,
+                              f"'{ln['text'][:30]}' expected @{ln['t']:.1f}s, heard on "
+                              f"targeted re-listen ({rescore}/{len(words)} words; "
+                              f"full-film transcript had a hole here)")
+                        continue
+                except Exception:
+                    pass
             if best is None:
                 det = (f"'{ln['text'][:30]}' NOT HEARD anywhere near @{ln['t']:.1f}s "
                        f"(no transcript segment covers that moment)")

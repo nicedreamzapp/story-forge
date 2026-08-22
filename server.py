@@ -49,6 +49,7 @@ def _update_job(job_id: str, **fields):
 def _progress_watcher(job_id: str, prompt_id: str, expected_steps: int):
     """Poll ComfyUI /history and track stages: loading → sampling → decoding → saving."""
     t0 = time.time()
+    dead_polls = 0  # consecutive unreachable-ComfyUI polls; ~60s of them = it crashed
     while True:
         with JOB_LOCK:
             job = JOBS.get(job_id, {})
@@ -56,6 +57,7 @@ def _progress_watcher(job_id: str, prompt_id: str, expected_steps: int):
             return
         try:
             hist = _get(f"/history/{prompt_id}")
+            dead_polls = 0
             entry = hist.get(prompt_id)
             if entry and entry.get("status", {}).get("completed"):
                 files = collect_outputs(entry, job_id[:8])
@@ -102,7 +104,15 @@ def _progress_watcher(job_id: str, prompt_id: str, expected_steps: int):
             _update_job(job_id, step=step, stage=stage, pct=pct,
                         elapsed=int(dt), eta=eta)
         except Exception:
-            pass
+            # ComfyUI unreachable. A model load can stall the HTTP thread for a
+            # bit, but a full minute of silence means the process died — fail the
+            # job instead of reporting "running" forever (2026-07-22).
+            dead_polls += 1
+            if dead_polls >= 40:
+                _update_job(job_id, state="error", stage="error",
+                            error="ComfyUI stopped responding mid-render "
+                                  "(likely crashed) — check logs/comfyui.log")
+                return
         time.sleep(1.5)
 
 
@@ -113,9 +123,10 @@ def _ensure_comfyui() -> bool:
         return True
     except Exception:
         pass
+    comfy_log = open(Path(__file__).resolve().parent / "logs" / "comfyui.log", "a")
     subprocess.Popen(
         ["bash", str(Path.home() / "AI/ComfyUI/start.sh")],
-        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        stdout=comfy_log, stderr=subprocess.STDOUT,
         start_new_session=True,
     )
     for _ in range(120):
@@ -203,6 +214,13 @@ def _estimate(duration: float, quality: str, resolution: str, big_mode: bool = F
 
 @app.route("/")
 def index():
+    # The Director (chat + storyboard) is the front door now; the old
+    # single-clip MakeVideo page lives on at /classic.
+    return send_from_directory(UI_DIR, "director.html")
+
+
+@app.route("/classic")
+def classic_page():
     return send_from_directory(UI_DIR, "index.html")
 
 
@@ -592,6 +610,8 @@ def _sf_estimate(sf_text: str, overrides: dict) -> dict:
             total += 2400
         elif eng == "ltx":
             total += 120
+        elif eng == "ltx2":
+            total += 240  # MLX LTX-2 distilled; video+audio, heavier than old LTX
         elif eng == "wan" and use_metal:
             total += 300
         else:
@@ -838,6 +858,10 @@ def api_thumb(name):
             except Exception:
                 return "thumb failed", 500
     return send_file(str(thumb), mimetype="image/jpeg")
+
+
+import director
+director.register(app, UI_DIR)
 
 
 if __name__ == "__main__":

@@ -2,6 +2,7 @@
 """sf — Story Forge DSL CLI.
 
 Subcommands:
+  sf doctor                                                 check render dependencies
   sf parse  FILE.sf [--out PATH]                            parse + emit storyplan
   sf render FILE.sf [--dry] [--out FILE.mp4]
                     [--scenes a,b,c] [--engine lean|full]   compile + render
@@ -9,7 +10,7 @@ Subcommands:
 Defaults:
   --engine lean  → per-scene Flux+render-route+ffmpeg (fast, MVP-grade)
   --engine full  → delegate to story_pipeline.py (overlays, chapter grades)
-  --out (omit)   → ~/AI/videopipe/outputs/<slug>.mp4
+  --out (omit)   → $SF_OUT_DIR/<slug>.mp4 (default ~/story-forge/outputs)
 """
 
 from __future__ import annotations
@@ -19,8 +20,9 @@ import json
 import sys
 from pathlib import Path
 
-# Ensure the story_forge package is importable when this CLI is run directly.
-REPO = Path("/Users/dtribe/Desktop/PROJECTS/AI/videopipe")
+# Ensure the story_forge package is importable when this CLI is run directly,
+# from wherever the repo happens to be cloned.
+REPO = Path(__file__).resolve().parent.parent
 if str(REPO) not in sys.path:
     sys.path.insert(0, str(REPO))
 
@@ -28,6 +30,7 @@ from story_forge.parser import parse, ParseError       # noqa: E402
 from story_forge.resolver import resolve, ResolveError  # noqa: E402
 from story_forge.emitter import emit_storyplan, write_storyplan  # noqa: E402
 from story_forge import run as runner                  # noqa: E402
+from story_forge import config as sfconfig              # noqa: E402
 
 
 def _compile(path: Path) -> tuple[list, dict, dict]:
@@ -72,10 +75,8 @@ def cmd_render(args: argparse.Namespace) -> int:
         print(json.dumps(cfg, indent=2, default=str))
         return 0
 
-    # Default output path: ~/AI/videopipe/outputs/<slug>.mp4
     slug = plan["film_meta"].get("slug", path.stem)
-    default_out = Path.home() / "AI" / "videopipe" / "outputs" / f"{slug}.mp4"
-    out_path = Path(args.out) if args.out else default_out
+    out_path = Path(args.out) if args.out else sfconfig.OUT_DIR / f"{slug}.mp4"
 
     scene_filter = ([s.strip() for s in args.scenes.split(",") if s.strip()]
                     if args.scenes else None)
@@ -85,6 +86,13 @@ def cmd_render(args: argparse.Namespace) -> int:
                            out=out_path, scenes=scene_filter)
     print(json.dumps(result, indent=2, default=str))
     return 0
+
+
+def cmd_doctor(_args: argparse.Namespace) -> int:
+    """Say what is missing before a render finds out the hard way."""
+    print(sfconfig.format_doctor())
+    missing = [r for r in sfconfig.doctor() if not r[1] and r[4]]
+    return 1 if missing else 0
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -103,7 +111,7 @@ def main(argv: list[str] | None = None) -> int:
                           help="print pipeline config but don't run renderer")
     p_render.add_argument("--out", default=None,
                           help="output mp4 path "
-                               "(default: ~/AI/videopipe/outputs/<slug>.mp4)")
+                               "(default: $SF_OUT_DIR/<slug>.mp4)")
     p_render.add_argument("--scenes", default=None,
                           help="comma-separated scene names to render "
                                "(default: all)")
@@ -111,6 +119,10 @@ def main(argv: list[str] | None = None) -> int:
                           help="lean=per-scene render-route+ffmpeg (fast); "
                                "full=story_pipeline.py with overlays")
     p_render.set_defaults(func=cmd_render)
+
+    p_doctor = sub.add_parser("doctor",
+                              help="check the external tools a render needs")
+    p_doctor.set_defaults(func=cmd_doctor)
 
     args = ap.parse_args(argv)
     return args.func(args)
