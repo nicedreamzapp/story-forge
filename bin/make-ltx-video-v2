@@ -1,0 +1,159 @@
+#!/usr/bin/env python3
+"""make-ltx-video-v2 — i2v render via LTXConditionPipeline (Lightricks 0.9.8 distilled).
+
+Replacement for make-ltx-video (which used the wrong LTXImageToVideoPipeline class
+and produced psychedelic noise). This script follows the OFFICIAL Lightricks recipe
+for the 13B 0.9.8-distilled checkpoint (configs/ltxv-13b-0.9.8-distilled.yaml):
+
+  - Pipeline class: LTXConditionPipeline (NOT LTXImageToVideoPipeline)
+  - Image conditioning passed as a 1-frame "video" via LTXVideoCondition
+  - Explicit 7-step timestep schedule: [1.0, 0.9937, 0.9875, 0.9812, 0.9750, 0.9094, 0.7250]
+  - guidance_scale=1.0 (distilled is single-pass, no CFG)
+  - decode_timestep=0.05, decode_noise_scale=0.025
+
+Usage:
+  make-ltx-video-v2 --i2v INPUT.png --duration 5.0 --res 768x512 --label scene_01 "motion prompt"
+
+Output: writes ~/AI/videopipe/outputs/<label>_ltx2_<timestamp>.mp4
+"""
+import argparse
+import sys
+import tempfile
+import time
+from pathlib import Path
+
+import torch
+from PIL import Image
+from diffusers import AutoencoderKLLTXVideo, LTXConditionPipeline
+from diffusers.pipelines.ltx.pipeline_ltx_condition import LTXVideoCondition
+from diffusers.utils import export_to_video, load_video
+from transformers import T5EncoderModel, T5Tokenizer
+
+LTX_REPO = "Lightricks/LTX-Video"
+
+# Lightricks official inference schedule for ltxv-13b-0.9.8-distilled
+# Source: configs/ltxv-13b-0.9.8-distilled.yaml in LTX-Video repo
+DISTILLED_TIMESTEPS = [1.0, 0.9937, 0.9875, 0.9812, 0.9750, 0.9094, 0.7250]
+
+
+def get_args():
+    p = argparse.ArgumentParser()
+    p.add_argument("prompt", help="motion prompt")
+    p.add_argument("--i2v", required=True, help="input still PNG/JPEG")
+    p.add_argument("--duration", type=float, default=5.0)
+    p.add_argument("--res", default="768x512")
+    p.add_argument("--label", default="ltx")
+    p.add_argument("--steps", type=int, default=7,
+                   help="LTX 0.9.8-distilled uses 7-step schedule; ignored unless --custom-steps")
+    p.add_argument("--custom-steps", action="store_true",
+                   help="if set, override the official 7-step schedule with --steps uniform")
+    p.add_argument("--guidance", type=float, default=1.0,
+                   help="LTX distilled is single-pass, MUST be 1.0 (no CFG)")
+    p.add_argument("--decode-timestep", type=float, default=0.05,
+                   help="Lightricks-recommended for distilled checkpoint")
+    p.add_argument("--decode-noise-scale", type=float, default=0.025,
+                   help="Lightricks-recommended for distilled checkpoint")
+    p.add_argument("--negative-prompt", default=(
+        "worst quality, inconsistent motion, blurry, jittery, distorted, "
+        "low quality, ugly, deformed"))
+    p.add_argument("--seed", type=int, default=None)
+    p.add_argument("--out-dir", default=str(Path.home() / "AI/videopipe/outputs"))
+    return p.parse_args()
+
+
+def main():
+    args = get_args()
+    w, h = (int(x) for x in args.res.split("x"))
+    fps = 24
+    num_frames = int(args.duration * fps)
+
+    # Round to LTX's required multiples (32 for width/height, 8 for frames+1)
+    w = max(256, (w // 32) * 32)
+    h = max(256, (h // 32) * 32)
+    num_frames = max(9, ((num_frames - 1) // 8) * 8 + 1)
+
+    out_dir = Path(args.out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    ts = int(time.time())
+    out_path = out_dir / f"{args.label}_ltx2_{ts:08d}.mp4"
+
+    print(f"[ltx2] loading distilled LTX-Video pipeline (LTXConditionPipeline)...")
+    t0 = time.time()
+    model_path = Path.home() / "AI/ComfyUI/models/diffusion_models/ltx/ltxv-13b-0.9.8-distilled.safetensors"
+
+    # The distilled single-file checkpoint is transformer-only — text encoder,
+    # tokenizer, and VAE must be loaded separately from the HF repo. First run
+    # will download ~5GB of T5 + ~400MB of VAE into the HF cache; subsequent
+    # runs reuse the cache.
+    print(f"[ltx2] loading T5 text encoder + tokenizer + VAE from {LTX_REPO}...")
+    text_encoder = T5EncoderModel.from_pretrained(
+        LTX_REPO, subfolder="text_encoder", torch_dtype=torch.bfloat16,
+    )
+    tokenizer = T5Tokenizer.from_pretrained(LTX_REPO, subfolder="tokenizer")
+    vae = AutoencoderKLLTXVideo.from_pretrained(
+        LTX_REPO, subfolder="vae", torch_dtype=torch.bfloat16,
+    )
+    print(f"[ltx2] loading transformer from {model_path.name}...")
+    pipe = LTXConditionPipeline.from_single_file(
+        str(model_path),
+        text_encoder=text_encoder,
+        tokenizer=tokenizer,
+        vae=vae,
+        torch_dtype=torch.bfloat16,
+    ).to("mps")
+    print(f"[ltx2] model loaded in {time.time()-t0:.1f}s")
+
+    print(f"[ltx2] loading input still: {args.i2v}")
+    image = Image.open(args.i2v).convert("RGB").resize((w, h), Image.LANCZOS)
+
+    # Official recipe: turn the still into a 1-frame video, then load it back as
+    # a frame list and wrap in LTXVideoCondition. This is the round-trip the
+    # Lightricks reference inference does — keeps the condition path consistent
+    # with their multi-frame conditioning code.
+    print(f"[ltx2] building LTXVideoCondition (single-frame video at frame_index=0)...")
+    with tempfile.TemporaryDirectory() as td:
+        cond_mp4 = str(Path(td) / "cond.mp4")
+        export_to_video([image], cond_mp4, fps=fps)
+        cond_video = load_video(cond_mp4)
+        conditions = [LTXVideoCondition(video=cond_video, frame_index=0)]
+
+        generator = torch.Generator(device="mps")
+        if args.seed is not None:
+            generator.manual_seed(args.seed)
+
+        if args.custom_steps:
+            timesteps = None
+            num_inference_steps = args.steps
+            print(f"[ltx2] custom step mode: {num_inference_steps} uniform steps")
+        else:
+            timesteps = DISTILLED_TIMESTEPS
+            num_inference_steps = len(DISTILLED_TIMESTEPS)
+            print(f"[ltx2] official 7-step distilled schedule: {timesteps}")
+
+        print(f"[ltx2] rendering {num_frames} frames @ {w}x{h}...")
+        t1 = time.time()
+        result = pipe(
+            conditions=conditions,
+            prompt=args.prompt,
+            negative_prompt=args.negative_prompt,
+            height=h,
+            width=w,
+            num_frames=num_frames,
+            frame_rate=fps,
+            timesteps=timesteps,
+            num_inference_steps=num_inference_steps,
+            guidance_scale=args.guidance,
+            decode_timestep=args.decode_timestep,
+            decode_noise_scale=args.decode_noise_scale,
+            generator=generator,
+        )
+        print(f"[ltx2] inference: {time.time()-t1:.1f}s")
+
+    export_to_video(result.frames[0], str(out_path), fps=fps)
+    print(f"[ltx2] done -> {out_path}")
+    print(f"[ltx2] total: {time.time()-t0:.1f}s")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

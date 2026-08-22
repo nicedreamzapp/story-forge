@@ -1,0 +1,222 @@
+{
+ "_note": "House rules earned the hard way. Matched by keyword against any future shot's beat/prompt so a lesson is paid for once, ever.",
+ "lessons": [
+  {
+   "when": [
+    "clip",
+    "animation",
+    "moving",
+    "steps",
+    "widens"
+   ],
+   "lesson": "a beat used to judge a CLIP must be judgeable from a single frame \u2014 describe a STATE, not a change over time. 'the crack of light widens' and 'she steps down out of the doorway' were rejected on every probe because no single frame can show a change.",
+   "learned_on": "s6_interior / s7_dooropen animations 2026-07-26"
+  },
+  {
+   "when": [
+    "wide",
+    "arrive",
+    "train",
+    "distance",
+    "heroes"
+   ],
+   "lesson": "identity drifts hardest when a character is SMALL in frame \u2014 wide shots came back with a smaller head and lighter orange fur and failed the identity gate. Frame characters large enough to read on-model, or build the wide as a plate and place characters via crops/inserts.",
+   "learned_on": "s4_arrival 2026-07-26"
+  },
+  {
+   "when": [
+    "train",
+    "locomotive",
+    "stopped",
+    "broken",
+    "trouble"
+   ],
+   "lesson": "a diffusion model draws 'circus train' as a happy train rolling along. To read as trouble it must be described as STOPPED DEAD and in distress with no motion cues at all \u2014 cold, stranded, crooked on the rails, smoke pouring up.",
+   "learned_on": "s2_thecall 2026-07-26"
+  },
+  {
+   "when": [
+    "impact",
+    "door",
+    "smash",
+    "burst",
+    "splinters"
+   ],
+   "lesson": "NEVER prompt an impact or collision. Wan converts 'splinters bursting' into a continuous particle spray that reads as drilling. Render the effort, and let the bang be felt from elsewhere \u2014 dust, shudder, a widening light crack.",
+   "learned_on": "s6_heave 2026-07-24"
+  },
+  {
+   "when": [
+    "render",
+    "queue",
+    "batch",
+    "speed",
+    "memory"
+   ],
+   "lesson": "batch a queue BY MODEL, not by shot \u2014 all stills first, then all animations. Alternating mflux and Wan GGUF per shot pushes the box into swap and the memory gate bounces ComfyUI (~90s, six times in one hour = ~15% of wall clock).",
+   "learned_on": "forge-shot first instrumented run 2026-07-26"
+  },
+  {
+   "when": [
+    "beat",
+    "shot",
+    "depict",
+    "frame",
+    "judge"
+   ],
+   "lesson": "a beat is a VISIBLE STATE. No intent ('trying to reach'), no offscreen facts ('the frightened animal inside'), no change over time ('the door widens'). Anything a viewer with no script cannot see in one frame will fail every probe and the fault is the spec, not the judge.",
+   "learned_on": "whole queue 0/7 2026-07-26"
+  },
+  {
+   "when": [
+    "identity",
+    "canon",
+    "master",
+    "wide",
+    "distance"
+   ],
+   "lesson": "identity questions must allow for scale, distance, lighting and angle. Comparing a close portrait master to a wide shot literally makes every wide 'drift' \u2014 ask about DESIGN (species, build, head/ear shape, colour scheme, art style), never about apparent size or warmth.",
+   "learned_on": "s4_arrival 2026-07-26"
+  },
+  {
+   "when": [
+    "gate",
+    "check",
+    "verdict",
+    "trust",
+    "calibrate"
+   ],
+   "lesson": "audit the auditor: keep a calibration set of shots with KNOWN human verdicts and re-run it whenever wording changes. First run agreed 5/6; the single disagreement was a badly worded beat. A gate that disagrees with the human under 80% of the time is not strict, it is broken.",
+   "learned_on": "beat_gate calibration 2026-07-26"
+  },
+  {
+   "when": [
+    "vote",
+    "ballot",
+    "frame",
+    "sample",
+    "majority"
+   ],
+   "lesson": "majority voting is load-bearing, not a nicety: two shots Matt approved scored 2/3 with one pedantic dissent ('the stick is not a fishing rod'). Single-frame judging would have rejected work he had already accepted.",
+   "learned_on": "calibration run 2026-07-26"
+  },
+  {
+   "when": [
+    "quality",
+    "grain",
+    "upscale",
+    "resolution",
+    "steps"
+   ],
+   "lesson": "the local-AI videos that actually earn thousands of upvotes use MANY steps (up to 60) and finish at high resolution with ZERO film grain \u2014 grain is how people hide smeared texture after upscaling. 24 steps at 832x480 is a draft, not a finish.",
+   "learned_on": "r/StableDiffusion 1774-upvote Wan 2.2 realism post"
+  },
+  {
+   "when": [
+    "consistency",
+    "character",
+    "scene",
+    "long",
+    "chain"
+   ],
+   "lesson": "what earns upvotes is CONSISTENCY across a whole scene, not one pretty clip \u2014 the 2.6k-upvote local anime post chained image-to-video off the last frame to reach 30-second continuous scenes with the same characters.",
+   "learned_on": "r/StableDiffusion 2610-upvote Wan 2.1 anime post"
+  },
+  {
+   "when": [
+    "empty",
+    "plate",
+    "deserted",
+    "no characters",
+    "scene"
+   ],
+   "lesson": "FLUX.2 accepts NO negative prompt and treats 'NO animals/people' in a positive prompt as an instruction to draw them. To get an empty plate, describe it positively \u2014 deserted, abandoned, silent, not a soul in sight \u2014 and let the gate's must_not do the rejecting.",
+   "learned_on": "s4/s8 plates 2026-07-26"
+  },
+  {
+   "when": [
+    "set",
+    "train",
+    "boxcar",
+    "door",
+    "location"
+   ],
+   "lesson": "LOCK THE SET, not just the characters. The door Hank pushes and the door that opens were different cars entirely \u2014 sliding wooden panel on a plain red car vs double hinged doors on a yellow-banded car in a different landscape. beat_gate supports set_masters and this film never armed it. Any shot sharing a location declares its set and is checked against the locked plate.",
+   "learned_on": "circus_train door continuity 2026-07-26"
+  },
+  {
+   "lesson": "Never put a word in CAPITAL LETTERS in an image prompt \u2014 the model renders capitalised words as literal painted signage. 'boxcars with SHUT doors' put the word SHUT in yellow capitals across two train cars. Use lower case, and add 'no lettering or writing anywhere' for vehicles.",
+   "learned_on": "circus_train s4_arrival 2026-07-27",
+   "when": [
+    "flux",
+    "still",
+    "prompt",
+    "mflux",
+    "text",
+    "signage",
+    "caps",
+    "lettering"
+   ]
+  },
+  {
+   "lesson": "A beat must name PHYSICAL VISIBLE facts. A single frame cannot show absence-of-motion ('stopped') or an internal state ('clearly worried') \u2014 both failed every ballot until restated. If independent runs fail with the SAME words, the beat is wrong, not the roll: stop re-rolling.",
+   "learned_on": "circus_train s2_thecall + s4_arrival 2026-07-27",
+   "when": [
+    "beat",
+    "beat_gate",
+    "spec",
+    "judge",
+    "fail",
+    "re-roll"
+   ]
+  },
+  {
+   "lesson": "A set-continuity master only works against shots at COMPARABLE SCALE. One master cannot serve both: a door close-up flunks every wide shot, a wide establishing view flunks every close-up. Keep a wide master and a detail master, and have each shot name the one at its scale.",
+   "learned_on": "circus_train 2026-07-27",
+   "when": [
+    "set",
+    "continuity",
+    "master",
+    "canon",
+    "scale",
+    "close-up",
+    "wide"
+   ]
+  },
+  {
+   "lesson": "A gate that writes the WRONG lesson is worse than no gate. Distinct rejection reasons must stay distinct \u2014 text-in-frame recorded as identity DRIFT taught 'draw the character on-model and larger', a correction unrelated to the defect, saved permanently and carried into later films.",
+   "learned_on": "circus_train s4_arrival 2026-07-27",
+   "when": [
+    "gate",
+    "lesson",
+    "learning",
+    "identity",
+    "drift"
+   ]
+  },
+  {
+   "lesson": "i2v dies silently with NO crash log when jetsam SIGKILLs it, while memory_pressure reports 93% free \u2014 the nearly-full swap file is what runs out, and nothing measures it. Bounce ComfyUI immediately before every animate, and reclaim on BOTH sides of the render, not just before.",
+   "learned_on": "circus_train 2026-07-27",
+   "when": [
+    "i2v",
+    "wan",
+    "memory",
+    "jetsam",
+    "swap",
+    "comfyui",
+    "animate"
+   ]
+  },
+  {
+   "lesson": "Gates judge ASSETS; nothing judges the POINTER. An EDL entry aimed at the wrong file gets a truthful verdict to the wrong question. Cross-check EDL ids against beats.json by id before any model loads \u2014 it is a string compare.",
+   "learned_on": "circus_train s4_arrival 2026-07-27",
+   "when": [
+    "edl",
+    "pointer",
+    "assembly",
+    "cut",
+    "beats"
+   ]
+  }
+ ]
+}

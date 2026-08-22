@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# qadd — drop a Story Forge .sf script into the render queue.
+#   qadd path/to/script.sf            # queue an existing file
+#   qadd my_film.sf < script.txt      # queue from stdin under a name
+# The runner picks it up within ~30s and renders -> uploads -> texts you the link.
+set -euo pipefail
+INBOX="$HOME/story-forge-queue/inbox"
+mkdir -p "$INBOX"
+if [ $# -ge 1 ] && [ -f "$1" ]; then
+  cp "$1" "$INBOX/$(basename "$1")"
+  echo "queued: $(basename "$1")  (now $(ls "$INBOX"/*.sf 2>/dev/null | wc -l | tr -d ' ') waiting)"
+else
+  name="${1:-film_$(date +%s).sf}"
+  [[ "$name" == *.sf ]] || name="$name.sf"
+  cat > "$INBOX/$name"
+  echo "queued from stdin: $name"
+fi

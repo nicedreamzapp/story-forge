@@ -1,0 +1,101 @@
+#!/usr/bin/env python3
+"""
+record-and-remix — Record your screen via Studio Record, extract keyframes,
+animate each in a new style with Wan 2.2 I2V, stitch, ship to phone.
+
+Usage:
+  record-and-remix "ghibli anime style, soft watercolor lighting"
+  record-and-remix --duration 15 "cyberpunk neon noir with heavy rain"
+  record-and-remix --skip-record /path/to/existing.mp4 "your prompt"
+"""
+import argparse
+import subprocess
+import sys
+import time
+import urllib.request
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from core import (  # noqa
+    build_wan22_i2v, run_workflow, upload_image, extract_frames, concat_mp4s, OUT_DIR,
+)
+
+STUDIO = "http://127.0.0.1:17494"
+REC_DIR = Path.home() / "Desktop/Screen Recordings"
+
+
+def start_recording(mode: str = "screen"):
+    urllib.request.urlopen(f"{STUDIO}/start?mode={mode}", timeout=10, data=b"")
+
+
+def stop_recording():
+    urllib.request.urlopen(f"{STUDIO}/stop", timeout=30, data=b"")
+
+
+def newest_recording() -> Path:
+    # newest mp4 in ~/Desktop/Screen Recordings
+    mp4s = sorted(REC_DIR.glob("*.mp4"), key=lambda p: p.stat().st_mtime, reverse=True)
+    if not mp4s:
+        sys.exit(f"No recording found in {REC_DIR}")
+    return mp4s[0]
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("style", nargs="+", help="style prompt (applied to each keyframe)")
+    ap.add_argument("--duration", type=int, default=10, help="recording length in seconds")
+    ap.add_argument("--every", type=float, default=2.0,
+                    help="keyframe every N seconds (default 2)")
+    ap.add_argument("--skip-record", metavar="MP4",
+                    help="use an existing video instead of recording")
+    args = ap.parse_args()
+
+    style = " ".join(args.style)
+
+    if args.skip_record:
+        src = Path(args.skip_record).expanduser().resolve()
+    else:
+        print(f"[remix] recording {args.duration}s…")
+        try:
+            start_recording()
+        except Exception as e:
+            sys.exit(f"Studio Record not reachable at {STUDIO}: {e}")
+        time.sleep(args.duration)
+        stop_recording()
+        time.sleep(2)  # let it finalize
+        src = newest_recording()
+        print(f"[remix] captured: {src.name}")
+
+    work = OUT_DIR / f"remix_{int(time.time())}"
+    work.mkdir(parents=True, exist_ok=True)
+    frames = extract_frames(src, work / "frames", every_s=args.every)
+    print(f"[remix] {len(frames)} keyframes extracted")
+
+    clips = []
+    for i, frame in enumerate(frames):
+        print(f"[remix] {i+1}/{len(frames)}: animating {frame.name}")
+        uploaded = upload_image(frame, name=f"remix_{i:03d}.png")
+        wf = build_wan22_i2v(
+            prompt=f"{style}", image_filename=uploaded, length=49,  # ~3s
+            fast=True,
+        )
+        out = run_workflow(wf, label=f"remix_{i:03d}", timeout_s=1800)
+        if out:
+            clips.append(out[0])
+
+    if not clips:
+        sys.exit("no clips produced")
+
+    final = work / "remix_final.mp4"
+    concat_mp4s(clips, final, crossfade_s=0.5)
+    print(f"[remix] final: {final}")
+
+    # Ship to phone if the helper exists
+    sender = Path.home() / ".claude/imessage-send-video.sh"
+    if sender.is_file():
+        subprocess.run(["bash", str(sender), str(final)], check=False)
+        print("[remix] sent to iMessage")
+
+
+if __name__ == "__main__":
+    main()

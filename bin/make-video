@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+"""
+make-video — Claude-directed T2V pipeline.
+
+Usage:
+  make-video "a lion walking through a neon Tokyo alley, 24mm cinematic"
+  make-video --i2v image.jpg "the woman turns slowly and smiles"
+  make-video --hq "..."              # high-quality 20-step mode (slower)
+  make-video --duration 10 "..."     # ≈10 sec instead of 5
+  make-video --res 1920x1080 "..."   # override resolution (default 1280x720)
+"""
+import argparse
+import sys
+import time
+from pathlib import Path
+
+# allow import of ../core.py
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from core import (  # noqa
+    build_wan22_t2v, build_wan22_t2v_gguf, build_wan22_i2v, build_wan22_i2v_gguf,
+    run_workflow, upload_image, wan22_gguf_ready, wan22_i2v_gguf_ready,
+)
+
+
+def main():
+    ap = argparse.ArgumentParser(description="Generate a video locally via Wan 2.2.")
+    ap.add_argument("prompt", nargs="+", help="positive prompt")
+    ap.add_argument("--i2v", help="animate this image instead of pure T2V")
+    ap.add_argument("--hq", action="store_true",
+                    help="20-step full quality (no Lightx2v LoRA)")
+    ap.add_argument("--duration", type=float, default=5.0,
+                    help="clip length in seconds (default 5)")
+    ap.add_argument("--res", default="1280x720", help="WxH (default 1280x720)")
+    ap.add_argument("--gguf", action="store_true",
+                    help="use Q6_K GGUF quants (~12GB each instead of ~27GB FP16). "
+                         "Required for back-to-back clips on 128GB to avoid OOM "
+                         "when both noise-stage MoE models must coexist in RAM.")
+    ap.add_argument("--fp16-i2v", action="store_true",
+                    help="force the old fp16 i2v pair (~27GB per MoE stage). Only on an "
+                         "idle machine — it OOM-kills ComfyUI when Song Forge is resident.")
+    ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--label", default="clip")
+    ap.add_argument("--distill-lora", default=None,
+                    help="stack a trained 2-step distill LoRA on top of lightx2v "
+                         "(i2v only); pairs with --steps 2")
+    ap.add_argument("--steps", type=int, default=None,
+                    help="override sampler step count (e.g. 2 with --distill-lora)")
+    ap.add_argument("--distill-stage", default=None, choices=["high", "both", "low"],
+                    help="which MoE stage gets the distill LoRA (default high = trained stage)")
+    ap.add_argument("--distill-strength", type=float, default=None,
+                    help="distill LoRA strength (default 1.0)")
+    args = ap.parse_args()
+
+    prompt = " ".join(args.prompt)
+    w, h = (int(x) for x in args.res.lower().split("x"))
+    fps = 16
+    length = max(1, int(args.duration * fps))
+    # Wan 2.2 wants frame count in 4k+1 form
+    length = (length // 4) * 4 + 1
+
+    t0 = time.time()
+    if args.i2v:
+        p = Path(args.i2v).expanduser().resolve()
+        if not p.is_file():
+            sys.exit(f"image not found: {p}")
+        print(f"[make-video] uploading {p.name} → ComfyUI")
+        name = upload_image(p)
+        # GGUF is the DEFAULT for i2v: the fp16 pair is ~27GB per MoE stage and
+        # swap-storms the machine at 832x480x81 while Song Forge is resident — it
+        # killed ComfyUI twice on 2026-07-25. Pass --fp16-i2v only on an idle box,
+        # or when the distill LoRA is needed (GGUF path doesn't take it).
+        use_gguf = not args.fp16_i2v and not args.distill_lora and wan22_i2v_gguf_ready()
+        if use_gguf:
+            wf = build_wan22_i2v_gguf(
+                prompt=prompt, image_filename=name, width=w, height=h,
+                length=length, seed=args.seed, fps=fps, fast=not args.hq,
+            )
+        else:
+            if not args.fp16_i2v and not args.distill_lora:
+                print("[make-video] WARNING: i2v GGUF weights missing — falling back to "
+                      "fp16, which can OOM at 832x480x81. See core.build_wan22_i2v_gguf.")
+            wf = build_wan22_i2v(
+                prompt=prompt, image_filename=name, width=w, height=h, length=length,
+                seed=args.seed, fps=fps, fast=not args.hq,
+                distill_lora=args.distill_lora, steps_override=args.steps,
+            )
+    else:
+        if args.gguf:
+            if not wan22_gguf_ready():
+                sys.exit("--gguf requested but Q6_K weights not downloaded "
+                         "(see download_wan22_official.sh).")
+            wf = build_wan22_t2v_gguf(
+                prompt=prompt, width=w, height=h, length=length,
+                seed=args.seed, fps=fps, fast=not args.hq,
+            )
+        else:
+            wf = build_wan22_t2v(
+                prompt=prompt, width=w, height=h, length=length,
+                seed=args.seed, fps=fps, fast=not args.hq,
+            )
+
+    files = run_workflow(wf, label=args.label, timeout_s=7200)
+    elapsed = time.time() - t0
+    print(f"[make-video] done in {elapsed:.1f}s → {files[0] if files else 'no output'}")
+
+
+if __name__ == "__main__":
+    main()

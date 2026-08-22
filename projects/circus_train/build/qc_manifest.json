@@ -1,0 +1,162 @@
+{
+  "characters": {
+    "hank": "large round brown bear standing upright, cream muzzle",
+    "doug": "lanky tan bloodhound dog with long dark floppy ears, no collar",
+    "ellie": "young circus elephant, warm grey, red-plumed crown",
+    "bird": "off-screen only, never visible"
+  },
+  "scenes": [
+    {
+      "name": "s1_coldopen",
+      "start": 4.0,
+      "end": 9.08
+    },
+    {
+      "name": "s2_thecall",
+      "start": 12.4,
+      "end": 17.4
+    },
+    {
+      "name": "s3_rollout",
+      "start": 19.36,
+      "end": 24.45
+    },
+    {
+      "name": "s4_arrival",
+      "start": 24.45,
+      "end": 29.45
+    },
+    {
+      "name": "ellie_eye",
+      "start": 33.01,
+      "end": 37.01
+    },
+    {
+      "name": "s6_heave_animated",
+      "start": 43.81,
+      "end": 48.89
+    },
+    {
+      "name": "s6_interior",
+      "start": 48.89,
+      "end": 53.39
+    },
+    {
+      "name": "s7_dooropen",
+      "start": 53.39,
+      "end": 58.39
+    },
+    {
+      "name": "s8_goodbye",
+      "start": 65.23,
+      "end": 70.23
+    }
+  ],
+  "lines": [
+    {
+      "t": 9.23,
+      "speaker": "hank",
+      "text": "Doug. The fish are winning again.",
+      "dur": 1.49,
+      "offscreen": false
+    },
+    {
+      "t": 10.87,
+      "speaker": "doug",
+      "text": "That's cause they practice, Hank.",
+      "dur": 1.53,
+      "offscreen": false
+    },
+    {
+      "t": 13.1,
+      "speaker": "bird",
+      "text": "Help! The circus train broke down",
+      "dur": 3.18,
+      "offscreen": true
+    },
+    {
+      "t": 17.55,
+      "speaker": "doug",
+      "text": "Circus train? Hank, we're rolling.",
+      "dur": 1.81,
+      "offscreen": false
+    },
+    {
+      "t": 29.6,
+      "speaker": "hank",
+      "text": "Whole train's cooking out here.",
+      "dur": 1.17,
+      "offscreen": false
+    },
+    {
+      "t": 30.92,
+      "speaker": "doug",
+      "text": "Easy everybody! The Wild Rescue's here!",
+      "dur": 2.09,
+      "offscreen": false
+    },
+    {
+      "t": 34.21,
+      "speaker": "ellie",
+      "text": "I can't, it's too heavy",
+      "dur": 0.76,
+      "offscreen": true
+    },
+    {
+      "t": 37.16,
+      "speaker": "doug",
+      "text": "Pin's jammed tight.",
+      "dur": 1.57,
+      "offscreen": false
+    },
+    {
+      "t": 38.88,
+      "speaker": "doug",
+      "text": "Ellie? It's Doug. One push, girl.",
+      "dur": 2.89,
+      "offscreen": false
+    },
+    {
+      "t": 41.92,
+      "speaker": "doug",
+      "text": "Three, two, one, push!",
+      "dur": 1.89,
+      "offscreen": false
+    },
+    {
+      "t": 58.54,
+      "speaker": "hank",
+      "text": "Doors don't argue with bears.",
+      "dur": 1.33,
+      "offscreen": false
+    },
+    {
+      "t": 60.02,
+      "speaker": "doug",
+      "text": "Turtle called dibs on the tank an hour ago.",
+      "dur": 1.93,
+      "offscreen": false
+    },
+    {
+      "t": 62.1,
+      "speaker": "doug",
+      "text": "Anybody, anywhere, any trouble at all",
+      "dur": 1.77,
+      "offscreen": false
+    },
+    {
+      "t": 64.02,
+      "speaker": "hank",
+      "text": "the Wild Rescue rolls.",
+      "dur": 1.21,
+      "offscreen": false
+    },
+    {
+      "t": 71.23,
+      "speaker": "bird",
+      "text": "Can I get a hat like this?",
+      "dur": 0.6,
+      "offscreen": true
+    }
+  ]
+}

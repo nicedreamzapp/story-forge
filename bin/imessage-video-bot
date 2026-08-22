@@ -1,0 +1,65 @@
+#!/bin/bash
+# imessage-video-bot — Watch iMessage for video prompts, render them locally, reply with MP4.
+#
+# Usage: imessage-video-bot            (runs in foreground)
+#        nohup imessage-video-bot &    (daemon)
+#
+# Trigger phrases in incoming iMessage:  "video:", "render:", "movie:"
+# Everything after the colon becomes the prompt.
+
+set -euo pipefail
+DB="$HOME/Library/Messages/chat.db"
+BUDDY="matt@ineedhemp.com"
+MAKE_VIDEO="$HOME/AI/videopipe/bin/make-video"
+LOG="$HOME/AI/videopipe/logs/imessage-bot.log"
+SEEN="$HOME/AI/videopipe/logs/.seen_rowid"
+SEND_VIDEO="$HOME/.claude/imessage-send-video.sh"
+SEND_MSG="$HOME/.claude/imessage-send.sh"
+
+mkdir -p "$(dirname "$LOG")"
+touch "$LOG"
+
+# Start from latest row — don't reprocess history on first run
+if [ ! -f "$SEEN" ]; then
+    sqlite3 "$DB" "SELECT COALESCE(MAX(ROWID),0) FROM message" > "$SEEN"
+fi
+
+echo "[$(date)] imessage-video-bot started (watching $BUDDY)" | tee -a "$LOG"
+
+while true; do
+    last=$(cat "$SEEN")
+    # Fetch new messages from the buddy that look like a video request
+    rows=$(sqlite3 -separator $'\t' "$DB" <<SQL
+SELECT m.ROWID, m.text
+FROM message m
+JOIN handle h ON m.handle_id = h.ROWID
+WHERE m.ROWID > $last
+  AND m.is_from_me = 0
+  AND h.id LIKE '%${BUDDY}%'
+  AND m.text IS NOT NULL
+  AND (lower(m.text) LIKE 'video:%' OR lower(m.text) LIKE 'render:%' OR lower(m.text) LIKE 'movie:%')
+ORDER BY m.ROWID ASC;
+SQL
+)
+
+    if [ -n "$rows" ]; then
+        while IFS=$'\t' read -r rowid text; do
+            prompt=$(echo "$text" | sed -E 's/^[^:]+:[[:space:]]*//')
+            echo "[$(date)] got: $prompt" | tee -a "$LOG"
+            bash "$SEND_MSG" "🎬 rendering: $prompt" >> "$LOG" 2>&1 || true
+            # Run in background so we keep watching
+            (
+                out=$("$MAKE_VIDEO" "$prompt" --label imsg 2>&1 | tee -a "$LOG")
+                mp4=$(echo "$out" | grep -oE '/[^ ]+\.mp4' | tail -1)
+                if [ -n "$mp4" ] && [ -f "$mp4" ]; then
+                    bash "$SEND_VIDEO" "$mp4" >> "$LOG" 2>&1 || true
+                else
+                    bash "$SEND_MSG" "❌ render failed — check ~/AI/videopipe/logs/imessage-bot.log" >> "$LOG" 2>&1 || true
+                fi
+            ) &
+            echo "$rowid" > "$SEEN"
+        done <<< "$rows"
+    fi
+
+    sleep 5
+done

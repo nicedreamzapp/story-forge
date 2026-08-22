@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# forge-keepalive — the director never dies quietly.
+#
+# A crashed render, an OOM, a ComfyUI restart mid-shot: any of those used to end
+# the night's work silently and the machine sat idle until someone noticed hours
+# later. This wrapper restarts the director and records every restart, so an
+# unattended run either finishes the film or leaves a trail explaining why not.
+#
+#   bin/forge-keepalive projects/circus_train [max_hours]
+#
+# Stop it with: touch <project>/STOP_DIRECTOR   (checked between restarts)
+set -u
+PROJ="${1:?usage: forge-keepalive <project-dir> [max_hours]}"
+MAX_HOURS="${2:-8}"
+SF="$(cd "$(dirname "$0")/.." && pwd)"
+LOG="$PROJ/director.log"
+RESTARTS=0
+
+echo "[keepalive $(date '+%H:%M:%S')] starting director on $PROJ (max ${MAX_HOURS}h)" | tee -a "$LOG"
+
+while true; do
+  if [ -f "$PROJ/STOP_DIRECTOR" ]; then
+    echo "[keepalive $(date '+%H:%M:%S')] STOP_DIRECTOR present — standing down" | tee -a "$LOG"
+    break
+  fi
+
+  /usr/bin/env python3 "$SF/bin/forge-director" "$PROJ" --max-hours "$MAX_HOURS" >> "$LOG" 2>&1
+  CODE=$?
+
+  if grep -q "FILM COMPLETE" "$LOG" 2>/dev/null; then
+    echo "[keepalive $(date '+%H:%M:%S')] film complete — done" | tee -a "$LOG"
+    break
+  fi
+  if tail -40 "$LOG" | grep -q "STOPPING —"; then
+    echo "[keepalive $(date '+%H:%M:%S')] stopped with beats BLOCKED — film NOT complete, see QUESTIONS.md" | tee -a "$LOG"
+    break
+  fi
+  if [ "$CODE" -eq 0 ]; then
+    echo "[keepalive $(date '+%H:%M:%S')] director exited cleanly with work still open — done" | tee -a "$LOG"
+    break
+  fi
+
+  RESTARTS=$((RESTARTS + 1))
+  echo "[keepalive $(date '+%H:%M:%S')] director died (exit $CODE) — restart #$RESTARTS in 30s" | tee -a "$LOG"
+  if [ "$RESTARTS" -ge 10 ]; then
+    echo "[keepalive $(date '+%H:%M:%S')] 10 restarts, something is properly broken — stopping" | tee -a "$LOG"
+    break
+  fi
+  sleep 30
+done

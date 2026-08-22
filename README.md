@@ -1,6 +1,6 @@
 # Story Forge
 
-> A local-only generative video system. Any kind of video, any style, on one laptop. No cloud.
+> A local-only generative cinema pipeline. Animated films on one laptop. No cloud.
 
 ```
    ╔══════════════════════════════════════════════════╗
@@ -12,16 +12,135 @@
    ╚══════════════════════════════════════════════════╝
 ```
 
-Story Forge is a self-contained generative VIDEO system — for making video of **any kind**: narrated explainers, ambient pieces, promos, documentary cuts, music-driven shorts, sagas, and yes, fully animated films — in any style, from one readable script. Motion, narration, original music, titles and credits, entirely on local hardware. Five open-source models composed by `ffmpeg`. **Zero cloud calls. Zero API charges. Zero rate limits.** Run it once, run it a thousand times.
+Story Forge is a self-contained pipeline that takes a structured story description and produces a finished animated film — with motion, narration, original music, title and credits — entirely on local hardware. Five open-source models composed by `ffmpeg`. **Zero cloud calls. Zero API charges. Zero rate limits.** Run it once, run it a thousand times.
 
-Animation is the *proving ground*, not the limit — talking characters are the hardest case a video system can face, so that's where the pipeline gets battle-tested. Everything it learns there (QC gates, judge models, scene locking, character consistency) applies to every other kind of video it renders.
+**And it reviews its own work.** A local vision-language model judges every shot against the story beat it is supposed to depict, votes across frames, holds characters and sets to locked designs, re-rolls with the rejection reason fed back into the prompt, and refuses to assemble a film out of shots that don't tell the story — all on the same laptop, with nothing leaving the machine. [Jump to the review loop ↓](#-it-reviews-its-own-work--the-verification-loop)
 
 > First public-confirmed LTX 13B distilled 0.9.8 working on Apple Silicon MPS. We also tried a hand-written Metal flash-attention kernel for Wan — turned out PyTorch's MPS SDPA is already too well-tuned to beat at our shapes. The kernel is preserved in [`metal/`](metal/) as documented learning (see its README for what we tried, what we measured wrong, and what actually works for Wan speedup).
 
 ---
 
+---
 
+## 🔍 It reviews its own work — the verification loop
 
+Generating a shot is the easy half. The hard half is knowing whether the shot you got is
+the shot the story needed — and that is where every AI film pipeline quietly breaks.
+
+We learned it the expensive way. An episode of ours passed **91 automated checks, 86 of
+them green**, and was still incoherent. The checks verified that the right character's
+mouth moved on the right line, that no faces melted, that no limbs multiplied, that every
+voice landed on its timestamp. All true. Meanwhile the shot meant to show a bear driving
+his shoulder into a jammed door showed a bear idly poking the wall with a stick, the door
+never opened anywhere in the film, the rescued character never appeared on screen, and the
+ending was four talking heads in a forest bragging about a rescue the audience never saw.
+
+Every individual check passed. The film made no sense. **Technical QC cannot see story.**
+
+So Story Forge grew a second kind of review — one that asks what a shot *depicts*, not
+whether its pixels are clean. It runs entirely locally on Apple Silicon (MLX +
+Qwen3-VL-32B 4-bit as the eyes, mlx-whisper as the ears) and it is wired in as a hard
+stop, not a warning.
+
+### The gates, cheapest first
+
+| Gate | Question it answers | Where |
+|---|---|---|
+| **Beat gate** | Does this picture actually depict the beat the script says it is? | [`pipeline-tools/beat_gate.py`](pipeline-tools/beat_gate.py) |
+| **Forbidden elements** | Is anything present that disqualifies the shot outright (a tool in the paws that should be empty, a relaxed pose where there should be strain)? | per-shot `must_not` in `beats.json` |
+| **Identity gate** | Is this still the same character as the locked master — same head, ears, muzzle, colours? | [`bin/forge-shot`](bin/forge-shot) |
+| **Set canon** | Is this the same *train* as the last scene, or did the model invent a new one? | `set_masters` in `beats.json` |
+| **Story spine** | Are all the beats the film cannot exist without actually on screen — or was one never shot at all? | `spine` in `beats.json` |
+| **Technical QC** | Right mouth moving on the right line, mouths shut in silence, no artifacts, every line audible on time | [`pipeline-tools/film_qc.py`](pipeline-tools/film_qc.py) |
+| **Memory gate** | Can this machine actually afford this render, or will it swap-storm and panic? | `core.memory_gate()` / [`bin/mem-gate`](bin/mem-gate) |
+
+### Four rules that make the review honest
+
+**1. Judge blind first.** The model describes what is physically happening in the frame
+with no knowledge of the intended beat — every body's posture and effort, every object in
+or near their hands, anything unusual in the air. *Only then* does the beat go in for a
+PASS/FAIL ruling. Told the answer up front, a vision model simply agrees with you. This
+ordering is the difference between a check and a rubber stamp.
+
+**2. One instant is not a verdict.** The same clip sampled at 1.1s and at 2.7s produced
+opposite rulings — and days earlier, single-instant sampling had failed seven perfectly
+good lip-sync clips. Every judgement now votes across multiple frames, majority rules, and
+**every individual ballot is printed**. Nothing hides behind an average.
+
+**3. Rejection reasons are fed back, and remembered.** Re-rolling a seed with the same
+prompt is not learning; the same wrong picture returns with different noise. The judge says
+*why* it failed in words — "the train is travelling normally with no visible signs of
+distress" — and that sentence is appended to the next attempt as a correction, then
+persisted to `shot_lessons.json` so a future run starts already knowing it. The mistake
+gets paid for once.
+
+**4. Nothing silently lowers a bar.** A shot that never passes is reported **UNBUILT**, not
+quietly used. A clip that only partly holds its beat is trimmed to the stretch that does,
+and the trim is declared. Failed clips are kept for diagnosis instead of deleted. Anything
+the judge cannot assess is reported UNCHECKED — never as a pass.
+
+### The self-proving shot builder
+
+[`bin/forge-shot`](bin/forge-shot) is the loop those gates live inside. Per shot:
+
+```
+roll a seed → beat gate (majority vote) → identity gate vs locked master
+   ↓ fail                                        ↓ pass
+feed the reason into the prompt, roll again    LOCK (chmod 444)
+   ↓ still failing after N cycles                ↓
+report UNBUILT, lock nothing                  animate (memory-gated)
+                                                 ↓
+                                        re-judge the CLIP across its length
+                                                 ↓ partial
+                                        keep only the stretch that holds the beat
+```
+
+Cheap gates run before expensive ones on purpose. A still costs about a minute to roll and
+judge; animating it costs seventeen. Refusing a bad shot at the still stage spends one
+minute instead of eighteen — **the review pays for itself in saved render time**, and adds
+about a minute per shot in overhead.
+
+### It gets better every film, not just every retry
+
+Nothing learned is allowed to die with the project it was learned on.
+
+- **`shot_lessons.json`** (per project) — why each specific shot was rejected, fed back into
+  its next attempt.
+- **`LESSONS.json`** (repo root, versioned, shipped) — the generalised version. Each entry
+  carries the keywords it applies to, so a lesson earned on film #1 is matched against any
+  future shot whose beat mentions the same things. Film #4 starts out knowing what films
+  #1–3 paid to learn. Render tricks live here too, not just story mistakes — a faster
+  sampler, a quant that held up, a resolution ladder that survived the quality gate.
+- **`METRICS.jsonl`** (repo root, append-only) — every step's real duration and verdict.
+  Which stage is the bottleneck is a measured number that accumulates across films, not a
+  hunch: right now it says a still costs ~1 minute to roll and judge, an animation costs
+  ~17, so refusing bad shots at the still stage is where the time is won.
+- **Speedups must earn their way in.** Any multiplier — quantisation, caching, step
+  distillation, a hand-written kernel — has to clear [`bin/measure-render`](bin/measure-render),
+  an LPIPS-gated harness: per-frame LPIPS < 0.05 **and** speedup > 1.10× or it doesn't ship.
+  That's how a hand-written Metal flash-attention kernel ended up documented as a null
+  result in [`metal/`](metal/) instead of quietly making renders worse.
+
+Same discipline as the story gates: the pipeline is allowed to get faster and smarter over
+time, but only in ways it can prove.
+
+### The numbers, published as measured
+
+First run of the beat gate over an existing "finished" episode: **2 of 11 shots passed.**
+It found the stick in the door unprompted, describing it as "a small metallic object
+embedded in the door." It failed the establishing shot that was supposed to read as trouble
+("no visible signs of distress"). It failed the arrival for showing "a cheerful train that
+appears to be running fine." It caught a character turning away from the door mid-clip. And
+it failed two stills built the same night by the same author — which is the point.
+
+Then, rebuilding the broken scene through `forge-shot`: three of four candidates passed the
+beat, **two of those three failed the identity gate** for drifting off-model, and the one
+that passed both got locked and animated — then the clip was trimmed to the 2.4-second
+window where the gate votes 4/5 that the effort is real. Human verdict on the result:
+*"looks like he's leaning in and trying to push a door open."*
+
+That is the whole thesis. Not "the AI got it right." **The pipeline caught itself getting it
+wrong, said so in numbers, and fixed it — on a laptop, offline.**
 
 ## The manifesto
 
@@ -47,76 +166,6 @@ We make our own rules. We build new things constantly. We make possible what peo
 
 ---
 
-### ▶ The Lucid Engine — a psychedelic sci-fi short
-
-[![The Lucid Engine — a Story Forge film](./lucid-hero.jpg)](https://www.youtube.com/watch?v=31ZeFu-ePcc)
-
-A ~4:30 short generated end-to-end on one laptop. No cloud. An uploaded mind, uncertain what's real, pieces together how the world ended and what it became — told across five acts (**The Waking → The Wrongness → The Truth → The Hunt → The Break → Resolution**) with a first-person narration spine, character dialogue with baked lip sync, same-location multi-angle coverage, a unified color grade, and an original Song Forge score under a low-drone / boom / shimmer sound-design bus.
-
-[**▶ Watch on YouTube**](https://www.youtube.com/watch?v=31ZeFu-ePcc) · [Download `The_Lucid_Engine.mp4`](https://github.com/nicedreamzapp/story-forge/releases/tag/lucid-engine)
-
-Pipeline: **Flux** (stills) → **LTX-2 distilled** (motion) → **Piper** (narration) → **ffmpeg** (grade, transitions, sound, mux). 100% local.
-
----
-
-## 🎬 The Director — talk to it, get a movie (new, 2026-07-22)
-
-The newest layer: a chat + storyboard UI at `http://127.0.0.1:17600/` that puts
-the whole formula behind a conversation. You tell it the movie you want; a
-local LLM (any OpenAI-compatible server, `SF_LLM_URL`) locks the concept with
-you — title, style, characters, mood — then fills a storyboard. Each scene card
-then walks itself through the pipeline with a paper trail:
-
-```
-still (Flux) ─► vision-QC gate ─► approve & LOCK ─► draft i2v (~3 min, cheap gate)
-                                                        │
-                                                        ▼
-                              final i2v (Wan 2.2) ─► score (ACE-Step, instrumental)
-                                                        │
-                                                        ▼
-                                    assemble (xfade + music bed) ─► film_qc verdict
-```
-
-Design decisions that came from making real films, not from speculation:
-
-- **Approve-and-lock per scene.** A locked scene can never be re-rendered by
-  accident. Building one scene at a time, locking wins, is the only workflow
-  that survived contact with actual production.
-- **Cheap gates before expensive renders.** Every still faces a vision-model QC
-  check (seconds) before you spend minutes animating it; a low-res draft render
-  (~3 min) catches dead staging before the full render (~9 min). When the QC
-  judge is offline the card says **unchecked** — it never fakes a pass.
-- **film_qc has the last word.** The assembled film goes to
-  [`pipeline-tools/film_qc.py`](pipeline-tools/film_qc.py) — a local
-  vision-language judge plus whisper ears — and the UI reports its pass/fail
-  counts verbatim.
-- **A memory governor, not vibes.** Stages declare what they need before
-  touching the GPU: queued stills batch together ahead of video renders so
-  model weights load once, the 32B QC judge refuses to share the machine with
-  resident video weights (it evicts an idle ComfyUI first), and stages wait for
-  headroom instead of shoving the box into swap. One 128 GB machine runs image
-  gen, video gen, music gen, an LLM director and a VL judge — sequenced, never
-  stacked.
-- **Drag your own images onto a card** to replace generated stills; re-roll
-  anything unlocked with one click. The old single-clip page lives at `/classic`.
-- **The loop closes itself.** Every approved still banks its recipe (style,
-  prompt, seed, motion) into `projects/director/recipe_bank.json`, and the chat
-  director reads a digest of proven recipes — wins compound instead of being
-  re-derived per movie. On the verification side, film_qc failures that map
-  inside a scene's core trigger an automatic re-roll of just that scene's
-  animation (fresh noise, same locked still), re-assembly, and re-verification
-  — up to two rounds — while crossfade-ghost flags (the judge seeing two scenes
-  mid-blend) are classified benign instead of failing the film. You see the
-  final verdict and a note of what was auto-fixed, not the broken intermediates.
-
-Requirements beyond the base pipeline: a running ComfyUI for stills + i2v, an
-OpenAI-compatible LLM server for the chat director, and optionally an ACE-Step
-server (`SF_FORGE_URL`) for scores and a vision-judge server (`SF_PE_URL`) for
-the still gate. All endpoints are env-overridable; see the top of
-[`director.py`](director.py).
-
----
-
 ## 🚀 Status — 2026-05-24 SHIP STATE
 
 The v1 ship state is live. The DSL compiles, the routes work, the kernel is in:
@@ -136,100 +185,17 @@ Live build dashboard: `http://127.0.0.1:17602` (served from [`build_status/`](bu
 
 ## Quickstart
 
+Four lines from clone to first film:
+
 ```bash
 git clone https://github.com/nicedreamzapp/story-forge
 cd story-forge
-./bin/sf doctor                                    # what's missing, before you burn an hour
-./bin/sf parse story_forge/examples/test_tiny.sf   # parser sanity (instant, no deps)
-./bin/sf render story_forge/examples/test_tiny.sf  # ~2 min on an M5 Max
-# output: ~/story-forge/outputs/test_tiny.mp4
+./bin/sf parse story_forge/examples/test_tiny.sf   # parser sanity (instant)
+./bin/sf render story_forge/examples/test_tiny.sf  # ~2 min on M5 Max
+# output: ~/AI/videopipe/outputs/test_tiny.mp4
 ```
 
-`sf doctor` is the honest starting point. Story Forge is a glue layer, not a
-self-contained model runtime, so it shells out to a few things that have to
-exist on your machine first:
-
-| what | needed for | how it's found |
-|---|---|---|
-| **ComfyUI**, running | every still | `SF_COMFY_URL`, default `http://127.0.0.1:8188` |
-| **Flux** unet + CLIP + VAE, loaded in ComfyUI | every still | `SF_FLUX_UNET`, `SF_FLUX_CLIP1`, `SF_FLUX_CLIP2`, `SF_FLUX_VAE` |
-| **ffmpeg / ffprobe** | assembling scenes | `PATH` |
-| **Wan 2.2** and/or **LTX** in ComfyUI | motion | `bin/render-route` picks per scene |
-| **piper** + an `.onnx` voice | narration (optional) | `SF_PIPER`, `SF_PIPER_MODEL` |
-| avatar pipeline (LivePortrait / Wav2Lip) | `with lipsync` (optional) | `SF_AVATAR_DIR` |
-
-Model names must match what your ComfyUI actually lists, including subfolders.
-If a still fails with *value not in list*, run:
-
-```bash
-python3 tools/flux_t2i.py --list-models
-```
-
-and set the `SF_FLUX_*` variables to names from that output.
-
-Nothing in the repo points at an absolute home directory any more. Every path
-resolves through `story_forge/config.py`: an `SF_*` environment variable if you
-set one, otherwise a default inside this repo or a conventional `~/` location.
-
-`test_tiny.sf` is a single scene, 3 seconds, no narration — the smallest
-end-to-end loop. Once it produces an mp4, the heavier examples
-(`cabin_open.sf`, multi-scene films) work the same way.
-
----
-
-## Keyframe sandwich (FFLF) — opt-in, and measure before you trust it
-
-The idea, from foxdit on r/StableDiffusion: plain image-to-video conditions on
-frame 0 and lets the model invent the rest, so anchoring the **last** frame too
-should stop a character drifting into someone else.
-
-`still.end_prompt` draws the closing frame reusing the opening seed;
-`still.end_path` uses an image you already trust. LTX only, since it is the
-engine that takes a conditioning item at an arbitrary frame index. Wan i2v
-conditions on the first frame alone and says so instead of ignoring it.
-
-```
-still flux:
-    prompt:     "a lone hiker in a red jacket on a rocky ridge at sunset"
-    end_prompt: "the same hiker further along the ridge, sun lower"
-    seed: 42
-motion ltx:
-    prompt: "the hiker walks steadily along the ridge"
-```
-
-### What it measured here, honestly
-
-On this stack — LTX 13B **distilled**, 7+3 multi-scale steps, 768x512, MPS — a
-3s walking shot with a small human figure came out **worse with the anchor than
-without it**. Same seed, same keyframes, three runs:
-
-| end anchor | subject at the final frame |
-|---|---|
-| strength 1.0 | disintegrated into a smear |
-| strength 0.7 | blurred, damaged, better than 1.0 |
-| **none** | **intact, clean silhouette** |
-
-The worst frame was always the anchored one. Told to be exactly somewhere at
-frame N *and* to move, the sampler sacrifices the subject. So the feature is
-**off unless you ask for it**, the default strength is 0.7 rather than 1.0, and
-if you use it: keep the end frame a small delta from the start, and look at the
-last frame before trusting the shot.
-
-foxdit reports this working well on a 3090 running full-step models. Few-step
-distilled inference is a different animal, and the table above is what it did
-here, not what the technique is supposed to do.
-
-Two other findings from the same tests, both larger than the anchor:
-
-- **1216x704 collapses this config.** The image dissolved into colour bands by
-  frame 24, and cost 316s against 82s. Stay at 768x512 with the distilled
-  recipe.
-- **Frame the subject bigger.** Every failure was a small figure in a wide
-  shot. There are not enough pixels on a distant person to hold them together
-  for 73 frames.
-
-Directly: `bin/render-route --still A.png --last-frame B.png --label shot "…"`
-Example: `story_forge/examples/keyframe_sandwich.sf`.
+That's it. `test_tiny.sf` is a single LTX scene, 3 seconds, no narration — the smallest end-to-end loop the pipeline runs. Once it produces an mp4, the heavier examples (`cabin_open.sf`, multi-scene films) work the same way.
 
 ---
 
@@ -605,7 +571,7 @@ Stacked target: **today's 5-hour render → ~10-30 min per 4-min film on M5.**
 
 ## Why local
 
-The whole thing is the point. A 4-minute video — an animated film, a narrated documentary cut, an ambient piece with an original score — runs on **one laptop you can carry in your bag**. No upload step. No "your queue position is 47." No subscription. No telemetry.
+The whole thing is the point. A 4-minute animated film with custom score and synced narration runs on **one laptop you can carry in your bag**. No upload step. No "your queue position is 47." No subscription. No telemetry.
 
 ### What the cloud would actually cost
 

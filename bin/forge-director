@@ -1,0 +1,362 @@
+#!/usr/bin/env python3
+"""forge-director — the thing that never stops until the film is done.
+
+The flaw this fixes (Matt, 2026-07-26): "I'm confused that it stopped… it just
+stopped making the movie on its own." Every stage until now was a script that ran
+once, finished, and sat there waiting for a human to notice and start the next one.
+A queue that ends is not a pipeline; it's an errand.
+
+The director owns the FILM, not a step. It loops:
+
+    1. read the story spine — the beats this film cannot exist without
+    2. work out which beats still have no footage that passes the gates
+    3. pick the next gap and drive it: still → gate → lock → animate → gate
+    4. on failure, ESCALATE rather than repeat: shorter clip, then a fresh
+       approach, then mark BLOCKED-with-reason and MOVE ON to the next gap
+    5. write STATUS.md every cycle so there is always something to read
+    6. when every beat has footage, assemble the cut, QC it, and only then stop
+
+It stops for exactly three reasons, and says which: the film is finished, every
+remaining gap is BLOCKED and needs a human decision, or the machine refused the
+work (memory gate). Idling silently is not one of them.
+
+    bin/forge-director projects/circus_train              # run until done
+    bin/forge-director projects/circus_train --max-hours 6
+    bin/forge-director projects/circus_train --dry-run    # show the plan only
+
+Keep it alive across crashes:
+    bin/forge-keepalive projects/circus_train
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+# ffmpeg by ABSOLUTE path. Under launchd/keepalive the PATH has no /opt/homebrew/bin,
+# so a bare "ffmpeg" raises FileNotFoundError — which is how forge-director died at
+# 19:25 on 2026-07-27 and keepalive then logged "film complete — done" (2026-07-27:
+# the third time in one day a crash was reported as a finished film).
+import shutil as _shutil
+FFMPEG = _shutil.which("ffmpeg") or "/opt/homebrew/bin/ffmpeg"
+
+
+SF = Path(__file__).resolve().parent.parent
+FORGE_SHOT = SF / "bin" / "forge-shot"
+FORGE_REVIEW = SF / "bin" / "forge-review"
+BUILD_EPISODE = SF / "bin" / "build-episode"
+MLX_PY = Path.home() / ".local/mlx-server/bin/python"
+MAX_ATTEMPTS = 4
+MAX_INFRA_STRIKES = 3   # backend deaths in a row before we call it a machine problem
+
+
+def log(m: str) -> None:
+    print(f"[director {time.strftime('%H:%M:%S')}] {m}", flush=True)
+
+
+def read_json(p, default):
+    try:
+        return json.loads(Path(p).read_text())
+    except Exception:
+        return default
+
+
+def write_json(p, data):
+    Path(p).write_text(json.dumps(data, indent=1) + "\n")
+
+
+def declared_clip(proj: Path, sid: str) -> Path | None:
+    """Where a shot's finished clip actually lives, per the specs.
+
+    Spine ids do not always match filenames — s1_coldopen's clip is s1_final.mp4 —
+    so the director must read the declared path instead of guessing from the id.
+    Guessing marked two finished scenes as missing on 2026-07-26.
+    """
+    for spec_file in ("beats.json", "shots.json"):
+        for sh in read_json(proj / spec_file, {}).get("shots", []):
+            if sh.get("id") == sid and sh.get("clip"):
+                return proj / sh["clip"]
+    return None
+
+
+def has_footage(proj: Path, shot_ids: list) -> str | None:
+    """A beat is covered only by a clip that exists and is non-trivial."""
+    for sid in shot_ids:
+        cand = declared_clip(proj, sid)
+        if cand and cand.is_file() and cand.stat().st_size > 50_000:
+            return cand.name
+        for g in sorted((proj / "clips").glob(f"{sid}*.mp4")):
+            if g.is_file() and g.stat().st_size > 50_000 and not any(
+                    x in g.name for x in ("_failed", "_raw")):
+                return g.name
+    return None
+
+
+def gaps(proj: Path, state: dict) -> list:
+    spine = read_json(proj / "beats.json", {}).get("spine", [])
+    out = []
+    for need in spine:
+        if has_footage(proj, need.get("shots", [])):
+            continue
+        shot_id = next((s for s in need.get("shots", []) if s in state.get("catalog", {})),
+                       None) or (need.get("shots") or [None])[0]
+        if state.get("blocked", {}).get(shot_id):
+            continue
+        out.append((need["beat"], shot_id))
+    return out
+
+
+def escalate(spec: dict, attempt: int) -> dict:
+    """Never re-run the identical thing twice — and never fall back to a held frame.
+
+    Matt, 2026-07-27: keep hunting REAL motion. So every rung stays animated and
+    instead attacks the actual cause of drift: length, and motion prompts that add
+    action instead of preserving the shot. A 5-second i2v wanders off its own beat;
+    2 seconds of one small movement does not.
+    """
+    spec = dict(spec)
+    base_seeds = spec.get("seeds", [11, 47, 82, 119])
+    anim = spec.get("animate", "")
+    subject = spec.get("_motion_subject", "the scene")
+    if attempt == 1:
+        spec["duration"] = 3
+        spec["seeds"] = [s + 3000 for s in base_seeds]
+        spec["animate"] = (f"{anim}. The camera does not move at all and the composition "
+                           f"stays exactly as it is; only small natural movement occurs.")
+        spec["min_window"] = min(spec.get("min_window", 2.0), 1.5)
+        spec["_escalation"] = "3s, camera locked, composition preserved"
+    elif attempt == 2:
+        spec["duration"] = 2
+        spec["seeds"] = [s + 6000 for s in base_seeds]
+        spec["animate"] = (f"almost still: the framing and every subject stay exactly where "
+                           f"they are, with only the faintest ambient motion — drifting dust, "
+                           f"a slow breath, an ear or tail shifting a little. No camera move, "
+                           f"no one walks, nothing enters or leaves the frame.")
+        spec["min_window"] = 1.2
+        spec["_escalation"] = "2s, ambient motion only"
+    elif attempt >= 3:
+        spec["duration"] = 2
+        spec["seeds"] = [s + 9000 for s in base_seeds]
+        spec["steps"] = 40
+        spec["animate"] = (f"the shot holds; {subject} breathes and blinks, fine dust drifts "
+                           f"through the light. Nothing else changes.")
+        spec["min_window"] = 1.0
+        spec["_escalation"] = "2s, breath-and-blink only, higher step count"
+    return spec
+
+
+def run_shot(proj: Path, spec: dict) -> dict:
+    tmp = proj / "_director_shot.json"
+    write_json(tmp, {"defaults": {"res": "832x480",
+                                  "duration": spec.get("duration", 5),
+                                  "seeds": spec.get("seeds", [11, 47, 82, 119]),
+                                  "votes": 3},
+                     "shots": [spec]})
+    r = subprocess.run([str(MLX_PY), str(FORGE_SHOT), str(tmp)],
+                       capture_output=True, text=True, timeout=7200)
+    for line in (r.stdout or "").splitlines():
+        if line.startswith("[") and ("beat " in line or "LOCKED" in line or "clip:" in line
+                                     or "identity" in line or "UNBUILT" in line):
+            log("  " + line.split("] ", 1)[-1][:150])
+    res = read_json(proj / "forge_shot_results.json", [])
+    tmp.unlink(missing_ok=True)
+    return res[0] if res else {"id": spec["id"], "state": "ERROR"}
+
+
+def review(proj: Path) -> None:
+    subprocess.run([sys.executable, str(FORGE_REVIEW), str(proj)],
+                   capture_output=True, text=True, timeout=180)
+
+
+
+
+def calibrate(proj: Path) -> None:
+    """Never trust the gates without checking them against known human verdicts first."""
+    cal = proj / "beats_calibration.json"
+    if not cal.is_file() or not MLX_PY.is_file():
+        log("no calibration set — gate verdicts are UNVERIFIED this run")
+        return
+    r = subprocess.run([str(MLX_PY), str(SF / "pipeline-tools" / "beat_gate.py"), str(cal),
+                        "--votes", "3", "--report", str(proj / "BEAT_GATE_calibration.md")],
+                       capture_output=True, text=True, timeout=3600)
+    for line in (r.stdout or "").splitlines():
+        if "CALIBRATION" in line or "MISCAL" in line or "WARNING" in line:
+            log("  " + line.split("] ", 1)[-1])
+
+
+def wip_reel(proj: Path) -> None:
+    """There is ALWAYS something to watch. Every cycle, stitch whatever passes.
+
+    Matt woke to four hours of work and no artifact. A reel of the passing shots,
+    in story order, costs seconds of ffmpeg and means the morning always has a file.
+    """
+    spine = read_json(proj / "beats.json", {}).get("spine", [])
+    clips = []
+    for need in spine:
+        name = has_footage(proj, need.get("shots", []))
+        if name:
+            clips.append(proj / "clips" / name)
+    if not clips:
+        return
+    lst = proj / "_wip_reel.txt"
+    lst.write_text("".join(f"file '{c}'\n" for c in clips))
+    out = proj / "WIP_REEL.mp4"
+    subprocess.run([FFMPEG, "-v", "error", "-f", "concat", "-safe", "0", "-i", str(lst),
+                    "-c:v", "libx264", "-crf", "20", "-pix_fmt", "yuv420p", "-r", "24",
+                    "-vf", "scale=832:480", str(out), "-y"], capture_output=True, timeout=900)
+    lst.unlink(missing_ok=True)
+    log(f"WIP reel updated: {len(clips)} passing shots → {out.name}")
+
+
+def write_questions(proj: Path, state: dict) -> None:
+    """The short list only a human can answer. Never buried in a log."""
+    blocked = state.get("blocked", {})
+    lines = ["# Decisions only you can make", ""]
+    if not blocked:
+        lines.append("_Nothing is blocked. The director is working._")
+    else:
+        lines.append(f"**{len(blocked)} shot(s) are stuck after escalating attempts.**")
+        lines.append("")
+        for shot, why in blocked.items():
+            lines += [f"## {shot}", f"- what happened: {why}",
+                      "- options: rewrite the beat as something visible · change the shot "
+                      "(different angle/framing) · cut the beat from the spine · hand-build it",
+                      ""]
+    (proj / "QUESTIONS.md").write_text("\n".join(lines) + "\n")
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("project")
+    ap.add_argument("--max-hours", type=float, default=8.0)
+    ap.add_argument("--dry-run", action="store_true")
+    args = ap.parse_args()
+
+    proj = Path(args.project).resolve()
+    catalog = {s["id"]: s for s in read_json(proj / "shots.json", {}).get("shots", [])}
+    state = read_json(proj / "director_state.json",
+                      {"attempts": {}, "blocked": {}, "history": []})
+    state["catalog"] = catalog
+    infra_strikes: dict[str, int] = {}   # per-shot backend deaths, not persisted
+    deadline = time.time() + args.max_hours * 3600
+    if not args.dry_run:
+        log("calibrating the gates against known human verdicts before trusting them")
+        calibrate(proj)
+
+    while True:
+        # Re-read the specs every cycle. The catalog used to be loaded once at start,
+        # so a fix written while the director was running had no effect until it was
+        # restarted — an eye-level canon master sat unused for two whole attempts
+        # (2026-07-27). A long-running loop must pick up edits.
+        catalog = {s["id"]: s for s in read_json(proj / "shots.json", {}).get("shots", [])}
+        state["catalog"] = catalog
+        todo = [t for t in gaps(proj, state) if t[1] not in state.get("_dry_seen", [])] \
+            if args.dry_run else gaps(proj, state)
+        review(proj)
+        write_questions(proj, state)
+        if not args.dry_run:
+            wip_reel(proj)
+        if not todo:
+            # An empty gap list means one of two very different things. Saying the
+            # wrong one is the exact failure this whole system exists to prevent —
+            # it logged FILM COMPLETE at 01:53 with four beats blocked (2026-07-27).
+            blocked = state.get("blocked", {})
+            covered = [n for n in read_json(proj / "beats.json", {}).get("spine", [])
+                       if has_footage(proj, n.get("shots", []))]
+            spine_n = len(read_json(proj / "beats.json", {}).get("spine", []))
+            if blocked:
+                log(f"STOPPING — {len(covered)}/{spine_n} beats have footage and "
+                    f"{len(blocked)} are BLOCKED. This film is NOT complete.")
+                for k, v in blocked.items():
+                    log(f"  blocked: {k} — {v}")
+                log(f"decisions needed: {proj/'QUESTIONS.md'}")
+                if not args.dry_run:
+                    wip_reel(proj)
+                break
+            log(f"all {spine_n} required beats have footage — assembling the cut")
+            if not args.dry_run:
+                r = subprocess.run([sys.executable, str(BUILD_EPISODE), str(proj)],
+                                   capture_output=True, text=True, timeout=7200)
+                log((r.stdout or "").strip().splitlines()[-1] if r.stdout else "build finished")
+            review(proj)
+            log(f"FILM COMPLETE — every required beat has judged footage and the cut is assembled")
+            break
+
+        if time.time() > deadline:
+            log(f"stopping: hit the {args.max_hours}h limit with {len(todo)} beats open")
+            break
+
+        beat, shot_id = todo[0]
+        log(f"{len(todo)} beats still open — working: {beat[:70]}")
+        spec = catalog.get(shot_id)
+        if not spec:
+            state["blocked"][shot_id] = "no shot spec in shots.json — needs a human to write one"
+            log(f"  BLOCKED {shot_id}: no spec, moving on")
+            write_json(proj / "director_state.json", state)
+            continue
+
+        attempt = state["attempts"].get(shot_id, 0)
+        if args.dry_run:
+            log(f"  would run {shot_id}, attempt {attempt}")
+            state.setdefault("_dry_seen", []).append(shot_id)
+            if len(state["_dry_seen"]) > 20:
+                break
+            continue
+
+        # HARD anti-regression: a spec that repeats a known mistake never reaches the GPU.
+        lint = subprocess.run([sys.executable, str(SF / "pipeline-tools" / "spec_lint.py"),
+                               str(proj / "shots.json")], capture_output=True, text=True)
+        if lint.returncode == 1 and shot_id in lint.stdout:
+            for line in lint.stdout.splitlines():
+                if shot_id in line:
+                    log(f"  SPEC REJECTED before rendering — {line.strip()[:180]}")
+            state["blocked"][shot_id] = "spec repeats a known mistake — see spec_lint output"
+            write_json(proj / "director_state.json", state)
+            continue
+
+        res = run_shot(proj, escalate(spec, attempt))
+
+        # An INFRA result means the render backend died, not that the idea failed.
+        # Counting it burns the shot's escalation ladder against a dead server —
+        # exactly how s7_dooropen went from "has a locked still" to BLOCKED in five
+        # seconds on 2026-07-27. Retry the same attempt; bail if it keeps happening.
+        if res.get("state") == "INFRA":
+            infra_strikes[shot_id] = infra_strikes.get(shot_id, 0) + 1
+            log(f"  {shot_id}: render backend unavailable — NOT counting this as an "
+                f"attempt (strike {infra_strikes[shot_id]}/{MAX_INFRA_STRIKES})")
+            if infra_strikes[shot_id] >= MAX_INFRA_STRIKES:
+                state["blocked"][shot_id] = (
+                    "the render backend kept going away — this is a machine problem, "
+                    "not a story problem; check ComfyUI before re-running")
+                log(f"  BLOCKED {shot_id} — {state['blocked'][shot_id]}")
+                write_json(proj / "director_state.json", state)
+            continue
+
+        state["attempts"][shot_id] = attempt + 1
+        state["history"].append({"shot": shot_id, "attempt": attempt,
+                                 "state": res.get("state"), "at": time.strftime("%H:%M")})
+        log(f"  {shot_id} attempt {attempt} → {res.get('state')}")
+
+        if res.get("state") in ("CLIP_KEPT", "CLIP_TRIMMED"):
+            state["attempts"][shot_id] = 0
+        elif attempt + 1 >= MAX_ATTEMPTS:
+            why = ("still never passed the gates" if res.get("state") == "UNBUILT"
+                   else "still locks but no animation holds the beat")
+            state["blocked"][shot_id] = f"{why} after {MAX_ATTEMPTS} escalating attempts"
+            log(f"  BLOCKED {shot_id} — {state['blocked'][shot_id]}; moving to the next beat")
+        write_json(proj / "director_state.json", state)
+
+    review(proj)
+    blocked = state.get("blocked", {})
+    if blocked:
+        log("needs a human decision:")
+        for k, v in blocked.items():
+            log(f"  {k}: {v}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

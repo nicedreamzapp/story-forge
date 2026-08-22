@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Make Video</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root {
+  --bg: #0b0811;
+  --bg2: #150a1f;
+  --fg: #f5f0ff;
+  --muted: #8b83a1;
+  --accent: #ec4899;
+  --accent2: #a855f7;
+  --good: #22c55e;
+  --bad: #ef4444;
+  --card: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.08);
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background:
+    radial-gradient(1100px 900px at 15% 10%, rgba(236,72,153,0.18), transparent 60%),
+    radial-gradient(900px 800px at 85% 90%, rgba(168,85,247,0.16), transparent 60%),
+    var(--bg);
+  color: var(--fg);
+  font: 15px/1.5 -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+.app {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 28px 80px;
+}
+header {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 20px;
+}
+header .dot {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: grid; place-items: center;
+  font-size: 22px;
+  box-shadow: 0 8px 30px rgba(236,72,153,0.35);
+}
+header h1 {
+  font-size: 22px; font-weight: 600; margin: 0;
+  letter-spacing: -0.01em;
+}
+header .sub {
+  font-size: 13px; color: var(--muted);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 18px;
+}
+
+label.field { display: block; margin-bottom: 18px; }
+label.field .l {
+  display: flex; justify-content: space-between;
+  font-size: 13px; color: var(--muted); margin-bottom: 8px;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+
+textarea, input, select, button {
+  font: inherit; color: inherit;
+}
+textarea, input[type="text"] {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(0,0,0,0.35);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--fg);
+  resize: vertical;
+  min-height: 84px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+textarea:focus, input[type="text"]:focus {
+  border-color: var(--accent);
+}
+
+.row { display: flex; gap: 14px; }
+.row > * { flex: 1; }
+
+.slider-wrap {
+  display: flex; align-items: center; gap: 12px;
+}
+input[type="range"] {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(236,72,153,0.5);
+}
+.slider-val {
+  min-width: 66px; text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+  font-weight: 500;
+}
+
+.pillgroup { display: flex; gap: 8px; }
+.pill {
+  flex: 1;
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s;
+  font-size: 14px;
+  user-select: none;
+}
+.pill:hover { background: rgba(255,255,255,0.08); }
+.pill.active {
+  background: linear-gradient(135deg, rgba(236,72,153,0.25), rgba(168,85,247,0.25));
+  border-color: rgba(236,72,153,0.5);
+  color: var(--fg);
+}
+.pill .sub {
+  display: block; font-size: 11px; color: var(--muted); margin-top: 2px;
+}
+
+.estimate {
+  padding: 12px 16px;
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 10px;
+  font-size: 14px;
+  color: #86efac;
+  font-variant-numeric: tabular-nums;
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 18px;
+}
+
+.actions { display: flex; gap: 12px; }
+button.primary {
+  flex: 1;
+  padding: 14px 20px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: white;
+  font-size: 16px; font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(236,72,153,0.3);
+  transition: transform 0.08s, box-shadow 0.15s;
+}
+button.primary:hover { transform: translateY(-1px); box-shadow: 0 12px 30px rgba(236,72,153,0.4); }
+button.primary:active { transform: translateY(0); }
+button.primary:disabled {
+  opacity: 0.55; cursor: not-allowed;
+  transform: none; box-shadow: none;
+}
+button.ghost {
+  padding: 14px 20px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--fg);
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 14px;
+}
+button.ghost:hover { background: rgba(255,255,255,0.04); }
+button.danger {
+  background: rgba(239,68,68,0.15);
+  border: 1px solid rgba(239,68,68,0.4);
+  color: #fca5a5;
+}
+
+.progress {
+  display: none;
+}
+.progress.active { display: block; }
+.progress .bar {
+  height: 8px; border-radius: 4px;
+  background: rgba(255,255,255,0.06);
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.progress .fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  width: 0%;
+  transition: width 0.4s;
+  border-radius: 4px;
+}
+.progress .line {
+  display: flex; justify-content: space-between;
+  font-size: 13px; color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.result { display: none; }
+.result.active { display: block; }
+.result video {
+  width: 100%;
+  border-radius: 12px;
+  background: #000;
+  display: block;
+}
+
+.note {
+  font-size: 12px; color: var(--muted);
+  margin-top: 10px; text-align: center;
+}
+
+.error {
+  padding: 12px 14px; margin-bottom: 14px;
+  background: rgba(239,68,68,0.12);
+  border: 1px solid rgba(239,68,68,0.35);
+  color: #fca5a5;
+  border-radius: 10px;
+  font-size: 13px;
+  display: none;
+}
+.error.active { display: block; }
+
+.drop {
+  position: relative;
+  display: block;
+  border: 2px dashed rgba(236,72,153,0.35);
+  border-radius: 14px;
+  padding: 28px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.08s;
+  margin-bottom: 22px;
+  background: linear-gradient(135deg, rgba(236,72,153,0.05), rgba(168,85,247,0.05));
+}
+.drop:hover, .drop.dragging {
+  border-color: var(--accent);
+  background: linear-gradient(135deg, rgba(236,72,153,0.12), rgba(168,85,247,0.12));
+}
+.drop.dragging { transform: scale(1.01); }
+.drop input[type="file"] { display: none; }
+.drop .icon {
+  font-size: 30px;
+  margin-bottom: 6px;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(236,72,153,0.4));
+}
+.drop .title {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.drop .hint {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+}
+.drop.has-image {
+  padding: 14px;
+  text-align: left;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  border-style: solid;
+  border-color: rgba(34,197,94,0.4);
+  background: rgba(34,197,94,0.05);
+}
+.drop .preview {
+  width: 72px; height: 72px; border-radius: 10px;
+  background-size: cover; background-position: center;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+}
+.drop .meta { flex: 1; font-size: 13px; line-height: 1.4; }
+.drop .meta b { color: var(--fg); font-weight: 600; }
+.drop .meta .small { color: var(--muted); font-size: 12px; }
+.drop .clear {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.drop .clear:hover { color: var(--fg); background: rgba(255,255,255,0.1); }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="dot">🎬</div>
+    <div>
+      <h1>Make Video</h1>
+      <div class="sub">Local AI video generator · Wan 2.2 14B</div>
+    </div>
+  </header>
+
+  <div class="card">
+    <label class="drop" id="drop" for="imgfile">
+      <input type="file" id="imgfile" accept="image/png,image/jpeg,image/jpg,image/webp">
+      <span class="icon">🖼️</span>
+      <span class="title">Drop a photo here to animate it</span>
+      <span class="hint">image-to-video · or skip and generate from text only</span>
+    </label>
+
+    <label class="field">
+      <span class="l" id="promptlabel">What do you want to see?</span>
+      <textarea id="prompt" placeholder="a golden retriever running through a field of sunflowers at sunset, cinematic slow motion"></textarea>
+    </label>
+
+    <label class="field">
+      <span class="l"><span>Length</span><span id="durval" class="slider-val">5s</span></span>
+      <div class="slider-wrap">
+        <input type="range" id="duration" min="2" max="12" step="1" value="5">
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px" id="lenhint">Up to 6s in Standard. Big Video Mode unlocks 12s + 1280×720.</div>
+    </label>
+
+    <label class="field">
+      <span class="l">Big Video Mode <span class="sub" style="color:var(--muted);font-weight:400">(GGUF Q6_K · less RAM, longer clips)</span></span>
+      <div class="pillgroup" id="bigmode">
+        <div class="pill active" data-v="0">Standard<span class="sub">FP16 · ~82GB</span></div>
+        <div class="pill" data-v="1" id="bigmode_on">Big<span class="sub">GGUF · ~52GB</span></div>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px" id="bigmodehint"></div>
+    </label>
+
+    <label class="field">
+      <span class="l">Quality</span>
+      <div class="pillgroup" id="quality">
+        <div class="pill active" data-v="fast">Fast<span class="sub">4 steps</span></div>
+        <div class="pill" data-v="standard">Standard<span class="sub">10 steps</span></div>
+        <div class="pill" data-v="hq">HQ<span class="sub">20 steps</span></div>
+      </div>
+    </label>
+
+    <label class="field">
+      <span class="l">Resolution</span>
+      <div class="pillgroup" id="resolution">
+        <div class="pill active" data-v="720x480">720 × 480<span class="sub">fastest · ~50GB RAM</span></div>
+        <div class="pill" data-v="960x544">960 × 544<span class="sub">balanced · ~70GB RAM</span></div>
+        <div class="pill" data-v="1280x720">1280 × 720<span class="sub">HD · ~100GB RAM · tight</span></div>
+      </div>
+    </label>
+
+    <div class="estimate" id="estimate">
+      <span>Estimated render time</span>
+      <span id="etatext">—</span>
+    </div>
+
+    <div class="estimate" id="memest" style="background:rgba(234,179,8,0.08);border-color:rgba(234,179,8,0.2);color:#fde68a;display:none">
+      <span>⚠️ Memory warning</span>
+      <span id="memtext">—</span>
+    </div>
+
+    <div class="error" id="errbox"></div>
+
+    <div class="actions" id="actions">
+      <button class="primary" id="go">🎬 Make Video</button>
+    </div>
+
+    <div class="progress" id="progress">
+      <div class="bar"><div class="fill" id="fill"></div></div>
+      <div class="line">
+        <span id="progtxt">starting…</span>
+        <span id="remaining">—</span>
+      </div>
+      <div class="actions" style="margin-top:14px">
+        <button class="ghost danger" id="cancel">Cancel render</button>
+      </div>
+    </div>
+
+    <div class="result" id="result">
+      <video id="video" controls autoplay playsinline></video>
+      <div class="note">
+        <a href="#" id="reveal" style="color:var(--accent);text-decoration:none">📂 Show in Finder</a>
+        ·  <span id="mp4path"></span>
+      </div>
+      <div class="actions" style="margin-top:14px">
+        <button class="ghost" id="again">Make Another</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="padding:14px 18px;font-size:13px;color:var(--muted);">
+    <strong style="color:var(--fg)">Tip:</strong> close Chrome tabs / other heavy apps before rendering.
+    Wan 2.2 loads ~54GB into memory so your Mac will feel sluggish during render.
+    It'll snap back when done.
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const state = { duration: 5, quality: "fast", resolution: "720x480", big_mode: 0, jobId: null, polling: null, imageName: null };
+
+function fmtT(s) {
+  s = Math.round(s);
+  if (s < 60) return s + "s";
+  return Math.floor(s / 60) + "m " + (s % 60) + "s";
+}
+
+async function refreshEstimate() {
+  const r = await fetch(`/api/estimate?duration=${state.duration}&quality=${state.quality}&resolution=${state.resolution}&big_mode=${state.big_mode}`);
+  const j = await r.json();
+  // Disable Big mode pill when GGUF weights aren't downloaded yet
+  const bigOn = document.getElementById("bigmode_on");
+  const bigHint = document.getElementById("bigmodehint");
+  if (bigOn) {
+    if (j.big_mode_available) {
+      bigOn.classList.remove("disabled");
+      bigOn.style.opacity = "1";
+      bigOn.style.pointerEvents = "";
+      if (bigHint) bigHint.textContent = "";
+    } else {
+      bigOn.style.opacity = "0.45";
+      bigOn.style.pointerEvents = "none";
+      if (bigHint) bigHint.textContent = "GGUF weights still downloading — Big mode unlocks once ready.";
+    }
+  }
+  $("etatext").textContent = `≈ ${fmtT(j.total_s)}  ·  ${j.steps} steps  ·  ${j.length_frames} frames  ·  ~${j.mem_peak_gb}GB RAM`;
+
+  if (j.warning) {
+    $("memest").style.display = "flex";
+    $("memtext").textContent = j.warning;
+  } else {
+    $("memest").style.display = "none";
+  }
+
+  if (!j.feasible) {
+    $("go").disabled = true;
+    $("go").textContent = "⚠️ Reduce duration or resolution";
+    $("estimate").style.background = "rgba(239,68,68,0.08)";
+    $("estimate").style.borderColor = "rgba(239,68,68,0.3)";
+    $("estimate").style.color = "#fca5a5";
+  } else {
+    $("go").disabled = false;
+    $("go").textContent = "🎬 Make Video";
+    $("estimate").style.background = "rgba(34,197,94,0.08)";
+    $("estimate").style.borderColor = "rgba(34,197,94,0.2)";
+    $("estimate").style.color = "#86efac";
+  }
+}
+
+$("duration").oninput = e => {
+  state.duration = +e.target.value;
+  $("durval").textContent = state.duration + "s";
+  refreshEstimate();
+};
+document.querySelectorAll("#quality .pill").forEach(p => {
+  p.onclick = () => {
+    document.querySelectorAll("#quality .pill").forEach(x => x.classList.remove("active"));
+    p.classList.add("active");
+    state.quality = p.dataset.v;
+    refreshEstimate();
+  };
+});
+document.querySelectorAll("#resolution .pill").forEach(p => {
+  p.onclick = () => {
+    document.querySelectorAll("#resolution .pill").forEach(x => x.classList.remove("active"));
+    p.classList.add("active");
+    state.resolution = p.dataset.v;
+    refreshEstimate();
+  };
+});
+document.querySelectorAll("#bigmode .pill").forEach(p => {
+  p.onclick = () => {
+    if (p.style.pointerEvents === "none") return;  // disabled while GGUF still downloading
+    document.querySelectorAll("#bigmode .pill").forEach(x => x.classList.remove("active"));
+    p.classList.add("active");
+    state.big_mode = +p.dataset.v;
+    refreshEstimate();
+  };
+});
+
+async function uploadImage(file) {
+  if (!file || !file.type.startsWith("image/")) {
+    showError("That doesn't look like an image file.");
+    return;
+  }
+  $("errbox").classList.remove("active");
+  const fd = new FormData();
+  fd.append("image", file);
+  $("drophint") && ($("drophint").innerHTML = "<b>Uploading…</b>");
+  try {
+    const r = await fetch("/api/upload", { method: "POST", body: fd });
+    const j = await r.json();
+    if (!r.ok) throw new Error(j.error || "upload failed");
+    state.imageName = j.name;
+    const url = URL.createObjectURL(file);
+    const sizeKB = Math.round(file.size / 1024);
+    $("drop").classList.add("has-image");
+    $("drop").innerHTML = `
+      <input type="file" id="imgfile" accept="image/png,image/jpeg,image/jpg,image/webp">
+      <div class="preview" style="background-image:url('${url}')"></div>
+      <div class="meta">
+        <b>Animating this image</b><br>
+        <span class="small">${file.name} · ${sizeKB} KB</span>
+      </div>
+      <button type="button" class="clear" id="clearimg">Remove</button>
+    `;
+    bindDrop();
+    $("promptlabel").textContent = "How should it move?";
+    $("prompt").placeholder = "slow camera dolly forward, gentle wind in hair, cinematic";
+  } catch (e) {
+    showError(e.message);
+    resetDrop();
+  }
+}
+
+function resetDrop() {
+  state.imageName = null;
+  $("drop").classList.remove("has-image");
+  $("drop").innerHTML = `
+    <input type="file" id="imgfile" accept="image/png,image/jpeg,image/jpg,image/webp">
+    <span class="icon">🖼️</span>
+    <span class="title">Drop a photo here to animate it</span>
+    <span class="hint">image-to-video · or skip and generate from text only</span>
+  `;
+  bindDrop();
+  $("promptlabel").textContent = "What do you want to see?";
+  $("prompt").placeholder = "a golden retriever running through a field of sunflowers at sunset, cinematic slow motion";
+}
+
+function bindDrop() {
+  const drop = $("drop");
+  const input = $("imgfile");
+  const clear = $("clearimg");
+  if (input) input.onchange = e => { if (e.target.files[0]) uploadImage(e.target.files[0]); };
+  if (clear) {
+    clear.onclick = (e) => { e.preventDefault(); e.stopPropagation(); resetDrop(); };
+    clear.onmousedown = (e) => e.preventDefault();
+  }
+  drop.ondragover = e => { e.preventDefault(); drop.classList.add("dragging"); };
+  drop.ondragleave = () => drop.classList.remove("dragging");
+  drop.ondrop = e => {
+    e.preventDefault();
+    drop.classList.remove("dragging");
+    if (e.dataTransfer.files[0]) uploadImage(e.dataTransfer.files[0]);
+  };
+}
+bindDrop();
+
+$("go").onclick = async () => {
+  const prompt = $("prompt").value.trim();
+  if (!prompt) { $("prompt").focus(); return; }
+
+  $("errbox").classList.remove("active");
+  $("actions").style.display = "none";
+  $("progress").classList.add("active");
+  $("result").classList.remove("active");
+  $("fill").style.width = "2%";
+  $("progtxt").textContent = "warming up ComfyUI…";
+  $("remaining").textContent = "—";
+
+  try {
+    const r = await fetch("/api/render", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        prompt,
+        duration: state.duration,
+        quality: state.quality,
+        resolution: state.resolution,
+        big_mode: !!state.big_mode,
+        image_name: state.imageName,
+      }),
+    });
+    const j = await r.json();
+    if (!r.ok) throw new Error(j.error || "render failed");
+    state.jobId = j.job_id;
+    poll();
+  } catch (e) {
+    showError(e.message);
+    resetUI();
+  }
+};
+
+function poll() {
+  clearInterval(state.polling);
+  state.polling = setInterval(async () => {
+    if (!state.jobId) return;
+    const r = await fetch(`/api/status/${state.jobId}`);
+    const j = await r.json();
+    if (r.ok) {
+      const pct = typeof j.pct === "number" ? j.pct : 0;
+      $("fill").style.width = Math.max(pct, 2) + "%";
+      let stageText = j.stage || "…";
+      if (j.stage === "sampling") {
+        stageText = `sampling ${j.step}/${j.total_steps}`;
+      }
+      $("progtxt").textContent = `${stageText}  ·  ${fmtT(j.elapsed || 0)} elapsed`;
+      $("remaining").textContent = j.eta ? `${fmtT(j.eta)} left` : "…";
+      if (j.state === "done") {
+        clearInterval(state.polling);
+        $("fill").style.width = "100%";
+        $("progtxt").textContent = `done in ${fmtT(j.elapsed || 0)}`;
+        setTimeout(() => showResult(j.mp4_name, j.mp4), 300);
+      } else if (j.state === "error") {
+        clearInterval(state.polling);
+        showError(j.error || "render failed");
+        resetUI();
+      } else if (j.state === "cancelled") {
+        clearInterval(state.polling);
+        showError("cancelled");
+        resetUI();
+      }
+    }
+  }, 1500);
+}
+
+$("cancel").onclick = async () => {
+  if (!state.jobId) return;
+  await fetch(`/api/cancel/${state.jobId}`, { method: "POST" });
+  clearInterval(state.polling);
+  resetUI();
+};
+
+$("again").onclick = () => {
+  $("result").classList.remove("active");
+  $("actions").style.display = "flex";
+  $("prompt").focus();
+};
+
+function resetUI() {
+  $("progress").classList.remove("active");
+  $("actions").style.display = "flex";
+  state.jobId = null;
+}
+
+function showError(msg) {
+  $("errbox").textContent = "✗ " + msg;
+  $("errbox").classList.add("active");
+}
+
+function showResult(name, path) {
+  $("progress").classList.remove("active");
+  $("result").classList.add("active");
+  $("video").src = `/api/output/${name}?t=${Date.now()}`;
+  $("mp4path").textContent = path || name;
+  $("reveal").onclick = async (e) => {
+    e.preventDefault();
+    await fetch(`/api/reveal/${name}`, { method: "POST" });
+  };
+}
+
+refreshEstimate();
+</script>
+</body>
+</html>

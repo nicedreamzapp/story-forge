@@ -1,6 +1,12 @@
-# Story Forge — local AI cinema pipeline
+# Story Forge — local AI generative video system
 
-This directory is the home of **Story Forge**, a local-only generative cinema pipeline. When Claude Code starts here, this file auto-loads to bring you up to speed.
+This directory is the home of **Story Forge**, a robust 100%-local generative VIDEO system — for making video of ANY kind (narrated explainers, ambient pieces, promos, documentary cuts, sagas, cartoons) in any style, from one readable `.sf` script. It is NOT a cartoon studio. Cartoons are just the case it works decently for right now — talking characters are the hardest case, so they're the proving ground, not the limit. When Claude Code starts here, this file auto-loads to bring you up to speed.
+
+## How we build (the ethos — apply this to every decision)
+- **Build off what we KNOW works.** Perfect the proven win, then extend from it. Never restart from scratch and never chase an unproven path when a working one exists. Every new feature stands on a tested foundation.
+- **This is OUR environment, running OUR language (`.sf`).** We do not lean on other people's systems that are slow, old, and not tuned to our machines. The DSL exists so we control the whole stack end-to-end.
+- **Built FOR our hardware, taking full advantage at all times.** M5 Max 128GB does the heavy lifting, the mini runs in parallel, everything is Apple-Silicon / MPS-native and 100% local — no cloud inference, ever. We know exactly what we have and make the most of it.
+- **The result: faster, fully owned, hardware-matched.** That's the whole point — escape generic, sluggish, mismatched tooling and run a pipeline that fits this hardware perfectly.
 
 **Live products:**
 - 🌐 Public site: https://nicedreamzwholesale.com/software/story-forge/
@@ -17,6 +23,8 @@ This directory is the home of **Story Forge**, a local-only generative cinema pi
 - `bin/make-video` — Wan inference CLI (works)
 - `bin/make-ltx-video` — LTX-Video fast-mode CLI (BROKEN, see SESSION_HANDOFF "Open problems #1")
 - `bin/render-route` — auto-picks Wan vs LTX per scene
+- `bin/story-new` — scaffold a new project in one command (`story-new "Name" --style … --format …`)
+- `story_forge/packs.py` — style + format packs (the "any style, any format" layer); `/api/packs` serves them to the UI
 
 **The frozen rules (lessons learned, don't re-derive):**
 1. Piper flag is `--noise-w-scale` (NOT `--noise-scale-w` — wrong order gets read aloud)
@@ -31,7 +39,7 @@ This directory is the home of **Story Forge**, a local-only generative cinema pi
 
 ## DIALOGUE SCENE-BUILDING WORKFLOW — THE locked way (2026-05-25, Matt-approved)
 
-Build a talking cartoon ONE SCENE AT A TIME. Do NOT do all scenes at once — that is what kept breaking.
+Build a talking-character scene ONE SCENE AT A TIME. Do NOT do all scenes at once — that is what kept breaking. (Applies to any video with characters speaking on screen, not just cartoons.)
 
 Per scene:
 1. Pull a CLEAN full frame, locate each character's mouth precisely (extension crops are easy to get wrong — always verify against the real frame).
@@ -47,6 +55,15 @@ Voices (ChatterBox, ~/chatterbox-env, via bin/character_voice.py):
 - I cannot hear audio — voice identity must be confirmed by Matt once (or via a working speaker meter); the VoiceEncoder similarity meter is degenerate, don't trust it.
 
 Assembly: build DIALOGUE-ONLY scenes, concat, then lay ONE continuous song over the whole episode (music strings across all scenes; only mouth+voice need per-scene perfection). Intro = LTX-animated scenic title card + PIL text overlays (title + credits) faded in.
+
+## DEFAULT MOVIE-MAKING RULES — GIVENS on every video (Matt, 2026-05-25, never ask)
+These are standing direction. Apply them automatically to every film; do not make Matt re-explain.
+
+1. **Dynamic multi-shot coverage.** Every scene is a SEQUENCE of shots, never one static clip, so it reads as fully animated film — the viewer can't tell it came from stills. Cover each beat with varied framings + camera moves that keep returning to the same scene: wide establish → push-in close-up → side/parallax move → pull back wider → return to the action. Source the shots: (a) CROPS of the locked still into close/medium/wide framings (instant, perfectly consistent), (b) i2v CAMERA MOVES (push-in, pull-back, pan, parallax, gentle orbit), (c) FRESHLY GENERATED stills for true new angles (behind/side/above/low) when a beat needs one — on-model via per-character LoRAs so characters stay identical across angles. Assume MAXIMAL coverage by default.
+2. **Prompt the mouth motion to the dialogue.** On any shot with a line, write the i2v motion prompt to make that character's mouth move when we want the line ("Doug's mouth opens and closes as he speaks"). Direct mouth motion on purpose so it lands with the dialogue, then lay voice over the untouched result and density-match. NOT repainting mouths (still banned) — we prompt the motion, then voice it. i2v gives open/close jaw motion, not phonetic lip-sync; time it + density-match rather than expecting perfect sync.
+3. **Character consistency via LoRAs.** For true new angles / new poses, generate on-model using per-character LoRAs (Doug, Hank, etc.). Build the LoRA the first time a film needs real new angles; reuse forever after.
+
+Full detail: SCENE_BUILDING_METHOD.md.
 
 **Active services on this machine:**
 - Story Forge UI: `localhost:17600` · `localhost:17600/story` for narrative mode

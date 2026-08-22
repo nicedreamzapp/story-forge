@@ -1,0 +1,696 @@
+#!/usr/bin/env python3
+"""forge-shot — build a shot that PROVES it depicts its beat before it is kept.
+
+Run with the mlx interpreter so the vision judge loads ONCE for the whole queue:
+    ~/.local/mlx-server/bin/python bin/forge-shot projects/circus_train/shots.json
+    ... --only s2_call        # one shot
+    ... --dry-run             # show the plan, generate nothing
+
+Why this exists (2026-07-25). Every failure in this pipeline so far came from a
+picture nobody checked against the story: a bear idly poking a wall with a stick
+passed 91 automated checks and shipped, because the checks looked at mouths,
+faces, limbs and audio — never at what the shot DEPICTS. Locking a still was a
+human eyeball and a note in a ledger. So:
+
+    a still is not locked until the judge says it shows the beat,
+    a clip is not kept until the judge says it still shows the beat moving,
+    and anything that can't prove it gets re-rolled, trimmed, or dropped.
+
+Per shot, cheapest gate first:
+  1. STILL     mflux (+ character LoRAs) rolls seed after seed
+  2. BEAT      beat_gate votes on the still; forbidden elements hard-fail
+  3. IDENTITY  side-by-side against the locked character master (frozen rule 10)
+  4. LOCK      chmod 444 + ledger line — only now is it canon
+  5. ANIMATE   make-video --i2v, GGUF by default, memory-gated (frozen rule 11)
+  6. RE-BEAT   the clip is judged across its length, majority rules
+  7. TRIM      if only part of the clip holds the beat, keep the longest run that
+               does (>= min_window seconds) instead of shipping the whole thing
+
+Nothing here silently lowers a bar. Every roll, vote and trim is logged to
+forge_shot.log and the run's JSON result, and a shot that never passes is
+reported as UNBUILT rather than quietly used.
+
+Shot spec (shots.json):
+{
+ "defaults": {"res": "832x480", "duration": 5, "seeds": [11,22,33,44], "votes": 3},
+ "shots": [
+  {"id": "s2_call",
+   "prompt": "flux prompt for the still",
+   "beat": "what the shot must depict",
+   "must_not": ["a peaceful train", "..."],
+   "loras": ["~/.hankdoug_seeds/HANK_LORA.safetensors"], "lora_scales": [0.9],
+   "identity": {"master": "canon/hank_canon.png", "subject": "Hank the bear"},
+   "lock": "stills/LOCKED_s2_call.png",
+   "animate": "i2v motion prompt, never an impact or collision",
+   "clip": "clips/s2_call_final.mp4",
+   "min_window": 2.0}
+ ]
+}
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+SF = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(SF / "pipeline-tools"))
+sys.path.insert(0, str(SF))
+from beat_gate import check_shot, side_by_side, clip_duration, grab_frame  # noqa: E402
+from film_qc import vl_ask, _state, PE_URL, unload_vl  # noqa: E402
+
+# ffmpeg by ABSOLUTE path. Under launchd/keepalive the PATH has no /opt/homebrew/bin,
+# so a bare "ffmpeg" raises FileNotFoundError — which is how forge-director died at
+# 19:25 on 2026-07-27 and keepalive then logged "film complete — done" (2026-07-27:
+# the third time in one day a crash was reported as a finished film).
+import shutil as _shutil
+FFMPEG = _shutil.which("ffmpeg") or "/opt/homebrew/bin/ffmpeg"
+
+
+MFLUX = Path.home() / "mflux-venv/bin/mflux-generate-flux2"
+MFLUX_MODEL = "AITRADER/FLUX2-klein-9B-mlx-8bit"
+MAKE_VIDEO = SF / "bin" / "make-video"
+MEM_GATE = SF / "bin" / "mem-gate"
+SONGFORGE = os.environ.get("SONGFORGE_URL", "http://127.0.0.1:8767")
+
+# Scale honesty (2026-07-26): the master is a close portrait; a wide shot puts the
+# character 20 pixels tall. Comparing those literally makes every wide "drift" — two
+# otherwise-good arrival candidates were rejected for "a smaller head and lighter fur",
+# which is what distance and haze DO to a character. The question now allows for scale,
+# distance and lighting and asks about DESIGN, which is what canon actually governs.
+IDENT_Q = ("The LEFT image is the official locked design of {subject}. Find that character "
+           "in the RIGHT image, which may be a wider shot where they are smaller, further "
+           "away, differently lit or turned away. Ignore differences that are only scale, "
+           "haze, warmth of light or camera angle. But the DESIGN must match: same species "
+           "and body proportions, same head and ear shape and length, same coat colour, and "
+           "the same distinctive markings. A generic cartoon animal of roughly the right "
+           "colour is NOT the same character. Answer YES or NO first, then one sentence "
+           "naming the specific feature that matches or does not.")
+
+# Any legible lettering is an automatic reject. Diffusion paints prompt words onto
+# props: "SHUT doors" became doors with SHUT painted on them twice (2026-07-26), and
+# a train car earlier carried gibberish reading FLWAIS. Signage has to be added
+# deliberately, never left to the sampler.
+TEXT_Q = ("Look carefully at every surface in this image — signs, doors, crates, banners, "
+          "vehicle panels. Is there any readable or partly-readable writing, lettering, "
+          "numbers or logos anywhere in the frame? Answer YES or NO first, then say where.")
+
+LOG: list[str] = []
+
+
+def log(msg: str) -> None:
+    line = f"[{time.strftime('%H:%M:%S')}] {msg}"
+    print(line, flush=True)
+    LOG.append(line)
+
+
+def run(cmd, timeout=1800):
+    return subprocess.run([str(c) for c in cmd], capture_output=True, text=True, timeout=timeout)
+
+
+def songforge_busy() -> bool:
+    """Customer jobs outrank renders — always (CLAUDE.md)."""
+    import urllib.request
+    try:
+        with urllib.request.urlopen(f"{SONGFORGE}/api/status", timeout=6) as r:
+            return int(json.load(r).get("jobs_running", 0)) > 0
+    except Exception:
+        return False
+
+
+def wait_for_songforge() -> None:
+    while songforge_busy():
+        log("  Song Forge has a customer job running — holding the render")
+        time.sleep(60)
+
+
+COMFY_URL = os.environ.get("COMFY_URL", "http://127.0.0.1:8188")
+
+
+def comfy_up() -> bool:
+    import urllib.request
+    try:
+        urllib.request.urlopen(f"{COMFY_URL}/system_stats", timeout=5).read()
+        return True
+    except Exception:
+        return False
+
+
+def wait_for_comfy(timeout_s: float = 600) -> bool:
+    """Block until the render backend answers again. mem-gate and the dam both
+    restart ComfyUI on purpose; a shot must survive that, not be judged by it."""
+    deadline = time.time() + timeout_s
+    while time.time() < deadline:
+        if comfy_up():
+            log("  render backend is back")
+            return True
+        time.sleep(10)
+    return False
+
+
+def mem_gate(label: str) -> bool:
+    if not MEM_GATE.is_file():
+        return True
+    r = run([MEM_GATE, label], timeout=1200)
+    for line in (r.stdout + r.stderr).splitlines():
+        if line.strip():
+            log(f"  mem-gate: {line.strip()}")
+    return r.returncode == 0
+
+
+FLUX_I2I = Path.home() / "Scripts" / "flux_img2img.py"
+
+
+
+
+# ── cumulative memory: the pipeline gets better every film, not every retry ──
+# Project lessons are shot-specific ("s2_thecall came out as a happy train"). Those
+# die with the project. HOUSE lessons are the generalised version, kept in the repo
+# root and matched by keyword against any future shot's beat/prompt, so film #4
+# starts out knowing what films #1-3 paid to learn. Same idea for timings: every
+# step's duration is appended to METRICS.jsonl, so the bottleneck to streamline
+# next time is a measured number instead of a hunch.
+HOUSE_LESSONS = SF / "LESSONS.json"
+HOUSE_METRICS = SF / "METRICS.jsonl"
+STOP_WORDS = {"the", "a", "an", "and", "of", "in", "on", "into", "with", "his", "her",
+              "its", "is", "are", "that", "this", "it", "so", "to", "at", "from", "for",
+              "they", "them", "he", "she", "as", "by", "up", "out", "not", "no", "who",
+              "then", "than", "there", "their", "was", "were", "be", "been", "has", "have"}
+
+
+def _keywords(text: str, n: int = 4) -> list:
+    words = [w for w in re.findall(r"[a-z]{4,}", text.lower()) if w not in STOP_WORDS]
+    seen, out = set(), []
+    for w in words:
+        if w not in seen:
+            seen.add(w)
+            out.append(w)
+    return out[:n]
+
+
+def house_lessons(shot: dict) -> list:
+    """Lessons earned on OTHER shots/films that apply to this one."""
+    if not HOUSE_LESSONS.is_file():
+        return []
+    try:
+        book = json.loads(HOUSE_LESSONS.read_text())
+    except Exception:
+        return []
+    hay = f"{shot.get('beat','')} {shot.get('prompt','')}".lower()
+    hits = []
+    for entry in book.get("lessons", []):
+        when = [w.lower() for w in entry.get("when", [])]
+        if when and sum(1 for w in when if w in hay) >= max(1, len(when) // 2):
+            hits.append(entry["lesson"])
+    return hits
+
+
+def save_house_lesson(shot: dict, lesson: str) -> None:
+    lesson = " ".join(lesson.split())[:400]
+    if not lesson:
+        return
+    book = {"_note": "House rules earned the hard way. Matched by keyword against any "
+                     "future shot's beat/prompt so a lesson is paid for once, ever.",
+            "lessons": []}
+    if HOUSE_LESSONS.is_file():
+        try:
+            book = json.loads(HOUSE_LESSONS.read_text())
+        except Exception:
+            pass
+    for entry in book["lessons"]:
+        if entry["lesson"] == lesson:
+            return
+    book["lessons"].append({"when": _keywords(shot.get("beat", "")), "lesson": lesson,
+                            "learned_on": shot.get("id", "?")})
+    HOUSE_LESSONS.write_text(json.dumps(book, indent=1) + "\n")
+
+
+def metric(shot_id: str, step: str, seconds: float, verdict: str = "") -> None:
+    row = {"shot": shot_id, "step": step, "seconds": round(seconds, 1), "verdict": verdict}
+    with open(HOUSE_METRICS, "a") as f:
+        f.write(json.dumps(row) + "\n")
+
+
+LESSONS_FILE = "shot_lessons.json"
+
+
+def load_lessons(proj: Path) -> dict:
+    """Why this shot was rejected before — carried across runs, not just retries.
+
+    Retrying a seed with the same prompt is not learning: the same wrong picture
+    comes back with different noise. The judge already says WHY it failed ("the
+    train is travelling normally with no signs of distress"), so that sentence is
+    fed into the next attempt as a correction, and persisted so a future run
+    starts knowing it instead of paying for the mistake twice.
+    """
+    f = proj / LESSONS_FILE
+    if not f.is_file():
+        return {}
+    try:
+        return json.loads(f.read_text())
+    except Exception:
+        return {}
+
+
+def save_lesson(proj: Path, shot_id: str, reason: str) -> None:
+    reason = " ".join(reason.split())[:400]
+    if not reason:
+        return
+    data = load_lessons(proj)
+    prior = data.setdefault(shot_id, [])
+    if reason not in prior:
+        prior.append(reason)
+    (proj / LESSONS_FILE).write_text(json.dumps(data, indent=1) + "\n")
+
+
+def corrected_prompt(base: str, lessons: list) -> str:
+    # Cap hard. Injecting 40 accumulated complaints into a prompt is worse than
+    # injecting none — the description drowns. Two most recent, nothing else.
+    if not lessons:
+        return base
+    fixes = " ".join(f"({i + 1}) {t}" for i, t in enumerate(lessons[-2:]))
+    return (f"{base}. CORRECTIONS — earlier attempts at this exact shot were REJECTED "
+            f"for these reasons, do not repeat them: {fixes}")
+
+
+def gen_still(shot: dict, proj: Path, seed: int, out: Path) -> bool:
+    # Composite-then-weld path (frozen rule 10): a character who already has a
+    # locked master is never re-generated from scratch — a rough PIL composite of
+    # the master is welded at LOW denoise so colour and texture survive. High
+    # denoise drifts (porcelain Ellie, tusks, a king's crown instead of her cap).
+    if shot.get("init"):
+        init = proj / shot["init"]
+        dn = shot.get("denoise", 0.45)
+        r = run(["python3", FLUX_I2I, shot["prompt"], "--init", init,
+                 "--denoise", dn, "--seed", seed, "--out", out], timeout=1800)
+        if r.returncode or not out.is_file():
+            log(f"  img2img weld failed (seed {seed}, denoise {dn}): {(r.stderr or '')[-200:]}")
+            return False
+        return True
+
+    # Two dead ends, both paid for on 2026-07-26: "NO animals, NO people" in a POSITIVE
+    # prompt draws animals and people (nine seeds running), and FLUX.2 REJECTS
+    # --negative-prompt outright ("not supported for FLUX.2. Focus on describing what you
+    # want"). The only lever is positive description — "deserted", "abandoned", "not a
+    # soul in sight" — with the beat gate's must_not doing the actual rejecting.
+    guidance = str(shot.get("guidance", 1.0))
+    cmd = ["nice", "-n", "10", MFLUX, "-m", MFLUX_MODEL,
+           "--guidance", guidance, "--steps", str(shot.get("steps", 24)), "--seed", seed,
+           "--width", shot["_w"], "--height", shot["_h"],
+           "--output", out, "--prompt", shot["prompt"]]
+    if shot.get("negative"):
+        log("  ignoring `negative`: FLUX.2 does not accept a negative prompt — "
+            "describe what you DO want and let must_not reject the rest")
+    loras = [str(Path(p).expanduser()) for p in shot.get("loras", [])]
+    if loras:
+        cmd += ["--lora-paths", *loras,
+                "--lora-scales", *[str(s) for s in shot.get("lora_scales", [0.9] * len(loras))]]
+    r = run(cmd)
+    if r.returncode or not out.is_file():
+        log(f"  mflux failed (seed {seed}): {(r.stderr or '')[-200:]}")
+        return False
+    return True
+
+
+def identity_ok(shot: dict, proj: Path, img: Path) -> bool:
+    """Every named character in the shot, not just the first one.
+
+    s4_arrival passed identity while containing a dog that was not Doug, because the
+    shot only listed Hank. A cast list is checked in full or the check is theatre.
+    """
+    idents = shot.get("identity")
+    if not idents:
+        return True
+    if isinstance(idents, dict):
+        idents = [idents]
+    ok_all = True
+    for ident in idents:
+        master = proj / ident["master"]
+        if not master.is_file():
+            log(f"  identity: master missing ({master.name}) — UNCHECKED, not a pass")
+            return False
+        cmp_png = img.with_name(f"{img.stem}_vs_{master.stem}.png")
+        side_by_side(master, img, cmp_png)
+        ans = vl_ask(cmp_png, IDENT_Q.format(subject=ident["subject"])).strip().replace("\n", " ")
+        ok = bool(re.match(r"^\W*YES", ans, re.I))
+        log(f"  identity {ident['subject'].split()[0]} vs {master.name}: "
+            f"{'MATCH' if ok else 'DRIFT'} — {ans[:150]}")
+        cmp_png.unlink(missing_ok=True)
+        ok_all = ok_all and ok
+    return ok_all
+
+
+def text_free(shot: dict, proj: Path, img: Path) -> bool:
+    if shot.get("allow_text"):
+        return True
+    ans = vl_ask(img, TEXT_Q).strip().replace("\n", " ")
+    clean = not bool(re.match(r"^\W*YES", ans, re.I))
+    if not clean:
+        log(f"  TEXT IN FRAME — rejected: {ans[:150]}")
+    return clean
+
+
+def judge(spec: dict, proj: Path, votes: int) -> dict:
+    return check_shot(spec, proj, {}, votes=votes)
+
+
+def best_window(shot: dict, proj: Path, clip: Path, votes: int) -> tuple[float, float] | None:
+    """Longest stretch of the clip that actually holds the beat."""
+    dur = clip_duration(clip)
+    n = max(5, votes)
+    times = [round(dur * (i + 0.5) / n, 2) for i in range(n)]
+    marks = []
+    for t in times:
+        r = judge({"id": f"{shot['id']}@{t}", "clip": str(clip.relative_to(proj)),
+                   "t": t, "beat": shot["beat"], "must_not": shot.get("must_not", [])},
+                  proj, votes=1)
+        marks.append(r["verdict"] == "PASS")
+        log(f"  window probe t={t}s: {r['verdict']}")
+    best, cur = None, None
+    for i, ok in enumerate(marks):
+        if ok and cur is None:
+            cur = i
+        if (not ok or i == len(marks) - 1) and cur is not None:
+            end = i if ok else i - 1
+            span = (times[cur] - dur / (2 * n), times[end] + dur / (2 * n))
+            if best is None or (span[1] - span[0]) > (best[1] - best[0]):
+                best = span
+            cur = None
+    if best is None:
+        return None
+    lo, hi = max(0.0, best[0]), min(dur, best[1])
+    return (lo, hi) if hi - lo >= shot.get("min_window", 2.0) else None
+
+
+def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
+                stage: str = "all") -> dict:
+    # NOTE: a --dry-run pass used to overwrite forge_shot_results.json with DRY
+    # entries, erasing the record of real builds (2026-07-28). main() now skips the
+    # write when dry.
+    res = defaults.get("res", "832x480")
+    shot["_w"], shot["_h"] = res.lower().split("x")
+    seeds = shot.get("seeds", defaults.get("seeds", [11, 22, 33, 44]))
+    votes = shot.get("votes", defaults.get("votes", 3))
+    wip = proj / "stills" / "wip"
+    wip.mkdir(parents=True, exist_ok=True)
+    out = {"id": shot["id"], "state": "UNBUILT", "rolls": []}
+
+    log(f"=== {shot['id']} — beat: {shot['beat'][:90]}")
+    if dry:
+        out["state"] = "DRY"
+        return out
+
+    locked = None
+    # --stage animate: the still pass already locked and PROVED this frame. Re-rolling
+    # it would load mflux again, which is the exact model-thrash the two-pass split
+    # exists to avoid — and it would risk replacing a gate-passed still with a worse
+    # one. Use the lock as-is and go straight to Wan.
+    if stage == "animate":
+        lock_existing = proj / shot["lock"]
+        if not lock_existing.is_file():
+            log(f"  --stage animate: no locked still at {shot['lock']} — run the "
+                "stills pass first. Nothing built.")
+            out["state"] = "NO_LOCK"
+            return out
+        log(f"  --stage animate: using the locked still {lock_existing.name}")
+        locked = lock_existing
+
+    if locked is not None:
+        pass
+    elif shot.get("init") and not shot.get("prompt"):   # supplied plate, nothing to roll
+        cand = proj / shot["init"]
+        v = judge({"id": shot["id"], "image": str(cand.relative_to(proj)),
+                   "beat": shot["beat"], "must_not": shot.get("must_not", [])}, proj, votes)
+        log(f"  supplied still: {v['verdict']} ({v.get('votes')})")
+        out["rolls"].append({"src": shot["init"], "beat": v["verdict"], "votes": v.get("votes")})
+        if v["verdict"] == "PASS" and text_free(shot, proj, cand) and identity_ok(shot, proj, cand):
+            locked = cand
+    else:
+        base_prompt = shot["prompt"]
+        cycles = shot.get("retry_cycles", defaults.get("retry_cycles", 2))
+        lessons = load_lessons(proj).get(shot["id"], [])
+        inherited = house_lessons(shot)[:2]
+        for h in inherited:
+            if h not in lessons:
+                lessons.append(h)
+        if lessons:
+            log(f"  carrying {len(lessons)} lesson(s) "
+                f"({len(inherited)} inherited from earlier films) into this shot")
+        for cycle in range(cycles + 1):
+            if locked:
+                break
+            shot["prompt"] = corrected_prompt(base_prompt, lessons)
+            if cycle:
+                log(f"  retry cycle {cycle} with {len(lessons)} correction(s) applied")
+            for seed in [s + cycle * 1000 for s in seeds]:
+                wait_for_songforge()
+                if not mem_gate(f"{shot['id']} still seed {seed}"):
+                    log("  mem-gate refused — stopping this shot")
+                    break
+                cand = wip / f"{shot['id']}_{seed}.png"
+                t0 = time.time()
+                if not gen_still(shot, proj, seed, cand):
+                    # A dead backend is NOT a failed idea. On 2026-07-27 ComfyUI was
+                    # bounced mid-shot and s7_dooropen burned all four escalating
+                    # attempts in five seconds against "Connection refused", then was
+                    # reported BLOCKED as if the picture were the problem. Wait for the
+                    # backend and re-roll the same seed; give up as INFRA, never UNBUILT.
+                    if not comfy_up():
+                        log("  the render backend went away mid-shot — waiting for it "
+                            "(this does not count as a failed idea)")
+                        if not wait_for_comfy():
+                            out["state"] = "INFRA"
+                            log("  backend never came back — reporting INFRA, not UNBUILT")
+                            return out
+                        if not gen_still(shot, proj, seed, cand):
+                            continue
+                    else:
+                        continue
+                metric(shot["id"], "still", time.time() - t0)
+                v = judge({"id": f"{shot['id']}_{seed}", "image": str(cand.relative_to(proj)),
+                           "beat": shot["beat"], "must_not": shot.get("must_not", [])},
+                          proj, votes)
+                metric(shot["id"], "judge_still", time.time() - t0, v["verdict"])
+                log(f"  seed {seed}: beat {v['verdict']} ({v.get('votes')}) — {v['why'][:140]}")
+                roll = {"seed": seed, "cycle": cycle, "beat": v["verdict"], "votes": v.get("votes")}
+                if v["verdict"] == "PASS":
+                    # Two DIFFERENT failures used to collapse into one. A still rejected
+                    # for TEXT IN FRAME was recorded as identity "DRIFT" and taught the
+                    # shot "draw the character on-model and large enough" — a lesson with
+                    # nothing to do with the actual defect, saved permanently to
+                    # shot_lessons.json and carried into every later attempt AND later
+                    # films. A gate that writes the wrong lesson is worse than no gate:
+                    # it degrades the prompt on every retry (2026-07-27, s4_arrival).
+                    if not text_free(shot, proj, cand):
+                        roll["rejected"] = "TEXT_IN_FRAME"
+                        lesson = ("never write any word in CAPITAL LETTERS in the prompt — the "
+                                  "image model draws capitalised words as literal signage in the "
+                                  "picture; describe the state in lower case instead")
+                    elif not identity_ok(shot, proj, cand):
+                        roll["identity"] = "DRIFT"
+                        lesson = ("the character must be drawn ON-MODEL and large enough in frame "
+                                  "to read as the same character as the locked master")
+                    else:
+                        roll["identity"] = "MATCH"
+                        out["rolls"].append(roll)
+                        locked = cand
+                        break
+                else:
+                    lesson = v["why"].split("FAIL.")[-1].strip() or v["why"]
+                if lesson not in lessons:
+                    lessons.append(lesson)
+                save_lesson(proj, shot["id"], lesson)
+                out["rolls"].append(roll)
+                cand.unlink(missing_ok=True)   # rule 13: losers don't linger
+        shot["prompt"] = base_prompt
+
+    if locked is None:
+        log(f"  {shot['id']}: NO candidate passed — reported UNBUILT, nothing locked")
+        return out
+
+    lock_path = proj / shot["lock"]
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    if lock_path.exists():
+        lock_path.chmod(0o644)
+    lock_path.write_bytes(locked.read_bytes())
+    lock_path.chmod(0o444)
+    if locked.parent.name == "wip":
+        locked.unlink(missing_ok=True)
+    out["locked_still"] = str(lock_path.relative_to(proj))
+    out["state"] = "STILL_LOCKED"
+    log(f"  LOCKED {out['locked_still']}")
+
+    if not shot.get("animate"):
+        return out
+
+    if stage == "stills":
+        log("  --stage stills: locked, animation deferred to the animate pass")
+        out["state"] = "STILL_LOCKED"
+        return out
+
+    # Hand the machine over to the render CLEAN. When Picture Eyes is down the VL
+    # judge lives in THIS process (~18GB) and no outside evictor can reach it —
+    # carrying it through a Wan render is half of what swamped the box on
+    # 2026-07-27 (CLAUDE.md rule 16). It reloads on the next judge call.
+    if unload_vl():
+        log("  released the in-process VL judge before handing the GPU to Wan")
+    if not mem_gate(f"{shot['id']} i2v"):
+        log("  mem-gate refused the animation — still is locked, clip UNBUILT")
+        return out
+
+    # BOUNCE ComfyUI immediately before every i2v, unconditionally.
+    # Measured across two days: an animate succeeds when it starts on a freshly
+    # restarted ComfyUI and dies loading Wan when it starts on one that has been
+    # up a while. It used to get bounced by accident — mem-gate thought the box was
+    # critical (a stale swap-size reading) and restarted it as a side effect. Fixing
+    # that reading on 2026-07-28 removed the accidental bounce, and the very next
+    # animate died on upload. A 20s restart is cheap against a 15-minute render that
+    # cannot load its weights; the previous shot's clip is already written, so
+    # nothing in flight is lost. See CLAUDE.md rule 16.
+    try:
+        import core as _core
+        _core._restart_comfy()
+        log("  bounced ComfyUI so Wan loads into a clean process")
+    except Exception as e:
+        log(f"  could not bounce ComfyUI ({e}) — continuing, the animate may fail")
+    if not wait_for_comfy(180):
+        log("  ComfyUI did not come back — still is locked, clip UNBUILT")
+        return out
+    wait_for_songforge()
+    clip_tmp = proj / "clips" / f"{shot['id']}_raw.mp4"
+    clip_tmp.parent.mkdir(parents=True, exist_ok=True)
+    t_anim = time.time()
+    r = run([MAKE_VIDEO, "--i2v", lock_path, "--res", res,
+             "--duration", defaults.get("duration", 5), "--seed", seeds[0],
+             "--label", shot["id"], shot["animate"]], timeout=5400)
+    metric(shot["id"], "animate", time.time() - t_anim)
+    m = re.search(r"done in [\d.]+s → (\S+)", r.stdout or "")
+    if not m:
+        log(f"  animation failed: {(r.stdout or '')[-300:]} {(r.stderr or '')[-200:]}")
+        return out
+    clip_tmp.write_bytes(Path(m.group(1)).read_bytes())
+
+    # ...and hand it BACK clean. The release above is only half the trade: Wan has
+    # now parked its own weights in swap, and the next judge() call reloads ~18GB of
+    # VL on top of them. That is precisely where this shot died at 20:06 on
+    # 2026-07-27 — the animate completed, s6_interior_raw.mp4 was written, and the
+    # process was killed reloading the judge with 860MB of swap left. The clip was
+    # rendered and then thrown away for want of a reclaim that takes ten seconds.
+    # Symmetry rule: reclaim on BOTH sides of the render, never just before it.
+    if not mem_gate(f"{shot['id']} re-judge"):
+        log("  mem-gate refused the clip judge — raw clip kept, verdict UNCHECKED")
+        out.update(state="CLIP_UNJUDGED", raw=str(clip_tmp.relative_to(proj)))
+        return out
+
+    # A frame cannot show a CHANGE. If the still's beat describes motion ("she steps
+    # down", "the crack widens"), judging frames against it fails every probe — which
+    # is what happened to s6_interior and s7_dooropen on 2026-07-26. `clip_beat` is the
+    # state-based restatement used to judge the animation.
+    clip_beat = shot.get("clip_beat", shot["beat"])
+    v = judge({"id": shot["id"] + "_clip", "clip": str(clip_tmp.relative_to(proj)),
+               "beat": clip_beat, "must_not": shot.get("must_not", [])},
+              proj, max(5, votes))
+    log(f"  clip: beat {v['verdict']} ({v.get('votes')})")
+    final = proj / shot["clip"]
+    if v["verdict"] == "PASS":
+        subprocess.run([FFMPEG, "-v", "error", "-i", str(clip_tmp), "-c", "copy",
+                        str(final), "-y"], check=True)
+        out.update(state="CLIP_KEPT", clip=str(final.relative_to(proj)), clip_votes=v.get("votes"))
+    else:
+        win = best_window({**shot, "beat": clip_beat}, proj, clip_tmp, votes)
+        if win:
+            lo, hi = win
+            subprocess.run([FFMPEG, "-v", "error", "-ss", str(lo), "-i", str(clip_tmp),
+                            "-t", str(round(hi - lo, 2)), "-c:v", "libx264", "-crf", "18",
+                            "-pix_fmt", "yuv420p", str(final), "-y"], check=True)
+            log(f"  kept only the stretch that holds the beat: {lo}s–{hi}s")
+            out.update(state="CLIP_TRIMMED", clip=str(final.relative_to(proj)),
+                       window=[lo, hi])
+        else:
+            failed_dir = proj / "clips" / "_failed"
+            failed_dir.mkdir(parents=True, exist_ok=True)
+            keep = failed_dir / f"{shot['id']}_failed.mp4"
+            keep.write_bytes(clip_tmp.read_bytes())
+            save_lesson(proj, shot["id"] + "_animation",
+                        v["why"].split("FAIL.")[-1].strip() or v["why"])
+            log(f"  {shot['id']}: animation never holds the beat — clip NOT used; kept at "
+                f"{keep.relative_to(proj)} so the failure can be diagnosed, still stays locked")
+            out["state"] = "CLIP_FAILED"
+    clip_tmp.unlink(missing_ok=True)
+    return out
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("shots")
+    # ACCUMULATE. This was a plain overwrite, so `--only a --only b --only c` silently
+    # kept only the LAST one and the queue reported "DONE — 1/1 shots" as if that had
+    # been the whole job. Two four-shot sweeps on 2026-07-28 each built exactly one
+    # shot and announced success; the other three were never attempted and nothing
+    # said so. A flag that quietly discards work is worse than one that errors.
+    ap.add_argument("--only", action="append", default=None,
+                    help="shot id to build; repeatable")
+    ap.add_argument("--dry-run", action="store_true")
+    # BATCH BY MODEL, NOT BY SHOT (RENDER_SPEED_RESEARCH.md Tier 1 #1, written
+    # 2026-07-26 and ignored until it bit). One shot at a time means mflux (~10GB)
+    # and Wan (~2x12GB GGUF) alternate on every shot, and each switch drives the box
+    # into swap. On 2026-07-28 the queue died loading mflux for s3_rollout seconds
+    # after finishing a 19-minute Wan render for s1_coldopen.
+    #   --stage stills   lock every still first (mflux loads ONCE)
+    #   --stage animate  then animate every locked still (Wan loads ONCE)
+    ap.add_argument("--stage", choices=["all", "stills", "animate"], default="all",
+                    help="run only the still pass or only the animate pass")
+    args = ap.parse_args()
+
+    spec_path = Path(args.shots).resolve()
+    spec = json.loads(spec_path.read_text())
+    proj = spec_path.parent
+    shots = spec["shots"]
+    if args.only:
+        wanted = set(args.only)
+        shots = [s for s in shots if s["id"] in wanted]
+        missing = wanted - {s["id"] for s in shots}
+        if missing:
+            log(f"  --only named {len(missing)} shot(s) not in this file: "
+                f"{', '.join(sorted(missing))}")
+        if not shots:
+            return 2
+
+    try:
+        import requests
+        _state["use_server"] = requests.get(f"{PE_URL}/status", timeout=3).json().get("loaded", False)
+    except Exception:
+        _state["use_server"] = False
+    log(f"judge via {'server :8181' if _state['use_server'] else 'in-process VL'}")
+
+    results = [build_shot(s, proj, spec.get("defaults", {}), args.dry_run, args.stage)
+               for s in shots]
+
+    if not args.dry_run:
+        (proj / "forge_shot_results.json").write_text(json.dumps(results, indent=1) + "\n")
+    else:
+        log("  --dry-run: results file left untouched")
+    with open(proj / "forge_shot.log", "a") as f:
+        f.write("\n".join(LOG) + "\n")
+    # Never leave an unattended run with nothing to read in the morning (2026-07-26).
+    try:
+        subprocess.run([sys.executable, str(SF / "bin" / "forge-review"), str(proj)],
+                       capture_output=True, text=True, timeout=180)
+        log(f"status report written → {proj/'STATUS.md'}")
+    except Exception as e:                                            # noqa: BLE001
+        log(f"status report failed: {type(e).__name__}")
+
+    kept = [r for r in results if r["state"] in ("CLIP_KEPT", "CLIP_TRIMMED", "STILL_LOCKED")]
+    log(f"DONE — {len(kept)}/{len(results)} shots produced usable, judged assets")
+    for r in results:
+        log(f"  {r['id']}: {r['state']}")
+    return 0 if len(kept) == len(results) else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

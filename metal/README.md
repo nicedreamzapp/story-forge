@@ -8,6 +8,14 @@ Initial benchmarks claimed 12.32× speedup with PSNR 137 dB. That was wrong — 
 
 This directory is preserved as a public record of the attempt so the next person trying the same approach doesn't repeat the mistakes.
 
+## ⚠️ CRITICAL: the monkeypatch is NOT safe even when "disabled" (2026-05-24)
+
+`wan_metal_patch.install_wan_metal_attention()` replaces `WanSelfAttention.forward` wholesale. When `WAN_METAL_FUSED=0` it takes a "fallback" branch that calls plain `F.scaled_dot_product_attention` — **bypassing ComfyUI's native sub-quadratic / split attention dispatch.** At Wan's real i2v sequence length (S≈28350 for 832×480×81f) MPS SDPA materializes the full S×S×H score matrix and tries to allocate a **128 GB** MTLBuffer → `failed assertion ... Failed to allocate private MTLBuffer for size 128595600000` → `Abort trap: 6`. ComfyUI dies mid-render.
+
+The flag only chooses fused-vs-fallback. **Both branches are broken**: fused = wrong output, fallback = OOM-abort. So merely setting `WAN_METAL_FUSED=0` does NOT make the patch safe — the patch must not be loaded at all.
+
+**Production rule:** the ComfyUI custom-node shim must stay disabled. The live node lives at `~/AI/ComfyUI/custom_nodes/wan_metal_fused/` — it is renamed to `wan_metal_fused.disabled` so ComfyUI never imports it. With the node gone, ComfyUI logs `Using sub quadratic optimization for attention` and Wan renders fit in ~64 GB peak. Do NOT re-enable this node. The native bear-sister renders (pre-patch) prove native attention handles these shapes fine.
+
 ## What's in here
 
 - `flash_attn_mps.py` — the kernel (fixed). MSL tiled fp16 flash-attention with online softmax. ~144 lines of MSL.

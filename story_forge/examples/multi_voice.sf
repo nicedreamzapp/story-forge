@@ -1,0 +1,34 @@
+# multi_voice.sf — two characters, two voices, routed per line.
+# Surfaces MULTI-VOICE: declare more than one `voice` preset, then pick which
+# one speaks each scene by naming it on the `narrate` block.
+
+film "Two Voices" slug=multi_voice target=m5 scene_dur=5.0
+
+# Two cast voices. Doug = Matt's cloned voice; Hank = the built-in male (seed 44).
+voice doug: chatterbox/doug
+voice hank: chatterbox/hank
+
+music score: ace/warm-cinematic-underscore vol=0.28
+
+@transition xfade dur=0.5
+@mix duck voice -> music threshold=-22 ratio=4
+
+scene doug_speaks:
+    still flux:
+        prompt: "a friendly bloodhound sitting on a porch at golden hour"
+    motion ltx:
+        prompt: "gentle breeze ruffles the dog's ears, warm light, soft drift"
+        duration: 5.0
+    narrate doug:
+        line: "I could smell trouble from a mile off. Today it smelled like an old friend."
+    music score vol=0.28
+
+scene hank_answers:
+    still flux:
+        prompt: "a big gentle bear standing in tall grass, warm afternoon light"
+    motion ltx:
+        prompt: "the bear breathes slowly, grass sways, dust motes drift in the light"
+        duration: 5.0
+    narrate hank:
+        line: "Took you long enough to find me, Doug. I was starting to think you'd lost your nose."
+    music score vol=0.30

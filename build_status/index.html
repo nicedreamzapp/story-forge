@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <title>Story Forge — Speedup Build Status</title>
-<meta http-equiv="refresh" content="20">
+<meta http-equiv="refresh" content="15">
 <style>
   :root {
     --bg: #0a0e1a;
@@ -100,6 +100,18 @@
 <h1>Story Forge — Speedup Build</h1>
 <p class="sub" id="sub">loading…</p>
 
+<div class="card" id="live-card" style="margin-bottom:20px;background:#0d1424;border-color:#1f2c46;">
+  <h2 style="display:flex;align-items:center;gap:8px;">
+    <span id="pulse-dot" style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#34d399;box-shadow:0 0 8px #34d399;animation:pulse 2s infinite"></span>
+    Live Ticker
+    <span id="live-time" style="margin-left:auto;color:var(--muted);font-size:11px;text-transform:none"></span>
+  </h2>
+  <style>@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}</style>
+  <div id="live-summary" style="font-size:13px;color:var(--text);margin-bottom:12px"></div>
+  <div id="live-procs" style="margin-bottom:12px"></div>
+  <div id="live-tails"></div>
+</div>
+
 <div class="grid">
   <div class="card vision">
     <h2>Final Vision</h2>
@@ -156,6 +168,37 @@
 <p class="updated" id="updated">—</p>
 
 <script>
+// load live ticker data (refreshes every 30s server-side, page polls every 15s)
+fetch("live.json?_=" + Date.now())
+  .then(r => r.json())
+  .then(live => {
+    document.getElementById("live-time").textContent = "updated " + live.ticker_updated_at;
+    const m5 = live.m5_comfy, mini = live.mini_comfy;
+    document.getElementById("live-summary").innerHTML =
+      `<span style="color:${m5.alive ? 'var(--done)' : 'var(--error)'}">M5 ComfyUI: ${m5.alive ? 'alive' : 'down'}</span>` +
+      `&nbsp;·&nbsp;running: <b>${m5.running}</b>, pending: ${m5.pending}` +
+      `&nbsp;&nbsp;|&nbsp;&nbsp;` +
+      `<span style="color:${mini.alive ? 'var(--done)' : 'var(--error)'}">mini ComfyUI: ${mini.alive ? 'alive' : 'down'}</span>` +
+      `&nbsp;·&nbsp;running: <b>${mini.running}</b>, pending: ${mini.pending}`;
+    const procs = live.active_python_procs || [];
+    document.getElementById("live-procs").innerHTML = procs.length === 0
+      ? `<div style="color:var(--muted);font-size:12px">no active build python procs</div>`
+      : `<div class="label" style="color:var(--inprog);font-size:11px;text-transform:uppercase;margin-bottom:4px">Active processes</div>` +
+        procs.map(p => `<div style="font-family:Menlo,monospace;font-size:11px;padding:3px 0;color:var(--text)">[${p.elapsed}] ${p.cmd}</div>`).join("");
+    const tails = live.log_tails || {};
+    let tailHtml = `<div class="label" style="color:var(--accent);font-size:11px;text-transform:uppercase;margin-bottom:4px">Recent log lines</div>`;
+    for (const [src, lines] of Object.entries(tails)) {
+      if (!lines || lines.length === 0) continue;
+      tailHtml += `<div style="margin-bottom:6px"><div style="color:var(--muted);font-size:10px;text-transform:uppercase">${src}</div>`;
+      tailHtml += lines.slice(-6).map(l => `<div style="font-family:Menlo,monospace;font-size:10px;color:var(--text);opacity:.85;padding-left:8px;border-left:2px solid var(--border)">${l.replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]))}</div>`).join("");
+      tailHtml += `</div>`;
+    }
+    document.getElementById("live-tails").innerHTML = tailHtml;
+  })
+  .catch(e => {
+    document.getElementById("live-summary").textContent = "ticker not running yet (start ticker.py)";
+  });
+
 fetch("status.json?_=" + Date.now())
   .then(r => r.json())
   .then(data => {

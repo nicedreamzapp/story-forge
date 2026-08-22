@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+"""mem-gate — shell-callable memory gate for render chains.
+
+Usage:  mem-gate "label"     # blocks until the machine can afford a render,
+                             # exits 1 (with a clear message) if it can't.
+Wire into any queue script:   mem-gate "s6 final" || exit 1
+Same gate core.run_workflow() applies automatically; this is for ffmpeg/mlx/
+training steps that don't go through ComfyUI.
+"""
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from core import memory_gate  # noqa
+
+try:
+    memory_gate(sys.argv[1] if len(sys.argv) > 1 else "shell-step")
+except RuntimeError as e:
+    sys.exit(f"[mem-gate] {e}")

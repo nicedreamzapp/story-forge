@@ -1,0 +1,6 @@
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/clips/s1_final.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/clips/s2_call_final.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/clips/s2_final.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/clips/s4_arrival_final.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/clips/s6_final_v2.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/clips/s6_interior_final.mp4'

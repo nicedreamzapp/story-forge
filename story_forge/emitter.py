@@ -7,6 +7,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+from . import packs
+
 
 SCHEMA_VERSION = "0.1"
 
@@ -49,6 +51,12 @@ def emit_storyplan(resolved: dict[str, Any]) -> dict[str, Any]:
             "attrs": s.get("attrs", {}),
             "extras": s.get("extras", {}),
         }
+
+    # Expand style/format packs into concrete film_meta fields. The .sf always
+    # wins on scene duration, so only let a format default fill it in when the
+    # script didn't set scene_dur itself.
+    packs.apply_packs(plan["film_meta"],
+                      explicit_scene_dur=("scene_dur" in attrs))
 
     return plan
 

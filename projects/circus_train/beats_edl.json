@@ -1,0 +1,172 @@
+{
+ "_note": "Intended beat for every shot in Episode 1. Run: beat_gate.py beats.json",
+ "shots": [
+  {
+   "id": "s1_coldopen",
+   "clip": "clips/s1_final.mp4",
+   "t": 2.0,
+   "beat": "a bear and a dog sit relaxed by a green creek with fishing rods, calm and unhurried"
+  },
+  {
+   "id": "s2_thecall",
+   "clip": "clips/s2_call_final.mp4",
+   "t": 2.0,
+   "beat": "a circus train in open country with thick black smoke billowing from its engine, clearly in trouble",
+   "must_not": [
+    "a calm scenic postcard with nothing wrong",
+    "no smoke at all",
+    "thin white wispy steam instead of thick black smoke",
+    "a bridge over water"
+   ]
+  },
+  {
+   "id": "s3_rollout",
+   "clip": "clips/s2_final.mp4",
+   "t": 2.0,
+   "beat": "a horse-drawn wooden wagon moving fast along a dirt road with dust kicking up behind it"
+  },
+  {
+   "id": "s4_arrival",
+   "clip": "clips/s4_arrival_final.mp4",
+   "t": 2.0,
+   "beat": "a bear and a dog standing together in the foreground in front of a smoking broken-down train, in harsh sunlight with dust and heat haze",
+   "must_not": [
+    "a cheerful brightly painted passenger train that appears to be running fine",
+    "animals leaning comfortably out of windows",
+    "no train visible at all"
+   ],
+   "set": "circus boxcar",
+   "_motion_subject": "the bear and the dog"
+  },
+  {
+   "id": "ellie_eye",
+   "clip": "clips/ellie_eye_final.mp4",
+   "t": 2.0,
+   "beat": "an extreme close-up of one large frightened amber elephant eye looking out through a narrow vertical gap between dark wooden boxcar planks",
+   "must_not": [
+    "an empty gap with no animal visible",
+    "a human eye",
+    "the eye of a bear or a dog"
+   ],
+   "set": "boxcar door detail",
+   "identity": {
+    "master": "canon/ellie_eye_canon.png",
+    "subject": "Ellie's eye and brow in close-up"
+   }
+  },
+  {
+   "id": "s6_heave_animated",
+   "clip": "clips/s6_final_v2.mp4",
+   "beat": "a big bear leaning his shoulder and both paws into a boxcar door, body angled low, hind feet braced in the gravel, nothing in his paws",
+   "must_not": [
+    "holding or using a stick, tool, rod or any object",
+    "standing upright and relaxed",
+    "sawdust or debris spraying out of the wall",
+    "poking, prying or fiddling at the wood"
+   ],
+   "set": "boxcar door detail"
+  },
+  {
+   "id": "s6_interior",
+   "clip": "clips/s6_interior_final.mp4",
+   "t": 2.0,
+   "beat": "the dark interior of a closed boxcar, dust falling in a thin blade of light coming through the door seam",
+   "must_not": [
+    "a bright cheerful daylit exterior",
+    "the impact itself shown on screen",
+    "splinters or debris spraying"
+   ]
+  },
+  {
+   "id": "s7_dooropen",
+   "clip": "clips/s7_dooropen_final.mp4",
+   "t": 2.5,
+   "beat": "a wide open boxcar door with a young gray elephant wearing a small red circus cap standing free in the opening in daylight",
+   "must_not": [
+    "a closed or jammed door",
+    "tusks",
+    "a spiky metal crown",
+    "no animal in the doorway"
+   ],
+   "set": "circus boxcar",
+   "identity": {
+    "master": "canon/ellie_canon.png",
+    "subject": "Ellie the young circus elephant"
+   }
+  },
+  {
+   "id": "s8_goodbye",
+   "clip": "clips/s8_goodbye_final.mp4",
+   "t": 2.5,
+   "beat": "a bear and a dog together saying goodbye in warm light with the repaired circus train alive and steaming behind them",
+   "must_not": [
+    "standing in a forest or woods with no train anywhere",
+    "a broken-down or smoking wrecked train",
+    "the heroes in distress"
+   ]
+  }
+ ],
+ "spine": [
+  {
+   "beat": "a calm ordinary day is established so the interruption costs something",
+   "shots": [
+    "s1_coldopen"
+   ]
+  },
+  {
+   "beat": "the heroes SEE that something is wrong \u2014 the call to adventure",
+   "shots": [
+    "s2_thecall"
+   ]
+  },
+  {
+   "beat": "they commit and roll out",
+   "shots": [
+    "s3_rollout"
+   ]
+  },
+  {
+   "beat": "they arrive at the broken-down train and the trouble is visible",
+   "shots": [
+    "s4_arrival"
+   ]
+  },
+  {
+   "beat": "we SEE who is trapped \u2014 the audience gets someone to root for",
+   "shots": [
+    "ellie_eye",
+    "new_ellie_eye"
+   ]
+  },
+  {
+   "beat": "the effort: the door is forced with real physical weight",
+   "shots": [
+    "s6_heave_animated",
+    "s6_heave"
+   ]
+  },
+  {
+   "beat": "the bang is felt from inside the dark car",
+   "shots": [
+    "s6_interior"
+   ]
+  },
+  {
+   "beat": "THE PAYOFF: the door opens and the trapped animal is free on screen",
+   "shots": [
+    "s7_dooropen",
+    "new_s7_dooropen"
+   ]
+  },
+  {
+   "beat": "the goodbye, with the rescued train alive behind them",
+   "shots": [
+    "s8_goodbye"
+   ]
+  }
+ ],
+ "set_masters": {
+  "circus boxcar": "canon/boxcar_canon.png",
+  "boxcar door detail": "canon/boxcar_door_detail.png"
+ }
+}

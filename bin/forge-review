@@ -1,0 +1,158 @@
+#!/usr/bin/env python3
+"""forge-review — the report that should have been waiting this morning.
+
+Matt woke up to a machine that had run four hours and left nothing behind but
+stills: no summary, no reason, no idea how far the film had got. An unattended run
+that produces no artifact and no explanation is indistinguishable from a run that
+did nothing. So every queue now ends with this, and it is also the daily standup:
+what ran, what it cost, what failed and why, what the film still needs, and what
+changed in the pipeline since yesterday.
+
+    bin/forge-review projects/circus_train            # writes STATUS.md, prints it
+"""
+from __future__ import annotations
+
+import collections
+import json
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+SF = Path(__file__).resolve().parent.parent
+
+
+def read_json(p, default):
+    try:
+        return json.loads(Path(p).read_text())
+    except Exception:
+        return default
+
+
+def metrics_rollup(since_hours=24):
+    m = SF / "METRICS.jsonl"
+    if not m.is_file():
+        return {}, 0.0
+    agg = collections.defaultdict(lambda: [0, 0.0, 0])
+    for line in m.read_text().splitlines():
+        if not line.strip():
+            continue
+        try:
+            r = json.loads(line)
+        except Exception:
+            continue
+        a = agg[r["step"]]
+        a[0] += 1
+        a[1] += float(r.get("seconds", 0))
+        if r.get("verdict") == "PASS":
+            a[2] += 1
+    total = sum(v[1] for v in agg.values())
+    return agg, total
+
+
+def declared_clip(proj: Path, sid: str):
+    """Read the clip path a shot DECLARES — ids and filenames differ (s1_coldopen →
+    s1_final.mp4) and guessing reported two finished scenes as missing."""
+    for spec_file in ("beats.json", "shots.json"):
+        for sh in read_json(proj / spec_file, {}).get("shots", []):
+            if sh.get("id") == sid and sh.get("clip"):
+                return proj / sh["clip"]
+    return None
+
+
+def spine_coverage(proj: Path):
+    beats = read_json(proj / "beats.json", {})
+    spine = beats.get("spine", [])
+    rows = []
+    for need in spine:
+        clip = None
+        for sid in need.get("shots", []):
+            d = declared_clip(proj, sid)
+            if d and d.is_file() and d.stat().st_size > 50_000:
+                clip = d.name
+                break
+            for cand in proj.glob(f"clips/{sid}*.mp4"):
+                if not any(x in cand.name for x in ("_failed", "_raw")):
+                    clip = cand.name
+                    break
+            if clip:
+                break
+        still = any((proj / "stills").glob(f"LOCKED_*{s.split('_')[0]}*.png")
+                    for s in need.get("shots", []))
+        rows.append((need["beat"], clip, still))
+    return rows
+
+
+def git_since(hours=24):
+    r = subprocess.run(["git", "-C", str(SF), "log", "--oneline",
+                        f"--since={hours} hours ago"], capture_output=True, text=True)
+    return [l for l in r.stdout.splitlines() if l.strip()]
+
+
+def main():
+    proj = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
+    res = read_json(proj / "forge_shot_results.json", [])
+    lessons_proj = read_json(proj / "shot_lessons.json", {})
+    house = read_json(SF / "LESSONS.json", {"lessons": []})
+    agg, total_s = metrics_rollup()
+
+    L = [f"# Story Forge status — {proj.name}", "",
+         f"_generated {time.strftime('%Y-%m-%d %H:%M')}_", ""]
+
+    L += ["## Last queue", ""]
+    if res:
+        good = [r for r in res if r.get("state") in ("CLIP_KEPT", "CLIP_TRIMMED")]
+        L.append(f"**{len(good)} of {len(res)} shots produced a usable judged clip.**")
+        L += ["", "| shot | outcome | detail |", "|---|---|---|"]
+        for r in res:
+            detail = r.get("clip_votes") or (f"window {r['window']}" if r.get("window") else "")
+            if r.get("state") == "UNBUILT":
+                detail = f"{len(r.get('rolls', []))} candidates, none passed"
+            L.append(f"| {r['id']} | {r.get('state')} | {detail} |")
+    else:
+        L.append("_no queue results on file_")
+
+    L += ["", "## What the film still needs", ""]
+    rows = spine_coverage(proj)
+    if rows:
+        have = sum(1 for _, c, _ in rows if c)
+        L.append(f"**{have} of {len(rows)} required beats have footage.**")
+        L += ["", "| required beat | clip | still |", "|---|---|---|"]
+        for beat, clip, still in rows:
+            L.append(f"| {beat[:60]} | {clip or '—'} | {'yes' if still else '—'} |")
+    else:
+        L.append("_no spine defined in beats.json — the film has no completeness check_")
+
+    L += ["", "## Where the time went", ""]
+    if agg:
+        L += ["| step | runs | minutes | pass rate |", "|---|---|---|---|"]
+        for k, (n, s, p) in sorted(agg.items(), key=lambda kv: -kv[1][1]):
+            rate = f"{round(100 * p / n)}%" if k.startswith("judge") and n else "—"
+            L.append(f"| {k} | {n} | {s/60:.1f} | {rate} |")
+        L.append(f"| **total instrumented** | | **{total_s/60:.0f}** | |")
+    else:
+        L.append("_no metrics yet_")
+
+    L += ["", "## What it learned", "",
+          f"- {sum(len(v) for v in lessons_proj.values())} shot-level lessons across "
+          f"{len(lessons_proj)} shots in this project",
+          f"- {len(house.get('lessons', []))} curated house rules that carry to the next film"]
+
+    changes = git_since(24)
+    L += ["", "## What changed in the pipeline (24h)", ""]
+    L += [f"- {c}" for c in changes] or ["- nothing committed"]
+
+    L += ["", "## Next", "",
+          "- shots reported UNBUILT need a spec or prompt change, not another re-roll "
+          "at the same settings",
+          "- shots with a locked still but a failed clip need a shorter or gentler "
+          "animation, not a new still"]
+
+    out = proj / "STATUS.md"
+    out.write_text("\n".join(L) + "\n")
+    print("\n".join(L))
+    print(f"\n[forge-review] written → {out}")
+
+
+if __name__ == "__main__":
+    main()

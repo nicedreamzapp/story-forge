@@ -1,0 +1,123 @@
+{
+  "schema_version": "0.1",
+  "film_meta": {
+    "title": "octopus watchmaker of the deep",
+    "slug": "vf_octopus_watchmaker_of_the_deep_27620",
+    "target": "m5",
+    "scene_duration": 5.0,
+    "extras": {
+      "format": "reel"
+    },
+    "format": "reel",
+    "width": 720,
+    "height": 1280,
+    "fps": 30,
+    "aspect": "9:16"
+  },
+  "voice_presets": {},
+  "music_presets": {
+    "bed": {
+      "value": "ace/ethereal-underwater-ambient",
+      "attrs": {
+        "vol": 0.32
+      }
+    }
+  },
+  "sfx_presets": {},
+  "transitions": [
+    {
+      "name": "xfade",
+      "args": [],
+      "attrs": {
+        "dur": 0.4
+      }
+    }
+  ],
+  "mixes": [],
+  "vars": {
+    "style": "hyper-detailed underwater fantasy, bioluminescent glow, cinematic 8k realism"
+  },
+  "scenes": {
+    "beat_0": {
+      "still_spec": {
+        "engine": "flux",
+        "attrs": {},
+        "prompt": "hyper-detailed underwater fantasy, bioluminescent glow, cinematic 8k realism, a tiny octopus with a white lab coat and tiny glasses, sitting at a miniature wooden stall on the seafloor, surrounded by tiny watch parts, a magnifying glass, and a small LED light, with colorful coral and kelp in the background, soft blue-green water, dramatic lighting",
+        "seed": 3168316255
+      },
+      "motion_spec": {
+        "engine": "ltx",
+        "attrs": {},
+        "prompt": "slow zoom into the octopus's focused face, gentle water currents moving the kelp",
+        "duration": 4.0,
+        "seed": 4244496068
+      },
+      "narration_spec": null,
+      "narration_specs": [],
+      "music_spec": {
+        "preset": "bed",
+        "value": "ace/ethereal-underwater-ambient",
+        "attrs": {
+          "vol": 0.32
+        }
+      },
+      "sfx_specs": [],
+      "attrs": {},
+      "extras": {}
+    },
+    "beat_1": {
+      "still_spec": {
+        "engine": "flux",
+        "attrs": {},
+        "prompt": "hyper-detailed underwater fantasy, bioluminescent glow, cinematic 8k realism, the octopus suddenly starts running in place with its eight arms, the tiny watch parts flying everywhere, the stall top shaking violently, the coral and kelp swaying dramatically, the octopus's eyes wide with panic, the water becoming murky with debris",
+        "seed": 4163263079
+      },
+      "motion_spec": {
+        "engine": "ltx",
+        "attrs": {},
+        "prompt": "quick camera shake, rapid zoom out to show the chaos, water particles splashing",
+        "duration": 4.0,
+        "seed": 581275850
+      },
+      "narration_spec": null,
+      "narration_specs": [],
+      "music_spec": {
+        "preset": "bed",
+        "value": "ace/ethereal-underwater-ambient",
+        "attrs": {
+          "vol": 0.32
+        }
+      },
+      "sfx_specs": [],
+      "attrs": {},
+      "extras": {}
+    },
+    "beat_2": {
+      "still_spec": {
+        "engine": "flux",
+        "attrs": {},
+        "prompt": "hyper-detailed underwater fantasy, bioluminescent glow, cinematic 8k realism, the octopus stops running, all the watch parts have magically reassembled into a perfect working watch, the octopus holds it up with a satisfied smile, the stall now perfectly tidy, the water around it clear and calm, the coral and kelp gently swaying in the current",
+        "seed": 466052252
+      },
+      "motion_spec": {
+        "engine": "ltx",
+        "attrs": {},
+        "prompt": "slow pan across the perfectly organized stall, gentle upward camera movement",
+        "duration": 4.0,
+        "seed": 4210426354
+      },
+      "narration_spec": null,
+      "narration_specs": [],
+      "music_spec": {
+        "preset": "bed",
+        "value": "ace/ethereal-underwater-ambient",
+        "attrs": {
+          "vol": 0.32
+        }
+      },
+      "sfx_specs": [],
+      "attrs": {},
+      "extras": {}
+    }
+  }
+}

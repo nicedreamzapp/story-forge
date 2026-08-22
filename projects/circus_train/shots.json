@@ -1,0 +1,310 @@
+{
+ "_note": "Reshoot queue for Episode 1, built and judged by bin/forge-shot. Story-critical first.",
+ "defaults": {
+  "res": "832x480",
+  "duration": 5,
+  "seeds": [
+   11,
+   47,
+   82,
+   119
+  ],
+  "votes": 3
+ },
+ "shots": [
+  {
+   "id": "s7_dooropen",
+   "init": "stills/wip/s7_composite.png",
+   "denoise": 0.32,
+   "prompt": "Pixar-style 3D animated film still: ONE young gray circus elephant wearing a small red and gold rounded circus cap with a red feather plume, standing in the wide open sliding doorway of a BRIGHT RED wooden boxcar with a plain tan wooden sliding door, plain unmarked wood with no lettering or numbers anywhere, big amber eyes with long lashes, no tusks, gravel track bed, green treeline, warm afternoon light",
+   "beat": "a wide open boxcar door with a young gray elephant wearing a small red circus cap standing in the opening in daylight",
+   "must_not": [
+    "a closed or jammed door",
+    "tusks",
+    "a spiky metal crown"
+   ],
+   "identity": {
+    "master": "canon/ellie_canon.png",
+    "subject": "Ellie the young circus elephant"
+   },
+   "lock": "stills/LOCKED_s7_dooropen.png",
+   "animate": "the young elephant stands in the open doorway and her ears sway gently, her trunk lifts and lowers a little, dust drifts in the warm light, she stays in the doorway the whole time, camera locked off",
+   "clip": "clips/s7_dooropen_final.mp4",
+   "min_window": 1.6,
+   "set": "circus boxcar",
+   "_motion_subject": "the elephant",
+   "clip_beat": "a wide open boxcar door with a young gray elephant wearing a small red circus cap standing in the opening in daylight"
+  },
+  {
+   "id": "ellie_eye",
+   "init": "stills/wip/ellie_crack_composite_v3.png",
+   "denoise": 0.5,
+   "prompt": "Pixar-style 3D animated film still, extreme close-up through a narrow vertical gap between rough dark wooden boxcar planks: a frightened young circus elephant's enormous amber eye, wide and glistening with fear, brow pinched with worry, WARM GRAY elephant skin, one blade of golden daylight across the eye, dark planks, dust motes in the light, cinematic children's movie lighting",
+   "beat": "one large amber elephant eye visible through a narrow vertical gap between dark wooden planks",
+   "must_not": [
+    "porcelain white or pink skin",
+    "a collar"
+   ],
+   "identity": {
+    "master": "canon/ellie_eye_canon.png",
+    "subject": "Ellie's eye and brow in close-up"
+   },
+   "lock": "stills/LOCKED_ellie_eye.png",
+   "animate": "dust motes drift slowly through the blade of light, the eye blinks once, the wooden planks are perfectly still, nothing else moves, camera locked off",
+   "clip": "clips/ellie_eye_final.mp4",
+   "min_window": 1.6,
+   "set": "circus boxcar",
+   "_motion_subject": "the elephant",
+   "clip_beat": "an extreme close-up of one large amber elephant eye visible through a narrow vertical gap between dark wooden planks"
+  },
+  {
+   "id": "s2_thecall",
+   "prompt": "Pixar-style 3D animated film still, late afternoon: a circus train in open dry scrubland with thick oily black smoke billowing hard from its engine and rolling up into the sky, painted red and yellow circus cars, the locomotive dark and troubled, dry dusty ground, harsh heat shimmer, no bridge, no river, no water anywhere, no lettering or writing anywhere, something is clearly badly wrong, cinematic children's movie lighting",
+   "beat": "a circus train in open country with thick black smoke billowing from its engine, clearly in trouble",
+   "must_not": [
+    "a calm scenic postcard with nothing wrong",
+    "no smoke at all",
+    "thin white wispy steam instead of thick black smoke",
+    "a bridge over water"
+   ],
+   "lock": "stills/LOCKED_s2_call.png",
+   "animate": "thick black smoke billows and rolls upward from the engine, heat shimmer ripples over the cars, dry brush stirs in the wind, the train stays exactly where it is, camera locked off",
+   "clip": "clips/s2_call_final.mp4",
+   "min_window": 1.6,
+   "set": "circus boxcar",
+   "clip_beat": "a circus train in open country with thick black smoke billowing from its engine"
+  },
+  {
+   "id": "s6_interior",
+   "prompt": "Pixar-style 3D animated film still, INTERIOR of a sealed dark wooden boxcar at night-dark exposure: the frame is almost entirely BLACK, rough plank walls barely visible in the gloom, ONE thin hard blade of golden daylight slicing in through the crack at the sliding door edge, fine dust and straw sifting down through that single shaft of light, deep heavy shadow everywhere else, claustrophobic and tense, cinematic children's movie lighting, empty of any creature",
+   "beat": "the dark interior of a wooden boxcar with a bright blade of daylight cutting in at the door edge and dust hanging in the light",
+   "must_not": [
+    "any animal or character visible",
+    "a bright or evenly lit interior",
+    "a barn, shed, stable or house interior",
+    "daylight filling the room",
+    "a wide open door"
+   ],
+   "lock": "stills/LOCKED_s6_interior.png",
+   "animate": "fine dust and bits of straw drift slowly down through the single shaft of light, the shaft stays exactly the same width, the dark plank walls are perfectly still, camera locked off",
+   "clip": "clips/s6_interior_final.mp4",
+   "min_window": 1.6,
+   "_no_characters": true,
+   "clip_beat": "the dark interior of a boxcar with a thin blade of daylight at the door seam and dust hanging in the light"
+  },
+  {
+   "id": "s5_door",
+   "init": "stills/LOCKED_s5.png",
+   "beat": "a bloodhound with his nose pressed against a narrow gap between the planks of a wooden boxcar door",
+   "lock": "stills/LOCKED_s5.png",
+   "animate": "the bloodhound keeps his nose pressed to the gap between the planks and sniffs, his long ears swaying, one paw testing the door, he does NOT turn away from the door, warm dust in the air, camera holds steady",
+   "clip": "clips/s5_final.mp4",
+   "min_window": 2.0,
+   "identity": {
+    "master": "canon/doug_canon.png",
+    "subject": "Doug the bloodhound"
+   },
+   "set": "circus boxcar"
+  },
+  {
+   "id": "s6_heave",
+   "prompt": "Pixar-style 3D animated film still, side view: a big round cartoon brown bear with a large cream-coloured belly patch, cream muzzle, small black nose, small rounded ears and a short snout, driving his SHOULDER hard against the closed wooden sliding door of a weathered red boxcar, his whole body leaning into it at a steep forward angle, spine diagonal, head lowered and pressed close to the wood, BOTH front paws flat against the door, hind legs stretched out behind him with his back feet dug into the gravel, teeth gritted with effort, straining with all his weight, dust in the air, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a big round cartoon bear with a cream belly driving his shoulder against a wooden boxcar door, body leaning at a steep forward angle with both paws flat on the door and hind legs stretched out behind, visibly straining",
+   "must_not": [
+    "holding or using a stick, tool, rod or any object",
+    "standing upright with a straight vertical body",
+    "a relaxed happy smiling bear",
+    "only one paw touching the door",
+    "sawdust or debris spraying out of the wall",
+    "a realistic grizzly bear with a long snout"
+   ],
+   "loras": [
+    "~/.hankdoug_seeds/HANK_LORA.safetensors"
+   ],
+   "lora_scales": [
+    0.9
+   ],
+   "identity": {
+    "master": "canon/hank_canon.png",
+    "subject": "Hank the bear"
+   },
+   "lock": "stills/LOCKED_s6.png",
+   "animate": "the bear pushes his shoulder harder into the door, muscles shifting under the fur, paws pressing flat, dust drifting in the light, camera holds steady",
+   "clip": "clips/s6_final_v2.mp4",
+   "min_window": 1.8,
+   "seeds": [
+    501,
+    547,
+    582,
+    619,
+    653,
+    691
+   ],
+   "votes": 3,
+   "set": "boxcar door detail",
+   "_motion_subject": "the bear"
+  },
+  {
+   "id": "s1_coldopen",
+   "prompt": "Pixar-style 3D animated film still: a big round cartoon brown bear with a large cream-coloured belly patch, cream muzzle, small black nose, small rounded ears and a short snout sitting relaxed on a green creek bank holding a fishing rod, beside him a lanky tan-and-orange bloodhound dog with a long narrow snout, long dark floppy ears hanging down past his jaw, and a slim body on long legs sitting upright watching the water, calm sunny afternoon, tall trees, a wooden cart behind them, unhurried and peaceful, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a bear and a dog sit relaxed by a green creek with fishing rods, calm and unhurried",
+   "must_not": [
+    "a bear with a long realistic snout",
+    "a short-legged dachshund or sausage dog",
+    "a dog with short upright ears",
+    "anything urgent or alarming happening"
+   ],
+   "lock": "stills/LOCKED_s1.png",
+   "clip": "clips/s1_final.mp4",
+   "animate": "the water ripples, leaves stir in the breeze, the bear breathes slowly and the dog's ears sway gently, camera holds steady",
+   "min_window": 2.0,
+   "seeds": [
+    701,
+    747,
+    782,
+    819
+   ],
+   "votes": 3,
+   "identity": [
+    {
+     "master": "canon/hank_canon.png",
+     "subject": "Hank the bear"
+    },
+    {
+     "master": "canon/doug_canon.png",
+     "subject": "Doug the bloodhound"
+    }
+   ],
+   "loras": [
+    "~/.hankdoug_seeds/HANK_LORA.safetensors",
+    "~/.hankdoug_seeds/DOUG_LORA_V2.safetensors"
+   ],
+   "lora_scales": [
+    0.85,
+    0.85
+   ]
+  },
+  {
+   "id": "s3_rollout",
+   "prompt": "Pixar-style 3D animated film still: a big round cartoon brown bear with a large cream-coloured belly patch, cream muzzle, small black nose, small rounded ears and a short snout sitting up in a wooden horse-drawn wagon holding the reins, a brown horse pulling it at speed along a dirt road, dust kicking up behind the wheels, forest either side, urgent forward motion, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a horse-drawn wooden wagon moving fast along a dirt road with dust kicking up behind it",
+   "must_not": [
+    "a bear with a long realistic snout",
+    "a stationary wagon with no dust",
+    "a bear standing on the ground"
+   ],
+   "identity": [
+    {
+     "master": "canon/hank_canon.png",
+     "subject": "Hank the bear"
+    }
+   ],
+   "lock": "stills/LOCKED_s3_rollout.png",
+   "clip": "clips/s2_final.mp4",
+   "animate": "the wagon rolls forward, dust billowing behind the wheels, the horse's legs driving, the bear rocking with the motion, camera tracks alongside",
+   "min_window": 2.0,
+   "seeds": [
+    801,
+    847,
+    882,
+    919
+   ],
+   "votes": 3,
+   "loras": [
+    "~/.hankdoug_seeds/HANK_LORA.safetensors",
+    "~/.hankdoug_seeds/DOUG_LORA_V2.safetensors"
+   ],
+   "lora_scales": [
+    0.85,
+    0.85
+   ]
+  },
+  {
+   "id": "s4_arrival",
+   "prompt": "Pixar-style 3D animated film still: a big round cartoon brown bear with a large cream-coloured belly patch, cream muzzle, small black nose, small rounded ears and a short snout stands beside a lanky tan-and-orange bloodhound dog with a long narrow snout, long dark floppy ears hanging down past his jaw, and a slim body on long legs, the two of them side by side in the foreground looking up at a broken-down circus train baking in the sun, weathered red boxcars, black smoke rising, heat shimmer and dust, no other animals, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a bear and a dog standing together in the foreground in front of a smoking broken-down train, in harsh sunlight with dust and heat haze",
+   "must_not": [
+    "a cheerful brightly painted passenger train that appears to be running fine",
+    "animals leaning comfortably out of windows",
+    "no train visible at all",
+    "a bear with a long realistic snout",
+    "a short-legged dachshund or sausage dog"
+   ],
+   "lock": "stills/LOCKED_s4_arrival.png",
+   "clip": "clips/s4_arrival_final.mp4",
+   "animate": "heat shimmer ripples off the boxcar roofs, smoke drifts upward, dust blows across the gravel, the bear and the dog breathe and their ears stir, both stay standing in place, camera locked off",
+   "min_window": 1.6,
+   "seeds": [
+    901,
+    947,
+    982,
+    1019
+   ],
+   "votes": 3,
+   "identity": [
+    {
+     "master": "canon/hank_canon.png",
+     "subject": "Hank the bear"
+    },
+    {
+     "master": "canon/doug_canon.png",
+     "subject": "Doug the bloodhound"
+    }
+   ],
+   "loras": [
+    "~/.hankdoug_seeds/HANK_LORA.safetensors",
+    "~/.hankdoug_seeds/DOUG_LORA_V2.safetensors"
+   ],
+   "lora_scales": [
+    0.85,
+    0.85
+   ],
+   "clip_beat": "a bear and a dog standing together in the foreground in front of a smoking broken-down train in harsh sunlight with dust and heat haze"
+  },
+  {
+   "id": "s8_goodbye",
+   "prompt": "Pixar-style 3D animated film still: a big round cartoon brown bear with a large cream-coloured belly patch, cream muzzle, small black nose, small rounded ears and a short snout and a lanky tan-and-orange bloodhound dog with a long narrow snout, long dark floppy ears hanging down past his jaw, and a slim body on long legs standing together on the grass saying goodbye, the bear resting a paw under the dog's chin, both warm and happy, the repaired circus train alive and steaming behind them in golden evening light, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a bear and a dog together saying goodbye in warm light with the repaired circus train alive and steaming behind them",
+   "must_not": [
+    "a bear with a long realistic snout",
+    "a short-legged dachshund or sausage dog",
+    "a fire truck",
+    "a broken-down or wrecked train",
+    "the heroes in distress"
+   ],
+   "lock": "stills/LOCKED_s8_goodbye.png",
+   "clip": "clips/s8_goodbye_final.mp4",
+   "animate": "steam drifts up from the locomotive behind them, the grass sways, the bear and the dog breathe and their ears and fur stir gently, both stay where they are, camera locked off",
+   "min_window": 1.6,
+   "seeds": [
+    1101,
+    1147,
+    1182,
+    1219
+   ],
+   "votes": 3,
+   "identity": [
+    {
+     "master": "canon/hank_canon.png",
+     "subject": "Hank the bear"
+    },
+    {
+     "master": "canon/doug_canon.png",
+     "subject": "Doug the bloodhound"
+    }
+   ],
+   "loras": [
+    "~/.hankdoug_seeds/HANK_LORA.safetensors",
+    "~/.hankdoug_seeds/DOUG_LORA_V2.safetensors"
+   ],
+   "lora_scales": [
+    0.85,
+    0.85
+   ],
+   "clip_beat": "a bear and a dog together in warm light with the circus train alive and steaming behind them"
+  }
+ ],
+ "set_masters": {
+  "circus boxcar": "canon/boxcar_canon.png"
+ }
+}

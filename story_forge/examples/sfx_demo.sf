@@ -1,0 +1,26 @@
+# sfx_demo.sf — sound effects layered on top of narration + music.
+# Surfaces SFX: declare an `sfx` preset, then drop a bare `sfx <name>` ref
+# inside a scene with `at=` (start seconds) and `vol=`.
+
+film "SFX Demo" slug=sfx_demo target=m5 scene_dur=5.0
+
+voice narrator: piper/en_US-libritts_r-medium speaker=0 length=1.10
+music score: ace/calm-ambient-pad vol=0.25
+
+# SFX presets (one-shot textures generated/looked-up by the runner).
+sfx wind: ace/sfx prompt="soft gusting wind through pines" duration=5 vol=0.30
+sfx birds: ace/sfx prompt="distant morning birdsong" duration=4 vol=0.22
+
+@mix duck voice -> music threshold=-22 ratio=4
+
+scene morning_ridge:
+    still flux:
+        prompt: "a wide mountain ridge at dawn, mist in the valleys, soft pink light"
+    motion ltx:
+        prompt: "mist drifts slowly through the valley, gentle wind, light grows"
+        duration: 5.0
+    narrate narrator:
+        line: "The ridge woke slowly, the way quiet places do."
+    music score vol=0.25
+    sfx wind at=0.0 vol=0.30
+    sfx birds at=2.0 vol=0.22
