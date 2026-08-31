@@ -19,12 +19,19 @@ human eyeball and a note in a ledger. So:
 Per shot, cheapest gate first:
   1. STILL     mflux (+ character LoRAs) rolls seed after seed
   2. BEAT      beat_gate votes on the still; forbidden elements hard-fail
+     On FAIL the judge PRESCRIBES the fix (beat_gate.prescribe): it looks at the
+     rejected frame and dictates the concrete change, and THAT is what gets saved
+     to shot_lessons.json and injected into the next attempt — a direction the
+     image model can follow, not a complaint (2026-07-31).
   3. IDENTITY  side-by-side against the locked character master (frozen rule 10)
   4. LOCK      chmod 444 + ledger line — only now is it canon
   5. ANIMATE   make-video --i2v, GGUF by default, memory-gated (frozen rule 11)
+     "<id>_animation" lessons from earlier failed clips are applied to the motion
+     prompt, so the shell-loop retry (rule 19) converges instead of repeating.
   6. RE-BEAT   the clip is judged across its length, majority rules
   7. TRIM      if only part of the clip holds the beat, keep the longest run that
-               does (>= min_window seconds) instead of shipping the whole thing
+               does (>= min_window seconds) instead of shipping the whole thing;
+               a clip with no usable window gets a prescription for the next animate
 
 Nothing here silently lowers a bar. Every roll, vote and trim is logged to
 forge_shot.log and the run's JSON result, and a shot that never passes is
@@ -61,7 +68,7 @@ from pathlib import Path
 SF = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(SF / "pipeline-tools"))
 sys.path.insert(0, str(SF))
-from beat_gate import check_shot, side_by_side, clip_duration, grab_frame  # noqa: E402
+from beat_gate import check_shot, side_by_side, clip_duration, grab_frame, prescribe  # noqa: E402
 from film_qc import vl_ask, _state, PE_URL, unload_vl  # noqa: E402
 
 # ffmpeg by ABSOLUTE path. Under launchd/keepalive the PATH has no /opt/homebrew/bin,
@@ -75,6 +82,7 @@ FFMPEG = _shutil.which("ffmpeg") or "/opt/homebrew/bin/ffmpeg"
 MFLUX = Path.home() / "mflux-venv/bin/mflux-generate-flux2"
 MFLUX_MODEL = "AITRADER/FLUX2-klein-9B-mlx-8bit"
 MAKE_VIDEO = SF / "bin" / "make-video"
+MAKE_LTX25 = SF / "bin" / "make-ltx25"   # LTX-2.5 animate engine (2026-08-29)
 MEM_GATE = SF / "bin" / "mem-gate"
 SONGFORGE = os.environ.get("SONGFORGE_URL", "http://127.0.0.1:8767")
 
@@ -142,13 +150,27 @@ def comfy_up() -> bool:
 
 
 def wait_for_comfy(timeout_s: float = 600) -> bool:
-    """Block until the render backend answers again. mem-gate and the dam both
-    restart ComfyUI on purpose; a shot must survive that, not be judged by it."""
+    """Bring the render backend back — RESTART it, don't just hope (2026-07-31).
+
+    Waiting passively cost the whole evening run: forge_guard evict-idled a
+    ComfyUI that was legitimately idle between shots, nothing was responsible
+    for starting it again, and the director struck out 3 times over 30 minutes
+    against a backend nobody was going to revive, then BLOCKED the shot."""
     deadline = time.time() + timeout_s
+    tried_restart = False
     while time.time() < deadline:
         if comfy_up():
             log("  render backend is back")
             return True
+        if not tried_restart:
+            tried_restart = True
+            try:
+                import core as _core
+                _core._restart_comfy()
+                log("  render backend was down — restarted it ourselves")
+                continue
+            except Exception as e:                                # noqa: BLE001
+                log(f"  could not restart the backend ({e}) — waiting for it")
         time.sleep(10)
     return False
 
@@ -161,6 +183,73 @@ def mem_gate(label: str) -> bool:
         if line.strip():
             log(f"  mem-gate: {line.strip()}")
     return r.returncode == 0
+
+
+# ── ONE HONEST LEASE PER PHASE (2026-08-01) ──────────────────────────────────
+# What this replaces: a single 22GB lease taken once in main() for the whole run.
+# The still phase alone loads a ~35GB mflux subprocess on top of an ~18GB
+# in-process VL judge, and the animate phase hands the box to ComfyUI holding
+# Wan. So the guard approved 22GB and this pipeline went on to hold ~120, which
+# is how the box reached 144GB of a 128GB machine and froze on 2026-08-01.
+#
+# Two rules now:
+#   1. Declare what the phase actually weighs. forge_guard measures the real
+#      figure (phys_footprint, wired GPU memory included) and mem_client raises
+#      the ask to that measured peak, so these constants can only be too small
+#      once.
+#   2. One phase at a time. The still lease is dropped before the animate lease
+#      is taken — they never stack, because the machine can't hold both.
+# A refusal is a real answer: the shot is HELD, not rendered into swap.
+STILL_GB = float(os.environ.get("SF_STILL_GB", "38"))
+ANIMATE_GB = float(os.environ.get("SF_ANIMATE_GB", "46"))
+_LEASE: dict = {"id": None, "name": None, "stop": None}
+
+
+def mem_take(name: str, gb: float, timeout: float = 600) -> str:
+    """Hold the room for one phase. Returns "granted" | "refused" | "unguarded".
+
+    Only one phase lease exists at a time — taking a new one drops the old."""
+    mem_drop()
+    try:
+        sys.path.insert(0, str(Path.home() / "SongForgeM5"))
+        import threading
+
+        import mem_client
+    except Exception as e:                                        # noqa: BLE001
+        log(f"  mem lease unavailable ({type(e).__name__}) — running unleased")
+        return "unguarded"
+    try:
+        lid, status, got = mem_client.acquire_ex(name, gb, timeout=timeout, ttl=1800)
+    except Exception as e:                                        # noqa: BLE001
+        log(f"  mem lease error ({type(e).__name__}) — running unleased")
+        return "unguarded"
+    if not lid:
+        log(f"  memory {status} for {name} ({got:.0f}GB)")
+        return status
+    stop = threading.Event()
+
+    def beat():
+        while not stop.wait(600):
+            mem_client.heartbeat(lid, 1800)
+
+    threading.Thread(target=beat, daemon=True).start()
+    _LEASE.update(id=lid, name=name, stop=stop)
+    log(f"  holding {got:.0f}GB for {name}")
+    return "granted"
+
+
+def mem_drop() -> None:
+    if not _LEASE["id"]:
+        return
+    try:
+        import mem_client
+        if _LEASE["stop"]:
+            _LEASE["stop"].set()
+        mem_client.release(_LEASE["id"])
+        log(f"  released the {_LEASE['name']} lease")
+    except Exception:                                             # noqa: BLE001
+        pass
+    _LEASE.update(id=None, name=None, stop=None)
 
 
 FLUX_I2I = Path.home() / "Scripts" / "flux_img2img.py"
@@ -271,11 +360,57 @@ def save_lesson(proj: Path, shot_id: str, reason: str) -> None:
 def corrected_prompt(base: str, lessons: list) -> str:
     # Cap hard. Injecting 40 accumulated complaints into a prompt is worse than
     # injecting none — the description drowns. Two most recent, nothing else.
+    # Lessons are now PRESCRIPTIONS (beat_gate.prescribe) — a directive to apply,
+    # not a complaint to avoid — but old-style refusal sentences still ride along,
+    # so the framing has to carry both.
     if not lessons:
         return base
     fixes = " ".join(f"({i + 1}) {t}" for i, t in enumerate(lessons[-2:]))
-    return (f"{base}. CORRECTIONS — earlier attempts at this exact shot were REJECTED "
-            f"for these reasons, do not repeat them: {fixes}")
+    return (f"{base}. CORRECTIONS — earlier attempts at this exact shot were REJECTED; "
+            f"apply these fixes and do not repeat the mistakes: {fixes}")
+
+
+# ── STOP WHEN THE SEEDS AGREE (2026-08-02) ───────────────────────────────────
+# Matt: "either it produces or stands down seems like such a loose way of dealing
+# with it." He is right — a dry-spell timeout is a backstop, not control.
+#
+# The tight signal is already in the verdicts and nobody was reading it. Four
+# seeds failing four DIFFERENT ways is sampling variance and another roll is
+# worth paying for. Four seeds failing the SAME way is the premise, and no number
+# of rolls will fix a premise. Measured on 2026-08-01, when this cost the night:
+#   c1_celebration  x6 "only three animals in a grassy field with no other..."
+#   s4b_trainwide   x4 "animals leaning out of open windows..."
+# Identical complaints, twelve seeds a cycle, four attempts a shot, ~20 hours.
+# One cycle is enough to know.
+_STOP = {"the","a","an","and","of","in","on","is","are","with","no","not","it",
+         "its","that","this","to","from","for","there","only","image","shows",
+         "depicts","frame","frames","sampled","depict","beat","fail","clearly"}
+
+
+def _complaint_key(why: str) -> frozenset:
+    """The content words of a gate's complaint, for comparing two rejections."""
+    import re as _re
+    body = why.split("FAIL.", 1)[-1]
+    return frozenset(w for w in _re.findall(r"[a-z]{4,}", body.lower())
+                     if w not in _STOP)
+
+
+def seeds_agree(reasons: list, need: int = 3, overlap: int = 3) -> str:
+    """The complaint shared by `need` of these rejections, or "" if they differ.
+
+    Deliberately conservative: it takes three seeds telling the same story, with
+    three content words in common, before it will call a premise dead. Two seeds
+    disagreeing is exactly the "one instant is not a verdict" trap (rule 14).
+    Thresholds tuned against the real verdicts of 2026-08-01, not guessed: at
+    four words the c1_celebration complaints ("only three animals in a grassy
+    field" / "...in a small sparse meadow") did not group, because the judge
+    rephrases the same objection every time."""
+    keys = [_complaint_key(r) for r in reasons if r]
+    for i, k in enumerate(keys):
+        agree = [r for j, r in enumerate(reasons) if len(k & keys[j]) >= overlap]
+        if len(agree) >= need:
+            return agree[0]
+    return ""
 
 
 def gen_still(shot: dict, proj: Path, seed: int, out: Path) -> bool:
@@ -289,6 +424,26 @@ def gen_still(shot: dict, proj: Path, seed: int, out: Path) -> bool:
         r = run(["python3", FLUX_I2I, shot["prompt"], "--init", init,
                  "--denoise", dn, "--seed", seed, "--out", out], timeout=1800)
         if r.returncode or not out.is_file():
+            # THE WELD RUNS ON COMFYUI, AND THE ANIMATE OWNS COMFYUI (2026-08-02).
+            # mflux is a standalone subprocess, so the text2img path never cared
+            # what the backend was doing — but the img2img weld talks to :8188,
+            # and every animate bounces it and then blocks it for two minutes
+            # loading Wan. A weld that lands in that window gets "Connection
+            # refused" and was recorded as a failed IDEA, which is how a derive
+            # shot can look unbuildable while being perfectly fine. Found by
+            # running the weld by hand mid-animate, never visible in a log.
+            # Same rule the mflux path already has: a dead backend is not a
+            # failed idea.
+            if not comfy_up():
+                log("  the weld's backend is down or loading — waiting for it "
+                    "(this does not count as a failed idea)")
+                if wait_for_comfy():
+                    r = run(["python3", FLUX_I2I, shot["prompt"], "--init", init,
+                             "--denoise", dn, "--seed", seed, "--out", out], timeout=1800)
+                    if not (r.returncode or not out.is_file()):
+                        return True
+                log("  backend never came back for the weld")
+                return False
             log(f"  img2img weld failed (seed {seed}, denoise {dn}): {(r.stderr or '')[-200:]}")
             return False
         return True
@@ -326,6 +481,14 @@ def identity_ok(shot: dict, proj: Path, img: Path) -> bool:
     idents = shot.get("identity")
     if not idents:
         return True
+    # A gate that cannot SEE its subject must not vote (2026-08-02). t2_lion is a
+    # muzzle pressed into a plank crack — no head, no ears, no markings in frame.
+    # It passed the beat gate 3/3 and was failed four times on "different head
+    # shape and ear structure", for a head the shot deliberately excludes. Same
+    # family as rule 22: couldn't-judge is never a verdict in either direction.
+    if shot.get("_identity_waived"):
+        log(f"  identity WAIVED for {shot['id']}: {shot['_identity_waived']}")
+        return True
     if isinstance(idents, dict):
         idents = [idents]
     ok_all = True
@@ -338,6 +501,24 @@ def identity_ok(shot: dict, proj: Path, img: Path) -> bool:
         side_by_side(master, img, cmp_png)
         ans = vl_ask(cmp_png, IDENT_Q.format(subject=ident["subject"])).strip().replace("\n", " ")
         ok = bool(re.match(r"^\W*YES", ans, re.I))
+        # "I CANNOT SEE IT" IS NOT "IT IS WRONG" (2026-08-02, rule 22's family).
+        # s6b_heave_close is framed on paws and planks with the head deliberately
+        # out of shot. Three seeds passed the beat 3/3 and every one was failed on
+        # head and ear shape — and the gate SAID so in its own answer: "the bear
+        # is shown only as a close-up of its paw, so the head, ear shape, body
+        # proportions are not visible". It reported the absence of evidence as
+        # evidence of drift, and blocked a correct shot four times. When the
+        # judge tells us the features are not in frame, that is UNCHECKED, and
+        # UNCHECKED does not veto a shot the beat gate already passed.
+        blind = re.search(r"(not visible|cannot (be )?(see|determin|assess)|"
+                          r"only a close-?up|no (visible )?(head|face|ears)|"
+                          r"is not shown|unable to (see|tell|determine))", ans, re.I)
+        if not ok and blind:
+            log(f"  identity {ident['subject'].split()[0]} vs {master.name}: "
+                f"UNCHECKED — the gate says the features are not in frame "
+                f"('{blind.group(0)}'), so it gets no vote — {ans[:120]}")
+            cmp_png.unlink(missing_ok=True)
+            continue
         log(f"  identity {ident['subject'].split()[0]} vs {master.name}: "
             f"{'MATCH' if ok else 'DRIFT'} — {ans[:150]}")
         cmp_png.unlink(missing_ok=True)
@@ -401,6 +582,14 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
     out = {"id": shot["id"], "state": "UNBUILT", "rolls": []}
 
     log(f"=== {shot['id']} — beat: {shot['beat'][:90]}")
+    # A shot whose hand-built `init` plate is gone (circus_train lost stills/wip on
+    # 2026-08-02) used to crash with FileNotFoundError, which forge-director read as
+    # "render backend unavailable" and blocked with the wrong reason. Say what it is.
+    if shot.get("init") and not (proj / shot["init"]).exists():
+        log(f"  INIT MISSING: {shot['init']} — this plate was built by hand; rebuild it or drop `init`")
+        out["state"] = "INIT_MISSING"
+        out["reason"] = f"missing init plate {shot['init']}"
+        return out
     if dry:
         out["state"] = "DRY"
         return out
@@ -431,6 +620,12 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
         if v["verdict"] == "PASS" and text_free(shot, proj, cand) and identity_ok(shot, proj, cand):
             locked = cand
     else:
+        # The still phase weighs mflux (~35GB) plus whatever the in-process judge
+        # is holding. Ask for that, not for a token.
+        if mem_take(f"storyforge-still {shot['id']}", STILL_GB) == "refused":
+            log("  no room for the still pass right now — shot HELD, nothing rolled")
+            out["state"] = "STILL_HELD"
+            return out
         base_prompt = shot["prompt"]
         cycles = shot.get("retry_cycles", defaults.get("retry_cycles", 2))
         lessons = load_lessons(proj).get(shot["id"], [])
@@ -501,12 +696,47 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
                         locked = cand
                         break
                 else:
-                    lesson = v["why"].split("FAIL.")[-1].strip() or v["why"]
+                    # FAIL comes back with the fix attached: the judge looks at the
+                    # rejected frame and dictates the concrete change, so the next
+                    # cycle gets direction instead of a complaint (2026-07-31).
+                    fix = prescribe(cand, base_prompt, shot["beat"], v["why"])
+                    if fix:
+                        log(f"  prescription: {fix[:140]}")
+                    lesson = fix or v["why"].split("FAIL.")[-1].strip() or v["why"]
                 if lesson not in lessons:
                     lessons.append(lesson)
                 save_lesson(proj, shot["id"], lesson)
                 out["rolls"].append(roll)
                 cand.unlink(missing_ok=True)   # rule 13: losers don't linger
+
+            # Every seed this cycle rejected for the SAME reason? Then the next
+            # cycle renders the same wrong idea with a different seed. Stop and
+            # say what is wrong, instead of spending another eleven stills and
+            # three attempts discovering it slowly.
+            # A seed that never PRODUCED a picture is not a failed idea (2026-08-02).
+            # The img2img weld died instantly on a read-only init left in ComfyUI's
+            # input dir; nothing rendered, no gate ever voted, and both the early
+            # bail and the premise detector read the empty result as "the model
+            # will not render this" — four shots blocked in thirty seconds and the
+            # film stopped. If nothing rendered, that is INFRA, same as a dead
+            # backend.
+            if locked is None and not out["rolls"]:
+                out["state"] = "INFRA"
+                log("  no seed produced an image at all — reporting INFRA, not a "
+                    "failed premise (check the still generator, not the prompt)")
+                return out
+            if locked is None:
+                fails = [r.get("why", "") for r in out["rolls"]
+                         if r.get("cycle") == cycle and r.get("beat") != "PASS"]
+                shared = seeds_agree(fails)
+                if shared:
+                    out["state"] = "PREMISE_FAILED"
+                    out["why"] = shared[:300]
+                    log(f"  every seed this cycle failed the same way — this is the "
+                        f"PREMISE, not the sampling. Stopping instead of re-rolling.")
+                    log(f"  the complaint, {len(fails)} seeds running: {shared[:200]}")
+                    save_lesson(proj, shot["id"], shared[:300])
+                    return out
         shot["prompt"] = base_prompt
 
     if locked is None:
@@ -539,9 +769,10 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
     # 2026-07-27 (CLAUDE.md rule 16). It reloads on the next judge call.
     if unload_vl():
         log("  released the in-process VL judge before handing the GPU to Wan")
-    if not mem_gate(f"{shot['id']} i2v"):
-        log("  mem-gate refused the animation — still is locked, clip UNBUILT")
-        return out
+    # Hand the still phase's room back BEFORE asking for the animate phase's.
+    # They are the two halves of the same shot and they must never be resident
+    # against the budget at the same time.
+    mem_drop()
 
     # BOUNCE ComfyUI immediately before every i2v, unconditionally.
     # Measured across two days: an animate succeeds when it starts on a freshly
@@ -560,18 +791,66 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
         log(f"  could not bounce ComfyUI ({e}) — continuing, the animate may fail")
     if not wait_for_comfy(180):
         log("  ComfyUI did not come back — still is locked, clip UNBUILT")
+        out["state"] = "ANIMATE_HELD"
+        return out
+
+    # Ask for the animate room only now — AFTER the bounce. Asking first would
+    # have the guard charge us for the stale cached weights we are about to
+    # throw away, and refuse a render the machine can perfectly well afford.
+    # Measure the box you are about to render on, not the one you are leaving.
+    if mem_take(f"storyforge-animate {shot['id']}", ANIMATE_GB) == "refused":
+        log("  no room for the animate pass — still is locked, clip HELD")
+        out["state"] = "ANIMATE_HELD"
+        return out
+    if not mem_gate(f"{shot['id']} i2v"):
+        log("  mem-gate refused the animation — still is locked, clip UNBUILT")
+        out["state"] = "ANIMATE_HELD"
         return out
     wait_for_songforge()
     clip_tmp = proj / "clips" / f"{shot['id']}_raw.mp4"
     clip_tmp.parent.mkdir(parents=True, exist_ok=True)
+    # The animate pass learns too. Failed clips have been WRITING "<id>_animation"
+    # lessons since day one and nothing ever read them back — every --stage animate
+    # re-run fed Wan the identical motion prompt and paid 13+ minutes to repeat the
+    # same rejection (2026-07-31). The shell-loop retry (rule 19) only converges if
+    # each invocation starts from the previous one's prescription.
+    anim_lessons = load_lessons(proj).get(shot["id"] + "_animation", [])
+    if anim_lessons:
+        log(f"  carrying {len(anim_lessons)} animation correction(s) into the motion prompt")
+    # ANIMATE ENGINE (2026-08-29): "engine": "ltx25" in shots.json defaults, or
+    # SF_ANIMATE_ENGINE=ltx25 in the environment, routes the animate to LTX-2.5 via
+    # bin/make-ltx25 (same CLI contract, same "done in Ns → path" line). Default stays Wan.
+    engine = os.environ.get("SF_ANIMATE_ENGINE") or shot.get("engine") or defaults.get("engine", "wan")
+    anim_bin = MAKE_LTX25 if engine == "ltx25" else MAKE_VIDEO
+    log(f"  animate engine: {engine}")
+    anim_cmd = [anim_bin, "--i2v", lock_path, "--res", res,
+                "--duration", shot.get("duration", defaults.get("duration", 5)),
+                "--seed", seeds[0],
+                "--label", shot["id"], corrected_prompt(shot["animate"], anim_lessons)]
+    if engine == "ltx25":
+        # measured 2026-08-29: --low-ram renders the same frames (seed-deterministic) in
+        # ~70s vs ~79s full, and keeps Metal peak small; full mode ended at 32GB swap.
+        anim_cmd.insert(1, "--low-ram")
     t_anim = time.time()
-    r = run([MAKE_VIDEO, "--i2v", lock_path, "--res", res,
-             "--duration", defaults.get("duration", 5), "--seed", seeds[0],
-             "--label", shot["id"], shot["animate"]], timeout=5400)
+    r = run(anim_cmd, timeout=5400)
     metric(shot["id"], "animate", time.time() - t_anim)
     m = re.search(r"done in [\d.]+s → (\S+)", r.stdout or "")
+    if not m and engine != "ltx25" and not comfy_up():
+        # A dead backend is NOT a failed idea — same rule the still path already has.
+        # A Song Forge customer interrupt (or a guard bounce) can take ComfyUI down
+        # exactly when make-video re-queues; on 2026-07-31 that surfaced as
+        # "Connection refused", yet the run reported STILL_LOCKED and exited 0 —
+        # a crash dressed as success. Wait for the backend, retry ONCE.
+        log("  the render backend went away mid-animate — waiting for it, then one retry")
+        if wait_for_comfy():
+            wait_for_songforge()
+            t_anim = time.time()
+            r = run(anim_cmd, timeout=5400)
+            metric(shot["id"], "animate", time.time() - t_anim)
+            m = re.search(r"done in [\d.]+s → (\S+)", r.stdout or "")
     if not m:
         log(f"  animation failed: {(r.stdout or '')[-300:]} {(r.stderr or '')[-200:]}")
+        out["state"] = "ANIMATE_FAILED"
         return out
     clip_tmp.write_bytes(Path(m.group(1)).read_bytes())
 
@@ -616,8 +895,15 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
             failed_dir.mkdir(parents=True, exist_ok=True)
             keep = failed_dir / f"{shot['id']}_failed.mp4"
             keep.write_bytes(clip_tmp.read_bytes())
+            # Prescribe off a frame the judge actually voted FAIL on (grab_frame
+            # tempdirs outlive check_shot, so the ballot frames are still on disk).
+            fail_frame = next((Path(b["frame"]) for b in v.get("ballots", [])
+                               if not b["pass"] and Path(b["frame"]).is_file()), None)
+            fix = prescribe(fail_frame, shot["animate"], clip_beat, v["why"]) if fail_frame else ""
+            if fix:
+                log(f"  prescription for the next animate: {fix[:140]}")
             save_lesson(proj, shot["id"] + "_animation",
-                        v["why"].split("FAIL.")[-1].strip() or v["why"])
+                        fix or v["why"].split("FAIL.")[-1].strip() or v["why"])
             log(f"  {shot['id']}: animation never holds the beat — clip NOT used; kept at "
                 f"{keep.relative_to(proj)} so the failure can be diagnosed, still stays locked")
             out["state"] = "CLIP_FAILED"
@@ -668,15 +954,63 @@ def main() -> int:
         _state["use_server"] = False
     log(f"judge via {'server :8181' if _state['use_server'] else 'in-process VL'}")
 
-    results = [build_shot(s, proj, spec.get("defaults", {}), args.dry_run, args.stage)
-               for s in shots]
+    # ASK FOR THE ROOM (2026-07-31, rebuilt 2026-08-01). This used to be ONE 22GB
+    # lease around the whole run — see the mem_take comment for why that number
+    # was fiction and what it cost. The lease is now per phase, taken inside
+    # build_shot where the memory is actually spent, and dropped here after every
+    # shot so nothing leaks a reservation into the next one.
+    #
+    # And nothing needs ComfyUI's cached Wan weights during a still pass: on
+    # 2026-08-01 it sat on 63GB through a six-hour stills loop because the only
+    # code that reclaims it (core.py) waits for it to be idle, and a continuous
+    # director loop never is. Reclaim it up front instead.
+    if args.stage in ("stills", "all") and not args.dry_run:
+        try:
+            import core as _core
+            freed = _core._evict_comfy_cache()
+            if freed:
+                log(f"reclaimed {freed:.0f}GB of ComfyUI cached models before the still pass")
+        except Exception as e:                                    # noqa: BLE001
+            log(f"could not reclaim ComfyUI cache ({type(e).__name__}) — continuing")
 
-    if not args.dry_run:
-        (proj / "forge_shot_results.json").write_text(json.dumps(results, indent=1) + "\n")
-    else:
+    # WRITE THE RESULT AND THE LOG AFTER EVERY SHOT, NOT AT THE END (2026-08-01).
+    # Both used to be written only once main() reached its last lines, so a run
+    # that died — killed for memory, SIGTERMed, crashed — left the PREVIOUS run's
+    # results file on disk and nothing in the log. forge-director then read that
+    # stale file and reported the previous shot's verdict as this one's:
+    # "c1_celebration attempt 0 → CLIP_KEPT" at 21:47 for a clip that was never
+    # rendered, with no locked still and no file anywhere. The director now
+    # matches results by id, but the real fix is that a run must record what it
+    # did as it does it. A process that dies should leave evidence, not silence.
+    def _flush(results):
+        if not args.dry_run:
+            tmp = proj / "forge_shot_results.json.tmp"
+            tmp.write_text(json.dumps(results, indent=1) + "\n")
+            os.replace(tmp, proj / "forge_shot_results.json")   # never half-written
+        if LOG:
+            with open(proj / "forge_shot.log", "a") as f:
+                f.write("\n".join(LOG) + "\n")
+            LOG.clear()
+
+    results = []
+    for s in shots:
+        try:
+            results.append(build_shot(s, proj, spec.get("defaults", {}),
+                                      args.dry_run, args.stage))
+        except BaseException as e:                                # noqa: BLE001
+            # Including KeyboardInterrupt/SystemExit: a killed run still says so.
+            results.append({"id": s["id"], "state": "INFRA",
+                            "died": type(e).__name__})
+            log(f"  {s['id']}: run died with {type(e).__name__} — recorded as INFRA")
+            _flush(results)
+            raise
+        finally:
+            mem_drop()
+        _flush(results)
+
+    if args.dry_run:
         log("  --dry-run: results file left untouched")
-    with open(proj / "forge_shot.log", "a") as f:
-        f.write("\n".join(LOG) + "\n")
+    _flush(results)
     # Never leave an unattended run with nothing to read in the morning (2026-07-26).
     try:
         subprocess.run([sys.executable, str(SF / "bin" / "forge-review"), str(proj)],

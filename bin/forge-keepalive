@@ -27,7 +27,9 @@ while true; do
   /usr/bin/env python3 "$SF/bin/forge-director" "$PROJ" --max-hours "$MAX_HOURS" >> "$LOG" 2>&1
   CODE=$?
 
-  if grep -q "FILM COMPLETE" "$LOG" 2>/dev/null; then
+  # tail, not the whole log — an old run's "FILM COMPLETE" in the same file made
+  # keepalive quit instantly on restart (found 2026-07-31, one stale line waiting).
+  if tail -40 "$LOG" 2>/dev/null | grep -q "FILM COMPLETE"; then
     echo "[keepalive $(date '+%H:%M:%S')] film complete — done" | tee -a "$LOG"
     break
   fi

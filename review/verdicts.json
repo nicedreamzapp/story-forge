@@ -1,0 +1,58 @@
+{
+ "4275184647": {
+  "verdict": "yes",
+  "note": "",
+  "path": "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/stills/LOCKED_s6_interior.png",
+  "question": "new boxcar interior still \u2014 door shut, one blade of light. good to keep?",
+  "ts": "2026-07-31 12:40:25"
+ },
+ "809ecd551e": {
+  "verdict": "yes",
+  "note": "",
+  "path": "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/clips/s6_interior_overlay.mp4",
+  "question": "inside the dark boxcar: dust drifts in the light, then Hank's hit lands \u2014 shudder + dust rains down. good for the cut?",
+  "ts": "2026-07-31 13:06:23"
+ },
+ "67b7d7f6e5": {
+  "verdict": "no",
+  "note": "Matt: at 1:07 the last scene we were supposed to get rid of - the dog is way too skinny (off-model Doug in s8_goodbye)",
+  "path": "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4",
+  "question": "EPISODE 1 full cut, 74s \u2014 new boxcar bang scene + trimmed Ellie eye. UNMUTE the player. good to call it done?",
+  "ts": "2026-07-31 13:30:29"
+ },
+ "955e516026": {
+  "verdict": "yes",
+  "note": "",
+  "path": "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/canon/doug_canon.png",
+  "question": "IMPORTANT: is this the OFFICIAL Doug? every dog in every scene gets measured against this exact picture. if he looks too skinny here, click NO and i'll rebuild the reference first",
+  "ts": "2026-07-31 13:37:47"
+ },
+ "1cfc3cdf99": {
+  "verdict": "yes",
+  "note": "",
+  "path": "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/clips/s8_goodbye_final.mp4",
+  "question": "the new goodbye scene with sturdy Doug \u2014 passed all machine gates. good?",
+  "ts": "2026-07-31 14:58:35"
+ },
+ "4cfed6cccc": {
+  "verdict": "no",
+  "note": "",
+  "path": "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4",
+  "question": "EPISODE 1 FINAL \u2014 74s, sturdy Doug goodbye in. UNMUTE. good to call it done?",
+  "ts": "2026-07-31 16:16:13"
+ },
+ "e19bbbf09f": {
+  "verdict": "yes",
+  "note": "",
+  "path": "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/clips/s7_dooropen_final.mp4",
+  "question": "s7 door-open payoff: Ellie's cap came out plain red with the plume (the gold swirls smoothed out in the weld) \u2014 good enough, or re-weld the cap?",
+  "ts": "2026-07-31 21:34:02"
+ },
+ "bf05f68f03": {
+  "verdict": "no",
+  "note": "",
+  "path": "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4",
+  "question": "circus_train full cut, 3min build. UNMUTE. QC has known defects (see report) \u2014 good to call it done?",
+  "ts": "2026-07-31 21:35:12"
+ }
+}

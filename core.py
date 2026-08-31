@@ -199,6 +199,32 @@ def _swap_heavy(snap: dict) -> bool:
     return snap["swap_gb"] is not None and snap["swap_gb"] > MEM_GATE_MAX_SWAP_GB
 
 
+_FP_UNITS = {"B": 1.0, "KB": 1024.0, "MB": 1024.0 ** 2, "GB": 1024.0 ** 3,
+             "TB": 1024.0 ** 4}
+
+
+def _footprint_gb(pid: str) -> float:
+    """phys_footprint — RSS plus the GPU memory RSS cannot see.
+
+    2026-08-01: this dam was measuring with `ps rss` and therefore could not see
+    Wan's weights at all (measured: a 6GB MPS allocation moves RSS 0.04GB and
+    phys_footprint 6.26GB). At 20:36 an IDLE ComfyUI sat on 25GB of cached
+    models, _evict_comfy_cache read "5GB", took its `held < 5` early exit, and
+    the next still pass was refused its 38GB three times in a row over 45
+    minutes. The reclaim path was blind to exactly the thing it exists to
+    reclaim. Same fix as forge_guard._footprint_gb.
+    """
+    import re
+    import subprocess
+    try:
+        out = subprocess.run(["/usr/bin/footprint", "-p", str(pid)],
+                             capture_output=True, text=True, timeout=8).stdout
+    except Exception:
+        return 0.0
+    m = re.search(r"phys_footprint:\s+([\d.]+)\s*([KMGT]?B)", out)
+    return float(m.group(1)) * _FP_UNITS.get(m.group(2), 1.0) / 1024 ** 3 if m else 0.0
+
+
 def _comfy_rss_gb() -> float:
     import subprocess
     try:
@@ -208,7 +234,8 @@ def _comfy_rss_gb() -> float:
             return 0.0
         out = subprocess.run(["ps", "-o", "rss=", "-p", ",".join(pids)],
                              capture_output=True, text=True, timeout=10).stdout
-        return sum(int(x) for x in out.split()) / 1048576
+        rss = sum(int(x) for x in out.split()) / 1048576
+        return max(rss, sum(_footprint_gb(p) for p in pids))
     except Exception:
         return 0.0
 
@@ -468,11 +495,30 @@ def _comfy_interrupt() -> None:
         print(f"[customer] could not interrupt ComfyUI: {e}", flush=True)
 
 
+def _comfy_ready() -> bool:
+    """Is the render backend actually answering? A customer preemption can take
+    the WHOLE backend down (the guard frees GPU for the paying job), not just our
+    render — and re-queueing into a dead server is how three renders died with
+    'Connection refused' on 2026-07-31. Restart and wait rather than crash."""
+    try:
+        _get("/system_stats")
+        return True
+    except Exception:
+        try:
+            _restart_comfy()
+            return True
+        except Exception as e:
+            print(f"[videopipe] render backend would not come back: {e}", flush=True)
+            return False
+
+
 def run_workflow(workflow: dict, label: str = "clip", timeout_s: float = 3600) -> list[Path]:
     """One-call helper: submit, wait, download outputs. If a Song Forge customer
     job lands mid-render the render is interrupted, waits its turn, and re-queues
     — the paying job never queues behind a 20-minute animate."""
     for attempt in range(1, 4):
+        if not _comfy_ready():
+            raise RuntimeError(f"'{label}': render backend unavailable and would not restart")
         pid = queue_prompt(workflow)
         print(f"[videopipe] queued {pid}", flush=True)
         try:

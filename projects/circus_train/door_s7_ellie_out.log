@@ -1,0 +1,124 @@
+[12:09:40] judge via in-process VL
+[dam] evicting 35GB of ComfyUI cached models before the next stage
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[12:09:58] reclaimed 35GB of ComfyUI cached models before the still pass
+[12:09:58] === s7_ellie_out — beat: a young elephant in a red circus cap leaning her head and trunk out of the dark open doorw
+[mem] storyforge-still s7_ellie_out: asking for 41GB — measured, not the 38GB declared
+[12:09:59]   holding 41GB for storyforge-still s7_ellie_out
+[12:09:59]   carrying 1 lesson(s) (1 inherited from earlier films) into this shot
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 16288.56it/s]
+[12:11:36]   seed 7411: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a dark doorway of a bo
+[12:11:41]   prescription: Position the elephant so she is leaning her head and trunk out of the dark, open doorway of the weathered red boxcar, with her body still pa
+[12:13:12]   seed 7447: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a dark open doorway of
+[12:13:16]   prescription: Move the elephant back into the boxcar so she is leaning her head and trunk out of the dark open doorway, with the doorway and sliding door 
+[12:14:52]   seed 7482: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a dark doorway of a bo
+[12:14:57]   prescription: Position the elephant so she is leaning her head and trunk out of the dark, open doorway of the weathered red boxcar, with the sliding door 
+[12:16:32]   seed 7519: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a dark open doorway of
+[12:16:37]   prescription: Move the elephant back inside the boxcar, positioning her so she is leaning her head and trunk out of the dark open doorway, with her body s
+[12:18:09]   seed 7611: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a doorway, and there i
+[12:18:14]   prescription: Position the elephant so she is leaning her head and trunk out of the open doorway of the weathered red boxcar, with her body still inside t
+[12:19:51]   seed 7647: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a dark doorway of a bo
+[12:19:56]   prescription: Position the elephant so she is leaning her head and trunk out of the dark, open doorway of the weathered red boxcar, with her body still in
+[12:21:32]   seed 7682: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully on the ground outside the train car, not leaning out of a dark d
+[12:21:37]   prescription: Position the elephant inside the boxcar, leaning her head and trunk out of the dark open doorway, with her trunk reaching forward into the b
+[12:23:11]   seed 7719: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully on the ground outside the train car, not leaning out of a doorwa
+[12:23:16]   prescription: Position the elephant so she is leaning her head and trunk out of the open doorway of the boxcar, with her body still inside the dark interi
+[12:23:16]   retry cycle 1 with 9 correction(s) applied
+[12:24:59]   seed 8411: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is seated upright on the ground, not leaning out of a doorway, and there is no ope
+[12:25:05]   prescription: Position the elephant inside the dark, open doorway of the weathered red boxcar, leaning forward with her head and trunk extending out into 
+[12:26:42]   seed 8447: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a dark doorway of a bo
+[12:26:47]   prescription: Position the elephant so she is leaning her head and trunk out of the dark, open doorway of the weathered red boxcar, with her body still in
+[12:28:23]   seed 8482: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a doorway, and there i
+[12:28:28]   prescription: Position the elephant so she is leaning her head and trunk out of the open doorway of the weathered red boxcar, with her body still partiall
+[12:30:11]   seed 8519: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a dark doorway into su
+[12:30:16]   prescription: Place the elephant inside the boxcar, leaning her head and trunk out of the dark open doorway, with the weathered red door slid aside along 
+[12:31:53]   seed 8611: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a dark doorway of a bo
+[12:31:58]   prescription: Position the elephant so she is leaning her head and trunk out of the dark, open doorway of the weathered red boxcar, with her body still pa
+[12:33:35]   seed 8647: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a dark doorway of a bo
+[12:33:40]   prescription: Position the elephant so she is leaning her head and trunk out of the dark, open doorway of the weathered red boxcar, with her body still in
+[12:35:15]   seed 8682: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a dark doorway into su
+[12:35:20]   prescription: Position the elephant so she is leaning her head and trunk out of the dark, open doorway of the weathered red boxcar, with her body still in
+[12:37:10]   seed 8719: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a doorway, and its tru
+[12:37:14]   prescription: Position the elephant inside the dark boxcar, leaning her head and trunk out through the open doorway, with her trunk extended forward into 
+[12:37:14]   retry cycle 2 with 17 correction(s) applied
+[12:37:14]   the weld's backend is down or loading — waiting for it (this does not count as a failed idea)
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[12:37:33]   render backend was down — restarted it ourselves
+[12:37:33]   render backend is back
+[12:39:12]   seed 9411: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a doorway, and there i
+[12:39:17]   prescription: Place the elephant inside the boxcar, leaning her head and trunk out of the open doorway, with the weathered red door slid aside along the t
+[12:40:48]   seed 9447: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a dark open doorway of
+[12:40:53]   prescription: Place the elephant inside the boxcar, leaning her head and trunk out of the dark open doorway, with the sliding door partially open along it
+[12:42:27]   seed 9482: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a dark doorway of a bo
+[12:42:32]   prescription: Position the elephant inside the boxcar, leaning her head and trunk out of the dark open doorway, with her trunk extended forward into the b
+[12:44:08]   seed 9519: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a dark doorway of a bo
+[12:44:12]   prescription: Place the elephant inside the boxcar, leaning her head and trunk out of the dark, open doorway, with the interior shadowed behind her and th
+[12:45:49]   seed 9611: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a dark doorway of a bo
+[12:45:55]   prescription: Move the elephant back into the boxcar so she is leaning her head and trunk out of the dark open doorway, with the weathered red door slid a
+[12:47:32]   seed 9647: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a dark doorway of a bo
+[12:47:37]   prescription: Position the elephant inside the boxcar, leaning her head and trunk out of the dark open doorway, with her trunk reaching forward into the b
+[12:49:12]   seed 9682: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a doorway, and there i
+[12:49:17]   prescription: Position the elephant so she is leaning her head and trunk out of the open doorway of the boxcar, with her body still inside the dark interi
+[12:50:53]   seed 9719: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing fully outside on the ground, not leaning out of a dark doorway of a bo
+[12:50:58]   prescription: Move the elephant back inside the boxcar, positioning her so she is leaning her head and trunk out of the dark open doorway, with her body s
+[12:50:58]   s7_ellie_out: NO candidate passed — reported UNBUILT, nothing locked
+[12:50:58]   released the storyforge-still s7_ellie_out lease
+[12:50:58] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[12:50:58] DONE — 0/1 shots produced usable, judged assets
+[12:50:58]   s7_ellie_out: UNBUILT
+[13:22:10] judge via in-process VL
+[13:22:10] === s7_ellie_out — beat: a young elephant in a red circus cap leaning her head and trunk out of the dark open doorw
+[mem] storyforge-still s7_ellie_out: asking for 41GB — measured, not the 38GB declared
+[13:22:10]   holding 41GB for storyforge-still s7_ellie_out
+[13:22:10]   carrying 25 lesson(s) (1 inherited from earlier films) into this shot
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 21870.65it/s]
+[13:23:24]   seed 8311: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing upright and fully inside the black frame with no part of its body exte
+[13:23:28]   prescription: Position the elephant so its head, ears, and trunk extend outward from the open doorway of the boxcar into the bright golden sunlight, with 
+[13:24:18]   seed 8347: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is not leaning out of a doorway into sunlight; it is standing upright against a bl
+[13:24:22]   prescription: Remove the black background and framed structure, and reposition the elephant so she is leaning her head, ears, and trunk out of a dark, ope
+[13:25:16]   seed 8382: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is not leaning out of a doorway into sunlight; it is standing upright within a bla
+[13:25:20]   prescription: Place the elephant in profile, leaning forward with her head, ears, and trunk extending out from the dark, open doorway of the weathered red
+[13:26:10]   seed 8419: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is not leaning out of a doorway into sunlight; instead, it is fully contained with
+[13:26:15]   prescription: Replace the black square frame with the open doorway of the weathered red boxcar, position the elephant so her head, ears, and trunk are lea
+[13:27:09]   seed 8511: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is not leaning out of a doorway into sunlight; it is standing upright against a bl
+[13:27:14]   prescription: Replace the black background with the interior of a weathered, faded-red boxcar, showing the open sliding door framed by rusted metal and wo
+[13:28:11]   seed 8547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is not leaning out of a doorway into sunlight; it is statically posed within a bla
+[13:28:16]   prescription: Replace the black-framed elephant with the same elephant leaning forward from inside the boxcar, her head, ears, and trunk extending through
+[13:28:16]   retry cycle 1 with 31 correction(s) applied
+[13:29:14]   seed 9311: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is not leaning out of a doorway into sunlight; it is standing upright within a bla
+[13:29:18]   prescription: Replace the black frame with the actual interior of the boxcar, show the elephant leaning forward from inside the shadowed doorway with her 
+[13:30:14]   seed 9347: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is not leaning out of a doorway into sunlight; instead, it is statically posed aga
+[13:30:18]   prescription: Replace the black background with the interior of the weathered boxcar, showing the elephant leaning forward from inside the shadowed doorwa
+[13:31:09]   seed 9382: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is not leaning out of a doorway into sunlight; instead, it is superimposed on a bl
+[13:31:13]   prescription: Replace the black background behind the elephant with the interior of the boxcar, showing the open sliding door frame, and position the elep
+[13:31:36]   the weld's backend is down or loading — waiting for it (this does not count as a failed idea)
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[13:31:54]   render backend was down — restarted it ourselves
+[13:31:54]   render backend is back
+[13:32:58]   seed 9419: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is not leaning out of a doorway into sunlight; it is fully contained within a blac
+[13:33:01]   prescription: Replace the black background with the interior of a weathered, faded-red boxcar, and position the elephant so her head, ears, and trunk are 
+[13:33:49]   seed 9511: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is not leaning out of a doorway into sunlight; it is centered against a solid blac
+[13:33:52]   prescription: Place the elephant at the threshold of the open boxcar doorway, with her head, ears, and trunk extending into the bright golden sunlight, he
+[13:34:45]   seed 9547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is depicted standing upright and static within a black frame, with its trunk hangi
+[13:34:49]   prescription: Replace the black-framed, static elephant with the same elephant leaning forward from inside the open, weathered red boxcar, her head, ears,
+[13:34:49]   retry cycle 2 with 37 correction(s) applied
+[13:35:48]   seed 10311: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is depicted in a static, posed stance against a black background, not leaning out 
+[13:35:52]   prescription: Replace the black background with the interior of a weathered, faded-red boxcar, showing the open sliding door framed by peeling paint and r
+[13:36:47]   seed 10347: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is not leaning out of a doorway into sunlight; instead, it is superimposed on a bl
+[13:36:51]   prescription: Replace the black background behind the elephant with the interior of the weathered red boxcar, showing the open sliding door, and position 
+[13:37:47]   seed 10382: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is not leaning out of a doorway into sunlight; it is standing upright within a bla
+[13:37:53]   prescription: Place the young elephant in a dynamic pose leaning forward out of the open, shadowed doorway of the weathered red boxcar, with her head, ear
+[13:38:51]   seed 10419: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is not leaning out of a doorway into sunlight; it is statically posed in front of 
+[13:38:54]   prescription: Place the elephant inside the boxcar, with her head, ears, and trunk extending through the open sliding door into the bright golden sunlight
+[13:39:49]   seed 10511: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is not leaning out of a doorway into sunlight; it is standing upright within a bla
+[13:39:53]   prescription: Replace the black background with the interior of a weathered, faded-red wooden boxcar, showing the open sliding door framed around the elep
+[13:40:51]   seed 10547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is not leaning out of a doorway into sunlight; it is standing upright against a so
+[13:40:55]   prescription: Place the elephant leaning forward out of a dark, open boxcar doorway, with her head, ears, and trunk extending into bright golden sunlight,
+[13:40:55]   s7_ellie_out: NO candidate passed — reported UNBUILT, nothing locked
+[13:40:55]   released the storyforge-still s7_ellie_out lease
+[13:40:55] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[13:40:55] DONE — 0/1 shots produced usable, judged assets
+[13:40:55]   s7_ellie_out: UNBUILT

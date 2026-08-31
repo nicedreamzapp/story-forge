@@ -217,6 +217,136 @@
     "cut",
     "beats"
    ]
+  },
+  {
+   "when": [
+    "dog",
+    "doug",
+    "bloodhound"
+   ],
+   "lesson": "never describe Doug as lanky, slim or long-legged in any prompt \u2014 he is a STURDY bloodhound (deep chest, heavy build, long dark ears past the jaw, droopy eyes); prompt adjectives override the LoRA and produce a skinny off-model dog (Matt rejected it 2026-07-31)",
+   "learned_on": "s8_goodbye"
+  },
+  {
+   "when": [
+    "goodbye",
+    "hug",
+    "handshake",
+    "paw",
+    "touch",
+    "shoulder",
+    "chin",
+    "holding",
+    "embrace",
+    "high-five"
+   ],
+   "lesson": "NEVER prompt physical contact between two characters \u2014 a paw under a chin, a hug, a handshake. Wan fuses the touching limbs into a mangled lump (rule 6). Stage characters with clear air between them; warmth comes from posture, gaze and light, not touch.",
+   "learned_on": "s8_goodbye declined by Matt 2026-07-31"
+  },
+  {
+   "id": "stale-lease-blocks-everything",
+   "date": "2026-08-29",
+   "keywords": [
+    "forge_guard",
+    "lease",
+    "mem_client",
+    "film_qc",
+    "make-ltx25",
+    "hang",
+    "900s"
+   ],
+   "lesson": "A process killed while holding a forge_guard lease keeps the lease until its TTL (film_qc: 1h). Every later ask that would exceed the 50GB non-forge budget then silently waits the full 900s timeout and only THEN proceeds. Three renders and one QC lost 15 minutes each on 2026-08-29. Before diagnosing a 'stuck' judge or render: `python3 ~/SongForgeM5/mem_client.py state` \u2192 release orphan leases. Ask for what the job really needs (\u226420GB with --low-ram)."
+  },
+  {
+   "id": "ltx25-scene-engine",
+   "date": "2026-08-29",
+   "keywords": [
+    "ltx-2.5",
+    "make-ltx25",
+    "animate",
+    "i2v",
+    "wan",
+    "speed",
+    "low-ram"
+   ],
+   "lesson": "Scene i2v: LTX-2.5 distilled --low-ram \u2248 70s per 5s clip vs Wan 13\u201316 min, same composition held. Dialogue a2v: keep mlx-video LTX-2 distilled (42s) \u2014 ltx-2-mlx a2v is dev+CFG and takes 4+ min with a swap spike. Numbers in RENDER_SPEED_RESEARCH.md 2026-08-29."
+  },
+  {
+   "id": "ltx25-invents-camera-moves",
+   "date": "2026-08-29",
+   "keywords": [
+    "ltx-2.5",
+    "make-ltx25",
+    "animate",
+    "camera",
+    "drift",
+    "clip gate"
+   ],
+   "lesson": "LTX-2.5 i2v adds push-ins, pans and pull-backs on its own; a clip then fails a beat the still passed (s1_coldopen 3 fails, s4_arrival 2 fails). 'Static camera, locked-off tripod shot, the camera does not move at all and the framing never changes from the first frame' held the frame; make-ltx25 now prepends it to every i2v prompt that does not ask for a move."
+  },
+  {
+   "id": "physically-impossible-passes-the-beat",
+   "date": "2026-08-30",
+   "keywords": [
+    "beat_gate",
+    "must_not",
+    "wagon",
+    "horse",
+    "trim",
+    "kept clips",
+    "review"
+   ],
+   "lesson": "The rollout shipped with the horse BEHIND the wagon it pulls (Matt: 'the wagon is pulling the horse, it makes no sense'). Three failures stacked: (1) the beat gate only asks 'does this depict the beat' \u2014 a horse + wagon + dust is a PASS with no physics check; (2) the trim rule kept a 2s window (t=3.5\u20134.5s) that passed the same question while the full clip failed 1/5; (3) nobody looked at KEPT clips \u2014 only failed ones got eyeballed. Fixes: HOUSE_MUST_NOT in beat_gate fails impossible geometry on every ballot; a pulling shot must state the geometry in beat AND must_not ('horses out in front, wagon behind them'); and every kept clip gets a frame-grid look by the agent before assembly."
+  },
+  {
+   "id": "pulled-rig-stage-in-profile",
+   "date": "2026-08-30",
+   "keywords": [
+    "wagon",
+    "horse",
+    "harness",
+    "pull",
+    "cart",
+    "carriage",
+    "init",
+    "plate",
+    "denoise",
+    "convoy",
+    "prescribe",
+    "kept clips"
+   ],
+   "lesson": "Second rollout failure the same morning, AFTER HOUSE_MUST_NOT shipped: both wagon shots came back as a CONVOY (a horse's rump at frame left, two loose horses charging at camera behind the wagon) and the judge passed the clips 5/5. Causes: (1) the init plate wagon_canon.png is a REAR three-quarter view, so from that angle a horse in front of the wagon is hidden by the wagon body and the model invents horses elsewhere; (2) the stored prescribe() lessons said 'add a galloping horse in the foreground on the left' \u2014 written for that plate, they kept manufacturing the rump; (3) a VL judge cannot be trusted on who-pulls-whom geometry even when told the rule. Fixes: any shot where one thing pulls another is staged in clean SIDE PROFILE or a low three-quarter FRONT view with no init plate, the prompt says 'a single wagon, the only vehicle on the road', must_not forbids a second wagon/convoy, loose horses, head-on horses, a horse cut by the frame edge and a rear end in the foreground; retire prescriptions when the staging changes; and every kept clip is eyeballed at full frame at 4+ timestamps before it goes near the cut."
+  },
+  {
+   "id": "count-heads-against-bodies",
+   "date": "2026-08-30",
+   "keywords": [
+    "horse",
+    "team",
+    "pair",
+    "two",
+    "side by side",
+    "heads",
+    "merge",
+    "profile",
+    "kept clips",
+    "review"
+   ],
+   "lesson": "Matt caught a THREE-headed pair of horses in the first frame of the rebuilt rollout after the agent had looked at it and called it right ('two-to-three horses' was written down and waved through). Any shot with two or more of the same animal side by side: count heads, count bodies, count legs \u2014 they must match \u2014 and put 'three or more heads / more heads than bodies / animals merged into each other' in must_not. Give a pair different coats so the model keeps them separate. A defect the reviewer can name in words and still ships is worse than one never seen."
+  },
+  {
+   "lesson": "A clip_beat must describe what ONE frame shows at any moment of the motion, never the CHANGE itself. 's6c: the seam of light steadily WIDENING' failed 0/5 on a clip that widened perfectly, because each sampled frame was judged alone and no single frame depicts 'widening'. Write clip_beats as a state true of every frame (e.g. 'light pouring through a partly or fully open doorway'), and let a human confirm the motion.",
+   "keywords": [
+    "clip_beat",
+    "widening",
+    "motion",
+    "judge",
+    "frame",
+    "animate",
+    "gate"
+   ],
+   "added": "2026-08-30",
+   "project": "circus_train"
   }
  ]
 }

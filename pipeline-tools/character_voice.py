@@ -39,6 +39,15 @@ VOICES = {
                "exaggeration": 0.7, "cfg": 0.4, "seed": 0},
     "voiceC": {"ref": str(VOICES_DIR / "spare_voiceC.wav"),
                "exaggeration": 0.7, "cfg": 0.4, "seed": 0},
+    # African American female voices — Matt's picks from the 2026-08-07 EARS
+    # audition (EARS speakers p098/p080, CC-NC license: fine for personal work,
+    # swap refs before monetized use). Fuller source audio: *_source_full.wav.
+    # ruby: mature (46-55), assertive
+    "ruby": {"ref": str(VOICES_DIR / "ruby.wav"),
+             "exaggeration": 0.5, "cfg": 0.4, "seed": 0},
+    # nia: younger (26-35), same register as ruby but lighter
+    "nia": {"ref": str(VOICES_DIR / "nia.wav"),
+            "exaggeration": 0.5, "cfg": 0.4, "seed": 0},
 }
 
 

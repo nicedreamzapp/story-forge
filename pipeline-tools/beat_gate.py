@@ -77,6 +77,18 @@ VERDICT = (
 
 FORBID = ("The shot FAILS automatically if any of these is present: {items}.\n")
 
+# Things that are wrong in EVERY shot, whatever the beat says (added 2026-08-30 after a
+# horse-drawn wagon passed the gate with the horse behind the wagon). Judged on every ballot.
+HOUSE_MUST_NOT = [
+    "anything physically impossible or nonsensical: an animal behind, inside or underneath a "
+    "vehicle it is supposed to be pulling; a cart, wagon or train pulling the animal instead of "
+    "the animal pulling it; bodies or objects merged into or passing through each other",
+    "floating, detached or duplicated body parts, extra limbs, two heads, or a body that "
+    "connects to nothing",
+    "a vehicle or object with no visible way of being where it is (a wagon riding on top of "
+    "a horse, wheels not on the ground, a rider with no mount)",
+]
+
 SET_Q = (
     "The LEFT image is the locked design of this production's {name}. The RIGHT "
     "image is a shot from the same film. Is the {name} in the right image the "
@@ -84,6 +96,36 @@ SET_Q = (
     "a viewer reads them as one object and not two different ones? Answer YES or "
     "NO first, then one sentence."
 )
+
+PRESCRIBE = (
+    "An image for a film shot was generated from this description:\n\n  {prompt}\n\n"
+    "The shot must depict this beat:\n\n  {beat}\n\n"
+    "It was rejected because: {why}\n\n"
+    "Look at the image. Reply with ONE sentence prescribing the most important "
+    "concrete change that would make the next attempt depict the beat — say what "
+    "to add, remove or restage in plain visual terms (subject, pose, props, "
+    "framing, atmosphere). Prescribe the fix; do not restate the rejection and do "
+    "not mention prompts, models or rendering."
+)
+
+
+def prescribe(frame: Path, prompt: str, beat: str, why: str) -> str:
+    """Turn a FAIL into a fix, not just a complaint (2026-07-31).
+
+    The retry loop used to feed the judge's refusal sentence straight back into
+    the next prompt — a diagnosis ("the train shows no signs of distress"), not
+    a direction. While the failing frame is still on disk, one more VL call asks
+    for the actual change, so the saved lesson reads like direction the image
+    model can follow ("show the wheels locked and sparking, smoke pouring from
+    the stack") and the raw refusal stays in the report for the humans.
+    Returns "" on any failure — the caller falls back to the raw refusal.
+    """
+    try:
+        ans = vl_ask(frame, PRESCRIBE.format(prompt=prompt.strip(), beat=beat.strip(),
+                                             why=" ".join(why.split())[:300]))
+        return " ".join(ans.split())[:400]
+    except Exception:
+        return ""
 
 
 def grab_frame(clip: Path, t: float) -> Path:
@@ -149,7 +191,13 @@ def check_shot(shot: dict, root: Path, masters: dict, votes: int = 3) -> dict:
         src = shot.get("image") or shot.get("clip")
         return {"id": shot["id"], "verdict": "ERROR", "why": f"missing or unreadable {src}"}
 
-    forbid = FORBID.format(items="; ".join(shot["must_not"])) if shot.get("must_not") else ""
+    # HOUSE DISQUALIFIERS (2026-08-30, the rollout horse). The gate asks "does this frame
+    # depict the beat" and nothing else, so a wagon with a horse and dust PASSED while the
+    # horse was BEHIND the wagon it was supposed to be pulling — physically impossible, and
+    # per-shot must_not lists only ever forbid what someone anticipated. Every ballot now
+    # also fails on things that can never be right in any shot.
+    items = list(shot.get("must_not") or []) + HOUSE_MUST_NOT
+    forbid = FORBID.format(items="; ".join(items))
     ballots = []
     for f in frames:
         desc = vl_ask(f, BLIND)
@@ -236,12 +284,24 @@ def main() -> int:
     # only while it agrees with those. First run: 5/6 agreement, and the lone
     # disagreement was a beat worded for something not visible in frame — i.e. the
     # spec was wrong, not the judge. Re-run this whenever prompts or wording change.
-    graded = [r for r in results if r.get("expect")]
+    # A sample the gate could not READ is not a sample the gate got WRONG. Scoring
+    # ERROR as a disagreement understated agreement and could trip the <80% distrust
+    # warning below on nothing worse than a moved file (2026-08-01: GT_pass_s5_door
+    # pointed at a still since parked in _ARCHIVE_UNUSED_not_in_film/, and the gate
+    # was reported as failing a human verdict it never actually saw). Same family as
+    # "one instant is not a verdict" and "a transcript hole is not proof of silence":
+    # couldn't-judge is UNCHECKED, never a verdict in either direction.
+    graded = [r for r in results if r.get("expect") and r["verdict"] != "ERROR"]
+    unchecked = [r for r in results if r.get("expect") and r["verdict"] == "ERROR"]
     agree = [r for r in graded if r["verdict"] == r["expect"]]
+    for r in unchecked:
+        print(f"[UNCHECKED] {r['id']}: sample could not be read, EXCLUDED from calibration "
+              f"— {r.get('why','')[:160]}", flush=True)
     if graded:
         pct = round(100 * len(agree) / len(graded))
+        unread = f", {len(unchecked)} UNCHECKED" if unchecked else ""
         print(f"[beat_gate] CALIBRATION: agrees with {len(agree)}/{len(graded)} known human "
-              f"verdicts ({pct}%)", flush=True)
+              f"verdicts ({pct}%){unread}", flush=True)
         for r in graded:
             if r["verdict"] != r["expect"]:
                 print(f"[MISCAL] {r['id']}: gate said {r['verdict']}, human said {r['expect']} "

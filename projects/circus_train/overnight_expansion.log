@@ -1,0 +1,28 @@
+[overnight 22:55:58] phase 1 — new-cast masters
+[22:55:58] judge via in-process VL
+[22:55:58] === monkey_master — beat: one small brown capuchin monkey with a cream face wearing a tiny red fez, full body, stand
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 24456.58it/s]
+[22:56:53]   seed 21: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts one small brown capuchin monkey with a cream face, wearing a tiny red
+[22:56:58]   LOCKED canon/monkey_canon.png
+[22:56:58] === lion_master — beat: one big friendly golden lion with a thick orange-brown mane and kind eyes, full body, stan
+[22:57:53]   seed 21: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a single, cartoon-style golden lion with a thick orange-brown mane, k
+[22:57:56]   LOCKED canon/lion_canon.png
+[22:57:56] === giraffe_master — beat: one young giraffe with warm yellow coat and orange-brown patches, full body and full neck 
+[22:58:47]   seed 21: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a single, cartoon-style young giraffe with a warm yellow coat and ora
+[22:58:53]   LOCKED canon/giraffe_canon.png
+[22:58:53] === parrot_master — beat: one bright scarlet macaw parrot with red body and blue-and-gold wings, full body, perched 
+[22:58:53]   Song Forge has a customer job running — holding the render
+[23:00:44]   seed 21: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a single bright scarlet macaw with a red body and blue-and-gold wings
+[23:00:48]   LOCKED canon/parrot_canon.png
+[23:00:48] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[23:00:48] DONE — 4/4 shots produced usable, judged assets
+[23:00:48]   monkey_master: STILL_LOCKED
+[23:00:48]   lion_master: STILL_LOCKED
+[23:00:48]   giraffe_master: STILL_LOCKED
+[23:00:48]   parrot_master: STILL_LOCKED
+[overnight 23:00:49] masters stage exit=0
+[overnight] master LOCKED: monkey_canon.png
+[overnight] master LOCKED: lion_canon.png
+[overnight] master LOCKED: giraffe_canon.png
+[overnight] master LOCKED: parrot_canon.png
+[overnight 23:00:49] phase 2 — director takes the film

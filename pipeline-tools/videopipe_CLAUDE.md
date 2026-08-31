@@ -17,7 +17,7 @@ This directory is the home of **Story Forge**, a robust 100%-local generative VI
 - `~/Desktop/PROJECTS/story-forge/SESSION_HANDOFF.md` — full session state, what works, what's broken, where to resume the two-week speedup build.
 
 **Quick file map:**
-- `story_pipeline.py` — the core pipeline (Flux + Wan + Piper + ACE-Step + ffmpeg, config-driven)
+- `story_pipeline.py` — the core pipeline (Flux + Wan + Kokoro Heart narration + ACE-Step + ffmpeg, config-driven)
 - `server.py` — Flask UI server on port 17600
 - `ui/story.html` — Story Forge web form
 - `bin/make-video` — Wan inference CLI (works)

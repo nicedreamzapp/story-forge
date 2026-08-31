@@ -55,3 +55,36 @@
 - ✓ LOCKED (Matt "good one" 2026-07-29 03:39): s3_rollout = clips/s2_final.mp4 — the
   wagon animated from the Matt-approved LOCKED_s2_wide still (beat PASS 5/5). Replaces
   the 2026-07-28 19:14 auto-reroll whose bear had crossed eyes. chmod 444.
+- ✓ LOCKED (Matt clicked YES in /review 2026-07-31 13:06): s6_interior =
+  clips/s6_interior_final.mp4 — the bang felt from inside. NOT Wan: real motion
+  graphics on the gate-passed still (s6_overlay.py — dust in the beam, sub-pixel
+  shudder at 1.2s, dust burst rains and settles). beat_gate clip PASS 5/5 after
+  five failed i2v attempts across two stills (Wan cannot hold a static dark
+  interior with one light source — brightens/opens, hallucinated a human, or
+  fades and fragments). Losing takes deleted per rule 13. chmod 444.
+- ellie_eye TRIMMED to 3.9s (2026-07-31): the eye relaxes sleepy in the last
+  second — cut before the drift, VO ends at 3.16s so nothing lost. beat_gate
+  3/5 PASS on the trimmed take. Matt's standing rule: short clips are fine.
+- EPISODE_v1.mp4 REBUILT 2026-07-31 13:24 (74.1s, 23 segments): new s6_interior
+  (motion-graphics bang, Matt YES 13:06), ellie_eye trimmed 3.9s, all 9 beats
+  PASS or set-drift-only. film_qc: 15 checks, 8 passed, 7 failed — but targeted
+  whisper on the 27-45s window (with AND without music) hears ALL 6 "NOT HEARD"
+  lines at their slots; full-pass whisper loses the scored middle (same class as
+  the 7/23 false alarms). 7th fail is L05 manifest wording vs recorded take.
+  Known set drift ships documented: s4_arrival, ellie_eye, s6_heave (door/car
+  detail vs masters). NOT yet approved by Matt.
+- s8_goodbye SKINNY-DOG TAKE TRASHED 2026-07-31 (Matt: declined in another
+  session, was supposed to be deleted, resurfaced into the 13:24 cut). Locked
+  still + final clip + kb copy all rm'd. The scene is UNBUILT until a sturdy
+  on-model Doug passes gates AND Matt's click.
+- s7_dooropen HINGED-DOORS TAKE TRASHED 2026-07-31 16:17 (Matt NO on the cut:
+  "he's sliding on the door to open it, and then... the doors aren't hinged the
+  same way. It's like they open differently" — plus a ladder and zero dust
+  right after the bang). Locked still + final clip deleted same session per
+  rule 13 corollary. Rebuilding as a SLIDING-door boxcar with settling dust.
+- s7_dooropen REBUILT BY HAND 2026-07-31 20:55 (after ~5h/20+ seeds of roll
+  failures): empty sliding-door plate (seed 34) + PIL composite of Ellie canon
+  into the doorway + img2img weld denoise 0.5 seed 82. beat_gate 3/3 PASS,
+  identity YES, text clean. Locked chmod 444. Losing weld + spare plates
+  deleted per rule 13. Cap simplified vs canon (plain red w/ plume) — Matt to
+  judge on the clip.

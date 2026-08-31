@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Story Forge — Live Pulse</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; margin: 0; }
+  body { background:#0b0b0e; color:#eee; font-family:-apple-system,system-ui,sans-serif;
+         min-height:100vh; display:flex; flex-direction:column; align-items:center;
+         padding:26px 18px; gap:20px; }
+  h1 { font-size:.95rem; font-weight:600; color:#888; letter-spacing:.08em; }
+  #card { width:100%; max-width:760px; background:#131318; border:1px solid #26262e;
+          border-radius:16px; padding:26px; display:flex; flex-direction:column; gap:18px; }
+  #steprow { display:flex; align-items:center; gap:16px; }
+  #dot { width:18px; height:18px; border-radius:50%; background:#2ecc71; flex:none;
+         animation:pulse 1.6s ease-in-out infinite; }
+  #dot.customer { background:#e67e22; }
+  #dot.idle { background:#555; animation:none; }
+  @keyframes pulse { 0%,100% {transform:scale(1); opacity:1;} 50% {transform:scale(1.35); opacity:.55;} }
+  #step { font-size:1.7rem; font-weight:700; }
+  #detail { color:#9a9aa5; font-size:1.02rem; line-height:1.5; }
+  #beat { background:#1a1a22; border-radius:10px; padding:12px 16px; font-size:1rem;
+          color:#cfcfda; line-height:1.45; }
+  #beat b { color:#f0c674; font-weight:600; }
+  #barwrap { background:#1a1a22; border-radius:10px; height:26px; overflow:hidden; position:relative; }
+  #bar { height:100%; background:linear-gradient(90deg,#2b6b45,#2ecc71); width:0%;
+         transition:width .8s; }
+  #barlabel { position:absolute; inset:0; display:flex; align-items:center;
+              justify-content:center; font-size:.85rem; font-weight:600; color:#fff; }
+  #review { font-size:1rem; color:#f0c674; }
+  #review a { color:#f0c674; }
+  #log { font-family:ui-monospace,Menlo,monospace; font-size:.78rem; color:#7a7a85;
+         background:#0e0e12; border-radius:10px; padding:12px 14px; line-height:1.55;
+         overflow-x:auto; white-space:pre; }
+  #ts { color:#555; font-size:.8rem; text-align:center; }
+</style>
+</head>
+<body>
+<h1>STORY FORGE — LIVE PULSE</h1>
+<div id="card">
+  <div id="steprow"><div id="dot"></div><div id="step">connecting…</div></div>
+  <div id="detail"></div>
+  <div id="beat" hidden></div>
+  <div id="barwrap"><div id="bar"></div><div id="barlabel"></div></div>
+  <div id="review" hidden></div>
+  <div id="log"></div>
+</div>
+<div id="ts"></div>
+<script>
+async function tick() {
+  try {
+    const d = await (await fetch("/api/pulse")).json();
+    const dot = document.getElementById("dot");
+    dot.className = d.customer_active ? "customer" : (d.step === "idle" ? "idle" : "");
+    document.getElementById("step").textContent = d.step;
+    document.getElementById("detail").textContent = d.detail;
+    const beat = document.getElementById("beat");
+    if (d.beat) { beat.hidden = false; beat.innerHTML = "working on: <b></b>";
+                  beat.querySelector("b").textContent = d.beat; }
+    else beat.hidden = true;
+    if (d.shots_done != null && d.shots_total) {
+      const pct = Math.round(100 * d.shots_done / d.shots_total);
+      document.getElementById("bar").style.width = pct + "%";
+      document.getElementById("barlabel").textContent =
+          d.shots_done + " of " + d.shots_total + " scenes locked (" + pct + "%)";
+    }
+    const rv = document.getElementById("review");
+    if (d.review_waiting > 0) { rv.hidden = false;
+      rv.innerHTML = "🎬 <a href='/review'>" + d.review_waiting +
+                     " clip(s) waiting for YOUR call — click to judge</a>"; }
+    else rv.hidden = true;
+    document.getElementById("log").textContent =
+        (d.director || []).concat(d.shotlog || []).join("\n") || "(no recent activity)";
+    document.getElementById("ts").textContent = "project: " + d.project + " · updated " + d.ts;
+  } catch (e) {
+    document.getElementById("step").textContent = "server unreachable";
+    document.getElementById("dot").className = "idle";
+  }
+}
+tick();
+setInterval(tick, 2000);
+</script>
+</body>
+</html>

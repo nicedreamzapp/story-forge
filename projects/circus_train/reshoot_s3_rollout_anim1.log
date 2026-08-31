@@ -1,0 +1,16 @@
+[09:25:19] judge via in-process VL
+[09:25:19] === s3_rollout — beat: seen from the side: exactly two horses, each with one head, in harness on the left gallopi
+[09:25:19]   --stage animate: using the locked still LOCKED_s3_rollout.png
+[09:25:19]   LOCKED stills/LOCKED_s3_rollout.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[09:25:37]   bounced ComfyUI so Wan loads into a clean process
+[09:25:37]   render backend is back
+[09:25:37]   holding 47GB for storyforge-animate s3_rollout
+[09:25:38]   animate engine: ltx25
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 13362.38it/s]
+[09:28:03]   clip: beat PASS (5/5)
+[09:28:03]   released the storyforge-animate s3_rollout lease
+[09:28:03] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[09:28:03] DONE — 1/1 shots produced usable, judged assets
+[09:28:03]   s3_rollout: CLIP_KEPT

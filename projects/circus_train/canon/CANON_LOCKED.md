@@ -5,3 +5,4 @@
   (crop/img2img/edit). Independent re-generation drifts color+texture — v1 faces
   rejected for exactly this, quarantined in rejected/.
 - Files chmod 444. Never redraw a locked character.
+- horses_canon.png (2026-08-30): the matched dark bay pair, cropped from LOCKED_s3_rollout.png. Every shot with the horses carries it as an identity master so the coat shade matches across shots.

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matt's Review Queue</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; margin: 0; }
+  body { background:#0d0d0f; color:#eee; font-family:-apple-system,system-ui,sans-serif;
+         min-height:100vh; display:flex; flex-direction:column; align-items:center;
+         padding:16px; gap:14px; }
+  h1 { font-size:1.05rem; font-weight:600; color:#aaa; letter-spacing:.02em; }
+  #count { color:#666; font-size:.9rem; }
+  #stage { width:100%; max-width:900px; display:flex; flex-direction:column; gap:14px;
+           align-items:center; }
+  video, img { width:100%; max-width:900px; border-radius:10px; background:#000; }
+  #question { font-size:1.15rem; text-align:center; line-height:1.45; max-width:760px; }
+  #buttons { display:flex; gap:18px; width:100%; max-width:560px; }
+  button { flex:1; padding:22px 0; font-size:1.5rem; font-weight:700; border:none;
+           border-radius:12px; cursor:pointer; color:#fff; }
+  button:disabled { opacity:.4; }
+  #yes { background:#1d7a3d; } #yes:active { background:#2a9c52; }
+  #no  { background:#8a2626; } #no:active  { background:#ad3535; }
+  #note { width:100%; max-width:560px; padding:12px; border-radius:8px; border:1px solid #333;
+          background:#17171a; color:#eee; font-size:1rem; }
+  #empty { margin-top:18vh; text-align:center; color:#777; font-size:1.2rem; line-height:1.6; }
+  #saved { position:fixed; top:40%; left:50%; transform:translate(-50%,-50%);
+           font-size:3rem; font-weight:800; padding:.4em .8em; border-radius:16px;
+           opacity:0; transition:opacity .15s; pointer-events:none; }
+</style>
+</head>
+<body>
+<h1>STORY FORGE — MATT'S CALL</h1>
+<div id="count"></div>
+<div id="stage" hidden>
+  <div id="media"></div>
+  <div id="question"></div>
+  <input id="note" placeholder="optional note — why, or what to change">
+  <div id="buttons">
+    <button id="yes">YES</button>
+    <button id="no">NO</button>
+  </div>
+</div>
+<div id="empty" hidden>all caught up 🎬 — safe to close this tab<br>
+i'll open it again when something needs your call</div>
+<div id="saved"></div>
+<script>
+let cur = null, busy = false;
+
+function showEmpty() {
+  cur = null;
+  document.getElementById("stage").hidden = true;
+  document.getElementById("empty").hidden = false;
+  document.getElementById("count").textContent = "";
+}
+
+function showItem(item, remaining) {
+  cur = item;
+  document.getElementById("stage").hidden = false;
+  document.getElementById("empty").hidden = true;
+  document.getElementById("count").textContent =
+      remaining > 1 ? (remaining - 1) + " more after this" : "last one";
+  const src = "/api/review/clip/" + item.id + "?t=" + Date.now();
+  document.getElementById("media").innerHTML = item.path.endsWith(".png")
+      ? `<img src="${src}">`
+      : `<video src="${src}" autoplay loop muted playsinline controls></video>`;
+  document.getElementById("question").textContent = item.question || "Good?";
+  document.getElementById("note").value = "";
+}
+
+async function sync() {
+  if (busy) return;
+  try {
+    const queue = await (await fetch("/api/review/queue")).json();
+    if (!queue.length) { if (cur) showEmpty(); else showEmpty(); return; }
+    // keep showing the current item only if the server still has it
+    if (!cur || !queue.some(i => i.id === cur.id)) showItem(queue[0], queue.length);
+    else document.getElementById("count").textContent =
+        queue.length > 1 ? (queue.length - 1) + " more after this" : "last one";
+  } catch (e) { /* server briefly away — try again next tick */ }
+}
+
+function flash(text, color) {
+  const s = document.getElementById("saved");
+  s.textContent = text; s.style.background = color; s.style.opacity = 1;
+  setTimeout(() => s.style.opacity = 0, 700);
+}
+
+async function vote(v) {
+  if (!cur || busy) return;
+  busy = true;
+  document.getElementById("yes").disabled = document.getElementById("no").disabled = true;
+  const id = cur.id, note = document.getElementById("note").value.trim();
+  // close it on screen IMMEDIATELY — the click must always visibly land
+  showEmpty();
+  flash(v === "yes" ? "YES ✓" : "NO ✗", v === "yes" ? "#1d7a3dcc" : "#8a2626cc");
+  try {
+    await fetch("/api/review/verdict", {
+      method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({id: id, verdict: v, note: note})
+    });
+  } catch (e) { /* verdict retried on next sync if it didn't land */ }
+  busy = false;
+  document.getElementById("yes").disabled = document.getElementById("no").disabled = false;
+  // Matt: the tab must CLOSE itself when the last item is judged (2026-07-31).
+  try {
+    const left = await (await fetch("/api/review/queue")).json();
+    if (!left.length) { setTimeout(() => window.close(), 600); return; }
+  } catch (e) {}
+  sync();
+}
+
+document.getElementById("yes").onclick = () => vote("yes");
+document.getElementById("no").onclick = () => vote("no");
+sync();
+setInterval(sync, 5000);
+</script>
+</body>
+</html>

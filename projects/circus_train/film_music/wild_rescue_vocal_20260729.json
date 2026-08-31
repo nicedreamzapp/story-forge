@@ -1,0 +1,26 @@
+{
+  "id": "61188a6fcfa8482b942254bad80f815f",
+  "status": "done",
+  "ace_task_id": "871e7a22-e731-4590-bf3c-c3bccaed1c74",
+  "prompt": "instrumental, no vocal, warm acoustic folk, playful, organic, dusty, downtempo adventure, 88 bpm, clean mix",
+  "lyrics": "[verse]\nCopper paws, velvet nose\nHiding where the clover grows\nCheck the tracks, hear the hum\nWaiting for the train to come\n\n[chorus]\nHitch a ride, swing a gate\nSave the tigers, don't be late\nBurlap sacks and golden keys\nSailing through the maple trees\n\n[verse]\nLoosen locks, lift the latch\nHounds and bears, a perfect match\nElephant trunks and sequins bright\nSlipping out into the light\n\n[chorus]\nHitch a ride, swing a gate\nSave the tigers, don't be late\nBurlap sacks and golden keys\nSailing through the maple trees",
+  "idea": "warm playful adventure theme for a kids cartoon about a bear and a bloodhound rescuing circus animals from a train, cheerful banjo and ukulele, light whistling melody, gentle percussion, storybook feel",
+  "style": "instrumental, no vocal, warm acoustic folk, playful, organic, dusty, downtempo adventure",
+  "title": "",
+  "created_at": 1784875150.204957,
+  "finished_at": 1784875227.8434649,
+  "audio": "/audio/61188a6fcfa8482b942254bad80f815f.wav",
+  "progress": 1.0,
+  "stage": "tightening the intro\u2026",
+  "duration": 123.0,
+  "bpm": null,
+  "ace_cache_files": [
+    "/Users/dtribe/Desktop/PROJECTS/Song Forge/engines/ACE-Step-1.5/.cache/acestep/tmp/api_audio/ee311713-3485-fe7f-f8e9-c1e05d47e288.wav",
+    "/Users/dtribe/Desktop/PROJECTS/Song Forge/engines/ACE-Step-1.5/.cache/acestep/tmp/api_audio/3993370c-9eb6-ca56-b189-96f7eed245c3.wav"
+  ],
+  "voice_assist": null,
+  "private": false,
+  "published": true,
+  "published_at": 1784875281.965395,
+  "published_url": "https://nicedreamzwholesale.com/songs/audio/61188a6fcfa8482b942254bad80f815f.mp3"
+}

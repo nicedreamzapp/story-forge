@@ -1,0 +1,45 @@
+[build-episode] PREFLIGHT —
+[build-episode]   Song Forge: ace=True llm=True jobs_running=0
+[build-episode]   assets: 26 clips present, 8 missing
+[build-episode]     MISSING → clips/s4b_trainwide_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/t3_giraffe_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/s6_final_v2.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/s7_dooropen_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/r4_parrots_sky_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/r5_crowd_wide_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/c2_ellie_trumpet_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/s8_goodbye_v2.mp4 (its segment will be skipped)
+[build-episode]     POINTER → s3_rollout: EDL points at clips/s3_rollout_final.mp4 but beats.json declares clips/s2_final.mp4 — one of them is the wrong shot
+[build-episode]   ABORT: the edit and the script disagree about which file is which shot
+[build-episode]   story gate scope: 22 shots in the cut; not in the cut, not judged: s4_arrival, s5_door, s6_heave, new_ellie_eye, new_s7_dooropen, outro_hank_brag, outro_signoff
+[build-episode]   running beat_gate (does every shot depict its beat?)…
+[build-episode]     [ERR ] s3_rollout: missing or unreadable clips/s2_final.mp4
+[build-episode]     [FAIL] s3b_wagonpass: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'wagon' master. NO. The wagon in the right image differs significantly in construction, 
+[build-episode]     [ERR ] s4b_trainwide: missing or unreadable clips/s4b_trainwide_final.mp4
+[build-episode]     [FAIL] t1_monkey: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a weathered, peeling red door 
+[build-episode]     [FAIL] t2_lion: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The boxcar door in the right image has peeling red pain
+[build-episode]     [ERR ] t3_giraffe: missing or unreadable clips/t3_giraffe_final.mp4
+[build-episode]     [FAIL] ellie_eye: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a dark, weathered, and grimy b
+[build-episode]     [ERR ] s6_heave_animated: missing or unreadable clips/s6_final_v2.mp4
+[build-episode]     [PASS] s6b_heave_close: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a large brown bear with its front paws pressed flat against a weathered red woode
+[build-episode]     [FAIL] s6_interior: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows the interior of a dark, wooden structu
+[build-episode]     [ERR ] s7_dooropen: missing or unreadable clips/s7_dooropen_final.mp4
+[build-episode]     [FAIL] r1_monkeys_out: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image is not visible in suffi
+[build-episode]     [FAIL] r2_lion_out: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image features a cartoon lion in a grassy field, w
+[build-episode]     [FAIL] r3_giraffe_out: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image is not the same as the 
+[build-episode]     [ERR ] r4_parrots_sky: missing or unreadable clips/r4_parrots_sky_final.mp4
+[build-episode]     [ERR ] r5_crowd_wide: missing or unreadable clips/r5_crowd_wide_final.mp4
+[build-episode]     [FAIL] c1_celebration: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image does not show the circus boxcar at all; inst
+[build-episode]     [ERR ] c2_ellie_trumpet: missing or unreadable clips/c2_ellie_trumpet_final.mp4
+[build-episode]     [ERR ] s8_goodbye: missing or unreadable clips/s8_goodbye_v2.mp4
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] s3b_wagonpass: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'wagon' master. NO. The wagon in the right image differs significa
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] t1_monkey: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a weathered,
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] t2_lion: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The boxcar door in the right image has 
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] ellie_eye: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a dark, weat
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] s6_interior: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows the interior of a 
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] r1_monkeys_out: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image 
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] r2_lion_out: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image features a cartoon lion 
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] r3_giraffe_out: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image 
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] c1_celebration: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image does not show the cir
+[build-episode]   9 shot(s) fail SET CONTINUITY only — the story is intact, assembling and reporting them as known defects
+[build-episode] STOPPED at preflight

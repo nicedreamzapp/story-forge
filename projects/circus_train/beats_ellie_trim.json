@@ -1,0 +1,14 @@
+{
+ "shots": [
+  {
+   "id": "ellie_eye_trim",
+   "clip": "clips/ellie_eye_final.mp4",
+   "beat": "an extreme close-up of one large frightened amber elephant eye looking out through a narrow vertical gap between dark wooden boxcar planks",
+   "must_not": [
+    "an empty gap with no animal visible",
+    "a human eye",
+    "the eye of a bear or a dog"
+   ]
+  }
+ ]
+}

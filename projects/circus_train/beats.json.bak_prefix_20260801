@@ -1,0 +1,518 @@
+{
+ "_note": "Intended beat for every shot in Episode 1. Run: beat_gate.py beats.json",
+ "shots": [
+  {
+   "id": "s1_coldopen",
+   "clip": "clips/s1_final.mp4",
+   "t": 2.0,
+   "beat": "a bear and a dog sit relaxed by a green creek with fishing rods, calm and unhurried"
+  },
+  {
+   "id": "s2_thecall",
+   "clip": "clips/s2_call_final.mp4",
+   "t": 2.0,
+   "beat": "a circus train in open country with thick black smoke billowing from its engine, clearly in trouble",
+   "must_not": [
+    "a calm scenic postcard with nothing wrong",
+    "no smoke at all",
+    "thin white wispy steam instead of thick black smoke",
+    "a bridge over water"
+   ]
+  },
+  {
+   "id": "s3_rollout",
+   "clip": "clips/s2_final.mp4",
+   "t": 2.0,
+   "beat": "a horse-drawn wooden wagon moving fast along a dirt road with dust kicking up behind it"
+  },
+  {
+   "id": "s4_arrival",
+   "clip": "clips/s4_arrival_final.mp4",
+   "t": 2.0,
+   "beat": "a bear and a dog standing together in the foreground in front of a smoking broken-down train, in harsh sunlight with dust and heat haze",
+   "must_not": [
+    "a cheerful brightly painted passenger train that appears to be running fine",
+    "animals leaning comfortably out of windows",
+    "no train visible at all"
+   ],
+   "set": "circus boxcar",
+   "_motion_subject": "the bear and the dog"
+  },
+  {
+   "id": "s5_door",
+   "clip": "clips/s5_final.mp4",
+   "t": 2.0,
+   "beat": "a bloodhound with his nose pressed against a narrow gap between the planks of a wooden boxcar door",
+   "set": "boxcar door detail"
+  },
+  {
+   "id": "s6_heave",
+   "image": "stills/LOCKED_s6.png",
+   "beat": "a big bear leaning his shoulder and both paws into a boxcar door, body angled low, hind feet braced in the gravel, nothing in his paws",
+   "must_not": [
+    "holding or using a stick, tool, rod or any object",
+    "standing upright and relaxed",
+    "sawdust or debris spraying out of the wall",
+    "poking, prying or fiddling at the wood"
+   ],
+   "set": "boxcar door detail"
+  },
+  {
+   "id": "s6_heave_animated",
+   "clip": "clips/s6_final_v2.mp4",
+   "beat": "a big bear leaning his shoulder and both paws into a boxcar door, body angled low, hind feet braced in the gravel, nothing in his paws",
+   "must_not": [
+    "holding or using a stick, tool, rod or any object",
+    "standing upright and relaxed",
+    "sawdust or debris spraying out of the wall",
+    "poking, prying or fiddling at the wood"
+   ],
+   "set": "boxcar door detail"
+  },
+  {
+   "id": "new_ellie_eye",
+   "image": "stills/wip/ellie_eye_w_202_0.55.png",
+   "beat": "one large amber elephant eye visible through a narrow vertical gap between dark wooden planks",
+   "set": "boxcar door detail",
+   "must_not": [],
+   "_motion_subject": "the elephant",
+   "identity": {
+    "master": "canon/ellie_eye_canon.png",
+    "subject": "Ellie's eye and brow in close-up"
+   }
+  },
+  {
+   "id": "new_s7_dooropen",
+   "image": "stills/wip/s7_weld_313_0.32.png",
+   "beat": "a wide open boxcar door with a young gray elephant wearing a small red circus cap standing in the opening in daylight",
+   "set": "circus boxcar"
+  },
+  {
+   "id": "outro_hank_brag",
+   "clip": "a2v/L11_hank.mp4",
+   "t": 0.6,
+   "beat": "immediately after the rescue, at the train, the bear takes dry credit for having just forced the door open",
+   "must_not": [
+    "standing in a forest or woods with no train anywhere",
+    "a location unrelated to the train"
+   ]
+  },
+  {
+   "id": "outro_signoff",
+   "clip": "a2v/L14_doug.mp4",
+   "t": 0.6,
+   "beat": "the sign-off at the end of the rescue, with the rescued circus train visible behind them as they head home",
+   "must_not": [
+    "standing in a forest or woods with no train anywhere"
+   ]
+  },
+  {
+   "id": "ellie_eye",
+   "clip": "clips/ellie_eye_final.mp4",
+   "t": 2.0,
+   "beat": "an extreme close-up of one large frightened amber elephant eye looking out through a narrow vertical gap between dark wooden boxcar planks",
+   "must_not": [
+    "an empty gap with no animal visible",
+    "a human eye",
+    "the eye of a bear or a dog"
+   ],
+   "set": "boxcar door detail",
+   "identity": {
+    "master": "canon/ellie_eye_canon.png",
+    "subject": "Ellie's eye and brow in close-up"
+   }
+  },
+  {
+   "id": "s6_interior",
+   "clip": "clips/s6_interior_final.mp4",
+   "t": 2.0,
+   "beat": "the dark interior of a closed boxcar, dust falling in a thin blade of light coming through the door seam",
+   "must_not": [
+    "a bright cheerful daylit exterior",
+    "the impact itself shown on screen",
+    "splinters or debris spraying"
+   ]
+  },
+  {
+   "id": "s7_dooropen",
+   "clip": "clips/s7_dooropen_final.mp4",
+   "t": 2.5,
+   "beat": "a young elephant in a circus cap standing in the open doorway of a weathered wooden boxcar whose sliding door is pushed open along its rail, dust still hanging in the sunlight",
+   "must_not": [
+    "a closed or jammed door",
+    "tusks",
+    "a spiky metal crown",
+    "no animal in the doorway",
+    "hinged doors, double doors, barn doors or any door swinging on hinges",
+    "the elephant standing on a ladder, steps or ramp",
+    "an empty doorway with no elephant",
+    "perfectly clean air with no dust"
+   ],
+   "set": "circus boxcar",
+   "identity": {
+    "master": "canon/ellie_canon.png",
+    "subject": "Ellie the young circus elephant"
+   }
+  },
+  {
+   "id": "s2b_smoke",
+   "clip": "clips/s2b_smoke_final.mp4",
+   "t": 2.0,
+   "beat": "a close view of an old dark circus locomotive's smokestack with thick black smoke pouring out against the sky",
+   "must_not": [
+    "a cheerful colourful passenger train",
+    "clean white steam only",
+    "a modern diesel or electric train",
+    "any animal or person visible"
+   ]
+  },
+  {
+   "id": "s3b_wagonpass",
+   "clip": "clips/s3b_wagonpass_final.mp4",
+   "t": 2.0,
+   "beat": "a horse-drawn wooden wagon racing along a dirt road seen from a low angle close to the ground, dust kicking up behind it",
+   "must_not": [
+    "a fire truck or any motor vehicle",
+    "a paved modern road",
+    "the wagon standing still"
+   ]
+  },
+  {
+   "id": "s4b_trainwide",
+   "clip": "clips/s4b_trainwide_final.mp4",
+   "t": 2.0,
+   "beat": "a very long line of weathered faded-red boxcars stretching to the horizon, and at EVERY car signs of the many animals packed inside \u2014 trunks, paws, tails, feathers and dozens of glinting eyes at the plank gaps",
+   "must_not": [
+    "any open boxcar door",
+    "animals standing outside the train",
+    "a cheerful colourful passenger train",
+    "any human or person",
+    "a mostly empty train with only one or two animals visible"
+   ],
+   "set": "circus boxcar"
+  },
+  {
+   "id": "t1_monkey",
+   "clip": "clips/t1_monkey_final.mp4",
+   "t": 2.0,
+   "beat": "small brown monkey fingers curled around the edge of a plank gap in a boxcar wall, one bright eye catching the light in the dark slot",
+   "must_not": [
+    "a full monkey visible outside the car",
+    "an open door",
+    "a human hand or human fingers",
+    "an empty gap with no animal"
+   ],
+   "set": "boxcar door detail"
+  },
+  {
+   "id": "t2_lion",
+   "clip": "clips/t2_lion_final.mp4",
+   "t": 2.0,
+   "beat": "a big golden lion's muzzle pressed close to a horizontal crack between boxcar planks, warm breath stirring dust off the wood",
+   "must_not": [
+    "a full lion visible outside the car",
+    "an open door",
+    "bared teeth or a frightening expression",
+    "an empty crack with no animal"
+   ],
+   "set": "boxcar door detail"
+  },
+  {
+   "id": "t3_giraffe",
+   "clip": "clips/t3_giraffe_final.mp4",
+   "t": 2.0,
+   "beat": "inside a dark boxcar a young giraffe's head and neck bowed low under the plank ceiling, a thin blade of light across her face",
+   "must_not": [
+    "a giraffe standing outside in daylight",
+    "her neck poking through the roof",
+    "a brightly lit interior",
+    "an open door"
+   ]
+  },
+  {
+   "id": "s6b_heave_close",
+   "clip": "clips/s6b_heave_close_final.mp4",
+   "t": 2.0,
+   "beat": "a tight close view of a big brown bear's shoulder and both paws pressed flat against weathered boxcar door planks, body low with strain, dust shivering in the air",
+   "must_not": [
+    "the door swinging or bursting open",
+    "splinters or debris flying",
+    "the bear standing relaxed",
+    "a stick or tool"
+   ],
+   "set": "circus boxcar",
+   "identity": {
+    "master": "canon/hank_canon.png",
+    "subject": "Hank the bear"
+   }
+  },
+  {
+   "id": "r1_monkeys_out",
+   "clip": "clips/r1_monkeys_out_final.mp4",
+   "t": 2.0,
+   "beat": "a dozen small brown capuchin monkeys in red fezzes bounding free across the grass, the open boxcar doorway behind them",
+   "must_not": [
+    "monkeys still inside the car",
+    "a closed door",
+    "monkeys touching or piled on each other",
+    "any human",
+    "only one or two monkeys"
+   ],
+   "set": "circus boxcar",
+   "identity": {
+    "master": "canon/monkey_canon.png",
+    "subject": "the capuchin monkeys (design match to the master)"
+   }
+  },
+  {
+   "id": "r2_lion_out",
+   "clip": "clips/r2_lion_out_final.mp4",
+   "t": 2.0,
+   "beat": "a big friendly golden lion mid-stride on the grass in front of the open boxcar, mane catching the golden light",
+   "must_not": [
+    "the lion inside the car",
+    "a closed door",
+    "bared teeth or a frightening expression",
+    "any human"
+   ],
+   "set": "circus boxcar",
+   "identity": {
+    "master": "canon/lion_canon.png",
+    "subject": "the golden lion"
+   }
+  },
+  {
+   "id": "r3_giraffe_out",
+   "clip": "clips/r3_giraffe_out_final.mp4",
+   "t": 2.0,
+   "beat": "a young giraffe standing tall and free on the grass beside the boxcar, neck fully stretched up into the golden light",
+   "must_not": [
+    "the giraffe still bowed or cramped inside",
+    "a closed door",
+    "any human"
+   ],
+   "set": "circus boxcar",
+   "identity": {
+    "master": "canon/giraffe_canon.png",
+    "subject": "the young giraffe"
+   }
+  },
+  {
+   "id": "r4_parrots_sky",
+   "clip": "clips/r4_parrots_sky_final.mp4",
+   "t": 2.0,
+   "beat": "a huge flock of dozens of bright scarlet parrots wheeling across the warm golden evening sky above the train",
+   "must_not": [
+    "bats or dark crows",
+    "a single lone bird or just a few birds",
+    "any aircraft",
+    "birds sitting still"
+   ]
+  },
+  {
+   "id": "c1_celebration",
+   "clip": "clips/c1_celebration_final.mp4",
+   "t": 2.0,
+   "beat": "a wide meadow in golden light CROWDED with dozens of freed circus animals of every kind gathered around the bear and the dog",
+   "must_not": [
+    "any two characters touching, hugging or shaking paws",
+    "a broken-down or smoking wrecked train",
+    "any human or person",
+    "a sparse meadow with only a handful of animals"
+   ],
+   "set": "circus boxcar"
+  },
+  {
+   "id": "c2_ellie_trumpet",
+   "clip": "clips/c2_ellie_trumpet_final.mp4",
+   "t": 2.0,
+   "beat": "the young elephant in her red circus cap standing on the grass with her trunk raised high in the golden light",
+   "must_not": [
+    "tusks",
+    "a spiky metal crown",
+    "her trunk hanging down",
+    "the elephant inside the boxcar"
+   ],
+   "identity": {
+    "master": "canon/ellie_canon.png",
+    "subject": "Ellie the young circus elephant"
+   }
+  },
+  {
+   "id": "s8_goodbye",
+   "clip": "clips/s8_goodbye_v2.mp4",
+   "t": 2.5,
+   "beat": "the bear, the dog and the rescued elephant standing together with clear air between them, the repaired circus train alive behind them CROWDED with animals \u2014 every doorway and window full",
+   "must_not": [
+    "any two characters touching \u2014 a paw under a chin, a hug, a handshake, leaning on each other",
+    "a dog with a wrinkled, braided or textured scalp on top of his head",
+    "a slim, skinny, slender or elegant dog",
+    "a sighthound, greyhound or vizsla-like dog with a thin neck or tucked waist",
+    "a broken-down or smoking wrecked train",
+    "the elephant missing from the group",
+    "an empty train with no animals in its doorways",
+    "any human or person visible anywhere, including in the train cab or windows"
+   ]
+  },
+  {
+   "id": "r5_crowd_wide",
+   "clip": "clips/r5_crowd_wide_final.mp4",
+   "t": 2.0,
+   "beat": "a wide meadow filling with dozens of freed circus animals of every kind spreading out from the open train in golden light",
+   "must_not": [
+    "a sparse meadow with only a handful of animals",
+    "any human or person",
+    "animals piled on or touching each other",
+    "closed boxcar doors on the whole train"
+   ],
+   "set": "circus boxcar"
+  }
+ ],
+ "spine": [
+  {
+   "beat": "a calm ordinary day is established so the interruption costs something",
+   "shots": [
+    "s1_coldopen"
+   ]
+  },
+  {
+   "beat": "the heroes SEE that something is wrong \u2014 the call to adventure",
+   "shots": [
+    "s2_thecall"
+   ]
+  },
+  {
+   "beat": "the trouble is URGENT \u2014 thick black smoke pours from the broken engine",
+   "shots": [
+    "s2b_smoke"
+   ]
+  },
+  {
+   "beat": "they commit and roll out",
+   "shots": [
+    "s3_rollout"
+   ]
+  },
+  {
+   "beat": "the rollout has speed and dust \u2014 the heroes are truly racing",
+   "shots": [
+    "s3b_wagonpass"
+   ]
+  },
+  {
+   "beat": "they arrive at the broken-down train and the trouble is visible",
+   "shots": [
+    "s4_arrival"
+   ]
+  },
+  {
+   "beat": "the train is FULL of trapped animals \u2014 the scale of the trouble is seen at the slat gaps",
+   "shots": [
+    "s4b_trainwide"
+   ]
+  },
+  {
+   "beat": "a trapped monkey's fingers curl through a plank gap",
+   "shots": [
+    "t1_monkey"
+   ]
+  },
+  {
+   "beat": "a trapped lion's muzzle presses at a crack, breath stirring dust",
+   "shots": [
+    "t2_lion"
+   ]
+  },
+  {
+   "beat": "a trapped giraffe stands bowed under the boxcar ceiling",
+   "shots": [
+    "t3_giraffe"
+   ]
+  },
+  {
+   "beat": "we SEE who is trapped \u2014 the audience gets someone to root for",
+   "shots": [
+    "ellie_eye",
+    "new_ellie_eye"
+   ]
+  },
+  {
+   "beat": "the effort: the door is forced with real physical weight",
+   "shots": [
+    "s6_heave_animated",
+    "s6_heave"
+   ]
+  },
+  {
+   "beat": "the strain up close \u2014 paws flat on the planks, dust shivering",
+   "shots": [
+    "s6b_heave_close"
+   ]
+  },
+  {
+   "beat": "the bang is felt from inside the dark car",
+   "shots": [
+    "s6_interior"
+   ]
+  },
+  {
+   "beat": "THE PAYOFF: the door opens and the trapped animal is free on screen",
+   "shots": [
+    "s7_dooropen",
+    "new_s7_dooropen"
+   ]
+  },
+  {
+   "beat": "the monkeys bound out free across the grass",
+   "shots": [
+    "r1_monkeys_out"
+   ]
+  },
+  {
+   "beat": "the lion walks out calm and free in golden light",
+   "shots": [
+    "r2_lion_out"
+   ]
+  },
+  {
+   "beat": "the giraffe stands tall and free, neck stretched into the light",
+   "shots": [
+    "r3_giraffe_out"
+   ]
+  },
+  {
+   "beat": "the parrots wheel free across the evening sky",
+   "shots": [
+    "r4_parrots_sky"
+   ]
+  },
+  {
+   "beat": "the meadow floods with freed animals \u2014 the rescue at full scale",
+   "shots": [
+    "r5_crowd_wide"
+   ]
+  },
+  {
+   "beat": "the celebration \u2014 a meadow full of freed animals around the heroes",
+   "shots": [
+    "c1_celebration"
+   ]
+  },
+  {
+   "beat": "Ellie trumpets in triumph, trunk raised high",
+   "shots": [
+    "c2_ellie_trumpet"
+   ]
+  },
+  {
+   "beat": "the goodbye, with the rescued train alive behind them",
+   "shots": [
+    "s8_goodbye"
+   ]
+  }
+ ],
+ "set_masters": {
+  "circus boxcar": "canon/boxcar_canon.png",
+  "boxcar door detail": "canon/boxcar_door_detail.png"
+ }
+}

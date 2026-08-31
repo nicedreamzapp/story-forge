@@ -1,0 +1,14 @@
+[build-episode] PREFLIGHT —
+[build-episode]   Song Forge: ace=True llm=True jobs_running=1
+[build-episode]   assets: 26 clips present, 8 missing
+[build-episode]     MISSING → clips/s4b_trainwide_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/t3_giraffe_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/s6_final_v2.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/s7_dooropen_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/r4_parrots_sky_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/r5_crowd_wide_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/c2_ellie_trumpet_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/s8_goodbye_v2.mp4 (its segment will be skipped)
+[build-episode]   pointer gate: 22 scenes agree with beats.json
+[build-episode]   story gate scope: 22 shots in the cut; not in the cut, not judged: s4_arrival, s5_door, s6_heave, new_ellie_eye, new_s7_dooropen, outro_hank_brag, outro_signoff
+[build-episode]   running beat_gate (does every shot depict its beat?)…

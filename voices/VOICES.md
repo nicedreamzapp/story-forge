@@ -15,3 +15,11 @@ Generate a line:
 - voiceA -> spare_voiceA.wav
 - voiceB -> spare_voiceB.wav
 - voiceC -> spare_voiceC.wav
+
+## ruby & nia — African American female voices (added 2026-08-07)
+Matt's picks from an 8-voice Chatterbox-clone audition of EARS dataset speakers
+(ethnicity/gender self-reported in the dataset's speaker_statistics.json).
+- **ruby** = EARS p098 (46-55) — mature, assertive. Ref: `ruby.wav` (15s), fuller source: `ruby_source_full.wav`
+- **nia** = EARS p080 (26-35) — same register, younger/lighter. Ref: `nia.wav`, fuller source: `nia_source_full.wav`
+- Use anywhere: `speak-as ruby "line"` CLI, or `chatterbox/ruby` voice spec in .sf scripts (character_voice.py has both).
+- ⚠️ EARS is CC-NC (non-commercial). Fine for personal/test work; before using in monetized videos, replace the ref wav with audio Matt has clean rights to.

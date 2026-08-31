@@ -1,0 +1,48 @@
+[overnight 06:22:26] phase 1 skipped: verdict keeps the July a2v dialogue path (42s/clip, QC PASS); a2v/ clips stand
+[overnight 06:22:26] phase 2: director on LTX-2.5 animate, cap 5h
+[overnight 20:59:01] phase 2 done: 106 locks in director.log; STATUS.md updated
+[overnight 20:59:01] phase 3 skipped: film not complete — see STATUS.md / QUESTIONS.md; WIP_REEL.mp4 has what passed
+[overnight 20:59:01] OVERNIGHT_DONE
+[relaunch 20:59:21] first keepalive exited; restarting director with a fresh 6h cap
+[relaunch 03:49:29] second keepalive exited
+[relaunch 03:49:29] RELAUNCH_DONE
+[finalize 03:49:58] director run over; animate-only pass on s6_heave (locked still from 00:19)
+[finalize 03:53:27] s6_heave animate-only try 1: no clip
+[finalize 03:56:49] s6_heave animate-only try 2: no clip
+[finalize 03:56:49] assembling: build-episode --no-song (existing score), missing beats are skipped and listed
+[finalize 04:04:09] build-episode exit 1 — 10 missing segments
+[build-episode]     MISSING → clips/s4b_trainwide_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/t3_giraffe_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/s6_final_v2.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/s7_dooropen_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/r3_giraffe_out_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/r4_parrots_sky_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/r5_crowd_wide_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/c1_celebration_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/c2_ellie_trumpet_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/s8_goodbye_v2.mp4 (its segment will be skipped)
+[finalize 04:04:09] episode file: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4
+[finalize 04:04:09] FINALIZE_DONE
+[act3 04:04:23] v2 checkpoint kept; director run 3 for act three, cap 4h
+[act3 06:40:17] run 3 over: 17 clips on disk; rebuilding the episode
+[act3 06:53:18] build-episode exit 0 — 8 missing segments
+[build-episode]     MISSING → clips/t3_giraffe_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/s6_final_v2.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/s7_dooropen_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/r4_parrots_sky_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/r5_crowd_wide_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/c2_ellie_trumpet_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/s8_goodbye_v2.mp4 (its segment will be skipped)
+[build-episode]   FILM: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4  (81.1s)
+[build-episode]     report: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1_qc.md
+[build-episode] ASSEMBLED (NOT VERIFIED) in 13.0 min → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4
+[act3 06:53:18] episode file: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4
+[act3 06:53:18] ACT3_DONE
+[reshoot 08:47:46] reshooting s3_rollout (horse in front)
+[reshoot 08:49:22] s3_rollout try 1: no clip (0 gate fails)
+[reshoot 08:52:56] s3_rollout KEPT on try 2
+[reshoot 08:52:56] rebuilding the episode
+[reshoot 09:01:02] build exit 1 — Checks run: 115 | passed: 111 | failed: 4
+[reshoot 09:01:02] RESHOOT_DONE
+[rebuild 09:01:34] rebuild with the rollout pointer fixed
+[wagons 09:08:06] s3_rollout KEPT on try 1

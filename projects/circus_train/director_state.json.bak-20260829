@@ -1,0 +1,1472 @@
+{
+ "attempts": {
+  "ellie_eye": 5,
+  "s7_dooropen": 4,
+  "s2b_smoke": 0,
+  "t1_monkey": 0,
+  "s3b_wagonpass": 0,
+  "s4_arrival": 0,
+  "r1_monkeys_out": 0,
+  "r3_giraffe_out": 0,
+  "r4_parrots_sky": 0,
+  "r5_crowd_wide": 0,
+  "c2_ellie_trumpet": 0,
+  "s6b_heave_close": 0,
+  "t3_giraffe": 3,
+  "t2_lion": 4,
+  "s2_thecall": 0,
+  "s4b_trainwide": 2
+ },
+ "blocked": {
+  "s1_coldopen": "spec repeats a known mistake \u2014 see spec_lint output",
+  "s3_rollout": "spec repeats a known mistake \u2014 see spec_lint output",
+  "s4_arrival": "the render backend kept going away \u2014 this is a machine problem, not a story problem; check ComfyUI before re-running",
+  "s4b_trainwide": "the still never passed the gates in 2 attempts \u2014 escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried",
+  "t1_monkey": "spec repeats a known mistake \u2014 see spec_lint output",
+  "t2_lion": "still locks but no animation holds the beat after 4 escalating attempts",
+  "t3_giraffe": "the still never passed the gates in 2 attempts \u2014 escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried",
+  "ellie_eye": "still locks but no animation holds the beat after 4 escalating attempts",
+  "s6_heave": "spec repeats a known mistake \u2014 see spec_lint output",
+  "s6_interior": "spec repeats a known mistake \u2014 see spec_lint output",
+  "s7_dooropen": "still locks but no animation holds the beat after 4 escalating attempts",
+  "r1_monkeys_out": "spec repeats a known mistake \u2014 see spec_lint output"
+ },
+ "history": [
+  {
+   "shot": "s4_arrival",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "23:18"
+  },
+  {
+   "shot": "s4_arrival",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "23:33"
+  },
+  {
+   "shot": "s4_arrival",
+   "attempt": 2,
+   "state": "STILL_LOCKED",
+   "at": "23:40"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "00:07"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "00:30"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "00:55"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 0,
+   "state": "CLIP_FAILED",
+   "at": "01:12"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 1,
+   "state": "CLIP_FAILED",
+   "at": "01:22"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 2,
+   "state": "STILL_LOCKED",
+   "at": "01:25"
+  },
+  {
+   "shot": "s8_goodbye",
+   "attempt": 0,
+   "state": "CLIP_FAILED",
+   "at": "01:41"
+  },
+  {
+   "shot": "s8_goodbye",
+   "attempt": 1,
+   "state": "CLIP_FAILED",
+   "at": "01:52"
+  },
+  {
+   "shot": "s8_goodbye",
+   "attempt": 2,
+   "state": "STILL_LOCKED",
+   "at": "01:53"
+  },
+  {
+   "shot": "s4_arrival",
+   "attempt": 0,
+   "state": "CLIP_KEPT",
+   "at": "09:47"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "10:15"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "10:45"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "11:08"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "12:15"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "12:43"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "13:17"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 3,
+   "state": "UNBUILT",
+   "at": "13:43"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 0,
+   "state": "STILL_LOCKED",
+   "at": "15:00"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "15:00"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "15:00"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 3,
+   "state": "UNBUILT",
+   "at": "15:00"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 0,
+   "state": "CLIP_FAILED",
+   "at": "15:29"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 1,
+   "state": "CLIP_FAILED",
+   "at": "15:48"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "18:37"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "19:58"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "20:29"
+  },
+  {
+   "shot": "s2b_smoke",
+   "attempt": 0,
+   "state": "CLIP_UNJUDGED",
+   "at": "23:26"
+  },
+  {
+   "shot": "s2b_smoke",
+   "attempt": 1,
+   "state": "ANIMATE_FAILED",
+   "at": "23:34"
+  },
+  {
+   "shot": "s2b_smoke",
+   "attempt": 2,
+   "state": "CLIP_KEPT",
+   "at": "10:28"
+  },
+  {
+   "shot": "t1_monkey",
+   "attempt": 0,
+   "state": "CLIP_KEPT",
+   "at": "10:37"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 0,
+   "state": "CLIP_FAILED",
+   "at": "10:52"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 1,
+   "state": "CLIP_FAILED",
+   "at": "11:15"
+  },
+  {
+   "shot": "s3b_wagonpass",
+   "attempt": 0,
+   "state": "CLIP_KEPT",
+   "at": "11:54"
+  },
+  {
+   "shot": "s4b_trainwide",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "12:08"
+  },
+  {
+   "shot": "s4_arrival",
+   "attempt": 0,
+   "state": "ANIMATE_FAILED",
+   "at": "12:13"
+  },
+  {
+   "shot": "s4_arrival",
+   "attempt": 1,
+   "state": "CLIP_KEPT",
+   "at": "12:59"
+  },
+  {
+   "shot": "s4b_trainwide",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "13:13"
+  },
+  {
+   "shot": "s4b_trainwide",
+   "attempt": 2,
+   "state": "CLIP_FAILED",
+   "at": "13:32"
+  },
+  {
+   "shot": "s4b_trainwide",
+   "attempt": 3,
+   "state": "UNBUILT",
+   "at": "13:49"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "14:03"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "14:15"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "14:28"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 3,
+   "state": "UNBUILT",
+   "at": "14:44"
+  },
+  {
+   "shot": "t3_giraffe",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "14:57"
+  },
+  {
+   "shot": "t3_giraffe",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "15:10"
+  },
+  {
+   "shot": "t3_giraffe",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "15:22"
+  },
+  {
+   "shot": "t3_giraffe",
+   "attempt": 3,
+   "state": "UNBUILT",
+   "at": "15:38"
+  },
+  {
+   "shot": "s6b_heave_close",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "15:53"
+  },
+  {
+   "shot": "s6b_heave_close",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "16:23"
+  },
+  {
+   "shot": "s6b_heave_close",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "16:39"
+  },
+  {
+   "shot": "s6b_heave_close",
+   "attempt": 3,
+   "state": "UNBUILT",
+   "at": "16:59"
+  },
+  {
+   "shot": "r1_monkeys_out",
+   "attempt": 0,
+   "state": "ANIMATE_FAILED",
+   "at": "18:18"
+  },
+  {
+   "shot": "r1_monkeys_out",
+   "attempt": 1,
+   "state": "CLIP_KEPT",
+   "at": "18:41"
+  },
+  {
+   "shot": "r2_lion_out",
+   "attempt": 0,
+   "state": "ANIMATE_FAILED",
+   "at": "18:48"
+  },
+  {
+   "shot": "r2_lion_out",
+   "attempt": 1,
+   "state": "CLIP_FAILED",
+   "at": "18:58"
+  },
+  {
+   "shot": "r2_lion_out",
+   "attempt": 2,
+   "state": "CLIP_FAILED",
+   "at": "19:21"
+  },
+  {
+   "shot": "r2_lion_out",
+   "attempt": 3,
+   "state": "CLIP_FAILED",
+   "at": "19:43"
+  },
+  {
+   "shot": "r3_giraffe_out",
+   "attempt": 0,
+   "state": "ANIMATE_FAILED",
+   "at": "20:19"
+  },
+  {
+   "shot": "r3_giraffe_out",
+   "attempt": 1,
+   "state": "ANIMATE_FAILED",
+   "at": "20:26"
+  },
+  {
+   "shot": "r3_giraffe_out",
+   "attempt": 2,
+   "state": "CLIP_KEPT",
+   "at": "20:48"
+  },
+  {
+   "shot": "r4_parrots_sky",
+   "attempt": 0,
+   "state": "CLIP_KEPT",
+   "at": "21:08"
+  },
+  {
+   "shot": "r5_crowd_wide",
+   "attempt": 0,
+   "state": "ANIMATE_FAILED",
+   "at": "21:20"
+  },
+  {
+   "shot": "r5_crowd_wide",
+   "attempt": 1,
+   "state": "CLIP_KEPT",
+   "at": "21:37"
+  },
+  {
+   "shot": "c2_ellie_trumpet",
+   "attempt": 0,
+   "state": "ANIMATE_FAILED",
+   "at": "23:22"
+  },
+  {
+   "shot": "c2_ellie_trumpet",
+   "attempt": 1,
+   "state": "CLIP_KEPT",
+   "at": "23:33"
+  },
+  {
+   "shot": "s8_goodbye",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "00:06"
+  },
+  {
+   "shot": "s8_goodbye",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "00:40"
+  },
+  {
+   "shot": "s8_goodbye",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "01:17"
+  },
+  {
+   "shot": "s4b_trainwide",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "01:36"
+  },
+  {
+   "shot": "s4b_trainwide",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "01:50"
+  },
+  {
+   "shot": "s4b_trainwide",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "02:04"
+  },
+  {
+   "shot": "s4b_trainwide",
+   "attempt": 3,
+   "state": "UNBUILT",
+   "at": "02:21"
+  },
+  {
+   "shot": "t3_giraffe",
+   "attempt": 0,
+   "state": "CLIP_FAILED",
+   "at": "02:35"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "02:53"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "03:06"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "03:18"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 3,
+   "state": "UNBUILT",
+   "at": "03:33"
+  },
+  {
+   "shot": "t3_giraffe",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "03:46"
+  },
+  {
+   "shot": "t3_giraffe",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "03:59"
+  },
+  {
+   "shot": "t3_giraffe",
+   "attempt": 3,
+   "state": "UNBUILT",
+   "at": "04:14"
+  },
+  {
+   "shot": "s6b_heave_close",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "04:28"
+  },
+  {
+   "shot": "s6b_heave_close",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "04:43"
+  },
+  {
+   "shot": "s6b_heave_close",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "04:57"
+  },
+  {
+   "shot": "s6b_heave_close",
+   "attempt": 3,
+   "state": "UNBUILT",
+   "at": "05:17"
+  },
+  {
+   "shot": "c1_celebration",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "05:51"
+  },
+  {
+   "shot": "c1_celebration",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "06:48"
+  },
+  {
+   "shot": "c1_celebration",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "07:10"
+  },
+  {
+   "shot": "c1_celebration",
+   "attempt": 3,
+   "state": "UNBUILT",
+   "at": "07:50"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 0,
+   "state": "CLIP_FAILED",
+   "at": "08:09"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 1,
+   "state": "CLIP_FAILED",
+   "at": "08:20"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 2,
+   "state": "ANIMATE_FAILED",
+   "at": "08:29"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 0,
+   "state": "CLIP_FAILED",
+   "at": "08:59"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 1,
+   "state": "CLIP_FAILED",
+   "at": "09:11"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 2,
+   "state": "CLIP_FAILED",
+   "at": "09:21"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 3,
+   "state": "ANIMATE_FAILED",
+   "at": "09:29"
+  },
+  {
+   "shot": "t3_giraffe",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "09:42"
+  },
+  {
+   "shot": "t3_giraffe",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "09:55"
+  },
+  {
+   "shot": "s6b_heave_close",
+   "attempt": 0,
+   "state": "ANIMATE_FAILED",
+   "at": "10:00"
+  },
+  {
+   "shot": "s6b_heave_close",
+   "attempt": 1,
+   "state": "CLIP_KEPT",
+   "at": "10:10"
+  },
+  {
+   "shot": "r2_lion_out",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "10:10"
+  },
+  {
+   "shot": "r2_lion_out",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "10:10"
+  },
+  {
+   "shot": "c1_celebration",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "10:10"
+  },
+  {
+   "shot": "c1_celebration",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "10:10"
+  },
+  {
+   "shot": "s8_goodbye",
+   "attempt": 0,
+   "state": "UNBUILT",
+   "at": "10:10"
+  },
+  {
+   "shot": "s8_goodbye",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "10:11"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 0,
+   "state": "CLIP_FAILED",
+   "at": "10:25"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 1,
+   "state": "ANIMATE_FAILED",
+   "at": "10:30"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 2,
+   "state": "CLIP_FAILED",
+   "at": "10:39"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 3,
+   "state": "CLIP_FAILED",
+   "at": "10:54"
+  },
+  {
+   "shot": "t3_giraffe",
+   "attempt": 0,
+   "state": "ANIMATE_FAILED",
+   "at": "11:01"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 0,
+   "state": "CLIP_FAILED",
+   "at": "11:12"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 1,
+   "state": "CLIP_FAILED",
+   "at": "11:28"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 2,
+   "state": "CLIP_FAILED",
+   "at": "11:40"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 3,
+   "state": "CLIP_FAILED",
+   "at": "11:56"
+  },
+  {
+   "shot": "t3_giraffe",
+   "attempt": 1,
+   "state": "ANIMATE_FAILED",
+   "at": "12:01"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 0,
+   "state": "CLIP_FAILED",
+   "at": "12:11"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 1,
+   "state": "CLIP_FAILED",
+   "at": "12:21"
+  },
+  {
+   "shot": "s2_thecall",
+   "attempt": 0,
+   "state": "CLIP_KEPT",
+   "at": "06:41"
+  },
+  {
+   "shot": "s2b_smoke",
+   "attempt": 0,
+   "state": "CLIP_KEPT",
+   "at": "06:58"
+  },
+  {
+   "shot": "s3b_wagonpass",
+   "attempt": 0,
+   "state": "CLIP_KEPT",
+   "at": "07:16"
+  },
+  {
+   "shot": "s4b_trainwide",
+   "attempt": 0,
+   "state": "CLIP_FAILED",
+   "at": "07:29"
+  },
+  {
+   "shot": "s4b_trainwide",
+   "attempt": 1,
+   "state": "UNBUILT",
+   "at": "07:42"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 2,
+   "state": "CLIP_FAILED",
+   "at": "07:48"
+  },
+  {
+   "shot": "t2_lion",
+   "attempt": 3,
+   "state": "CLIP_FAILED",
+   "at": "07:52"
+  },
+  {
+   "shot": "t3_giraffe",
+   "attempt": 2,
+   "state": "UNBUILT",
+   "at": "08:05"
+  },
+  {
+   "shot": "ellie_eye",
+   "attempt": 4,
+   "state": "INIT_MISSING",
+   "at": "08:05"
+  },
+  {
+   "shot": "s6b_heave_close",
+   "attempt": 0,
+   "state": "CLIP_KEPT",
+   "at": "08:08"
+  },
+  {
+   "shot": "s7_dooropen",
+   "attempt": 3,
+   "state": "INIT_MISSING",
+   "at": "08:08"
+  }
+ ],
+ "catalog": {
+  "s7_dooropen": {
+   "id": "s7_dooropen",
+   "init": "stills/wip/s7_composite.png",
+   "denoise": 0.32,
+   "prompt": "Pixar-style 3D animated film still: a weathered faded-red wooden boxcar seen straight on, its sides smooth bare weathered planks, its single heavy SLIDING door pushed fully open along its top rail so the door panel is parked flat against the bare plank wall to the right of the opening, and standing inside the open doorway at floor level a young gray cartoon elephant with big amber eyes wearing a small red circus cap with a red plume, golden dust hanging and settling in the warm sunlight around the opening, harsh afternoon light, heat haze, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a young elephant in a circus cap standing in the open doorway of a weathered wooden boxcar whose sliding door is pushed open along its rail, dust still hanging in the sunlight",
+   "must_not": [
+    "a closed or jammed door",
+    "tusks",
+    "a spiky metal crown",
+    "hinged doors, double doors, barn doors or any door swinging on hinges",
+    "the elephant standing on a ladder, steps or ramp",
+    "an empty doorway with no elephant",
+    "perfectly clean air with no dust"
+   ],
+   "identity": {
+    "master": "canon/ellie_canon.png",
+    "subject": "Ellie the young circus elephant"
+   },
+   "lock": "stills/LOCKED_s7_dooropen.png",
+   "animate": "the camera is locked off and does not move; the young elephant stands in the open doorway, her ears sway gently and her trunk lifts and lowers a little, golden dust motes drift and settle slowly through the sunlight around the doorway, the sliding door panel stays parked exactly where it is against the wall, the framing never changes",
+   "clip": "clips/s7_dooropen_final.mp4",
+   "min_window": 1.6,
+   "set": "circus boxcar",
+   "_motion_subject": "the elephant",
+   "clip_beat": "a young elephant in a circus cap standing in the open doorway of a weathered wooden boxcar whose sliding door is pushed open along its rail, dust still hanging in the sunlight",
+   "duration": 3
+  },
+  "ellie_eye": {
+   "id": "ellie_eye",
+   "init": "stills/wip/ellie_crack_composite_v3.png",
+   "denoise": 0.5,
+   "prompt": "Pixar-style 3D animated film still, extreme close-up through a narrow vertical gap between rough dark wooden boxcar planks: a frightened young circus elephant's enormous amber eye, wide and glistening with fear, brow pinched with worry, WARM GRAY elephant skin, one blade of golden daylight across the eye, dark planks, dust motes in the light, cinematic children's movie lighting",
+   "beat": "one large amber elephant eye visible through a narrow vertical gap between dark wooden planks",
+   "must_not": [
+    "porcelain white or pink skin",
+    "a collar"
+   ],
+   "identity": {
+    "master": "canon/ellie_eye_canon.png",
+    "subject": "Ellie's eye and brow in close-up"
+   },
+   "lock": "stills/LOCKED_ellie_eye.png",
+   "animate": "dust motes drift slowly through the blade of light, the eye blinks once, the wooden planks are perfectly still, nothing else moves, camera locked off",
+   "clip": "clips/ellie_eye_final.mp4",
+   "min_window": 1.6,
+   "set": "circus boxcar",
+   "_motion_subject": "the elephant",
+   "clip_beat": "an extreme close-up of one large amber elephant eye visible through a narrow vertical gap between dark wooden planks"
+  },
+  "s2_thecall": {
+   "id": "s2_thecall",
+   "prompt": "Pixar-style 3D animated film still, late afternoon: a circus train in open dry scrubland with thick oily black smoke billowing hard from its engine and rolling up into the sky, painted red and yellow circus cars, the locomotive dark and troubled, dry dusty ground, harsh heat shimmer, no bridge, no river, no water anywhere, no lettering or writing anywhere, something is clearly badly wrong, cinematic children's movie lighting",
+   "beat": "a circus train in open country with thick black smoke billowing from its engine, clearly in trouble",
+   "must_not": [
+    "a calm scenic postcard with nothing wrong",
+    "no smoke at all",
+    "thin white wispy steam instead of thick black smoke",
+    "a bridge over water"
+   ],
+   "lock": "stills/LOCKED_s2_call.png",
+   "animate": "thick black smoke billows and rolls upward from the engine, heat shimmer ripples over the cars, dry brush stirs in the wind, the train stays exactly where it is, camera locked off",
+   "clip": "clips/s2_call_final.mp4",
+   "min_window": 1.6,
+   "set": "circus boxcar",
+   "clip_beat": "a circus train in open country with thick black smoke billowing from its engine"
+  },
+  "s6_interior": {
+   "id": "s6_interior",
+   "prompt": "Pixar-style 3D animated film still, interior of a sealed dark wooden boxcar: the frame almost entirely black, rough plank walls barely visible in the gloom, the heavy wooden sliding door completely closed and flush with the wall, a single hairline vertical seam of golden daylight glowing at the closed door's edge, one thin sharp blade of light from that seam lying across scattered straw on the floor, fine dust motes hanging in the narrow beam, deep heavy shadow everywhere else, claustrophobic and tense, cinematic children's movie lighting, empty of any creature",
+   "beat": "the dark interior of a wooden boxcar with a bright blade of daylight cutting in at the door edge and dust hanging in the light",
+   "must_not": [
+    "any animal or character visible",
+    "a bright or evenly lit interior",
+    "a barn, shed, stable or house interior",
+    "daylight filling the room",
+    "a wide open door",
+    "straw or debris bursting, spraying or exploding out",
+    "sparks, embers or fire",
+    "a door standing open or ajar",
+    "a wide doorway or opening of light"
+   ],
+   "lock": "stills/LOCKED_s6_interior.png",
+   "animate": "locked-off static camera inside a sealed pitch-dark wooden boxcar: the plank walls, ceiling and corners stay deep black for the entire clip, the sliding door stays shut with only a thin hairline seam of golden light at its edge, one narrow fixed blade of light lies across the straw on the floor, fine dust motes sink slowly straight downward through the beam, the straw and the door hold perfectly still, the dark exposure stays identical from first frame to last, the room stays empty the whole time",
+   "clip": "clips/s6_interior_final.mp4",
+   "min_window": 1.6,
+   "_no_characters": true,
+   "clip_beat": "the dark interior of a boxcar with a thin blade of daylight at the door seam and dust hanging in the light",
+   "duration": 3,
+   "seeds": [
+    82,
+    119,
+    47,
+    11
+   ]
+  },
+  "s5_door": {
+   "id": "s5_door",
+   "init": "stills/LOCKED_s5.png",
+   "beat": "a bloodhound with his nose pressed against a narrow gap between the planks of a wooden boxcar door",
+   "lock": "stills/LOCKED_s5.png",
+   "animate": "the bloodhound keeps his nose pressed to the gap between the planks and sniffs, his long ears swaying, one paw testing the door, he does NOT turn away from the door, warm dust in the air, camera holds steady",
+   "clip": "clips/s5_final.mp4",
+   "min_window": 2.0,
+   "identity": {
+    "master": "canon/doug_canon.png",
+    "subject": "Doug the bloodhound"
+   },
+   "set": "circus boxcar"
+  },
+  "s6_heave": {
+   "id": "s6_heave",
+   "prompt": "Pixar-style 3D animated film still, side view: a big round cartoon brown bear with a large cream-coloured belly patch, cream muzzle, small black nose, small rounded ears and a short snout, driving his SHOULDER hard against the closed wooden sliding door of a weathered red boxcar, his whole body leaning into it at a steep forward angle, spine diagonal, head lowered and pressed close to the wood, BOTH front paws flat against the door, hind legs stretched out behind him with his back feet dug into the gravel, teeth gritted with effort, straining with all his weight, dust in the air, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a big round cartoon bear with a cream belly driving his shoulder against a wooden boxcar door, body leaning at a steep forward angle with both paws flat on the door and hind legs stretched out behind, visibly straining",
+   "must_not": [
+    "holding or using a stick, tool, rod or any object",
+    "standing upright with a straight vertical body",
+    "a relaxed happy smiling bear",
+    "only one paw touching the door",
+    "sawdust or debris spraying out of the wall",
+    "a realistic grizzly bear with a long snout"
+   ],
+   "loras": [
+    "~/.hankdoug_seeds/HANK_LORA.safetensors"
+   ],
+   "lora_scales": [
+    0.9
+   ],
+   "identity": {
+    "master": "canon/hank_canon.png",
+    "subject": "Hank the bear"
+   },
+   "lock": "stills/LOCKED_s6.png",
+   "animate": "the bear pushes his shoulder harder into the door, muscles shifting under the fur, paws pressing flat, dust drifting in the light, camera holds steady",
+   "clip": "clips/s6_final_v2.mp4",
+   "min_window": 1.8,
+   "seeds": [
+    501,
+    547,
+    582,
+    619,
+    653,
+    691
+   ],
+   "votes": 3,
+   "set": "boxcar door detail",
+   "_motion_subject": "the bear"
+  },
+  "s1_coldopen": {
+   "id": "s1_coldopen",
+   "prompt": "Pixar-style 3D animated film still: a big round cartoon brown bear with a large cream-coloured belly patch, cream muzzle, small black nose, small rounded ears and a short snout sitting relaxed on a green creek bank holding a fishing rod, beside him a lanky tan-and-orange bloodhound dog with a long narrow snout, long dark floppy ears hanging down past his jaw, and a slim body on long legs sitting upright watching the water, calm sunny afternoon, tall trees, a wooden cart behind them, unhurried and peaceful, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a bear and a dog sit relaxed by a green creek with fishing rods, calm and unhurried",
+   "must_not": [
+    "a bear with a long realistic snout",
+    "a short-legged dachshund or sausage dog",
+    "a dog with short upright ears",
+    "anything urgent or alarming happening"
+   ],
+   "lock": "stills/LOCKED_s1.png",
+   "clip": "clips/s1_final.mp4",
+   "animate": "the water ripples, leaves stir in the breeze, the bear breathes slowly and the dog's ears sway gently, camera holds steady",
+   "min_window": 2.0,
+   "seeds": [
+    701,
+    747,
+    782,
+    819
+   ],
+   "votes": 3,
+   "identity": [
+    {
+     "master": "canon/hank_canon.png",
+     "subject": "Hank the bear"
+    },
+    {
+     "master": "canon/doug_canon.png",
+     "subject": "Doug the bloodhound"
+    }
+   ],
+   "loras": [
+    "~/.hankdoug_seeds/HANK_LORA.safetensors",
+    "~/.hankdoug_seeds/DOUG_LORA_V2.safetensors"
+   ],
+   "lora_scales": [
+    0.85,
+    0.85
+   ]
+  },
+  "s3_rollout": {
+   "id": "s3_rollout",
+   "prompt": "Pixar-style 3D animated film still: a big round cartoon brown bear with a large cream-coloured belly patch, cream muzzle, small black nose, small rounded ears and a short snout sitting up in a wooden horse-drawn wagon holding the reins, a brown horse pulling it at speed along a dirt road, dust kicking up behind the wheels, forest either side, urgent forward motion, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a horse-drawn wooden wagon moving fast along a dirt road with dust kicking up behind it",
+   "must_not": [
+    "a bear with a long realistic snout",
+    "a stationary wagon with no dust",
+    "a bear standing on the ground"
+   ],
+   "identity": [
+    {
+     "master": "canon/hank_canon.png",
+     "subject": "Hank the bear"
+    }
+   ],
+   "lock": "stills/LOCKED_s2_wide.png",
+   "clip": "clips/s2_final.mp4",
+   "animate": "the wooden wagon rolls forward along the road, wheels turning, dust billowing behind, the horse galloping, the bear's fur and the rope reins swaying with the motion, camera tracking alongside",
+   "min_window": 2.0,
+   "seeds": [
+    801,
+    847,
+    882,
+    919
+   ],
+   "votes": 3,
+   "loras": [
+    "~/.hankdoug_seeds/HANK_LORA.safetensors",
+    "~/.hankdoug_seeds/DOUG_LORA_V2.safetensors"
+   ],
+   "lora_scales": [
+    0.85,
+    0.85
+   ]
+  },
+  "s4_arrival": {
+   "id": "s4_arrival",
+   "prompt": "Pixar-style 3D animated film still: a huge heavy cartoon brown bear, very large and round, with a big cream-coloured belly patch covering his whole front, cream muzzle, small black nose, small rounded ears and a short snout, standing beside a tall tan-and-orange bloodhound with a deep chest, strong neck, substantial heavy build, a smooth tan head, long dark floppy ears hanging well past his jaw, droopy soulful eyes and big paws \u2014 the bear towering a full head and shoulders above the dog \u2014 both of them alarmed and wide-eyed, brows drawn up in worry, mouths open, staring at a broken-down circus train baking in the sun, weathered red boxcars, black smoke rising, heat shimmer and dust, no other animals, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a huge bear and a tall heavy-set bloodhound standing together in the foreground, both wide-eyed and alarmed, in front of a smoking broken-down train in harsh sunlight with dust and heat haze",
+   "must_not": [
+    "a bear with a long realistic snout",
+    "a cheerful brightly painted passenger train that appears to be running fine",
+    "a short-legged dachshund or sausage dog",
+    "a slim, skinny, lanky or elegant dog",
+    "a small bear the same height as the dog or shorter",
+    "animals leaning comfortably out of windows",
+    "any human or person",
+    "either character smiling, calm or relaxed",
+    "no train visible at all"
+   ],
+   "lock": "stills/LOCKED_s4_arrival.png",
+   "clip": "clips/s4_arrival_final.mp4",
+   "animate": "the camera is locked off and does not move; heat shimmer ripples off the boxcar roofs, smoke drifts upward, dust blows across the gravel, the bear and the dog breathe hard and their ears stir, both stay standing in place",
+   "min_window": 1.6,
+   "seeds": [
+    901,
+    947,
+    982,
+    1019
+   ],
+   "votes": 3,
+   "identity": [
+    {
+     "master": "canon/hank_canon.png",
+     "subject": "Hank the bear"
+    },
+    {
+     "master": "canon/doug_canon.png",
+     "subject": "Doug the bloodhound"
+    }
+   ],
+   "loras": [
+    "~/.hankdoug_seeds/HANK_LORA.safetensors",
+    "~/.hankdoug_seeds/DOUG_LORA_V2.safetensors"
+   ],
+   "lora_scales": [
+    0.85,
+    0.85
+   ],
+   "clip_beat": "a huge bear and a tall heavy-set bloodhound standing together in the foreground, both wide-eyed and alarmed, in front of a smoking broken-down train in harsh sunlight with dust and heat haze",
+   "init": "stills/wip/s4_arrival_composite.png",
+   "set": "circus boxcar"
+  },
+  "s2b_smoke": {
+   "id": "s2b_smoke",
+   "prompt": "Pixar-style 3D animated film still: a close low-angle view of the smokestack of an old dark circus locomotive with faded red and gold trim, thick black smoke pouring and roiling out of the stack against a hazy warm sky, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a close view of an old dark circus locomotive's smokestack with thick black smoke pouring out against the sky",
+   "must_not": [
+    "a cheerful colourful passenger train",
+    "clean white steam only",
+    "a modern diesel or electric train",
+    "any animal or person visible"
+   ],
+   "lock": "stills/LOCKED_s2b_smoke.png",
+   "clip": "clips/s2b_smoke_final.mp4",
+   "animate": "the camera is locked off and does not move; thick black smoke pours and roils continuously out of the smokestack, drifting and curling as it rises, the locomotive itself stays still",
+   "clip_beat": "a close view of an old dark circus locomotive's smokestack with thick black smoke pouring out against the sky",
+   "duration": 3,
+   "min_window": 1.6
+  },
+  "s3b_wagonpass": {
+   "id": "s3b_wagonpass",
+   "prompt": "Pixar-style 3D animated film still: a low camera angle close to a dirt road as a weathered wooden rescue wagon races past pulled at speed, its wheels large in frame, a thick plume of dust kicking up behind it, warm afternoon light, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a horse-drawn wooden wagon racing along a dirt road seen from a low angle close to the ground, dust kicking up behind it",
+   "must_not": [
+    "a fire truck or any motor vehicle",
+    "a paved modern road",
+    "the wagon standing still"
+   ],
+   "lock": "stills/LOCKED_s3b_wagonpass.png",
+   "clip": "clips/s3b_wagonpass_final.mp4",
+   "animate": "the camera is locked off and does not move; the wagon rolls steadily across the frame from left to right, its wheels turning, dust billowing and drifting behind it",
+   "clip_beat": "a horse-drawn wooden wagon racing along a dirt road seen from a low angle close to the ground, dust kicking up behind it",
+   "duration": 3,
+   "min_window": 1.6,
+   "set": "wagon"
+  },
+  "s4b_trainwide": {
+   "id": "s4b_trainwide",
+   "prompt": "Pixar-style 3D animated film still: a wide shot of a long line of weathered faded-red wooden FREIGHT boxcars stretching away to the hazy horizon, solid unbroken plank walls, heavy sliding freight doors shut tight, the boards separated only by narrow dark cracks \u2014 and at every car something presses out through those narrow cracks: the tip of a grey trunk, small brown fingers, a striped tail, bright feathers, and dozens of pairs of eyes glinting in the dark slits all the way down the line, heat haze rippling hard off the roofs, harsh afternoon light, no lettering anywhere, cinematic children's movie lighting Shot wide for SCALE: the train runs ten or more cars deep into hazy distance. The plank gaps read as thin dark lines with movement and glints of eyes behind them \u2014 do NOT open doors, windows or square openings, and do not show whole animals leaning out.",
+   "beat": "a long line of weathered red boxcars stretching into heat haze, dark gaps between the planks running the length of every car, small dark shapes and glints of eyes just visible behind the gaps",
+   "must_not": [
+    "a brightly coloured or cheerful train",
+    "a cheerful colourful passenger train",
+    "a mostly empty train with only one or two animals visible",
+    "a passenger carriage with windows",
+    "animals leaning comfortably out of open windows",
+    "animals standing outside the train",
+    "any human or person",
+    "any open boxcar door",
+    "open doors",
+    "square windows",
+    "whole animals leaning out"
+   ],
+   "lock": "stills/LOCKED_s4b_trainwide.png",
+   "clip": "clips/s4b_trainwide_final.mp4",
+   "animate": "the camera is locked off and does not move; heat haze shimmers hard over the whole train, trunks curl and paws shift at the gaps all down the line, muzzles push at the slats for air, feathers flutter, dust drifts through the baking air, every door stays shut",
+   "clip_beat": "a long line of weathered red boxcars stretching into heat haze, dark gaps between the planks running the length of every car, small dark shapes and glints of eyes just visible behind the gaps, heat haze rippling off the roofs for the whole shot",
+   "duration": 5,
+   "min_window": 1.6,
+   "set": "circus boxcar"
+  },
+  "t1_monkey": {
+   "id": "t1_monkey",
+   "prompt": "Pixar-style 3D animated film still: an extreme close-up of a narrow vertical gap between dark weathered boxcar planks, small brown monkey fingers curled around the plank edge from inside, and deeper in the dark gap one bright warm eye catching a thin blade of light, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "small brown monkey fingers curled around the edge of a plank gap in a boxcar wall, one bright eye catching the light in the dark slot",
+   "must_not": [
+    "a full monkey visible outside the car",
+    "an open door",
+    "a human hand or human fingers",
+    "an empty gap with no animal"
+   ],
+   "lock": "stills/LOCKED_t1_monkey.png",
+   "clip": "clips/t1_monkey_final.mp4",
+   "animate": "the camera is locked off and does not move; the small fingers flex and grip gently, the eye blinks slowly, dust motes drift through the thin blade of light",
+   "clip_beat": "small brown monkey fingers curled around the edge of a plank gap in a boxcar wall, one bright eye catching the light in the dark slot",
+   "duration": 3,
+   "min_window": 1.6,
+   "set": "boxcar door detail"
+  },
+  "t2_lion": {
+   "id": "t2_lion",
+   "prompt": "Pixar-style 3D animated film still: a close-up of a golden lion's face filling a horizontal gap between weathered faded-red boxcar planks, his eyes half-closed and heavy in the heat, tongue resting over his lower lip, jaw closed, dust hanging in the warm air, dim interior behind him, no lettering anywhere, cinematic close-up",
+   "beat": "a golden lion's face filling a horizontal gap in the weathered boxcar plank wall, eyes half-closed and heavy in the heat, tongue over the lower lip, dust hanging in the air, dim interior behind him",
+   "must_not": [
+    "a smiling or cheerful lion",
+    "a wide open mouth",
+    "visible teeth",
+    "the lion's body or legs outside the car",
+    "an open door",
+    "bright daylight exterior"
+   ],
+   "lock": "stills/LOCKED_t2_lion.png",
+   "clip": "clips/t2_lion_final.mp4",
+   "animate": "the camera is locked off and does not move; the lion's muzzle stays pressed to the crack and his jaw stays almost closed the entire time \u2014 the mouth never opens wide and no teeth are ever visible. Only his tongue moves slightly over the lower lip, his sides rise and fall, and dust drifts slowly in the air around the planks",
+   "clip_beat": "a golden lion's face filling a horizontal gap in the weathered boxcar plank wall, eyes half-closed and heavy in the heat, tongue over the lower lip, dust hanging in the air, dim interior behind him, held for the whole shot",
+   "duration": 3,
+   "min_window": 1.6,
+   "set": "boxcar door detail",
+   "identity": {
+    "master": "canon/lion_canon.png",
+    "subject": "the golden lion"
+   },
+   "_identity_waived": "the frame is a muzzle in a plank crack \u2014 no head, ears or markings are visible, so the gate has nothing of canon to compare and returned DRIFT 4/4 on a shot that passed the beat 3/3"
+  },
+  "t3_giraffe": {
+   "id": "t3_giraffe",
+   "prompt": "Pixar-style 3D animated film still: a close-up of a horizontal gap between weathered faded-red boxcar planks, a young giraffe's warm yellow cheek with orange-brown patches pressed to it from inside and one large dark eye with long lashes looking out through the gap, warm light raking across the fur and the wood, dim interior behind, no lettering anywhere, cinematic close-up",
+   "beat": "a young giraffe's eye and cheek pressed against a horizontal gap high in the boxcar plank wall, the eye wide and wet, lashes clear, warm light falling across the fur through the gap",
+   "must_not": [
+    "a whole giraffe visible",
+    "a giraffe standing in a meadow",
+    "an open door",
+    "daylight exterior"
+   ],
+   "lock": "stills/LOCKED_t3_giraffe.png",
+   "clip": "clips/t3_giraffe_final.mp4",
+   "animate": "the camera is locked off and does not move; the giraffe's eye blinks slowly and the cheek shifts very slightly against the planks, dust drifting in the shaft of light",
+   "clip_beat": "a young giraffe's eye and cheek pressed against a horizontal gap high in the boxcar plank wall, the eye wide and wet, lashes clear, warm light falling across the fur through the gap, held for the whole shot, the eye blinking slowly",
+   "duration": 3,
+   "min_window": 1.6,
+   "set": "boxcar door detail",
+   "identity": {
+    "master": "canon/giraffe_canon.png",
+    "subject": "the young giraffe"
+   },
+   "_identity_waived": "the frame is an eye and cheek at a plank gap \u2014 no head shape, ears or body proportions are visible, and there is no giraffe LoRA to hold them anyway. Same framing as t2_lion."
+  },
+  "s6b_heave_close": {
+   "id": "s6b_heave_close",
+   "prompt": "Pixar-style 3D animated film still: a tight close-up of a big round cartoon brown bear's shoulder and both large paws pressed flat against the weathered faded-red planks of a boxcar sliding door, his body angled low with visible strain in the pose, fine dust shivering off the planks and hanging in the harsh afternoon light, no lettering anywhere, cinematic children's movie lighting Frame on the paws, shoulder and planks only \u2014 the bear's head is OUTSIDE the frame, not visible. Body low and angled forward, both paws pressed flat and splayed against the boards, muscle tension visible through the shoulder and forearm, raking light picking out the strain.",
+   "beat": "a tight close view of a big brown bear's shoulder and both paws pressed flat against weathered boxcar door planks, body low with strain, dust shivering in the air",
+   "must_not": [
+    "the door swinging or bursting open",
+    "splinters or debris flying",
+    "the bear standing relaxed",
+    "a stick or tool"
+   ],
+   "lock": "stills/LOCKED_s6b_heave_close.png",
+   "clip": "clips/s6b_heave_close_final.mp4",
+   "animate": "the camera is locked off and does not move; the bear holds the straining pose, his fur stirs, his breath comes heavy, fine dust drifts down the planks and hangs in the light, the door does not move",
+   "clip_beat": "a bear's paws and shoulder braced flat against the boxcar planks for the whole shot, the boards flexing slightly, dust shivering off the wood \u2014 the head never enters frame",
+   "duration": 3,
+   "min_window": 1.6,
+   "set": "circus boxcar",
+   "identity": {
+    "master": "canon/hank_canon.png",
+    "subject": "Hank the bear"
+   },
+   "loras": [
+    "~/.hankdoug_seeds/HANK_LORA.safetensors"
+   ],
+   "lora_scales": [
+    0.85
+   ],
+   "_identity_waived": "the head is deliberately out of frame (re-staged 2026-08-01 because the identity gate rejected 4/4 on head and ear shape). Nothing of canon is in shot to compare; the beat gate passed 3/3 on three separate seeds."
+  },
+  "r1_monkeys_out": {
+   "id": "r1_monkeys_out",
+   "prompt": "Pixar-style 3D animated film still: a dozen small cheerful brown capuchin monkeys with cream faces, each wearing a tiny red circus fez, bounding joyfully across green grass in warm golden light, tails high, spread out with clear space around each one, the weathered boxcar with its sliding door open visible behind them, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a dozen small brown capuchin monkeys in red fezzes bounding free across the grass, the open boxcar doorway behind them",
+   "must_not": [
+    "monkeys still inside the car",
+    "a closed door",
+    "monkeys touching or piled on each other",
+    "any human",
+    "only one or two monkeys"
+   ],
+   "lock": "stills/LOCKED_r1_monkeys_out.png",
+   "clip": "clips/r1_monkeys_out_final.mp4",
+   "animate": "the camera is locked off and does not move; the monkeys bound across the grass away from the train, tails swinging, dust kicking softly at their feet, none of them touch each other",
+   "clip_beat": "a dozen small brown capuchin monkeys in red fezzes bounding free across the grass, the open boxcar doorway behind them",
+   "duration": 5,
+   "min_window": 1.6,
+   "set": "circus boxcar",
+   "identity": {
+    "master": "canon/monkey_canon.png",
+    "subject": "the capuchin monkeys (design match to the master)"
+   }
+  },
+  "r2_lion_out": {
+   "id": "r2_lion_out",
+   "prompt": "Pixar-style 3D animated film still: a big friendly cartoon lion with a warm golden coat and thick orange-brown mane walking calm and free across green grass in front of a weathered boxcar whose sliding door stands open, his mane catching warm golden evening light, heat haze softening the distance, no lettering anywhere, cinematic children's movie lighting The lion is in a clear mid-stride pose: one front leg lifted and reaching forward, the opposite hind leg driving, body leaning slightly forward, tail raised.",
+   "beat": "a big friendly golden lion mid-stride on the grass in front of the open boxcar, mane catching the golden light",
+   "must_not": [
+    "the lion inside the car",
+    "a closed door",
+    "bared teeth or a frightening expression",
+    "any human"
+   ],
+   "lock": "stills/LOCKED_r2_lion_out.png",
+   "clip": "clips/r2_lion_out_final.mp4",
+   "animate": "the camera is locked off and does not move; the lion walks slowly and steadily across the grass, his mane and tail stir in the warm air, dust drifts softly around his paws",
+   "clip_beat": "a big golden lion walking across the grass in front of the open boxcar, legs swinging through stride after stride, mane and tail stirring, never standing still",
+   "duration": 5,
+   "min_window": 1.6,
+   "set": "circus boxcar",
+   "identity": {
+    "master": "canon/lion_canon.png",
+    "subject": "the golden lion"
+   },
+   "init": "canon/lion_canon.png",
+   "denoise": 0.6
+  },
+  "r3_giraffe_out": {
+   "id": "r3_giraffe_out",
+   "prompt": "Pixar-style 3D animated film still: a young cartoon giraffe with a warm yellow coat and orange-brown patches standing tall and free on green grass beside a weathered boxcar with its sliding door open, her long neck fully stretched upward into warm golden light for the first time, her face lifted and glad, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a young giraffe standing tall and free on the grass beside the boxcar, neck fully stretched up into the golden light",
+   "must_not": [
+    "the giraffe still bowed or cramped inside",
+    "a closed door",
+    "any human"
+   ],
+   "lock": "stills/LOCKED_r3_giraffe_out.png",
+   "clip": "clips/r3_giraffe_out_final.mp4",
+   "animate": "the camera is locked off and does not move; the giraffe's neck sways gently as she looks around, her ears flick, her tail swishes slowly, dust drifts in the golden light",
+   "clip_beat": "a young giraffe standing tall and free on the grass beside the boxcar, neck fully stretched up into the golden light",
+   "duration": 5,
+   "min_window": 1.6,
+   "set": "circus boxcar",
+   "identity": {
+    "master": "canon/giraffe_canon.png",
+    "subject": "the young giraffe"
+   }
+  },
+  "r4_parrots_sky": {
+   "id": "r4_parrots_sky",
+   "prompt": "Pixar-style 3D animated film still: a huge flock of dozens of bright scarlet macaw parrots with red bodies and blue-and-gold wings wheeling and soaring together across a warm golden evening sky, the flock stretching across the whole frame, the dark smoke plume of the circus train rising at the edge of frame far below, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a huge flock of dozens of bright scarlet parrots wheeling across the warm golden evening sky above the train",
+   "must_not": [
+    "bats or dark crows",
+    "a single lone bird or just a few birds",
+    "any aircraft",
+    "birds sitting still"
+   ],
+   "lock": "stills/LOCKED_r4_parrots_sky.png",
+   "clip": "clips/r4_parrots_sky_final.mp4",
+   "animate": "the camera is locked off and does not move; the huge flock wheels and drifts across the sky in loose flowing waves, wings beating slowly, the smoke plume drifts",
+   "clip_beat": "a huge flock of dozens of bright scarlet parrots wheeling across the warm golden evening sky above the train",
+   "duration": 5,
+   "min_window": 1.6,
+   "set": "circus boxcar",
+   "identity": {
+    "master": "canon/parrot_canon.png",
+    "subject": "the scarlet macaw parrots (design match to the master)"
+   }
+  },
+  "c1_celebration": {
+   "id": "c1_celebration",
+   "prompt": "Pixar-style 3D animated film still: a wide shot of a green meadow in warm golden evening light absolutely full of freed circus animals \u2014 a young gray elephant in a red circus cap, a golden lion, a young yellow giraffe, a dozen small brown monkeys in red fezzes, scarlet parrots on the grass and in the air, and many more circus animals filling the meadow into the distance: zebras, camels, ostriches, ponies, a seal, flamingos \u2014 all gathered loosely around a big round brown bear and a tall tan-and-orange bloodhound in the middle distance, clear space between every animal, the repaired circus train steaming gently behind them all, no lettering anywhere, cinematic children's movie lighting Frame on the heroes and the animals immediately around them \u2014 four or five clear animals in the foreground group, further animals only as soft out-of-focus shapes in the hazy distance. Do not attempt a countable crowd.",
+   "beat": "the bear and the dog standing together in the golden meadow with four or five freed animals pressed close around them, more shapes soft in the haze behind",
+   "must_not": [
+    "a broken-down or smoking wrecked train",
+    "a sparse meadow with only a handful of animals",
+    "an empty meadow",
+    "any human or person",
+    "any two characters touching, hugging or shaking paws",
+    "only one or two animals"
+   ],
+   "lock": "stills/LOCKED_c1_celebration.png",
+   "clip": "clips/c1_celebration_final.mp4",
+   "animate": "the camera is locked off and does not move; the whole crowd of animals breathes and sways gently in place, ears and tails and manes stir everywhere, the parrots ruffle their wings, steam drifts from the train, golden dust motes float through the light, no one walks and no one touches anyone",
+   "clip_beat": "the bear and the dog standing together in the golden meadow with four or five freed animals pressed close around them, more shapes soft in the haze behind, the group breathing and swaying gently in place throughout",
+   "duration": 5,
+   "min_window": 1.6,
+   "set": "circus boxcar",
+   "identity": [
+    {
+     "master": "canon/hank_canon.png",
+     "subject": "Hank the bear"
+    },
+    {
+     "master": "canon/doug_canon.png",
+     "subject": "Doug the bloodhound"
+    },
+    {
+     "master": "canon/ellie_canon.png",
+     "subject": "Ellie the young circus elephant"
+    }
+   ],
+   "init": "stills/wip/c1_celebration_composite.png"
+  },
+  "c2_ellie_trumpet": {
+   "id": "c2_ellie_trumpet",
+   "prompt": "Pixar-style 3D animated film still: a young gray cartoon elephant with big amber eyes wearing a small red circus cap with a red plume, standing on green grass with her trunk raised high in celebration, warm golden evening light, her freed animal friends softly blurred in the background, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "the young elephant in her red circus cap standing on the grass with her trunk raised high in the golden light",
+   "must_not": [
+    "tusks",
+    "a spiky metal crown",
+    "her trunk hanging down",
+    "the elephant inside the boxcar"
+   ],
+   "lock": "stills/LOCKED_c2_ellie_trumpet.png",
+   "clip": "clips/c2_ellie_trumpet_final.mp4",
+   "animate": "the camera is locked off and does not move; the elephant holds her trunk raised high, her ears sway gently, her eyes shine, golden dust motes drift through the warm light",
+   "clip_beat": "the young elephant in her red circus cap standing on the grass with her trunk raised high in the golden light",
+   "duration": 4,
+   "min_window": 1.6,
+   "identity": {
+    "master": "canon/ellie_canon.png",
+    "subject": "Ellie the young circus elephant"
+   }
+  },
+  "s8_goodbye": {
+   "id": "s8_goodbye",
+   "prompt": "Pixar-style 3D animated film still: a big round cartoon brown bear with a large cream-coloured belly patch, cream muzzle, small black nose, small rounded ears and a short snout, a tall tan-and-orange bloodhound with a deep chest, strong neck, substantial build, a smooth tan head, long dark floppy ears hanging well past his jaw, droopy soulful eyes, a big black nose and big paws, and a young gray elephant with big amber eyes wearing a small red circus cap with a red plume, the three standing together on the grass in warm golden evening light with clear space between each of them, nobody touching, and behind them the repaired circus train alive and steaming, absolutely crowded with happy circus animals \u2014 monkeys, a lion, a giraffe's neck, zebras, ostriches, parrots \u2014 filling every open boxcar doorway and window down the whole train, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "the bear, the dog and the rescued elephant standing together with clear air between them, the repaired circus train alive behind them CROWDED with animals \u2014 every doorway and window full",
+   "must_not": [
+    "any two characters touching \u2014 a paw under a chin, a hug, a handshake, leaning on each other",
+    "a dog with a wrinkled, braided or textured scalp on top of his head",
+    "a slim, skinny, slender or elegant dog",
+    "a sighthound, greyhound or vizsla-like dog with a thin neck or tucked waist",
+    "a broken-down or smoking wrecked train",
+    "the elephant missing from the group",
+    "an empty train with no animals in its doorways",
+    "any human or person visible anywhere, including in the train cab or windows"
+   ],
+   "lock": "stills/LOCKED_s8_goodbye.png",
+   "clip": "clips/s8_goodbye_v2.mp4",
+   "animate": "the camera is locked off and does not move; steam drifts up from the locomotive, the grass sways, all three friends breathe gently and their ears and fur stir, the crowd of animals in the doorways sway and breathe where they stand, nobody walks and nobody touches anyone",
+   "clip_beat": "the bear, the dog and the rescued elephant standing together with clear air between them, the repaired circus train alive behind them CROWDED with animals \u2014 every doorway and window full",
+   "duration": 5,
+   "min_window": 1.6,
+   "loras": [
+    "~/.hankdoug_seeds/HANK_LORA.safetensors",
+    "~/.hankdoug_seeds/DOUG_LORA_V2.safetensors"
+   ],
+   "lora_scales": [
+    0.85,
+    0.85
+   ],
+   "identity": [
+    {
+     "master": "canon/hank_canon.png",
+     "subject": "Hank the bear"
+    },
+    {
+     "master": "canon/doug_canon.png",
+     "subject": "Doug the bloodhound"
+    },
+    {
+     "master": "canon/ellie_canon.png",
+     "subject": "Ellie the young circus elephant"
+    }
+   ],
+   "set": "circus boxcar",
+   "init": "stills/wip/s8_goodbye_composite.png"
+  },
+  "r5_crowd_wide": {
+   "id": "r5_crowd_wide",
+   "prompt": "Pixar-style 3D animated film still: a wide shot of a green meadow beside the circus train in warm golden evening light, dozens of freed circus animals of every kind spread across the grass \u2014 zebras, camels, ostriches, ponies, monkeys in red fezzes, flamingos, a seal, parrots overhead \u2014 the whole meadow alive with animals from the open boxcars all the way into the hazy distance, every animal with clear space around it, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a wide meadow filling with dozens of freed circus animals of every kind spreading out from the open train in golden light",
+   "clip_beat": "a wide meadow filling with dozens of freed circus animals of every kind spreading out from the open train in golden light",
+   "must_not": [
+    "a sparse meadow with only a handful of animals",
+    "any human or person",
+    "animals piled on or touching each other",
+    "closed boxcar doors on the whole train"
+   ],
+   "lock": "stills/LOCKED_r5_crowd_wide.png",
+   "clip": "clips/r5_crowd_wide_final.mp4",
+   "animate": "the camera is locked off and does not move; across the whole meadow the animals breathe and sway gently in place, tails swish, ears and manes stir, the parrots drift slowly overhead, golden dust floats in the evening light, no animal charges or collides with another",
+   "duration": 5,
+   "min_window": 1.6,
+   "set": "circus boxcar"
+  }
+ },
+ "_blocked_seen": {
+  "s1_coldopen": "spec repeats a known mistake \u2014 see spec_lint output",
+  "s3_rollout": "spec repeats a known mistake \u2014 see spec_lint output",
+  "s4_arrival": "the render backend kept going away \u2014 this is a machine problem, not a story problem; check ComfyUI before re-running",
+  "s4b_trainwide": "the still never passed the gates in 2 attempts \u2014 escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried",
+  "t1_monkey": "spec repeats a known mistake \u2014 see spec_lint output",
+  "t2_lion": "still locks but no animation holds the beat after 4 escalating attempts",
+  "t3_giraffe": "the still never passed the gates in 2 attempts \u2014 escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried",
+  "ellie_eye": "still locks but no animation holds the beat after 4 escalating attempts",
+  "s6_heave": "spec repeats a known mistake \u2014 see spec_lint output",
+  "s6_interior": "spec repeats a known mistake \u2014 see spec_lint output",
+  "s7_dooropen": "still locks but no animation holds the beat after 4 escalating attempts",
+  "r1_monkeys_out": "spec repeats a known mistake \u2014 see spec_lint output"
+ }
+}

@@ -49,7 +49,6 @@ def _update_job(job_id: str, **fields):
 def _progress_watcher(job_id: str, prompt_id: str, expected_steps: int):
     """Poll ComfyUI /history and track stages: loading → sampling → decoding → saving."""
     t0 = time.time()
-    dead_polls = 0  # consecutive unreachable-ComfyUI polls; ~60s of them = it crashed
     while True:
         with JOB_LOCK:
             job = JOBS.get(job_id, {})
@@ -57,7 +56,6 @@ def _progress_watcher(job_id: str, prompt_id: str, expected_steps: int):
             return
         try:
             hist = _get(f"/history/{prompt_id}")
-            dead_polls = 0
             entry = hist.get(prompt_id)
             if entry and entry.get("status", {}).get("completed"):
                 files = collect_outputs(entry, job_id[:8])
@@ -104,15 +102,7 @@ def _progress_watcher(job_id: str, prompt_id: str, expected_steps: int):
             _update_job(job_id, step=step, stage=stage, pct=pct,
                         elapsed=int(dt), eta=eta)
         except Exception:
-            # ComfyUI unreachable. A model load can stall the HTTP thread for a
-            # bit, but a full minute of silence means the process died — fail the
-            # job instead of reporting "running" forever (2026-07-22).
-            dead_polls += 1
-            if dead_polls >= 40:
-                _update_job(job_id, state="error", stage="error",
-                            error="ComfyUI stopped responding mid-render "
-                                  "(likely crashed) — check logs/comfyui.log")
-                return
+            pass
         time.sleep(1.5)
 
 
@@ -123,10 +113,9 @@ def _ensure_comfyui() -> bool:
         return True
     except Exception:
         pass
-    comfy_log = open(Path(__file__).resolve().parent / "logs" / "comfyui.log", "a")
     subprocess.Popen(
         ["bash", str(Path.home() / "AI/ComfyUI/start.sh")],
-        stdout=comfy_log, stderr=subprocess.STDOUT,
+        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
         start_new_session=True,
     )
     for _ in range(120):
@@ -214,13 +203,6 @@ def _estimate(duration: float, quality: str, resolution: str, big_mode: bool = F
 
 @app.route("/")
 def index():
-    # The Director (chat + storyboard) is the front door now; the old
-    # single-clip MakeVideo page lives on at /classic.
-    return send_from_directory(UI_DIR, "director.html")
-
-
-@app.route("/classic")
-def classic_page():
     return send_from_directory(UI_DIR, "index.html")
 
 
@@ -610,8 +592,6 @@ def _sf_estimate(sf_text: str, overrides: dict) -> dict:
             total += 2400
         elif eng == "ltx":
             total += 120
-        elif eng == "ltx2":
-            total += 240  # MLX LTX-2 distilled; video+audio, heavier than old LTX
         elif eng == "wan" and use_metal:
             total += 300
         else:
@@ -860,8 +840,173 @@ def api_thumb(name):
     return send_file(str(thumb), mimetype="image/jpeg")
 
 
-import director
-director.register(app, UI_DIR)
+# ───────────────────── Live pulse — what is the pipeline doing RIGHT NOW ─────────
+# Matt (2026-07-31): "have it show and pulse what it's doing... the actual step
+# it's in." Zero render cost: this only tails logs and state files that every
+# pipeline step already writes. The page at /pulse polls /api/pulse every 2s.
+
+import re as _re
+
+PULSE_PROJ = Path(__file__).resolve().parent / "projects" / "circus_train"
+
+
+def _tail(p: Path, n: int = 12) -> list:
+    try:
+        return p.read_text().splitlines()[-n:]
+    except Exception:
+        return []
+
+
+def _proc_running(pat: str) -> bool:
+    r = subprocess.run(["pgrep", "-f", pat], capture_output=True)
+    return r.returncode == 0
+
+
+@app.route("/pulse")
+def pulse_page():
+    return send_from_directory(UI_DIR, "pulse.html")
+
+
+@app.route("/api/pulse")
+def api_pulse():
+    proj = PULSE_PROJ
+    for d in (Path(__file__).resolve().parent / "projects").iterdir() if (Path(__file__).resolve().parent / "projects").is_dir() else []:
+        if (d / "ACTIVE_FILM").exists():
+            proj = d
+            break
+
+    director = _tail(proj / "director.log", 15)
+    shotlog = _tail(proj / "forge_shot.log", 8)
+
+    # customer priority
+    customer = False
+    try:
+        import urllib.request as _ur
+        with _ur.urlopen("http://127.0.0.1:8767/api/status", timeout=2) as r:
+            customer = int(json.loads(r.read().decode(errors="replace"))
+                           .get("jobs_running", 0)) > 0
+    except Exception:
+        pass
+
+    # what step is live, cheapest signals first
+    if customer:
+        step, detail = "PAUSED — customer song has the machine", \
+                       "a paying Song Forge job outranks the film; rendering resumes on its own"
+    elif _proc_running("mflux-generate"):
+        step, detail = "generating a still", "rolling a seed through the image model (~50s each)"
+    elif _proc_running("bin/make-video") or _proc_running("make-motion-video"):
+        step, detail = "animating", "Wan is rendering motion — the heavy step (~10-17 min)"
+    elif _proc_running("build-episode"):
+        step, detail = "assembling the episode", "cutting segments together, laying music, then QC"
+    elif _proc_running("film_qc.py"):
+        step, detail = "film QC", "vision + audio judge checking the assembled cut"
+    elif _proc_running("forge-shot"):
+        step, detail = "judging", "the vision judge is voting on frames"
+    elif _proc_running("forge-director"):
+        step, detail = "director thinking", "picking the next gap in the story"
+    else:
+        step, detail = "idle", "nothing running — the director may be paused or done"
+
+    # current beat being worked, from the director's own words
+    beat = ""
+    for ln in reversed(director):
+        m = _re.search(r"working: (.+)$", ln)
+        if m:
+            beat = m.group(1)
+            break
+
+    # film progress from the last WIP-reel line ("8 passing shots")
+    done = total = None
+    for ln in reversed(director):
+        m = _re.search(r"(\d+)/(\d+) beats", ln) or _re.search(r"(\d+) beats still open", ln)
+        if m and len(m.groups()) == 2:
+            done, total = int(m.group(2)) - int(m.group(1)), int(m.group(2))
+            break
+    for ln in reversed(director):
+        m = _re.search(r"(\d+) passing shots", ln)
+        if m:
+            done = int(m.group(1))
+            total = total or 9
+            break
+
+    review_q = 0
+    try:
+        review_q = len(json.loads((Path(__file__).resolve().parent /
+                                   "review" / "queue.json").read_text()))
+    except Exception:
+        pass
+
+    return jsonify({
+        "project": proj.name, "step": step, "detail": detail,
+        "customer_active": customer, "beat": beat,
+        "shots_done": done, "shots_total": total,
+        "review_waiting": review_q,
+        "director": [ln for ln in director if "[director" in ln or "[keepalive" in ln][-6:],
+        "shotlog": shotlog[-5:],
+        "ts": time.strftime("%H:%M:%S"),
+    })
+
+
+# ───────────────────── Matt's click review (added 2026-07-31) ─────────────────────
+# Matt is the judge: any pipeline step queues a clip or still with bin/review-add,
+# Matt watches at /review and clicks YES or NO (with an optional note). Verdicts
+# land in review/verdicts.json for the pipeline and the agent to read — a NO with
+# a note is a human rejection and becomes a lesson (CLAUDE.md rule 15), and YES/NO
+# pairs feed beat_gate's `expect` calibration. Machine gates still run first; this
+# queue is for the calls a machine can't make.
+
+REVIEW_DIR = Path(__file__).resolve().parent / "review"
+REVIEW_QUEUE = REVIEW_DIR / "queue.json"
+REVIEW_VERDICTS = REVIEW_DIR / "verdicts.json"
+_review_lock = threading.Lock()
+
+
+def _review_load(p: Path):
+    try:
+        return json.loads(p.read_text())
+    except Exception:
+        return {} if p.name == "verdicts.json" else []
+
+
+@app.route("/review")
+def review_page():
+    return send_from_directory(UI_DIR, "review.html")
+
+
+@app.route("/api/review/queue")
+def api_review_queue():
+    return jsonify(_review_load(REVIEW_QUEUE))
+
+
+@app.route("/api/review/clip/<item_id>")
+def api_review_clip(item_id):
+    # path comes from the queue file we wrote, never from the URL — no traversal
+    item = next((i for i in _review_load(REVIEW_QUEUE) if i["id"] == item_id), None)
+    if not item or not Path(item["path"]).is_file():
+        return "not found", 404
+    mt = "image/png" if item["path"].endswith(".png") else "video/mp4"
+    return send_file(item["path"], mimetype=mt)
+
+
+@app.route("/api/review/verdict", methods=["POST"])
+def api_review_verdict():
+    d = request.get_json(force=True)
+    if d.get("verdict") not in ("yes", "no"):
+        return jsonify({"ok": False, "error": "verdict must be yes or no"}), 400
+    with _review_lock:
+        queue = _review_load(REVIEW_QUEUE)
+        item = next((i for i in queue if i["id"] == d["id"]), None)
+        if not item:
+            return jsonify({"ok": False, "error": "unknown id"}), 404
+        verdicts = _review_load(REVIEW_VERDICTS)
+        verdicts[d["id"]] = {"verdict": d["verdict"], "note": d.get("note", ""),
+                             "path": item["path"], "question": item.get("question", ""),
+                             "ts": time.strftime("%Y-%m-%d %H:%M:%S")}
+        REVIEW_DIR.mkdir(exist_ok=True)
+        REVIEW_VERDICTS.write_text(json.dumps(verdicts, indent=1) + "\n")
+        REVIEW_QUEUE.write_text(json.dumps([i for i in queue if i["id"] != d["id"]],
+                                           indent=1) + "\n")
+    return jsonify({"ok": True, "remaining": len(queue) - 1})
 
 
 if __name__ == "__main__":

@@ -17,7 +17,7 @@ This directory is the home of **Story Forge**, a robust 100%-local generative VI
 - `~/Desktop/PROJECTS/story-forge/SESSION_HANDOFF.md` — full session state, what works, what's broken, where to resume the two-week speedup build.
 
 **Quick file map:**
-- `story_pipeline.py` — the core pipeline (Flux + Wan + Piper + ACE-Step + ffmpeg, config-driven)
+- `story_pipeline.py` — the core pipeline (Flux + Wan + Kokoro Heart narration + ACE-Step + ffmpeg, config-driven)
 - `server.py` — Flask UI server on port 17600
 - `ui/story.html` — Story Forge web form
 - `bin/make-video` — Wan inference CLI (works)
@@ -57,6 +57,15 @@ This directory is the home of **Story Forge**, a robust 100%-local generative VI
    the production LoRA copy). A project folder holds locked stills, canon,
    final clips, approved audio, ledger/scripts — nothing else. First sweep of
    circus_train reclaimed 850MB of corpses.
+   COROLLARY, PAID FOR AGAIN 2026-07-31: a take Matt DECLINES dies in the SAME
+   session — its locked still, final clip, kb copy, review-folder copy, all of
+   it. The skinny-dog s8_goodbye was declined in one session, left on disk, and
+   a later session wired it back into the cut ("stop keeping rejected stuff
+   around that could potentially be used by an unsuspecting agent" — Matt).
+   Review folders (REVIEW_*/ montage copies) are competing takes: delete them
+   when the review session ends. Unreferenced-but-maybe-good material goes in
+   projects/<name>/_ARCHIVE_UNUSED_not_in_film/ (README inside says DO NOT USE)
+   — an agent assembling a cut pulls ONLY from clips/ via the EDL.
 
 15. LEARN WITHOUT BEING ASKED (Matt, 2026-07-26: "I shouldn't have to tell you
    these special notes to take from here on out"). Every rejection — his, or a gate's —
@@ -94,6 +103,14 @@ This directory is the home of **Story Forge**, a robust 100%-local generative VI
      → identity gate vs the character master → lock → animate → re-judge the
      clip → keep only the stretch that holds the beat. A shot that never passes
      is reported UNBUILT, never quietly used.
+   - FAILURES COME BACK WITH THE FIX ATTACHED (2026-07-31). After any beat-gate
+     FAIL, `beat_gate.prescribe` shows the judge the rejected frame and asks for
+     the concrete change ("show the wheels locked and sparking"), and THAT is
+     what shot_lessons.json stores and the next attempt's prompt carries — a
+     direction, not a complaint. The animate pass both writes AND reads
+     `<id>_animation` lessons now; before this, failed clips wrote lessons that
+     nothing ever read back, so every `--stage animate` re-run paid 13+ minutes
+     to repeat the identical rejection.
    - ONE INSTANT IS NOT A VERDICT. The same clip sampled at 1.1s vs 2.7s produced
      opposite rulings — the identical noise that sent seven good lip-sync clips to
      "failed" on 2026-07-23. Every judgement votes over several frames and prints
@@ -239,6 +256,155 @@ This directory is the home of **Story Forge**, a robust 100%-local generative VI
      of failures looked like clean no-ops. Capture `$?` into a variable immediately after
      the call and log it. And when a subsystem was edited hours before the symptoms
      started, `diff` it against its backup BEFORE theorising about the renderer.
+   - AND THE SAME TRAP CATCHES MONITORING (2026-08-01, twice in ten minutes). Having read
+     this very rule, I built a swap watcher keyed to `vm.swapusage` TOTAL — it screamed
+     "26GB→51GB, panic signature" while pageouts moved 1747→1766 and the box had 62% free;
+     macOS had merely GROWN the swap file for an mmap'd model, and it reclaimed it back to
+     11.9GB minutes later. Rebuilt it on forge_guard's `level`, and `level=critical` fired
+     instantly on a healthy render holding 35GB of WIRED Metal memory with swap flat.
+     An alarm keyed to a symptom that every healthy render produces is worse than no
+     alarm: it trains you to ignore it, and the one time it matters you will. The ONLY
+     admissible distress signals are swap RATE (actually moving) and pageouts CLIMBING.
+     Free pages, `level`, and swap total are all normal-during-render — never alert on them.
+
+21. A TRANSCRIPT HOLE IS NOT PROOF OF SILENCE (2026-07-31). film_qc reported six
+   dialogue lines (29.8s–42.0s of circus_train EPISODE_v1) "NOT HEARD" while a direct
+   transcription of that exact window heard every line at the right moment — long-form
+   whisper over a whole film can skip an entire music-heavy block and leave a hole in
+   the global transcript. Sibling of "ONE INSTANT IS NOT A VERDICT" (rule 14): a miss
+   in the full-film pass is a lead, not a verdict. `film_qc.whisper_relisten()` now
+   re-transcribes a ±2–4s window around any line that fails the global pass and only
+   FAILs if the targeted re-listen misses too. Same lesson as the 2026-07-28 matching
+   fix: judge a claim about a moment AT that moment.
+
+22. ARCHIVING AN ASSET ORPHANS EVERY REFERENCE TO IT (2026-08-01). Rule 13's sweep moved
+   `stills/LOCKED_s5.png` into `_ARCHIVE_UNUSED_not_in_film/`, but `beats_calibration.json`
+   still cited it as ground truth — so every director start since has opened with
+   "CALIBRATION: 5/6 (83%), gate said ERROR, human said PASS." The gate was never wrong;
+   it was handed a path that no longer exists. Two lessons, both now fixed in code:
+   - **Couldn't-read is UNCHECKED, not disagreed.** `beat_gate` counted ERROR samples in
+     the calibration denominator, understating agreement and able to trip its own
+     "<80% — do not trust this gate" warning on nothing but a moved file. ERROR results
+     are now excluded and printed as `[UNCHECKED]`. Third time this family has cost us:
+     rule 14 (one instant is not a verdict), rule 21 (a transcript hole is not silence),
+     and the standing QC rule that exit 2 is never a pass. Couldn't-judge is never a
+     verdict in EITHER direction — not a pass, and not a failure.
+   - **A rule-13 sweep must re-point or retire what it breaks.** Before parking an asset,
+     grep the project for its path (`beats.json`, the EDL, `beats_calibration.json`,
+     the ledger). Do NOT quietly repoint a live config INTO the archive to fix the
+     dangling reference — that is exactly how the skinny-dog take resurfaced. Either the
+     asset is approved (it belongs in the project) or it is parked (the reference is
+     retired). It cannot be both, and an agent that finds it both ways must ASK, because
+     the contradiction is a record of a human verdict and only Matt can say which half
+     is true. `GT_pass_s5_door` is left dangling ON PURPOSE pending that answer.
+
+23. A RELOAD THAT MISSES THE SKIP-LIST BUYS NOTHING (2026-08-01). The director re-reads
+   `shots.json` every cycle precisely so a spec fixed mid-run takes effect (the 2026-07-27
+   note above it). It kept `blocked` in memory anyway, and `gaps()` skips a blocked shot
+   BEFORE anything re-lints it — so the reload helped every shot except the ones a human
+   had just gone and repaired. Four beats were fixed while the loop ran and not one was
+   retried. The loop now re-lints spec-blocked shots each cycle and unblocks whatever
+   passes; attempts-exhausted blocks stay put, because those are a statement about the
+   RENDERER, not about a file on disk. General form: any cache you refresh to pick up
+   external edits must also refresh the list of things you refuse to look at.
+   - Corollary for spec repairs: `beats.json` and `shots.json` BOTH carry the shot specs
+     (`spec_lint` reads shots.json, `beat_gate` reads beats.json). Patch both or the gates
+     disagree — rule 17's id-agreement problem wearing a different hat. Write them with
+     `os.replace` so a running director never reads a half-written file.
+   - Do NOT "fix" a lint warning on a shot that already has approved footage. Adding a
+     `set` to s3_rollout/s4_arrival/s6_interior would newly subject their finished,
+     approved clips to a set-identity check at build-episode preflight and could fail the
+     cut on work Matt already accepted. A lint warning on a shot with footage is inert —
+     the director never re-renders it. Leave it.
+
+24. THE GUARD MATCHED THE SPELLING, NOT THE CHARACTER (2026-08-01, Matt: "the bear is
+   too small… and weird looking"). s4_arrival stacks HANK_LORA + DOUG_LORA at 0.85 each
+   with no `init` composite and produced the exact 2026-07-26 failure it was supposed to
+   be impossible to repeat: a small doll-like Hank standing barely taller than Doug, when
+   his locked master is a huge heavy bear. The lesson HAD been written and a lint rule
+   HAD been built — but that rule intersected the prompt against canon FILE STEMS
+   (`hank`, `doug`, `ellie`), and no prompt in this film ever says those words. They all
+   say "a big round brown bear", "a tall tan-and-orange bloodhound". So the rule never
+   fired on a single two-hander, and s1_coldopen, s3_rollout, s4_arrival, c1_celebration
+   and s8_goodbye were ALL configured to produce diluted characters.
+   - spec_lint now counts CHARACTERS (`identity` entries, or `loras` length), not names:
+     more than one character in a frame with no `init` composite is a hard block.
+   - The control: s6_heave holds up perfectly and uses ONE LoRA at 0.9. Every shot that
+     holds identity (s6_heave, s7_dooropen, ellie_eye) is either single-LoRA or
+     composite-welded. Every shot that drifted stacked two.
+   - GENERAL FORM, and the reason this cost a second incident: a guard that matches on
+     how something is SPELLED will miss every case that is phrased differently. Match on
+     the structural fact (how many characters are in this frame) — the thing that is true
+     regardless of wording. Check a new gate against the specs it is meant to catch and
+     confirm it actually FIRES on them; a rule that never triggers reads exactly like a
+     rule that always passes.
+   - Scale is not locked by a LoRA any more than colour is (rule 10). Relative character
+     SIZE in a two-shot is a composite decision, which is another reason the composite
+     path is not optional for a multi-character frame.
+
+25. THE BUDGET WAS ADDING UP THE DECLARED NUMBER, NOT THE REAL ONE (2026-08-01,
+   third freeze in six days). The box wedged at 14:11 with four Python processes
+   holding 144GB of a 128GB machine — the kernel reaped 856 processes with
+   `reason=low-swap`, took its own daemons down with it, and the machine was hard
+   restarted at 17:18. Nothing about it was hardware: SMART verified, battery
+   normal, no thermal event ever recorded, and the 10:12 panic was
+   `watchdog timeout — no checkins from watchdogd in 91 seconds` with free memory
+   at 10MB, the compressor holding 62.6GB, and `pagesWanted 3269 / pagesReclaimed
+   0`. The kernel asked for 52MB and got nothing back.
+   - **`ps rss` cannot see GPU memory, so every render was measured at a fraction
+     of its weight.** Measured on this box 2026-08-01: a 6GB torch MPS allocation
+     moved RSS by 0.04GB and `phys_footprint` by 6.26GB. This is rule 20's "the
+     guard saw ComfyUI at 9.8GB while it held ~32GB" with a cause and a fix —
+     `forge_guard._footprint_gb()` now reads phys_footprint (~30ms) and that, not
+     RSS, is what admission control adds up.
+   - **Song Forge's engines really hold 54GB, not 33.** ACE :8001 measures 34GB
+     (15GB IOAccelerator + 12GB unmapped graphics + 6GB malloc) against a 15.6GB
+     RSS, gemma :9420 measures 20GB. Rule 11's "~45GB" was closer than the number
+     everyone was quoting off `ps`. Peak seen: 62GB — which is why the reservation
+     is CAPPED (`FORGE_RESERVE_CAP_GB=60`): reserving an all-time peak leaves
+     ~24GB for the whole machine and no render can ever be seated again. "Nothing
+     ever runs" is not an improvement over "the box freezes".
+   - **A declared lease is a promise, not a measurement.** `bin/forge-shot` asked
+     for 22GB once, for a whole run, and then loaded mflux (~35GB), an in-process
+     VL judge (~18GB) and a ComfyUI full of cached Wan on top of it. The guard now
+     charges the budget for what is actually held plus the unspent part of each
+     grant, learns each phase's real peak (`/api/hint`), and mem_client raises the
+     ask to that measured figure — so a number typed into a script months ago can
+     only be wrong once. Under-declaring buys nothing: allocate past your grant
+     and the next caller is the one who waits.
+   - **The lease was protecting the wrong process.** `LEASE_LABELS` maps comfyui
+     onto storyforge's lease, so ComfyUI's 63GB counted as "asked politely" and
+     sorted LAST for eviction — the biggest thing in the room was the best
+     protected. It is charged now whether or not it filed the paperwork.
+   - **Nothing needs ComfyUI's cached Wan weights during a still pass**, and the
+     only code that reclaims them (`core.py`) waits for it to be idle, which a
+     continuous director loop never is. forge-shot reclaims that cache up front,
+     and asks for the animate room AFTER the pre-i2v bounce, not before — measure
+     the box you are about to render on, not the one you are leaving.
+   - **A refusal is a real answer.** forge-shot returns `STILL_HELD`/`ANIMATE_HELD`
+     rather than rendering into swap, and forge-director treats those like INFRA:
+     the idea was never tested, so it does not burn the escalation ladder.
+   - `/tmp/forge_guard.log` was wiped by the reboot and left exactly ONE line to
+     diagnose from. The guard logs to `~/Library/Logs/forge_guard.log` now.
+
+26. A COPIED `clip_beat` JUDGES THE CLIP AGAINST A FROZEN INSTANT (2026-08-01).
+   18 of 24 shots in circus_train have `clip_beat` as a verbatim copy of `beat`,
+   so the clip judge hunts the STILL's pose inside five seconds of motion.
+   `r2_lion_out` is the cost: beat "a lion mid-stride", animate "walks slowly and
+   steadily" — a walking lion is mid-stride for a fraction of each step, four
+   window probes at fixed times all missed it, and the shot was BLOCKED as a
+   story failure it did not have. Rule 14 created `clip_beat` precisely so the
+   clip is judged on a state, and then nobody wrote a different state into it.
+   The clip_beat must describe what stays true for the DURATION, not the instant
+   the still was locked on. `spec_lint` now flags copies as advisories (⚠, never
+   blocking — forge-director blocks on any `✗ <id>:` line and a wording rule must
+   never stop a running film; `--strict` promotes them when writing a new spec).
+   Also flagged: an emotion word in a beat with no body part named anywhere in
+   the field. Both come from ByteDance's Seedance 2.5 prompting guide, which is
+   cloud-only and therefore unusable here — but its "one change per stage, state
+   what is visible at the end" and "replace emotion words with observable cues"
+   are this repo's own rule 14 and prescribe() loop, stated before the render
+   instead of after the fourth rejection.
 
 ## MOTION TRANSFER — real footage drives a character (2026-07-25, Matt-approved)
 
@@ -394,3 +560,21 @@ Everything Story Forge lives in THIS folder now. Old scattered paths are symlink
 The ONE launcher: **~/Desktop/Story Forge.app** (opens the :17600 web UI). "Divine Tribe
 Studio.command" is retired to ~/Desktop/Launchers/Archive. Don't create new Desktop-level
 Story Forge folders or launchers.
+
+## 🔊 NARRATION VOICE CHANGE — 2026-08-07
+Ashley (Piper LibriTTS speaker 0) is RETIRED. The narrator voice is now **Kokoro-82M "Heart" (`af_heart`)** for ALL future videos and narration. `story_pipeline.py` / `story_forge/run.py` `PIPER` constants now point at `~/.local/bin/kokoro-piper-shim` (piper-compatible CLI, renders Kokoro Heart). `speak` / `speak-heart` CLIs also render Heart. Matt's cloned voice is unchanged as the second voice. Do NOT use Piper Ashley in new work.
+
+26. THE GATE ONLY ANSWERS THE QUESTION IT IS ASKED (2026-08-30, the rollout horse).
+   The rebuilt s3_rollout shipped with the horse BEHIND the wagon it was pulling. The still
+   passed ("a horse-drawn wagon moving along a dirt road with dust" — true), the full clip
+   failed 1/5, and the trim rule then kept the 2-second window where the framing pushed in
+   behind the horse, because each window probe asks only "does this frame depict the beat".
+   Nothing in the pipeline asked "is this physically possible", per-shot must_not lists only
+   forbid what somebody anticipated, and the agent only ever looked at FAILED clips.
+   - `beat_gate.HOUSE_MUST_NOT` now rides on every ballot: impossible geometry, merged or
+     interpenetrating bodies, floating/duplicated parts, a vehicle pulling its animal.
+   - A shot where one thing pulls, carries, holds or rides another states the GEOMETRY in
+     `beat` and forbids its inverse in `must_not` ("horses out in front, wagon behind them").
+   - Every KEPT clip gets a frame-grid look from the agent before build-episode runs — a
+     PASS is a claim to verify, not a reason to skip looking. Matt sees the film; the gate
+     sees frames; the agent is the one who has to see both.

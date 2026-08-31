@@ -1,0 +1,13 @@
+[09:23:48] judge via in-process VL
+[09:23:48] === s3_rollout — beat: seen from the side: exactly two horses, each with one head, in harness on the left gallopi
+[mem] storyforge-still s3_rollout: asking for 41GB — measured, not the 38GB declared
+[09:23:48]   holding 41GB for storyforge-still s3_rollout
+[09:23:48]   carrying 2 lesson(s) (1 inherited from earlier films) into this shot
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 16996.28it/s]
+[09:24:58]   seed 8137: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows exactly two horses, each with one head, harnessed and galloping side-by
+[09:25:01]   LOCKED stills/LOCKED_s3_rollout.png
+[09:25:01]   --stage stills: locked, animation deferred to the animate pass
+[09:25:01]   released the storyforge-still s3_rollout lease
+[09:25:02] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[09:25:02] DONE — 1/1 shots produced usable, judged assets
+[09:25:02]   s3_rollout: STILL_LOCKED

@@ -1,0 +1,44 @@
+[build-episode] PREFLIGHT —
+[build-episode]   Song Forge: ace=True llm=True jobs_running=0
+[build-episode]   assets: 25 clips present, 10 missing
+[build-episode]     MISSING → clips/s4b_trainwide_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/t3_giraffe_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/s6_final_v2.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/s7_dooropen_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/r3_giraffe_out_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/r4_parrots_sky_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/r5_crowd_wide_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/c1_celebration_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/c2_ellie_trumpet_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/s8_goodbye_v2.mp4 (its segment will be skipped)
+[build-episode]   pointer gate: 23 scenes agree with beats.json
+[build-episode]   story gate scope: 23 shots in the cut; not in the cut, not judged: s5_door, s6_heave, new_ellie_eye, new_s7_dooropen, outro_hank_brag, outro_signoff
+[build-episode]   running beat_gate (does every shot depict its beat?)…
+[build-episode]     [PASS] s3_rollout: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a horse-drawn wooden wagon moving forward along a dirt road, with visible dust 
+[build-episode]     [FAIL] s3b_wagonpass: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'wagon' master. NO. The wagon in the right image differs significantly in construction, 
+[build-episode]     [FAIL] s4_arrival: BEAT FAIL (0/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image is not the same as the 
+[build-episode]     [ERR ] s4b_trainwide: missing or unreadable clips/s4b_trainwide_final.mp4
+[build-episode]     [FAIL] t1_monkey: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a weathered, peeling red door 
+[build-episode]     [FAIL] t2_lion: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The boxcar door in the right image has peeling red pain
+[build-episode]     [ERR ] t3_giraffe: missing or unreadable clips/t3_giraffe_final.mp4
+[build-episode]     [FAIL] ellie_eye: BEAT FAIL (1/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a dark, weathered, and grimy b
+[build-episode]     [ERR ] s6_heave_animated: missing or unreadable clips/s6_final_v2.mp4
+[build-episode]     [PASS] s6b_heave_close: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a large brown bear with its front paws pressed flat against a weathered red woode
+[build-episode]     [FAIL] s6_interior: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows the interior of a dark, wooden structu
+[build-episode]     [ERR ] s7_dooropen: missing or unreadable clips/s7_dooropen_final.mp4
+[build-episode]     [FAIL] r1_monkeys_out: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image is not visible in suffi
+[build-episode]     [FAIL] r2_lion_out: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image features a cartoon lion in a grassy field, w
+[build-episode]     [ERR ] r3_giraffe_out: missing or unreadable clips/r3_giraffe_out_final.mp4
+[build-episode]     [ERR ] r4_parrots_sky: missing or unreadable clips/r4_parrots_sky_final.mp4
+[build-episode]     [ERR ] r5_crowd_wide: missing or unreadable clips/r5_crowd_wide_final.mp4
+[build-episode]     [ERR ] c1_celebration: missing or unreadable clips/c1_celebration_final.mp4
+[build-episode]     [ERR ] c2_ellie_trumpet: missing or unreadable clips/c2_ellie_trumpet_final.mp4
+[build-episode]     [ERR ] s8_goodbye: missing or unreadable clips/s8_goodbye_v2.mp4
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] s3b_wagonpass: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'wagon' master. NO. The wagon in the right image differs significa
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] t1_monkey: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a weathered,
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] t2_lion: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The boxcar door in the right image has 
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] s6_interior: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows the interior of a 
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] r1_monkeys_out: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image 
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] r2_lion_out: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image features a cartoon lion 
+[build-episode]   ABORT: shots that do not depict their beat are in the EDL — reshoot them or drop them from the EDL before assembling
+[build-episode] STOPPED at preflight

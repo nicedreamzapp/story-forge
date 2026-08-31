@@ -1,0 +1,12 @@
+[09:13:42] judge via in-process VL
+[09:13:42] === s3b_wagonpass — beat: from a low three-quarter front angle: two brown horses in harness leading, a single open w
+[mem] storyforge-still s3b_wagonpass: asking for 41GB — measured, not the 38GB declared
+[09:13:43]   holding 41GB for storyforge-still s3b_wagonpass
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 12405.11it/s]
+[09:14:36]   seed 6101: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts two brown horses in harness galloping side by side, pulling a single 
+[09:14:39]   LOCKED stills/LOCKED_s3b_wagonpass.png
+[09:14:39]   --stage stills: locked, animation deferred to the animate pass
+[09:14:39]   released the storyforge-still s3b_wagonpass lease
+[09:14:39] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[09:14:39] DONE — 1/1 shots produced usable, judged assets
+[09:14:39]   s3b_wagonpass: STILL_LOCKED

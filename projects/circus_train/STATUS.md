@@ -1,6 +1,6 @@
 # Story Forge status — circus_train
 
-_generated 2026-07-29 01:08_
+_generated 2026-08-30 22:34_
 
 ## Last queue
 
@@ -8,62 +8,59 @@ _generated 2026-07-29 01:08_
 
 | shot | outcome | detail |
 |---|---|---|
-| s6_interior | CLIP_FAILED |  |
+| s7b_hank_flat | UNBUILT | 24 candidates, none passed |
 
 ## What the film still needs
 
-**9 of 9 required beats have footage.**
+**17 of 23 required beats have footage.**
 
 | required beat | clip | still |
 |---|---|---|
 | a calm ordinary day is established so the interruption costs | s1_final.mp4 | yes |
 | the heroes SEE that something is wrong — the call to adventu | s2_call_final.mp4 | yes |
-| they commit and roll out | s2_final.mp4 | yes |
+| the trouble is URGENT — thick black smoke pours from the bro | s2b_smoke_final.mp4 | yes |
+| they commit and roll out | s3_rollout_final.mp4 | yes |
+| the rollout has speed and dust — the heroes are truly racing | s3b_wagonpass_final.mp4 | yes |
 | they arrive at the broken-down train and the trouble is visi | s4_arrival_final.mp4 | yes |
+| the train is FULL of trapped animals — the scale of the trou | t1_monkey_final.mp4 | yes |
+| a trapped monkey's fingers curl through a plank gap | t1_monkey_final.mp4 | yes |
+| a trapped lion's muzzle presses at a crack, breath stirring  | t2_lion_final.mp4 | yes |
+| a trapped giraffe stands bowed under the boxcar ceiling | — | yes |
 | we SEE who is trapped — the audience gets someone to root fo | ellie_eye_final.mp4 | yes |
-| the effort: the door is forced with real physical weight | s6_final_v2.mp4 | yes |
+| the effort: the door is forced with real physical weight | — | yes |
+| the strain up close — paws flat on the planks, dust shiverin | s6b_heave_close_final.mp4 | yes |
 | the bang is felt from inside the dark car | s6_interior_final.mp4 | yes |
-| THE PAYOFF: the door opens and the trapped animal is free on | s7_dooropen_final.mp4 | yes |
-| the goodbye, with the rescued train alive behind them | s8_goodbye_final.mp4 | yes |
+| THE PAYOFF: the door opens and the trapped animal is free on | s6c_light_widens_final.mp4 | yes |
+| the monkeys bound out free across the grass | r1_monkeys_out_final.mp4 | yes |
+| the lion walks out calm and free in golden light | r2_lion_out_final.mp4 | yes |
+| the giraffe stands tall and free, neck stretched into the li | r3_giraffe_out_final.mp4 | yes |
+| the parrots wheel free across the evening sky | — | yes |
+| the meadow floods with freed animals — the rescue at full sc | — | yes |
+| the celebration — a meadow full of freed animals around the  | c1_celebration_final.mp4 | yes |
+| Ellie trumpets in triumph, trunk raised high | — | yes |
+| the goodbye, with the rescued train alive behind them | — | yes |
 
 ## Where the time went
 
 | step | runs | minutes | pass rate |
 |---|---|---|---|
-| animate | 42 | 430.0 | — |
-| judge_still | 261 | 379.5 | 48% |
-| still | 261 | 207.7 | — |
-| **total instrumented** | | **1017** | |
+| judge_still | 1394 | 2525.8 | 26% |
+| still | 1400 | 1007.4 | — |
+| animate | 145 | 896.1 | — |
+| a2v_ltx25_bf16 | 1 | 4.3 | — |
+| i2v_ltx25_distilled_full | 1 | 1.3 | — |
+| i2v_ltx25_distilled_lowram | 1 | 1.1 | — |
+| a2v_ltx2_mlxvideo | 1 | 0.7 | — |
+| **total instrumented** | | **4437** | |
 
 ## What it learned
 
-- 159 shot-level lessons across 11 shots in this project
-- 19 curated house rules that carry to the next film
+- 935 shot-level lessons across 43 shots in this project
+- 28 curated house rules that carry to the next film
 
 ## What changed in the pipeline (24h)
 
-- ffbf39b bin/resume-circus-train: one command to finish the film after a reboot
-- 99e7cc5 Real cause of the animate failures: the box runs out of FREE ram, and the guard over-reports it
-- 035e39d Rule 19 marked UNPROVEN — it broke on the next test
-- b3cade2 Rule 19: one i2v render per process — 6/6 measured
-- c991261 All six still-based scenes re-specced for real motion
-- 996cf89 Rule 18 OVERRULED: no stills in a finished film
-- ed55c9a film_qc PASSES: 107 checks, 107 passed — first clean verdict for this episode
-- a87a298 circus_train: every character shot rebuilt on-model — 106/107 checks pass
-- 2a08279 forge-shot: --stage animate uses the locked still instead of re-rolling it
-- 5b478f6 forge-shot: batch by model (--stage), repeatable --only, dry-run stops clobbering results
-- 1f1a1a1 forge-shot: bounce ComfyUI before EVERY animate, unconditionally
-- 3bc22b6 film_qc: identity must RULE first, and an unanswered question is UNCHECKED
-- c08641e film_qc: judge a line at its MOMENT, not wherever similar words first appear
-- 53c4f2a assemble the EDIT, not the directory — the cut had a dropped shot and doubled lines
-- 8ef3018 film_qc: a lease is protection, not permission
-- 96865b5 film_qc: an overridden run shouldn't wait 30min for a denial it will ignore
-- 46591c6 gitignore: launcher log is runtime noise
-- 321cef8 The dam + spine-coverage fix (authored earlier 2026-07-27), plus the day's metrics
-- 09979e5 circus_train: the spine is finally on screen — 9/9 beats, film UNCHECKED
-- 578c80f Rules 17-18 and six house lessons, from a 13-hour day that shipped no motion
-- 0eab639 film_qc: refuse rather than get killed, and never let a kill read as a pass
-- a12a11c Gates: judge the pointer, split the verdicts, stop lying about completion
+- nothing committed
 
 ## Next
 

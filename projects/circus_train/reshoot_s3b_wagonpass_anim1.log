@@ -1,0 +1,16 @@
+[09:17:25] judge via in-process VL
+[09:17:25] === s3b_wagonpass — beat: from a low three-quarter front angle: two brown horses in harness leading, a single open w
+[09:17:25]   --stage animate: using the locked still LOCKED_s3b_wagonpass.png
+[09:17:25]   LOCKED stills/LOCKED_s3b_wagonpass.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[09:17:43]   bounced ComfyUI so Wan loads into a clean process
+[09:17:43]   render backend is back
+[09:17:43]   holding 47GB for storyforge-animate s3b_wagonpass
+[09:17:43]   animate engine: ltx25
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 28128.72it/s]
+[09:19:50]   clip: beat PASS (5/5)
+[09:19:50]   released the storyforge-animate s3b_wagonpass lease
+[09:19:50] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[09:19:50] DONE — 1/1 shots produced usable, judged assets
+[09:19:50]   s3b_wagonpass: CLIP_KEPT

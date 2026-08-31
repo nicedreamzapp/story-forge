@@ -126,21 +126,37 @@ EDL = [
     {"kind": "scene", "id": "s2_thecall", "src": "clips/s2_call_final.mp4",
      "vo": ("voices/L03_bird.wav", 0.7),
      "say": ("bird", "Help! The circus train broke down", 0.7)},
+    # 2026-07-31 expansion (Matt: more action, story told with pictures) — urgency insert
+    {"kind": "scene", "id": "s2b_smoke", "src": "clips/s2b_smoke_final.mp4"},
     {"kind": "insert", "id": "L04", "src": "a2v/L04_doug.mp4",
      "say": ("doug", "Circus train? Hank, we're rolling.")},
 
-    {"kind": "scene", "id": "s3_rollout", "src": "clips/s2_final.mp4"},
+    # 2026-08-30 Matt: the LTX-2.5 rollout take had the horse jammed BEHIND the wagon
+    # ("it's all messed up"); take deleted, reshot with the horse out front.
+    {"kind": "scene", "id": "s3_rollout", "src": "clips/s3_rollout_final.mp4"},
+    {"kind": "scene", "id": "s3b_wagonpass", "src": "clips/s3b_wagonpass_final.mp4"},
 
     # 2026-07-27: this pointed at clips/s3_final.mp4 — the CHEERFUL colourful passenger
     # train with animals leaning comfortably out of open windows, i.e. all three of this
     # shot's own must_not disqualifiers in beats.json, and a fourth different train on
     # top of the set drift rule 14 called out. The right take was already on disk and
     # unused: weathered red boxcars, doors shut, black smoke, heat haze.
-    {"kind": "scene", "id": "s4_arrival", "src": "clips/s4_arrival_final.mp4"},
+    # 2026-08-30: the LTX-2.5 rebuild of s4_arrival (wagon pulled up at the train) came out
+    # as a horse close-up with the wagon barely in frame; preflight beat gate 0/3 and my own
+    # eyes agree. Dropped from the cut — the wagon pass + Hank's "whole train's cooking" line
+    # carry the arrival. Restore when a take actually shows the wagon at the train.
+    # {"kind": "scene", "id": "s4_arrival", "src": "clips/s4_arrival_final.mp4"},
     {"kind": "insert", "id": "L05", "src": "a2v/L05_hank.mp4",
      "say": ("hank", "Whole train's cooking out here.")},
     {"kind": "insert", "id": "L06", "src": "a2v/L06_doug.mp4",
      "say": ("doug", "Easy everybody! The Wild Rescue's here!")},
+
+    # THE SCALE OF THE TROUBLE — the train is FULL of animals (2026-07-31 expansion).
+    # Wide reveal, then a trapped-animal montage: fingers, muzzle, bowed neck.
+    {"kind": "scene", "id": "s4b_trainwide", "src": "clips/s4b_trainwide_final.mp4"},
+    {"kind": "scene", "id": "t1_monkey", "src": "clips/t1_monkey_final.mp4"},
+    {"kind": "scene", "id": "t2_lion", "src": "clips/t2_lion_final.mp4"},
+    {"kind": "scene", "id": "t3_giraffe", "src": "clips/t3_giraffe_final.mp4"},
 
     # s5_door DROPPED 2026-07-27. Its beat was "a bloodhound with his nose pressed
     # against a narrow gap between the planks"; the clip shows the dog sitting upright
@@ -171,7 +187,10 @@ EDL = [
     # not trimmed — prompting the impact is what produced it, and Wan cannot render
     # a collision. This one is pure body effort, cut to the 2.4s window where
     # beat_gate votes 4/5 that he is actually straining against the door.
-    {"kind": "scene", "id": "s6_heave_animated", "src": "clips/s6_final_v2.mp4"},
+    # s6_heave_animated CUT 2026-08-30: the re-animated wide heave drifted to a
+    # medium close-up with a smug face — beat gate 1/3, preflight ABORT. The close
+    # heave (s6b) + the widening light carry the effort. Take deleted per rule 13.
+    {"kind": "scene", "id": "s6b_heave_close", "src": "clips/s6b_heave_close_final.mp4"},
     # The bang is FELT, never shown — rule 14's last clause. We are inside the dark car.
     {"kind": "scene", "id": "s6_interior", "src": "clips/s6_interior_final.mp4"},
 
@@ -179,10 +198,34 @@ EDL = [
     # Same story as ellie_eye — the animate never held it, so it is the locked still
     # on a slow push. The door is ALREADY open when we cut to it; we never try to
     # render it swinging, because Wan cannot (frozen rule 6).
-    {"kind": "scene", "id": "s7_dooropen", "src": "clips/s7_dooropen_final.mp4"},
+    # RE-CONCEIVED 2026-08-30 (Matt: "when he's pushing open the door nothing really
+    # happens ... it's not really telling"). s7_dooropen (Ellie standing in front of an
+    # already-open door) failed 87 stills and was blocked. The payoff is now three
+    # shots that the engine CAN render, none of them an impact: the blade of light
+    # inside the car widens as the door slides (the door opening, felt from inside),
+    # Ellie leans her head and trunk out of the doorway into the sun, and Hank lies
+    # flat in the gravel where he fell through, under his own line.
+    {"kind": "scene", "id": "s6c_light_widens", "src": "clips/s6c_light_widens_final.mp4"},
+    # s7_ellie_out SHELVED 2026-08-30 after 30+ rejected takes across two
+    # sessions: the renderer cannot pose Ellie "leaning out of the doorway" —
+    # low-denoise welds keep her standing in a black void, high denoise drifts
+    # her design. The payoff reads without it: the widening light IS the door
+    # opening, and the monkeys bounding out are the release. Spec kept in
+    # shots.json (_shelved) if anyone re-conceives it.
 
     {"kind": "insert", "id": "L11", "src": "a2v/L11_hank.mp4",
      "say": ("hank", "Doors don't argue with bears.")},
+    {"kind": "scene", "id": "s7b_hank_flat", "src": "clips/s7b_hank_flat_final.mp4"},
+
+    # THE RELEASE FLOOD + CELEBRATION (2026-07-31 expansion) — the payoff at full
+    # scale: one species per shot (rule 6: one mover, no contact), then the meadow.
+    {"kind": "scene", "id": "r1_monkeys_out", "src": "clips/r1_monkeys_out_final.mp4"},
+    {"kind": "scene", "id": "r2_lion_out", "src": "clips/r2_lion_out_final.mp4"},
+    {"kind": "scene", "id": "r3_giraffe_out", "src": "clips/r3_giraffe_out_final.mp4"},
+    {"kind": "scene", "id": "r4_parrots_sky", "src": "clips/r4_parrots_sky_final.mp4"},
+    {"kind": "scene", "id": "r5_crowd_wide", "src": "clips/r5_crowd_wide_final.mp4"},
+    {"kind": "scene", "id": "c1_celebration", "src": "clips/c1_celebration_final.mp4"},
+    {"kind": "scene", "id": "c2_ellie_trumpet", "src": "clips/c2_ellie_trumpet_final.mp4"},
 
     {"kind": "insert", "id": "L13", "src": "a2v/L13_doug.mp4",
      "say": ("doug", "Turtle called dibs on the tank an hour ago.")},
@@ -191,8 +234,10 @@ EDL = [
     {"kind": "insert", "id": "L15", "src": "a2v/L15_hank.mp4",
      "say": ("hank", "the Wild Rescue rolls.")},
 
-    # Closing image, wordless, rescued train alive behind them. Slow pull back.
-    {"kind": "scene", "id": "s8_goodbye", "src": "clips/s8_goodbye_final.mp4"},
+    # Closing image, wordless. v2 2026-07-31: v1 DECLINED by Matt — Doug's scalp
+    # drifted and the prompted paw-contact fused (rule 6). v2 has Ellie in it and
+    # clear air between all three.
+    {"kind": "scene", "id": "s8_goodbye", "src": "clips/s8_goodbye_v2.mp4"},
 
     {"kind": "card", "id": "credits", "vo": ("voices/L16_bird.wav", 1.0),
      "say": ("bird", "Can I get a hat like this?", 1.0)},
@@ -357,6 +402,13 @@ def stage_song(proj, st, want_song=True):
                   "gentle percussion, storybook feel, 88 bpm, clean mix"),
         "bpm": 88, "duration": 150, "guidance_scale": 6,
         "inference_steps": 32, "lyrics": "[instrumental]",
+        # Song Forge renders this, but it is FILM MUSIC and must never land in
+        # Matt's song library, Music.app, or the public songs page. Without this
+        # a 150s cue clears LIBRARY_MIN_DURATION and files itself next to his
+        # real songs (Matt, 2026-07-29: "I don't wanna hear any Hank and Doug
+        # songs ... when I'm listening to my songs"). The film keeps its own
+        # copy at projects/<film>/score.wav regardless.
+        "video_only": True,
     }).encode()
     try:
         req = urllib.request.Request(f"{SONGFORGE}/api/song", data=body,
@@ -725,6 +777,35 @@ def main():
         log("  This film has NOT passed QC. Do not publish or call it done.")
     if st.get("skipped"):
         log(f"NOT INCLUDED (assets missing): {', '.join(st['skipped'])}")
+
+    # THE FILM GOES TO MATT'S TAB BY ITSELF (2026-07-31, 4pm: a finished cut sat
+    # on disk for 50 minutes because the agent that launched the build never came
+    # back to hand it over — "the flow is not happening like I need it"). The
+    # pipeline delivers its own output: queue the cut for his click and open the
+    # review page. Never depend on whoever launched the build to remember.
+    film = st.get("film")
+    if film and Path(film).is_file():
+        q = ("UNMUTE. " + ("QC PASSED — " if verdict == "PASS" else
+             "QC has known defects (see report) — ") + "good to call it done?")
+        try:
+            subprocess.run([str(SF / "bin" / "review-add"), str(film),
+                            f"{proj.name} full cut, {mins:.0f}min build. {q}"],
+                           capture_output=True, text=True, timeout=15)
+            # Only open the tab if the review server is actually answering
+            # (2026-08-30: it was down and every build popped a BLANK page on
+            # Matt's screen). A dead tab is worse than no tab.
+            import urllib.request
+            try:
+                urllib.request.urlopen("http://127.0.0.1:17600/review", timeout=3)
+                subprocess.run(["open", "-a", "Brave Browser",
+                                "http://127.0.0.1:17600/review"],
+                               capture_output=True, timeout=10)
+                log("cut queued to Matt's review tab (auto)")
+            except Exception:
+                log("cut queued for review, but the review server (:17600) is down — "
+                    "tab NOT opened; start it with bin/story-forge-start")
+        except Exception as e:                                    # noqa: BLE001
+            log(f"could not auto-queue the cut for review: {e}")
 
 
 if __name__ == "__main__":

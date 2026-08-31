@@ -1,0 +1,68 @@
+{
+ "_note": "New-cast character masters for the 2026-07-31 expansion (Matt: 'a ton of animals'). Stills only \u2014 each lock in canon/ becomes the ONE master (rule 10) every later view derives from.",
+ "defaults": {
+  "res": "832x480",
+  "seeds": [
+   21,
+   63,
+   88,
+   137,
+   190,
+   254
+  ],
+  "votes": 3
+ },
+ "shots": [
+  {
+   "id": "monkey_master",
+   "prompt": "Pixar-style 3D animated film still: full-body portrait of one small cheerful brown capuchin monkey with a cream-coloured face and chest, big warm brown eyes, a long curled tail, wearing a tiny red circus fez with a gold tassel, standing on green grass facing the camera, soft warm golden light, plain softly blurred meadow background, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "one small brown capuchin monkey with a cream face wearing a tiny red fez, full body, standing on grass",
+   "must_not": [
+    "more than one monkey",
+    "a realistic photographed monkey",
+    "extra or missing limbs",
+    "a human",
+    "text or lettering"
+   ],
+   "lock": "canon/monkey_canon.png"
+  },
+  {
+   "id": "lion_master",
+   "prompt": "Pixar-style 3D animated film still: full-body portrait of one big friendly cartoon lion with a warm golden coat, a thick orange-brown mane, a cream muzzle, big kind amber eyes and rounded gentle features, standing on green grass facing the camera, soft warm golden light, plain softly blurred meadow background, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "one big friendly golden lion with a thick orange-brown mane and kind eyes, full body, standing on grass",
+   "must_not": [
+    "more than one lion",
+    "a realistic photographed lion",
+    "bared teeth or a frightening expression",
+    "extra or missing limbs",
+    "text or lettering"
+   ],
+   "lock": "canon/lion_canon.png"
+  },
+  {
+   "id": "giraffe_master",
+   "prompt": "Pixar-style 3D animated film still: full-body portrait of one young cartoon giraffe with a warm yellow coat, soft orange-brown patches, a short fluffy mane, small ossicones and big gentle long-lashed eyes, standing on green grass facing the camera, whole body and full neck in frame, soft warm golden light, plain softly blurred meadow background, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "one young giraffe with warm yellow coat and orange-brown patches, full body and full neck visible, standing on grass",
+   "must_not": [
+    "more than one giraffe",
+    "a realistic photographed giraffe",
+    "a cropped neck or missing head",
+    "extra or missing limbs",
+    "text or lettering"
+   ],
+   "lock": "canon/giraffe_canon.png"
+  },
+  {
+   "id": "parrot_master",
+   "prompt": "Pixar-style 3D animated film still: full-body portrait of one bright scarlet macaw parrot with a red body, blue and gold wing feathers, a long red tail and a cream face patch, perched on a wooden fence rail, wings folded, soft warm golden light, plain softly blurred meadow background, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "one bright scarlet macaw parrot with red body and blue-and-gold wings, full body, perched on a rail",
+   "must_not": [
+    "more than one parrot",
+    "a realistic photographed parrot",
+    "spread wings mid-flight",
+    "text or lettering"
+   ],
+   "lock": "canon/parrot_canon.png"
+  }
+ ]
+}

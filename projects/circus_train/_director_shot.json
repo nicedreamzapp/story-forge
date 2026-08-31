@@ -1,45 +1,39 @@
 {
  "defaults": {
   "res": "832x480",
-  "duration": 2,
+  "duration": 5,
   "seeds": [
-   6011,
-   6047,
-   6082,
-   6119
+   11,
+   47,
+   82,
+   119
   ],
   "votes": 3
  },
  "shots": [
   {
-   "id": "s7_dooropen",
-   "init": "stills/wip/s7_composite.png",
-   "denoise": 0.32,
-   "prompt": "Pixar-style 3D animated film still: ONE young gray circus elephant wearing a small red and gold rounded circus cap with a red feather plume, standing in the wide open sliding doorway of a BRIGHT RED wooden boxcar with a plain tan wooden sliding door, plain unmarked wood with no lettering or numbers anywhere, big amber eyes with long lashes, no tusks, gravel track bed, green treeline, warm afternoon light",
-   "beat": "a wide open boxcar door with a young gray elephant wearing a small red circus cap standing in the opening in daylight",
+   "id": "r4_parrots_sky",
+   "prompt": "Pixar-style 3D animated film still: a huge flock of dozens of bright scarlet macaw parrots with red bodies and blue-and-gold wings wheeling and soaring together across a warm golden evening sky, the flock stretching across the whole frame, the dark smoke plume of the circus train rising at the edge of frame far below, no lettering anywhere, cinematic children's movie lighting",
+   "beat": "a huge flock of dozens of bright scarlet parrots wheeling across the warm golden evening sky above the train",
    "must_not": [
-    "a closed or jammed door",
-    "tusks",
-    "a spiky metal crown"
+    "bats or dark crows",
+    "a single lone bird or just a few birds",
+    "any aircraft",
+    "birds sitting still"
    ],
-   "identity": {
-    "master": "canon/ellie_canon.png",
-    "subject": "Ellie the young circus elephant"
-   },
-   "lock": "stills/LOCKED_s7_dooropen.png",
-   "animate": "almost still: the framing and every subject stay exactly where they are, with only the faintest ambient motion \u2014 drifting dust, a slow breath, an ear or tail shifting a little. No camera move, no one walks, nothing enters or leaves the frame.",
-   "clip": "clips/s7_dooropen_final.mp4",
-   "min_window": 1.2,
+   "lock": "stills/LOCKED_r4_parrots_sky.png",
+   "clip": "clips/r4_parrots_sky_final.mp4",
+   "animate": "the camera is locked off and does not move; the parrots drift slowly across the sky with gentle wingbeats, the smoke plume rises softly",
+   "clip_beat": "bright scarlet parrots spread across the golden evening sky for the whole shot, wings beating as they drift",
+   "duration": 5,
+   "min_window": 1.5,
    "set": "circus boxcar",
-   "_motion_subject": "the elephant",
-   "duration": 2,
-   "seeds": [
-    6011,
-    6047,
-    6082,
-    6119
-   ],
-   "_escalation": "2s, ambient motion only"
+   "identity": {
+    "master": "canon/parrot_canon.png",
+    "subject": "the scarlet macaw parrots (design match to the master)"
+   },
+   "init": "canon/parrot_canon.png",
+   "denoise": 0.8
   }
  ]
 }

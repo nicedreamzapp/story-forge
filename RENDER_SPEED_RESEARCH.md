@@ -165,3 +165,29 @@ Sources consulted: [mlx-teacache (TeaCache for Flux in pure MLX)](https://github
 [fp16 accumulation is CUDA-only](https://github.com/Comfy-Org/ComfyUI/issues/11621) ·
 [ComfyUI Apple Silicon MPS speed notes](https://www.workflowlab.dev/deploy/comfyui-mac-apple-silicon-mps-speed) ·
 [LTX-2 vs Wan 2.2 on M1 Max (GGUF viability on Mac)](https://lilting.ch/en/articles/ltx2-wan22-mac-local-video-gen)
+
+## 2026-08-29 — LTX-2.5 (dgrauet/ltx-2-mlx 0.15.1, bf16 pack) measured against what we ship
+
+Same M5, Song Forge resident (~54GB). All numbers are wall clock of the render process
+alone; forge_guard lease waits are excluded (three runs lost 900s each to a stale lease —
+see LESSONS "stale-lease").
+
+| shot | engine | wall | memory | judge |
+|---|---|---|---|---|
+| L01_hank a2v, 97f 768x512, canon face + voice wav | LTX-2 distilled via mlx-video (July path) | **41.7s** | fine | film_qc PASS 4/4 |
+| same | LTX-2.5 a2v (dev + CFG two-stage, bf16) | **258s** | 42GB resident, ended at 39GB swap (panic signature) | film_qc PASS 6/6 |
+| s1_coldopen i2v, 5s 832x448, locked still | Wan 2.2 14B GGUF (July/Aug director runs) | 13–16 min | wired ~32GB | — |
+| same | LTX-2.5 --distilled --image, **--low-ram** | **~69s** | Metal peak small, no swap growth | frames hold composition + identity (bear, dog, rod, water, wagon) |
+| same | LTX-2.5 --distilled --image, full | **79s** | 49GB resident, 32GB swap spike at teardown | identical frames (seed-deterministic) |
+
+**Verdicts (applied):**
+1. Dialogue close-ups STAY on the July a2v path (mlx-video LTX-2 distilled): 6x faster,
+   same QC result, no memory risk. ltx-2-mlx only exposes the dev+CFG a2v pipeline.
+2. Scene animation MOVES to LTX-2.5 distilled i2v with --low-ram: ~10x faster than Wan
+   per shot, and it holds a two-character composition Wan struggled with. Wired as
+   `bin/make-ltx25` (make-video CLI contract) + `engine: ltx25` / `SF_ANIMATE_ENGINE=ltx25`
+   in forge-shot. Not yet judged by beat_gate at scale — the overnight director run on
+   circus_train is the first real test; read STATUS.md for the pass rate.
+3. Gotchas: ltx-2-mlx a2v does not pad audio (short wav vs 97 frames → RoPE broadcast
+   error) — make-ltx25 pads with silence. 480 rows render as 448 (LTX rounds to 64).
+   Ask forge_guard for ≤20GB on --low-ram; a 45GB ask stalls 15 min behind any other lease.

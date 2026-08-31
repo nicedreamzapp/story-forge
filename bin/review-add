@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+"""review-add — queue a clip or still for Matt's yes/no click at :17600/review.
+
+Usage:
+    bin/review-add path/to/clip.mp4 "does the light hold steady the whole time?"
+
+Any pipeline step (or an agent session) calls this after the machine gates pass;
+Matt watches at http://127.0.0.1:17600/review and clicks. His verdict lands in
+review/verdicts.json keyed by the id this prints.
+"""
+import json
+import sys
+import time
+import uuid
+from pathlib import Path
+
+SF = Path(__file__).resolve().parent.parent
+QUEUE = SF / "review" / "queue.json"
+
+
+def main() -> int:
+    if len(sys.argv) < 2:
+        print(__doc__)
+        return 2
+    path = Path(sys.argv[1]).resolve()
+    if not path.is_file():
+        print(f"no such file: {path}", file=sys.stderr)
+        return 1
+    question = sys.argv[2] if len(sys.argv) > 2 else ""
+    QUEUE.parent.mkdir(exist_ok=True)
+    try:
+        queue = json.loads(QUEUE.read_text())
+    except Exception:
+        queue = []
+    if any(i["path"] == str(path) for i in queue):
+        print(f"already queued: {path.name}")
+        return 0
+    item = {"id": uuid.uuid4().hex[:10], "path": str(path), "question": question,
+            "added": time.strftime("%Y-%m-%d %H:%M:%S")}
+    queue.append(item)
+    QUEUE.write_text(json.dumps(queue, indent=1) + "\n")
+    print(f"queued {path.name} for Matt's call → id {item['id']} "
+          f"({len(queue)} in queue)")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

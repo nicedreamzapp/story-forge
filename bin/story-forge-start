@@ -34,7 +34,7 @@ fi
 # 2. authoring UI
 if ! curl -s -m 3 http://127.0.0.1:17600/ >/dev/null 2>&1; then
   say "starting Story Forge server on :17600"
-  ( cd "$SF" && nohup ./venv/bin/python server.py >> /tmp/storyforge_server.log 2>&1 & ) 2>/dev/null \
+  ( cd "$SF" && nohup "$HOME/Desktop/PROJECTS/AI/ComfyUI/venv/bin/python" server.py >> /tmp/storyforge_server.log 2>&1 & ) 2>/dev/null \
     || ( cd "$SF" && nohup python3 server.py >> /tmp/storyforge_server.log 2>&1 & )
 else
   say "Story Forge server already up"

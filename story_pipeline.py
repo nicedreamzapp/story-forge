@@ -49,7 +49,7 @@ STATUS = Path("/tmp/mks-status.json")
 FLUX = HOME / "Scripts" / "flux_t2i.py"
 MAKE_VIDEO = HOME / "Desktop" / "PROJECTS" / "AI" / "videopipe" / "bin" / "make-video"
 WAN_OUT = HOME / "AI" / "videopipe" / "outputs"
-PIPER = HOME / "Library" / "Python" / "3.9" / "bin" / "piper"
+PIPER = HOME / ".local" / "bin" / "kokoro-piper-shim"  # Kokoro-82M af_heart ("Heart") — replaced Piper Ashley 2026-08-07
 PIPER_MODEL = HOME / "Desktop" / "PROJECTS" / "Song Forge" / "piper_voices" / "en_US-libritts_r-medium.onnx"
 
 
