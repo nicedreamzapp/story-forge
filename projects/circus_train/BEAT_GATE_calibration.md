@@ -1,6 +1,6 @@
 # beat_gate report — beats_calibration.json
 
-**1 of 6 shots depict their beat.** 2 FAIL, 3 could not be judged.
+**1 of 6 shots depict their beat.** 3 FAIL, 2 could not be judged.
 
 ## GT_pass_s1_coldopen — FAIL
 - frames depicting the beat: 0/3
@@ -27,8 +27,27 @@
 ## GT_pass_s3_rollout — ERROR
 - ruling: missing or unreadable clips/s2_final.mp4
 
-## GT_pass_s6_heave_v2 — ERROR
-- ruling: missing or unreadable clips/s6_final_v2.mp4
+## GT_pass_s6_heave_v2 — PASS
+- frames depicting the beat: 3/3
+  - [PASS] s6_final_v2_0.76.png: A large, brown bear stands upright on its hind legs, pressing its front paws against the vertical wooden slats of a reddish-brown, weathered train car. Its body is tense, with shoulders hunched and arms extended forward, pushing against the car’s surface; its mouth is slightly open, showing teeth, and its eyes are squinted, suggesting exertion. The bear’s paws are flat against the wood, with no visible tools or objects in them.  
+
+The train car is made of horizontal wooden planks, showing signs of wear, peeling paint, and metal hinges and latches. A small, circular metal fixture is visible on the right side of the car. The bear is positioned directly in front of the car, with its body centered between two vertical support beams.  
+
+A faint cloud of dust or fine particles is visible around the bear’s paws and lower torso, suggesting recent or ongoing movement. The background is blurred, showing greenery and a hint
+    ruling: PASS. The bear is shown leaning its shoulder and both paws into the boxcar door, body angled low with hind feet braced, and no objects in its paws, clearly depicting the intended action with visible exertion and correct physical positioning.
+  - [PASS] s6_final_v2_2.52.png: A large, light-brown bear stands upright, leaning forward with its arms extended and paws pressed against the vertical wooden beams of a red, weathered structure. Its mouth is open, teeth bared, and eyes squinted, suggesting exertion or strain. The bear’s body is angled slightly forward, with its weight seemingly pushing against the structure.
+
+The bear’s paws are in direct contact with the wooden beams; no other objects are visible in or near its paws.
+
+Dust or fine particles are visible in the air around the bear’s lower body and feet, suggesting recent movement or forceful contact with the ground. The background is blurred, showing greenery, and the red structure appears to be part of a larger wooden or metal framework, possibly a cart or wagon, with visible metal hardware and peeling paint.
+    ruling: PASS. The bear is clearly leaning forward with both paws pressed against the wooden beams of the structure, body angled low, hind feet braced, and showing visible exertion—fully matching the described beat without any forbidden elements.
+  - [PASS] s6_final_v2_4.29.png: A large, light-brown bear stands upright, pressing its paws against the vertical wooden slats of a reddish-brown, weathered wagon or cart. Its body is tense, with shoulders back and arms extended, suggesting it is pushing or bracing against the structure with significant force. The bear’s mouth is open, showing teeth, and its eyes are narrowed, indicating strain or exertion.
+
+The bear’s paws are in direct contact with the wooden slats of the wagon; no other objects are visible in or near its paws.
+
+A light haze or dust is visible in the air around the bear and the wagon, particularly near the lower portion of the structure, suggesting recent movement or disturbance. The background is blurred, showing indistinct greenery, and the wagon appears to be outdoors on a flat, possibly dirt-covered surface.
+    ruling: PASS. The bear is clearly leaning its shoulder and both paws into the boxcar door, body angled low with hind feet braced, showing visible strain and exertion, and no forbidden elements are present.
+- ruling: 3 of 3 sampled frames depict the beat. PASS. The bear is shown leaning its shoulder and both paws into the boxcar door, body angled low with hind feet braced, and no objects in its paws, clearly depicting the intended action with visible exertion and correct physical positioning.
 
 ## GT_pass_s5_door — ERROR
 - ruling: missing or unreadable stills/LOCKED_s5.png
@@ -55,24 +74,12 @@
     ruling: FAIL. The bear is standing in a forest with no train present, and there is no visual indication of a rescue or circus train, which are essential elements of the required beat.
 - ruling: 0 of 3 sampled frames depict the beat. FAIL. The image depicts a bear standing in a forest with no train present, which directly contradicts the required beat of a bear standing beside a circus train at the end of a rescue.
 
-## GT_pass_s6_heave_still — PASS
-- frames depicting the beat: 3/3
-  - [PASS] LOCKED_s6.png: A large, cartoon-style brown bear stands upright on its hind legs beside a rusted red freight train car, leaning forward with its front paws placed on the lower edge of the car’s door. Its body is angled toward the train, with its weight shifted forward, and its claws are visibly gripping the metal surface. The bear’s mouth is open, showing teeth, and its eyes are narrowed, suggesting exertion or focus.
-
-The bear’s front paws are in direct contact with the train car’s door frame, with black-tipped claws extended and pressing against the metal. No other objects are visible in or near its paws.
-
-The scene is set on a gravel-covered railway track, with the train car resting on steel rails. A small amount of dust or fine particles is visible near the bear’s feet, suggesting recent movement or pressure on the ground. The background includes another freight car and a pale sky, with no visible smoke or debris in the air.
-    ruling: PASS. The bear is clearly leaning its shoulder and both front paws into the boxcar door, body angled low with hind feet braced in the gravel, showing exertion through its posture and facial expression, and no forbidden elements are present.
-  - [PASS] LOCKED_s6.png: A large, cartoon-style brown bear stands upright on its hind legs beside a rusted red freight train car, leaning forward with its front paws placed on the lower edge of the car’s door. Its body is angled toward the train, with its weight shifted forward, and its claws are visibly gripping the metal surface. The bear’s mouth is open, showing teeth, and its eyes are narrowed, suggesting exertion or focus.
-
-The bear’s front paws are in direct contact with the train car’s door frame, with black-tipped claws extended and pressing against the metal. No other objects are visible in or near its paws.
-
-The scene is set on a gravel-covered railway track, with the train car resting on steel rails. A small amount of dust or fine particles is visible near the bear’s feet, suggesting recent movement or pressure on the ground. The background includes another freight car and a pale sky, with no visible smoke or debris in the air.
-    ruling: PASS. The bear is clearly leaning its shoulder and both front paws into the boxcar door, body angled low with hind feet braced in the gravel, showing exertion through its posture and facial expression, and no forbidden elements are present.
-  - [PASS] LOCKED_s6.png: A large, cartoon-style brown bear stands upright on its hind legs beside a rusted red freight train car, leaning forward with its front paws placed on the lower edge of the car’s door. Its body is angled toward the train, with its weight shifted forward, and its claws are visibly gripping the metal surface. The bear’s mouth is open, showing teeth, and its eyes are narrowed, suggesting exertion or focus.
-
-The bear’s front paws are in direct contact with the train car’s door frame, with black-tipped claws extended and pressing against the metal. No other objects are visible in or near its paws.
-
-The scene is set on a gravel-covered railway track, with the train car resting on steel rails. A small amount of dust or fine particles is visible near the bear’s feet, suggesting recent movement or pressure on the ground. The background includes another freight car and a pale sky, with no visible smoke or debris in the air.
-    ruling: PASS. The bear is clearly leaning its shoulder and both front paws into the boxcar door, body angled low with hind feet braced in the gravel, showing exertion through its posture and facial expression, and no forbidden elements are present.
-- ruling: 3 of 3 sampled frames depict the beat. PASS. The bear is clearly leaning its shoulder and both front paws into the boxcar door, body angled low with hind feet braced in the gravel, showing exertion through its posture and facial expression, and no forbidden elements are present.
+## GT_pass_s6_heave_still — FAIL
+- frames depicting the beat: 0/3
+  - [FAIL] LOCKED_s6.png: A small, fluffy brown bear stands upright on its hind legs on a gravel railway bed, pressing its front paws flat against the side of a large, weathered red train car. The bear’s paws are splayed, with claws slightly visible, and its body is leaning forward, suggesting effort as it pushes against the train car’s wooden paneling. The train car, showing peeling paint and metal latches, is stationary on the tracks, with visible wheels and undercarriage components. Sparse green grass grows between the rails, and fine dust or particles are visible in the air near the bear’s feet, likely stirred up by its movement.
+    ruling: FAIL. The bear is depicted as small and fluffy, standing upright on its hind legs, pressing its paws against the side of a stationary train car, but the beat requires a big bear leaning its shoulder and both paws into a boxcar door with its body angled low and hind feet braced in the gravel—this image shows no shoulder lean, no low body angle, and the bear is not actively pushing with effort as required; instead, it appears to be simply leaning or pressing flatly, which does not convey the intended physical exertion or posture.
+  - [FAIL] LOCKED_s6.png: A small, fluffy brown bear stands upright on its hind legs on a gravel railway bed, pressing its front paws flat against the side of a large, weathered red train car. The bear’s paws are splayed, with claws slightly visible, and its body is leaning forward, suggesting effort as it pushes against the train car’s wooden paneling. The train car, showing peeling paint and metal latches, is stationary on the tracks, with visible wheels and undercarriage components. Sparse green grass grows between the rails, and fine dust or particles are visible in the air near the bear’s feet, likely stirred up by its movement.
+    ruling: FAIL. The bear is depicted as small and fluffy, standing upright on its hind legs, pressing its paws against the side of a stationary train car, but the beat requires a big bear leaning its shoulder and both paws into a boxcar door with its body angled low and hind feet braced in the gravel—this image shows no shoulder lean, no low body angle, and the bear is not actively pushing with effort as required; instead, it appears to be simply leaning or pressing flatly, which does not convey the intended physical exertion or posture.
+  - [FAIL] LOCKED_s6.png: A small, fluffy brown bear stands upright on its hind legs on a gravel railway bed, pressing its front paws flat against the side of a large, weathered red train car. The bear’s paws are splayed, with claws slightly visible, and its body is leaning forward, suggesting effort as it pushes against the train car’s wooden paneling. The train car, showing peeling paint and metal latches, is stationary on the tracks, with visible wheels and undercarriage components. Sparse green grass grows between the rails, and fine dust or particles are visible in the air near the bear’s feet, likely stirred up by its movement.
+    ruling: FAIL. The bear is depicted as small and fluffy, standing upright on its hind legs, pressing its paws against the side of a stationary train car, but the beat requires a big bear leaning its shoulder and both paws into a boxcar door with its body angled low and hind feet braced in the gravel—this image shows no shoulder lean, no low body angle, and the bear is not actively pushing with effort as required; instead, it appears to be simply leaning or pressing flatly, which does not convey the intended physical exertion or posture.
+- ruling: 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted as small and fluffy, standing upright on its hind legs, pressing its paws against the side of a stationary train car, but the beat requires a big bear leaning its shoulder and both paws into a boxcar door with its body angled low and hind feet braced in the gravel—this image shows no shoulder lean, no low body angle, and the bear is not actively pushing with effort as required; instead, it appears to be simply leaning or pressing flatly, which does not convey the intended physical exertion or posture.

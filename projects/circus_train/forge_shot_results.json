@@ -1,150 +1,76 @@
 [
  {
-  "id": "s7b_hank_flat",
+  "id": "c2_ellie_trumpet",
   "state": "UNBUILT",
   "rolls": [
    {
-    "seed": 7811,
+    "seed": 11,
     "cycle": 0,
     "beat": "FAIL",
     "votes": "0/3"
    },
    {
-    "seed": 7847,
+    "seed": 47,
     "cycle": 0,
     "beat": "FAIL",
     "votes": "0/3"
    },
    {
-    "seed": 7882,
+    "seed": 82,
     "cycle": 0,
     "beat": "FAIL",
     "votes": "0/3"
    },
    {
-    "seed": 7919,
+    "seed": 119,
     "cycle": 0,
     "beat": "FAIL",
     "votes": "0/3"
    },
    {
-    "seed": 8011,
-    "cycle": 0,
-    "beat": "FAIL",
-    "votes": "0/3"
-   },
-   {
-    "seed": 8047,
-    "cycle": 0,
-    "beat": "FAIL",
-    "votes": "0/3"
-   },
-   {
-    "seed": 8082,
-    "cycle": 0,
-    "beat": "FAIL",
-    "votes": "0/3"
-   },
-   {
-    "seed": 8119,
-    "cycle": 0,
-    "beat": "FAIL",
-    "votes": "0/3"
-   },
-   {
-    "seed": 8811,
+    "seed": 1011,
     "cycle": 1,
     "beat": "FAIL",
     "votes": "0/3"
    },
    {
-    "seed": 8847,
+    "seed": 1047,
     "cycle": 1,
     "beat": "FAIL",
     "votes": "0/3"
    },
    {
-    "seed": 8882,
+    "seed": 1082,
     "cycle": 1,
     "beat": "FAIL",
     "votes": "0/3"
    },
    {
-    "seed": 8919,
+    "seed": 1119,
     "cycle": 1,
     "beat": "FAIL",
     "votes": "0/3"
    },
    {
-    "seed": 9011,
-    "cycle": 1,
-    "beat": "FAIL",
-    "votes": "0/3"
-   },
-   {
-    "seed": 9047,
-    "cycle": 1,
-    "beat": "FAIL",
-    "votes": "0/3"
-   },
-   {
-    "seed": 9082,
-    "cycle": 1,
-    "beat": "FAIL",
-    "votes": "0/3"
-   },
-   {
-    "seed": 9119,
-    "cycle": 1,
-    "beat": "FAIL",
-    "votes": "0/3"
-   },
-   {
-    "seed": 9811,
+    "seed": 2011,
     "cycle": 2,
     "beat": "FAIL",
     "votes": "0/3"
    },
    {
-    "seed": 9847,
-    "cycle": 2,
-    "beat": "PASS",
-    "votes": "3/3",
-    "identity": "DRIFT"
-   },
-   {
-    "seed": 9882,
-    "cycle": 2,
-    "beat": "PASS",
-    "votes": "3/3",
-    "identity": "DRIFT"
-   },
-   {
-    "seed": 9919,
+    "seed": 2047,
     "cycle": 2,
     "beat": "FAIL",
     "votes": "0/3"
    },
    {
-    "seed": 10011,
+    "seed": 2082,
     "cycle": 2,
     "beat": "FAIL",
     "votes": "0/3"
    },
    {
-    "seed": 10047,
-    "cycle": 2,
-    "beat": "FAIL",
-    "votes": "0/3"
-   },
-   {
-    "seed": 10082,
-    "cycle": 2,
-    "beat": "FAIL",
-    "votes": "0/3"
-   },
-   {
-    "seed": 10119,
+    "seed": 2119,
     "cycle": 2,
     "beat": "FAIL",
     "votes": "0/3"

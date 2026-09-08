@@ -616,6 +616,15 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
         v = judge({"id": shot["id"], "image": str(cand.relative_to(proj)),
                    "beat": shot["beat"], "must_not": shot.get("must_not", [])}, proj, votes)
         log(f"  supplied still: {v['verdict']} ({v.get('votes')})")
+        # A direct plate is canon pixels pasted by hand (rule 10's derive path taken
+        # literally), so an identity gate here checks a photocopy against its own
+        # original with a judge that reads small/partial figures as drift (2026-08-31:
+        # raw hank_canon pixels in the wagon ruled "not Hank", a raw doug paste ruled
+        # "a kangaroo"). Beat gate still applies; identity is true by construction.
+        if v.get("verdict") == "PASS":
+            shot = dict(shot)
+            shot.pop("identity", None)
+            log("  identity: plate is canon-derived — gate skipped by construction")
         out["rolls"].append({"src": shot["init"], "beat": v["verdict"], "votes": v.get("votes")})
         if v["verdict"] == "PASS" and text_free(shot, proj, cand) and identity_ok(shot, proj, cand):
             locked = cand

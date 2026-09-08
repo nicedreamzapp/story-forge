@@ -54,5 +54,33 @@
   "path": "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4",
   "question": "circus_train full cut, 3min build. UNMUTE. QC has known defects (see report) \u2014 good to call it done?",
   "ts": "2026-07-31 21:35:12"
+ },
+ "819095da4c": {
+  "verdict": "yes",
+  "note": "",
+  "path": "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4",
+  "question": "circus_train full cut, 13min build. UNMUTE. QC has known defects (see report) \u2014 good to call it done?",
+  "ts": "2026-08-31 10:47:48"
+ },
+ "0e319a737d": {
+  "verdict": "no",
+  "note": "",
+  "path": "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4",
+  "question": "circus_train full cut, 12min build. UNMUTE. QC has known defects (see report) \u2014 good to call it done?",
+  "ts": "2026-08-31 11:09:57"
+ },
+ "5368c6c8fe": {
+  "verdict": "yes",
+  "note": "",
+  "path": "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4",
+  "question": "circus_train full cut, 6min build. UNMUTE. QC has known defects (see report) \u2014 good to call it done?",
+  "ts": "2026-08-31 19:55:28"
+ },
+ "7b4ea4c8a4": {
+  "verdict": "no",
+  "note": "",
+  "path": "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4",
+  "question": "circus_train full cut, 4min build. UNMUTE. QC has known defects (see report) \u2014 good to call it done?",
+  "ts": "2026-09-01 02:59:04"
  }
 }

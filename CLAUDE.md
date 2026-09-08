@@ -492,6 +492,46 @@ Voices (ChatterBox, ~/chatterbox-env, via bin/character_voice.py):
 
 Assembly: build DIALOGUE-ONLY scenes, concat, then lay ONE continuous song over the whole episode (music strings across all scenes; only mouth+voice need per-scene perfection). Intro = LTX-animated scenic title card + PIL text overlays (title + credits) faded in.
 
+## SCRIPT-WRITING SKILLS — use them BEFORE any render (installed 2026-09-07)
+
+The `screenwriting` plugin is installed at user scope (12 skills, from
+https://github.com/jtydhr88/screenwriting-skills — 19 books plus the Chekhov and Ozu
+corpora). It is the WRITING half of Story Forge; the pipeline below is the RENDER half.
+Nothing in it touches the pipeline, and it never overrides a rule in this file.
+
+**Standing direction: every new film starts in the script, not the queue.** Before a
+bible is written or a single still is generated, invoke the skills that fit the story and
+use them to settle premise, structure, character conflict, and the dialogue — then carry
+the result into `*.bible.sf` and the scene beats.
+
+| Skill | Use it for |
+|---|---|
+| `sw-premise-theme` | the controlling idea — settle this FIRST, before anything else |
+| `sw-story-structure` | act structure and beats → becomes the scene list |
+| `sw-character-conflict` | who wants what, and what stands in the way |
+| `sw-dialogue` | every spoken line, before it is voiced |
+| `sw-scene-craft` | what each scene turns on — feeds the shot coverage plan |
+| `sw-format-adaptation` | adapting an existing story or a formatted script |
+| `sw-american-case-studies` / `sw-japanese-screenwriting` / `sw-korean-french-screenwriting` | worked examples when a film needs a reference |
+| `chekhov-dramaturgy` / `ozu-screenplay-style` | quiet, character-driven, low-plot pieces |
+| `sw-industry-business` | only for the business side; not part of the build |
+
+**The bridge (ours, not theirs).** These skills output ordinary screenplay thinking —
+beats, scenes, slug lines, dialogue. They do NOT emit `.sf`. The translation is our job
+and it runs one way:
+
+    premise → beats → scenes → *.bible.sf + .sf scene blocks → coverage plan → render
+
+Write the drama first in plain screenplay terms, THEN convert each scene into `.sf`,
+applying the givens below (multi-shot coverage, prompted mouth motion, density-matched
+dialogue). Never let a screenwriting skill's formatting advice change `.sf` syntax, the
+film bible spec, or any frozen rule — the craft is theirs, the language and the pipeline
+stay ours.
+
+**Dialogue caveat specific to this pipeline:** lines still get density-matched to the
+mouth motion we prompt for (rule 9 / rule 3 below). A beautifully written speech that a
+shot's mouth motion cannot carry gets rewritten shorter — the mouth wins, always.
+
 ## DEFAULT MOVIE-MAKING RULES — GIVENS on every video (Matt, 2026-05-25, never ask)
 These are standing direction. Apply them automatically to every film; do not make Matt re-explain.
 
@@ -563,6 +603,18 @@ Story Forge folders or launchers.
 
 ## 🔊 NARRATION VOICE CHANGE — 2026-08-07
 Ashley (Piper LibriTTS speaker 0) is RETIRED. The narrator voice is now **Kokoro-82M "Heart" (`af_heart`)** for ALL future videos and narration. `story_pipeline.py` / `story_forge/run.py` `PIPER` constants now point at `~/.local/bin/kokoro-piper-shim` (piper-compatible CLI, renders Kokoro Heart). `speak` / `speak-heart` CLIs also render Heart. Matt's cloned voice is unchanged as the second voice. Do NOT use Piper Ashley in new work.
+
+27. A DEAD BACKEND BURNS THE ESCALATION LADDER IN DISGUISE (2026-08-31). ComfyUI died
+   at 01:33 and stayed down; s6_heave and r4_parrots_sky both LOCKED passing stills
+   minutes later and then failed every animate at "uploading → ComfyUI" — the director
+   counted those as real attempts and BLOCKED both shots as "needs re-conceiving" when
+   the specs were finally right. Hours were then spent re-conceiving specs that had
+   just passed. forge-director now probes :8188 on any ANIMATE_FAILED and routes a
+   dead-backend failure to the INFRA strike path instead of the attempt ladder.
+   Sibling of rule 25's "a refusal is a real answer": a verdict about the machine must
+   never be recorded as a verdict about the story. When several shots in a row report
+   the same failure at the same pipeline stage, check the shared infrastructure BEFORE
+   re-conceiving any of them.
 
 26. THE GATE ONLY ANSWERS THE QUESTION IT IS ASKED (2026-08-30, the rollout horse).
    The rebuilt s3_rollout shipped with the horse BEHIND the wagon it was pulling. The still

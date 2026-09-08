@@ -1,0 +1,191 @@
+{
+ "_note": "Required story elements per scene \u2014 the 'proper questions' layer (Matt, 2026-08-31). scene_audit.py briefs the judge with the film + these, and every element must be PRESENT.",
+ "s1_coldopen": {
+  "scene_role": "The opening: a calm ordinary day at the rescue, so the interruption costs something.",
+  "setting": "the heroes' home ground, peaceful, daytime",
+  "elements": [
+   "Hank, a big round cartoon brown bear with a cream belly",
+   "Doug, a tall tan-and-orange cartoon bloodhound dog",
+   "a calm, peaceful setting with no trouble, no smoke, no train wreck"
+  ]
+ },
+ "s2_thecall": {
+  "scene_role": "The call to adventure: the heroes see that something is wrong.",
+  "setting": "the heroes' home ground",
+  "elements": [
+   "Hank the brown bear and/or Doug the bloodhound",
+   "the characters alert, reacting or looking toward something off-screen or distant"
+  ]
+ },
+ "s2b_smoke": {
+  "scene_role": "The trouble is urgent: the circus train is broken down and smoking.",
+  "setting": "railway line, harsh daylight",
+  "elements": [
+   "a train with a locomotive visible",
+   "thick dark smoke pouring from the engine"
+  ]
+ },
+ "s3_rollout": {
+  "scene_role": "The heroes commit and roll out to the rescue on their wagon.",
+  "setting": "a dirt road, daytime",
+  "elements": [
+   "a wooden wagon",
+   "horses hitched IN FRONT of the wagon, pulling it",
+   "Hank the bear and Doug the bloodhound riding ON the wagon",
+   "a sense of motion: dust, speed, wheels turning"
+  ]
+ },
+ "s3b_wagonpass": {
+  "scene_role": "The rollout has real speed \u2014 the heroes are racing to the rescue.",
+  "setting": "a dirt road, daytime",
+  "elements": [
+   "a wooden wagon moving with dust on a dirt road",
+   "horses out in front of the wagon pulling it"
+  ]
+ },
+ "s4_arrival": {
+  "scene_role": "Arrival: the heroes stand before the broken-down train; the trouble is visible.",
+  "setting": "beside the stopped train, harsh sunlight",
+  "elements": [
+   "Hank the brown bear",
+   "Doug the bloodhound",
+   "a weathered red train with its boxcar doors shut",
+   "dark smoke or heat haze"
+  ]
+ },
+ "t1_monkey": {
+  "scene_role": "The trapped: a monkey's fingers curl through a plank gap \u2014 we feel who is inside.",
+  "setting": "boxcar plank wall, exterior close-up",
+  "elements": [
+   "wooden boxcar planks with a narrow gap",
+   "small animal fingers or a hand curling through the gap",
+   "darkness behind the gap suggesting a trapped animal inside"
+  ]
+ },
+ "t2_lion": {
+  "scene_role": "The trapped: a lion's muzzle presses at a crack, breathing.",
+  "setting": "boxcar plank wall, exterior close-up",
+  "elements": [
+   "wooden planks with a crack or gap",
+   "a lion's muzzle or nose pressed at the opening"
+  ]
+ },
+ "t3_giraffe": {
+  "scene_role": "The trapped: a giraffe stands bowed under the boxcar ceiling \u2014 too big for her cage.",
+  "setting": "dim boxcar interior",
+  "elements": [
+   "a giraffe with her neck bowed low under a low plank ceiling",
+   "a dim interior with blades or shafts of light through the wall"
+  ]
+ },
+ "ellie_eye": {
+  "scene_role": "We meet Ellie: a young elephant's eye at the gap \u2014 someone to root for.",
+  "setting": "boxcar gap, intimate close-up",
+  "elements": [
+   "an elephant's eye seen close up at a gap or opening",
+   "an emotional, intimate framing \u2014 the eye large and expressive"
+  ]
+ },
+ "s6_heave": {
+  "scene_role": "The effort: Hank forces the jammed door with real physical weight.",
+  "setting": "the boxcar door, exterior",
+  "elements": [
+   "Hank the brown bear",
+   "a closed wooden boxcar door",
+   "the bear's paws on the door, body working against it",
+   "effort made visible: dust shaking loose, strain"
+  ]
+ },
+ "s6b_heave_close": {
+  "scene_role": "The strain up close: paws flat on the planks, dust shivering.",
+  "setting": "the boxcar door, tight close-up",
+  "elements": [
+   "large paws pressed flat against wooden planks",
+   "dust shivering or drifting off the boards"
+  ]
+ },
+ "s6_interior": {
+  "scene_role": "The bang felt from inside: darkness, a blade of light, dust falling.",
+  "setting": "inside the dark boxcar",
+  "elements": [
+   "a dark interior",
+   "a bright blade or crack of light at the door edge",
+   "dust drifting or shaken loose"
+  ]
+ },
+ "s6c_light_widens": {
+  "scene_role": "THE PAYOFF: the door opens \u2014 light floods in on the trapped animal.",
+  "setting": "the boxcar doorway",
+  "elements": [
+   "a dark interior with a bright band of light at a door edge",
+   "a small elephant visible near the light"
+  ]
+ },
+ "r1_monkeys_out": {
+  "scene_role": "Release: the monkeys bound out free across the grass.",
+  "setting": "meadow beside the train, golden evening light",
+  "elements": [
+   "more than one monkey",
+   "the monkeys out in the open on grass, moving freely",
+   "golden evening light"
+  ]
+ },
+ "r2_lion_out": {
+  "scene_role": "Release: the lion walks out calm and free.",
+  "setting": "meadow beside the train, golden evening light",
+  "elements": [
+   "a lion outdoors on the grass",
+   "the lion calm and walking or standing free, not caged",
+   "golden evening light"
+  ]
+ },
+ "r3_giraffe_out": {
+  "scene_role": "Release: the giraffe stands tall at last, neck stretched into the light.",
+  "setting": "meadow beside the train, golden evening light",
+  "elements": [
+   "a giraffe outdoors standing tall with her neck up",
+   "golden evening light"
+  ]
+ },
+ "r4_parrots_sky": {
+  "scene_role": "Release: the parrots take the sky \u2014 freedom overhead.",
+  "setting": "the evening sky above the train",
+  "elements": [
+   "many bright red parrots in flight",
+   "a warm golden evening sky"
+  ]
+ },
+ "c1_celebration": {
+  "scene_role": "The celebration: the freed animals gather around Ellie in the meadow.",
+  "setting": "meadow, golden hour",
+  "elements": [
+   "Ellie, a young elephant wearing a red circus cap, prominent in the frame",
+   "at least two other circus animals (lion, monkey, giraffe or flamingo) in the meadow with her",
+   "a meadow in warm golden light"
+  ]
+ },
+ "s8_goodbye": {
+  "scene_role": "The goodbye: the heroes ride their wagon home into the sunset, the rescued train whole and alive behind them.",
+  "setting": "sunset dirt road beside the repaired train",
+  "elements": [
+   "a wooden wagon with the brown bear AND the bloodhound visibly riding aboard",
+   "two horses positioned IN FRONT of the wagon, harnessed, clearly pulling it (wagon behind them, not beside them)",
+   "the circus train in the scene, whole and steaming",
+   "warm sunset light"
+  ]
+ },
+ "outro_hank_brag": {
+  "scene_role": "Hank's dry one-liner after the rescue - a tight close-up single.",
+  "setting": "close-up, soft blurred background",
+  "elements": [
+   "Hank the brown bear's face large in frame"
+  ]
+ },
+ "outro_signoff": {
+  "scene_role": "Doug's sign-off line - a tight close-up single.",
+  "setting": "close-up, soft blurred background",
+  "elements": [
+   "Doug the bloodhound's face large in frame"
+  ]
+ }
+}

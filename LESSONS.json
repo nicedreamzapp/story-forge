@@ -347,6 +347,31 @@
    ],
    "added": "2026-08-30",
    "project": "circus_train"
+  },
+  {
+   "when": [
+    "stopped",
+    "rolling",
+    "racing",
+    "moving",
+    "still",
+    "repaired",
+    "broken"
+   ],
+   "lesson": "never put a MOTION or STATE-CHANGE claim in a beat used to judge a STILL \u2014 the judge infers motion from smoke shape and leg pose and fails BOTH directions ('smoke plume is dynamic so the train is moving' killed 'stopped train'; 'legs not blurred so not rolling' killed 'wagon rolling away'; 'steaming so not repaired' killed 'repaired train'). State only what pixels can prove: doors shut, smoke pouring, horses out front, dust behind the wheels.",
+   "learned_on": "s2b_smoke / s4_arrival / s8_goodbye base rolls 2026-08-31"
+  },
+  {
+   "when": [
+    "celebrating",
+    "joyful",
+    "alarmed",
+    "triumphant",
+    "dazed",
+    "relaxed"
+   ],
+   "lesson": "emotion and vibe words in a beat or clip_beat make the judge rule on mood it cannot verify \u2014 'celebrating/joyfully' failed a frame that showed every required animal present. Name observable cues (ears swaying, head tipped back, mouth open) or drop the word.",
+   "learned_on": "c1_celebration / s7b_hank_flat 2026-08-31"
   }
  ]
 }

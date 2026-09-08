@@ -1,12 +1,9 @@
 {
   "missing": [
     "clips/s4b_trainwide_final.mp4",
-    "clips/t3_giraffe_final.mp4",
     "clips/s7b_hank_flat_final.mp4",
-    "clips/r4_parrots_sky_final.mp4",
     "clips/r5_crowd_wide_final.mp4",
-    "clips/c2_ellie_trumpet_final.mp4",
-    "clips/s8_goodbye_v2.mp4"
+    "clips/c2_ellie_trumpet_final.mp4"
   ],
   "done": [
     "assemble",
@@ -31,6 +28,7 @@
     "seg10_L06.mp4",
     "seg12_t1_monkey.mp4",
     "seg13_t2_lion.mp4",
+    "seg14_t3_giraffe.mp4",
     "seg15_ellie_eye.mp4",
     "seg16_L07.mp4",
     "seg17_L09.mp4",
@@ -42,127 +40,126 @@
     "seg24_r1_monkeys_out.mp4",
     "seg25_r2_lion_out.mp4",
     "seg26_r3_giraffe_out.mp4",
+    "seg27_r4_parrots_sky.mp4",
+    "seg28_r5_crowd_wide.mp4",
     "seg29_c1_celebration.mp4",
     "seg31_L13.mp4",
     "seg32_L14.mp4",
     "seg33_L15.mp4",
+    "seg34_s8_goodbye.mp4",
     "seg35_credits.mp4"
   ],
   "skipped": [
     "s4b_trainwide",
-    "t3_giraffe",
     "s7b_hank_flat",
-    "r4_parrots_sky",
-    "r5_crowd_wide",
-    "c2_ellie_trumpet",
-    "s8_goodbye"
+    "c2_ellie_trumpet"
   ],
   "film": "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4",
-  "runtime": 89.148005,
-  "qc": "[PASS] audio@28.6s: 'Whole train's cooking out here' expected @28.6s, heard on targeted re-listen (2/4 words; full-film transcript had a hole here)\n[PASS] audio@30.0s: 'Easy everybody! The Wild Rescu' expected @30.0s, heard on targeted re-listen (4/4 words; full-film transcript had a hole here)\n[PASS] audio@38.3s: 'I can't, it's too heavy' expected @38.3s, heard on targeted re-listen (1/1 words; full-film transcript had a hole here)\n[PASS] audio@42.3s: 'Pin's jammed tight.' expected @42.3s, heard on targeted re-listen (1/2 words; full-film transcript had a hole here)\n[PASS] audio@44.0s: 'Ellie? It's Doug. One push, gi' expected @44.0s, heard on targeted re-listen (4/4 words; full-film transcript had a hole here)\n[PASS] audio@47.1s: 'Three, two, one, push!' expected @47.1s, heard on targeted re-listen (2/2 words; full-film transcript had a hole here)\n[PASS] audio@59.2s: 'Doors don't argue with bears.' expected @59.2s, heard @49.3s (4/4 words)\n[PASS] audio@78.9s: 'Turtle called dibs on the tank' expected @78.9s, heard @79.3s (3/4 words)\n[PASS] audio@81.0s: 'Anybody, anywhere, any trouble' expected @81.0s, heard @81.4s (3/3 words)\n[PASS] audio@82.9s: 'the Wild Rescue rolls.' expected @82.9s, heard @83.2s (3/3 words)\n[PASS] audio@85.1s: 'Can I get a hat like this?' expected @85.1s, heard @85.4s (2/2 words)\n\nFAIL \u2014 4 defect(s)\nreport: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1_qc.md",
+  "runtime": 107.273991,
+  "qc": "[PASS] audio@28.6s: 'Whole train's cooking out here' expected @28.6s, heard @28.8s (2/4 words)\n[PASS] audio@29.9s: 'Easy everybody! The Wild Rescu' expected @29.9s, heard @29.8s (2/4 words)\n[PASS] audio@41.4s: 'I can't, it's too heavy' expected @41.4s, heard @41.8s (1/1 words)\n[PASS] audio@45.4s: 'Pin's jammed tight.' expected @45.4s, heard @43.8s (1/2 words)\n[PASS] audio@47.1s: 'Ellie? It's Doug. One push, gi' expected @47.1s, heard @46.8s (2/4 words)\n[PASS] audio@50.1s: 'Three, two, one, push!' expected @50.1s, heard @49.8s (2/2 words)\n[PASS] audio@62.3s: 'Doors don't argue with bears.' expected @62.3s, heard @58.8s (4/4 words)\n[PASS] audio@92.0s: 'Turtle called dibs on the tank' expected @92.0s, heard on targeted re-listen (4/4 words; full-film transcript had a hole here)\n[PASS] audio@94.1s: 'Anybody, anywhere, any trouble' expected @94.1s, heard on targeted re-listen (3/3 words; full-film transcript had a hole here)\n[PASS] audio@96.0s: 'the Wild Rescue rolls.' expected @96.0s, heard @95.8s (3/3 words)\n[PASS] audio@103.2s: 'Can I get a hat like this?' expected @103.2s, heard @95.8s (2/2 words)\n\nFAIL \u2014 8 defect(s)\nreport: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1_qc.md",
   "qc_exit": 1,
   "score_job": "9bfb261356a64215b9447d40b8095b1d",
   "lines": [
     {
-      "t": 6.19,
+      "t": 9.19,
       "speaker": "hank",
       "text": "Doug. The fish are winning again.",
       "dur": 1.49,
       "offscreen": false
     },
     {
-      "t": 7.83,
+      "t": 10.83,
       "speaker": "doug",
       "text": "That's cause they practice, Hank.",
       "dur": 1.53,
       "offscreen": false
     },
     {
-      "t": 10.06,
+      "t": 13.06,
       "speaker": "bird",
       "text": "Help! The circus train broke down",
       "dur": 3.18,
       "offscreen": true
     },
     {
-      "t": 17.6,
+      "t": 17.55,
       "speaker": "doug",
       "text": "Circus train? Hank, we're rolling.",
       "dur": 1.81,
       "offscreen": false
     },
     {
-      "t": 28.64,
+      "t": 28.6,
       "speaker": "hank",
       "text": "Whole train's cooking out here.",
       "dur": 1.17,
       "offscreen": false
     },
     {
-      "t": 29.96,
+      "t": 29.92,
       "speaker": "doug",
       "text": "Easy everybody! The Wild Rescue's here!",
       "dur": 2.09,
       "offscreen": false
     },
     {
-      "t": 38.33,
+      "t": 41.38,
       "speaker": "ellie",
       "text": "I can't, it's too heavy",
       "dur": 0.76,
       "offscreen": true
     },
     {
-      "t": 42.33,
+      "t": 45.37,
       "speaker": "doug",
       "text": "Pin's jammed tight.",
       "dur": 1.57,
       "offscreen": false
     },
     {
-      "t": 44.05,
+      "t": 47.09,
       "speaker": "doug",
       "text": "Ellie? It's Doug. One push, girl.",
       "dur": 2.89,
       "offscreen": false
     },
     {
-      "t": 47.09,
+      "t": 50.13,
       "speaker": "doug",
       "text": "Three, two, one, push!",
       "dur": 1.89,
       "offscreen": false
     },
     {
-      "t": 59.25,
+      "t": 62.29,
       "speaker": "hank",
       "text": "Doors don't argue with bears.",
       "dur": 1.33,
       "offscreen": false
     },
     {
-      "t": 78.9,
+      "t": 91.98,
       "speaker": "doug",
       "text": "Turtle called dibs on the tank an hour ago.",
       "dur": 1.93,
       "offscreen": false
     },
     {
-      "t": 80.98,
+      "t": 94.06,
       "speaker": "doug",
       "text": "Anybody, anywhere, any trouble at all",
       "dur": 1.77,
       "offscreen": false
     },
     {
-      "t": 82.9,
+      "t": 95.98,
       "speaker": "hank",
       "text": "the Wild Rescue rolls.",
       "dur": 1.21,
       "offscreen": false
     },
     {
-      "t": 85.11,
+      "t": 103.24,
       "speaker": "bird",
       "text": "Can I get a hat like this?",
       "dur": 0.6,
@@ -173,80 +170,100 @@
     {
       "name": "s1_coldopen",
       "start": 4.0,
-      "end": 6.04
+      "end": 9.04
     },
     {
       "name": "s2_thecall",
-      "start": 9.36,
-      "end": 14.4
+      "start": 12.36,
+      "end": 14.36
     },
     {
       "name": "s2b_smoke",
-      "start": 14.4,
-      "end": 17.45
+      "start": 14.36,
+      "end": 17.4
     },
     {
       "name": "s3_rollout",
-      "start": 19.41,
-      "end": 24.45
+      "start": 19.36,
+      "end": 24.41
     },
     {
       "name": "s3b_wagonpass",
-      "start": 24.45,
-      "end": 28.49
+      "start": 24.41,
+      "end": 28.45
     },
     {
       "name": "t1_monkey",
-      "start": 32.05,
-      "end": 34.09
+      "start": 32.01,
+      "end": 34.05
     },
     {
       "name": "t2_lion",
-      "start": 34.09,
-      "end": 37.13
+      "start": 34.05,
+      "end": 37.09
+    },
+    {
+      "name": "t3_giraffe",
+      "start": 37.09,
+      "end": 40.18
     },
     {
       "name": "ellie_eye",
-      "start": 37.13,
-      "end": 42.18
+      "start": 40.18,
+      "end": 45.22
     },
     {
       "name": "s6b_heave_close",
-      "start": 48.98,
-      "end": 52.02
-    },
-    {
-      "name": "s6_interior",
       "start": 52.02,
       "end": 55.06
     },
     {
-      "name": "s6c_light_widens",
+      "name": "s6_interior",
       "start": 55.06,
-      "end": 59.1
+      "end": 58.1
+    },
+    {
+      "name": "s6c_light_widens",
+      "start": 58.1,
+      "end": 62.14
     },
     {
       "name": "r1_monkeys_out",
-      "start": 60.58,
-      "end": 65.62
+      "start": 63.62,
+      "end": 68.67
     },
     {
       "name": "r2_lion_out",
-      "start": 65.62,
-      "end": 70.67
+      "start": 68.67,
+      "end": 73.71
     },
     {
       "name": "r3_giraffe_out",
-      "start": 70.67,
-      "end": 75.71
+      "start": 73.71,
+      "end": 78.75
+    },
+    {
+      "name": "r4_parrots_sky",
+      "start": 78.75,
+      "end": 81.75
+    },
+    {
+      "name": "r5_crowd_wide",
+      "start": 81.75,
+      "end": 86.79
     },
     {
       "name": "c1_celebration",
-      "start": 75.71,
-      "end": 78.75
+      "start": 86.79,
+      "end": 91.83
+    },
+    {
+      "name": "s8_goodbye",
+      "start": 97.19,
+      "end": 102.24
     }
   ],
-  "beat_gate": "[PASS] s2_thecall: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a steam train in open, arid country with thick, dark black smoke billowing from\n[PASS] s2b_smoke: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a close view of an old, dark steam locomotive\u2019s smokestack with thick black smoke\n[PASS] s3_rollout: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows exactly two identical dark bay horses with black manes and tails, harnessed and g\n[PASS] s3b_wagonpass: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts two identical dark bay horses in harness pulling a single open wooden wagon wit\n[ERR ] s4b_trainwide: missing or unreadable clips/s4b_trainwide_final.mp4\n[FAIL] t1_monkey: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a weathered, peeling red door \n[FAIL] t2_lion: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The boxcar door in the right image has peeling red pain\n[ERR ] t3_giraffe: missing or unreadable clips/t3_giraffe_final.mp4\n[FAIL] ellie_eye: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a dark, weathered, and grimy b\n[PASS] s6b_heave_close: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a large brown bear with its front paws pressed flat against a weathered red woode\n[FAIL] s6_interior: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows the interior of a dark, wooden structu\n[FAIL] s6c_light_widens: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows the interior of a wooden structure wit\n[ERR ] s7b_hank_flat: missing or unreadable clips/s7b_hank_flat_final.mp4\n[FAIL] r1_monkeys_out: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image is not visible in suffi\n[FAIL] r2_lion_out: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image features a cartoon lion in a grassy field, w\n[FAIL] r3_giraffe_out: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image is not the same as the \n[ERR ] r4_parrots_sky: missing or unreadable clips/r4_parrots_sky_final.mp4\n[ERR ] r5_crowd_wide: missing or unreadable clips/r5_crowd_wide_final.mp4\n[FAIL] c1_celebration: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image does not show the circus boxcar at all; inst\n[ERR ] c2_ellie_trumpet: missing or unreadable clips/c2_ellie_trumpet_final.mp4\n[ERR ] s8_goodbye: missing or unreadable clips/s8_goodbye_v2.mp4\n[beat_gate] story spine: 6/23 required beats are on screen\n[HOLE] they arrive at the broken-down train and the trouble is visible \u2014 no passing shot (s4_arrival)\n[HOLE] the train is FULL of trapped animals \u2014 the scale of the trouble is seen at the slat gaps \u2014 no passing shot (s4b_trainwide, t1_monkey)\n[HOLE] a trapped monkey's fingers curl through a plank gap \u2014 no passing shot (t1_monkey)\n[HOLE] a trapped lion's muzzle presses at a crack, breath stirring dust \u2014 no passing shot (t2_lion)\n[HOLE] a trapped giraffe stands bowed under the boxcar ceiling \u2014 no passing shot (t3_giraffe)\n[HOLE] we SEE who is trapped \u2014 the audience gets someone to root for \u2014 no passing shot (ellie_eye, new_ellie_eye)\n[HOLE] the effort: the door is forced with real physical weight \u2014 no passing shot (s6_heave)\n[HOLE] the bang is felt from inside the dark car \u2014 no passing shot (s6_interior, s6c_light_widens)\n[HOLE] THE PAYOFF: the door opens and the trapped animal is free on screen \u2014 no passing shot (s7_dooropen, new_s7_dooropen, s6c_light_widens, r1_monkeys_out)\n[HOLE] the monkeys bound out free across the grass \u2014 no passing shot (r1_monkeys_out)\n[HOLE] the lion walks out calm and free in golden light \u2014 no passing shot (r2_lion_out)\n[HOLE] the giraffe stands tall and free, neck stretched into the light \u2014 no passing shot (r3_giraffe_out)\n[HOLE] the parrots wheel free across the evening sky \u2014 no passing shot (r4_parrots_sky)\n[HOLE] the meadow floods with freed animals \u2014 the rescue at full scale \u2014 no passing shot (r5_crowd_wide)\n[HOLE] the celebration \u2014 a meadow full of freed animals around the heroes \u2014 no passing shot (c1_celebration)\n[HOLE] Ellie trumpets in triumph, trunk raised high \u2014 no passing shot (c2_ellie_trumpet)\n[HOLE] the goodbye, with the rescued train alive behind them \u2014 no passing shot (s8_goodbye)\n[beat_gate] report \u2192 /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/BEAT_GATE_report.md",
+  "beat_gate": "[PASS] s2b_smoke: 2 of 3 sampled frames depict the beat. FAIL. The train is not depicted as a \"circus steam train\" \u2014 there are no visual elements such as bright colors,\n[FAIL] s3_rollout: 1 of 3 sampled frames depict the beat. PASS. The image clearly depicts two dark bay horses in mid-stride pulling a wooden wagon along a dirt road, wit\n[PASS] s3b_wagonpass: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts two dark bay horses in mid-stride, pulling a loaded wooden wagon down a forest \n[ERR ] s4b_trainwide: missing or unreadable clips/s4b_trainwide_final.mp4\n[FAIL] t1_monkey: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a weathered, peeling red door \n[FAIL] t2_lion: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The boxcar door in the right image has peeling red pain\n[FAIL] t3_giraffe: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a giraffe inside a wooden encl\n[FAIL] ellie_eye: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a dark, weathered, and grimy b\n[PASS] s6b_heave_close: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a large brown bear with its front paws pressed flat against a weathered red woode\n[FAIL] s6_interior: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows the interior of a dark, wooden structu\n[FAIL] s6c_light_widens: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows a dark, wooden interior with a small e\n[ERR ] s7b_hank_flat: missing or unreadable clips/s7b_hank_flat_final.mp4\n[FAIL] r1_monkeys_out: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image is not visible in suffi\n[FAIL] r2_lion_out: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image features a cartoon lion in a grassy field, w\n[FAIL] r3_giraffe_out: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image is not the same as the \n[FAIL] r4_parrots_sky: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image is not the same as the \n[ERR ] r5_crowd_wide: missing or unreadable clips/r5_crowd_wide_final.mp4\n[FAIL] c1_celebration: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image is not visible, so it c\n[ERR ] c2_ellie_trumpet: missing or unreadable clips/c2_ellie_trumpet_final.mp4\n[FAIL] s8_goodbye: BEAT FAIL (1/3 frames), but FAILED SET CONTINUITY against the 'wagon' master. NO. The wagon in the right image differs significantly in construction, \n[beat_gate] story spine: 5/23 required beats are on screen\n[HOLE] they commit and roll out \u2014 no passing shot (s3_rollout)\n[HOLE] they arrive at the broken-down train and the trouble is visible \u2014 no passing shot (s4_arrival)\n[HOLE] the train is FULL of trapped animals \u2014 the scale of the trouble is seen at the slat gaps \u2014 no passing shot (s4b_trainwide, t1_monkey)\n[HOLE] a trapped monkey's fingers curl through a plank gap \u2014 no passing shot (t1_monkey)\n[HOLE] a trapped lion's muzzle presses at a crack, breath stirring dust \u2014 no passing shot (t2_lion)\n[HOLE] a trapped giraffe stands bowed under the boxcar ceiling \u2014 no passing shot (t3_giraffe)\n[HOLE] we SEE who is trapped \u2014 the audience gets someone to root for \u2014 no passing shot (ellie_eye, new_ellie_eye)\n[HOLE] the effort: the door is forced with real physical weight \u2014 no passing shot (s6_heave)\n[HOLE] the bang is felt from inside the dark car \u2014 no passing shot (s6_interior, s6c_light_widens)\n[HOLE] THE PAYOFF: the door opens and the trapped animal is free on screen \u2014 no passing shot (s7_dooropen, new_s7_dooropen, s6c_light_widens, r1_monkeys_out)\n[HOLE] the monkeys bound out free across the grass \u2014 no passing shot (r1_monkeys_out)\n[HOLE] the lion walks out calm and free in golden light \u2014 no passing shot (r2_lion_out)\n[HOLE] the giraffe stands tall and free, neck stretched into the light \u2014 no passing shot (r3_giraffe_out)\n[HOLE] the parrots wheel free across the evening sky \u2014 no passing shot (r4_parrots_sky)\n[HOLE] the meadow floods with freed animals \u2014 the rescue at full scale \u2014 no passing shot (r5_crowd_wide)\n[HOLE] the celebration \u2014 a meadow full of freed animals around the heroes \u2014 no passing shot (c1_celebration)\n[HOLE] Ellie trumpets in triumph, trunk raised high \u2014 no passing shot (c2_ellie_trumpet)\n[HOLE] the goodbye, with the rescued train alive behind them \u2014 no passing shot (s8_goodbye)\n[beat_gate] report \u2192 /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/BEAT_GATE_report.md",
   "beat_gate_exit": 1,
   "qc_verdict": "DEFECTS \u2014 read the _qc.md report"
 }

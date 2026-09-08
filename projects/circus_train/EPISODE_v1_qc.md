@@ -1,36 +1,40 @@
 # film_qc report — EPISODE_v1.mp4
-**Verdict: FAIL — 4 defect(s)**
-Checks run: 123 | passed: 119 | failed: 4
+**Verdict: FAIL — 8 defect(s)**
+Checks run: 141 | passed: 133 | failed: 8
 
 ## Defects
-- lipsync@82.9s: hank's mouth moving in 1/6 samples (17% of a 1.2s line; need 50%)
-- identity-across-scenes: DRIFT — The characters shown do not match the described Hank, Doug, Ellie, or Bird; instead, the images feature a bear, a lion, a giraffe, monkeys, chickens, and a train, indicating a complete mismatc
+- lipsync@96.0s: hank's mouth moving in 2/6 samples (33% of a 1.2s line; need 50%)
 - artifact@32.5s: The image shows a pair of furry, clawed hands gripping the edges of a cracked, peeling red wooden door, with a single, l
-- artifact@33.5s: The image shows a close-up of a pair of furry, clawed hands gripping the edges of a wooden door, with a single large, ye
+- artifact@33.5s: The image shows a close-up of a pair of furry, clawed hands gripping the edges of a weathered wooden door, with a single
+- artifact@82.5s: The image depicts a whimsical, animated scene featuring a colorful train and a variety of animals—zebras, camels, flamin
+- artifact@83.5s: The image features a whimsical, animated scene with a train and various animals in a grassy field at sunset. Upon close 
+- artifact@84.5s: The image depicts a surreal, animated scene with a train on tracks surrounded by various animals—zebras, camels, flaming
+- artifact@85.5s: The image depicts a vibrant, animated scene with a colorful train and various animals (zebras, camels, flamingos, small 
+- artifact@86.5s: The image features a whimsical, animated scene with a colorful train and various animals in a grassy field at sunset. Th
 
 ## Full log
-- [PASS] lipsync@6.2s: hank's mouth moving in 6/7 samples (86% of a 1.5s line; need 50%)
-- [PASS] lipsync@7.8s: doug's mouth moving in 7/7 samples (100% of a 1.5s line; need 50%)
-- [SKIP] lipsync@10.1s: bird is off-screen by design — audio-only line
+- [PASS] lipsync@9.2s: hank's mouth moving in 6/7 samples (86% of a 1.5s line; need 50%)
+- [PASS] lipsync@10.8s: doug's mouth moving in 7/7 samples (100% of a 1.5s line; need 50%)
+- [SKIP] lipsync@13.1s: bird is off-screen by design — audio-only line
 - [PASS] lipsync@17.6s: doug's mouth moving in 9/9 samples (100% of a 1.8s line; need 50%)
 - [PASS] lipsync@28.6s: hank's mouth moving in 3/5 samples (60% of a 1.2s line; need 50%)
-- [PASS] lipsync@30.0s: doug's mouth moving in 9/10 samples (90% of a 2.1s line; need 50%)
-- [SKIP] lipsync@38.3s: ellie is off-screen by design — audio-only line
-- [PASS] lipsync@42.3s: doug's mouth moving in 7/7 samples (100% of a 1.6s line; need 50%)
-- [PASS] lipsync@44.0s: doug's mouth moving in 14/14 samples (100% of a 2.9s line; need 50%)
-- [PASS] lipsync@47.1s: doug's mouth moving in 6/9 samples (67% of a 1.9s line; need 50%)
-- [PASS] lipsync@59.2s: hank's mouth moving in 6/6 samples (100% of a 1.3s line; need 50%)
-- [PASS] lipsync@78.9s: doug's mouth moving in 9/9 samples (100% of a 1.9s line; need 50%)
-- [PASS] lipsync@81.0s: doug's mouth moving in 8/8 samples (100% of a 1.8s line; need 50%)
-- [FAIL] lipsync@82.9s: hank's mouth moving in 1/6 samples (17% of a 1.2s line; need 50%)
-- [SKIP] lipsync@85.1s: bird is off-screen by design — audio-only line
-- [PASS] silence@15.1s: no. none of the characters are shown with their mouths wide open; the scene is s
-- [PASS] silence@24.4s: no. none of the characters are depicted with their mouths wide open; they are al
-- [PASS] silence@35.4s: no. the lion character (not named in the list) has its mouth slightly open with 
-- [PASS] silence@41.6s: no. none of the characters are shown with their mouths open; the image focuses o
-- [PASS] silence@54.4s: no. no character is shown with their mouth wide open; all are still and silent i
-- [PASS] silence@70.3s: no. none of the characters are shown with their mouths wide open; all are in neu
-- [FAIL] identity-across-scenes: DRIFT — The characters shown do not match the described Hank, Doug, Ellie, or Bird; instead, the images feature a bear, a lion, a giraffe, monkeys, chickens, and a train, indicating a complete mismatc
+- [PASS] lipsync@29.9s: doug's mouth moving in 9/10 samples (90% of a 2.1s line; need 50%)
+- [SKIP] lipsync@41.4s: ellie is off-screen by design — audio-only line
+- [PASS] lipsync@45.4s: doug's mouth moving in 7/7 samples (100% of a 1.6s line; need 50%)
+- [PASS] lipsync@47.1s: doug's mouth moving in 14/14 samples (100% of a 2.9s line; need 50%)
+- [PASS] lipsync@50.1s: doug's mouth moving in 6/9 samples (67% of a 1.9s line; need 50%)
+- [PASS] lipsync@62.3s: hank's mouth moving in 6/6 samples (100% of a 1.3s line; need 50%)
+- [PASS] lipsync@92.0s: doug's mouth moving in 9/9 samples (100% of a 1.9s line; need 50%)
+- [PASS] lipsync@94.1s: doug's mouth moving in 8/8 samples (100% of a 1.8s line; need 50%)
+- [FAIL] lipsync@96.0s: hank's mouth moving in 2/6 samples (33% of a 1.2s line; need 50%)
+- [SKIP] lipsync@103.2s: bird is off-screen by design — audio-only line
+- [PASS] silence@16.6s: no. none of the characters are depicted with their mouths wide open; they are al
+- [PASS] silence@24.3s: no. all visible characters (hank, doug, ellie) have closed mouths; no one appear
+- [PASS] silence@36.9s: no. the lion's mouth is slightly open with its tongue out, but not wide open as 
+- [PASS] silence@44.6s: no. none of the characters are shown with their mouths open; the image focuses o
+- [PASS] silence@57.5s: no. no character is shown with their mouth wide open; all are still and silent i
+- [PASS] silence@78.4s: no. none of the characters are shown with their mouths wide open; all are either
+- [PASS] identity-across-scenes: CONSISTENT — The characters maintain consistent species, body proportions, head and ear shapes, and markings across all scenes.
 - [PASS] artifact@0.5s: clean
 - [PASS] artifact@1.5s: clean
 - [PASS] artifact@2.5s: clean
@@ -64,7 +68,7 @@ Checks run: 123 | passed: 119 | failed: 4
 - [PASS] artifact@30.5s: clean
 - [PASS] artifact@31.5s: clean
 - [FAIL] artifact@32.5s: The image shows a pair of furry, clawed hands gripping the edges of a cracked, peeling red wooden door, with a single, l
-- [FAIL] artifact@33.5s: The image shows a close-up of a pair of furry, clawed hands gripping the edges of a wooden door, with a single large, ye
+- [FAIL] artifact@33.5s: The image shows a close-up of a pair of furry, clawed hands gripping the edges of a weathered wooden door, with a single
 - [PASS] artifact@34.5s: clean
 - [PASS] artifact@35.5s: clean
 - [PASS] artifact@36.5s: clean
@@ -113,25 +117,43 @@ Checks run: 123 | passed: 119 | failed: 4
 - [PASS] artifact@79.5s: clean
 - [PASS] artifact@80.5s: clean
 - [PASS] artifact@81.5s: clean
-- [PASS] artifact@82.5s: clean
-- [PASS] artifact@83.5s: clean
-- [PASS] artifact@84.5s: clean
-- [PASS] artifact@85.5s: clean
-- [PASS] artifact@86.5s: clean
+- [FAIL] artifact@82.5s: The image depicts a whimsical, animated scene featuring a colorful train and a variety of animals—zebras, camels, flamin
+- [FAIL] artifact@83.5s: The image features a whimsical, animated scene with a train and various animals in a grassy field at sunset. Upon close 
+- [FAIL] artifact@84.5s: The image depicts a surreal, animated scene with a train on tracks surrounded by various animals—zebras, camels, flaming
+- [FAIL] artifact@85.5s: The image depicts a vibrant, animated scene with a colorful train and various animals (zebras, camels, flamingos, small 
+- [FAIL] artifact@86.5s: The image features a whimsical, animated scene with a colorful train and various animals in a grassy field at sunset. Th
 - [PASS] artifact@87.5s: clean
 - [PASS] artifact@88.5s: clean
-- [PASS] audio@6.2s: 'Doug. The fish are winning aga' expected @6.2s, heard @0.0s (4/4 words)
-- [PASS] audio@7.8s: 'That's cause they practice, Ha' expected @7.8s, heard @7.9s (4/4 words)
-- [PASS] audio@10.1s: 'Help! The circus train broke d' expected @10.1s, heard @10.8s (3/4 words)
-- [PASS] audio@17.6s: 'Circus train? Hank, we're roll' expected @17.6s, heard @17.6s (4/4 words)
-- [PASS] audio@28.6s: 'Whole train's cooking out here' expected @28.6s, heard on targeted re-listen (2/4 words; full-film transcript had a hole here)
-- [PASS] audio@30.0s: 'Easy everybody! The Wild Rescu' expected @30.0s, heard on targeted re-listen (4/4 words; full-film transcript had a hole here)
-- [PASS] audio@38.3s: 'I can't, it's too heavy' expected @38.3s, heard on targeted re-listen (1/1 words; full-film transcript had a hole here)
-- [PASS] audio@42.3s: 'Pin's jammed tight.' expected @42.3s, heard on targeted re-listen (1/2 words; full-film transcript had a hole here)
-- [PASS] audio@44.0s: 'Ellie? It's Doug. One push, gi' expected @44.0s, heard on targeted re-listen (4/4 words; full-film transcript had a hole here)
-- [PASS] audio@47.1s: 'Three, two, one, push!' expected @47.1s, heard on targeted re-listen (2/2 words; full-film transcript had a hole here)
-- [PASS] audio@59.2s: 'Doors don't argue with bears.' expected @59.2s, heard @49.3s (4/4 words)
-- [PASS] audio@78.9s: 'Turtle called dibs on the tank' expected @78.9s, heard @79.3s (3/4 words)
-- [PASS] audio@81.0s: 'Anybody, anywhere, any trouble' expected @81.0s, heard @81.4s (3/3 words)
-- [PASS] audio@82.9s: 'the Wild Rescue rolls.' expected @82.9s, heard @83.2s (3/3 words)
-- [PASS] audio@85.1s: 'Can I get a hat like this?' expected @85.1s, heard @85.4s (2/2 words)
+- [PASS] artifact@89.5s: clean
+- [PASS] artifact@90.5s: clean
+- [PASS] artifact@91.5s: clean
+- [PASS] artifact@92.5s: clean
+- [PASS] artifact@93.5s: clean
+- [PASS] artifact@94.5s: clean
+- [PASS] artifact@95.5s: clean
+- [PASS] artifact@96.5s: clean
+- [PASS] artifact@97.5s: clean
+- [PASS] artifact@98.5s: clean
+- [PASS] artifact@99.5s: clean
+- [PASS] artifact@100.5s: clean
+- [PASS] artifact@101.5s: clean
+- [PASS] artifact@102.5s: clean
+- [PASS] artifact@103.5s: clean
+- [PASS] artifact@104.5s: clean
+- [PASS] artifact@105.5s: clean
+- [PASS] artifact@106.5s: clean
+- [PASS] audio@9.2s: 'Doug. The fish are winning aga' expected @9.2s, heard @0.0s (4/4 words)
+- [PASS] audio@10.8s: 'That's cause they practice, Ha' expected @10.8s, heard @10.9s (4/4 words)
+- [PASS] audio@13.1s: 'Help! The circus train broke d' expected @13.1s, heard @14.1s (2/4 words)
+- [PASS] audio@17.6s: 'Circus train? Hank, we're roll' expected @17.6s, heard @18.0s (4/4 words)
+- [PASS] audio@28.6s: 'Whole train's cooking out here' expected @28.6s, heard @28.8s (2/4 words)
+- [PASS] audio@29.9s: 'Easy everybody! The Wild Rescu' expected @29.9s, heard @29.8s (2/4 words)
+- [PASS] audio@41.4s: 'I can't, it's too heavy' expected @41.4s, heard @41.8s (1/1 words)
+- [PASS] audio@45.4s: 'Pin's jammed tight.' expected @45.4s, heard @43.8s (1/2 words)
+- [PASS] audio@47.1s: 'Ellie? It's Doug. One push, gi' expected @47.1s, heard @46.8s (2/4 words)
+- [PASS] audio@50.1s: 'Three, two, one, push!' expected @50.1s, heard @49.8s (2/2 words)
+- [PASS] audio@62.3s: 'Doors don't argue with bears.' expected @62.3s, heard @58.8s (4/4 words)
+- [PASS] audio@92.0s: 'Turtle called dibs on the tank' expected @92.0s, heard on targeted re-listen (4/4 words; full-film transcript had a hole here)
+- [PASS] audio@94.1s: 'Anybody, anywhere, any trouble' expected @94.1s, heard on targeted re-listen (3/3 words; full-film transcript had a hole here)
+- [PASS] audio@96.0s: 'the Wild Rescue rolls.' expected @96.0s, heard @95.8s (3/3 words)
+- [PASS] audio@103.2s: 'Can I get a hat like this?' expected @103.2s, heard @95.8s (2/2 words)

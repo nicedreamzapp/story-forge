@@ -105,3 +105,807 @@
 [director 22:34:09]   SPEC REJECTED before rendering — ✗ s6_heave: [prompt] 'from behind' — character parts rendered from behind carry NO identity — muzzle, ears, markings are all on the front — so they can never pass the identity gate
 [director 22:34:12] WIP reel updated: 17 passing shots → WIP_REEL.mp4
 [director 22:34:12] 4 beats still open — working: the parrots wheel free across the evening sky
+[director 01:18:18] calibrating the gates against known human verdicts before trusting them
+[director 01:20:04]   CALIBRATION: agrees with 2/3 known human verdicts (67%), 3 UNCHECKED
+[director 01:20:04]   GT_pass_s1_coldopen: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The beat requires a bear and a dog sitting relaxed by a creek with fishing rods, but the image shows only a bear st
+[director 01:20:04]   WARNING: the gate disagrees with humans too often to be trusted — fix the gate or the beat wording before believing any verdict above
+[director 01:20:06] WIP reel updated: 18 passing shots → WIP_REEL.mp4
+[director 01:20:06] 5 beats still open — working: the effort: the door is forced with real physical weight
+[director 01:33:10]     seed 501: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image does not depict a bear’s paws planted against the boxcar door wit
+[director 01:33:10]     seed 547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright with arms raised and palms forward in a static
+[director 01:33:10]     seed 582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is not depicted pushing against a closed boxcar door with its paws
+[director 01:33:10]     seed 619: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows the bear pressing its paws flat against the closed 
+[director 01:33:10]     identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches the locked design in terms of coat color, body proportions, and ea
+[director 01:33:10]     LOCKED stills/LOCKED_s6.png
+[director 01:33:10]     animation failed: [make-video] uploading LOCKED_s6.png → ComfyUI
+[director 01:33:10]   s6_heave attempt 0 → ANIMATE_FAILED
+[director 01:33:13] WIP reel updated: 18 passing shots → WIP_REEL.mp4
+[director 01:33:13] 5 beats still open — working: the effort: the door is forced with real physical weight
+[director 02:24:55]     seed 3501: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear’s paws are pressed against the door, but there is no visible dust
+[director 02:24:55]     seed 3547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright on its hind legs with paws pressed against th
+[director 02:24:55]     seed 3582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The beat requires a single bear’s paws planted flat against the door with 
+[director 02:24:55]     seed 3619: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear’s paws are planted on the ground, not against the door planks, an
+[director 02:24:55]     seed 6501: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is leaning against the door with its paws pressed flat, but there
+[director 02:24:55]     seed 6547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear’s paws are not planted against the boxcar door, and there is no v
+[director 02:24:55]     seed 6582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright and posing calmly with its paws raised in fro
+[director 02:24:55]     seed 6619: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright in the open doorway, leaning forward with paw
+[director 02:24:55]     seed 4501: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear’s paws are gripping the sides of the car, not planted flat agains
+[director 02:24:55]     seed 4547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is not pushing against a closed boxcar door with its paws planted
+[director 02:24:55]     seed 4582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is pushing against the door, but there is no visible dust streami
+[director 02:24:55]     seed 4619: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is not depicted exerting force to push or move the boxcar door; i
+[director 02:24:55]     seed 7501: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright and relaxed, with its paws at its sides, show
+[director 02:24:55]     seed 7547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image does not depict a bear’s paws pressing against the door; instead
+[director 02:24:55]     seed 7582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image does not depict a bear’s paws pressing against a boxcar door; in
+[director 02:24:55]     seed 7619: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is crouched on the ground with its paws flat on the dirt, not pre
+[director 02:24:55]     seed 5501: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear’s paws are planted on the ground, not against the boxcar door, an
+[director 02:24:55]     seed 5547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows two small, fluffy animals crouched on the ground near the 
+[director 02:24:55]     seed 5582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright on its hind legs in a neutral, still pose wit
+[director 02:24:55]     seed 5619: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image does not depict dust streaming down from the plank seams as the 
+[director 02:24:55]     seed 8501: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright and relaxed beside the boxcar, with its paws 
+[director 02:24:55]     seed 8547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows two small, fluffy creatures sitting upright on the ground 
+[director 02:24:55]     seed 8582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright and relaxed, not applying force to the boxcar
+[director 02:24:55]     seed 8619: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear’s paws are planted on the ground beside the track, not against th
+[director 02:24:55]     s6_heave: NO candidate passed — reported UNBUILT, nothing locked
+[director 02:24:55]     s6_heave: UNBUILT
+[director 02:24:55]   s6_heave attempt 1 → UNBUILT
+[director 02:24:55]   BLOCKED s6_heave early — the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 02:24:58] WIP reel updated: 18 passing shots → WIP_REEL.mp4
+[director 02:24:58] 4 beats still open — working: the parrots wheel free across the evening sky
+[director 02:39:15]     seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched in the foreground, which viola
+[director 02:39:15]     seed 47: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a huge flock of bright scarlet parrots in active, 
+[director 02:39:15]     identity the vs parrot_canon.png: MATCH — YES. The scarlet macaw in the right image matches the locked design in terms of head shape, beak structure
+[director 02:39:15]     LOCKED stills/LOCKED_r4_parrots_sky.png
+[director 02:39:15]     animation failed: [make-video] uploading LOCKED_r4_parrots_sky.png → ComfyUI
+[director 02:39:15]   r4_parrots_sky attempt 0 → ANIMATE_FAILED
+[director 02:39:19] WIP reel updated: 18 passing shots → WIP_REEL.mp4
+[director 02:39:19] 4 beats still open — working: the parrots wheel free across the evening sky
+[director 02:54:07]     seed 3011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a huge flock of bright scarlet parrots wheeling 
+[director 02:54:07]     identity the vs parrot_canon.png: DRIFT — NO. The parrot in the right image does not match the locked design in the left image because the head shap
+[director 02:54:07]     seed 3047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single parrot perched on a branch in the foreground, whi
+[director 02:54:07]     seed 3082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large macaw perched upright in the foreground, wh
+[director 02:54:07]     seed 3119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts a flock of parrots flying in a golden sky, but there is 
+[director 02:54:07]     seed 4011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched prominently in the foregroun
+[director 02:54:07]     seed 4047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts a single large macaw perched in the foreground, which vi
+[director 02:54:07]     seed 4082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a huge flock of bright scarlet parrots (with red
+[director 02:54:07]     identity the vs parrot_canon.png: MATCH — YES. The scarlet macaw in the right image matches the locked design in terms of head shape, beak structure
+[director 02:54:07]     LOCKED stills/LOCKED_r4_parrots_sky.png
+[director 02:54:07]     animation failed: [make-video] uploading LOCKED_r4_parrots_sky.png → ComfyUI
+[director 02:54:07]   r4_parrots_sky attempt 1 → ANIMATE_FAILED
+[director 02:54:09] WIP reel updated: 18 passing shots → WIP_REEL.mp4
+[director 02:54:09] 4 beats still open — working: the parrots wheel free across the evening sky
+[director 03:09:37]     seed 6011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched prominently in the foregroun
+[director 03:09:37]     seed 6047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image does not depict a train, which is explicitly required in the bea
+[director 03:09:37]     seed 6082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched on a branch in the foregroun
+[director 03:09:37]     seed 6119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts a single large parrot perched on a branch in the foregro
+[director 03:09:37]     seed 7011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts a single large parrot perched on a branch in the foregro
+[director 03:09:37]     seed 7047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched in the foreground, which vio
+[director 03:09:37]     seed 7082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched on a branch in the foregroun
+[director 03:09:37]     seed 7119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts a single macaw perched on a branch in the foreground, wh
+[director 03:09:37]     seed 8011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched on a branch in the foregroun
+[director 03:09:37]     seed 8047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched on a branch in the foregroun
+[director 03:09:37]     seed 8082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched on a branch in the foregroun
+[director 03:09:37]     seed 8119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large red macaw perched on a branch in the foregr
+[director 03:09:37]     r4_parrots_sky: NO candidate passed — reported UNBUILT, nothing locked
+[director 03:09:37]     r4_parrots_sky: UNBUILT
+[director 03:09:37]   r4_parrots_sky attempt 2 → UNBUILT
+[director 03:09:37]   BLOCKED r4_parrots_sky early — the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 03:09:40] WIP reel updated: 18 passing shots → WIP_REEL.mp4
+[director 03:09:40] 3 beats still open — working: the meadow floods with freed animals — the rescue at full scale
+[director 03:32:08]     seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts llamas instead of ponies and camels as specified in the be
+[director 03:32:08]     seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image does not depict a train with open boxcar doors as required by the 
+[director 03:32:08]     seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a brown, hairless, elongated creature that is not a known ci
+[director 03:32:08]     seed 119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a green meadow beside a train with freed circus a
+[director 03:32:08]     seed 1011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows four animals standing upright in a line on grass, but the 
+[director 03:32:08]     seed 1047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a green meadow beside a train with freed circus 
+[director 03:32:08]     LOCKED stills/LOCKED_r5_crowd_wide.png
+[director 03:32:08]     clip: beat FAIL (0/5)
+[director 03:32:08]     r5_crowd_wide: animation never holds the beat — clip NOT used; kept at clips/_failed/r5_crowd_wide_failed.mp4 so the failure can be diagnosed, still
+[director 03:32:08]   r5_crowd_wide attempt 0 → CLIP_FAILED
+[director 03:32:10] WIP reel updated: 18 passing shots → WIP_REEL.mp4
+[director 03:32:10] STOPPING — nothing has passed the gates in 2.2h. 3 beat(s) open, 3 blocked. These shots need re-conceiving, not re-rolling; the GPU is not the bottleneck and running it overnight will not change the answer.
+[director 03:32:10]   blocked: s7_dooropen — the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 03:32:10]   blocked: s6_heave — the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 03:32:10]   blocked: r4_parrots_sky — the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 03:32:10] what there is to look at: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/WIP_REEL.mp4 and /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/QUESTIONS.md
+[director 03:32:13] WIP reel updated: 18 passing shots → WIP_REEL.mp4
+[director 03:32:13] needs a human decision:
+[director 03:32:13]   s7_dooropen: the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 03:32:13]   s6_heave: the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 03:32:13]   r4_parrots_sky: the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[03:32:13] judge via in-process VL
+[dam] evicting 27GB of ComfyUI cached models before the next stage
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[03:32:31] reclaimed 27GB of ComfyUI cached models before the still pass
+[03:32:31] === s7b_hank_flat — beat: a big round brown bear with a cream belly sitting slumped against the boxcar below the ope
+[mem] storyforge-still s7b_hank_flat: asking for 41GB — measured, not the 38GB declared
+[03:32:31]   holding 41GB for storyforge-still s7b_hank_flat
+[03:32:31]   carrying 32 lesson(s) (1 inherited from earlier films) into this shot
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 9488.18it/s]
+[03:34:19]   seed 7811: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright with a slight smile and wide eyes, which contradicts the required "
+[03:34:23]   prescription: Restage the bear in a slumped, weary posture with his head tilted back against the boxcar, arms limp, legs splayed, and add visible dust par
+[03:34:24]   the weld's backend is down or loading — waiting for it (this does not count as a failed idea)
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[03:34:42]   render backend was down — restarted it ourselves
+[03:34:42]   render backend is back
+[03:36:29]   seed 7847: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright with its front paws on the ground, not slumped or leaning back with
+[03:36:34]   prescription: Restage the bear to be slumped back against the boxcar with his head tilted back, arms limp at his sides, legs splayed in the gravel, and ad
+[03:36:34]   the weld's backend is down or loading — waiting for it (this does not count as a failed idea)
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[03:36:52]   render backend was down — restarted it ourselves
+[03:36:52]   render backend is back
+[03:38:33]   seed 7882: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted in a relaxed, upright seated position with its head tilted back and eyes l
+[03:38:36]   prescription: Add visible dust particles gently settling around the bear, especially near his body and in the air above the gravel, to match the described
+[03:38:37]   the weld's backend is down or loading — waiting for it (this does not count as a failed idea)
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[03:38:55]   render backend was down — restarted it ourselves
+[03:38:55]   render backend is back
+[03:40:32]   seed 7919: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted with wide, alert eyes and a slightly open mouth, conveying a look of surpr
+[03:40:36]   prescription: Close the bear’s eyes slightly, droop his eyelids to convey exhaustion, and add visible dust particles gently settling around him and on his
+[03:40:37]   the weld's backend is down or loading — waiting for it (this does not count as a failed idea)
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[03:40:55]   render backend was down — restarted it ourselves
+[03:40:55]   render backend is back
+[03:42:39]   seed 8011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted with a relaxed, slightly smiling expression and no visible dust settling, 
+[03:42:43]   prescription: Add visible dust particles settling around the bear, especially near his face and body, and adjust his expression to show exhaustion—slightl
+[03:44:18]   seed 8047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted with wide eyes and a slightly open mouth, conveying alertness or surprise 
+[03:44:23]   prescription: Add visible dust particles gently settling around the bear and on the gravel, and reposition the bear’s eyes to be half-lidded and drooping,
+[03:46:01]   seed 8082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted in a relaxed, upright, smiling pose with hands on hips, which contradicts 
+[03:46:05]   prescription: Restage the bear in a slumped, exhausted posture with arms limp at his sides, head tilted back against the boxcar, legs splayed in the grave
+[03:46:05]   the weld's backend is down or loading — waiting for it (this does not count as a failed idea)
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[03:46:24]   render backend was down — restarted it ourselves
+[03:46:24]   render backend is back
+[03:48:05]   seed 8119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted with a slight smile and wide, upward-looking eyes, conveying a relaxed and
+[03:48:09]   prescription: Replace the bear’s wide, upward-looking eyes and slight smile with heavy-lidded, half-closed eyes and a slack, open mouth, and add visible d
+[03:48:09]   retry cycle 1 with 40 correction(s) applied
+[03:48:09]   the weld's backend is down or loading — waiting for it (this does not count as a failed idea)
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[03:48:27]   render backend was down — restarted it ourselves
+[03:48:27]   render backend is back
+[03:49:59]   seed 8811: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted with a relaxed, happy smile and is not slumped or showing signs of exhaust
+[03:50:04]   prescription: Replace the bear’s happy, relaxed smile with a weary, half-closed expression, drooping eyelids, and slightly open mouth showing fatigue; adj
+[03:51:46]   seed 8847: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted in an upright, alert posture with wide eyes and a slightly open mouth, sug
+[03:51:51]   prescription: Restage the bear in a slumped, defeated posture with his head lolling back against the boxcar, arms hanging limply, legs splayed wide in the
+[03:53:30]   seed 8882: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted with a wide, happy smile and an alert, surprised expression, which contrad
+[03:53:36]   prescription: Replace the bear’s wide, happy smile and alert, surprised eyes with a slack, weary expression—mouth slightly open, eyes half-lidded and droo
+[03:55:15]   seed 8919: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright with bent knees and feet flat on the ground, not slumped with legs 
+[03:55:20]   prescription: Restage the bear to be slumped back against the boxcar with legs splayed wide in the gravel, feet turned outward, arms hanging limply at his
+[03:56:57]   seed 9011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright with its weight evenly distributed and a calm, upward gaze, which c
+[03:57:02]   prescription: Restage the bear in a slumped, defeated posture—lean his back heavily against the boxcar, let his head droop back with eyes half-closed, spl
+[03:57:03]   the weld's backend is down or loading — waiting for it (this does not count as a failed idea)
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[03:57:21]   render backend was down — restarted it ourselves
+[03:57:21]   render backend is back
+[03:59:02]   seed 9047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted with a relaxed, happy smile, which violates the requirement for a slumped,
+[03:59:07]   prescription: Replace the bear’s happy, smirking expression with a weary, half-lidded, drooping gaze, drooping ears, and slightly open mouth showing fatig
+[04:00:42]   seed 9082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted with a relaxed, smiling expression, which violates the requirement that it
+[04:00:47]   prescription: Replace the bear’s smiling expression with a dazed, weary look—eyes half-closed, mouth slightly agape, head lolling back against the boxcar—
+[04:02:29]   seed 9119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright with arms slightly bent and hands near its abdomen, not slumped wit
+[04:02:34]   prescription: Restage the bear to be slumped back against the boxcar with his head tilted back against the planks, arms limp at his sides, legs splayed wi
+[04:02:34]   retry cycle 2 with 48 correction(s) applied
+[04:04:22]   seed 9811: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright with legs bent and feet flat on the ground, arms resting on its lap
+[04:04:27]   prescription: Restage the bear to be slumped back against the boxcar with legs splayed wide in the gravel, arms hanging limp at his sides, head tilted bac
+[04:06:08]   seed 9847: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted with a cheerful, smiling expression and an upright head, which contradicts
+[04:06:12]   prescription: Restage the bear with his head tilted back against the boxcar, arms limp at his sides, legs splayed, and add visible dust particles settling
+[04:07:51]   seed 9882: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted with a relaxed, happy smile, which violates the requirement for a slumped,
+[04:07:56]   prescription: Replace the bear’s happy, smiling expression with a weary, half-closed-eyed look, slumping his head back against the boxcar with visible str
+[04:09:37]   seed 9919: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright with its weight evenly distributed and arms resting on its abdomen,
+[04:09:42]   prescription: Restage the bear to be slumped heavily against the boxcar, with his back sagging, arms hanging limp at his sides, legs splayed wide in the g
+[04:11:26]   seed 10011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted with a wide, toothy grin and an upward-tilted head, clearly showing a rela
+[04:11:31]   prescription: Replace the bear’s wide, toothy grin with a slack, weary expression—lips slightly parted, eyes half-closed and drooping—and add visible dust
+[04:11:31]   the weld's backend is down or loading — waiting for it (this does not count as a failed idea)
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[04:11:50]   render backend was down — restarted it ourselves
+[04:11:50]   render backend is back
+[04:13:34]   seed 10047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted with a neutral expression and no visible dust settling, and the setting la
+[04:13:39]   prescription: Add visible dust particles floating in the harsh afternoon sunlight around the bear, and adjust the bear’s expression to show a dazed, weary
+[04:15:21]   seed 10082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted with a gentle smile and relaxed posture, which contradicts the required "s
+[04:15:27]   prescription: Add visible dust particles settling around the bear, reposition his body to appear slumped and weary with shoulders hunched and head droopin
+[04:17:07]   seed 10119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted with a wide, joyful smile and closed eyes, clearly showing a relaxed and h
+[04:17:12]   prescription: Replace the bear’s wide, joyful smile and closed eyes with a slack, weary expression—mouth slightly agape, eyes half-lidded and drooping, he
+[04:17:12]   s7b_hank_flat: NO candidate passed — reported UNBUILT, nothing locked
+[04:17:12]   released the storyforge-still s7b_hank_flat lease
+[04:17:12] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[04:17:12] DONE — 0/1 shots produced usable, judged assets
+[04:17:12]   s7b_hank_flat: UNBUILT
+[director 04:19:52] calibrating the gates against known human verdicts before trusting them
+[director 04:21:39]   CALIBRATION: agrees with 1/3 known human verdicts (33%), 3 UNCHECKED
+[director 04:21:39]   GT_pass_s1_coldopen: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The beat requires a bear and a dog sitting relaxed by a creek with fishing rods, but the image shows only a bear st
+[director 04:21:39]   GT_pass_s6_heave_still: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted as small and fluffy, standing upright on its hind legs, pressing its paws against the side of 
+[director 04:21:39]   WARNING: the gate disagrees with humans too often to be trusted — fix the gate or the beat wording before believing any verdict above
+[director 04:21:41] WIP reel updated: 18 passing shots → WIP_REEL.mp4
+[director 04:21:41] 5 beats still open — working: the effort: the door is forced with real physical weight
+[director 05:07:18]     seed 501: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image does not depict a bear pushing against a closed boxcar door with 
+[director 05:07:18]     seed 547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright with arms extended outward in a relaxed, open 
+[director 05:07:18]     seed 582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows bear paws pressed against the underside of a plank, but the
+[director 05:07:18]     seed 619: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is pressing against the door, but there is no visible dust streami
+[director 05:07:18]     seed 3501: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows bear paws pressed against a boarded-up window frame, not a
+[director 05:07:18]     seed 3547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is pressing against a wooden ladder attached to the train car, no
+[director 05:07:18]     seed 3582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear outside is not exerting force to push or hold the door closed; it
+[director 05:07:18]     seed 3619: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear’s paws are gripping the sides of the wagon, but there is no visib
+[director 05:07:18]     seed 1501: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows bear paws pressed against the door, but there is no visibl
+[director 05:07:18]     seed 1547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright and gripping the door with its paws, but ther
+[director 05:07:18]     seed 1582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows three bear paws pushing outward from open trailer doors, b
+[director 05:07:18]     seed 1619: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is not depicted with its paws planted flat against the planks as 
+[director 05:07:18]     seed 4501: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear’s paws are gripping the edges of the boxcar doors, but the doors 
+[director 05:07:18]     seed 4547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright on the ground beside the train car with its p
+[director 05:07:18]     seed 4582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows two cartoonish creatures with paws pressed against the doo
+[director 05:07:18]     seed 4619: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright with its paws at its sides, not pushing again
+[director 05:07:18]     seed 2501: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bears are standing upright on the tracks with paws at their sides, sho
+[director 05:07:18]     seed 2547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright with arms extended outward in a relaxed postu
+[director 05:07:18]     seed 2582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is lying on its back beneath the structure with paws raised upwar
+[director 05:07:18]     seed 2619: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is not pushing against a closed door with its paws; instead, it i
+[director 05:07:18]     seed 5547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows two rodent-like animals leaning against a train car, but t
+[director 05:07:18]     seed 5582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright on a wooden plank pathway with no visible eff
+[director 05:07:18]     seed 5619: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear’s paws are pressing against the threshold, but the door is not vi
+[director 05:07:18]     s6_heave: NO candidate passed — reported UNBUILT, nothing locked
+[director 05:07:18]     s6_heave: UNBUILT
+[director 05:07:18]   s6_heave attempt 0 → UNBUILT
+[director 05:07:21] WIP reel updated: 18 passing shots → WIP_REEL.mp4
+[director 05:07:21] 5 beats still open — working: the effort: the door is forced with real physical weight
+[director 05:52:06]     seed 3501: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear’s paws are pressing against the door, but the door is not visibly
+[director 05:52:06]     seed 3547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is pressing its paws against the wooden panel, but there is no vi
+[director 05:52:06]     seed 3582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear’s paws are not visible, and there is no depiction of the bear pre
+[director 05:52:06]     seed 3619: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear’s paws are pressed against the door, but there is no visible dust
+[director 05:52:06]     seed 6501: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright on the ground, leaning against the train car w
+[director 05:52:06]     seed 6547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is pressing its paws against the door, but there is no visible du
+[director 05:52:06]     seed 6582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright and relaxed on its hind legs with paws at its
+[director 05:52:06]     seed 6619: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright in the open doorway with its paws resting on 
+[director 05:52:06]     seed 4501: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear’s paws are resting flat against the sides of the boxcar doors, bu
+[director 05:52:06]     seed 4547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is not pressing its paws flat against the door; instead, it stand
+[director 05:52:06]     seed 4582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows bear paws pressed against the door, but there is no visibl
+[director 05:52:06]     seed 4619: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright with its paws slightly raised and apart, not 
+[director 05:52:06]     seed 7501: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright and relaxed, leaning against the boxcar with 
+[director 05:52:06]     seed 7547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear’s paws are resting flat on a wooden step without any visible effo
+[director 05:52:06]     seed 7582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows two teddy bears sitting passively on a train step with no 
+[director 05:52:06]     seed 7619: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is lying on the ground beneath the train car, not pushing against
+[director 05:52:06]     seed 5501: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright and relaxed on the ground with its paws flat o
+[director 05:52:06]     seed 5547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright on the gravel, not pushing against a closed bo
+[director 05:52:06]     seed 5582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright and relaxed, with its paws raised and open in
+[director 05:52:06]     seed 5619: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image does not depict a bear’s paws pressing against a closed boxcar d
+[director 05:52:06]     seed 8501: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is standing upright and relaxed, leaning slightly against the tra
+[director 05:52:06]     seed 8547: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright and relaxed against the door with no visible e
+[director 05:52:06]     seed 8582: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright and relaxed, with its paws held near its chest
+[director 05:52:06]     seed 8619: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright on the grass, not actively pushing against the
+[director 05:52:06]     s6_heave: NO candidate passed — reported UNBUILT, nothing locked
+[director 05:52:06]     s6_heave: UNBUILT
+[director 05:52:06]   s6_heave attempt 1 → UNBUILT
+[director 05:52:06]   BLOCKED s6_heave early — the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 05:52:09] WIP reel updated: 18 passing shots → WIP_REEL.mp4
+[director 05:52:09] 4 beats still open — working: the parrots wheel free across the evening sky
+[director 06:04:50]     seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched on a branch in the foreground,
+[director 06:04:50]     seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched on a branch in the foreground,
+[director 06:04:50]     seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image does not depict the train mentioned in the beat; there is no train
+[director 06:04:50]     seed 119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched on a branch in the foreground
+[director 06:04:50]     seed 1011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single parrot perched on a branch in the foreground, whi
+[director 06:04:50]     seed 1047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large macaw perched on a branch with wings spread
+[director 06:04:50]     seed 1082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched on a branch in the foregroun
+[director 06:04:50]     seed 1119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched on a branch in the foregroun
+[director 06:04:50]     seed 2011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image does not depict a train, which is explicitly required in the bea
+[director 06:04:50]     seed 2047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts a single large parrot perched on a branch in the foregro
+[director 06:04:50]     seed 2082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image does not depict a train, which is explicitly required in the bea
+[director 06:04:50]     seed 2119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched on a branch in the foregroun
+[director 06:04:50]     r4_parrots_sky: NO candidate passed — reported UNBUILT, nothing locked
+[director 06:04:50]     r4_parrots_sky: UNBUILT
+[director 06:04:50]   r4_parrots_sky attempt 0 → UNBUILT
+[director 06:04:52] WIP reel updated: 18 passing shots → WIP_REEL.mp4
+[director 06:04:52] 4 beats still open — working: the parrots wheel free across the evening sky
+[director 06:17:26]     seed 3011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched on a branch in the foregroun
+[director 06:17:26]     seed 3047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched on a branch in the foregroun
+[director 06:17:26]     seed 3082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched on a branch in the foregroun
+[director 06:17:26]     seed 3119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single macaw perched on a branch in the foreground, whic
+[director 06:17:26]     seed 4011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows multiple parrots, but the foreground parrot is perched and
+[director 06:17:26]     seed 4047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image clearly shows a single large parrot perched on a branch in the f
+[director 06:17:26]     seed 4082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts a single large parrot perched on a branch in the foregro
+[director 06:17:26]     seed 4119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a flock of parrots flying, but the train is not visible in
+[director 06:17:26]     seed 5011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large parrot perched on a green pole in the foreg
+[director 06:17:26]     seed 5047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large macaw perched upright on a vertical surface
+[director 06:17:26]     seed 5082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image does not depict a train, which is explicitly required in the bea
+[director 06:17:26]     seed 5119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a single large macaw in the foreground with numerous small
+[director 06:17:26]     r4_parrots_sky: NO candidate passed — reported UNBUILT, nothing locked
+[director 06:17:26]     r4_parrots_sky: UNBUILT
+[director 06:17:26]   r4_parrots_sky attempt 1 → UNBUILT
+[director 06:17:26]   BLOCKED r4_parrots_sky early — the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 06:17:29] WIP reel updated: 18 passing shots → WIP_REEL.mp4
+[director 06:17:29] 3 beats still open — working: the meadow floods with freed animals — the rescue at full scale
+[director 06:28:23]     seed 3011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a zebra and a horse-like creature standing calmly in a mea
+[director 06:28:23]     seed 3047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a green meadow beside a train with freed circus 
+[director 06:28:23]     LOCKED stills/LOCKED_r5_crowd_wide.png
+[director 06:28:23]     clip: beat FAIL (0/5)
+[director 06:28:23]     r5_crowd_wide: animation never holds the beat — clip NOT used; kept at clips/_failed/r5_crowd_wide_failed.mp4 so the failure can be diagnosed, still
+[director 06:28:23]   r5_crowd_wide attempt 1 → CLIP_FAILED
+[director 06:28:26] WIP reel updated: 18 passing shots → WIP_REEL.mp4
+[director 06:28:26] STOPPING — nothing has passed the gates in 2.1h. 3 beat(s) open, 3 blocked. These shots need re-conceiving, not re-rolling; the GPU is not the bottleneck and running it overnight will not change the answer.
+[director 06:28:26]   blocked: s7_dooropen — the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 06:28:26]   blocked: s6_heave — the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 06:28:26]   blocked: r4_parrots_sky — the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 06:28:26] what there is to look at: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/WIP_REEL.mp4 and /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/QUESTIONS.md
+[director 06:28:28] WIP reel updated: 18 passing shots → WIP_REEL.mp4
+[director 06:28:28] needs a human decision:
+[director 06:28:28]   s7_dooropen: the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 06:28:28]   s6_heave: the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 06:28:28]   r4_parrots_sky: the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+=== ANIMATE s6_heave ===
+[06:29:41] judge via in-process VL
+[06:29:41] === s6_heave — beat: the whole closed boxcar door seen straight on with a bear's two big paws planted flat agai
+[06:29:41]   --stage animate: using the locked still LOCKED_s6.png
+[06:29:41]   LOCKED stills/LOCKED_s6.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[06:29:59]   bounced ComfyUI so Wan loads into a clean process
+[06:29:59]   render backend is back
+[06:29:59]   holding 47GB for storyforge-animate s6_heave
+[06:29:59]   carrying 3 animation correction(s) into the motion prompt
+[06:29:59]   animate engine: ltx25
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 15666.63it/s]
+[06:32:17]   clip: beat PASS (4/5)
+[06:32:17]   released the storyforge-animate s6_heave lease
+[06:32:17] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[06:32:17] DONE — 1/1 shots produced usable, judged assets
+[06:32:17]   s6_heave: CLIP_KEPT
+=== s6_heave exit 0 ===
+=== ANIMATE r4_parrots_sky ===
+[06:32:17] judge via in-process VL
+[06:32:17] === r4_parrots_sky — beat: a huge flock of dozens of bright scarlet parrots wheeling across the warm golden evening s
+[06:32:17]   --stage animate: using the locked still LOCKED_r4_parrots_sky.png
+[06:32:17]   LOCKED stills/LOCKED_r4_parrots_sky.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[06:32:35]   bounced ComfyUI so Wan loads into a clean process
+[06:32:35]   render backend is back
+[06:32:35]   holding 47GB for storyforge-animate r4_parrots_sky
+[06:32:36]   carrying 7 animation correction(s) into the motion prompt
+[06:32:36]   animate engine: ltx25
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 16302.63it/s]
+[06:34:45]   clip: beat FAIL (2/5)
+[06:34:56]   window probe t=0.5s: FAIL
+[06:35:06]   window probe t=1.51s: FAIL
+[06:35:16]   window probe t=2.52s: PASS
+[06:35:26]   window probe t=3.53s: PASS
+[06:35:35]   window probe t=4.54s: PASS
+[06:35:36]   kept only the stretch that holds the beat: 2.0158332999999997s–5.041667s
+[06:35:36]   released the storyforge-animate r4_parrots_sky lease
+[06:35:36] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[06:35:36] DONE — 1/1 shots produced usable, judged assets
+[06:35:36]   r4_parrots_sky: CLIP_TRIMMED
+=== r4_parrots_sky exit 0 ===
+=== ANIMATE r5_crowd_wide ===
+[06:35:36] judge via in-process VL
+[06:35:36] === r5_crowd_wide — beat: a green meadow beside the train with many freed circus animals - zebras, ponies, camels, f
+[06:35:36]   --stage animate: using the locked still LOCKED_r5_crowd_wide.png
+[06:35:36]   LOCKED stills/LOCKED_r5_crowd_wide.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[06:35:54]   bounced ComfyUI so Wan loads into a clean process
+[06:35:54]   render backend is back
+[06:35:54]   holding 47GB for storyforge-animate r5_crowd_wide
+[06:35:55]   carrying 2 animation correction(s) into the motion prompt
+[06:35:55]   animate engine: ltx25
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 17577.99it/s]
+[06:38:00]   clip: beat FAIL (0/5)
+[06:38:11]   window probe t=0.5s: FAIL
+[06:38:20]   window probe t=1.51s: FAIL
+[06:38:30]   window probe t=2.52s: FAIL
+[06:38:42]   window probe t=3.53s: FAIL
+[06:38:53]   window probe t=4.54s: FAIL
+[06:38:57]   prescription for the next animate: Add subtle, natural motion to the animals—have the zebra shift its weight slightly, the lion lower its head and turn it gently, the giraffe 
+[06:38:57]   r5_crowd_wide: animation never holds the beat — clip NOT used; kept at clips/_failed/r5_crowd_wide_failed.mp4 so the failure can be diagnosed, still stays locked
+[06:38:57]   released the storyforge-animate r5_crowd_wide lease
+[06:38:57] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[06:38:57] DONE — 0/1 shots produced usable, judged assets
+[06:38:57]   r5_crowd_wide: CLIP_FAILED
+=== r5_crowd_wide exit 1 ===
+[director 06:38:58] calibrating the gates against known human verdicts before trusting them
+[director 06:41:19]   CALIBRATION: agrees with 2/4 known human verdicts (50%), 2 UNCHECKED
+[director 06:41:19]   GT_pass_s1_coldopen: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The beat requires a bear and a dog sitting relaxed by a creek with fishing rods, but the image shows only a bear st
+[director 06:41:19]   GT_pass_s6_heave_still: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted as small and fluffy, standing upright on its hind legs, pressing its paws against the side of 
+[director 06:41:19]   WARNING: the gate disagrees with humans too often to be trusted — fix the gate or the beat wording before believing any verdict above
+[director 06:41:22] WIP reel updated: 20 passing shots → WIP_REEL.mp4
+[director 06:41:22] 3 beats still open — working: the meadow floods with freed animals — the rescue at full scale
+[director 06:54:51]     seed 6011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows animals standing still on grass with no visible motion or 
+[director 06:54:51]     seed 6047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image does not depict the required variety of freed circus animals (in
+[director 06:54:51]     seed 6082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a zebra, a small brown animal resembling an armadillo or g
+[director 06:54:51]     seed 6119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows animals standing still in a meadow beside train cars, but 
+[director 06:54:51]     seed 7011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image contains a rhinoceros, which is not among the specified circus a
+[director 06:54:51]     seed 7047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a train with closed boxcar doors, which violates the requi
+[director 06:54:51]     seed 7082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a zebra and a horse running forward, but the train car in 
+[director 06:54:51]     seed 7119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image contains a seal, which is not listed in the beat’s specified ani
+[director 06:54:51]     seed 8011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies "freed circus animals" in a meadow beside a train with 
+[director 06:54:51]     seed 8047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows animals standing in a field with boxcar-like structures in
+[director 06:54:51]     seed 8082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies "freed circus animals" in a meadow beside a train with 
+[director 06:54:51]     seed 8119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a green meadow beside a train with freed circus 
+[director 06:54:51]     LOCKED stills/LOCKED_r5_crowd_wide.png
+[director 06:54:51]     animation failed: [make-video] uploading LOCKED_r5_crowd_wide.png → ComfyUI
+[director 06:54:51]   r5_crowd_wide attempt 2 → ANIMATE_FAILED
+[director 06:54:54] WIP reel updated: 20 passing shots → WIP_REEL.mp4
+[director 06:54:54] 3 beats still open — working: the meadow floods with freed animals — the rescue at full scale
+[director 07:05:42]     seed 9011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows stylized cartoon animals standing calmly in a field, but t
+[director 07:05:42]     seed 9047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies "ponies, camels, flamingos" among the freed circus anim
+[director 07:05:42]     seed 9082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a green meadow beside a train with freed circus 
+[director 07:05:42]     LOCKED stills/LOCKED_r5_crowd_wide.png
+[director 07:05:42]     clip: beat FAIL (0/5)
+[director 07:05:42]     r5_crowd_wide: animation never holds the beat — clip NOT used; kept at clips/_failed/r5_crowd_wide_failed.mp4 so the failure can be diagnosed, still
+[director 07:05:42]   r5_crowd_wide attempt 3 → CLIP_FAILED
+[director 07:05:42]   BLOCKED r5_crowd_wide — still locks but no animation holds the beat after 4 escalating attempts; moving to the next beat
+[director 07:05:45] WIP reel updated: 20 passing shots → WIP_REEL.mp4
+[director 07:05:45] 2 beats still open — working: Ellie trumpets in triumph, trunk raised high
+[director 07:26:47]     seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging down slightly curved, not curled high above 
+[director 07:26:47]     seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging down in a relaxed position, not curled high 
+[director 07:26:47]     seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging down slightly curved, not curled high above 
+[director 07:26:47]     seed 119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging down slightly curved, not curled high above
+[director 07:26:47]     seed 1011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging down slightly curved, not curled high abov
+[director 07:26:47]     seed 1047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging down slightly curved, not curled high abov
+[director 07:26:47]     seed 1082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging down in a relaxed position, not curled hig
+[director 07:26:47]     seed 1119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is curled downward, not high above her head as requir
+[director 07:26:47]     seed 2011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging down in a relaxed curve, not curled high a
+[director 07:26:47]     seed 2047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging down in a relaxed position, not curled hig
+[director 07:26:47]     seed 2082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging down in a relaxed, curved position, not cu
+[director 07:26:47]     seed 2119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is curled slightly upward, not high above her head as
+[director 07:26:47]     c2_ellie_trumpet: NO candidate passed — reported UNBUILT, nothing locked
+[director 07:26:47]     c2_ellie_trumpet: UNBUILT
+[director 07:26:47]   c2_ellie_trumpet attempt 0 → UNBUILT
+[director 07:26:49] WIP reel updated: 20 passing shots → WIP_REEL.mp4
+[director 07:26:49] 2 beats still open — working: Ellie trumpets in triumph, trunk raised high
+[director 07:47:36]     seed 3011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging down in a relaxed curve, not curled high a
+[director 07:47:36]     seed 3047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging relaxed and slightly curved downward, not 
+[director 07:47:36]     seed 3082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging down and slightly curled at the tip, not c
+[director 07:47:36]     seed 3119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging down and slightly curled at the tip, not c
+[director 07:47:36]     seed 4011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is curled downward, not high above her head as requir
+[director 07:47:36]     seed 4047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging down in a relaxed curve, not curled high a
+[director 07:47:36]     seed 4082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging down slightly curved, not curled high abov
+[director 07:47:36]     seed 4119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging down in a relaxed curve, not curled high a
+[director 07:47:36]     seed 5011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging down slightly curved, not curled high abov
+[director 07:47:36]     seed 5047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is curled slightly upward but not high above her head
+[director 07:47:36]     seed 5082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is hanging down slightly curved, not curled high abov
+[director 07:47:36]     seed 5119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s trunk is curled downward, not high above her head as requir
+[director 07:47:36]     c2_ellie_trumpet: NO candidate passed — reported UNBUILT, nothing locked
+[director 07:47:36]     c2_ellie_trumpet: UNBUILT
+[director 07:47:36]   c2_ellie_trumpet attempt 1 → UNBUILT
+[director 07:47:36]   BLOCKED c2_ellie_trumpet early — the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 07:47:38] WIP reel updated: 20 passing shots → WIP_REEL.mp4
+[director 07:47:38] 1 beats still open — working: the goodbye, with the rescued train alive behind them
+[director 08:01:30]     seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted as a steam locomotive emitting thick black smoke, whic
+[director 08:01:30]     seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The horses are standing still with upright bodies and straight legs, showing
+[director 08:01:30]     seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is emitting a large plume of dark smoke, which contradicts the req
+[director 08:01:30]     seed 119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is emitting thick, gray smoke, which indicates it is operational 
+[director 08:01:30]     seed 1011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train in the background is emitting thick black smoke, which indicates
+[director 08:01:30]     seed 1047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The horses are depicted with their legs in mid-stride, suggesting forward 
+[director 08:01:30]     seed 1082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows three horses, but the beat specifies two matched dark bay 
+[director 08:01:30]     seed 1119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The horses are depicted with black manes and tails, but one horse has a li
+[director 08:01:30]     seed 2011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train in the background is emitting thick smoke, which contradicts the
+[director 08:01:30]     seed 2047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train in the background is emitting thick, dark smoke, which contradic
+[director 08:01:30]     seed 2082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train in the background is emitting a thick plume of white smoke, whic
+[director 08:01:30]     seed 2119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The horses are depicted with their front legs slightly raised, suggesting 
+[director 08:01:30]     s8_goodbye: NO candidate passed — reported UNBUILT, nothing locked
+[director 08:01:30]     s8_goodbye: UNBUILT
+[director 08:01:30]   s8_goodbye attempt 0 → UNBUILT
+[director 08:01:33] WIP reel updated: 20 passing shots → WIP_REEL.mp4
+[director 08:01:33] 1 beats still open — working: the goodbye, with the rescued train alive behind them
+[director 08:12:13]     seed 3011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts a steam train emitting thick smoke, which is inconsisten
+[director 08:12:13]     seed 3047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts two dark bay horses with black manes and tails, 
+[director 08:12:13]     identity the vs horses_canon.png: MATCH — YES. The horses in the right image match the locked design in coat color, body proportions, and head/ear s
+[director 08:12:13]     LOCKED stills/LOCKED_s8_goodbye.png
+[director 08:12:13]     clip: beat FAIL (0/5)
+[director 08:12:13]     s8_goodbye: animation never holds the beat — clip NOT used; kept at clips/_failed/s8_goodbye_failed.mp4 so the failure can be diagnosed, still stays
+[director 08:12:13]   s8_goodbye attempt 1 → CLIP_FAILED
+[director 08:12:16] WIP reel updated: 20 passing shots → WIP_REEL.mp4
+[director 08:12:16] 1 beats still open — working: the goodbye, with the rescued train alive behind them
+[director 08:25:35]     seed 6011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is emitting thick gray smoke, which indicates it is operating, b
+[director 08:25:35]     seed 6047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted as moving forward with its wheels turning and an eng
+[director 08:25:35]     seed 6082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts three horses, but the beat specifies only two matched da
+[director 08:25:35]     seed 6119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts a steam locomotive emitting thick black smoke, which con
+[director 08:25:35]     seed 7011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The horses are depicted with their legs mid-stride, kicking up dust, which
+[director 08:25:35]     seed 7047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train is depicted as emitting thick black smoke and white steam, which
+[director 08:25:35]     seed 7082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The horses are standing still, not actively pulling the wagon forward, and
+[director 08:25:35]     seed 7119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The horses are standing still with no visible effort or motion, and the wa
+[director 08:25:35]     seed 8011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts the horses pulling a wagon that is physically connected 
+[director 08:25:35]     seed 8047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts three horses, not two, which violates the requirement fo
+[director 08:25:35]     seed 8082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts the horses galloping with the wagon, but the train in th
+[director 08:25:35]     seed 8119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train in the background is emitting thick white smoke, which contradic
+[director 08:25:35]     s8_goodbye: NO candidate passed — reported UNBUILT, nothing locked
+[director 08:25:35]     s8_goodbye: UNBUILT
+[director 08:25:35]   s8_goodbye attempt 2 → UNBUILT
+[director 08:25:35]   BLOCKED s8_goodbye early — the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 08:25:35]   r5_crowd_wide: unblocked on disk — back in the queue, attempts reset
+[director 08:25:35]   c2_ellie_trumpet: unblocked on disk — back in the queue, attempts reset
+[director 08:25:38] WIP reel updated: 20 passing shots → WIP_REEL.mp4
+[director 08:25:38] 2 beats still open — working: the meadow floods with freed animals — the rescue at full scale
+[director 08:44:53]     seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts freed circus animals—specifically a zebra and seve
+[director 08:44:53]     LOCKED stills/LOCKED_r5_crowd_wide.png
+[director 08:44:53]     clip: beat FAIL (0/5)
+[director 08:44:53]     r5_crowd_wide: animation never holds the beat — clip NOT used; kept at clips/_failed/r5_crowd_wide_failed.mp4 so the failure can be diagnosed, still
+[director 08:44:53]   r5_crowd_wide attempt 0 → CLIP_FAILED
+[director 08:44:56] WIP reel updated: 20 passing shots → WIP_REEL.mp4
+[director 08:44:56] STOPPING — nothing has passed the gates in 2.1h. 2 beat(s) open, 2 blocked. These shots need re-conceiving, not re-rolling; the GPU is not the bottleneck and running it overnight will not change the answer.
+[director 08:44:56]   blocked: s7_dooropen — the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 08:44:56]   blocked: s8_goodbye — the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 08:44:56] what there is to look at: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/WIP_REEL.mp4 and /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/QUESTIONS.md
+[director 08:44:59] WIP reel updated: 20 passing shots → WIP_REEL.mp4
+[director 08:44:59] needs a human decision:
+[director 08:44:59]   s7_dooropen: the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 08:44:59]   s8_goodbye: the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+DIRECTOR EXIT 0
+=== ANIMATE s8_goodbye ===
+[08:45:41] judge via in-process VL
+[08:45:41] === s8_goodbye — beat: the wooden wagon rolling away down the dirt road toward the sunset, the two matched dark b
+[08:45:41]   --stage animate: using the locked still LOCKED_s8_goodbye.png
+[08:45:41]   LOCKED stills/LOCKED_s8_goodbye.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[08:45:59]   bounced ComfyUI so Wan loads into a clean process
+[08:45:59]   render backend is back
+[08:45:59]   holding 47GB for storyforge-animate s8_goodbye
+[08:45:59]   carrying 4 animation correction(s) into the motion prompt
+[08:45:59]   animate engine: ltx25
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 7711.69it/s]
+[08:48:26]   clip: beat PASS (4/5)
+[08:48:26]   released the storyforge-animate s8_goodbye lease
+[08:48:26] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[08:48:26] DONE — 1/1 shots produced usable, judged assets
+[08:48:26]   s8_goodbye: CLIP_KEPT
+=== s8 exit 0 ===
+[director 08:48:26] calibrating the gates against known human verdicts before trusting them
+[director 08:51:21]   CALIBRATION: agrees with 2/4 known human verdicts (50%), 2 UNCHECKED
+[director 08:51:21]   GT_pass_s1_coldopen: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The beat requires a bear and a dog sitting relaxed by a creek with fishing rods, but the image shows only a bear st
+[director 08:51:21]   GT_pass_s6_heave_still: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted as small and fluffy, standing upright on its hind legs, pressing its paws against the side of 
+[director 08:51:21]   WARNING: the gate disagrees with humans too often to be trusted — fix the gate or the beat wording before believing any verdict above
+[director 08:51:24] WIP reel updated: 21 passing shots → WIP_REEL.mp4
+[director 08:51:24] 2 beats still open — working: the meadow floods with freed animals — the rescue at full scale
+[director 08:55:20]     seed 3011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts freed circus animals—specifically a zebra and a 
+[director 08:55:20]     LOCKED stills/LOCKED_r5_crowd_wide.png
+[director 08:55:20]     animation failed: [make-video] uploading LOCKED_r5_crowd_wide.png → ComfyUI
+[director 08:55:20]   r5_crowd_wide attempt 1 → ANIMATE_FAILED
+[director 08:55:25] WIP reel updated: 21 passing shots → WIP_REEL.mp4
+[director 08:55:25] 2 beats still open — working: the meadow floods with freed animals — the rescue at full scale
+[director 09:04:25]     seed 6011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts freed circus animals standing calmly on grass be
+[director 09:04:25]     LOCKED stills/LOCKED_r5_crowd_wide.png
+[director 09:04:25]     clip: beat FAIL (0/5)
+[director 09:04:25]     r5_crowd_wide: animation never holds the beat — clip NOT used; kept at clips/_failed/r5_crowd_wide_failed.mp4 so the failure can be diagnosed, still
+[director 09:04:25]   r5_crowd_wide attempt 2 → CLIP_FAILED
+[director 09:04:28] WIP reel updated: 21 passing shots → WIP_REEL.mp4
+[director 09:04:28] 2 beats still open — working: the meadow floods with freed animals — the rescue at full scale
+[director 09:13:54]     seed 9011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The animals are standing upright and relaxed in a grassy field, but there 
+[director 09:13:54]     seed 9047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts freed circus animals—zebra, llamas, and flamingo
+[director 09:13:54]     LOCKED stills/LOCKED_r5_crowd_wide.png
+[director 09:13:54]     clip: beat FAIL (0/5)
+[director 09:13:54]     r5_crowd_wide: animation never holds the beat — clip NOT used; kept at clips/_failed/r5_crowd_wide_failed.mp4 so the failure can be diagnosed, still
+[director 09:13:54]   r5_crowd_wide attempt 3 → CLIP_FAILED
+[director 09:13:54]   BLOCKED r5_crowd_wide — still locks but no animation holds the beat after 4 escalating attempts; moving to the next beat
+[director 09:13:57] WIP reel updated: 21 passing shots → WIP_REEL.mp4
+[director 09:13:57] 1 beats still open — working: Ellie trumpets in triumph, trunk raised high
+[director 09:39:25]     seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful o
+[director 09:39:25]     seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful o
+[director 09:39:25]     seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful o
+[director 09:39:25]     seed 119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful 
+[director 09:39:25]     seed 1011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful
+[director 09:39:25]     seed 1047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful
+[director 09:39:25]     seed 1082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful
+[director 09:39:25]     seed 1119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and shows no open-mouthed smile, and its he
+[director 09:39:25]     seed 2011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful
+[director 09:39:25]     seed 2047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and shows no open-mouthed smile, which is e
+[director 09:39:25]     seed 2082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and neutral, not open in a joyful smile as 
+[director 09:39:25]     seed 2119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful
+[director 09:39:25]     c2_ellie_trumpet: NO candidate passed — reported UNBUILT, nothing locked
+[director 09:39:25]     c2_ellie_trumpet: UNBUILT
+[director 09:39:25]   c2_ellie_trumpet attempt 0 → UNBUILT
+[director 09:39:28] WIP reel updated: 21 passing shots → WIP_REEL.mp4
+[director 09:39:28] 1 beats still open — working: Ellie trumpets in triumph, trunk raised high
+[director 10:07:00]     seed 3011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful
+[director 10:07:00]     seed 3047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful
+[director 10:07:00]     seed 3082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful
+[director 10:07:00]     seed 3119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful
+[director 10:07:00]     seed 4011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful
+[director 10:07:00]     seed 4047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful
+[director 10:07:00]     seed 4082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful
+[director 10:07:00]     seed 4119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing still with a neutral expression, not tilting its 
+[director 10:07:00]     seed 5011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful
+[director 10:07:00]     seed 5047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a young elephant with a joyful open-mouthed smil
+[director 10:07:00]     identity Ellie vs ellie_canon.png: MATCH — YES. The character in the right image matches Ellie in every key design aspect, including the same head s
+[director 10:07:00]     LOCKED stills/LOCKED_c2_ellie_trumpet.png
+[director 10:07:00]     clip: beat FAIL (0/5)
+[director 10:07:00]     c2_ellie_trumpet: animation never holds the beat — clip NOT used; kept at clips/_failed/c2_ellie_trumpet_failed.mp4 so the failure can be diagnosed,
+[director 10:07:00]   c2_ellie_trumpet attempt 1 → CLIP_FAILED
+[director 10:07:02] WIP reel updated: 21 passing shots → WIP_REEL.mp4
+[director 10:07:02] 1 beats still open — working: Ellie trumpets in triumph, trunk raised high
+[director 10:14:51]     seed 6011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a young elephant with a joyful open-mouthed smil
+[director 10:14:51]     identity Ellie vs ellie_canon.png: MATCH — YES. The character in the right image matches Ellie in every key design aspect, including the same head s
+[director 10:14:51]     LOCKED stills/LOCKED_c2_ellie_trumpet.png
+[director 10:14:51]     clip: beat FAIL (0/5)
+[director 10:14:51]     c2_ellie_trumpet: animation never holds the beat — clip NOT used; kept at clips/_failed/c2_ellie_trumpet_failed.mp4 so the failure can be diagnosed,
+[director 10:14:51]   c2_ellie_trumpet attempt 2 → CLIP_FAILED
+[director 10:14:54] WIP reel updated: 21 passing shots → WIP_REEL.mp4
+[director 10:14:54] 1 beats still open — working: Ellie trumpets in triumph, trunk raised high
+[director 10:38:53]     seed 9011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful
+[director 10:38:53]     seed 9047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful
+[director 10:38:53]     seed 9082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful
+[director 10:38:53]     seed 9119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyful
+[director 10:38:53]     seed 10011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyfu
+[director 10:38:53]     seed 10047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyfu
+[director 10:38:53]     seed 10082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyfu
+[director 10:38:53]     seed 10119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyfu
+[director 10:38:53]     seed 11011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is standing calmly with no visible motion or effort, and its
+[director 10:38:53]     seed 11047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyfu
+[director 10:38:53]     seed 11082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and its expression is neutral, not a joyfu
+[director 10:38:53]     seed 11119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s mouth is closed and not open in a joyful smile as required
+[director 10:38:53]     c2_ellie_trumpet: NO candidate passed — reported UNBUILT, nothing locked
+[director 10:38:53]     c2_ellie_trumpet: UNBUILT
+[director 10:38:53]   c2_ellie_trumpet attempt 3 → UNBUILT
+[director 10:38:53]   BLOCKED c2_ellie_trumpet early — the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 10:38:56] WIP reel updated: 21 passing shots → WIP_REEL.mp4
+[director 10:38:56] STOPPING — 21/23 beats have footage and 3 are BLOCKED. This film is NOT complete.
+[director 10:38:56]   blocked: s7_dooropen — the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 10:38:56]   blocked: r5_crowd_wide — still locks but no animation holds the beat after 4 escalating attempts
+[director 10:38:56]   blocked: c2_ellie_trumpet — the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 10:38:56] decisions needed: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/QUESTIONS.md
+[director 10:38:59] WIP reel updated: 21 passing shots → WIP_REEL.mp4
+[director 10:38:59] needs a human decision:
+[director 10:38:59]   s7_dooropen: the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+[director 10:38:59]   r5_crowd_wide: still locks but no animation holds the beat after 4 escalating attempts
+[director 10:38:59]   c2_ellie_trumpet: the still never passed the gates in 2 attempts — escalating the same prompt does not fix a premise the model will not render; this needs the shot re-conceived, not retried
+DIRECTOR EXIT 0
+[build-episode] PREFLIGHT — already done, skipping
+[build-episode] SONG — already done, skipping
+[build-episode] CARDS — already done, skipping
+[build-episode] SEGMENTS — already done, skipping
+[build-episode] ASSEMBLE — already done, skipping
+[build-episode] QC — already done, skipping
+[build-episode] ASSEMBLED (NOT VERIFIED) in 0.0 min → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4
+[build-episode]   QC: DEFECTS — read the _qc.md report
+[build-episode]   This film has NOT passed QC. Do not publish or call it done.
+[build-episode] NOT INCLUDED (assets missing): s4b_trainwide, t3_giraffe, s7b_hank_flat, r4_parrots_sky, r5_crowd_wide, c2_ellie_trumpet, s8_goodbye
+[build-episode] cut queued to Matt's review tab (auto)
+[build-episode] PREFLIGHT —
+[build-episode]   Song Forge: ace=True llm=True jobs_running=0
+[build-episode]   assets: 30 clips present, 4 missing
+[build-episode]     MISSING → clips/s4b_trainwide_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/s7b_hank_flat_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/r5_crowd_wide_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/c2_ellie_trumpet_final.mp4 (its segment will be skipped)
+[build-episode]   mem-gate: [mem-gate] healthy but 10GB parked in swap — bouncing idle ComfyUI to release it
+[build-episode]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[build-episode]   mem-gate: [mem-gate] ComfyUI back up
+[build-episode]   pointer gate: 22 scenes agree with beats.json
+[build-episode]   story gate scope: 22 shots in the cut; not in the cut, not judged: s4_arrival, s5_door, s6_heave, new_ellie_eye, new_s7_dooropen, outro_hank_brag, outro_signoff, s7_dooropen
+[build-episode]   running beat_gate (does every shot depict its beat?)…
+[build-episode]     [PASS] s2_thecall: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a steam train in open, arid country with thick, dark black smoke billowing from
+[build-episode]     [PASS] s2b_smoke: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a close view of an old, dark steam locomotive’s smokestack with thick black smoke
+[build-episode]     [PASS] s3_rollout: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows exactly two identical dark bay horses with black manes and tails, harnessed and g
+[build-episode]     [PASS] s3b_wagonpass: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts two identical dark bay horses in harness pulling a single open wooden wagon wit
+[build-episode]     [ERR ] s4b_trainwide: missing or unreadable clips/s4b_trainwide_final.mp4
+[build-episode]     [FAIL] t1_monkey: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a weathered, peeling red door 
+[build-episode]     [FAIL] t2_lion: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The boxcar door in the right image has peeling red pain
+[build-episode]     [FAIL] t3_giraffe: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a giraffe inside a wooden encl
+[build-episode]     [FAIL] ellie_eye: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a dark, weathered, and grimy b
+[build-episode]     [PASS] s6b_heave_close: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a large brown bear with its front paws pressed flat against a weathered red woode
+[build-episode]     [FAIL] s6_interior: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows the interior of a dark, wooden structu
+[build-episode]     [FAIL] s6c_light_widens: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows the interior of a wooden structure wit
+[build-episode]     [ERR ] s7b_hank_flat: missing or unreadable clips/s7b_hank_flat_final.mp4
+[build-episode]     [FAIL] r1_monkeys_out: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image is not visible in suffi
+[build-episode]     [FAIL] r2_lion_out: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image features a cartoon lion in a grassy field, w
+[build-episode]     [FAIL] r3_giraffe_out: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image is not the same as the 
+[build-episode]     [FAIL] r4_parrots_sky: BEAT FAIL (1/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image is not the same as the 
+[build-episode]     [ERR ] r5_crowd_wide: missing or unreadable clips/r5_crowd_wide_final.mp4
+[build-episode]     [FAIL] c1_celebration: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image does not show the circus boxcar at all; inst
+[build-episode]     [ERR ] c2_ellie_trumpet: missing or unreadable clips/c2_ellie_trumpet_final.mp4
+[build-episode]     [FAIL] s8_goodbye: BEAT FAIL (1/3 frames), but FAILED SET CONTINUITY against the 'wagon' master. NO. The wagon in the right image differs in construction, materials, and
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] t1_monkey: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a weathered,
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] t2_lion: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The boxcar door in the right image has 
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] t3_giraffe: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a giraffe i
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] ellie_eye: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a dark, weat
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] s6_interior: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows the interior of a 
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] s6c_light_widens: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows the interior 
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] r1_monkeys_out: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image 
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] r2_lion_out: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image features a cartoon lion 
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] r3_giraffe_out: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image 
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] c1_celebration: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image does not show the cir
+[build-episode]   ABORT: shots that do not depict their beat are in the EDL — reshoot them or drop them from the EDL before assembling
+[build-episode] STOPPED at preflight
+[build-episode] PREFLIGHT —
+[build-episode]   Song Forge: ace=True llm=True jobs_running=0
+[build-episode]   assets: 30 clips present, 4 missing
+[build-episode]     MISSING → clips/s4b_trainwide_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/s7b_hank_flat_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/r5_crowd_wide_final.mp4 (its segment will be skipped)
+[build-episode]     MISSING → clips/c2_ellie_trumpet_final.mp4 (its segment will be skipped)
+[build-episode]   pointer gate: 22 scenes agree with beats.json
+[build-episode]   story gate scope: 22 shots in the cut; not in the cut, not judged: s4_arrival, s5_door, s6_heave, new_ellie_eye, new_s7_dooropen, outro_hank_brag, outro_signoff, s7_dooropen
+[build-episode]   running beat_gate (does every shot depict its beat?)…
+[build-episode]     [PASS] s1_coldopen: 2 of 3 sampled frames depict the beat. FAIL. The bear is standing upright, which violates the requirement to be sitting relaxed on the creek bank.
+[build-episode]     [PASS] s2_thecall: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a steam train in open, arid country with thick, dark black smoke billowing from
+[build-episode]     [PASS] s2b_smoke: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a close view of an old, dark steam locomotive’s smokestack with thick black smoke
+[build-episode]     [PASS] s3_rollout: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows exactly two identical dark bay horses with black manes and tails, harnessed and g
+[build-episode]     [PASS] s3b_wagonpass: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts two identical dark bay horses in harness pulling a single open wooden wagon wit
+[build-episode]     [ERR ] s4b_trainwide: missing or unreadable clips/s4b_trainwide_final.mp4
+[build-episode]     [FAIL] t1_monkey: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a weathered, peeling red door 
+[build-episode]     [FAIL] t2_lion: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The boxcar door in the right image has peeling red pain
+[build-episode]     [FAIL] t3_giraffe: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a giraffe inside a wooden encl
+[build-episode]     [FAIL] ellie_eye: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a dark, weathered, and grimy b
+[build-episode]     [PASS] s6b_heave_close: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a large brown bear with its front paws pressed flat against a weathered red woode
+[build-episode]     [FAIL] s6_interior: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows the interior of a dark, wooden structu
+[build-episode]     [FAIL] s6c_light_widens: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows the interior of a wooden structure wit
+[build-episode]     [ERR ] s7b_hank_flat: missing or unreadable clips/s7b_hank_flat_final.mp4
+[build-episode]     [FAIL] r1_monkeys_out: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image is not visible in suffi
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] t1_monkey: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a weathered,
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] t2_lion: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The boxcar door in the right image has 
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] t3_giraffe: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a giraffe i
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] ellie_eye: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a dark, weat
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] s6_interior: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows the interior of a 
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] s6c_light_widens: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows the interior 
+[build-episode]   SET DRIFT (not blocking, ships as a known defect): [FAIL] r1_monkeys_out: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image 
+[build-episode]   story gate COULD NOT RUN — treat every shot as UNCHECKED, never as a pass
+[build-episode] SONG —
+[build-episode]   --no-song: using the existing music bed
+[build-episode] CARDS —
+[build-episode]   title + credit cards built
+[build-episode] SEGMENTS —
+[build-episode]   cleared 29 segment(s) from a previous build
+[build-episode]   title: 4.00s
+[build-episode]   s1_coldopen: 2.04s
+[build-episode]   L01: 1.64s
+[build-episode]   L02: 1.68s
+[build-episode]   s2_thecall: 5.04s +VO
+[build-episode]   s2b_smoke: 3.04s
+[build-episode]   L04: 1.96s
+[build-episode]   s3_rollout: 5.04s
+[build-episode]   s3b_wagonpass: 4.04s
+[build-episode]   L05: 1.32s
+[build-episode]   L06: 2.24s
+[build-episode]   t1_monkey: 2.04s
+[build-episode]   t2_lion: 3.04s
+[build-episode]   t3_giraffe: 3.06s
+[build-episode]   ellie_eye: 5.04s +VO
+[build-episode]   L07: 1.72s
+[build-episode]   L09: 3.04s
+[build-episode]   L10: 2.04s
+[build-episode]   s6b_heave_close: 3.04s
+[build-episode]   s6_interior: 3.04s
+[build-episode]   s6c_light_widens: 4.04s
+[build-episode]   L11: 1.48s
+[build-episode]   r1_monkeys_out: 5.04s
+[build-episode]   r2_lion_out: 5.04s
+[build-episode]   r3_giraffe_out: 5.04s
+[build-episode]   r4_parrots_sky: 3.00s
+[build-episode]   c1_celebration: 3.04s
+[build-episode]   L13: 2.08s
+[build-episode]   L14: 1.92s
+[build-episode]   L15: 1.36s
+[build-episode]   s8_goodbye: 5.04s
+[build-episode]   credits: 5.00s +VO
+[build-episode]   SKIPPED (asset missing): s4b_trainwide, s7b_hank_flat, r5_crowd_wide, c2_ellie_trumpet
+[build-episode]   32 segments normalised to 832x480@24
+[build-episode] ASSEMBLE —
+[build-episode]   cut assembled: 100.3s from 32 segments
+[build-episode]   score laid under and ducked: music_bed.wav
+[build-episode]   FILM: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4  (100.3s)
+[build-episode] QC —
+[build-episode]   manifest: 15 lines, 18 scenes
+[build-episode]   running film_qc (vision + audio judge)…
+[build-episode]     [PASS] audio@28.6s: 'Whole train's cooking out here' expected @28.6s, heard @28.4s (3/4 words)
+[build-episode]     [PASS] audio@30.0s: 'Easy everybody! The Wild Rescu' expected @30.0s, heard @30.0s (2/4 words)
+[build-episode]     [PASS] audio@41.4s: 'I can't, it's too heavy' expected @41.4s, heard @42.6s (1/1 words)
+[build-episode]     [PASS] audio@45.4s: 'Pin's jammed tight.' expected @45.4s, heard @45.2s (2/2 words)
+[build-episode]     [PASS] audio@47.1s: 'Ellie? It's Doug. One push, gi' expected @47.1s, heard @47.1s (2/4 words)
+[build-episode]     [PASS] audio@50.2s: 'Three, two, one, push!' expected @50.2s, heard @48.3s (1/2 words)
+[build-episode]     [PASS] audio@62.3s: 'Doors don't argue with bears.' expected @62.3s, heard @62.4s (4/4 words)
+[build-episode]     [PASS] audio@85.0s: 'Turtle called dibs on the tank' expected @85.0s, heard @78.3s (4/4 words)
+[build-episode]     [PASS] audio@87.1s: 'Anybody, anywhere, any trouble' expected @87.1s, heard @87.4s (3/3 words)
+[build-episode]     [PASS] audio@89.0s: 'the Wild Rescue rolls.' expected @89.0s, heard @89.3s (3/3 words)
+[build-episode]     [PASS] audio@96.2s: 'Can I get a hat like this?' expected @96.2s, heard @96.3s (2/2 words)
+[build-episode]     
+[build-episode]     FAIL — 4 defect(s)
+[build-episode]     report: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1_qc.md
+[build-episode]   film_qc found DEFECTS — read the report before showing anyone
+[build-episode] ASSEMBLED (NOT VERIFIED) in 11.9 min → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4
+[build-episode]   QC: DEFECTS — read the _qc.md report
+[build-episode]   This film has NOT passed QC. Do not publish or call it done.
+[build-episode] NOT INCLUDED (assets missing): s4b_trainwide, s7b_hank_flat, r5_crowd_wide, c2_ellie_trumpet
+[build-episode] cut queued to Matt's review tab (auto)

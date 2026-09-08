@@ -484,6 +484,32 @@ def main() -> int:
                 time.sleep(120)   # let whatever holds the memory finish
             continue
 
+        # An animate that died with the render backend DOWN is INFRA wearing an
+        # ANIMATE_FAILED costume (2026-08-31: ComfyUI died at 01:33 and s6_heave +
+        # r4_parrots_sky burned their whole ladders on "uploading → ComfyUI"
+        # failures minutes after their stills PASSED — two good shots blocked over
+        # a dead backend). Verdict about the machine, not the story: don't count it.
+        if res.get("state") == "ANIMATE_FAILED":
+            import urllib.request
+            try:
+                urllib.request.urlopen("http://127.0.0.1:8188/system_stats", timeout=5)
+                backend_up = True
+            except Exception:
+                backend_up = False
+            if not backend_up:
+                infra_strikes[shot_id] = infra_strikes.get(shot_id, 0) + 1
+                log(f"  {shot_id}: animate failed with the render backend DOWN — "
+                    f"infra, NOT counting an attempt (strike {infra_strikes[shot_id]}/{MAX_INFRA_STRIKES})")
+                if infra_strikes[shot_id] >= MAX_INFRA_STRIKES:
+                    state["blocked"][shot_id] = (
+                        "the render backend kept going away — this is a machine problem, "
+                        "not a story problem; check ComfyUI before re-running")
+                    log(f"  BLOCKED {shot_id} — {state['blocked'][shot_id]}")
+                    save_state(proj, state)
+                else:
+                    time.sleep(60)
+                continue
+
         state["attempts"][shot_id] = attempt + 1
         state["history"].append({"shot": shot_id, "attempt": attempt,
                                  "state": res.get("state"), "at": time.strftime("%H:%M")})

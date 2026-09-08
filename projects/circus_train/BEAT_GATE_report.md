@@ -1,8 +1,9 @@
 # beat_gate report — beats_edl.json
 
-**6 of 22 shots depict their beat.** 9 FAIL, 7 could not be judged.
+**5 of 22 shots depict their beat.** 13 FAIL, 4 could not be judged.
 
-**Story spine: 6/23 required beats are on screen.**
+**Story spine: 5/23 required beats are on screen.**
+- HOLE — they commit and roll out (expected from: s3_rollout)
 - HOLE — they arrive at the broken-down train and the trouble is visible (expected from: s4_arrival)
 - HOLE — the train is FULL of trapped animals — the scale of the trouble is seen at the slat gaps (expected from: s4b_trainwide, t1_monkey)
 - HOLE — a trapped monkey's fingers curl through a plank gap (expected from: t1_monkey)
@@ -22,74 +23,76 @@
 - HOLE — the goodbye, with the rescued train alive behind them (expected from: s8_goodbye)
 
 ## s1_coldopen — PASS
-- frames depicting the beat: 2/3
-  - [FAIL] s1_final_0.31.png: (1) A large, anthropomorphized brown bear stands upright in a relaxed posture, with its weight evenly distributed on both legs. Its eyes are closed, and its mouth is slightly open in a calm expression, suggesting a state of peaceful contentment. The bear’s arms are slightly bent, with one hand resting on its belly and the other holding a fishing rod.
+- frames depicting the beat: 3/3
+  - [PASS] s1_final_0.76.png: (1) A large, brown bear stands upright with its weight centered, arms slightly bent at the sides, and its belly prominently rounded. Its head is tilted slightly upward, eyes wide, and mouth closed in a neutral expression. A small, light-brown dog with long ears stands to the bear’s right, facing forward, with its body upright and tail down, appearing attentive.
 
-(2) In the bear’s right paw (viewer’s left), it holds a wooden fishing rod with a thin line extending downward, ending in a small, pinkish bait or lure. The bear’s left paw (viewer’s right) is placed gently on its rounded, light-colored belly. The nails on both paws are painted dark blue or black.
+(2) The bear holds a wooden fishing rod in its right paw, with the rod extending upward and slightly to the right; the line is taut and ends in a small, pinkish lure. The bear’s left paw rests on its belly. The dog has no visible objects in its paws.
 
-(3) The scene is set in a sunlit forest clearing with tall, straight tree trunks in the background and green grass and foliage in the foreground. A small stream or river is visible behind the bear, reflecting light. There is no visible dust, smoke
-    ruling: FAIL. The bear is standing upright, which violates the requirement to be sitting relaxed on the creek bank.
-  - [PASS] s1_final_1.02.png: (1) A large, animated brown bear is seated on a grassy bank, leaning slightly forward with its weight distributed evenly on its hind legs. Its front paws are resting on its thighs, and its body is relaxed, with no visible exertion or movement. The bear’s head is upright, and its eyes are wide and forward-facing.
+(3) The scene is set in a sunlit forest clearing with tall, straight tree trunks in the background and green grass and low shrubs in the foreground. There is no visible dust, debris, or smoke in the air. The lighting is soft and natural, suggesting daytime.
+    ruling: PASS. The image clearly depicts a large brown bear holding a fishing rod and standing beside a tan-and-orange bloodhound in a sunlit forest clearing, with soft morning light and no forbidden elements, matching the beat exactly.
+  - [PASS] s1_final_2.52.png: (1) A large brown bear stands waist-deep in calm water, its body upright and weight evenly distributed, with its right paw holding a fishing rod. A small brown dachshund stands beside the bear, also waist-deep in water, facing forward with its body slightly angled toward the bear. Neither animal is exerting visible effort or moving; both appear still and upright.
 
-(2) In its right paw, the bear holds a thin, light-brown fishing rod with a visible line extending downward. Near the top of the rod, a small, pinkish bead or lure is attached. Its left paw rests on its thigh, with no object in it. The bear’s claws are dark and slightly curved.
+(2) The bear holds a wooden fishing rod in its right paw; the rod has a thin line extending downward into the water, with a small pink and white bobber near the surface. The dachshund has no visible objects in its paws. Both animals’ paws are submerged in water.
 
-(3) The setting is a sunlit forest clearing with tall, straight tree trunks in the background and green grass in the foreground. A calm body of water is visible to the right, reflecting light. There is no visible dust, smoke, or debris in the air; the atmosphere appears clear and still
-    ruling: PASS. The image clearly depicts a large, round brown bear sitting relaxed on a grassy creek bank, holding a fishing rod with the line resting in the water, with no forbidden elements or actions present.
-  - [PASS] s1_final_1.74.png: (1) A large, animated brown bear is seated on a grassy bank, leaning slightly forward with its weight distributed evenly on its hind legs. Its front paws are positioned in front of its body, one resting near its chest and the other gripping an object. The bear’s posture is relaxed, with no visible strain or effort.
-
-(2) In its right paw, the bear holds a thin, light-brown fishing rod with a line extending downward. The line has small, pinkish beads or floats attached. Its left paw is placed near its chest, with black-painted claws visible.
-
-(3) The setting is a sunlit forest clearing with tall, straight tree trunks in the background and a calm body of water to the right. The air is clear, with no visible dust, smoke, or debris. Sunlight filters through the trees, casting soft shadows on the ground.
-    ruling: PASS. The image clearly depicts a large, round brown bear sitting relaxed on a grassy creek bank, holding a fishing rod with the line resting in the water, with no forbidden elements or actions present.
-- ruling: 2 of 3 sampled frames depict the beat. FAIL. The bear is standing upright, which violates the requirement to be sitting relaxed on the creek bank.
+(3) The scene is set in a forested area with tall, straight tree trunks visible in the background and green foliage along the water’s edge. The air is clear with no visible dust, smoke, or debris. The water surface is mostly still, with gentle ripples around the
+    ruling: PASS. The image clearly depicts a big brown bear and a tan-and-orange bloodhound (resembling a dachshund) standing waist-deep in a calm forest stream under peaceful morning light, with the bear holding a fishing rod and both animals appearing still and upright, with no forbidden elements present.
+  - [PASS] s1_final_4.29.png: (1) A large, brown bear stands waist-deep in calm water, leaning slightly forward with its weight supported by its legs, while a small, brown dachshund stands beside it, also partially submerged, with its body upright and head turned slightly toward the bear. Neither animal is exerting visible force or lifting anything.  
+(2) The bear holds a wooden fishing rod in its right paw, with the line extending downward into the water and a small pink bobber visible near the surface. The dachshund has no objects in its paws.  
+(3) The scene is set in a forested area with tall trees and green foliage in the background. The air is clear, with no visible dust, debris, or smoke. The water’s surface is smooth, reflecting the animals and surrounding greenery.
+    ruling: PASS. The image clearly depicts a big brown bear with a fishing rod and a tan-and-orange bloodhound (resembling a dachshund) beside a calm forest stream under peaceful morning light, with no forbidden elements or impossible actions present.
+- ruling: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a large brown bear holding a fishing rod and standing beside a tan-and-orange bloodhound in a sunlit forest clearing, with soft morning light and no forbidden elements, matching the beat exactly.
 
 ## s2_thecall — PASS
-- frames depicting the beat: 3/3
-  - [PASS] s2_call_final_0.76.png: There are no visible animals or people in the image; therefore, no bodily actions, postures, or physical efforts can be described.
+- frames depicting the beat: 2/3
+  - [PASS] s2_call_final_0.3.png: (1) A large brown bear stands upright in a forest clearing, its body slightly angled, with its left paw resting on its belly and its right paw holding a fishing rod. Its head is tilted upward, eyes wide, suggesting alertness or surprise. A small brown dog with long ears stands beside the bear, also looking upward with its head tilted, mouth slightly open, appearing attentive.
 
-There are no visible hands or paws, and thus no objects being held or manipulated by any creature.
+(2) The bear holds a wooden fishing rod in its right paw; the rod has a thin line extending upward, ending in a small pink bobber. The dog has no visible objects in its paws. The bear’s left paw is placed flat against its belly, with black-painted claws visible.
 
-A large plume of thick, dark smoke billows from the locomotive’s chimney into the sky, and faint steam or vapor is visible near the train’s wheels and base, rising above the dry, dusty ground. The air appears hazy, likely due to the smoke and the arid environment.
-    ruling: PASS. The image clearly depicts a steam train in open, arid country with thick, dark black smoke billowing from its chimney, indicating distress or mechanical trouble, and no forbidden elements are present.
-  - [PASS] s2_call_final_2.52.png: There are no visible animals or people in the image; therefore, no bodily actions, postures, or physical efforts can be described.
+(3) The scene is set in a sunlit forest with tall, straight tree trunks and green grass. In the background, to the right, a dark, smoky plume rises into the air, suggesting a fire or smoke source just beyond the frame. No visible dust, debris,
+    ruling: PASS. The image clearly depicts a brown bear and a bloodhound beside a stream in a forest, with both looking upward toward a thick column of dark smoke rising beyond the trees, matching the described beat without any forbidden elements.
+  - [PASS] s2_call_final_1.0.png: (1) A large brown bear stands upright in a forest, its body slightly angled, with its head tilted upward and eyes closed, appearing calm or contemplative. A small brown dog with long ears stands beside the bear, looking upward with wide eyes, its body upright and alert. Neither animal is exerting force or moving; they are both stationary.
 
-There are no visible hands or paws, and thus no objects being held or manipulated by any creature.
+(2) The bear holds a wooden bow in its right paw, with a string attached and two small pink beads near the top. The dog is not holding anything.
 
-A large plume of thick, dark smoke billows from the train’s chimney into the air, rising above the desert landscape. Steam is also visible near the front of the locomotive, and the surrounding air appears still, with no visible dust or debris other than the smoke.
-    ruling: PASS. The image clearly depicts a steam train in open desert country with thick, dark black smoke billowing from its chimney, indicating distress or mechanical trouble, and no forbidden elements are present.
-  - [PASS] s2_call_final_4.29.png: There are no visible animals or people in the image; therefore, no bodily actions, postures, or physical efforts can be described.
+(3) The scene is set in a sunlit forest with tall trees and green grass. In the background, to the right, a dark plume of smoke rises into the air, suggesting a fire or explosion nearby. No visible dust or debris is present in the immediate foreground.
+    ruling: PASS. The image clearly depicts a brown bear and a bloodhound standing beside a stream in a forest, with a thick column of dark smoke rising beyond the trees in the background, matching the specified beat without any forbidden elements or incorrect actions.
+  - [FAIL] s2_call_final_1.7.png: (1) A large brown bear stands upright in a forest, its body slightly turned to the side, with its head tilted upward and eyes wide, appearing alert or surprised. A small brown dog stands beside the bear, also looking upward with its head tilted, ears drooping, and body in a neutral stance. Neither animal is exerting force or moving; they are both stationary and observing something above.
 
-There are no visible hands or paws, and thus no objects being held or manipulated by any creature.
+(2) The bear has no visible objects in its paws. The dog holds a thin wooden stick in its mouth, with a string attached to it, ending in two small pink beads or baubles dangling near the bear’s shoulder.
 
-A large plume of thick, dark smoke billows from the locomotive’s chimney into the air, rising above the train and dispersing into the sky. Steam or vapor is also visible near the front wheels and along the track, indicating the train is in motion. The surrounding air appears dry and dusty, consistent with an arid desert environment.
-    ruling: PASS. The image clearly depicts a steam train in an arid, open landscape with thick, dark black smoke billowing from its chimney, steam visible near the wheels, and the train in motion along tracks—consistent with being in trouble, as required by the beat.
-- ruling: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a steam train in open, arid country with thick, dark black smoke billowing from its chimney, indicating distress or mechanical trouble, and no forbidden elements are present.
+(3) The scene is set in a sunlit forest with tall trees and green foliage. There is no visible dust, debris, or smoke in the air; the atmosphere appears clear, though some trees in the background are partially obscured by soft, natural mist or shadow.
+    ruling: FAIL. The image does not depict a thick column of dark smoke rising beyond the trees behind the bear and dog; instead, the background shows only natural mist or shadow, with no visible smoke, which contradicts the required beat.
+- ruling: 2 of 3 sampled frames depict the beat. FAIL. The image does not depict a thick column of dark smoke rising beyond the trees behind the bear and dog; instead, the background shows only natural mist or shadow, with no visible smoke, which contradicts the required beat.
 
 ## s2b_smoke — PASS
-- frames depicting the beat: 3/3
-  - [PASS] s2b_smoke_final_0.46.png: There are no animals or people visible in the image. The image shows the front portion of a steam locomotive, including its smokestack, boiler, and part of the cab, with visible rivets, metal plates, and a red-painted section. Thick, dark smoke is billowing from the smokestack into the air, which appears hazy and illuminated by warm light, suggesting either sunrise or sunset.
-    ruling: PASS. The image clearly shows a close view of an old, dark steam locomotive’s smokestack with thick black smoke billowing out against a hazy, warmly lit sky, matching the specified beat without any forbidden elements.
-  - [PASS] s2b_smoke_final_1.52.png: There are no animals or people visible in the image. The image shows the front portion of a steam locomotive, including its smokestack, boiler, and part of the cab, with visible rivets, metal plates, and a red-painted section. A thick plume of dark, dense smoke is billowing upward from the smokestack into the sky, which appears hazy and light-colored, possibly at sunrise or sunset.
-    ruling: PASS. The image clearly shows a close view of an old, dark steam locomotive’s smokestack with thick black smoke billowing into the sky, matching the described beat without any forbidden elements.
-  - [PASS] s2b_smoke_final_2.59.png: There are no animals or people visible in the image. The image shows the front portion of a steam locomotive, including its smokestack, boiler, and part of the cab, with a red and black painted exterior and riveted metal plates. Thick, dark smoke is billowing from the smokestack into the air, rising against a pale, cloudy sky.
-    ruling: PASS. The image clearly shows a close view of an old, dark steam locomotive’s smokestack with thick black smoke billowing out against a pale, cloudy sky, matching the specified beat without any forbidden elements.
-- ruling: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a close view of an old, dark steam locomotive’s smokestack with thick black smoke billowing out against a hazy, warmly lit sky, matching the specified beat without any forbidden elements.
+- frames depicting the beat: 2/3
+  - [PASS] s2b_smoke_final_0.46.png: (1) No animals or people are visible in the image; therefore, no bodily actions, postures, or physical efforts can be described.  
+(2) No hands, paws, or objects held by any visible entity are present.  
+(3) The train is emitting thick, dark smoke from its chimney, which billows upward into the sky. The surrounding air is clear except for this smoke and some distant, light clouds. The ground is dry and rocky, with sparse vegetation.
+    ruling: PASS. The image clearly depicts a steam train on tracks with thick black smoke billowing from the engine, including a locomotive and boxcars, matching the required beat without any forbidden elements or actions.
+  - [PASS] s2b_smoke_final_1.52.png: There are no visible animals or people in the image; therefore, no bodily actions, postures, or physical efforts can be described.
 
-## s3_rollout — PASS
-- frames depicting the beat: 3/3
-  - [PASS] s3_rollout_final_0.76.png: Two chestnut horses with black manes and legs are galloping side-by-side, pulling a wooden wagon; their bodies are angled forward, legs extended mid-stride, hooves kicking up dust, indicating rapid forward motion and exertion.  
-Each horse wears a leather harness with straps over the shoulders and chest, connected by reins to the wagon’s yoke; no hands or paws are visible holding objects.  
-The scene is on a dirt path through a dense pine forest; a visible cloud of dust trails behind the wagon’s rear wheels, disturbed by the horses’ movement, with no smoke or debris other than the dust.
-    ruling: PASS. The image clearly shows exactly two identical dark bay horses with black manes and tails, harnessed and galloping side-by-side, pulling a single open wooden wagon with barrels and a ladder on top, along a forest dirt road with dust trailing behind the wheels, and no forbidden elements are present.
-  - [PASS] s3_rollout_final_2.52.png: Two chestnut horses with black manes and tails are in mid-stride, galloping side-by-side on a dirt path, their legs extended and hooves kicking up dust. They are harnessed together with leather straps and reins, pulling a wooden wagon loaded with three dark wooden barrels secured by slatted sides. Dust and small particles are visibly rising from the ground behind the wagon’s rear wheels, indicating rapid movement along the dry, uneven path lined with tall pine trees.
-    ruling: PASS. The image clearly depicts exactly two identical dark bay horses with black manes and tails, harnessed side-by-side, galloping along a forest dirt road and pulling a single open wooden wagon with barrels and a ladder, with dust rising behind the wheels—fully matching the required beat and containing no forbidden elements.
-  - [PASS] s3_rollout_final_4.29.png: Two chestnut horses with black manes and tails are in mid-stride, pulling a wooden wagon forward along a dirt path. Their bodies are angled forward, legs extended in motion, with visible muscle tension indicating effort; they are harnessed together with leather straps and metal buckles, connected to the wagon’s yoke. The wagon, made of weathered wood with large spoked wheels, carries at least two dark wooden barrels secured in its bed.
+There are no visible hands or paws, and thus no objects being held or manipulated by any individual.
 
-The horses’ harnesses include metal rings, straps, and a central yoke connecting them to the wagon’s drawbar. The wagon’s wooden slats are slightly uneven, and the barrels appear aged, with visible staves and metal bands. No hands or paws are visible interacting with objects; the horses are solely engaged in pulling.
+A thick plume of dark, billowing smoke is rising from the chimney of the steam locomotive, dispersing into the clear blue sky. The smoke is dense and voluminous, indicating active combustion, and there is no visible dust or debris in the air apart from the smoke.
+    ruling: PASS. The image clearly depicts a steam locomotive on tracks with thick black smoke billowing from its chimney, pulling boxcars, and there are no forbidden elements such as people, animals, flames, or physical impossibilities.
+  - [FAIL] s2b_smoke_final_2.59.png: (1) No animals or people are visible in the image.  
+(2) No hands or paws are visible; therefore, no objects are being held or manipulated.  
+(3) A large plume of thick, dark smoke is billowing from the locomotive’s chimney into the sky, with additional smaller smoke trails visible behind the train. The air is otherwise clear, with scattered white clouds in a blue sky.
+    ruling: FAIL. The train is not depicted as a "circus steam train" — there are no visual elements such as bright colors, decorations, or circus-themed features to indicate it is part of a circus, and the description of the train as "cheerful colourful" is not supported by the image, which shows a dark green locomotive with red wheels and plain boxcars, failing the required depiction.
+- ruling: 2 of 3 sampled frames depict the beat. FAIL. The train is not depicted as a "circus steam train" — there are no visual elements such as bright colors, decorations, or circus-themed features to indicate it is part of a circus, and the description of the train as "cheerful colourful" is not supported by the image, which shows a dark green locomotive with red wheels and plain boxcars, failing the required depiction.
 
-Dust is being kicked up from the ground behind the wagon’s rear wheels, forming a light, swirling cloud in the air. The surrounding environment is a forest with tall pine trees, and the ground
-    ruling: PASS. The image clearly depicts exactly two identical dark bay horses in harness, galloping side-by-side and pulling a single open wooden wagon along a forest dirt road, with dust trailing behind the wheels, and no forbidden elements are present.
-- ruling: 3 of 3 sampled frames depict the beat. PASS. The image clearly shows exactly two identical dark bay horses with black manes and tails, harnessed and galloping side-by-side, pulling a single open wooden wagon with barrels and a ladder on top, along a forest dirt road with dust trailing behind the wheels, and no forbidden elements are present.
+## s3_rollout — FAIL
+- frames depicting the beat: 1/3
+  - [FAIL] s3_rollout_final_0.76.png: Two brown horses with black manes and tails are trotting side-by-side, pulling a wooden wagon; their legs are mid-stride, hooves kicking up dust, and their bodies are angled forward with visible muscle tension indicating effort. The wagon carries a large brown bear and a tan dachshund, both seated upright with paws resting on the wagon’s wooden slats; the bear’s front paws are on the edge, and the dog’s front paws are on the side rail. The scene is set on a dusty dirt path through a pine forest; fine dust is visible in the air behind the wagon, disturbed by the horses’ movement, and the surrounding trees are tall and evenly spaced with green foliage.
+    ruling: FAIL. The dog in the wagon is described as a "tan-and-orange bloodhound" in the beat, but the image clearly shows a tan dachshund, which is a different breed, making the depiction inconsistent with the specified character.
+  - [PASS] s3_rollout_final_2.52.png: Two brown horses are in mid-stride, pulling a wooden wagon forward along a dirt path; their legs are extended, bodies leaning forward with visible effort, and they are harnessed together with leather straps and metal buckles. Inside the wagon, a brown bear and a tan dachshund sit side-by-side, both upright and facing forward, with no visible objects in their paws or hands. Dust is rising from the ground behind the wagon’s rear wheels, indicating motion, and the surrounding forest has tall pine trees and scattered rocks, with no visible smoke or debris in the air.
+    ruling: PASS. The image clearly depicts two dark bay horses in mid-stride pulling a wooden wagon along a dirt road, with a brown bear and a tan-and-orange dog (resembling a dachshund or bloodhound) sitting upright in the wagon bed, and dust rising behind the wagon—fully matching the described beat without any forbidden elements.
+  - [FAIL] s3_rollout_final_4.29.png: Two brown horses are trotting side-by-side, pulling a wooden wagon; their legs are mid-stride, hooves lifted or striking the ground, bodies leaning forward with visible effort, harnessed with leather straps and metal buckles.  
+Inside the wagon, a brown bear and a tan dachshund sit side-by-side, both upright and facing forward; the bear’s paws rest on the wagon’s edge, and the dog’s front paws are on the floor of the wagon; neither holds any object.  
+The scene is on a dusty dirt path through a pine forest; fine dust is being kicked up behind the wagon’s rear wheels, swirling in the air, while the surrounding trees stand tall and still.
+    ruling: FAIL. The dog in the wagon is described as a "tan-and-orange bloodhound" in the beat, but the image clearly shows a tan dachshund, which is a different breed with a distinct body shape and size, making it a misrepresentation of the specified character.
+- ruling: 1 of 3 sampled frames depict the beat. PASS. The image clearly depicts two dark bay horses in mid-stride pulling a wooden wagon along a dirt road, with a brown bear and a tan-and-orange dog (resembling a dachshund or bloodhound) sitting upright in the wagon bed, and dust rising behind the wagon—fully matching the described beat without any forbidden elements.
 - set continuity (wagon): PASS — YES. The wagon in the right image matches the locked design in construction, materials, color, and era, ensuring visual continuity and allowing viewers to perceive it as the same object.
 
 ## s3b_wagonpass — PASS
@@ -99,12 +102,12 @@ Dust is being kicked up from the ground behind the wagon’s rear wheels, formin
 The horses are attached via harnesses to the front of the wagon, which carries several wooden barrels secured in a slatted wooden frame. The wagon has large wooden spoked wheels with metal rims, and the reins extend from the harnesses toward the front, though no person is visible holding them.
 
 Dust is visibly rising from the ground beneath the horses’ hooves and along the sides of the wagon wheels, indicating movement on a dry, unpaved surface. The surrounding area is a forest with tall pine trees, and the air appears clear except for the dust cloud.
-    ruling: PASS. The image clearly depicts two identical dark bay horses in harness pulling a single open wooden wagon with barrels and a ladder, viewed from a low three-quarter front angle, with dust kicking up behind the wheels on a dirt path in a forest, and no forbidden elements are present.
+    ruling: PASS. The image clearly depicts two dark bay horses in mid-stride, pulling a loaded wooden wagon down a forest dirt road, with visible dust flying behind the wheels and the horses showing exertion through muscle tension and dynamic movement, fully matching the specified beat without any forbidden elements.
   - [PASS] s3b_wagonpass_final_2.02.png: Two chestnut horses are in mid-stride, galloping forward with their legs extended and hooves kicking up dust; their bodies are angled forward, muscles tensed, and they are harnessed side-by-side to a wooden wagon. Each horse wears a bridle and harness with leather straps and metal buckles, connected by a central yoke and reins that extend forward out of frame. The wagon, made of weathered wood with large spoked wheels, carries several wooden barrels secured in a slatted rack; dust is visibly rising from the ground behind the wheels and under the horses’ hooves, indicating rapid movement on a dry dirt path.
-    ruling: PASS. The image clearly depicts two identical dark bay horses in harness, galloping forward and pulling a single open wooden wagon with barrels and a ladder on top, viewed from a low three-quarter front angle, with dust kicking up behind the wheels and no forbidden elements present.
+    ruling: PASS. The image clearly depicts two dark bay horses in mid-gallop, harnessed side-by-side to a wooden wagon loaded with barrels, moving rapidly down a forest dirt road with dust visibly rising behind the wheels and under the hooves, matching the beat exactly without any forbidden elements.
   - [PASS] s3b_wagonpass_final_3.44.png: Two brown horses are galloping side by side, pulling a wooden wagon; their legs are mid-stride, bodies leaning forward with visible muscular tension, indicating exertion. Each horse wears a bridle and harness connected by leather straps to the wagon’s yoke; no hands or paws are visible holding objects. Dust is being kicked up from the dirt path beneath the horses’ hooves, swirling around the wagon’s large wooden wheels, with no visible smoke or debris in the air.
-    ruling: PASS. The image clearly shows two identical dark bay horses in harness, galloping side by side and pulling a single open wooden wagon with barrels and a ladder on top, viewed from a low three-quarter front angle, with dust kicking up behind the wheels and no forbidden elements present.
-- ruling: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts two identical dark bay horses in harness pulling a single open wooden wagon with barrels and a ladder, viewed from a low three-quarter front angle, with dust kicking up behind the wheels on a dirt path in a forest, and no forbidden elements are present.
+    ruling: PASS. The image clearly depicts two dark bay horses galloping side by side, pulling a loaded wooden wagon down a forest dirt road, with thick dust flying behind the wheels, matching the beat exactly and containing no forbidden elements.
+- ruling: 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts two dark bay horses in mid-stride, pulling a loaded wooden wagon down a forest dirt road, with visible dust flying behind the wheels and the horses showing exertion through muscle tension and dynamic movement, fully matching the specified beat without any forbidden elements.
 - set continuity (wagon): PASS — YES. The wagon in the right image matches the locked design in construction, materials, color, and era, ensuring visual continuity and allowing viewers to perceive it as the same object.
 
 ## s4b_trainwide — ERROR
@@ -144,8 +147,24 @@ The air around the lion is clear, with no visible dust, debris, or smoke. Sunlig
 - ruling: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The boxcar door in the right image has peeling red paint and a different wood texture compared to the clean, uniformly stained wood in the left image, making them visually distinct and not the same object.
 - set continuity (boxcar door detail): FAIL — NO. The boxcar door in the right image has peeling red paint and a different wood texture compared to the clean, uniformly stained wood in the left image, making them visually distinct and not the same object.
 
-## t3_giraffe — ERROR
-- ruling: missing or unreadable clips/t3_giraffe_final.mp4
+## t3_giraffe — FAIL
+- frames depicting the beat: 3/3
+  - [PASS] t3_giraffe_final_0.46.png: (1) A giraffe stands inside a wooden enclosure, its neck curved downward and head lowered, with its eyes partially closed. Its body is upright, weight evenly distributed on all four legs, and it appears to be at rest, not pushing, lifting, or moving.  
+(2) There are no objects in or near the giraffe’s mouth, paws, or body—its mouth is closed and no tools, food, or items are visible.  
+(3) The location is a wooden structure with horizontal planks forming walls and ceiling. Sunlight streams in from above, creating visible beams that illuminate fine dust particles floating in the air.
+    ruling: PASS. The image clearly depicts a young giraffe standing in a dim wooden boxcar with her neck bowed low under the low plank ceiling, and thin blades of light falling across her back, matching the specified beat without any forbidden elements.
+  - [PASS] t3_giraffe_final_1.53.png: (1) A giraffe stands inside a wooden enclosure, its neck curved downward and head tilted slightly forward, with its eyes open and focused. Its body is upright, legs straight, and it appears to be standing still, not exerting force or moving.  
+(2) There are no objects in or near the giraffe’s mouth, paws, or body—its mouth is closed and no tools, food, or items are visible.  
+(3) The scene is indoors, enclosed by wooden planks and beams, with light streaming through gaps, illuminating airborne dust particles that are visible in the air.
+    ruling: PASS. The image clearly depicts a young giraffe standing in a dim wooden boxcar with her neck bowed low under the low plank ceiling, and thin blades of light falling across her back, with no forbidden elements present.
+  - [PASS] t3_giraffe_final_2.6.png: (1) A giraffe stands inside a wooden enclosure, its neck curved downward and head tilted slightly forward, with its body upright and weight evenly distributed on all four legs. Its eyes are open and directed forward, and its ears are perked up. There is no visible pushing, lifting, or movement beyond this static posture.
+
+(2) The giraffe has no objects in its mouth, paws, or near its body. Its hooves are on the ground, and no tools, food, or other items are visible in contact with it.
+
+(3) The scene is illuminated by a strong, angled light source from above, casting a bright beam across the giraffe’s neck and face. Fine particles, likely dust, are suspended in the air within the light beam, creating a visible haze. The wooden walls and ceiling of the enclosure are dark and textured, with horizontal planks and beams.
+    ruling: PASS. The image clearly depicts a young giraffe standing in a dim wooden boxcar with its neck bowed low under the low plank ceiling, illuminated by thin blades of light falling across its back and face, with no forbidden elements or incorrect actions present.
+- ruling: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'boxcar door detail' master. NO. The right image features a giraffe inside a wooden enclosure with horizontal slats and beams, while the left image shows a bear next to a boxcar door with vertical wooden planks and red metal framing — the construction, materials, and design are visually distinct and would not be read as the same object.
+- set continuity (boxcar door detail): FAIL — NO. The right image features a giraffe inside a wooden enclosure with horizontal slats and beams, while the left image shows a bear next to a boxcar door with vertical wooden planks and red metal framing — the construction, materials, and design are visually distinct and would not be read as the same object.
 
 ## ellie_eye — FAIL
 - frames depicting the beat: 2/3
@@ -200,16 +219,24 @@ A single beam of light enters from above, illuminating dust particles suspended 
 
 ## s6c_light_widens — FAIL
 - frames depicting the beat: 3/3
-  - [PASS] s6c_light_widens_final_0.61.png: There are no animals or people visible in the image.  
-There are no objects in or near any hands or paws.  
-A single beam of light enters from a narrow opening in a wooden door, illuminating dust particles suspended in the air within a dark, enclosed wooden space. The floor is covered with dry straw or hay.
-    ruling: PASS. The image clearly depicts a dark wooden interior, likely a boxcar, with a narrow vertical seam of golden daylight entering from a closed sliding door, casting a blade of light across a straw-covered floor, with visible dust particles suspended in the beam—exactly as described in the beat, and no forbidden elements are present.
-  - [PASS] s6c_light_widens_final_2.02.png: There are no animals or people visible in the image. The scene shows the interior of a wooden structure, likely a shed or barn, with light streaming through a partially open door. The floor is covered with scattered dry straw, and beams of sunlight cut through the air, illuminating fine dust particles suspended in the air.
-    ruling: PASS. The image clearly depicts a dark wooden interior, likely a shed or barn, with a thin seam of golden daylight entering through the edge of a partially open sliding door, casting a blade of light across the straw-covered floor, with visible dust particles illuminated in the beam—exactly matching the described beat without any forbidden elements.
-  - [PASS] s6c_light_widens_final_3.44.png: There are no animals or people visible in the image. The scene shows the interior of a wooden structure, likely a shed or small cabin, with walls made of horizontal wooden planks and a floor covered in dry straw or hay. Sunlight streams through a glass-paneled door at the far end, creating visible beams of light that illuminate dust particles floating in the air.
-    ruling: PASS. The image clearly depicts a dark wooden interior with a closed sliding door featuring a glass panel through which golden daylight streams, casting a blade of light across the straw-covered floor and illuminating dust particles in the air—exactly as described in the beat, with no forbidden elements present.
-- ruling: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows the interior of a wooden structure with light streaming through a crack, which does not match the exterior, red-painted, metal circus boxcar shown on the left, indicating they are different objects.
-- set continuity (circus boxcar): FAIL — NO. The right image shows the interior of a wooden structure with light streaming through a crack, which does not match the exterior, red-painted, metal circus boxcar shown on the left, indicating they are different objects.
+  - [PASS] s6c_light_widens_final_0.61.png: (1) A small animated elephant is sitting on the floor, facing forward, with its body slightly hunched and ears spread outward. Its front legs are tucked beneath its body, and it appears to be still, not pushing, lifting, or moving.  
+(2) The elephant is wearing a small, colorful hat with a pom-pom on top, resting on its head. No other objects are visible in or near its paws.  
+(3) The scene is set inside a dimly lit wooden enclosure, possibly a barn or stable, with straw scattered on the floor. A single, bright vertical beam of light enters from a narrow opening in a wooden door, illuminating dust particles floating in the air.
+    ruling: PASS. The image clearly depicts a dark wooden interior with a bright vertical seam of golden light at the door edge, and a small elephant faintly lit, sitting near the light, wearing a hat, with no forbidden elements or actions present.
+  - [PASS] s6c_light_widens_final_2.02.png: A small animated elephant sits on a wooden floor, facing forward with its body upright and legs tucked beneath it. Its ears are slightly spread, and its trunk hangs loosely in front of its chest; it is not moving or interacting with anything. The elephant wears a small, colorful hat with a pom-pom on top, resting on its head.
+
+There are no objects in the elephant’s paws or hands; its front legs are folded beneath its body, and its trunk is relaxed and not grasping anything.
+
+The scene is set inside a dimly lit wooden enclosure, possibly a barn or stable, with straw scattered on the floor. A bright vertical beam of light cuts through a narrow gap in a closed wooden door, illuminating dust particles floating in the air. The light creates a strong contrast between the dark interior and the bright exterior beyond the door.
+    ruling: PASS. The image clearly depicts a dark wooden interior with a bright vertical seam of golden light at the door edge, and a small elephant faintly lit and standing near the light, wearing a hat, with no forbidden elements or actions present.
+  - [PASS] s6c_light_widens_final_3.44.png: A small, animated baby elephant stands on all four legs inside a wooden enclosure, facing slightly toward the viewer with its head turned to the left. Its ears are wide and slightly forward, and its trunk hangs down loosely; it is not pushing, lifting, or interacting with anything. The elephant wears a small, colorful, feathered hat on its head.
+
+There are no objects in the elephant’s paws or trunk. The hat is the only item on or near the elephant, and it is perched securely on its head without being held.
+
+The enclosure is made of rough wooden planks, with straw scattered on the floor. A bright vertical beam of light enters through a narrow gap in a wooden door directly ahead, illuminating the straw and casting a strong shadow. Fine dust particles are visible floating in the light beam, indicating still air with minimal movement.
+    ruling: PASS. The image clearly depicts a dark wooden boxcar interior with a bright vertical seam of golden light at the door edge, and a small elephant faintly lit, standing near the light, wearing a feathered hat, with no forbidden elements or actions present.
+- ruling: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image shows a dark, wooden interior with a small elephant, while the left image is an exterior view of a red, weathered circus boxcar with metal details and a different construction style, indicating they are not the same object.
+- set continuity (circus boxcar): FAIL — NO. The right image shows a dark, wooden interior with a small elephant, while the left image is an exterior view of a red, weathered circus boxcar with metal details and a different construction style, indicating they are not the same object.
 
 ## s7b_hank_flat — ERROR
 - ruling: missing or unreadable clips/s7b_hank_flat_final.mp4
@@ -279,37 +306,69 @@ A single beam of light enters from a narrow opening in a wooden door, illuminati
 - ruling: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image is not the same as the one in the left image — it is blurred and out of focus in the background, making it impossible to confirm its construction, colors, materials, or era, and thus it does not visually match the locked design.
 - set continuity (circus boxcar): FAIL — NO. The circus boxcar in the right image is not the same as the one in the left image — it is blurred and out of focus in the background, making it impossible to confirm its construction, colors, materials, or era, and thus it does not visually match the locked design.
 
-## r4_parrots_sky — ERROR
-- ruling: missing or unreadable clips/r4_parrots_sky_final.mp4
+## r4_parrots_sky — FAIL
+- frames depicting the beat: 3/3
+  - [PASS] r4_parrots_sky_final_0.45.png: (1) A flock of red-and-blue macaws is flying through the air, wings extended and bodies angled forward in mid-flight, with one macaw prominently in the foreground appearing to glide with its wings slightly curved downward. Their bodies are streamlined for flight, and no visible physical effort such as pushing or lifting is depicted.  
+
+(2) No objects are visible in the hands or paws of any of the birds; their claws are not extended, and no items are being carried or manipulated.  
+
+(3) The air contains no visible dust, debris, or smoke; the background shows a soft-focus sky with warm-toned clouds and distant mountains, with the tops of buildings visible below, suggesting an urban or suburban setting beneath the flock.
+    ruling: PASS. The image clearly depicts a flock of bright scarlet parrots, including a prominent macaw in the foreground with wings spread, flying across a warm golden evening sky, with no forbidden elements or physical impossibilities present.
+  - [PASS] r4_parrots_sky_final_1.5.png: (1) A flock of red parrots is flying through the sky, wings extended and angled for flight, bodies streamlined and in mid-air motion, with no visible physical contact or interaction between individuals. Their legs are tucked close to their bodies, and their heads are forward, indicating forward flight.  
+
+(2) No objects are visible in the parrots’ beaks, claws, or paws. Their talons are closed and retracted, and no tools, food, or items are being carried.  
+
+(3) The air contains no visible dust, debris, or smoke. The sky is filled with soft, scattered clouds, illuminated by warm, golden light, suggesting sunrise or sunset, with no airborne particles or unusual atmospheric conditions apparent.
+    ruling: PASS. The image clearly depicts a flock of bright scarlet parrots flying across a warm golden evening sky, with a large macaw prominently in the foreground, wings spread, in mid-flight, and no forbidden elements are present.
+  - [PASS] r4_parrots_sky_final_2.55.png: (1) A flock of red-and-blue macaws is flying through the sky, wings fully extended in mid-flap, bodies angled forward as if gliding or gaining altitude. The central macaw is in sharp focus, with its wings spread wide, tail fanned, and head turned slightly to the side, suggesting forward motion. Other macaws are scattered in the background, some blurred, indicating depth and movement.
+
+(2) No objects are visible in the hands or paws of any of the macaws. Their claws are not extended, and no tools, food, or items are being carried.
+
+(3) The air is filled with soft, golden-hued clouds, likely illuminated by a low sun, creating a warm, glowing atmosphere. There is no visible dust, debris, or smoke; the sky is clear except for the natural cloud formations.
+    ruling: PASS. The image clearly depicts a flock of bright scarlet and blue macaws flying across a warm golden evening sky, with one large macaw in sharp focus in the foreground, wings spread wide, suggesting forward motion, and no forbidden elements present.
+- ruling: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image is not the same as the one in the left image — it is blurred, out of focus, and appears smaller and less detailed, making it impossible to confirm identical construction, materials, or colors, and thus not visually consistent enough to be read as the same object.
+- set continuity (circus boxcar): FAIL — NO. The circus boxcar in the right image is not the same as the one in the left image — it is blurred, out of focus, and appears smaller and less detailed, making it impossible to confirm identical construction, materials, or colors, and thus not visually consistent enough to be read as the same object.
 
 ## r5_crowd_wide — ERROR
 - ruling: missing or unreadable clips/r5_crowd_wide_final.mp4
 
 ## c1_celebration — FAIL
-- frames depicting the beat: 2/3
-  - [PASS] c1_celebration_final_0.46.png: (1) A large, brown bear stands upright in the center, facing forward with a slight smile, its arms relaxed at its sides and weight evenly distributed. Behind and around it, several white sheep and yellow chickens are standing or moving slightly, some with heads turned toward the bear. The chickens in the foreground are clustered closely, some looking up at the bear.
+- frames depicting the beat: 3/3
+  - [PASS] c1_celebration_final_0.76.png: (1) A giraffe stands upright in the center, head slightly tilted, with its neck extended and eyes looking forward. An elephant stands in front of the giraffe, facing forward, with large ears fanned out and a red hat with a feather on its head. A lion stands to the left, facing forward, with its front legs slightly apart and tail curved. Two small monkeys are perched on the elephant’s back and near the giraffe’s neck, both wearing red hats and holding onto the elephant or giraffe. All animals are in a static, posed stance with no visible motion or effort.
 
-(2) The bear’s paws are empty and resting at its sides. The chickens have small red combs and yellow beaks; none are holding or carrying objects. The sheep have white wool and upright ears; no objects are visible in their mouths or paws.
+(2) The elephant wears a red hat with a red feather on top. The two monkeys each wear small red hats; one monkey holds onto the elephant’s back, the other holds onto the giraffe’s neck. The lion, giraffe, and elephant have no visible objects in their paws or hands.
 
-(3) The scene is outdoors in a grassy area with trees in the background. The air is clear with no visible dust, smoke, or debris. Sunlight casts warm, soft lighting across the scene, creating gentle shadows on the ground.
-    ruling: PASS. The image clearly depicts a large, round brown bear standing upright in the center of a golden meadow, surrounded by a loose gathering of freed circus animals including sheep and chickens, with soft lighting and a hazy background that suggests depth and openness, fully aligning with the described beat and containing no forbidden elements.
-  - [FAIL] c1_celebration_final_1.52.png: (1) A large, brown, animated bear stands upright in the center, facing forward with a neutral expression; its body is slightly angled, and its arms are relaxed at its sides. Surrounding the bear are numerous white chickens, mostly facing upward toward it, with heads tilted back and beaks slightly open; some chickens are slightly blurred, suggesting motion or depth. In the background, several white sheep stand with heads turned toward the bear, appearing alert.  
+(3) The scene is set in a grassy field with small
+    ruling: PASS. The image clearly depicts a young elephant wearing a red cap with a feather, standing in a golden meadow alongside a giraffe, a lion, and two monkeys, all in a static, posed stance with no forbidden elements or physical impossibilities.
+  - [PASS] c1_celebration_final_2.52.png: (1) A giraffe stands upright in the center, its neck extended forward, head slightly tilted, with calm, forward-facing eyes. In front of it, a small elephant stands facing forward, trunk slightly curved downward, ears fanned out, and eyes wide. To the left, a lion walks forward with a slight crouch, front paws extended, tail curved upward. Two small monkeys are present: one perched atop the elephant’s head, facing forward, and the other to the right, standing on hind legs with arms slightly raised, tail curled upward. All animals appear motionless in a posed stance.
 
-(2) The bear has no visible objects in its paws. The chickens have no objects in their claws or beaks. The sheep have no visible objects in their mouths or hooves.  
+(2) The monkey on the elephant’s head wears a red cap with a gold emblem. The other monkey also wears an identical red cap. No other objects are visible in or near the paws or hands of any animal.
 
-(3) The scene is outdoors, likely in a farmyard, with soft, warm lighting and a hazy, golden glow in the air, suggesting either early morning or late afternoon sunlight. There is no visible dust, smoke, or debris; the air appears clear except for the natural atmospheric haze.
-    ruling: FAIL. The beat specifies a "golden meadow with freed circus animals gathered loosely around him," but the image shows only chickens and sheep, which are farm animals, not circus animals, and the setting appears to be a farmyard rather than a meadow, failing to match the described environment and animal types.
-  - [PASS] c1_celebration_final_2.59.png: (1) A large, light-brown bear stands upright in the center, facing forward with a neutral expression; its arms are slightly extended outward, and its body is positioned behind a dense group of chickens. The chickens, mostly white with red combs, are standing upright and facing the bear, some with heads tilted upward, appearing to look at it.  
+(3) The scene is set in a grassy field with small white flowers scattered throughout. The background shows blurred structures resembling wooden buildings or fences
+    ruling: PASS. The image clearly depicts a young elephant wearing a red cap in a golden meadow, surrounded by a giraffe, a lion, and two monkeys, all in a posed, motionless stance with no forbidden elements present.
+  - [PASS] c1_celebration_final_4.29.png: (1) A giraffe stands upright with its neck extended, head slightly tilted, and eyes wide, appearing alert and smiling. An elephant stands in front of the giraffe, facing forward, with large ears fanned out and trunk curved slightly downward; its posture is calm and still. A lion walks to the left, mid-stride, with its front right paw lifted and tail curled, appearing to move forward. Two small monkeys are present: one sits atop the elephant’s head, wearing a red hat, and the other is to the right, also wearing a red hat, standing upright on its hind legs.  
 
-(2) The bear’s paws are empty and not touching any object. The chickens have no visible objects in their claws or beaks.  
+(2) The monkey on the elephant’s head holds nothing; its hands rest on the hat. The monkey to the right holds nothing; its hands are at its sides. The lion, giraffe, and elephant have no visible objects in their paws or hands.  
 
-(3) The scene is outdoors in a sunlit, grassy area with trees in the background. A soft, golden haze fills the air, suggesting sunlight filtering through mist or dust, creating a warm, diffused glow around the animals.
-    ruling: PASS. The image clearly depicts a large, light-brown bear standing upright in the center of a golden, sunlit meadow, surrounded by a loose gathering of white chickens with red combs, all facing the bear, with a soft, hazy glow and trees in the background—fully matching the described beat without any forbidden elements.
-- ruling: BEAT PASS (2/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The right image does not show the circus boxcar at all; instead, it features a bear and chickens in a forest setting, with no visible train car, making it impossible for a viewer to interpret it as the same object.
-- set continuity (circus boxcar): FAIL — NO. The right image does not show the circus boxcar at all; instead, it features a bear and chickens in a forest setting, with no visible train car, making it impossible for a viewer to interpret it as the same object.
+(3) The scene is set in a grassy field with soft, golden lighting; the air
+    ruling: PASS. The image clearly depicts a young elephant wearing a red cap in a golden meadow, accompanied by a giraffe, a lion, and two monkeys, all in a natural, coherent, and physically plausible arrangement with no forbidden elements.
+- ruling: BEAT PASS (3/3 frames), but FAILED SET CONTINUITY against the 'circus boxcar' master. NO. The circus boxcar in the right image is not visible, so it cannot be confirmed as the same object in terms of construction, colors, materials, or era.
+- set continuity (circus boxcar): FAIL — NO. The circus boxcar in the right image is not visible, so it cannot be confirmed as the same object in terms of construction, colors, materials, or era.
 
 ## c2_ellie_trumpet — ERROR
 - ruling: missing or unreadable clips/c2_ellie_trumpet_final.mp4
 
-## s8_goodbye — ERROR
-- ruling: missing or unreadable clips/s8_goodbye_v2.mp4
+## s8_goodbye — FAIL
+- frames depicting the beat: 1/3
+  - [PASS] s8_goodbye_v2_0.45.png: (1) Two horses are walking forward on a dirt path, pulling a wooden cart behind them. Their bodies are angled forward, legs in mid-stride, with weight distributed for forward motion; their tails are slightly raised and swaying. A bear and a dog are seated in the cart, both leaning forward slightly, with the bear’s paws resting on the edge of the cart and the dog’s head turned toward the train. The train, a black steam locomotive, is moving along parallel tracks, its front facing right, with visible motion in the wheels and smokestack.
+
+(2) The horses are harnessed to the cart, with straps and reins visible connecting them to the cart’s yoke. The bear has its paws on the wooden side of the cart, and the dog is seated upright, with no visible objects in its paws. The train has a red front grille, a headlamp, and a smokestack emitting steam; no hands or paws are visible
+    ruling: PASS. The image clearly depicts two dark bay horses in mid-stride pulling a wooden wagon along a dirt road at sunset, with dust trailing behind the wheels, and a steaming steam locomotive running parallel on adjacent tracks, all without any forbidden elements or physical impossibilities.
+  - [FAIL] s8_goodbye_v2_1.5.png: Two brown horses are galloping forward on a dirt path, their legs extended mid-stride, tails flowing, and hooves kicking up dust as they pull a wooden cart. The cart contains a bear and a dog, both seated upright and looking forward; the bear’s paws rest on the cart’s edge, and the dog’s front paws are on the window sill of a black steam locomotive that is adjacent to the cart on parallel tracks. The air is filled with a light cloud of dust rising from the horses’ hooves, and the locomotive emits a plume of white steam from its smokestack, while the sky glows with warm sunset hues.
+    ruling: FAIL. The dog is positioned with its front paws on the window sill of the locomotive, which is physically impossible as the locomotive is on parallel tracks and the dog is inside the wagon being pulled by horses — this creates a nonsensical spatial relationship where the dog appears to be simultaneously inside the wagon and interacting with the train, violating the rule against animals being inside or behind vehicles they are not supposed to be in.
+  - [FAIL] s8_goodbye_v2_2.55.png: (1) Two brown horses are walking side-by-side on a dirt path, pulling a wooden cart behind them. Their legs are mid-stride, hooves kicking up dust, and their bodies are angled forward, indicating forward motion and exertion. A small, light-brown dog with long ears is leaning out of the open side of a black steam train car, its head and front paws resting on the edge, looking forward. A second, smaller dog with a white and brown coat is sitting upright inside the cart, facing forward, with its paws on the edge of the cart’s side.
+
+(2) The horses are harnessed to the wooden cart, which has visible straps and a yoke connecting them to the cart. The dog in the train car has no visible objects in its paws. The dog in the cart has its paws resting on the wooden side of the cart. The train car has red wheels, a black body, and a visible smokestack emitting
+    ruling: FAIL. The image depicts a dog sitting inside the wooden wagon being pulled by horses, which violates the rule against an animal being inside or behind a vehicle it is supposed to be pulling, as the dog is not pulling the wagon and is instead a passenger, making the setup physically nonsensical in the context of the beat.
+- ruling: BEAT FAIL (1/3 frames), but FAILED SET CONTINUITY against the 'wagon' master. NO. The wagon in the right image differs significantly in construction, materials, and design from the locked set on the left — it features a different wheel style, lacks the ladder and barrels, and is being pulled by horses instead of being a standalone cart, making it visually inconsistent and not the same object.
+- set continuity (wagon): FAIL — NO. The wagon in the right image differs significantly in construction, materials, and design from the locked set on the left — it features a different wheel style, lacks the ladder and barrels, and is being pulled by horses instead of being a standalone cart, making it visually inconsistent and not the same object.

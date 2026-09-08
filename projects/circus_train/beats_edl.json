@@ -5,128 +5,132 @@
    "id": "s1_coldopen",
    "clip": "clips/s1_final.mp4",
    "t": 2.0,
-   "beat": "a big round brown bear sitting relaxed on a green creek bank holding a fishing rod with the line resting in the water",
-   "clip_beat": "a big brown bear sitting down on a green creek bank holding a fishing rod, the line hanging into the water in front of him, the bear staying seated for the whole shot",
+   "beat": "a big brown bear with a fishing rod and a tan-and-orange bloodhound together beside a calm forest stream, peaceful morning light",
+   "clip_beat": "the bear and the bloodhound fishing quietly beside the stream for the whole shot, water moving gently, leaves stirring",
    "must_not": [
-    "a bear with a long realistic snout",
-    "anything urgent or alarming happening",
-    "the bear standing up",
-    "a second animal in the frame"
+    "smoke anywhere",
+    "a train",
+    "any human or person",
+    "an alarmed or frightened expression"
    ],
-   "identity": {
-    "master": "canon/hank_canon.png",
-    "subject": "Hank the bear"
-   },
-   "lock": "stills/LOCKED_s1.png"
+   "identity": [
+    {
+     "master": "canon/hank_canon.png",
+     "subject": "Hank the bear"
+    },
+    {
+     "master": "canon/doug_canon.png",
+     "subject": "Doug the bloodhound"
+    }
+   ],
+   "lock": "stills/LOCKED_s1.png",
+   "init": "stills/wip/s1_coldopen_composite.png",
+   "denoise": 0.32,
+   "animate": "the camera is locked off and does not move; the stream ripples gently, leaves stir, the bear and dog breathe calmly, the fishing line drifts"
   },
   {
    "id": "s2_thecall",
    "clip": "clips/s2_call_final.mp4",
    "t": 2.0,
-   "beat": "a circus train in open country with thick black smoke billowing from its engine, clearly in trouble",
+   "beat": "the brown bear and the bloodhound beside the stream with a thick column of dark smoke rising beyond the trees behind them",
    "must_not": [
-    "a calm scenic postcard with nothing wrong",
-    "no smoke at all",
-    "thin white wispy steam instead of thick black smoke",
-    "a bridge over water"
+    "a train visible",
+    "any human or person",
+    "fire or flames visible"
    ],
-   "clip_beat": "a circus train in open country with thick black smoke billowing from its engine",
-   "lock": "stills/LOCKED_s2_call.png"
+   "clip_beat": "the brown bear and the tan-and-orange bloodhound beside the forest stream with a thick column of dark smoke standing above the trees behind them",
+   "lock": "stills/LOCKED_s2_call.png",
+   "init": "stills/wip/s2_thecall_composite.png",
+   "denoise": 0.42,
+   "identity": [
+    {
+     "master": "canon/hank_canon.png",
+     "subject": "Hank the bear"
+    },
+    {
+     "master": "canon/doug_canon.png",
+     "subject": "Doug the bloodhound"
+    }
+   ],
+   "animate": "the camera is locked off and does not move; the dark smoke column rises and thickens beyond the trees, and the bear and the dog slowly turn their heads toward it, alert",
+   "min_window": 1.5
   },
   {
    "id": "s2b_smoke",
    "clip": "clips/s2b_smoke_final.mp4",
    "t": 2.0,
-   "beat": "a close view of an old dark circus locomotive's smokestack with thick black smoke pouring out against the sky",
+   "beat": "a circus steam train on its tracks with thick black smoke pouring from the engine, the locomotive and boxcars visible",
    "must_not": [
+    "any human or person",
     "a cheerful colourful passenger train",
-    "clean white steam only",
-    "a modern diesel or electric train",
-    "any animal or person visible"
+    "flames"
    ],
-   "clip_beat": "a close view of an old dark circus locomotive's smokestack with thick black smoke pouring out against the sky",
-   "lock": "stills/LOCKED_s2b_smoke.png"
+   "clip_beat": "the circus train on the tracks with thick black smoke pouring up from its engine, the smoke rising and drifting",
+   "lock": "stills/LOCKED_s2b_smoke.png",
+   "animate": "the camera is locked off and does not move; thick black smoke pours upward from the engine and drifts, heat shimmers, the train does not move"
   },
   {
    "id": "s3_rollout",
    "clip": "clips/s3_rollout_final.mp4",
    "t": 2.0,
-   "beat": "seen from the side: exactly two identical dark bay horses (the same deep mahogany reddish-brown coat, jet-black manes and tails, black lower legs, no white markings), each with one head, in harness on the left galloping in front of a single open wooden wagon with a ladder and barrels on top, the wagon on the right behind them, traces connecting them, moving fast along a forest dirt road with dust behind the wheels, and nothing else on the road",
-   "clip_beat": "two harnessed horses on the left galloping ahead of a single ladder-and-barrels wagon on the right, connected by traces, the horses always in front of the wagon, dust behind the wheels, for the whole shot",
+   "beat": "a wooden wagon pulled by two dark bay horses racing along a dirt road with a brown bear and a tan-and-orange bloodhound riding in the wagon bed, dust rising",
+   "clip_beat": "the wagon racing along the road with the bear and the bloodhound riding aboard for the whole shot, wheels turning, dust rising",
    "must_not": [
-    "a stationary wagon with no dust",
-    "a truck, car or anything with rubber tires",
-    "any human",
-    "a horse behind, beside or underneath the wagon",
-    "the wagon in front of the horses",
-    "a wagon with nothing pulling it",
-    "more than one wagon: a second wagon, cart or convoy anywhere in the frame, even far in the background",
-    "any horse that is not harnessed to this one wagon, or a loose horse running on its own",
-    "a horse running toward the camera or facing the camera head-on",
-    "a horse cut off by the edge of the frame so its body is not fully visible",
-    "a horse's rear end filling the foreground",
-    "the camera looking at the back of the wagon",
-    "palm trees or desert",
-    "a covered wagon or stagecoach",
-    "a circus poster or sign on the wagon",
-    "three or more horse heads, a horse with two heads, or more horse heads than horse bodies",
-    "two horses merged into each other or sharing a body",
-    "a horse with the wrong number of legs",
-    "a roof, canopy, awning or overhead frame of any kind on the wagon",
-    "a black, dark, grey or white horse",
-    "a horse with a white blaze, white face or any white markings",
-    "two horses of different colors, shades or sizes",
-    "a light brown, chestnut, orange, tan or golden horse",
-    "a horse with a brown, red or light-colored mane or tail instead of a black one",
-    "two horses whose coats are different shades of brown"
+    "an empty wagon with no characters riding in it",
+    "any human or person"
    ],
    "set": "wagon",
-   "lock": "stills/LOCKED_s3_rollout.png"
+   "lock": "stills/LOCKED_s3_rollout.png",
+   "init": "stills/wip/s3_rollout_composite.png",
+   "denoise": 0.3,
+   "identity": [
+    {
+     "master": "canon/hank_canon.png",
+     "subject": "Hank the bear riding in the wagon"
+    },
+    {
+     "master": "canon/doug_canon.png",
+     "subject": "Doug the bloodhound riding in the wagon"
+    }
+   ],
+   "animate": "the camera is locked off and does not move; the horses and wagon race along the road, wheels turning, dust rising, the bear and the dog bob gently with the wagon's motion"
   },
   {
    "id": "s3b_wagonpass",
    "clip": "clips/s3b_wagonpass_final.mp4",
    "t": 2.0,
-   "beat": "from a low three-quarter front angle: two identical dark bay horses (the same deep mahogany reddish-brown coat, jet-black manes and tails, black lower legs, no white markings) in harness leading, a single open wooden wagon with a ladder and barrels on top directly behind them attached by traces, the rig angled across the frame with the wagon's big wheel close to camera, dust kicking up behind the wheels, and nothing else on the road",
+   "beat": "a loaded wooden wagon charging down a forest dirt road pulled by two dark bay horses, thick dust flying behind the wheels",
    "must_not": [
-    "a stationary wagon with no dust",
-    "a truck, car or anything with rubber tires",
-    "any human",
-    "a horse behind, beside or underneath the wagon",
-    "the wagon in front of the horses",
-    "a wagon with nothing pulling it",
-    "more than one wagon: a second wagon, cart or convoy anywhere in the frame, even far in the background",
-    "any horse that is not harnessed to this one wagon, or a loose horse running on its own",
-    "a horse running toward the camera or facing the camera head-on",
-    "a horse cut off by the edge of the frame so its body is not fully visible",
-    "a horse's rear end filling the foreground",
-    "the camera looking at the back of the wagon",
-    "palm trees or desert",
-    "a covered wagon or stagecoach",
-    "a circus poster or sign on the wagon",
-    "three or more horse heads, a horse with two heads, or more horse heads than horse bodies",
-    "two horses merged into each other or sharing a body",
-    "a horse with the wrong number of legs",
-    "a black, dark, grey or white horse",
-    "a horse with a white blaze, white face or any white markings",
-    "two horses of different colors, shades or sizes",
-    "a light brown, chestnut, orange, tan or golden horse",
-    "a horse with a brown, red or light-colored mane or tail instead of a black one",
-    "two horses whose coats are different shades of brown"
+    "an empty wagon with no characters riding in it",
+    "any human or person",
+    "the horses behind or beside the wagon"
    ],
    "set": "wagon",
-   "clip_beat": "two harnessed horses leading a single ladder-and-barrels wagon that rolls directly behind them, connected by traces, the horses always in front of the wagon, dust behind the wheels, for the whole shot",
-   "lock": "stills/LOCKED_s3b_wagonpass.png"
+   "clip_beat": "the loaded wooden wagon charging away from camera down the forest road, wheels turning, thick dust billowing up behind it as it shrinks into the distance",
+   "lock": "stills/LOCKED_s3b_wagonpass.png",
+   "init": "stills/wip/s3b_wagonpass_composite.png",
+   "denoise": 0.3,
+   "identity": [
+    {
+     "master": "canon/hank_canon.png",
+     "subject": "Hank the bear riding at the front of the wagon"
+    },
+    {
+     "master": "canon/doug_canon.png",
+     "subject": "Doug the bloodhound riding at the front of the wagon"
+    }
+   ],
+   "animate": "the camera is locked off and does not move; the wagon charges away with wheels spinning and dust flying, the bear and dog visible riding at the front of the load, the horses galloping out in front",
+   "min_window": 1.2
   },
   {
    "id": "s4b_trainwide",
    "clip": "clips/s4b_trainwide_final.mp4",
    "t": 2.0,
-   "beat": "a long line of weathered red boxcars stretching into heat haze, dark gaps between the planks running the length of every car, small dark shapes and glints of eyes just visible behind the gaps",
+   "beat": "a long line of weathered faded-red freight boxcars stretching into heat haze, plank walls and doors shut tight, harsh afternoon light",
    "must_not": [
     "a brightly coloured or cheerful train",
     "a cheerful colourful passenger train",
-    "a mostly empty train with only one or two animals visible",
     "a passenger carriage with windows",
     "animals leaning comfortably out of open windows",
     "animals standing outside the train",
@@ -137,9 +141,9 @@
     "whole animals leaning out"
    ],
    "set": "circus boxcar",
-   "clip_beat": "a long line of weathered red boxcars stretching into heat haze, dark gaps between the planks running the length of every car, small dark shapes and glints of eyes just visible behind the gaps, heat haze rippling off the roofs for the whole shot",
-   "animate": "the camera is locked off and does not move; heat haze shimmers hard over the whole train, trunks curl and paws shift at the gaps all down the line, muzzles push at the slats for air, feathers flutter, dust drifts through the baking air, every door stays shut",
-   "prompt": "Pixar-style 3D animated film still: a wide shot of a long line of weathered faded-red wooden FREIGHT boxcars stretching away to the hazy horizon, solid unbroken plank walls, heavy sliding freight doors shut tight, the boards separated only by narrow dark cracks \u2014 and at every car something presses out through those narrow cracks: the tip of a grey trunk, small brown fingers, a striped tail, bright feathers, and dozens of pairs of eyes glinting in the dark slits all the way down the line, heat haze rippling hard off the roofs, harsh afternoon light, no lettering anywhere, cinematic children's movie lighting The line of boxcars runs at least ten to fifteen cars deep into a hazy horizon, heat haze rippling off every roof, and paws, tails and snouts push out through the plank gaps of car after car down the whole length.",
+   "clip_beat": "the long line of weathered red boxcars holding still in rippling heat haze for the whole shot, dust drifting",
+   "animate": "the camera is locked off and does not move; heat haze ripples over the boxcar roofs, dust drifts, nothing else moves",
+   "prompt": "Pixar-style 3D animated film still: a wide shot of a long line of weathered faded-red wooden freight boxcars stretching away to the hazy horizon, solid plank walls, heavy sliding freight doors shut tight, narrow dark cracks between the boards, strong heat haze rippling off the roofs, harsh afternoon light, dust hanging in the air, no lettering anywhere, cinematic children's movie lighting",
    "lock": "stills/LOCKED_s4b_trainwide.png"
   },
   {
@@ -185,21 +189,21 @@
    "id": "t3_giraffe",
    "clip": "clips/t3_giraffe_final.mp4",
    "t": 2.0,
-   "beat": "a young giraffe's eye and cheek pressed against a horizontal gap high in the boxcar plank wall, the eye wide and wet, lashes clear, warm light falling across the fur through the gap",
+   "beat": "a young giraffe standing in a dim plank boxcar with her neck bowed low under the low plank ceiling, thin blades of light falling across her back",
    "must_not": [
-    "a whole giraffe visible",
-    "a giraffe standing in a meadow",
     "an open door",
-    "daylight exterior"
+    "daylight exterior",
+    "a giraffe standing in a meadow",
+    "the giraffe standing upright with open sky or room above her head"
    ],
-   "clip_beat": "a young giraffe's eye and cheek pressed against a horizontal gap high in the boxcar plank wall, the eye wide and wet, lashes clear, warm light falling across the fur through the gap, held for the whole shot, the eye blinking slowly",
+   "clip_beat": "the giraffe standing with her neck bowed under the low plank ceiling for the whole shot, breathing slowly, dust motes drifting in the blades of light",
    "set": "boxcar door detail",
-   "animate": "the camera is locked off and does not move; the giraffe's eye blinks slowly and the cheek shifts very slightly against the planks, dust drifting in the shaft of light",
+   "animate": "the camera is locked off and does not move; the giraffe breathes slowly, her ears flick once, dust motes drift in the blades of light",
    "identity": {
     "master": "canon/giraffe_canon.png",
     "subject": "the young giraffe"
    },
-   "prompt": "Pixar-style 3D animated film still: a close-up of a horizontal gap between weathered faded-red boxcar planks, a young giraffe's warm yellow cheek with orange-brown patches pressed to it from inside and one large dark eye with long lashes looking out through the gap, warm light raking across the fur and the wood, dim interior behind, no lettering anywhere, cinematic close-up",
+   "prompt": "Pixar-style 3D animated film still: a young cartoon giraffe with warm yellow fur and orange-brown patches standing in a dim wooden boxcar with her long neck bowed low under the plank ceiling, head ducked, thin blades of warm light falling through gaps in the plank wall across her back and neck, dust motes in the light, dark shadows around her, no lettering anywhere, cinematic children's movie lighting",
    "_identity_waived": "the frame is an eye and cheek at a plank gap \u2014 no head shape, ears or body proportions are visible, and there is no giraffe LoRA to hold them anyway. Same framing as t2_lion.",
    "lock": "stills/LOCKED_t3_giraffe.png"
   },
@@ -257,8 +261,8 @@
   },
   {
    "id": "s6c_light_widens",
-   "beat": "inside a dark boxcar, a thin bright seam of golden daylight at the edge of the closed sliding door, a blade of light across the straw floor, dust hanging in the light",
-   "clip_beat": "inside a dark wooden boxcar, bright golden daylight pouring in through a partly or fully open sliding doorway, a bright column of light lying across the straw floor, dust glowing in the beam, the plank walls dark around it",
+   "beat": "a dark boxcar interior with a bright seam of golden light at the door edge and a small elephant faintly lit standing near the light",
+   "clip_beat": "the dark interior with the bright seam of light at the door and the small elephant faintly visible near it, dust drifting in the beam",
    "must_not": [
     "the door bursting, splintering or flying off",
     "splinters, debris or sawdust spraying",
@@ -271,16 +275,16 @@
    "t": 2.5,
    "set": "circus boxcar",
    "_identity_waived": "empty dark interior by design; no character in frame",
-   "animate": "the camera is locked off inside the dark car and does not move; the heavy sliding door glides open along its rail, the thin seam of golden light at its edge widening steadily into a tall bright column, the blade of light on the straw floor spreading wide across it, dust swirling slowly in the growing beam, the dark plank walls staying dark",
+   "animate": "the camera is locked off and does not move; the seam of golden light slowly widens, dust drifts in the beam, the small elephant shifts slightly toward the light",
    "min_window": 1.6
   },
   {
    "id": "s7b_hank_flat",
-   "beat": "a big round brown bear with a cream belly lying flat on his back in the gravel below an open boxcar doorway, dazed, one paw raised, dust settling",
-   "clip_beat": "the bear lying flat on his back in the gravel below the open boxcar door for the whole shot, chest heaving, his raised paw wobbling and flopping down, dust settling",
+   "beat": "a big round brown bear with a cream belly sitting slumped against the boxcar below the open doorway, legs splayed in the gravel, arms limp, head tipped back, dust settling",
+   "clip_beat": "the bear slumped against the boxcar below the open door for the whole shot, chest heaving, dust settling around him",
    "must_not": [
     "holding or using a stick, tool, rod or any object",
-    "the bear standing or sitting up",
+    "the bear standing",
     "a relaxed happy smiling bear",
     "a realistic grizzly bear with a long snout",
     "a closed door",
@@ -295,7 +299,8 @@
    "identity": {
     "master": "canon/hank_canon.png",
     "subject": "Hank the bear"
-   }
+   },
+   "animate": "the camera is locked off and does not move; the bear's chest heaves as he catches his breath, his head lolls slightly, dust settles around him"
   },
   {
    "id": "r1_monkeys_out",
@@ -360,109 +365,98 @@
    "id": "r4_parrots_sky",
    "clip": "clips/r4_parrots_sky_final.mp4",
    "t": 2.0,
-   "beat": "a huge flock of dozens of bright scarlet parrots wheeling across the warm golden evening sky above the train",
+   "beat": "bright scarlet parrots flying across a warm golden evening sky, a large macaw with wings spread in the foreground",
    "must_not": [
     "bats or dark crows",
     "a single lone bird or just a few birds",
-    "any aircraft",
-    "birds sitting still"
+    "any aircraft"
    ],
    "set": "circus boxcar",
+   "clip_beat": "bright scarlet parrots spread across the golden evening sky for the whole shot, wings beating as they drift",
+   "lock": "stills/LOCKED_r4_parrots_sky.png",
+   "animate": "the camera is locked off and does not move; the parrots drift slowly across the sky with gentle wingbeats, the smoke plume rises softly",
+   "min_window": 1.5,
+   "prompt": null,
    "identity": {
     "master": "canon/parrot_canon.png",
     "subject": "the scarlet macaw parrots (design match to the master)"
-   },
-   "clip_beat": "a huge flock of scarlet parrots wheeling across the golden evening sky above the train for the whole shot, wings beating",
-   "lock": "stills/LOCKED_r4_parrots_sky.png"
+   }
   },
   {
    "id": "r5_crowd_wide",
    "clip": "clips/r5_crowd_wide_final.mp4",
    "t": 2.0,
-   "beat": "a wide meadow filling with dozens of freed circus animals of every kind spreading out from the open train in golden light",
+   "beat": "freed circus animals out on the grass beside the open train in warm golden evening light",
    "must_not": [
-    "a sparse meadow with only a handful of animals",
     "any human or person",
     "animals piled on or touching each other",
+    "an empty meadow with no animals",
     "closed boxcar doors on the whole train"
    ],
    "set": "circus boxcar",
-   "identity": [
-    {
-     "master": "canon/monkey_canon.png",
-     "subject": "the capuchin monkeys (design match to the master)"
-    },
-    {
-     "master": "canon/parrot_canon.png",
-     "subject": "the scarlet macaw parrots (design match to the master)"
-    }
-   ],
-   "clip_beat": "a wide meadow filling with dozens of freed circus animals of every kind spreading out from the open train in golden light",
-   "lock": "stills/LOCKED_r5_crowd_wide.png"
+   "clip_beat": "the freed animals out on the grass beside the open train in golden light for the whole shot, shifting their weight, tails and grass swaying",
+   "lock": "stills/LOCKED_r5_crowd_wide.png",
+   "animate": "the camera is locked off and does not move; the animals shift their weight and turn their heads gently, tails sway, grass stirs in the breeze"
   },
   {
    "id": "c1_celebration",
    "clip": "clips/c1_celebration_final.mp4",
    "t": 2.0,
-   "beat": "a big round brown bear standing at the centre of a golden meadow with freed circus animals gathered loosely around him, more shapes soft in the haze behind",
+   "beat": "a young elephant in a red cap in a golden meadow with a giraffe, a lion and monkeys around her",
    "must_not": [
-    "a broken-down or smoking wrecked train",
-    "a sparse meadow with only a handful of animals",
-    "an empty meadow",
+    "chickens, hens or roosters",
     "any human or person",
-    "any two characters touching, hugging or shaking paws",
-    "only one or two animals",
-    "a bear with a long realistic snout"
+    "tusks",
+    "a spiky metal crown"
    ],
    "set": "circus boxcar",
-   "identity": {
-    "master": "canon/hank_canon.png",
-    "subject": "Hank the bear"
-   },
+   "identity": [
+    {
+     "master": "canon/ellie_canon.png",
+     "subject": "Ellie the young elephant in her red cap"
+    }
+   ],
    "init": "stills/wip/c1_celebration_composite.png",
-   "clip_beat": "the bear still standing at the centre of the meadow with the freed animals gathered loosely around him, the whole crowd breathing and swaying gently in place throughout",
-   "lock": "stills/LOCKED_c1_celebration.png"
+   "clip_beat": "the young elephant in her red cap standing in the foreground of the golden meadow with a lion, monkeys and a giraffe around her, ears and tails moving gently in the warm light",
+   "lock": "stills/LOCKED_c1_celebration.png",
+   "denoise": 0.35,
+   "animate": "the camera is locked off and does not move; the elephant's ears sway, the monkeys bounce lightly, the lion's mane stirs, grass moves in the breeze, golden light"
   },
   {
    "id": "c2_ellie_trumpet",
    "clip": "clips/c2_ellie_trumpet_final.mp4",
    "t": 2.0,
-   "beat": "the young elephant in her red circus cap standing on the grass with her trunk raised high in the golden light",
+   "beat": "a close view of the young elephant in her red circus cap with her head raised high, ears wide, against warm golden evening light",
    "must_not": [
     "tusks",
     "a spiky metal crown",
-    "her trunk hanging down",
-    "the elephant inside the boxcar"
+    "the elephant inside the boxcar",
+    "a sad or frightened expression"
    ],
    "identity": {
     "master": "canon/ellie_canon.png",
     "subject": "Ellie the young circus elephant"
    },
-   "clip_beat": "the young elephant in her red cap standing on the grass with her trunk held high the whole shot, ears swaying, dust drifting in the golden light",
-   "lock": "stills/LOCKED_c2_ellie_trumpet.png"
+   "clip_beat": "the young elephant in her red cap holding her head high with ears wide in the golden light",
+   "lock": "stills/LOCKED_c2_ellie_trumpet.png",
+   "animate": "the camera is locked off and does not move; the elephant lifts her head a little higher, her ears flare and sway, golden dust drifts"
   },
   {
    "id": "s8_goodbye",
    "clip": "clips/s8_goodbye_v2.mp4",
    "t": 2.5,
-   "beat": "the wooden wagon rolling away down the road toward the sunset with the repaired circus train alive behind it, every doorway and window crowded with animals",
+   "beat": "seen from behind the wooden wagon: a brown bear and a bloodhound sitting in the wagon bed, two dark bay horses ahead of them harnessed to the wagon on a sunset dirt road, a steaming circus train beside the road",
    "must_not": [
     "a broken-down or smoking wrecked train",
     "empty boxcars",
     "a truck, car or anything with rubber tires",
-    "any human or person",
-    "the wagon standing still",
-    "a black, dark, grey or white horse",
-    "a horse with a white blaze, white face or any white markings",
-    "two horses of different colors, shades or sizes",
-    "a light brown, chestnut, orange, tan or golden horse",
-    "a horse with a brown, red or light-colored mane or tail instead of a black one",
-    "two horses whose coats are different shades of brown"
+    "any human or person"
    ],
    "set": "wagon",
-   "init": "stills/wip/s8_goodbye_composite.png",
-   "clip_beat": "the wagon still rolling away toward the sunset with dust behind it, the crowded circus train alive behind, steam drifting, animals swaying in the doorways, for the whole shot",
-   "lock": "stills/LOCKED_s8_goodbye.png"
+   "clip_beat": "the bear and the bloodhound riding in the wagon bed with the two horses ahead drawing it down the sunset road, dust drifting, steam rising",
+   "lock": "stills/LOCKED_s8_goodbye.png",
+   "animate": "the camera is locked off and does not move; the two horses walk slowly ahead drawing the wagon, the wagon and the bear and dog in its bed sway gently with the motion, wheels turning slowly, dust drifting, steam puffing from the locomotive",
+   "min_window": 1.5
   }
  ],
  "spine": [

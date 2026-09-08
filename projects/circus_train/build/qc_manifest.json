@@ -9,180 +9,200 @@
     {
       "name": "s1_coldopen",
       "start": 4.0,
-      "end": 6.04
+      "end": 9.04
     },
     {
       "name": "s2_thecall",
-      "start": 9.36,
-      "end": 14.4
+      "start": 12.36,
+      "end": 14.36
     },
     {
       "name": "s2b_smoke",
-      "start": 14.4,
-      "end": 17.45
+      "start": 14.36,
+      "end": 17.4
     },
     {
       "name": "s3_rollout",
-      "start": 19.41,
-      "end": 24.45
+      "start": 19.36,
+      "end": 24.41
     },
     {
       "name": "s3b_wagonpass",
-      "start": 24.45,
-      "end": 28.49
+      "start": 24.41,
+      "end": 28.45
     },
     {
       "name": "t1_monkey",
-      "start": 32.05,
-      "end": 34.09
+      "start": 32.01,
+      "end": 34.05
     },
     {
       "name": "t2_lion",
-      "start": 34.09,
-      "end": 37.13
+      "start": 34.05,
+      "end": 37.09
+    },
+    {
+      "name": "t3_giraffe",
+      "start": 37.09,
+      "end": 40.18
     },
     {
       "name": "ellie_eye",
-      "start": 37.13,
-      "end": 42.18
+      "start": 40.18,
+      "end": 45.22
     },
     {
       "name": "s6b_heave_close",
-      "start": 48.98,
-      "end": 52.02
-    },
-    {
-      "name": "s6_interior",
       "start": 52.02,
       "end": 55.06
     },
     {
-      "name": "s6c_light_widens",
+      "name": "s6_interior",
       "start": 55.06,
-      "end": 59.1
+      "end": 58.1
+    },
+    {
+      "name": "s6c_light_widens",
+      "start": 58.1,
+      "end": 62.14
     },
     {
       "name": "r1_monkeys_out",
-      "start": 60.58,
-      "end": 65.62
+      "start": 63.62,
+      "end": 68.67
     },
     {
       "name": "r2_lion_out",
-      "start": 65.62,
-      "end": 70.67
+      "start": 68.67,
+      "end": 73.71
     },
     {
       "name": "r3_giraffe_out",
-      "start": 70.67,
-      "end": 75.71
+      "start": 73.71,
+      "end": 78.75
+    },
+    {
+      "name": "r4_parrots_sky",
+      "start": 78.75,
+      "end": 81.75
+    },
+    {
+      "name": "r5_crowd_wide",
+      "start": 81.75,
+      "end": 86.79
     },
     {
       "name": "c1_celebration",
-      "start": 75.71,
-      "end": 78.75
+      "start": 86.79,
+      "end": 91.83
+    },
+    {
+      "name": "s8_goodbye",
+      "start": 97.19,
+      "end": 102.24
     }
   ],
   "lines": [
     {
-      "t": 6.19,
+      "t": 9.19,
       "speaker": "hank",
       "text": "Doug. The fish are winning again.",
       "dur": 1.49,
       "offscreen": false
     },
     {
-      "t": 7.83,
+      "t": 10.83,
       "speaker": "doug",
       "text": "That's cause they practice, Hank.",
       "dur": 1.53,
       "offscreen": false
     },
     {
-      "t": 10.06,
+      "t": 13.06,
       "speaker": "bird",
       "text": "Help! The circus train broke down",
       "dur": 3.18,
       "offscreen": true
     },
     {
-      "t": 17.6,
+      "t": 17.55,
       "speaker": "doug",
       "text": "Circus train? Hank, we're rolling.",
       "dur": 1.81,
       "offscreen": false
     },
     {
-      "t": 28.64,
+      "t": 28.6,
       "speaker": "hank",
       "text": "Whole train's cooking out here.",
       "dur": 1.17,
       "offscreen": false
     },
     {
-      "t": 29.96,
+      "t": 29.92,
       "speaker": "doug",
       "text": "Easy everybody! The Wild Rescue's here!",
       "dur": 2.09,
       "offscreen": false
     },
     {
-      "t": 38.33,
+      "t": 41.38,
       "speaker": "ellie",
       "text": "I can't, it's too heavy",
       "dur": 0.76,
       "offscreen": true
     },
     {
-      "t": 42.33,
+      "t": 45.37,
       "speaker": "doug",
       "text": "Pin's jammed tight.",
       "dur": 1.57,
       "offscreen": false
     },
     {
-      "t": 44.05,
+      "t": 47.09,
       "speaker": "doug",
       "text": "Ellie? It's Doug. One push, girl.",
       "dur": 2.89,
       "offscreen": false
     },
     {
-      "t": 47.09,
+      "t": 50.13,
       "speaker": "doug",
       "text": "Three, two, one, push!",
       "dur": 1.89,
       "offscreen": false
     },
     {
-      "t": 59.25,
+      "t": 62.29,
       "speaker": "hank",
       "text": "Doors don't argue with bears.",
       "dur": 1.33,
       "offscreen": false
     },
     {
-      "t": 78.9,
+      "t": 91.98,
       "speaker": "doug",
       "text": "Turtle called dibs on the tank an hour ago.",
       "dur": 1.93,
       "offscreen": false
     },
     {
-      "t": 80.98,
+      "t": 94.06,
       "speaker": "doug",
       "text": "Anybody, anywhere, any trouble at all",
       "dur": 1.77,
       "offscreen": false
     },
     {
-      "t": 82.9,
+      "t": 95.98,
       "speaker": "hank",
       "text": "the Wild Rescue rolls.",
       "dur": 1.21,
       "offscreen": false
     },
     {
-      "t": 85.11,
+      "t": 103.24,
       "speaker": "bird",
       "text": "Can I get a hat like this?",
       "dur": 0.6,
