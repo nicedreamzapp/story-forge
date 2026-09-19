@@ -644,6 +644,14 @@ Hardware amortization: an M5 Max MacBook Pro + Mac mini M4 Pro (~$4,900 one-time
 
 *A Story Forge production.*
 
+Whose work the whole pipeline is built on, with licenses, is in [CREDITS.md](CREDITS.md).
+
+---
+
+## Something not working?
+
+Open an [issue](https://github.com/nicedreamzapp/story-forge/issues/new) with your Mac (chip and RAM), which stage failed, and the last lines of its log. It has mostly been run on one M5 Max, so reports from other machines are especially welcome.
+
 ---
 
 ## License
