@@ -1,0 +1,109 @@
+#!/usr/bin/env python3
+"""forge-finish — the finishing pass: bloom, colour grade and contrast on a still or a clip.
+
+Photoshop-style compositing done the Story Forge way (one ffmpeg pass, fully local, same
+math for stills and video so a finished still and its animated clip always match). The
+ideas come from Robbie Tilton's Compositor — https://robbietilton.com/compositor — first
+built into MattPaint's painting engine on 2026-09-18, then brought here.
+
+  BLOOM     the brightest parts, blurred, added back with Screen blending: light spills
+            around lamps, windows, the sun, glowing eyes.
+  GRADE     a gradient map: shadows lean toward one colour, highlights toward another,
+            brightness unchanged. Pulls every shot of a film into one look.
+  CONTRAST  an S-curve: deeper darks, hotter lights.
+
+STATIC ONLY (frozen rule 12): no grain, nothing that re-randomises per frame — that reads
+as shimmer. The same look is applied identically to every frame.
+
+    bin/forge-finish IN.(png|jpg|mp4) [OUT] [--look golden|blacklight|moonlight|clean]
+                     [--bloom 0-1] [--grade 0-1] [--contrast 0-1] [--saturation 0.5-1.5]
+    OUT defaults to IN_finished.<ext>. Never writes over IN (locked files stay untouched).
+"""
+from __future__ import annotations
+
+import argparse
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
+
+LOOKS = {
+    # shadows, highlights, bloom, grade, contrast, saturation
+    "golden":     ((40, 22, 60), (255, 196, 120), 0.25, 0.12, 0.35, 1.12),   # warm Pixar sunset
+    "blacklight": ((22, 6, 64), (255, 160, 70), 0.55, 0.35, 0.40, 1.15),     # violet world, neon lights
+    "moonlight":  ((10, 20, 48), (190, 215, 255), 0.30, 0.30, 0.25, 0.95),   # cool night
+    "clean":      ((0, 0, 0), (255, 255, 255), 0.25, 0.0, 0.25, 1.05),       # bloom + contrast only
+}
+
+
+def write_lut(path: Path, sh, hi, grade: float, contrast: float, sat: float = 1.0, n: int = 33):
+    """A .cube 3D LUT holding the grade and the S-curve (same maths as MattPaint's __mpFinish)."""
+    lines = ["TITLE \"forge-finish\"", f"LUT_3D_SIZE {n}"]
+    sh = [c / 255 for c in sh]; hi = [c / 255 for c in hi]
+    for b in range(n):                                    # .cube order: red changes fastest
+        for g in range(n):
+            for r in range(n):
+                c = [r / (n - 1), g / (n - 1), b / (n - 1)]
+                if grade > 0:
+                    l = 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]
+                    w = l * l * (3 - 2 * l)
+                    t = [sh[i] * (1 - w) + hi[i] * w for i in range(3)]
+                    tl = max(1e-4, 0.2126 * t[0] + 0.7152 * t[1] + 0.0722 * t[2])
+                    c = [c[i] * (1 - grade) + min(1.0, t[i] * l / tl) * grade for i in range(3)]
+                if sat != 1.0:                            # a grade pulls colour together; give it back
+                    l = 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]
+                    c = [l + (v - l) * sat for v in c]
+                if contrast > 0:
+                    c = [v * (1 - contrast) + (v * v * (3 - 2 * v)) * contrast for v in c]
+                lines.append(" ".join(f"{max(0.0, min(1.0, v)):.6f}" for v in c))
+    path.write_text("\n".join(lines) + "\n")
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("src")
+    ap.add_argument("out", nargs="?")
+    ap.add_argument("--look", default="golden", choices=sorted(LOOKS))
+    ap.add_argument("--bloom", type=float)
+    ap.add_argument("--grade", type=float)
+    ap.add_argument("--contrast", type=float)
+    ap.add_argument("--saturation", type=float)
+    a = ap.parse_args()
+    src = Path(a.src).resolve()
+    out = Path(a.out).resolve() if a.out else src.with_name(src.stem + "_finished" + src.suffix)
+    if out == src:
+        sys.exit("refusing to overwrite the input — give a different OUT")
+    sh, hi, bloom, grade, contrast, sat = LOOKS[a.look]
+    sat = a.saturation if a.saturation is not None else sat
+    bloom = a.bloom if a.bloom is not None else bloom
+    grade = a.grade if a.grade is not None else grade
+    contrast = a.contrast if a.contrast is not None else contrast
+
+    with tempfile.TemporaryDirectory() as d:
+        lut = Path(d) / "look.cube"
+        write_lut(lut, sh, hi, grade, contrast, sat)
+        # bloom: keep only what is bright, blur it at two sizes, Screen it back on top
+        chain = (f"[0:v]format=gbrp,split=3[base][b1][b2];"
+                 f"[b1]curves=all='0/0 0.82/0 1/1',gblur=sigma=6[s1];"
+                 f"[b2]curves=all='0/0 0.82/0 1/1',gblur=sigma=24[s2];"
+                 f"[base][s1]blend=all_mode=screen:all_opacity={min(1.0, bloom * 0.9):.3f}[m1];"
+                 f"[m1][s2]blend=all_mode=screen:all_opacity={min(1.0, bloom * 0.7):.3f}[m2];"
+                 f"[m2]lut3d=file='{lut}':interp=tetrahedral,format=yuv420p[v]")
+        if src.suffix.lower() in (".png", ".jpg", ".jpeg", ".webp"):
+            chain = chain.replace(",format=yuv420p[v]", "[v]")
+            cmd = ["ffmpeg", "-v", "error", "-i", str(src), "-filter_complex", chain, "-map", "[v]",
+                   "-frames:v", "1", str(out), "-y"]
+        else:
+            cmd = ["ffmpeg", "-v", "error", "-i", str(src), "-filter_complex", chain, "-map", "[v]",
+                   "-map", "0:a?", "-c:v", "libx264", "-crf", "16", "-preset", "slow", "-c:a", "copy",
+                   str(out), "-y"]
+        r = subprocess.run(cmd, capture_output=True, text=True)
+        if r.returncode or not out.is_file():
+            print(r.stderr[-800:], file=sys.stderr)
+            return 1
+    print(f"[finish] {a.look}: bloom {bloom} · grade {grade} · contrast {contrast} · saturation {sat} -> {out}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
