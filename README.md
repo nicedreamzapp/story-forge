@@ -49,23 +49,23 @@ An uploaded mind pieces together how the world ended. Psychedelic sci-fi, five a
 
 ## ⚡ The pipeline today
 
-```mermaid
-flowchart LR
-    A["📝 Script<br/>story beats"]:::write --> B["🎨 Still<br/>Qwen-Image 2.1"]:::make
-    B --> C{"👁️ Judge<br/>right beat?<br/>right character?"}:::judge
-    C -- "❌ why it failed<br/>goes into the<br/>next try" --> B
-    C -- "✅ lock it" --> D["🎞️ Animate<br/>LTX-2.5"]:::make
-    D --> E{"👁️ Judge<br/>the clip"}:::judge
-    E -- "✅" --> F["🎙️ Voices + 🎵 Score"]:::sound
-    F --> G["✂️ Assemble"]:::make
-    G --> H["🔍 film_qc<br/>eyes + ears"]:::judge
-    H --> I["🍿 Film"]:::done
-    classDef write fill:#fde68a,stroke:#b45309,color:#000
-    classDef make fill:#bfdbfe,stroke:#1d4ed8,color:#000
-    classDef judge fill:#e9d5ff,stroke:#7e22ce,color:#000
-    classDef sound fill:#fbcfe8,stroke:#be185d,color:#000
-    classDef done fill:#bbf7d0,stroke:#15803d,color:#000
-```
+<div align="center">
+
+### 📝 ➜ 🎨 ➜ 👁️ ➜ 🎞️ ➜ 👁️ ➜ 🎙️ ➜ ✂️ ➜ 🔍 ➜ 🍿
+
+</div>
+
+| Step | | What happens |
+|:---:|:---:|---|
+| **1** | 📝 | **Write it.** The story is broken into beats, the moments the film can't skip |
+| **2** | 🎨 | **Draw it.** Qwen-Image 2.1 paints each shot, using the locked character designs as reference |
+| **3** | 👁️ | **Judge it.** An AI looks at the picture: right moment? right character? If not, it says *why*, and that goes into the next try 🔁 |
+| **4** | 🎞️ | **Move it.** LTX-2.5 brings the approved picture to life in about a minute |
+| **5** | 👁️ | **Judge it again.** Is the clip still showing the right thing? Only the part that works is kept ✂️ |
+| **6** | 🎙️ | **Voice it.** Narrator, character voices, and an original music score |
+| **7** | ✂️ | **Cut it.** Every shot goes together in story order, with the music dipping under dialogue |
+| **8** | 🔍 | **Final check.** AI eyes and ears watch the whole film: right mouths, clean faces, every line heard |
+| **9** | 🍿 | **Film!** |
 
 <table>
 <tr>
