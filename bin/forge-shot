@@ -17,7 +17,7 @@ human eyeball and a note in a ledger. So:
     and anything that can't prove it gets re-rolled, trimmed, or dropped.
 
 Per shot, cheapest gate first:
-  1. STILL     mflux (+ character LoRAs) rolls seed after seed
+  1. STILL     mflux Qwen-Image 2.1 rolls seed after seed
   2. BEAT      beat_gate votes on the still; forbidden elements hard-fail
      On FAIL the judge PRESCRIBES the fix (beat_gate.prescribe): it looks at the
      rejected frame and dictates the concrete change, and THAT is what gets saved
@@ -45,8 +45,8 @@ Shot spec (shots.json):
    "prompt": "flux prompt for the still",
    "beat": "what the shot must depict",
    "must_not": ["a peaceful train", "..."],
-   "loras": ["~/.hankdoug_seeds/HANK_LORA.safetensors"], "lora_scales": [0.9],
    "identity": {"master": "canon/hank_canon.png", "subject": "Hank the bear"},
+   "refs": [],   # optional: override the identity masters as Qwen references ([] = none)
    "lock": "stills/LOCKED_s2_call.png",
    "animate": "i2v motion prompt, never an impact or collision",
    "clip": "clips/s2_call_final.mp4",
@@ -79,8 +79,15 @@ import shutil as _shutil
 FFMPEG = _shutil.which("ffmpeg") or "/opt/homebrew/bin/ffmpeg"
 
 
-MFLUX = Path.home() / "mflux-venv/bin/mflux-generate-flux2"
-MFLUX_MODEL = "AITRADER/FLUX2-klein-9B-mlx-8bit"
+# Qwen-Image 2.1 bf16 (2026-09-20): beat klein on a 10-style bake-off and klein was deleted.
+# mflux git main lives in its own venv so ~/mflux-venv (Ideogram) is untouched.
+MFLUX = Path.home() / "AI_Models/qwen-image-2.1-test/venv/bin/mflux-generate-qwen-2.1"
+MFLUX_MODEL = str(Path.home() / "AI_Models/Qwen-Image-2.1")
+# Characters (2026-09-20): the Hank/Doug LoRAs were klein LoRAs and died with it. Qwen
+# instead takes each character's canon master as a REFERENCE image through diffusers
+# (MPS, ~2 min, ~48GB peak), so identity comes from the same picture identity_ok() checks.
+QWEN_PY = Path.home() / "AI_Models/qwen-image-2.1-test/venv/bin/python"
+QWEN_BLEND = Path.home() / "AI_Models/qwen-image-2.1-test/qwen_blend.py"
 MAKE_VIDEO = SF / "bin" / "make-video"
 MAKE_LTX25 = SF / "bin" / "make-ltx25"   # LTX-2.5 animate engine (2026-08-29)
 MEM_GATE = SF / "bin" / "mem-gate"
@@ -200,7 +207,7 @@ def mem_gate(label: str) -> bool:
 #   2. One phase at a time. The still lease is dropped before the animate lease
 #      is taken — they never stack, because the machine can't hold both.
 # A refusal is a real answer: the shot is HELD, not rendered into swap.
-STILL_GB = float(os.environ.get("SF_STILL_GB", "38"))
+STILL_GB = float(os.environ.get("SF_STILL_GB", "48"))  # Qwen reference renders peak ~48GB; the M5 guard budget is ~50, so never ask above it
 ANIMATE_GB = float(os.environ.get("SF_ANIMATE_GB", "46"))
 _LEASE: dict = {"id": None, "name": None, "stop": None}
 
@@ -448,28 +455,62 @@ def gen_still(shot: dict, proj: Path, seed: int, out: Path) -> bool:
             return False
         return True
 
-    # Two dead ends, both paid for on 2026-07-26: "NO animals, NO people" in a POSITIVE
-    # prompt draws animals and people (nine seeds running), and FLUX.2 REJECTS
-    # --negative-prompt outright ("not supported for FLUX.2. Focus on describing what you
-    # want"). The only lever is positive description — "deserted", "abandoned", "not a
-    # soul in sight" — with the beat gate's must_not doing the actual rejecting.
-    guidance = str(shot.get("guidance", 1.0))
-    cmd = ["nice", "-n", "10", MFLUX, "-m", MFLUX_MODEL,
-           "--guidance", guidance, "--steps", str(shot.get("steps", 24)), "--seed", seed,
+    # 2026-07-26 on klein: "NO animals, NO people" in a POSITIVE prompt draws animals and
+    # people. Qwen-Image 2.1 does take a real negative prompt (true CFG, ~2x the time),
+    # so a shot's `negative` is passed through now; the beat gate's must_not still rejects.
+    # Qwen samples guidance-free by default, so klein's `guidance`/`steps` keys are ignored.
+    refs = character_refs(shot, proj)
+    if refs:
+        names = "; ".join(f"image {i} is {subj}" for i, (_, subj) in enumerate(refs, 1))
+        prompt = (f"Reference images: {names}. Keep every character exactly as drawn in "
+                  f"its reference (same species, colors, face, proportions, costume), "
+                  f"placed in this new scene: {shot['prompt']}")
+        log(f"  qwen reference render with {len(refs)} canon master(s)")
+        r = run(["nice", "-n", "10", QWEN_PY, QWEN_BLEND, out, prompt, *[str(p) for p, _ in refs],
+                 "--width", shot["_w"], "--height", shot["_h"], "--seed", seed])
+        if r.returncode or not out.is_file():
+            log(f"  qwen reference render failed (seed {seed}): {(r.stderr or '')[-200:]}")
+            return False
+        return True
+    cmd = ["nice", "-n", "10", MFLUX, "-m", MFLUX_MODEL, "--base-model", "qwen-image-2.1",
+           "--steps", "40", "--seed", seed,
            "--width", shot["_w"], "--height", shot["_h"],
            "--output", out, "--prompt", shot["prompt"]]
     if shot.get("negative"):
-        log("  ignoring `negative`: FLUX.2 does not accept a negative prompt — "
-            "describe what you DO want and let must_not reject the rest")
-    loras = [str(Path(p).expanduser()) for p in shot.get("loras", [])]
-    if loras:
-        cmd += ["--lora-paths", *loras,
-                "--lora-scales", *[str(s) for s in shot.get("lora_scales", [0.9] * len(loras))]]
+        cmd += ["--negative-prompt", shot["negative"]]
+    if shot.get("loras"):
+        # Klein LoRAs cannot load into Qwen; a shot with `identity` never reaches here.
+        log(f"  ignoring loras {shot['loras']}: they were trained on klein, which is gone")
     r = run(cmd)
     if r.returncode or not out.is_file():
         log(f"  mflux failed (seed {seed}): {(r.stderr or '')[-200:]}")
         return False
     return True
+
+
+def character_refs(shot: dict, proj: Path) -> list[tuple[Path, str]]:
+    """Canon masters to hand Qwen as reference images, with who each one is.
+
+    Defaults to the shot's `identity` masters. A shot can override with its own
+    `refs` list ([{"image": ..., "subject": ...}]) or opt out with "refs": [] (a
+    paws-only framing like s6_heave, where a full-body reference would pull the
+    whole bear into frame).
+    """
+    if "refs" in shot:
+        items = [(r["image"], r.get("subject", "the character")) for r in shot["refs"]]
+    else:
+        idents = shot.get("identity") or []
+        if isinstance(idents, dict):
+            idents = [idents]
+        items = [(i["master"], i.get("subject", "the character")) for i in idents]
+    refs = []
+    for img, subj in items:
+        p = proj / img
+        if p.is_file():
+            refs.append((p, subj))
+        else:
+            log(f"  reference missing ({p.name}) — rendering without it")
+    return refs
 
 
 def identity_ok(shot: dict, proj: Path, img: Path) -> bool:

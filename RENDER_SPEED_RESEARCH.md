@@ -191,3 +191,34 @@ see LESSONS "stale-lease").
 3. Gotchas: ltx-2-mlx a2v does not pad audio (short wav vs 97 frames → RoPE broadcast
    error) — make-ltx25 pads with silence. 480 rows render as 448 (LTX rounds to 64).
    Ask forge_guard for ≤20GB on --low-ram; a 45GB ask stalls 15 min behind any other lease.
+
+## 2026-09-09 — Bernini-R 1.3B (ByteDance, via lpalbou/mlx-gen 0.36.0) measured on s1_coldopen
+
+Reference-to-video (canon Hank + canon Doug + the s1 composite plate as refs, shot prompt +
+animate line, seed 701, 832x448, 81f @16fps, 40 steps, --low-ram, bf16). Same M5.
+
+| condition | result |
+|---|---|
+| Song Forge resident (~45GB) | step 1 = **107s/step**, swap 1.6GB/min, level critical → STOPPED per rule 11 |
+| Song Forge stopped (61GB free) | **1709s** (28.5 min) for the 5s shot, 40–43s/step, zero swap |
+| LTX-2.5 distilled i2v --low-ram, same shot (2026-08-29) | **69s**, Song Forge resident |
+
+QC (film_qc, Qwen3-VL-32B, 5-scene identity manifest + artifact sweep): Bernini PASS 6/6,
+shipping s1_final (LTX-2.5) PASS 6/6. Canon-likeness probe (canon tiles + 3 frames): both
+BEAR_MATCH yes / DOG_MATCH yes / CONSISTENT yes; both show the same warped-rod / hand notes.
+Only difference: Bernini's bear stays "content" (matches the beat's must_not), the shipping
+LTX take drifts to "concerned" by t=4.5s. n=1 — not evidence of a general win.
+
+**Verdict: DELETED.** Identity is a tie on every measured axis; 25x slower; unusable at all
+while Song Forge is resident (frozen rule 11). No narrow slot earns 29GB + a 28-min render.
+Reinstall if ever needed: `uv tool install mlx-gen && mlxgen download --model bernini-r-1.3b`
+(bench script pattern: mem-gate → mem_client.reserve(20GB) → Song Forge pause-watcher).
+
+Gotchas learned:
+- A killed render leaves its forge_guard lease alive until TTL (30 min); the next reserve()
+  sits in `honest` wait for up to 900s. `mem_client.py release <id>` first.
+- film_qc in-process asks 26GB; with Song Forge resident that lease waited **1814s** per
+  clip (two clips = an hour). Start Picture Eyes (:8181) before batch QC, or QC while a
+  lease is already held.
+- mlx-gen Bernini has no i2v / locked-still mode — only reference-to-video and video edit —
+  so it cannot animate an approved still; it re-composes the shot from references.

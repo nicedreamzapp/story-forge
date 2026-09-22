@@ -50,9 +50,8 @@ BRIEF="/tmp/forge_session_brief.txt"
 } > "$BRIEF"
 
 # 4. hand over to a real terminal session, with the briefing as the opening prompt
-osascript <<OSA
-tell application "Terminal"
-	activate
-	do script "cd '$SF' && clear && echo '── Story Forge ──' && claude \"\$(cat $BRIEF)\""
-end tell
-OSA
+#    (Ghostty since 2026-09-16 — Terminal.app crashes on macOS 27.0; the old
+#     Terminal version is in forge-session.bak-2026-09-16-preghostty)
+LAUNCH="$(mktemp -t forge-session).ghostty"
+printf '%s\n' "cd '$SF' && clear && echo '── Story Forge ──' && claude \"\$(cat $BRIEF)\"" > "$LAUNCH"
+open -a "$HOME/Applications/Ghostty Run.app" "$LAUNCH"
