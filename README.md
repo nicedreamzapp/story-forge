@@ -1,24 +1,79 @@
 # Story Forge
 
-> A local-only generative cinema pipeline. Animated films on one laptop. No cloud.
+> A local-only generative video system. Any kind of video, any style, on one laptop. No cloud.
 
 ```
-   ╔══════════════════════════════════════════════════╗
-   ║                                                  ║
-   ║    flux  →  wan/ltx  →  piper  →  ace-step  →  mux   ║
-   ║                                                  ║
-   ║          a script.  a laptop.  a film.           ║
-   ║                                                  ║
-   ╚══════════════════════════════════════════════════╝
+   ╔════════════════════════════════════════════════════════════╗
+   ║                                                            ║
+   ║   qwen-image → judge → ltx-2.5 / wan → judge → voices +    ║
+   ║        ace-step score → finish → film_qc → a film          ║
+   ║                                                            ║
+   ║            a script.  a laptop.  a film.                   ║
+   ║                                                            ║
+   ╚════════════════════════════════════════════════════════════╝
 ```
 
-Story Forge is a self-contained pipeline that takes a structured story description and produces a finished animated film — with motion, narration, original music, title and credits — entirely on local hardware. Five open-source models composed by `ffmpeg`. **Zero cloud calls. Zero API charges. Zero rate limits.** Run it once, run it a thousand times.
+Story Forge is a self-contained generative VIDEO system — for making video of **any kind**: narrated explainers, ambient pieces, promos, documentary cuts, music-driven shorts, sagas, and yes, fully animated films — in any style. Motion, narration, character voices, original music, titles and credits, entirely on local hardware, composed by `ffmpeg`. **Zero cloud calls. Zero API charges. Zero rate limits.** Run it once, run it a thousand times.
 
-**And it reviews its own work.** A local vision-language model judges every shot against the story beat it is supposed to depict, votes across frames, holds characters and sets to locked designs, re-rolls with the rejection reason fed back into the prompt, and refuses to assemble a film out of shots that don't tell the story — all on the same laptop, with nothing leaving the machine. [Jump to the review loop ↓](#-it-reviews-its-own-work--the-verification-loop)
+**And it reviews its own work.** A local vision-language model judges every shot against the story beat it is supposed to depict, votes across frames, holds characters and sets to locked designs, feeds the rejection reason back into the next attempt, and refuses to assemble a film out of shots that don't tell the story. [Jump to the review loop ↓](#-it-reviews-its-own-work--the-verification-loop)
 
-> First public-confirmed LTX 13B distilled 0.9.8 working on Apple Silicon MPS. We also tried a hand-written Metal flash-attention kernel for Wan — turned out PyTorch's MPS SDPA is already too well-tuned to beat at our shapes. The kernel is preserved in [`metal/`](metal/) as documented learning (see its README for what we tried, what we measured wrong, and what actually works for Wan speedup).
+Animation is the *proving ground*, not the limit — talking characters are the hardest case a video system can face, so that's where the pipeline gets battle-tested. Everything it learns there (QC gates, judge models, scene locking, character consistency) applies to every other kind of video it renders.
+
+> **What changed since the first films.** *The Bear Sister* (May) and *The Lucid Engine* (June) were made on the first pipeline: Flux stills, Wan / LTX motion, Piper narration, one pass through `ffmpeg`. Since then almost every stage has been replaced or wrapped in a gate. Stills moved to Qwen-Image 2.1, animation moved to LTX-2.5, the narrator moved to Kokoro, characters got their own voices, and a director loop now owns the film until every beat has footage that passed review. [The current pipeline ↓](#-how-a-film-gets-made-now)
 
 ---
+
+## 🛠 How a film gets made now
+
+One command owns a film from first idea to finished cut:
+
+```bash
+forge new "a documentary about the harbour" --kind doc   # start a film
+forge "hank and doug"                                    # resume one exactly where it stopped
+forge status                                             # what's built, what's blocked, what's next
+```
+
+Under it, each film lives in `projects/<name>/` with its own story spine, shot specs and lessons, and every film inherits the same two shared brains at the repo root: [`RULES.md`](RULES.md) (the rules the code enforces) and [`LESSONS.json`](LESSONS.json) (what earlier films paid to learn, keyword-matched to new shots).
+
+```
+ script ─► beats.json spine ─► forge-animatic (story reel on locked stills, before any animation)
+                                      │
+                                      ▼
+                  forge-director ── loops until every required beat has footage ──┐
+                        │                                                          │
+                        ▼                                                          │
+   forge-shot:  still (Qwen-Image 2.1, canon masters as references)                │
+                  → beat gate (blind description, then PASS/FAIL, majority vote)   │
+                  → identity gate vs the locked character master                   │
+                  → LOCK (chmod 444)                                               │
+                  → animate (LTX-2.5 distilled i2v, or Wan 2.2 GGUF)               │
+                  → re-judge the clip → keep only the stretch that holds the beat  │
+                        │                                                          │
+                        ▼                                                          │
+   build-episode: score (Song Forge / ACE-Step) → title + credit cards             │
+                  → assemble in story order, score ducked under dialogue ◄─────────┘
+                        │
+                        ▼
+   film_qc (eyes + ears) ─► verdict, reported verbatim
+```
+
+| Stage | Tool | What it does |
+|---|---|---|
+| Write | `screenwriting` skills → `*.bible.sf` + `beats.json` | Premise, structure and dialogue are settled in plain screenplay terms before a single still is rendered |
+| Story reel | [`bin/forge-animatic`](bin/forge-animatic) | The locked stills cut to the scratch dialogue at real timings; a missing beat shows as a black *MISSING SHOT* slug |
+| Direct | [`bin/forge-director`](bin/forge-director) | Finds the beats with no passing footage and drives them; escalates on failure (shorter clip, fresh seeds, still only, then BLOCKED with a written reason) instead of repeating; writes `STATUS.md`, `WIP_REEL.mp4` and `QUESTIONS.md` every cycle |
+| Shoot | [`bin/forge-shot`](bin/forge-shot) | The self-proving shot builder described below |
+| Lint | [`pipeline-tools/spec_lint.py`](pipeline-tools/spec_lint.py) | Refuses a shot spec that repeats a known mistake (two characters in one frame with no composite, a beat written as intent instead of a visible state) |
+| Look | [`pipeline-tools/style_contract.py`](pipeline-tools/style_contract.py) | Reads the film's own approved frames and writes one locked paragraph of visual language that goes into every prompt |
+| Assemble | [`bin/build-episode`](bin/build-episode) | Preflight (every EDL entry cross-checked against `beats.json`), score, cards, segments, assembly, QC; resumable per stage |
+| Finish | [`bin/forge-finish`](bin/forge-finish) | Bloom, gradient-map colour grade and S-curve contrast in one static ffmpeg pass, identical on stills and clips. Run by hand for now; not yet a stage in `build-episode` |
+| Verify | [`pipeline-tools/film_qc.py`](pipeline-tools/film_qc.py) | The last word on every film; its pass/fail counts are reported verbatim |
+
+**Two things the pipeline no longer does.** It never ships a still on a camera move as a finished shot — a Ken Burns glide reads as a slideshow, and a cut that passed 107 of 107 machine checks was rejected on sight for exactly that. And it never repaints a mouth: Wav2Lip and face models paint human mouths onto stylized characters. Dialogue shots either prompt the mouth motion and density-match the voice to it, or, for close-ups, condition the video on the actual voice recording (audio-to-video).
+
+**Motion transfer.** For action i2v can't do on its own (a cartwheel, a strike combo), a real video of a person is traced to a pose track and Wan 2.2 Animate renders the character performing it: [`bin/motion_pose.py`](bin/motion_pose.py) → [`bin/make-motion-video`](bin/make-motion-video). Lateral, single-person source footage at natural speed works; motion toward the camera does not. Identity drifts toward a generic version of the character and that is said out loud, not hidden.
+
+**The machine protects itself, and the paid work on it.** Every heavy step asks a memory guard for room first and is charged for what it actually holds (Metal/GPU memory included, which `ps` cannot see), not what it declared. A refusal is a real answer: the shot is held rather than rendered into swap. Song Forge customer jobs outrank renders.
 
 ---
 
@@ -95,10 +150,12 @@ report UNBUILT, lock nothing                  animate (memory-gated)
                                         keep only the stretch that holds the beat
 ```
 
-Cheap gates run before expensive ones on purpose. A still costs about a minute to roll and
-judge; animating it costs seventeen. Refusing a bad shot at the still stage spends one
-minute instead of eighteen — **the review pays for itself in saved render time**, and adds
-about a minute per shot in overhead.
+Cheap gates run before expensive ones on purpose. When this loop was built on Wan 2.2, a
+still cost about a minute to roll and judge and animating it cost seventeen, so refusing a
+bad shot at the still stage spent one minute instead of eighteen. LTX-2.5 has since cut the
+animate to about a minute (see [the status below](#-status--2026-09-22)), so the gate saves
+less clock than it used to. It still earns its place: a wrong picture never gets locked,
+and a locked picture is what every later shot is held to.
 
 ### It gets better every film, not just every retry
 
@@ -113,8 +170,8 @@ Nothing learned is allowed to die with the project it was learned on.
   sampler, a quant that held up, a resolution ladder that survived the quality gate.
 - **`METRICS.jsonl`** (repo root, append-only) — every step's real duration and verdict.
   Which stage is the bottleneck is a measured number that accumulates across films, not a
-  hunch: right now it says a still costs ~1 minute to roll and judge, an animation costs
-  ~17, so refusing bad shots at the still stage is where the time is won.
+  hunch. It is how the Wan-to-LTX-2.5 switch was decided: the animate step was 85% of a
+  shot's time, so that is where the search for a faster engine went.
 - **Speedups must earn their way in.** Any multiplier — quantisation, caching, step
   distillation, a hand-written kernel — has to clear [`bin/measure-render`](bin/measure-render),
   an LPIPS-gated harness: per-frame LPIPS < 0.05 **and** speedup > 1.10× or it doesn't ship.
@@ -142,6 +199,8 @@ window where the gate votes 4/5 that the effort is real. Human verdict on the re
 That is the whole thesis. Not "the AI got it right." **The pipeline caught itself getting it
 wrong, said so in numbers, and fixed it — on a laptop, offline.**
 
+---
+
 ## The manifesto
 
 We're not bound by what was taught. We don't accept upstream library defaults as the speed ceiling. We write our own software when the open-source one's wrong, we write our own DSL when JSON's too clumsy, we write our own Metal kernels when the vendor's path is slow.
@@ -166,40 +225,209 @@ We make our own rules. We build new things constantly. We make possible what peo
 
 ---
 
-## 🚀 Status — 2026-05-24 SHIP STATE
+### ▶ The Lucid Engine — a psychedelic sci-fi short
 
-The v1 ship state is live. The DSL compiles, the routes work, the kernel is in:
+[![The Lucid Engine — a Story Forge film](./lucid-hero.jpg)](https://www.youtube.com/watch?v=31ZeFu-ePcc)
 
-- ✅ **LTX 13B distilled 0.9.8 on MPS** — 118s per 5-sec clip via `bin/make-ltx-lightricks` (Lightricks' upstream multi-scale 7+3 path; `diffusers` single-pass cannot reproduce this recipe). Likely the first public-confirmed working setup on Apple Silicon.
-- ➖ **Custom Metal flash-attention kernel** — hand-written tiled fp16 with online softmax via `torch.mps.compile_shader` (~144 lines of MSL, PSNR 137 dB) at [`metal/flash_attn_mps.py`](metal/flash_attn_mps.py). The headline speedup turned out to be a measurement artifact (dispatch bug) — PyTorch's MPS SDPA already wins at our shapes. Kept as a documented null result.
-- ✅ **DSL end-to-end: first `.sf` → `.mp4`** — sunset drift / `test_tiny.sf` round-tripped through parser → resolver → emitter → run.py → render-route → ffmpeg.
-- ✅ **DSL multi-voice + SFX + lipsync flag** — 16/16 tests pass in [`story_forge/tests/test_parser.py`](story_forge/tests/test_parser.py).
-- ✅ **UI v2 live** — DSL editor + engine toggles at `http://127.0.0.1:17600/story`.
-- ✅ **LPIPS-gated measurement harness** — `bin/measure-render`, novel for Mac video diffusion. Every multiplier (quant, cache, distill, kernel) must pass per-frame LPIPS<0.05 AND speedup>1.10× before integration.
-- ✅ **Wan 1-step distillation** — shipped (see [`distill/`](distill/)): rank-32 LoRA collapses 4 steps → 1 at LPIPS 0.082 vs a measured 0.206 same-resolution wall (~2.5×), and it transfers to 256×256.
-- ⏳ **Comprehensive harness comparison** — pending.
+A ~4:30 short generated end-to-end on one laptop. No cloud. An uploaded mind, uncertain what's real, pieces together how the world ended and what it became — told across five acts (**The Waking → The Wrongness → The Truth → The Hunt → The Break → Resolution**) with a first-person narration spine, character dialogue with baked lip sync, same-location multi-angle coverage, a unified color grade, and an original Song Forge score under a low-drone / boom / shimmer sound-design bus.
 
-Live build dashboard: `http://127.0.0.1:17602` (served from [`build_status/`](build_status/)).
+[**▶ Watch on YouTube**](https://www.youtube.com/watch?v=31ZeFu-ePcc) · [Download `The_Lucid_Engine.mp4`](https://github.com/nicedreamzapp/story-forge/releases/tag/lucid-engine)
+
+Pipeline at the time (June 2026): **Flux** (stills) → **LTX-2 distilled** (motion) → **Piper** (narration) → **ffmpeg** (grade, transitions, sound, mux). 100% local. It predates the review loop, the director and the current engines; a film made today goes through [the pipeline above](#-how-a-film-gets-made-now).
+
+---
+
+## 🎬 The Director UI — talk to it, get a movie (2026-07-22)
+
+A chat + storyboard UI at `http://127.0.0.1:17600/` that puts
+the whole formula behind a conversation. You tell it the movie you want; a
+local LLM (any OpenAI-compatible server, `SF_LLM_URL`) locks the concept with
+you — title, style, characters, mood — then fills a storyboard. Each scene card
+then walks itself through the pipeline with a paper trail:
+
+```
+still (Flux) ─► vision-QC gate ─► approve & LOCK ─► draft i2v (~3 min, cheap gate)
+                                                        │
+                                                        ▼
+                              final i2v (Wan 2.2) ─► score (ACE-Step, instrumental)
+                                                        │
+                                                        ▼
+                                    assemble (xfade + music bed) ─► film_qc verdict
+```
+
+Design decisions that came from making real films, not from speculation:
+
+- **Approve-and-lock per scene.** A locked scene can never be re-rendered by
+  accident. Building one scene at a time, locking wins, is the only workflow
+  that survived contact with actual production.
+- **Cheap gates before expensive renders.** Every still faces a vision-model QC
+  check (seconds) before you spend minutes animating it; a low-res draft render
+  (~3 min) catches dead staging before the full render (~9 min). When the QC
+  judge is offline the card says **unchecked** — it never fakes a pass.
+- **film_qc has the last word.** The assembled film goes to
+  [`pipeline-tools/film_qc.py`](pipeline-tools/film_qc.py) — a local
+  vision-language judge plus whisper ears — and the UI reports its pass/fail
+  counts verbatim.
+- **A memory governor, not vibes.** Stages declare what they need before
+  touching the GPU: queued stills batch together ahead of video renders so
+  model weights load once, the 32B QC judge refuses to share the machine with
+  resident video weights (it evicts an idle ComfyUI first), and stages wait for
+  headroom instead of shoving the box into swap. One 128 GB machine runs image
+  gen, video gen, music gen, an LLM director and a VL judge — sequenced, never
+  stacked.
+- **Drag your own images onto a card** to replace generated stills; re-roll
+  anything unlocked with one click. The old single-clip page lives at `/classic`.
+- **The loop closes itself.** Every approved still banks its recipe (style,
+  prompt, seed, motion) into `projects/director/recipe_bank.json`, and the chat
+  director reads a digest of proven recipes — wins compound instead of being
+  re-derived per movie. On the verification side, film_qc failures that map
+  inside a scene's core trigger an automatic re-roll of just that scene's
+  animation (fresh noise, same locked still), re-assembly, and re-verification
+  — up to two rounds — while crossfade-ghost flags (the judge seeing two scenes
+  mid-blend) are classified benign instead of failing the film. You see the
+  final verdict and a note of what was auto-fixed, not the broken intermediates.
+
+Requirements beyond the base pipeline: a running ComfyUI for stills + i2v, an
+OpenAI-compatible LLM server for the chat director, and optionally an ACE-Step
+server (`SF_FORGE_URL`) for scores and a vision-judge server (`SF_PE_URL`) for
+the still gate. All endpoints are env-overridable; see the top of
+[`director.py`](director.py).
+
+The UI still renders through ComfyUI (Flux stills, Wan 2.2 i2v). The newer engines —
+Qwen-Image 2.1 stills and LTX-2.5 animation — and the beat and identity gates run through
+`forge` / `forge-shot`, not through this page yet.
+
+---
+
+## 🚀 Status — 2026-09-22
+
+What is true today, measured on one MacBook Pro (M5 Max, 128 GB) with Song Forge's paid music engines resident the whole time:
+
+- ✅ **The gated pipeline runs a film end to end.** On the current film (*Circus Train*), the director has footage that passed review for 22 of 23 required beats (last status report, 2026-09-01). The one it could not build is reported UNBUILT with the reason, not papered over.
+- ✅ **Animation moved to LTX-2.5** (distilled i2v, pure MLX, bf16, `--low-ram`) via [`bin/make-ltx25`](bin/make-ltx25): **~69 s** for a 5-second shot that took Wan 2.2 **13–16 minutes**, and it held a two-character composition Wan struggled with. Wan 2.2 (Q6_K GGUF by default) stays available per shot or per film.
+- ✅ **Dialogue close-ups are conditioned on the real voice** (audio-to-video) instead of voice laid over prompted jaw motion — 41.7 s per close-up, film_qc 4/4.
+- ✅ **Stills moved to Qwen-Image 2.1** (2026-09-20) after it beat FLUX.2 klein on a ten-style bake-off. Characters are held by passing each one's locked master in as a reference image, so identity comes from the same picture the identity gate checks against. Per-character LoRAs retired with klein.
+- ✅ **The review loop** — beat gate, identity gate, set canon, story spine, EDL cross-check, spec lint — is wired in as hard stops (details above).
+- ✅ **Motion transfer** — real footage drives a character through Wan 2.2 Animate (Q6_K GGUF).
+- ✅ **Character voices** via ChatterBox (one cloned, one built-in, spares held for new characters); the narrator is **Kokoro-82M "Heart"**, which replaced Piper in August.
+- ✅ **LTX 13B distilled 0.9.8 on MPS** — 118 s per 5-sec clip via `bin/make-ltx-lightricks`, still the B-roll engine on the `.sf` path. Likely the first public-confirmed working setup on Apple Silicon.
+- ✅ **LPIPS-gated measurement harness** (`bin/measure-render`) and **1-step Wan distillation** ([`distill/`](distill/)) — unchanged.
+- ➖ **Tried and deleted:** a hand-written Metal flash-attention kernel (a measurement artifact; kept in [`metal/`](metal/) as a documented null result) and ByteDance's Bernini-R reference-to-video (identity tied with LTX-2.5 on every measured axis at 25× the render time). Both are written up in [`RENDER_SPEED_RESEARCH.md`](RENDER_SPEED_RESEARCH.md).
+- ⏳ **Not yet:** the Mac mini as a second render node (installed, not validated end to end); `forge-finish` as a stage in `build-episode`; bringing the Director UI onto the new engines.
 
 ---
 
 ## Quickstart
 
-Four lines from clone to first film:
-
 ```bash
 git clone https://github.com/nicedreamzapp/story-forge
 cd story-forge
-./bin/sf parse story_forge/examples/test_tiny.sf   # parser sanity (instant)
-./bin/sf render story_forge/examples/test_tiny.sf  # ~2 min on M5 Max
-# output: ~/AI/videopipe/outputs/test_tiny.mp4
+./bin/sf doctor                                    # what's missing, before you burn an hour
+./bin/sf parse story_forge/examples/test_tiny.sf   # parser sanity (instant, no deps)
+./bin/sf render story_forge/examples/test_tiny.sf  # ~2 min on an M5 Max
+# output: ~/story-forge/outputs/test_tiny.mp4
 ```
 
-That's it. `test_tiny.sf` is a single LTX scene, 3 seconds, no narration — the smallest end-to-end loop the pipeline runs. Once it produces an mp4, the heavier examples (`cabin_open.sf`, multi-scene films) work the same way.
+`sf doctor` is the honest starting point. Story Forge is a glue layer, not a
+self-contained model runtime, so it shells out to a few things that have to
+exist on your machine first:
+
+| what | needed for | how it's found |
+|---|---|---|
+| **ComfyUI**, running | every still | `SF_COMFY_URL`, default `http://127.0.0.1:8188` |
+| **Flux** unet + CLIP + VAE, loaded in ComfyUI | every still on the `.sf` path | `SF_FLUX_UNET`, `SF_FLUX_CLIP1`, `SF_FLUX_CLIP2`, `SF_FLUX_VAE` |
+| **ffmpeg / ffprobe** | assembling scenes | `PATH` |
+| **Wan 2.2** and/or **LTX** in ComfyUI | motion | `bin/render-route` picks per scene |
+| **piper** + an `.onnx` voice (or any piper-compatible CLI) | narration (optional) | `SF_PIPER`, `SF_PIPER_MODEL` |
+| avatar pipeline (LivePortrait / Wav2Lip) | `with lipsync` on real human faces only (optional) | `SF_AVATAR_DIR` |
+
+Model names must match what your ComfyUI actually lists, including subfolders.
+If a still fails with *value not in list*, run:
+
+```bash
+python3 tools/flux_t2i.py --list-models
+```
+
+and set the `SF_FLUX_*` variables to names from that output.
+
+Nothing in the repo points at an absolute home directory any more. Every path
+resolves through `story_forge/config.py`: an `SF_*` environment variable if you
+set one, otherwise a default inside this repo or a conventional `~/` location.
+
+`test_tiny.sf` is a single scene, 3 seconds, no narration — the smallest
+end-to-end loop. Once it produces an mp4, the heavier examples
+(`cabin_open.sf`, multi-scene films) work the same way.
+
+The `.sf` path above is the simple, portable one. The gated pipeline (`forge`,
+`forge-shot`, `forge-director`) additionally expects mflux with Qwen-Image 2.1,
+[ltx-2-mlx](https://github.com/dgrauet/ltx-2-mlx) for LTX-2.5, a Qwen3-VL-32B judge
+(MLX) and mlx-whisper, and it still carries paths from the machine it was built on.
+It is published so the method can be read and borrowed; expect to edit paths before it
+runs anywhere else.
+
+---
+
+## Keyframe sandwich (FFLF) — opt-in, and measure before you trust it
+
+The idea, from foxdit on r/StableDiffusion: plain image-to-video conditions on
+frame 0 and lets the model invent the rest, so anchoring the **last** frame too
+should stop a character drifting into someone else.
+
+`still.end_prompt` draws the closing frame reusing the opening seed;
+`still.end_path` uses an image you already trust. LTX only, since it is the
+engine that takes a conditioning item at an arbitrary frame index. Wan i2v
+conditions on the first frame alone and says so instead of ignoring it.
+
+```
+still flux:
+    prompt:     "a lone hiker in a red jacket on a rocky ridge at sunset"
+    end_prompt: "the same hiker further along the ridge, sun lower"
+    seed: 42
+motion ltx:
+    prompt: "the hiker walks steadily along the ridge"
+```
+
+### What it measured here, honestly
+
+On this stack — LTX 13B **distilled**, 7+3 multi-scale steps, 768x512, MPS — a
+3s walking shot with a small human figure came out **worse with the anchor than
+without it**. Same seed, same keyframes, three runs:
+
+| end anchor | subject at the final frame |
+|---|---|
+| strength 1.0 | disintegrated into a smear |
+| strength 0.7 | blurred, damaged, better than 1.0 |
+| **none** | **intact, clean silhouette** |
+
+The worst frame was always the anchored one. Told to be exactly somewhere at
+frame N *and* to move, the sampler sacrifices the subject. So the feature is
+**off unless you ask for it**, the default strength is 0.7 rather than 1.0, and
+if you use it: keep the end frame a small delta from the start, and look at the
+last frame before trusting the shot.
+
+foxdit reports this working well on a 3090 running full-step models. Few-step
+distilled inference is a different animal, and the table above is what it did
+here, not what the technique is supposed to do.
+
+Two other findings from the same tests, both larger than the anchor:
+
+- **1216x704 collapses this config.** The image dissolved into colour bands by
+  frame 24, and cost 316s against 82s. Stay at 768x512 with the distilled
+  recipe.
+- **Frame the subject bigger.** Every failure was a small figure in a wide
+  shot. There are not enough pixels on a distant person to hold them together
+  for 73 frames.
+
+Directly: `bin/render-route --still A.png --last-frame B.png --label shot "…"`
+Example: `story_forge/examples/keyframe_sandwich.sf`.
 
 ---
 
 ## Architecture
+
+There are two ways in, and they share the renderers.
+
+**The `.sf` script path** — simple, portable, what the Quickstart runs. You write a `.sf` script (or use the UI at `:17600/story`) and it goes straight through: a Flux still per scene, Wan or LTX motion routed per scene, narration placed per line, an ACE-Step score, one `ffmpeg` pass.
 
 ```
 .sf script ──► parser ──► resolver ──► emitter ──► .storyplan.json IR
@@ -212,11 +440,11 @@ That's it. `test_tiny.sf` is a single LTX scene, 3 seconds, no narration — the
                                               │                       │
                                               ▼                       ▼
                                   make-ltx-lightricks         make-video --i2v
-                                  (LTX 13B distilled)         (Wan 2.2 14B + Metal flash-attn)
+                                  (LTX 13B distilled)         (Wan 2.2 14B, GGUF)
                                               │                       │
                                               └───────────┬───────────┘
                                                           ▼
-                                          Piper (narration) + ACE-Step (music + sfx)
+                                   narration (piper-compatible CLI) + ACE-Step (music + sfx)
                                                           │
                                                           ▼
                                                  ffmpeg stitch + mix
@@ -226,14 +454,13 @@ That's it. `test_tiny.sf` is a single LTX scene, 3 seconds, no narration — the
 ```
 
 - **`render-route`** auto-selects Wan (hero shots with character action / faces / dialogue) or LTX (B-roll / atmosphere / wide shots) per scene based on the motion prompt, or honors an explicit `motion wan:` / `motion ltx:` block in the DSL.
-- **The Metal flash-attention kernel** sits inside the Wan path and is the reason the M5 hero shots come in inside human attention spans.
-- **Piper + ACE-Step** run in parallel with the video renders, then `ffmpeg` does sidechain-ducked mixing and xfade stitching at the end.
+- **Narration + ACE-Step** run in parallel with the video renders, then `ffmpeg` does sidechain-ducked mixing and xfade stitching at the end.
 
----
+**The `forge` path** — the gated one every film since July is made on. It takes a project folder (`beats.json` spine, `shots.json` specs, locked canon) instead of a single script, and runs the loop in [How a film gets made now](#-how-a-film-gets-made-now): Qwen-Image 2.1 stills, LTX-2.5 or Wan animation, every shot judged before it is kept, `build-episode` to assemble and `film_qc` to verify.
 
 ## The DSL grammar
 
-Story Forge films are written as `.sf` scripts — indentation-aware, comment-friendly, stdlib-only parser. The full grammar as of 2026-05-24:
+Story Forge films are written as `.sf` scripts — indentation-aware, comment-friendly, stdlib-only parser. The full grammar as of 2026-05-24 (unchanged since; `piper/` voice presets render through whatever piper-compatible CLI `SF_PIPER` points at — our films use a Kokoro-82M shim):
 
 ```
 # Comments start with '#' and go to end of line.
@@ -285,7 +512,7 @@ scene fireside:
     motion wan:
         prompt: "intimate close shot, firelight flickers, slow zoom to flames"
         duration: 5.0
-    narrate warm with lipsync:        # 'with lipsync' flag → drives Wav2Lip
+    narrate warm with lipsync:        # human avatars only; never on stylized characters
         line: "And the cold outside became a story she would only tell on warm nights."
     sfx fire_crackle at=2.0
     music wintry vol=0.40
@@ -307,7 +534,7 @@ Constructs at a glance:
 | `still flux:` + `prompt:` / `seed:` | Per-scene Flux still spec |
 | `motion wan:` or `motion ltx:` + `prompt:` / `duration:` | Per-scene i2v motion spec |
 | `narrate VOICE:` + `line:` | Narration in this scene |
-| `narrate VOICE with lipsync:` + `line:` | Same, but flag for Wav2Lip pass |
+| `narrate VOICE with lipsync:` + `line:` | Same, plus a LivePortrait/Wav2Lip pass — for real human faces only; it paints a human mouth onto a cartoon, so our character films never use it |
 | `sfx NAME at=N.N` | Per-scene SFX ref, `at=` is start offset in seconds |
 | `music NAME vol=F` | Per-scene music ref, vol overrides preset |
 
@@ -319,50 +546,48 @@ The parser, resolver, and emitter live in [`story_forge/parser.py`](story_forge/
 
 ```
 story-forge/
+├── RULES.md                  # the rules the code enforces, in plain words
+├── LESSONS.json              # house lessons, keyword-matched to every new shot
+├── METRICS.jsonl             # every step's real duration and verdict, append-only
+├── RENDER_SPEED_RESEARCH.md  # every speed/quality candidate, with a measurement
+│
 ├── bin/
-│   ├── sf                    # DSL CLI: sf parse / sf render
-│   ├── make-ltx-lightricks   # LTX 13B distilled 0.9.8 wrapper (the working path)
-│   ├── make-video            # Wan 2.2 14B i2v wrapper (uses Metal flash-attn)
-│   ├── render-route          # Per-scene engine picker (Wan vs LTX)
-│   └── measure-render        # LPIPS-gated speedup harness
+│   ├── forge                 # one command per film: new / resume / status / stop / list
+│   ├── forge-director        # owns the film; loops until every beat has passing footage
+│   ├── forge-shot            # the self-proving shot builder (still → gates → lock → animate → re-judge)
+│   ├── forge-animatic        # story reel on locked stills, before anything is animated
+│   ├── forge-review          # STATUS.md: what ran, what failed and why, what's next
+│   ├── forge-finish          # bloom / colour grade / contrast for stills and clips
+│   ├── build-episode         # preflight → score → cards → segments → assemble → QC
+│   ├── make-ltx25            # LTX-2.5 (MLX, bf16) i2v and audio-to-video
+│   ├── make-video            # Wan 2.2 14B i2v (Q6_K GGUF by default)
+│   ├── make-motion-video     # Wan 2.2 Animate: a pose track drives a character
+│   ├── motion_pose.py        # real video → pose track, with a QC sheet
+│   ├── make-ltx-lightricks   # LTX 13B distilled 0.9.8 (the .sf path's B-roll engine)
+│   ├── render-route          # per-scene engine picker (Wan vs LTX) for the .sf path
+│   ├── mem-gate              # refuse heavy work the machine can't afford
+│   ├── measure-render        # LPIPS-gated speedup harness
+│   ├── character_voice.py    # ChatterBox character voices
+│   └── sf                    # DSL CLI: sf doctor / sf parse / sf render
 │
-├── story_forge/
-│   ├── parser.py             # Indentation-aware .sf → AST
-│   ├── resolver.py           # Variable interpolation + preset resolution
-│   ├── emitter.py            # AST → .storyplan.json IR
-│   ├── run.py                # IR → render-route + ffmpeg bridge
-│   ├── examples/             # cabin_open.sf, test_tiny.sf
-│   └── tests/                # test_parser.py — 16/16 green
+├── pipeline-tools/
+│   ├── beat_gate.py          # does the picture depict the beat? (blind, then ruled)
+│   ├── film_qc.py            # the last word: mouths, identity, artifacts, audio timing
+│   ├── spec_lint.py          # refuse a spec that repeats a known mistake
+│   ├── style_contract.py     # one locked paragraph of visual language per film
+│   └── scene_audit.py, mouth_sync.py, clone_voice.py, …
 │
-├── metal/
-│   ├── flash_attn_mps.py     # 144-line MSL tiled flash-attn kernel
-│   ├── verify_flash_attn.py  # PSNR + speedup validator
-│   ├── metal_rmsnorm_linear.py / verify_rmsnorm_linear.py
-│   └── hello_metal.py        # Minimal compile_shader example
-│
-├── build_status/             # Live build dashboard (localhost:17602)
-├── ui/                       # Story Forge UI v2 — DSL editor + engine toggles (localhost:17600/story)
-├── server.py                 # Flask server that hosts the UI + DSL endpoints
-├── saga.mp4                  # The first film — The Bear Sister, 4:08
-├── STORYBOOK.md              # Full prose transcript of saga.mp4
-└── YOUTUBE_METADATA.md       # Tags / description for the YT upload
+├── story_forge/              # the .sf DSL: parser, resolver, emitter, run.py, packs, examples, tests
+├── projects/                 # one folder per film: beats.json, shots.json, canon/, clips/, STATUS.md
+├── director.py               # the chat + storyboard Director UI
+├── server.py                 # Flask server for the UI (localhost:17600)
+├── ui/                       # the web UI pages
+├── metal/                    # the Metal flash-attention null result, documented
+├── distill/                  # 1-step Wan distillation
+├── build_status/             # live build dashboard (localhost:17602)
+├── saga.mp4                  # the first film — The Bear Sister, 4:08
+└── STORYBOOK.md              # full prose transcript of saga.mp4
 ```
-
----
-
-## What it does
-
-You write a `.sf` script (or use the UI). Story Forge takes it and:
-
-1. Generates a Flux still per scene
-2. Animates each still with Wan (hero) or LTX (B-roll), routed automatically per scene
-3. Renders each narration line with Piper TTS through a warm storyteller EQ chain
-4. Generates an original instrumental score + per-scene SFX via ACE-Step
-5. Composes the final film with `ffmpeg` — scene-synced narration via `adelay+amix`, music ducked under speech via sidechain compression, xfade transitions, Pillow PNG title and credits
-
-Every step runs locally on Apple Silicon. The output is a regular `.mp4`.
-
----
 
 ## The first film — `saga.mp4`
 
@@ -484,21 +709,26 @@ To prove the pipeline, the first thing through it is a **two-act, 4:08 animated 
 
 ## Component stack
 
-| Stage | Tool | Model | Purpose |
-|---|---|---|---|
-| Still image per scene | [Flux 1 Dev FP8](https://huggingface.co/black-forest-labs/FLUX.1-dev) | 16 GB | Sets composition + character look |
-| Hero motion (faces / action) | [Wan 2.2 i2v](https://huggingface.co/Wan-AI) | 27 GB + 1 GB lightx2v LoRA | 5-sec native motion, Metal flash-attn accelerated |
-| B-roll motion (atmosphere) | [LTX-Video 13B distilled 0.9.8](https://huggingface.co/Lightricks) | 13 GB | 118s/clip on M5 — 5.6× faster than Wan |
-| Voice narration | [Piper TTS](https://github.com/rhasspy/piper) | LibriTTS_R medium + others | Per-voice presets in DSL |
-| Music + SFX | [Song Forge / ACE-Step](https://github.com/ace-step/ACE-Step) | 13 GB | Original instrumentals + scene SFX |
-| Compose | [ffmpeg 8.1](https://ffmpeg.org/) | — | xfade, sidechain ducking, fades, mux |
-| Title cards | [Pillow](https://pillow.readthedocs.io/) | — | PNG text overlays |
+What a film made today runs on. Everything is local; weights are pulled at runtime and keep their own licenses ([CREDITS.md](CREDITS.md)).
 
----
+| Stage | Model / tool | Notes |
+|---|---|---|
+| Still image per shot | [Qwen-Image 2.1](https://huggingface.co/Qwen) via [mflux](https://github.com/filipstrand/mflux), bf16 | Locked character masters passed in as reference images. The `.sf` path and the Director UI still use Flux 1 Dev through ComfyUI |
+| Scene animation | [LTX-2.5](https://huggingface.co/Lightricks) via [ltx-2-mlx](https://github.com/dgrauet/ltx-2-mlx), distilled i2v, bf16 | ~69 s per 5-sec shot on the M5 |
+| Scene animation (alternate) | [Wan 2.2 i2v 14B](https://huggingface.co/Wan-AI), Q6_K GGUF, in ComfyUI | 13–16 min per shot; the default where a film doesn't set `engine: ltx25` |
+| Dialogue close-ups | LTX-2 distilled audio-to-video (mlx-video) | The video is conditioned on the actual voice take |
+| Action from real footage | Wan 2.2 Animate, Q6_K GGUF | Pose track from a real performer |
+| B-roll on the `.sf` path | [LTX-Video 13B distilled 0.9.8](https://huggingface.co/Lightricks) | 118 s/clip |
+| Narrator | [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) "Heart" | Through a piper-compatible CLI, so the DSL's voice presets still work |
+| Character voices | [ChatterBox](https://github.com/resemble-ai/chatterbox) | One voice per character, identity confirmed by ear once |
+| Music + SFX | [Song Forge / ACE-Step](https://github.com/ace-step/ACE-Step) | Original score, ducked under dialogue |
+| Eyes (every gate) | Qwen3-VL-32B, 4-bit, MLX | Beat gate, identity gate, film_qc |
+| Ears | mlx-whisper | Every line audible at its planned moment |
+| Compose + finish | [ffmpeg 8.1](https://ffmpeg.org/) + [Pillow](https://pillow.readthedocs.io/) | xfade, sidechain ducking, LUT grade, title and credit cards |
 
 ## The clever bits (what isn't in the YouTube tutorials)
 
-### 1. Per-sentence Piper + `adelay+amix` for scene-synced narration
+### 1. Per-sentence narration + `adelay+amix` for scene-synced audio
 
 Most pipelines `concat` narration lines into one block at t=0. By scene 4 the audio is two scenes ahead of the visuals.
 
@@ -506,7 +736,7 @@ Story Forge renders each narration line separately, then places it at its scene'
 
 ### 2. Warm storyteller EQ chain
 
-Piper's raw output sounds like a robot. The narrator in Story Forge films runs through a deliberate signal chain:
+Raw TTS output sounds flat. The narrator in Story Forge films runs through a deliberate signal chain:
 
 ```
 highpass(80) → +2dB low-shelf @ 250Hz   (chest warmth)
@@ -532,7 +762,7 @@ Combining two independently-rendered films into one saga uses `xfade=transition=
 
 ### 6. Per-scene engine routing
 
-`bin/render-route` picks Wan vs LTX automatically based on the motion prompt — hero shots with character action go to Wan, atmospheric B-roll goes to LTX (~5.6× faster). The DSL also lets you pin the engine explicitly with `motion wan:` or `motion ltx:`.
+On the `.sf` path, `bin/render-route` picks Wan vs LTX automatically based on the motion prompt — hero shots with character action go to Wan, atmospheric B-roll goes to LTX (~5.6× faster). The DSL also lets you pin the engine explicitly with `motion wan:` or `motion ltx:`. On the `forge` path a film or a single shot sets `engine: ltx25` or leaves it on Wan.
 
 ### 7. The film watches itself — local QC judges (`pipeline-tools/film_qc.py`)
 
@@ -546,32 +776,32 @@ It runs as three gates so failures die cheap: judge the stills and voice takes *
 
 ## Roadmap — the 30× faster build-out
 
-Story Forge today is the proof. The next iteration is what makes it run in minutes instead of hours per film. **Status updated 2026-05-24:**
+The goal set in May: a 4-minute film in minutes instead of hours. **Status updated 2026-09-22:**
 
 | Multiplier | Target gain | Status |
 |---|---|---|
-| **LTX-Video 13B distilled 0.9.8 for B-roll** | 5.6× vs Wan | ✅ **WORKING on M5 MPS** — 118s/clip via Lightricks' upstream multi-scale code. |
-| **Custom Metal flash-attention kernel** | (null result) | ➖ Measurement artifact (dispatch bug) — MPS SDPA already wins at our shapes; kept in `metal/` as documented learning. |
-| **LPIPS-gated speedup harness** | (gate, not gain) | ✅ Built — `bin/measure-render`. Novel on Mac. |
-| **`render-route` engine auto-selector** | (routing, not gain) | ✅ Wired — auto-picks Wan vs LTX per scene heuristic. |
-| **Story Forge DSL compiler** | (productivity, not gain) | ✅ Shipped — parser/resolver/emitter/run, 16/16 tests pass. |
-| **Q4_K_M GGUF Wan on Mac mini** | ~3.6× memory drop | ✅ Working — but M4 Pro compute is the bottleneck (40 min/clip vs M5's 10 min). Mini stays batch tier. |
-| **EasyCache (DiT-native cache, kijai)** | 1.1-1.3× at 4 steps | 🔄 Test in flight. |
+| **LTX-2.5 distilled i2v for scene animation** | ~10× vs Wan per shot | ✅ **Shipped** — ~69 s vs 13–16 min, `bin/make-ltx25`. |
+| **Audio-to-video dialogue close-ups** | (quality, and 6× vs the LTX-2.5 a2v path) | ✅ Shipped — 41.7 s per close-up, film_qc 4/4. |
+| **LTX-Video 13B distilled 0.9.8 for B-roll** | 5.6× vs Wan | ✅ Working on M5 MPS — 118 s/clip via Lightricks' upstream multi-scale code. |
+| **Batch by model, not by shot** | ~10–15% wall clock | ✅ `forge-shot --stage` locks every still first, then animates every locked still. |
+| **Refuse bad shots at the still stage** | (saves whole animate runs) | ✅ The beat and identity gates. |
 | **1-step Wan distillation** | 4× perpetual | ✅ Shipped — LPIPS 0.082 vs 0.206 wall (~2.5×), transfers to 256. See `distill/`. |
-| **Comprehensive harness comparison** | (validation, not gain) | ⏳ Pending after distill lands. |
-| **Multi-voice + Wav2Lip lip sync** | (feature, not speed) | 🔄 DSL flag wired (`with lipsync`); renderer pass pending. |
-
-Stacked target: **today's 5-hour render → ~10-30 min per 4-min film on M5.**
+| **LPIPS-gated speedup harness** | (gate, not gain) | ✅ `bin/measure-render`. |
+| **Custom Metal flash-attention kernel** | (null result) | ➖ Measurement artifact — MPS SDPA already wins at our shapes; kept in `metal/`. |
+| **Bernini-R reference-to-video** | (identity) | ➖ Deleted — tied LTX-2.5 on identity at 25× the render time. |
+| **Wav2Lip lip sync** | (feature) | ➖ Dropped for character films — it paints human mouths onto stylized faces. Audio-to-video replaced it. |
+| **Q4_K_M GGUF Wan on the Mac mini** | a second render node | ⏳ Installed; M4 Pro runs ~40 min/clip vs the M5's ~10, and inference is not validated end to end. |
+| **EasyCache (DiT-native cache)** | 1.1–1.3× at 4 steps | ⏳ Never measured; matters less now that LTX-2.5 replaced Wan as the main engine. |
 
 ### Benchmark to beat
 
-**Liu Liu's Draw Things** (Apple-cited in the M5 launch) — ships Wan 2.2 on M-series and iPad M5 in a closed app. They're the speed reference on Mac. We're building the **open, measured, scriptable** equivalent — same speed bucket, with a DSL and a harness no closed app provides.
+**Liu Liu's Draw Things** (Apple-cited in the M5 launch) — ships Wan 2.2 on M-series and iPad M5 in a closed app. They're the speed reference on Mac. We're building the **open, measured, scriptable** equivalent — same speed bucket, with a DSL, a review loop and a harness no closed app provides.
 
 ---
 
 ## Why local
 
-The whole thing is the point. A 4-minute animated film with custom score and synced narration runs on **one laptop you can carry in your bag**. No upload step. No "your queue position is 47." No subscription. No telemetry.
+The whole thing is the point. A 4-minute video — an animated film, a narrated documentary cut, an ambient piece with an original score — runs on **one laptop you can carry in your bag**. No upload step. No "your queue position is 47." No subscription. No telemetry.
 
 ### What the cloud would actually cost
 
@@ -610,9 +840,17 @@ Hardware amortization: an M5 Max MacBook Pro + Mac mini M4 Pro (~$4,900 one-time
 
 *A Story Forge production.*
 
+Whose work the whole pipeline is built on, with licenses, is in [CREDITS.md](CREDITS.md).
+
+---
+
+## Something not working?
+
+Open an [issue](https://github.com/nicedreamzapp/story-forge/issues/new) with your Mac (chip and RAM), which stage failed, and the last lines of its log. It has mostly been run on one M5 Max, so reports from other machines are especially welcome.
+
 ---
 
 ## License
 
-- **Pipeline code:** MIT (when published)
-- **Saga film (`saga.mp4`):** [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) — share with attribution, don't sell
+- **Pipeline code:** [MIT](LICENSE)
+- **Films and other assets:** see [LICENSE-ASSETS.md](LICENSE-ASSETS.md) — *The Bear Sister* (`saga.mp4`) is [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/): share with attribution, don't sell
