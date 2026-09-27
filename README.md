@@ -2,7 +2,7 @@
 
 # 🎬 Story Forge
 
-### A local pipeline that orchestrates open models into finished films. No cloud. No bill.
+### A whole film studio on one laptop. No cloud. No bill. No limits.
 
 ![100% local](https://img.shields.io/badge/cloud_calls-0-brightgreen?style=for-the-badge)
 ![Apple Silicon](https://img.shields.io/badge/runs_on-Apple_Silicon-black?style=for-the-badge&logo=apple)
