@@ -2,7 +2,7 @@
 
 # 🎬 Story Forge
 
-### A whole film studio on one laptop. No cloud. No bill. No limits.
+### A local pipeline that orchestrates open models into finished films. No cloud. No bill.
 
 ![100% local](https://img.shields.io/badge/cloud_calls-0-brightgreen?style=for-the-badge)
 ![Apple Silicon](https://img.shields.io/badge/runs_on-Apple_Silicon-black?style=for-the-badge&logo=apple)
@@ -47,6 +47,21 @@ An uploaded mind pieces together how the world ended. Psychedelic sci-fi, five a
 
 ---
 
+## 🛠️ What I built
+
+**Matt Macosko** designed and built the pipeline. The models (Qwen-Image, LTX, Wan, Flux, Kokoro, ChatterBox, ACE-Step, Qwen3-VL, Whisper) are upstream open models; the code here is what turns them into a film.
+
+- 📜 **A script language, `.sf`**, with its own parser, resolver and emitter ([`story_forge/`](story_forge/)), a CLI ([`bin/sf`](bin/sf)), style/format packs and tests
+- 🎬 **A director that runs until the film is done** ([`bin/forge-director`](bin/forge-director)): finds beats with no passing footage, drives each one, escalates instead of repeating, and marks a shot BLOCKED with its reason
+- 🎯 **A shot builder that proves each shot** ([`bin/forge-shot`](bin/forge-shot)): still → judge → identity check → lock → animate → judge the clip → trim to the part that holds
+- 👁️ **Vision and audio judges** ([`beat_gate.py`](pipeline-tools/beat_gate.py), [`film_qc.py`](pipeline-tools/film_qc.py)): blind description then verdict, majority vote across frames, set continuity, mouths, identity, every line heard
+- 🧱 **A spec linter** ([`spec_lint.py`](pipeline-tools/spec_lint.py)) that blocks a shot spec repeating a known mistake before any GPU time is spent
+- 💾 **Memory scheduling** ([`core.py`](core.py), [`bin/mem-gate`](bin/mem-gate)) so heavy local models take turns instead of crashing the machine
+- ✂️ **Assembly** ([`bin/build-episode`](bin/build-episode), [`bin/forge-finish`](bin/forge-finish)): preflight checks, score, title cards, ducked mix, finishing grade, final QC
+- 🖥️ **A local web UI** ([`server.py`](server.py), [`ui/`](ui/)) for rendering, live status and reviewing clips
+
+---
+
 ## ⚡ The pipeline today
 
 <div align="center">
@@ -66,6 +81,8 @@ An uploaded mind pieces together how the world ended. Psychedelic sci-fi, five a
 | **7** | ✂️ | **Cut it.** Every shot goes together in story order, with the music dipping under dialogue |
 | **8** | 🔍 | **Final check.** AI eyes and ears watch the whole film: right mouths, clean faces, every line heard |
 | **9** | 🍿 | **Film!** |
+
+**How it fits together.** `forge` points the director at a project folder, where the film's state lives: `beats.json` (the story spine), `shots.json` (shot specs), `director_state.json` (attempts and blocks) and `shot_lessons.json`. Each cycle the director re-reads the specs, lints them, picks the next beat with no passing footage and hands it to `forge-shot`. That rolls seeds for a still until the vision judge passes it and the identity check matches the character's master, locks it, animates it, then judges the clip and keeps only the stretch that holds the beat. A failed still or clip comes back with a concrete correction from the judge, and that goes into the next prompt, and after repeated failures the director tightens the attempt (shorter clip, locked camera, new seeds) before marking it BLOCKED. The models never share the machine at once: the in-process judge is unloaded before animation, ComfyUI is restarted clean before each render, a memory gate runs before every heavy step, the still and animate phases hold their memory one at a time, and renders wait for Song Forge's customer jobs. When every spine beat has footage, `build-episode` checks the edit list against the beats, runs the story gate, lays in the score and title cards, assembles the cut and runs `film_qc` over the result.
 
 <table>
 <tr>
@@ -161,7 +178,9 @@ git clone https://github.com/nicedreamzapp/story-forge && cd story-forge
 ./bin/sf render story_forge/examples/test_tiny.sf   # 🎬 ~2 min on an M5 Max
 ```
 
-Need: **ComfyUI** running · **Flux** + **Wan 2.2** / **LTX** loaded in it · **ffmpeg** · optional **piper**-compatible voice. `sf doctor` tells you what's missing.
+These commands run the **original `.sf` path**: parse a script, then Flux still → Wan/LTX motion → narration → ffmpeg stitch. It has no judges and no director. Need: **ComfyUI** running · **Flux** + **Wan 2.2** / **LTX** loaded in it · **ffmpeg** · optional **piper**-compatible voice. `sf doctor` tells you what's missing.
+
+The **gated director pipeline** (everything in "The pipeline today") needs the extra requirements below.
 
 <details>
 <summary>🎛️ <b>The full gated pipeline</b> (forge / director / forge-shot)</summary>
