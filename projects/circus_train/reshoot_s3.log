@@ -1,0 +1,27 @@
+[08:49:23] judge via in-process VL
+[08:49:23] === s3_rollout — beat: two brown horses in harness out in front of a wooden wagon, pulling it fast along a dirt r
+[mem] storyforge-still s3_rollout: asking for 41GB — measured, not the 38GB declared
+[08:49:23]   holding 41GB for storyforge-still s3_rollout
+[08:49:23]   carrying 6 lesson(s) (0 inherited from earlier films) into this shot
+[08:49:23]   the weld's backend is down or loading — waiting for it (this does not count as a failed idea)
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[08:49:41]   render backend was down — restarted it ourselves
+[08:49:41]   render backend is back
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 10746.97it/s]
+[08:50:40]   seed 8801: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts two brown horses in harness pulling a wooden wagon at speed along a d
+[08:50:45]   LOCKED stills/LOCKED_s3_rollout.png
+[08:50:45]   released the in-process VL judge before handing the GPU to Wan
+[08:50:45]   released the storyforge-still s3_rollout lease
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[08:51:03]   bounced ComfyUI so Wan loads into a clean process
+[08:51:03]   render backend is back
+[08:51:03]   holding 47GB for storyforge-animate s3_rollout
+[08:51:03]   animate engine: ltx25
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 10216.17it/s]
+[08:52:56]   clip: beat PASS (5/5)
+[08:52:56]   released the storyforge-animate s3_rollout lease
+[08:52:56] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[08:52:56] DONE — 1/1 shots produced usable, judged assets
+[08:52:56]   s3_rollout: CLIP_KEPT

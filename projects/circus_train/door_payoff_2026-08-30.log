@@ -1,0 +1,25 @@
+[door 11:11:49] s6_heave: re-animating the locked wide heave with the boxcar rocking
+[door 11:15:19] s6_heave exit 0 — s6_heave: CLIP_TRIMMED
+[door 11:15:19] s6c_light_widens: building still + clip
+[door 12:09:40] s6c_light_widens exit 1 — s6c_light_widens: UNBUILT
+[door 12:09:40] s7_ellie_out: building still + clip
+[door 12:50:59] s7_ellie_out exit 1 — s7_ellie_out: UNBUILT
+[door 12:50:59] s7b_hank_flat: building still + clip
+[door 13:10:05] s7b_hank_flat exit 143 — s7b_hank_flat: 
+[door 13:10:05] rebuilding the episode from preflight
+[door 13:18:50] build-episode exit 1
+[door 13:18:53] episode opened on screen
+[door 13:19:12] second pass: animating the widening light from the approved interior still
+[door 13:22:08] s6c second-pass exit 1 — s6c_light_widens: CLIP_FAILED
+[door 13:22:08] s6c still unbuilt after second pass — cut stands without it
+[door 13:22:09] third pass: Ellie-out from the hand-built doorway composite (weld, low denoise)
+[door 13:40:55] ellie composite pass exit 1 — s7_ellie_out: UNBUILT
+[door 13:40:55] ellie composite pass still unbuilt — the cut stands with the light and Hank shots only
+[door 13:40:55] cleanup: unloading render models and stopping helper scripts
+[door 13:40:55] cleanup done — nothing left rendering
+[door 13:41:02] fourth pass: re-judging the widening light with a frame-judgeable clip beat
+[door 13:43:11] s6c retry exit 0 — s6c_light_widens: CLIP_KEPT
+[door 13:55:55] light build exit 0
+[door 13:55:57] complete payoff cut opened on screen
+[door 13:55:57] cleanup: unloading render models
+[door 13:55:57] all door-payoff work finished

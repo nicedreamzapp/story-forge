@@ -1,0 +1,33 @@
+# q_inkwash.sf — STYLE B: ink line + watercolor wash, vintage picture-book
+$style = "ink line and watercolor wash, visible brush strokes, muted earthy palette, vintage picture-book, textured paper grain, hand-drawn, delicate linework"
+$kid   = "a small child in a knitted sweater carrying a glowing paper lantern"
+
+film "Last Light - Inkwash" slug=q_inkwash target=m5
+
+voice warm: piper/en_US-libritts_r-medium speaker=0 length=1.16
+music score: ace/warm-cinematic-underscore vol=0.30
+
+@transition xfade dur=0.5
+@mix duck voice -> music threshold=-22 ratio=4
+
+scene dusk_path:
+    still flux:
+        prompt: "{$style}, wide shot, {$kid} walking a mossy forest path at dusk, tall pines, drifting fireflies, soft washes of indigo and amber"
+        seed: auto
+    motion ltx:
+        prompt: "slow gentle push-in, fireflies drift, lantern light flickers softly, leaves stir"
+        duration: 5.0
+    narrate warm:
+        line: "When the last light left the trees, she lit the little lantern and started home."
+    music score vol=0.30
+
+scene the_door:
+    still flux:
+        prompt: "{$style}, a warm wooden cabin doorway spilling golden light into the blue dusk, a small sleepy fox waiting on the step, the child approaching with her lantern"
+        seed: auto
+    motion ltx:
+        prompt: "warm light glows from the doorway, the fox's ears twitch, soft drift in the air"
+        duration: 5.0
+    narrate warm:
+        line: "Someone had left the door open, and the warmth spilling out already knew her name."
+    music score vol=0.30

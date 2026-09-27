@@ -1,0 +1,16 @@
+{
+ "s3b_wagonpass": [
+  "Add a horse in mid-gallop, clearly visible and attached to the wagon by reins and harness, positioned just ahead of the wagon and slightly to the side to show motion and connection, so the viewer can unmistakably see it pulling the wagon.",
+  "Add a horse in mid-gallop, clearly visible and harnessed to the front of the wagon, with its legs extended and mane flowing, to show the source of propulsion and confirm the wagon is horse-drawn.",
+  "Replace the four black rubber tires with large wooden spoked wheels, and add a horse (or horses) visibly harnessed to the front of the wagon, in motion, to accurately depict a traditional horse-drawn wagon racing along the dirt road.",
+  "Replace the large black rubber tires and headlights with traditional wooden spoked wheels and remove any modern mechanical components; add a visible horse (or horses) harnessed to the front of the wagon, and ensure the wagon is clearly being pulled by the horse at speed along the dirt road, with dust trailing behind."
+ ],
+ "s3_rollout": [
+  "Remove the horse from inside the wagon and reposition it in front, galloping at full speed, harnessed to the wagon, with muscles tensed and legs extended in motion, kicking up dust from the ground.",
+  "Remove the humans riding horses in the background and ensure the scene contains only the horse-drawn wooden fire-engine wagon in motion, with dust billowing behind, on an open dirt road under warm daylight.",
+  "Add a galloping brown horse in front of the wagon, clearly harnessed and pulling it, with its legs in mid-stride to convey rapid motion, ensuring the horse is visible and integrated into the side-view composition.",
+  "never write any word in CAPITAL LETTERS in the prompt \u2014 the image model draws capitalised words as literal signage in the picture; describe the state in lower case instead",
+  "Make the horse gallop with dynamic motion \u2014 legs extended mid-stride, mane and tail flowing backward, muscles tensed \u2014 and add a thick, billowing cloud of dust trailing behind the wagon, kicked up by the fast-moving wheels, to clearly convey high speed.",
+  "Add a galloping brown horse in full stride, clearly attached to the wagon by reins and harness, visible in the foreground on the left side of the frame, to show the source of propulsion and convey the motion of the horse-drawn wagon."
+ ]
+}

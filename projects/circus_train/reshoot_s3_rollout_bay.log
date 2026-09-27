@@ -1,0 +1,22 @@
+[09:53:59] judge via in-process VL
+[09:53:59] === s3_rollout — beat: seen from the side: exactly two identical bay horses (reddish-brown with black manes, no w
+[mem] storyforge-still s3_rollout: asking for 41GB — measured, not the 38GB declared
+[09:54:00]   holding 41GB for storyforge-still s3_rollout
+[09:54:00]   carrying 2 lesson(s) (1 inherited from earlier films) into this shot
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 27069.73it/s]
+[09:55:02]   seed 8137: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows exactly two identical bay horses in harness, galloping side-by-side alo
+[09:55:05]   LOCKED stills/LOCKED_s3_rollout.png
+[09:55:05]   released the in-process VL judge before handing the GPU to Wan
+[09:55:05]   released the storyforge-still s3_rollout lease
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[09:55:23]   bounced ComfyUI so Wan loads into a clean process
+[09:55:23]   render backend is back
+[09:55:23]   holding 47GB for storyforge-animate s3_rollout
+[09:55:24]   animate engine: ltx25
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 19483.22it/s]
+[09:57:49]   clip: beat PASS (5/5)
+[09:57:49]   released the storyforge-animate s3_rollout lease
+[09:57:49] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[09:57:49] DONE — 1/1 shots produced usable, judged assets
+[09:57:49]   s3_rollout: CLIP_KEPT

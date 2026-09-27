@@ -1,0 +1,80 @@
+[
+ {
+  "id": "c2_ellie_trumpet",
+  "state": "UNBUILT",
+  "rolls": [
+   {
+    "seed": 11,
+    "cycle": 0,
+    "beat": "FAIL",
+    "votes": "0/3"
+   },
+   {
+    "seed": 47,
+    "cycle": 0,
+    "beat": "FAIL",
+    "votes": "0/3"
+   },
+   {
+    "seed": 82,
+    "cycle": 0,
+    "beat": "FAIL",
+    "votes": "0/3"
+   },
+   {
+    "seed": 119,
+    "cycle": 0,
+    "beat": "FAIL",
+    "votes": "0/3"
+   },
+   {
+    "seed": 1011,
+    "cycle": 1,
+    "beat": "FAIL",
+    "votes": "0/3"
+   },
+   {
+    "seed": 1047,
+    "cycle": 1,
+    "beat": "FAIL",
+    "votes": "0/3"
+   },
+   {
+    "seed": 1082,
+    "cycle": 1,
+    "beat": "FAIL",
+    "votes": "0/3"
+   },
+   {
+    "seed": 1119,
+    "cycle": 1,
+    "beat": "FAIL",
+    "votes": "0/3"
+   },
+   {
+    "seed": 2011,
+    "cycle": 2,
+    "beat": "FAIL",
+    "votes": "0/3"
+   },
+   {
+    "seed": 2047,
+    "cycle": 2,
+    "beat": "FAIL",
+    "votes": "0/3"
+   },
+   {
+    "seed": 2082,
+    "cycle": 2,
+    "beat": "FAIL",
+    "votes": "0/3"
+   },
+   {
+    "seed": 2119,
+    "cycle": 2,
+    "beat": "FAIL",
+    "votes": "0/3"
+   }
+  ]
+ }
+]

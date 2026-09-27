@@ -1,0 +1,135 @@
+[11:15:19] judge via in-process VL
+[11:15:19] === s6c_light_widens — beat: inside a dark boxcar, the sliding door partly open with a wide column of golden daylight p
+[mem] storyforge-still s6c_light_widens: asking for 41GB — measured, not the 38GB declared
+[11:15:19]   holding 41GB for storyforge-still s6c_light_widens
+[11:15:19]   carrying 1 lesson(s) (1 inherited from earlier films) into this shot
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 9268.04it/s]
+[11:17:29]   seed 7011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is fully lit and detailed in the foreground, with clear facial features and body c
+[11:17:34]   prescription: Move the elephant further into the shadowed interior of the boxcar so that it appears as a dark silhouette at the edge of the golden light, 
+[11:17:34]   the weld's backend is down or loading — waiting for it (this does not count as a failed idea)
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[11:17:52]   render backend was down — restarted it ourselves
+[11:17:52]   render backend is back
+[11:19:47]   seed 7047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is fully lit and detailed in the foreground, standing outdoors on straw with no da
+[11:19:53]   prescription: Place the young elephant inside a dark wooden boxcar, silhouetted at the edge of a wide column of golden daylight streaming through a partia
+[11:19:53]   the weld's backend is down or loading — waiting for it (this does not count as a failed idea)
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[11:20:11]   render backend was down — restarted it ourselves
+[11:20:11]   render backend is back
+[11:22:06]   seed 7082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts the elephant standing outdoors in full, clear light, not inside a dark boxcar
+[11:22:11]   prescription: Move the elephant inside a dark wooden boxcar, position the sliding door partially open to let a wide column of golden daylight stream in, a
+[11:24:04]   seed 7119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts a brightly lit, outdoor scene with a cheerful, fully detailed elephant standi
+[11:24:09]   prescription: Move the elephant inside a dark wooden boxcar, position the sliding door partially open to let a strong, narrow column of golden daylight cu
+[11:24:10]   the weld's backend is down or loading — waiting for it (this does not count as a failed idea)
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[11:24:28]   render backend was down — restarted it ourselves
+[11:24:28]   render backend is back
+[11:26:29]   seed 7211: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is fully lit and detailed in the foreground, which violates the requirement that t
+[11:26:35]   prescription: Move the elephant further into the shadowed interior of the boxcar, so that only its silhouette is visible at the edge of the golden light b
+[11:28:26]   seed 7247: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is fully lit and detailed in the foreground, with no silhouette or dark boxcar env
+[11:28:32]   prescription: Move the elephant deeper into the shadowed interior of the boxcar, so it appears as a dark silhouette at the edge of the light, and reframe 
+[11:30:32]   seed 7282: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows the elephant fully lit and detailed in the foreground, standing outdoors on gra
+[11:30:38]   prescription: Move the elephant inside the dark boxcar, position it near the partially opened sliding door so it is silhouetted against the narrow column 
+[11:32:36]   seed 7319: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is fully lit and detailed in the foreground, with no silhouette or dark boxcar env
+[11:32:42]   prescription: Move the elephant deeper into the shadowed interior of the boxcar, positioning it just at the edge of the golden light beam coming through t
+[11:32:42]   retry cycle 1 with 9 correction(s) applied
+[11:32:43]   the weld's backend is down or loading — waiting for it (this does not count as a failed idea)
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[11:33:01]   render backend was down — restarted it ourselves
+[11:33:01]   render backend is back
+[11:35:03]   seed 8011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts an outdoor scene with a baby elephant wearing a party hat, sitting on straw n
+[11:35:09]   prescription: Replace the outdoor barn setting with the interior of a dark wooden boxcar, position the young elephant near the partially open sliding door
+[11:37:05]   seed 8047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is fully lit and detailed in the foreground, with no silhouette effect, and the li
+[11:37:11]   prescription: Move the elephant deeper into the boxcar so it is silhouetted against the narrow, bright beam of light coming through the partially open sli
+[11:39:09]   seed 8082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is fully lit and detailed in the foreground, with no silhouette effect, and the se
+[11:39:15]   prescription: Darken the interior of the boxcar significantly, position the elephant in silhouette at the threshold of the light beam near the partially o
+[11:41:12]   seed 8119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a brightly lit, detailed elephant in the foreground with no silhouette or dark 
+[11:41:19]   prescription: Replace the bright, front-lit elephant with a dark silhouette of the young elephant standing at the edge of the light, facing the wide colum
+[11:43:16]   seed 8211: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is fully lit and detailed in the foreground, standing calmly on straw with no silh
+[11:43:21]   prescription: Place the elephant in silhouette at the edge of the golden light beam, turning its head and trunk toward the opening, with the sliding door 
+[11:45:05]   seed 8247: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is fully lit and detailed in the foreground, and the scene is not dark inside a bo
+[11:45:11]   prescription: Darken the interior of the boxcar significantly, obscure the background with deep shadows, and position the elephant as a silhouette at the 
+[11:46:58]   seed 8282: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is fully lit and detailed in the foreground, with no silhouette effect, and the li
+[11:47:05]   prescription: Move the elephant deeper into the shadowed interior of the boxcar, so that only the edge of its form is touched by the golden light streamin
+[11:47:06]   Song Forge has a customer job running — holding the render
+[11:48:06]   Song Forge has a customer job running — holding the render
+[11:49:06]   Song Forge has a customer job running — holding the render
+[11:50:06]   Song Forge has a customer job running — holding the render
+[11:51:07]   the weld's backend is down or loading — waiting for it (this does not count as a failed idea)
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[11:51:25]   render backend was down — restarted it ourselves
+[11:51:25]   render backend is back
+[11:54:04]   seed 8319: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a fully lit, detailed elephant in the foreground with no silhouette, and the li
+[11:54:11]   prescription: Replace the high skylight with a wide, partially open sliding door on the side of the boxcar, and position the young elephant in silhouette 
+[11:54:11]   retry cycle 2 with 17 correction(s) applied
+[11:54:11]   the weld's backend is down or loading — waiting for it (this does not count as a failed idea)
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[11:54:24]   render backend was down — restarted it ourselves
+[11:54:24]   render backend is back
+[11:56:17]   seed 9011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts an outdoor scene with a baby elephant wearing a party hat, sitting on dirt ne
+[11:56:24]   prescription: Move the baby elephant inside a dark wooden boxcar, position it near the partially open sliding door so that only a tall column of golden li
+[11:58:24]   seed 9047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is fully lit and detailed in the foreground, with no silhouette effect, and the sc
+[11:58:29]   prescription: Move the elephant further into the shadowed interior of the boxcar, positioning it just at the edge of the golden light beam so that it appe
+[12:00:19]   seed 9082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is fully lit and detailed in the foreground, with no silhouette or partial shadowi
+[12:00:25]   prescription: Place the young elephant in deep shadow at the edge of the golden light beam, silhouetted against the bright gap of the partially open slidi
+[12:02:14]   seed 9119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is fully lit and detailed in the foreground, which violates the requirement that t
+[12:02:19]   prescription: Move the elephant further into the shadowed interior of the boxcar, so that only its silhouette is visible at the edge of the golden light b
+[12:04:11]   seed 9211: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image does not depict a young elephant's silhouette turning toward a wide column of golden 
+[12:04:17]   prescription: Remove the second elephant and reposition the single young elephant in silhouette at the edge of the golden light beam, facing toward the pa
+[12:05:58]   seed 9247: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is fully lit and detailed in the foreground, with no silhouette or partial shadowi
+[12:06:03]   prescription: Move the elephant deeper into the boxcar so it is silhouetted against the narrow, vertical beam of golden light coming through the partially
+[12:07:47]   seed 9282: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is fully lit and detailed in the foreground, with no silhouette effect, and the li
+[12:07:52]   prescription: Move the elephant deeper into the shadowed interior of the boxcar so that it is silhouetted against the golden light streaming through the p
+[12:09:34]   seed 9319: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant is fully lit and detailed in the foreground, with no silhouette or partial shadowi
+[12:09:39]   prescription: Place the elephant in deep shadow at the edge of the golden light beam, with its body mostly silhouetted against the bright gap of the parti
+[12:09:39]   s6c_light_widens: NO candidate passed — reported UNBUILT, nothing locked
+[12:09:39]   released the storyforge-still s6c_light_widens lease
+[12:09:39] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[12:09:39] DONE — 0/1 shots produced usable, judged assets
+[12:09:39]   s6c_light_widens: UNBUILT
+[13:19:12] judge via in-process VL
+[13:19:12] === s6c_light_widens — beat: inside a dark boxcar, a thin bright seam of golden daylight at the edge of the closed slid
+[13:19:12]   --stage animate: using the locked still LOCKED_s6c_light_widens.png
+[13:19:12]   LOCKED stills/LOCKED_s6c_light_widens.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[13:19:30]   bounced ComfyUI so Wan loads into a clean process
+[13:19:30]   render backend is back
+[13:19:30]   holding 47GB for storyforge-animate s6c_light_widens
+[13:19:30]   animate engine: ltx25
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 21454.24it/s]
+[13:21:20]   clip: beat FAIL (0/5)
+[13:21:29]   window probe t=0.4s: FAIL
+[13:21:36]   window probe t=1.21s: FAIL
+[13:21:47]   window probe t=2.02s: FAIL
+[13:21:55]   window probe t=2.83s: FAIL
+[13:22:05]   window probe t=3.64s: FAIL
+[13:22:08]   prescription for the next animate: Show the door in an earlier stage of opening, with the light seam still narrow and the beam on the floor just beginning to spread, so the pr
+[13:22:08]   s6c_light_widens: animation never holds the beat — clip NOT used; kept at clips/_failed/s6c_light_widens_failed.mp4 so the failure can be diagnosed, still stays locked
+[13:22:08]   released the storyforge-animate s6c_light_widens lease
+[13:22:08] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[13:22:08] DONE — 0/1 shots produced usable, judged assets
+[13:22:08]   s6c_light_widens: CLIP_FAILED
+[13:41:03] judge via in-process VL
+[13:41:03] === s6c_light_widens — beat: inside a dark boxcar, a thin bright seam of golden daylight at the edge of the closed slid
+[13:41:03]   --stage animate: using the locked still LOCKED_s6c_light_widens.png
+[13:41:03]   LOCKED stills/LOCKED_s6c_light_widens.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[13:41:21]   bounced ComfyUI so Wan loads into a clean process
+[13:41:21]   render backend is back
+[13:41:21]   holding 47GB for storyforge-animate s6c_light_widens
+[13:41:21]   carrying 1 animation correction(s) into the motion prompt
+[13:41:21]   animate engine: ltx25
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 22968.50it/s]
+[13:43:10]   clip: beat PASS (5/5)
+[13:43:10]   released the storyforge-animate s6c_light_widens lease
+[13:43:10] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[13:43:10] DONE — 1/1 shots produced usable, judged assets
+[13:43:10]   s6c_light_widens: CLIP_KEPT

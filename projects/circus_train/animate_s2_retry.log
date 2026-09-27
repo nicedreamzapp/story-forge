@@ -1,0 +1,18 @@
+[22:40:57] judge via in-process VL
+[22:40:57] === s2_thecall — beat: a circus train in open country with thick black smoke billowing from its engine, clearly i
+[22:40:57]   --stage animate: using the locked still LOCKED_s2_call.png
+[22:40:57]   LOCKED stills/LOCKED_s2_call.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[22:41:15]   bounced ComfyUI so Wan loads into a clean process
+[22:41:15]   render backend is back
+[22:42:37]   animation failed: [make-video] uploading LOCKED_s2_call.png → ComfyUI
+[videopipe] queued 31c05b29-0691-4db1-bad3-70e290365ab5
+ on@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socket.py", line 729, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+TimeoutError: timed out
+
+[22:42:38] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[22:42:38] DONE — 1/1 shots produced usable, judged assets
+[22:42:38]   s2_thecall: STILL_LOCKED

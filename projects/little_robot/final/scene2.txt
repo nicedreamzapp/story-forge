@@ -1,0 +1,8 @@
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/little_robot/clips/s07.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/little_robot/clips/s08.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/little_robot/clips/s09.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/little_robot/clips/s10.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/little_robot/clips/s11.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/little_robot/clips/s12.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/little_robot/clips/s13.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/little_robot/clips/s14.mp4'

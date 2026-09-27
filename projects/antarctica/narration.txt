@@ -1,0 +1,48 @@
+# narration — documentary VO, one sentence per line, scene tags = acts
+[scene1]
+At the bottom of the world there is a continent we have known for two hundred years, and never once seen.
+Antarctica wears a sheet of ice up to four kilometers thick, holding most of the fresh water on Earth.
+For generations, our maps of the land beneath it were mostly guesswork.
+Then, in March of twenty twenty-five, scientists finished a project called Bedmap three.
+Eighty-two million measurements, from planes, ships, satellites, and even dog sleds, stitched into one map.
+Strip the ice away, and this is what has been hiding under our feet the whole time.
+Mountain ranges no human eye has ever seen.
+And in Wilkes Land, a canyon buried under more ice than almost anywhere on the planet, nearly five kilometers deep.
+We had better maps of Mars.
+
+[scene2]
+The ice is not a lid on a dead world.
+In twenty twenty-five, satellites found eighty-five new lakes hiding beneath the ice sheet, joining hundreds already known.
+Whole networks of them, filling and draining in slow heartbeats, connected by rivers that have never seen the sky.
+And the water is alive.
+When scientists drilled into one of these buried lakes, they found microbes thriving in the dark, feeding on iron and sulfur instead of sunlight.
+Then came the accident.
+In twenty twenty-one, a drill team punched through nine hundred meters of the Filchner-Ronne ice shelf, aiming for plain mud.
+Their camera landed on a boulder, two hundred sixty kilometers from open ocean, in water below freezing, in total darkness.
+The boulder was covered in life.
+Sponges, and creatures nobody had ever named, holding on in a place where life was not supposed to be possible.
+
+[scene3]
+The rock itself remembers a different Antarctica.
+In twenty twenty, a seabed core near Pine Island Glacier came up holding the roots of a rainforest.
+Ninety million years ago, tree ferns and conifers grew here, in a climate as mild as Seattle.
+There are mountains under the ice as large as the Alps, the Gamburtsevs, born half a billion years ago.
+The ice that buried them also protected them, so their peaks are still sharp, frozen in time.
+Radar has even traced the ghosts of ancient rivers, valleys that once carried water toward Australia, back when the continents were one.
+And the ice remembers too.
+In January of twenty twenty-five, a drill at Little Dome C brought up a core almost three kilometers long.
+Inside it, trapped bubble by bubble, is one-point-two million years of the planet's atmosphere, the oldest unbroken climate record we have ever held.
+
+[scene4]
+But the continent we just met is already changing.
+On the far western edge sits Thwaites, a glacier the size of Florida, holding back enough ice to raise the seas by more than half a meter.
+In twenty twenty, scientists melted a hole seven hundred meters deep, and sent a robot named Icefin down into the dark.
+It swam to the grounding line, the hidden place where the glacier first lifts off the bedrock, and filmed it for the first time in history.
+What it found was a surprise.
+The ice is not simply melting away, it is fracturing, as warm water carves staircases and crevasses into its base.
+In twenty years, the grounding line has retreated fourteen kilometers.
+Thwaites is speaking, and now, finally, we know how to listen.
+Two centuries after we found Antarctica, we have only just met it.
+A continent with buried mountains, secret lakes, forests in its stones, and a memory over a million years long.
+The age of exploration never ended.
+It just went under the ice.

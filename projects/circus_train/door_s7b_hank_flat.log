@@ -1,0 +1,33 @@
+[12:50:59] judge via in-process VL
+[dam] evicting 35GB of ComfyUI cached models before the next stage
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[12:51:17] reclaimed 35GB of ComfyUI cached models before the still pass
+[12:51:17] === s7b_hank_flat — beat: a big round brown bear with a cream belly lying flat on his back in the gravel below an op
+[mem] storyforge-still s7b_hank_flat: asking for 41GB — measured, not the 38GB declared
+[12:51:17]   holding 41GB for storyforge-still s7b_hank_flat
+[12:51:17]   carrying 1 lesson(s) (1 inherited from earlier films) into this shot
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 17030.79it/s]
+[12:53:00]   seed 7811: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright and leaning against the train car, not lying flat on its back in th
+[12:53:05]   prescription: Restage the bear lying flat on his back in the gravel directly beneath the open boxcar door, with his limbs splayed and one paw limply raise
+[12:54:39]   seed 7847: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted in a relaxed, playful posture with no visible dazed expression or indicati
+[12:54:44]   prescription: Add visible dust particles settling around the bear, reposition his eyes to be cross-eyed and wide with dazed confusion, and adjust his limb
+[12:56:20]   seed 7882: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright on its hind legs, not lying flat on its back, and there is no visib
+[12:56:24]   prescription: Restage the bear lying flat on his back in the gravel, with his limbs splayed and one paw limply raised, eyes cross-eyed and dazed, and add 
+[12:58:00]   seed 7919: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright and leaning forward, not lying flat on its back, and there is no vi
+[12:58:04]   prescription: Rotate the bear onto his back in the gravel, with limbs splayed and one paw limply raised, and add visible dust particles settling around hi
+[12:59:47]   seed 8011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted with wide eyes and an open mouth, suggesting surprise or alarm, but the sc
+[12:59:52]   prescription: Add visible dust particles gently settling around the bear and in the air near the open boxcar, and adjust the bear’s eyes to be cross-eyed 
+[13:01:31]   seed 8047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright and smiling happily, not lying flat on its back and dazed as requir
+[13:01:36]   prescription: Restage the bear lying flat on his back in the gravel, with his eyes cross-eyed and dazed, one paw limply raised in the air, and add visible
+[13:03:15]   seed 8082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright, not lying flat on its back, and shows no signs of being dazed or h
+[13:03:20]   prescription: Reposition the bear to lie flat on his back in the gravel, with his limbs splayed and one paw limply raised, eyes cross-eyed and dazed, and 
+[13:04:58]   seed 8119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is not depicted as dazed or in a state of disorientation; instead, it appears relaxed 
+[13:05:03]   prescription: Make the bear’s eyes cross and appear glassy, add visible dust particles floating around him in the sunlight, and adjust his expression to l
+[13:05:03]   retry cycle 1 with 9 correction(s) applied
+[13:06:46]   seed 8811: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is depicted in a relaxed, playful posture with wide eyes and no visible dazed expressi
+[13:06:51]   prescription: Make the bear’s eyes cross and half-lidded, add visible dust particles floating around him, and position his limbs limply to convey dazed st
+[13:08:36]   seed 8847: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The bear is sitting upright with legs splayed and arms raised, not lying flat on its back as re
+[13:08:41]   prescription: Rotate the bear onto his back so he is lying flat in the gravel, with his legs splayed and arms relaxed, one paw slightly raised limply, and
+/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

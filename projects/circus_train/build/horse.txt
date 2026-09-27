@@ -1,0 +1,2 @@
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/build/seg07_s3_rollout.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/build/seg08_s3b_wagonpass.mp4'

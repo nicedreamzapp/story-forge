@@ -1,0 +1,148 @@
+=== [23:20:47] START s2_thecall ===
+[23:20:48] judge via in-process VL
+[23:20:48] === s2_thecall — beat: a circus train in open country with thick black smoke billowing from its engine, clearly i
+[23:20:48]   --stage animate: using the locked still LOCKED_s2_call.png
+[23:20:48]   LOCKED stills/LOCKED_s2_call.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[23:21:06]   bounced ComfyUI so Wan loads into a clean process
+[23:21:06]   render backend is back
+[23:35:31]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[23:35:31]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[23:35:31]   mem-gate: [mem-gate] ComfyUI back up
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 10824.01it/s]
+[23:36:23]   clip: beat PASS (5/5)
+[23:36:23] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[23:36:23] DONE — 1/1 shots produced usable, judged assets
+[23:36:23]   s2_thecall: CLIP_KEPT
+=== [23:36:24] END s2_thecall rc=0 ===
+=== [23:36:24] START s4_arrival ===
+[23:36:24] judge via in-process VL
+[23:36:24] === s4_arrival — beat: a bear and a dog standing together in the foreground in front of a smoking broken-down tra
+[23:36:24]   --stage animate: using the locked still LOCKED_s4_arrival.png
+[23:36:24]   LOCKED stills/LOCKED_s4_arrival.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[23:36:42]   bounced ComfyUI so Wan loads into a clean process
+[23:36:42]   render backend is back
+[23:50:25]   mem-gate: [mem-gate] healthy but 9GB parked in swap — bouncing idle ComfyUI to release it
+[23:50:25]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[23:50:25]   mem-gate: [mem-gate] ComfyUI back up
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 14791.82it/s]
+[23:51:24]   clip: beat PASS (3/5)
+[23:51:24] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[23:51:24] DONE — 1/1 shots produced usable, judged assets
+[23:51:24]   s4_arrival: CLIP_KEPT
+=== [23:51:24] END s4_arrival rc=0 ===
+=== [23:51:24] START s6_interior ===
+[23:51:24] judge via in-process VL
+[23:51:24] === s6_interior — beat: the dark interior of a wooden boxcar with a bright blade of daylight cutting in at the doo
+[23:51:24]   --stage animate: using the locked still LOCKED_s6_interior.png
+[23:51:24]   LOCKED stills/LOCKED_s6_interior.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[23:51:42]   bounced ComfyUI so Wan loads into a clean process
+[23:51:42]   render backend is back
+[00:05:35]   mem-gate: [mem-gate] healthy but 13GB parked in swap — bouncing idle ComfyUI to release it
+[00:05:35]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:05:35]   mem-gate: [mem-gate] ComfyUI back up
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 7515.93it/s]
+[00:06:14]   clip: beat FAIL (1/5)
+[00:06:19]   window probe t=0.51s: FAIL
+[00:06:27]   window probe t=1.52s: FAIL
+[00:06:34]   window probe t=2.53s: FAIL
+[00:06:43]   window probe t=3.54s: FAIL
+[00:06:52]   window probe t=4.56s: FAIL
+[00:06:52]   s6_interior: animation never holds the beat — clip NOT used; kept at clips/_failed/s6_interior_failed.mp4 so the failure can be diagnosed, still stays locked
+[00:06:52] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[00:06:52] DONE — 0/1 shots produced usable, judged assets
+[00:06:52]   s6_interior: CLIP_FAILED
+=== [00:06:52] END s6_interior rc=1 ===
+=== [00:06:52] START s8_goodbye ===
+[00:06:52] judge via in-process VL
+[00:06:52] === s8_goodbye — beat: a bear and a dog together saying goodbye in warm light with the repaired circus train aliv
+[00:06:52]   --stage animate: using the locked still LOCKED_s8_goodbye.png
+[00:06:52]   LOCKED stills/LOCKED_s8_goodbye.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[00:07:10]   bounced ComfyUI so Wan loads into a clean process
+[00:07:10]   render backend is back
+[00:21:04]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[00:21:04]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:21:04]   mem-gate: [mem-gate] ComfyUI back up
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 13275.45it/s]
+[00:22:05]   clip: beat PASS (5/5)
+[00:22:05] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[00:22:05] DONE — 1/1 shots produced usable, judged assets
+[00:22:05]   s8_goodbye: CLIP_KEPT
+=== [00:22:06] END s8_goodbye rc=0 ===
+=== [00:22:06] START s3_rollout ===
+[00:22:06] judge via in-process VL
+[00:22:06] === s3_rollout — beat: a horse-drawn wooden wagon moving fast along a dirt road with dust kicking up behind it
+[00:22:06]   --stage animate: using the locked still LOCKED_s2_wide.png
+[00:22:06]   LOCKED stills/LOCKED_s2_wide.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[00:22:24]   bounced ComfyUI so Wan loads into a clean process
+[00:22:24]   render backend is back
+[00:36:31]   mem-gate: [mem-gate] healthy but 15GB parked in swap — bouncing idle ComfyUI to release it
+[00:36:31]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:36:31]   mem-gate: [mem-gate] ComfyUI back up
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 12876.94it/s]
+[00:37:36]   clip: beat PASS (5/5)
+[00:37:36] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[00:37:36] DONE — 1/1 shots produced usable, judged assets
+[00:37:36]   s3_rollout: CLIP_KEPT
+=== [00:37:36] END s3_rollout rc=0 ===
+=== [00:37:36] START ellie_eye ===
+[00:37:36] judge via in-process VL
+[00:37:36] === ellie_eye — beat: one large amber elephant eye visible through a narrow vertical gap between dark wooden pla
+[00:37:36]   --stage animate: using the locked still LOCKED_ellie_eye.png
+[00:37:36]   LOCKED stills/LOCKED_ellie_eye.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[00:37:54]   bounced ComfyUI so Wan loads into a clean process
+[00:37:54]   render backend is back
+[00:51:39]   mem-gate: [mem-gate] healthy but 15GB parked in swap — bouncing idle ComfyUI to release it
+[00:51:39]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[00:51:39]   mem-gate: [mem-gate] ComfyUI back up
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 14754.25it/s]
+[00:53:04]   clip: beat PASS (4/5)
+[00:53:04] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[00:53:04] DONE — 1/1 shots produced usable, judged assets
+[00:53:04]   ellie_eye: CLIP_KEPT
+=== [00:53:05] END ellie_eye rc=0 ===
+=== [00:53:05] QUEUE COMPLETE ===
+=== [00:53:08] START s6_interior RETRY (dust-only prompt) ===
+[00:53:08] judge via in-process VL
+[00:53:08] === s6_interior — beat: the dark interior of a wooden boxcar with a bright blade of daylight cutting in at the doo
+[00:53:08]   --stage animate: using the locked still LOCKED_s6_interior.png
+[00:53:08]   LOCKED stills/LOCKED_s6_interior.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[00:53:26]   bounced ComfyUI so Wan loads into a clean process
+[00:53:26]   render backend is back
+[01:07:19]   mem-gate: [mem-gate] healthy but 11GB parked in swap — bouncing idle ComfyUI to release it
+[01:07:19]   mem-gate: [mem-gate] restarting ComfyUI to release cached models
+[01:07:19]   mem-gate: [mem-gate] ComfyUI back up
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 14829.60it/s]
+[01:08:00]   clip: beat FAIL (1/5)
+[01:08:10]   window probe t=0.51s: FAIL
+[01:08:17]   window probe t=1.52s: FAIL
+[01:08:25]   window probe t=2.53s: FAIL
+[01:08:33]   window probe t=3.54s: FAIL
+[01:08:40]   window probe t=4.56s: FAIL
+[01:08:40]   s6_interior: animation never holds the beat — clip NOT used; kept at clips/_failed/s6_interior_failed.mp4 so the failure can be diagnosed, still stays locked
+[01:08:40] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[01:08:40] DONE — 0/1 shots produced usable, judged assets
+[01:08:40]   s6_interior: CLIP_FAILED
+=== [01:08:40] END s6_interior RETRY rc=0 ===
+=== [01:08:40] ALL QUEUES COMPLETE ===
+[01:09:17] judge via in-process VL
+[01:09:17] === s6_interior — beat: the dark interior of a wooden boxcar with a bright blade of daylight cutting in at the doo
+[01:09:17]   --stage animate: using the locked still LOCKED_s6_interior.png
+[01:09:17]   LOCKED stills/LOCKED_s6_interior.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[01:09:35]   bounced ComfyUI so Wan loads into a clean process
+[01:09:35]   render backend is back

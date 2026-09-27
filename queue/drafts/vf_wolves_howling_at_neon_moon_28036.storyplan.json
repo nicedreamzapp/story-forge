@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.1",
+  "film_meta": {
+    "title": "wolves howling at neon moon",
+    "slug": "vf_wolves_howling_at_neon_moon_28036",
+    "target": "m5",
+    "scene_duration": 5.0,
+    "extras": {
+      "format": "reel"
+    },
+    "format": "reel",
+    "width": 720,
+    "height": 1280,
+    "fps": 30,
+    "aspect": "9:16"
+  },
+  "voice_presets": {},
+  "music_presets": {
+    "bed": {
+      "value": "ace/synthwave-moonlight-ambient",
+      "attrs": {
+        "vol": 0.32
+      }
+    }
+  },
+  "sfx_presets": {},
+  "transitions": [
+    {
+      "name": "xfade",
+      "args": [],
+      "attrs": {
+        "dur": 0.4
+      }
+    }
+  ],
+  "mixes": [],
+  "vars": {
+    "style": "ultra-detailed cinematic 8k, neon glow, dramatic volumetric lighting, hyper-realistic fur textures"
+  },
+  "scenes": {
+    "beat_0": {
+      "still_spec": {
+        "engine": "flux",
+        "attrs": {},
+        "prompt": "ultra-detailed cinematic 8k, neon glow, dramatic volumetric lighting, hyper-realistic fur textures, a lone wolf standing on a rocky cliff, howling at a massive neon pink and purple moon hanging low in a dark stormy sky, bioluminescent plants glowing in the foreground with sparks of light floating upward",
+        "seed": 3072557482
+      },
+      "motion_spec": {
+        "engine": "ltx",
+        "attrs": {},
+        "prompt": "slow camera dolly in from distance, wind howling through the wolf's fur as it lifts its head to howl",
+        "duration": 4.0,
+        "seed": 4179591849
+      },
+      "narration_spec": null,
+      "narration_specs": [],
+      "music_spec": {
+        "preset": "bed",
+        "value": "ace/synthwave-moonlight-ambient",
+        "attrs": {
+          "vol": 0.32
+        }
+      },
+      "sfx_specs": [],
+      "attrs": {},
+      "extras": {}
+    }
+  }
+}

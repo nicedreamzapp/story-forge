@@ -1,0 +1,185 @@
+{
+  "schema_version": "0.1",
+  "film_meta": {
+    "title": "Hank and Doug",
+    "slug": "q_hank_doug",
+    "target": "m5",
+    "scene_duration": 5.0,
+    "extras": {}
+  },
+  "voice_presets": {
+    "warm": {
+      "value": "piper/en_US-libritts_r-medium",
+      "attrs": {
+        "speaker": 0,
+        "length": 1.15
+      }
+    }
+  },
+  "music_presets": {
+    "adventure": {
+      "value": "ace/warm-orchestral-adventure",
+      "attrs": {
+        "vol": 0.32
+      }
+    }
+  },
+  "sfx_presets": {},
+  "transitions": [
+    {
+      "name": "xfade",
+      "args": [],
+      "attrs": {
+        "dur": 0.5
+      }
+    }
+  ],
+  "mixes": [
+    {
+      "args": [
+        "duck",
+        "voice",
+        "->",
+        "music"
+      ],
+      "attrs": {
+        "threshold": -22,
+        "ratio": 4
+      }
+    }
+  ],
+  "vars": {
+    "stills": "/Users/dtribe/Desktop/PROJECTS/AI/distill/hank_doug_stills"
+  },
+  "scenes": {
+    "doug_spots_hank": {
+      "still_spec": {
+        "engine": "image",
+        "attrs": {},
+        "path": "/Users/dtribe/Desktop/PROJECTS/AI/distill/hank_doug_stills/05_doug_spots_hank.png",
+        "seed": 1501606280
+      },
+      "motion_spec": {
+        "engine": "ltx",
+        "attrs": {},
+        "prompt": "gentle camera push-in, the bloodhound's ears sway softly, warm morning light, dust motes drifting",
+        "duration": 5.0,
+        "seed": 228838434
+      },
+      "narration_spec": {
+        "engine": "warm",
+        "attrs": {},
+        "line": "Doug could smell trouble from a mile off. Today, it smelled a lot like his old friend Hank.",
+        "lipsync": false,
+        "voice": "warm",
+        "seed": 825594889
+      },
+      "narration_specs": [
+        {
+          "engine": "warm",
+          "attrs": {},
+          "line": "Doug could smell trouble from a mile off. Today, it smelled a lot like his old friend Hank.",
+          "lipsync": false,
+          "voice": "warm",
+          "seed": 825594889
+        }
+      ],
+      "music_spec": {
+        "preset": "adventure",
+        "value": "ace/warm-orchestral-adventure",
+        "attrs": {
+          "vol": 0.3
+        }
+      },
+      "sfx_specs": [],
+      "attrs": {},
+      "extras": {}
+    },
+    "paw_bump": {
+      "still_spec": {
+        "engine": "image",
+        "attrs": {},
+        "path": "/Users/dtribe/Desktop/PROJECTS/AI/distill/hank_doug_stills/f04_paw_bump_pixar.png",
+        "seed": 3849659813
+      },
+      "motion_spec": {
+        "engine": "ltx",
+        "attrs": {},
+        "prompt": "slow zoom in, a soft breeze ruffles fur, warm golden light, gentle ambient motion",
+        "duration": 5.0,
+        "seed": 2259102663
+      },
+      "narration_spec": {
+        "engine": "warm",
+        "attrs": {},
+        "line": "Some partners you choose. Some just bump into you and never let go.",
+        "lipsync": false,
+        "voice": "warm",
+        "seed": 4123139619
+      },
+      "narration_specs": [
+        {
+          "engine": "warm",
+          "attrs": {},
+          "line": "Some partners you choose. Some just bump into you and never let go.",
+          "lipsync": false,
+          "voice": "warm",
+          "seed": 4123139619
+        }
+      ],
+      "music_spec": {
+        "preset": "adventure",
+        "value": "ace/warm-orchestral-adventure",
+        "attrs": {
+          "vol": 0.34
+        }
+      },
+      "sfx_specs": [],
+      "attrs": {},
+      "extras": {}
+    },
+    "sunset_crew": {
+      "still_spec": {
+        "engine": "image",
+        "attrs": {},
+        "path": "/Users/dtribe/Desktop/PROJECTS/AI/distill/hank_doug_stills/f07_sunset_crew_pixar.png",
+        "seed": 1371838566
+      },
+      "motion_spec": {
+        "engine": "ltx",
+        "attrs": {},
+        "prompt": "slow dolly back, warm sunset glow, gentle wind, soft particles drifting through the air",
+        "duration": 5.0,
+        "seed": 2807959132
+      },
+      "narration_spec": {
+        "engine": "warm",
+        "attrs": {},
+        "line": "By sundown, the whole crew had a story to tell. And Doug was already sniffing out the next one.",
+        "lipsync": false,
+        "voice": "warm",
+        "seed": 3664310656
+      },
+      "narration_specs": [
+        {
+          "engine": "warm",
+          "attrs": {},
+          "line": "By sundown, the whole crew had a story to tell. And Doug was already sniffing out the next one.",
+          "lipsync": false,
+          "voice": "warm",
+          "seed": 3664310656
+        }
+      ],
+      "music_spec": {
+        "preset": "adventure",
+        "value": "ace/warm-orchestral-adventure",
+        "attrs": {
+          "vol": 0.36
+        }
+      },
+      "sfx_specs": [],
+      "attrs": {},
+      "extras": {}
+    }
+  }
+}

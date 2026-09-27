@@ -1,0 +1,553 @@
+#!/usr/bin/env python3
+"""forge-director — the thing that never stops until the film is done.
+
+The flaw this fixes (Matt, 2026-07-26): "I'm confused that it stopped… it just
+stopped making the movie on its own." Every stage until now was a script that ran
+once, finished, and sat there waiting for a human to notice and start the next one.
+A queue that ends is not a pipeline; it's an errand.
+
+The director owns the FILM, not a step. It loops:
+
+    1. read the story spine — the beats this film cannot exist without
+    2. work out which beats still have no footage that passes the gates
+    3. pick the next gap and drive it: still → gate → lock → animate → gate
+    4. on failure, ESCALATE rather than repeat: shorter clip, then a fresh
+       approach, then mark BLOCKED-with-reason and MOVE ON to the next gap
+    5. write STATUS.md every cycle so there is always something to read
+    6. when every beat has footage, assemble the cut, QC it, and only then stop
+
+It stops for exactly three reasons, and says which: the film is finished, every
+remaining gap is BLOCKED and needs a human decision, or the machine refused the
+work (memory gate). Idling silently is not one of them.
+
+    bin/forge-director projects/circus_train              # run until done
+    bin/forge-director projects/circus_train --max-hours 6
+    bin/forge-director projects/circus_train --dry-run    # show the plan only
+
+Keep it alive across crashes:
+    bin/forge-keepalive projects/circus_train
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+# ffmpeg by ABSOLUTE path. Under launchd/keepalive the PATH has no /opt/homebrew/bin,
+# so a bare "ffmpeg" raises FileNotFoundError — which is how forge-director died at
+# 19:25 on 2026-07-27 and keepalive then logged "film complete — done" (2026-07-27:
+# the third time in one day a crash was reported as a finished film).
+import shutil as _shutil
+FFMPEG = _shutil.which("ffmpeg") or "/opt/homebrew/bin/ffmpeg"
+
+
+SF = Path(__file__).resolve().parent.parent
+FORGE_SHOT = SF / "bin" / "forge-shot"
+FORGE_REVIEW = SF / "bin" / "forge-review"
+BUILD_EPISODE = SF / "bin" / "build-episode"
+MLX_PY = Path.home() / ".local/mlx-server/bin/python"
+MAX_ATTEMPTS = 4
+# A shot whose STILL never passes gets two tries, not four — see the UNBUILT
+# branch below. Half the ladder, none of the recoveries, hours of fans saved.
+MAX_UNBUILT_ATTEMPTS = int(os.environ.get('SF_MAX_UNBUILT_ATTEMPTS', '2'))
+# Hours without a single kept clip before the director stands down instead of
+# burning the GPU all night for nothing (2026-08-02).
+DRY_HOURS = float(os.environ.get('SF_DRY_HOURS', '2'))
+MAX_INFRA_STRIKES = 3   # backend deaths in a row before we call it a machine problem
+MAX_HELD_STRIKES = 5    # times the box had no room before we stop waiting on it
+
+
+def log(m: str) -> None:
+    print(f"[director {time.strftime('%H:%M:%S')}] {m}", flush=True)
+
+
+def read_json(p, default):
+    try:
+        return json.loads(Path(p).read_text())
+    except Exception:
+        return default
+
+
+def write_json(p, data):
+    Path(p).write_text(json.dumps(data, indent=1) + "\n")
+
+
+def save_state(proj: Path, state: dict) -> None:
+    """Write director state WITHOUT resurrecting a block someone just cleared.
+
+    2026-08-02: the top-of-cycle reload honours an external unblock, but the
+    director writes its whole in-memory state after every attempt — so an unblock
+    written into that window is overwritten before the next read ever happens.
+    Observed live: t2_lion cleared at 09:31, still blocked at 09:55, and the
+    reload's log line never fired once because by the time it looked, the block
+    was back on disk. Disk wins on REMOVALS: if an id is gone from the file,
+    somebody meant it.
+    """
+    disk = read_json(proj / "director_state.json", {}).get("blocked", {})
+    for sid in list(state.get("blocked", {})):
+        if sid not in disk and sid in state.get("_blocked_seen", {}):
+            state["blocked"].pop(sid, None)
+            state.setdefault("attempts", {}).pop(sid, None)
+            log(f"  {sid}: unblocked on disk — back in the queue, attempts reset")
+    state["_blocked_seen"] = dict(state.get("blocked", {}))
+    write_json(proj / "director_state.json", state)
+
+
+def declared_clip(proj: Path, sid: str) -> Path | None:
+    """Where a shot's finished clip actually lives, per the specs.
+
+    Spine ids do not always match filenames — s1_coldopen's clip is s1_final.mp4 —
+    so the director must read the declared path instead of guessing from the id.
+    Guessing marked two finished scenes as missing on 2026-07-26.
+    """
+    for spec_file in ("beats.json", "shots.json"):
+        for sh in read_json(proj / spec_file, {}).get("shots", []):
+            if sh.get("id") == sid and sh.get("clip"):
+                return proj / sh["clip"]
+    return None
+
+
+def has_footage(proj: Path, shot_ids: list) -> str | None:
+    """A beat is covered only by a clip that exists and is non-trivial."""
+    for sid in shot_ids:
+        cand = declared_clip(proj, sid)
+        if cand and cand.is_file() and cand.stat().st_size > 50_000:
+            return cand.name
+        for g in sorted((proj / "clips").glob(f"{sid}*.mp4")):
+            if g.is_file() and g.stat().st_size > 50_000 and not any(
+                    x in g.name for x in ("_failed", "_raw")):
+                return g.name
+    return None
+
+
+def gaps(proj: Path, state: dict) -> list:
+    spine = read_json(proj / "beats.json", {}).get("spine", [])
+    out = []
+    for need in spine:
+        if has_footage(proj, need.get("shots", [])):
+            continue
+        shot_id = next((s for s in need.get("shots", []) if s in state.get("catalog", {})),
+                       None) or (need.get("shots") or [None])[0]
+        if state.get("blocked", {}).get(shot_id):
+            continue
+        out.append((need["beat"], shot_id))
+    return out
+
+
+def _lint_hits(stdout: str, shot_id: str) -> bool:
+    """Did spec_lint complain about THIS shot?
+
+    Was `shot_id in stdout` — a substring test over the whole report. Any shot id
+    quoted inside another shot's message (lint messages cite past incidents by id)
+    blocked that innocent shot; it also mis-fires whenever one id is a prefix of
+    another. spec_lint prints one problem per line as "  ✗ <id>: …", so match that.
+    """
+    return any(line.strip().startswith(f"✗ {shot_id}:") for line in stdout.splitlines())
+
+
+def escalate(spec: dict, attempt: int) -> dict:
+    """Never re-run the identical thing twice — and never fall back to a held frame.
+
+    Matt, 2026-07-27: keep hunting REAL motion. So every rung stays animated and
+    instead attacks the actual cause of drift: length, and motion prompts that add
+    action instead of preserving the shot. A 5-second i2v wanders off its own beat;
+    2 seconds of one small movement does not.
+    """
+    spec = dict(spec)
+    base_seeds = spec.get("seeds", [11, 47, 82, 119])
+    anim = spec.get("animate", "")
+    subject = spec.get("_motion_subject", "the scene")
+    if attempt == 1:
+        spec["duration"] = 3
+        spec["seeds"] = [s + 3000 for s in base_seeds]
+        spec["animate"] = (f"{anim}. The camera does not move at all and the composition "
+                           f"stays exactly as it is; only small natural movement occurs.")
+        spec["min_window"] = min(spec.get("min_window", 2.0), 1.5)
+        spec["_escalation"] = "3s, camera locked, composition preserved"
+    # Rungs 2 and 3 used to THROW AWAY `anim` and substitute "almost still" / "breathes
+    # and blinks". That is right when the beat is a static state and the clip drifts off
+    # it — but it makes a beat whose CONTENT is motion impossible to satisfy, because the
+    # gate judges for the motion while the prompt forbids it (2026-08-01: the lion's beat
+    # became "mouth open and panting in the heat" and rung 2 simultaneously ordered "the
+    # faintest ambient motion", so no seed could ever pass). Keep tightening the things
+    # that actually cause drift — duration, seeds, window, steps — and keep the shot's own
+    # movement, which is the thing being judged.
+    elif attempt == 2:
+        spec["duration"] = 2
+        spec["seeds"] = [s + 6000 for s in base_seeds]
+        spec["animate"] = (f"{anim}. Hold the composition exactly as it is: no camera move, "
+                           f"nobody walks, nothing enters or leaves the frame, and no motion "
+                           f"beyond what is described.")
+        spec["min_window"] = 1.2
+        spec["_escalation"] = "2s, shot's own motion, composition held"
+    elif attempt >= 3:
+        spec["duration"] = 2
+        spec["seeds"] = [s + 9000 for s in base_seeds]
+        spec["steps"] = 40
+        spec["animate"] = (f"{anim}. The shot holds and nothing else in the frame changes.")
+        spec["min_window"] = 1.0
+        spec["_escalation"] = "2s, shot's own motion, higher step count"
+    return spec
+
+
+def run_shot(proj: Path, spec: dict) -> dict:
+    tmp = proj / "_director_shot.json"
+    write_json(tmp, {"defaults": {"res": "832x480",
+                                  "duration": spec.get("duration", 5),
+                                  "seeds": spec.get("seeds", [11, 47, 82, 119]),
+                                  "votes": 3},
+                     "shots": [spec]})
+    r = subprocess.run([str(MLX_PY), str(FORGE_SHOT), str(tmp)],
+                       capture_output=True, text=True, timeout=7200)
+    for line in (r.stdout or "").splitlines():
+        if line.startswith("[") and ("beat " in line or "LOCKED" in line or "clip:" in line
+                                     or "identity" in line or "UNBUILT" in line):
+            log("  " + line.split("] ", 1)[-1][:150])
+    res = read_json(proj / "forge_shot_results.json", [])
+    tmp.unlink(missing_ok=True)
+    # MATCH BY ID, NEVER TAKE res[0] (2026-08-01). forge-shot writes this file at
+    # the END of its run, so a run that dies before that leaves the PREVIOUS
+    # shot's results on disk — and taking res[0] then reports the previous shot's
+    # verdict as this one's. Tonight: c1_celebration's forge-shot died without
+    # writing, the file still held r5_crowd_wide's CLIP_KEPT from ten minutes
+    # earlier, and the director logged "c1_celebration attempt 0 → CLIP_KEPT"
+    # for a clip that does not exist. It also resets attempts to 0 on a KEPT, so
+    # a shot could ride another shot's success indefinitely. Same family as rule
+    # 17: the asset was fine, the POINTER was answering the wrong question.
+    mine = next((r for r in res if r.get("id") == spec["id"]), None)
+    if mine:
+        return mine
+    log(f"  {spec['id']}: forge-shot exited {r.returncode} without writing a result "
+        "for this shot — treating as a backend failure, not a verdict")
+    return {"id": spec["id"], "state": "INFRA"}
+
+
+def review(proj: Path) -> None:
+    subprocess.run([sys.executable, str(FORGE_REVIEW), str(proj)],
+                   capture_output=True, text=True, timeout=180)
+
+
+
+
+def calibrate(proj: Path) -> None:
+    """Never trust the gates without checking them against known human verdicts first."""
+    cal = proj / "beats_calibration.json"
+    if not cal.is_file() or not MLX_PY.is_file():
+        log("no calibration set — gate verdicts are UNVERIFIED this run")
+        return
+    r = subprocess.run([str(MLX_PY), str(SF / "pipeline-tools" / "beat_gate.py"), str(cal),
+                        "--votes", "3", "--report", str(proj / "BEAT_GATE_calibration.md")],
+                       capture_output=True, text=True, timeout=3600)
+    for line in (r.stdout or "").splitlines():
+        if "CALIBRATION" in line or "MISCAL" in line or "WARNING" in line:
+            log("  " + line.split("] ", 1)[-1])
+
+
+def wip_reel(proj: Path) -> None:
+    """There is ALWAYS something to watch. Every cycle, stitch whatever passes.
+
+    Matt woke to four hours of work and no artifact. A reel of the passing shots,
+    in story order, costs seconds of ffmpeg and means the morning always has a file.
+    """
+    spine = read_json(proj / "beats.json", {}).get("spine", [])
+    clips = []
+    for need in spine:
+        name = has_footage(proj, need.get("shots", []))
+        if name:
+            clips.append(proj / "clips" / name)
+    if not clips:
+        return
+    lst = proj / "_wip_reel.txt"
+    lst.write_text("".join(f"file '{c}'\n" for c in clips))
+    out = proj / "WIP_REEL.mp4"
+    subprocess.run([FFMPEG, "-v", "error", "-f", "concat", "-safe", "0", "-i", str(lst),
+                    "-c:v", "libx264", "-crf", "20", "-pix_fmt", "yuv420p", "-r", "24",
+                    "-vf", "scale=832:480", str(out), "-y"], capture_output=True, timeout=900)
+    lst.unlink(missing_ok=True)
+    log(f"WIP reel updated: {len(clips)} passing shots → {out.name}")
+
+
+def write_questions(proj: Path, state: dict) -> None:
+    """The short list only a human can answer. Never buried in a log."""
+    blocked = state.get("blocked", {})
+    lines = ["# Decisions only you can make", ""]
+    if not blocked:
+        lines.append("_Nothing is blocked. The director is working._")
+    else:
+        lines.append(f"**{len(blocked)} shot(s) are stuck after escalating attempts.**")
+        lines.append("")
+        for shot, why in blocked.items():
+            lines += [f"## {shot}", f"- what happened: {why}",
+                      "- options: rewrite the beat as something visible · change the shot "
+                      "(different angle/framing) · cut the beat from the spine · hand-build it",
+                      ""]
+    (proj / "QUESTIONS.md").write_text("\n".join(lines) + "\n")
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("project")
+    ap.add_argument("--max-hours", type=float, default=8.0)
+    ap.add_argument("--dry-run", action="store_true")
+    args = ap.parse_args()
+
+    proj = Path(args.project).resolve()
+    catalog = {s["id"]: s for s in read_json(proj / "shots.json", {}).get("shots", [])}
+    state = read_json(proj / "director_state.json",
+                      {"attempts": {}, "blocked": {}, "history": []})
+    state["catalog"] = catalog
+    infra_strikes: dict[str, int] = {}   # per-shot backend deaths, not persisted
+    held_strikes: dict[str, int] = {}    # per-shot "no memory for this", ditto
+    deadline = time.time() + args.max_hours * 3600
+    last_kept = time.time()      # dry-spell clock; reset on every kept clip
+    if not args.dry_run:
+        log("calibrating the gates against known human verdicts before trusting them")
+        calibrate(proj)
+
+    while True:
+        # Re-read the specs every cycle. The catalog used to be loaded once at start,
+        # so a fix written while the director was running had no effect until it was
+        # restarted — an eye-level canon master sat unused for two whole attempts
+        # (2026-07-27). A long-running loop must pick up edits.
+        catalog = {s["id"]: s for s in read_json(proj / "shots.json", {}).get("shots", [])}
+        state["catalog"] = catalog
+
+        # HONOUR AN UNBLOCK WRITTEN FROM OUTSIDE (2026-08-02). `blocked` lives in
+        # memory and is rewritten to disk every cycle, so anyone who clears an
+        # entry in the file — a human, bin/unblock-and-restart — has their edit
+        # silently overwritten seconds later. The only way to make an unblock
+        # stick was to KILL the director first, which cost a restart and a three
+        # minute gate calibration every single time (four of them tonight).
+        # Same lesson as the reload above, one level up: a cache you refresh must
+        # also refresh the list of things you refuse to look at.
+        disk_blocked = read_json(proj / "director_state.json", {}).get("blocked", {})
+        for sid in list(state.get("blocked", {})):
+            if sid not in disk_blocked:
+                state["blocked"].pop(sid, None)
+                state.setdefault("attempts", {}).pop(sid, None)
+                log(f"  {sid}: unblocked on disk — back in the queue, attempts reset")
+
+        # ...and the SAME argument applies to the block list, which the 2026-07-27 fix
+        # above missed. `blocked` lives in memory for the whole run and `gaps()` skips a
+        # blocked shot before it is ever re-linted, so a spec repaired mid-run stayed dead
+        # until someone restarted the director — the reload above bought nothing for
+        # exactly the shots a human had just gone and fixed (2026-08-01: four beats
+        # repaired while the loop ran, none retried). A spec block is a statement about a
+        # FILE, so re-ask the file: anything that now passes the linter is unblocked.
+        # Only spec blocks clear this way — an exhausted-attempts block is about the
+        # renderer, not the spec, and must stay put.
+        spec_blocked = [k for k, v in state.get("blocked", {}).items()
+                        if isinstance(v, str) and v.startswith("spec repeats")]
+        if spec_blocked:
+            relint = subprocess.run([sys.executable, str(SF / "pipeline-tools" / "spec_lint.py"),
+                                     str(proj / "shots.json")], capture_output=True, text=True)
+            for shot_id in spec_blocked:
+                if not _lint_hits(relint.stdout, shot_id):
+                    del state["blocked"][shot_id]
+                    state.setdefault("attempts", {}).pop(shot_id, None)
+                    log(f"  spec fixed on disk — UNBLOCKING {shot_id}, it will be retried")
+            save_state(proj, state)
+
+        todo = [t for t in gaps(proj, state) if t[1] not in state.get("_dry_seen", [])] \
+            if args.dry_run else gaps(proj, state)
+        review(proj)
+        write_questions(proj, state)
+        if not args.dry_run:
+            wip_reel(proj)
+        if not todo:
+            # An empty gap list means one of two very different things. Saying the
+            # wrong one is the exact failure this whole system exists to prevent —
+            # it logged FILM COMPLETE at 01:53 with four beats blocked (2026-07-27).
+            blocked = state.get("blocked", {})
+            covered = [n for n in read_json(proj / "beats.json", {}).get("spine", [])
+                       if has_footage(proj, n.get("shots", []))]
+            spine_n = len(read_json(proj / "beats.json", {}).get("spine", []))
+            if blocked:
+                log(f"STOPPING — {len(covered)}/{spine_n} beats have footage and "
+                    f"{len(blocked)} are BLOCKED. This film is NOT complete.")
+                for k, v in blocked.items():
+                    log(f"  blocked: {k} — {v}")
+                log(f"decisions needed: {proj/'QUESTIONS.md'}")
+                if not args.dry_run:
+                    wip_reel(proj)
+                break
+            log(f"all {spine_n} required beats have footage — assembling the cut")
+            if not args.dry_run:
+                r = subprocess.run([sys.executable, str(BUILD_EPISODE), str(proj)],
+                                   capture_output=True, text=True, timeout=7200)
+                log((r.stdout or "").strip().splitlines()[-1] if r.stdout else "build finished")
+            review(proj)
+            log(f"FILM COMPLETE — every required beat has judged footage and the cut is assembled")
+            break
+
+        if time.time() > deadline:
+            log(f"stopping: hit the {args.max_hours}h limit with {len(todo)} beats open")
+            break
+
+        # THE DRY-SPELL STOP (2026-08-02). Matt, after a full night of it: "I hear
+        # the fan running all night… with nothing produced is not ok… nothing for
+        # me to look at is not ok." He is right, and no amount of making the loop
+        # FASTER answers it — a loop that produces nothing should not be running at
+        # all. From 23:33 to 08:15 this director ran flat out, attempted six shots,
+        # and kept zero clips, because the shots needed re-conceiving and no amount
+        # of retrying was ever going to do that.
+        #
+        # So: if nothing has been KEPT in DRY_HOURS, stand down. Write what was
+        # tried and why, touch STOP_DIRECTOR so keepalive does not simply restart
+        # the same futility, and leave the reel and the questions file as the thing
+        # to look at in the morning. Producing nothing is a valid outcome; burning
+        # the GPU all night to produce nothing is not.
+        dry_h = (time.time() - last_kept) / 3600.0
+        if dry_h >= DRY_HOURS:
+            log(f"STOPPING — nothing has passed the gates in {dry_h:.1f}h. "
+                f"{len(todo)} beat(s) open, {len(state.get('blocked', {}))} blocked. "
+                "These shots need re-conceiving, not re-rolling; the GPU is not the "
+                "bottleneck and running it overnight will not change the answer.")
+            for k, v in state.get("blocked", {}).items():
+                log(f"  blocked: {k} — {v}")
+            log(f"what there is to look at: {proj/'WIP_REEL.mp4'} and {proj/'QUESTIONS.md'}")
+            write_questions(proj, state)
+            (proj / "STOP_DIRECTOR").write_text(
+                f"dry spell: no kept clip in {dry_h:.1f}h, stood down "
+                f"{time.strftime('%Y-%m-%d %H:%M')}\ndelete this file to resume\n")
+            if not args.dry_run:
+                wip_reel(proj)
+            break
+
+        beat, shot_id = todo[0]
+        log(f"{len(todo)} beats still open — working: {beat[:70]}")
+        spec = catalog.get(shot_id)
+        if not spec:
+            state["blocked"][shot_id] = "no shot spec in shots.json — needs a human to write one"
+            log(f"  BLOCKED {shot_id}: no spec, moving on")
+            save_state(proj, state)
+            continue
+
+        attempt = state["attempts"].get(shot_id, 0)
+        if args.dry_run:
+            log(f"  would run {shot_id}, attempt {attempt}")
+            state.setdefault("_dry_seen", []).append(shot_id)
+            if len(state["_dry_seen"]) > 20:
+                break
+            continue
+
+        # HARD anti-regression: a spec that repeats a known mistake never reaches the GPU.
+        lint = subprocess.run([sys.executable, str(SF / "pipeline-tools" / "spec_lint.py"),
+                               str(proj / "shots.json")], capture_output=True, text=True)
+        if lint.returncode == 1 and _lint_hits(lint.stdout, shot_id):
+            for line in lint.stdout.splitlines():
+                if line.strip().startswith(f"✗ {shot_id}:"):
+                    log(f"  SPEC REJECTED before rendering — {line.strip()[:180]}")
+            state["blocked"][shot_id] = "spec repeats a known mistake — see spec_lint output"
+            save_state(proj, state)
+            continue
+
+        res = run_shot(proj, escalate(spec, attempt))
+
+        # An INFRA result means the render backend died, not that the idea failed.
+        # Counting it burns the shot's escalation ladder against a dead server —
+        # exactly how s7_dooropen went from "has a locked still" to BLOCKED in five
+        # seconds on 2026-07-27. Retry the same attempt; bail if it keeps happening.
+        if res.get("state") == "INFRA":
+            infra_strikes[shot_id] = infra_strikes.get(shot_id, 0) + 1
+            log(f"  {shot_id}: render backend unavailable — NOT counting this as an "
+                f"attempt (strike {infra_strikes[shot_id]}/{MAX_INFRA_STRIKES})")
+            if infra_strikes[shot_id] >= MAX_INFRA_STRIKES:
+                state["blocked"][shot_id] = (
+                    "the render backend kept going away — this is a machine problem, "
+                    "not a story problem; check ComfyUI before re-running")
+                log(f"  BLOCKED {shot_id} — {state['blocked'][shot_id]}")
+                save_state(proj, state)
+            continue
+
+        # A shot HELD for memory is the same class of result as INFRA: the idea was
+        # never tested, so counting it would burn the escalation ladder on the
+        # machine's condition instead of the story's. forge-shot returns these when
+        # forge_guard refuses the room rather than rendering into swap — which is
+        # the whole point of the 2026-08-01 accounting fix, and it only works if the
+        # director waits instead of treating "not now" as "no".
+        if res.get("state") in ("STILL_HELD", "ANIMATE_HELD"):
+            held_strikes[shot_id] = held_strikes.get(shot_id, 0) + 1
+            log(f"  {shot_id}: {res['state']} — the box had no room, NOT counting an "
+                f"attempt (strike {held_strikes[shot_id]}/{MAX_HELD_STRIKES})")
+            if held_strikes[shot_id] >= MAX_HELD_STRIKES:
+                state["blocked"][shot_id] = (
+                    "the machine never had room for this shot — a memory problem, not "
+                    "a story problem; check forge_guard :8790 /api/state")
+                log(f"  BLOCKED {shot_id} — {state['blocked'][shot_id]}")
+                save_state(proj, state)
+            else:
+                time.sleep(120)   # let whatever holds the memory finish
+            continue
+
+        # An animate that died with the render backend DOWN is INFRA wearing an
+        # ANIMATE_FAILED costume (2026-08-31: ComfyUI died at 01:33 and s6_heave +
+        # r4_parrots_sky burned their whole ladders on "uploading → ComfyUI"
+        # failures minutes after their stills PASSED — two good shots blocked over
+        # a dead backend). Verdict about the machine, not the story: don't count it.
+        if res.get("state") == "ANIMATE_FAILED":
+            import urllib.request
+            try:
+                urllib.request.urlopen("http://127.0.0.1:8188/system_stats", timeout=5)
+                backend_up = True
+            except Exception:
+                backend_up = False
+            if not backend_up:
+                infra_strikes[shot_id] = infra_strikes.get(shot_id, 0) + 1
+                log(f"  {shot_id}: animate failed with the render backend DOWN — "
+                    f"infra, NOT counting an attempt (strike {infra_strikes[shot_id]}/{MAX_INFRA_STRIKES})")
+                if infra_strikes[shot_id] >= MAX_INFRA_STRIKES:
+                    state["blocked"][shot_id] = (
+                        "the render backend kept going away — this is a machine problem, "
+                        "not a story problem; check ComfyUI before re-running")
+                    log(f"  BLOCKED {shot_id} — {state['blocked'][shot_id]}")
+                    save_state(proj, state)
+                else:
+                    time.sleep(60)
+                continue
+
+        state["attempts"][shot_id] = attempt + 1
+        state["history"].append({"shot": shot_id, "attempt": attempt,
+                                 "state": res.get("state"), "at": time.strftime("%H:%M")})
+        log(f"  {shot_id} attempt {attempt} → {res.get('state')}")
+
+        if res.get("state") in ("CLIP_KEPT", "CLIP_TRIMMED"):
+            state["attempts"][shot_id] = 0
+            last_kept = time.time()
+        elif res.get("state") == "UNBUILT" and attempt + 1 >= MAX_UNBUILT_ATTEMPTS:
+            # STOP RE-ROLLING A SHOT WHOSE STILL NEVER PASSES (2026-08-02, and
+            # Matt heard every minute of it: "I hear the fans all night, I don't
+            # like it if it's not producing"). UNBUILT means not one seed cleared
+            # the still gates — the premise is wrong, not the sampling. Measured
+            # over the whole night: s6b_heave_close UNBUILT x4, c1_celebration x4,
+            # s4b_trainwide x4, t3_giraffe x4, and NOT ONE of them ever recovered
+            # on a later attempt. That is ~6 hours of GPU spent re-rolling broken
+            # premises. ANIMATE failures are different and keep the full ladder —
+            # r3_giraffe_out failed to animate twice and landed on attempt 2.
+            state["blocked"][shot_id] = (
+                f"the still never passed the gates in {MAX_UNBUILT_ATTEMPTS} attempts — "
+                "escalating the same prompt does not fix a premise the model will not "
+                "render; this needs the shot re-conceived, not retried")
+            log(f"  BLOCKED {shot_id} early — {state['blocked'][shot_id]}")
+        elif attempt + 1 >= MAX_ATTEMPTS:
+            why = ("still never passed the gates" if res.get("state") == "UNBUILT"
+                   else "still locks but no animation holds the beat")
+            state["blocked"][shot_id] = f"{why} after {MAX_ATTEMPTS} escalating attempts"
+            log(f"  BLOCKED {shot_id} — {state['blocked'][shot_id]}; moving to the next beat")
+        save_state(proj, state)
+
+    review(proj)
+    blocked = state.get("blocked", {})
+    if blocked:
+        log("needs a human decision:")
+        for k, v in blocked.items():
+            log(f"  {k}: {v}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

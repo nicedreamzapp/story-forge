@@ -1,0 +1,381 @@
+#!/usr/bin/env python3
+"""make-ltx-comfy — drive LTX-Video 13B distilled 0.9.8 via the OFFICIAL
+Lightricks ComfyUI custom node (ComfyUI-LTXVideo) through ComfyUI's HTTP API.
+
+Why: standalone diffusers LTXImageToVideoPipeline.from_single_file() produces
+noise on MPS (see make-ltx-video-v2). The Lightricks ComfyUI nodes implement
+the correct multi-scale 4-stage pipeline (LTXVBaseSampler + LTXVLatentUpsampler
++ LTXVTiledSampler) and are battle-tested on MPS via vanilla ComfyUI's MPS
+backend.
+
+Workflows shipped by Lightricks (extracted to ../workflows/):
+  - ltxv-13b-dist-i2v-base.json          (single-stage with upsample, faster)
+  - ltxv-13b-i2v-mixed-multiscale.json   (full multi-scale pipeline, best quality)
+
+Both UI-format JSON files. This wrapper converts UI → API format, patches the
+LoadImage / prompt / dims / seed nodes, POSTs to /prompt, polls /history, and
+downloads the MP4.
+
+Usage:
+  make-ltx-comfy --i2v INPUT.png --duration 5 --res 768x512 \
+                 --label scene_01 "motion prompt"
+  make-ltx-comfy --workflow multiscale --i2v ...   # pick the multi-scale file
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import mimetypes
+import sys
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
+import uuid
+from pathlib import Path
+
+COMFY_URL = "http://127.0.0.1:8188"
+REPO_ROOT = Path(__file__).resolve().parent.parent
+WORKFLOW_DIR = REPO_ROOT / "workflows"
+OUT_DIR_DEFAULT = REPO_ROOT / "outputs"
+
+WORKFLOWS = {
+    "base":       WORKFLOW_DIR / "ltxv-13b-dist-i2v-base.json",
+    "multiscale": WORKFLOW_DIR / "ltxv-13b-i2v-mixed-multiscale.json",
+}
+
+# Models the workflows reference. Symlink the on-disk 0.9.8 distilled to the
+# 0.9.7-distilled filename ComfyUI expects, OR rename in the workflow.
+# Already on disk on M5:
+#   models/checkpoints/ltxv-13b-0.9.8-distilled.safetensors
+#   models/text_encoders/t5xxl_fp16.safetensors
+# MISSING:
+#   models/upscale_models/ltxv-spatial-upscaler-0.9.8.safetensors
+#     -> download from
+#     https://huggingface.co/Lightricks/LTX-Video/resolve/main/ltxv-spatial-upscaler-0.9.8.safetensors
+
+
+# ---------------------------------------------------------------------------
+# UI -> API workflow converter
+# ---------------------------------------------------------------------------
+def _node_index(ui: dict) -> dict:
+    return {n["id"]: n for n in ui["nodes"]}
+
+
+def _link_index(ui: dict) -> dict:
+    # link: [link_id, src_node, src_slot, dst_node, dst_slot, type]
+    return {ln[0]: ln for ln in ui.get("links", [])}
+
+
+def ui_to_api(ui: dict) -> dict:
+    """Convert ComfyUI UI-format workflow to API/prompt format.
+
+    Walks each node, populates its `inputs` from (a) widget values in
+    widgets_values order matching named widget inputs, (b) connected upstream
+    links. Skips Note nodes and bypassed nodes (mode != 0).
+    """
+    nodes = _node_index(ui)
+    links = _link_index(ui)
+    api: dict = {}
+
+    for nid, node in nodes.items():
+        if node.get("mode", 0) != 0:
+            continue  # bypassed / muted
+        ntype = node["type"]
+        if ntype in ("Note", "MarkdownNote", "PrimitiveNode", "Reroute"):
+            continue
+
+        api_inputs: dict = {}
+
+        # 1) Slot inputs (from links)
+        slot_input_names = []
+        for slot in node.get("inputs", []) or []:
+            slot_input_names.append(slot["name"])
+            link_id = slot.get("link")
+            if link_id is None:
+                continue
+            ln = links.get(link_id)
+            if not ln:
+                continue
+            src_node, src_slot = ln[1], ln[2]
+            api_inputs[slot["name"]] = [str(src_node), src_slot]
+
+        # 2) Widget inputs.
+        # Newer ComfyUI workflow format uses dict keyed by widget name;
+        # older format uses a list in widget order. Handle both.
+        wvals = node.get("widgets_values")
+        if isinstance(wvals, dict):
+            for name, val in wvals.items():
+                if name == "videopreview":
+                    continue  # UI preview metadata, not an actual input
+                api_inputs[name] = val
+        elif isinstance(wvals, list):
+            # Fall back to manually-mapped widget order. Also pull widget
+            # names off the node's `inputs` array when widget metadata is
+            # inlined there (newer schema embeds widget defs in inputs[].widget).
+            inline_widget_names = [
+                inp["name"] for inp in (node.get("inputs") or [])
+                if "widget" in inp
+            ]
+            widget_names = inline_widget_names or _widget_names_for(
+                ntype, node, slot_input_names
+            )
+            for name, val in zip(widget_names, wvals):
+                if name is None:
+                    continue
+                api_inputs[name] = val
+
+        api[str(nid)] = {"class_type": ntype, "inputs": api_inputs}
+
+    return api
+
+
+# Manually-mapped widget orders for the node types used in Lightricks' two
+# workflows. ComfyUI's API conversion normally relies on each node class
+# exposing INPUT_TYPES, but we can't introspect those without importing the
+# custom_node here, so we hard-code the names. If a new node type appears in a
+# future workflow update, add it here.
+_WIDGET_NAMES = {
+    # vanilla ComfyUI
+    "CLIPLoader":             ["clip_name", "type", "device"],
+    "CLIPTextEncode":         ["text"],
+    "CheckpointLoaderSimple": ["ckpt_name"],
+    "LoadImage":              ["image", "upload"],
+    "VAEDecode":              [],
+    "VAEDecodeTiled":         ["tile_size", "overlap", "temporal_size", "temporal_overlap"],
+    "KSamplerSelect":         ["sampler_name"],
+    "RandomNoise":            ["noise_seed", "control_after_generate"],
+    "VHS_VideoCombine":       ["frame_rate", "loop_count", "filename_prefix", "format",
+                               "pix_fmt", "crf", "save_metadata", "trim_to_audio",
+                               "pingpong", "save_output"],
+    # KJ nodes
+    "ImageResizeKJ":          ["width", "height", "upscale_method", "keep_proportion",
+                               "divisible_by", "crop"],
+    "StringToFloatList":      ["string"],
+    "FloatToSigmas":          [],
+    # LTXVideo nodes
+    "LTXVLatentUpsamplerModelLoader": ["spatial_upscaler", "preserve_color", "preserve_noise"],
+    "LTXVConditioning":               ["frame_rate"],
+    "LTXVBaseSampler":                ["width", "height", "num_frames", "strength",
+                                       "crf"],
+    "LTXVLatentUpsampler":            ["upscale_factor", "temporal_tile"],
+    "LTXVTiledSampler":               ["tile_size", "overlap", "temporal_tile",
+                                       "denoise_strength"],
+    "LTXVAdainLatent":                ["factor"],
+    "LTXVFilmGrain":                  ["strength", "saturation"],
+    "STGGuiderAdvanced":              ["stg_skip_layers", "stg_scale_rescale",
+                                       "stg_scale_default", "stg_step_start",
+                                       "stg_step_end"],
+    "Set VAE Decoder Noise":          ["timestep", "scale"],
+}
+
+
+def _widget_names_for(ntype: str, node: dict, slot_names: list[str]) -> list:
+    """Return the widget-value name list for this node type. Pads with None if
+    we don't know."""
+    return _WIDGET_NAMES.get(ntype, [None] * 10)
+
+
+# ---------------------------------------------------------------------------
+# Workflow patching
+# ---------------------------------------------------------------------------
+def _find_node(api: dict, class_type: str) -> tuple[str, dict] | None:
+    for nid, n in api.items():
+        if n["class_type"] == class_type:
+            return nid, n
+    return None
+
+
+def patch_workflow(
+    api: dict,
+    *,
+    image_filename: str,
+    prompt: str,
+    width: int,
+    height: int,
+    num_frames: int,
+    seed: int,
+    label: str,
+) -> dict:
+    """Mutate the API-format workflow with run-specific inputs."""
+    if hit := _find_node(api, "LoadImage"):
+        hit[1]["inputs"]["image"] = image_filename
+    # there are usually 2 CLIPTextEncode nodes (pos/neg). Patch the first one
+    # (positive). Lightricks workflows already have a sensible negative prompt.
+    encs = [n for n in api.values() if n["class_type"] == "CLIPTextEncode"]
+    if encs:
+        encs[0]["inputs"]["text"] = prompt
+    # base sampler dims
+    if hit := _find_node(api, "LTXVBaseSampler"):
+        hit[1]["inputs"]["width"] = width
+        hit[1]["inputs"]["height"] = height
+        hit[1]["inputs"]["num_frames"] = num_frames
+    # resize node (multiscale workflow uses ImageResizeKJ to set the source dims)
+    if hit := _find_node(api, "ImageResizeKJ"):
+        hit[1]["inputs"]["width"] = width
+        hit[1]["inputs"]["height"] = height
+    # seed
+    if hit := _find_node(api, "RandomNoise"):
+        hit[1]["inputs"]["noise_seed"] = seed
+    # label
+    if hit := _find_node(api, "VHS_VideoCombine"):
+        hit[1]["inputs"]["filename_prefix"] = f"ltx_comfy/{label}"
+    return api
+
+
+# ---------------------------------------------------------------------------
+# ComfyUI HTTP client (mirrors mini_wan_render.py)
+# ---------------------------------------------------------------------------
+def upload_image(path: Path) -> str:
+    boundary = "----ltxcomfy" + uuid.uuid4().hex
+    mime = mimetypes.guess_type(str(path))[0] or "image/png"
+    body = (
+        f"--{boundary}\r\n"
+        f'Content-Disposition: form-data; name="image"; filename="{path.name}"\r\n'
+        f"Content-Type: {mime}\r\n\r\n"
+    ).encode() + path.read_bytes() + (
+        f"\r\n--{boundary}\r\n"
+        f'Content-Disposition: form-data; name="overwrite"\r\n\r\n'
+        f"true\r\n--{boundary}--\r\n"
+    ).encode()
+    req = urllib.request.Request(
+        f"{COMFY_URL}/upload/image",
+        data=body,
+        headers={"Content-Type": f"multipart/form-data; boundary={boundary}"},
+    )
+    with urllib.request.urlopen(req, timeout=60) as r:
+        return json.loads(r.read())["name"]
+
+
+def queue_prompt(workflow: dict, client_id: str) -> str:
+    data = json.dumps({"prompt": workflow, "client_id": client_id}).encode()
+    req = urllib.request.Request(
+        f"{COMFY_URL}/prompt",
+        data=data,
+        headers={"Content-Type": "application/json"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return json.loads(r.read())["prompt_id"]
+    except urllib.error.HTTPError as e:
+        body = e.read().decode(errors="replace")
+        raise SystemExit(
+            f"[make-ltx-comfy] /prompt rejected (HTTP {e.code}):\n{body[:2000]}"
+        )
+
+
+def wait_for_completion(prompt_id: str, timeout_s: int) -> dict:
+    deadline = time.time() + timeout_s
+    last_status = ""
+    while time.time() < deadline:
+        try:
+            with urllib.request.urlopen(
+                f"{COMFY_URL}/history/{prompt_id}", timeout=10
+            ) as r:
+                hist = json.loads(r.read())
+            if prompt_id in hist:
+                return hist[prompt_id]
+        except urllib.error.URLError as e:
+            print(f"[make-ltx-comfy] history poll error: {e}", file=sys.stderr)
+        try:
+            with urllib.request.urlopen(f"{COMFY_URL}/queue", timeout=10) as r:
+                q = json.loads(r.read())
+            status = f"running={len(q.get('queue_running',[]))} pending={len(q.get('queue_pending',[]))}"
+            if status != last_status:
+                print(f"[make-ltx-comfy] queue: {status}", flush=True)
+                last_status = status
+        except urllib.error.URLError:
+            pass
+        time.sleep(3)
+    raise SystemExit(f"[make-ltx-comfy] timed out waiting for {prompt_id}")
+
+
+def fetch_outputs(hist_entry: dict, out_dir: Path) -> list[Path]:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    saved: list[Path] = []
+    for _, payload in hist_entry.get("outputs", {}).items():
+        for key in ("videos", "images", "gifs"):
+            for item in payload.get(key, []):
+                q = urllib.parse.urlencode({
+                    "filename": item["filename"],
+                    "subfolder": item.get("subfolder", ""),
+                    "type": item.get("type", "output"),
+                })
+                with urllib.request.urlopen(f"{COMFY_URL}/view?{q}", timeout=120) as r:
+                    local = out_dir / item["filename"]
+                    local.write_bytes(r.read())
+                    saved.append(local)
+    return saved
+
+
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("prompt", help="motion prompt (positive)")
+    ap.add_argument("--i2v", required=True, help="input still PNG/JPEG")
+    ap.add_argument("--workflow", choices=list(WORKFLOWS), default="base",
+                    help="base = single-stage with upsample, multiscale = full 4-stage")
+    ap.add_argument("--duration", type=float, default=5.0)
+    ap.add_argument("--fps", type=int, default=24)
+    ap.add_argument("--res", default="768x512", help="WxH for base sampler")
+    ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument("--label", default="ltx_comfy")
+    ap.add_argument("--out-dir", default=str(OUT_DIR_DEFAULT))
+    ap.add_argument("--timeout", type=int, default=3600)
+    args = ap.parse_args()
+
+    still = Path(args.i2v).expanduser().resolve()
+    if not still.is_file():
+        raise SystemExit(f"still not found: {still}")
+
+    wf_path = WORKFLOWS[args.workflow]
+    if not wf_path.is_file():
+        raise SystemExit(f"workflow JSON missing: {wf_path}")
+    ui_wf = json.loads(wf_path.read_text())
+    api_wf = ui_to_api(ui_wf)
+
+    width, height = map(int, args.res.lower().split("x"))
+    # LTX wants num_frames = 8k+1 (matches its temporal compression)
+    raw = max(1, int(args.duration * args.fps))
+    num_frames = (raw // 8) * 8 + 1
+
+    print(f"[make-ltx-comfy] workflow={args.workflow}  res={width}x{height}  "
+          f"frames={num_frames}  seed={args.seed}")
+
+    print(f"[make-ltx-comfy] uploading still: {still.name}")
+    image_name = upload_image(still)
+
+    api_wf = patch_workflow(
+        api_wf,
+        image_filename=image_name,
+        prompt=args.prompt,
+        width=width,
+        height=height,
+        num_frames=num_frames,
+        seed=args.seed,
+        label=args.label,
+    )
+
+    client_id = uuid.uuid4().hex
+    print(f"[make-ltx-comfy] queueing prompt (client_id={client_id[:8]}...)")
+    t0 = time.time()
+    prompt_id = queue_prompt(api_wf, client_id)
+    print(f"[make-ltx-comfy] prompt_id: {prompt_id}")
+
+    hist = wait_for_completion(prompt_id, args.timeout)
+    saved = fetch_outputs(hist, Path(args.out_dir).expanduser())
+    elapsed = time.time() - t0
+
+    if not saved:
+        print(f"[make-ltx-comfy] no outputs! hist keys: {list(hist.keys())}", file=sys.stderr)
+        return 1
+    print(f"[make-ltx-comfy] done in {elapsed:.1f}s")
+    for p in saved:
+        print(f"  -> {p}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

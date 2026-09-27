@@ -1,0 +1,114 @@
+{
+  "schema_version": "0.1",
+  "film_meta": {
+    "title": "Pipeline Check",
+    "slug": "pipeline_check",
+    "target": "m5",
+    "scene_duration": 5.0,
+    "extras": {
+      "style": "pixar-3d",
+      "format": "film"
+    },
+    "format": "film",
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "aspect": "16:9",
+    "style": "pixar-3d",
+    "style_pack": {
+      "name": "pixar-3d",
+      "label": "Pixar-style 3D",
+      "still_suffix": "Pixar-style 3D animated film still, soft cinematic key lighting, subsurface skin scattering, expressive stylized characters, shallow depth of field, warm color grade, highly detailed",
+      "negative": "live-action, real photograph, text, watermark, lowres"
+    }
+  },
+  "voice_presets": {
+    "narrator": {
+      "value": "piper/en_US-libritts_r-medium",
+      "attrs": {
+        "speaker": 0,
+        "length": 1.1
+      }
+    }
+  },
+  "music_presets": {
+    "score": {
+      "value": "ace/warm-cinematic-underscore",
+      "attrs": {
+        "vol": 0.3
+      }
+    }
+  },
+  "sfx_presets": {},
+  "transitions": [
+    {
+      "name": "xfade",
+      "args": [],
+      "attrs": {
+        "dur": 0.5
+      }
+    }
+  ],
+  "mixes": [
+    {
+      "args": [
+        "duck",
+        "voice",
+        "->",
+        "music"
+      ],
+      "attrs": {
+        "threshold": -22,
+        "ratio": 4
+      }
+    }
+  ],
+  "vars": {
+    "stills": "/Users/dtribe/Desktop/PROJECTS/AI/videopipe/projects/pipeline_check/stills"
+  },
+  "scenes": {
+    "opening": {
+      "still_spec": {
+        "engine": "flux",
+        "attrs": {},
+        "prompt": "a wide establishing shot of the main location, calm and inviting, soft natural light",
+        "seed": 391660742
+      },
+      "motion_spec": {
+        "engine": "ltx",
+        "attrs": {},
+        "prompt": "slow ambient drift, gentle light shifts, soft atmosphere, no camera shake",
+        "duration": 5.0,
+        "seed": 3619173044
+      },
+      "narration_spec": {
+        "engine": "narrator",
+        "attrs": {},
+        "line": "Every story starts somewhere quiet. This one starts here.",
+        "lipsync": false,
+        "voice": "narrator",
+        "seed": 577425694
+      },
+      "narration_specs": [
+        {
+          "engine": "narrator",
+          "attrs": {},
+          "line": "Every story starts somewhere quiet. This one starts here.",
+          "lipsync": false,
+          "voice": "narrator",
+          "seed": 577425694
+        }
+      ],
+      "music_spec": {
+        "preset": "score",
+        "value": "ace/warm-cinematic-underscore",
+        "attrs": {
+          "vol": 0.3
+        }
+      },
+      "sfx_specs": [],
+      "attrs": {},
+      "extras": {}
+    }
+  }
+}

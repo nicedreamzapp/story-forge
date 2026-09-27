@@ -1,0 +1,175 @@
+#!/usr/bin/env python3
+r"""make-ltx25 — LTX-2.5 render (pure MLX, bf16 pack) with the make-video CLI contract.
+
+Added 2026-08-29. Drop-in animate engine for forge-shot / render-route:
+  make-ltx25 --i2v LOCKED.png --res 832x480 --duration 5 --seed 11 --label s1 "motion prompt"
+  make-ltx25 --i2v canon/hank_face.png --audio voices/L01_hank.wav --label L01 "hank talking"
+  make-ltx25 --hq ...        # dev transformer + CFG two-stage instead of the distilled path
+
+Prints exactly what make-video prints on success:   done in 12.3s → /path/to/clip.mp4
+so forge-shot's `re.search(r"done in [\d.]+s → (\S+)")` keeps working unchanged.
+
+Why LTX-2.5 (measured 2026-08-29, see RENDER_SPEED_RESEARCH.md): joint audio+video, so a
+dialogue close-up is conditioned on the real voice wav (a2v) instead of voice laid over
+prompted jaw motion; pure MLX, so no ComfyUI model thrash; bf16 per Matt's no-quant rule.
+
+Rules honoured:
+  - bin/mem-gate before any load (frozen rule 11) and a forge_guard lease so Song Forge
+    customer renders are never swap-fought (SongForgeM5/mem_client.reserve).
+  - Scene clips ship SILENT unless --keep-audio: LTX invents ambience and occasionally
+    speech-like noise, and film_qc's whisper pass would report it as unheard/unknown lines.
+    a2v clips keep their audio — that IS the conditioned voice.
+"""
+from __future__ import annotations
+
+import argparse
+import glob
+import os
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+SF = Path(__file__).resolve().parent.parent
+HOME = Path.home()
+CLI = HOME / "Desktop/PROJECTS/ltx-2-mlx/.venv/bin/ltx-2-mlx"
+OUT_DIR = HOME / "AI/videopipe/outputs"
+FFMPEG = "/opt/homebrew/bin/ffmpeg" if Path("/opt/homebrew/bin/ffmpeg").exists() else "ffmpeg"
+FPS = 24
+
+
+def pack_dir() -> Path:
+    env = os.environ.get("SF_LTX25_PACK")
+    if env:
+        return Path(env)
+    snaps = sorted(glob.glob(str(HOME / ".cache/huggingface/hub/models--dgrauet--ltx-2.5-mlx/snapshots/*")))
+    if not snaps:
+        sys.exit("make-ltx25: no LTX-2.5 pack on disk (dgrauet/ltx-2.5-mlx) and SF_LTX25_PACK unset")
+    return Path(snaps[-1])
+
+
+def frames_for(seconds: float) -> int:
+    # LTX frame counts are 8k+1; clamp to what the 2.5 pack handles comfortably at 832x480.
+    n = round(seconds * FPS / 8) * 8 + 1
+    return max(9, min(257, n))
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description="Render a clip locally via LTX-2.5 (MLX).")
+    ap.add_argument("prompt", nargs="+")
+    ap.add_argument("--i2v", help="animate this image (first frame)")
+    ap.add_argument("--audio", help="drive the clip with this wav (a2v: talking / lip-sync)")
+    ap.add_argument("--duration", type=float, default=5.0, help="seconds (ignored for a2v: the wav sets it)")
+    ap.add_argument("--res", default="832x480", help="WxH, multiples of 32")
+    ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--label", default="clip")
+    ap.add_argument("--hq", action="store_true", help="dev transformer + CFG two-stage (slower, no distilled shortcut)")
+    ap.add_argument("--keep-audio", action="store_true", help="keep LTX's generated audio on a non-a2v clip")
+    ap.add_argument("--low-ram", action="store_true", help="stream transformer blocks (slower, ~75%% less Metal peak)")
+    ap.add_argument("--gb", type=float, default=45.0, help="forge_guard lease size in GB")
+    # accepted for CLI compatibility with make-video; no effect here
+    ap.add_argument("--gguf", action="store_true"); ap.add_argument("--fp16-i2v", action="store_true")
+    ap.add_argument("--steps", type=int, default=None)
+    a = ap.parse_args()
+
+    prompt = " ".join(a.prompt)
+    # LTX-2.5 invents camera moves (push-ins, pans, pull-backs) unless told very plainly not
+    # to — s1_coldopen and s4_arrival both failed their clip gates on drift the STILL never
+    # had (2026-08-29). Wording that held: "locked off ... does not move at all, the framing
+    # never changes". Prepend it for i2v unless the prompt asks for a camera move itself.
+    import re as _re
+    if a.i2v and not a.audio and not _re.search(r"\b(tracking|pan|pans|push[- ]in|pull[- ]back|dolly|orbit|zoom|crane|handheld)\b", prompt, _re.I):
+        prompt = ("Static camera, locked-off tripod shot, the camera does not move at all and the framing "
+                  "never changes from the first frame. " + prompt)
+    w, h = (int(x) for x in a.res.lower().split("x"))
+    if w % 32 or h % 32:
+        sys.exit(f"make-ltx25: --res must be multiples of 32 (got {a.res})")
+    for p in (a.i2v, a.audio):
+        if p and not Path(p).exists():
+            sys.exit(f"make-ltx25: missing input {p}")
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    stamp = time.strftime("%Y%m%d_%H%M%S")
+    raw = OUT_DIR / f"{a.label}_{stamp}_ltx25_raw.mp4"
+    out = OUT_DIR / f"{a.label}_{stamp}_ltx25.mp4"
+
+    pack = pack_dir()
+    if a.audio:
+        dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
+                                    "-of", "csv=p=0", a.audio], capture_output=True, text=True).stdout.strip())
+        frames = max(97, frames_for(dur))
+        # ltx-2-mlx a2v does NOT pad: a 1.6s wav against 97 frames dies in the audio RoPE
+        # with "Shapes (1,32,42,32) and (1,32,101,32) cannot be broadcast" (2026-08-29).
+        # Pad the wav with silence to exactly the clip length so audio and video tokens agree.
+        target = frames / FPS
+        padded = OUT_DIR / f"{a.label}_{stamp}_padded.wav"
+        subprocess.run([FFMPEG, "-v", "error", "-y", "-i", a.audio, "-af",
+                        f"apad=whole_dur={target:.4f}", "-t", f"{target:.4f}", "-ar", "48000", str(padded)], check=True)
+        audio_in = str(padded)
+        cmd = [str(CLI), "a2v", "--model", str(pack), "--audio", audio_in, "-p", prompt,
+               "-H", str(h), "-W", str(w), "-f", str(frames), "--frame-rate", str(FPS),
+               "--seed", str(a.seed), "-o", str(raw)]
+        if a.i2v:
+            cmd += ["--image", a.i2v]
+    else:
+        frames = frames_for(a.duration)
+        cmd = [str(CLI), "generate", "--model", str(pack), "-p", prompt,
+               "-H", str(h), "-W", str(w), "-f", str(frames), "--frame-rate", str(FPS),
+               "--seed", str(a.seed), "-o", str(raw), "--two-stage" if a.hq else "--distilled"]
+        if a.i2v:
+            cmd += ["--image", a.i2v]
+    if a.low_ram:
+        cmd.append("--low-ram")
+
+    # frozen rule 11: never start a render the box can't afford
+    if subprocess.run([str(SF / "bin" / "mem-gate"), f"ltx25 {a.label}"]).returncode != 0:
+        sys.exit("make-ltx25: mem-gate refused")
+
+    sys.path.insert(0, str(HOME / "SongForgeM5"))
+    try:
+        from mem_client import reserve  # noqa: E402
+    except Exception:  # forge_guard not installed on this box — proceed ungated but say so
+        print("make-ltx25: forge_guard mem_client unavailable, rendering without a lease", file=sys.stderr)
+        from contextlib import nullcontext
+        reserve = lambda name, gb: nullcontext()  # noqa: E731
+
+    # --low-ram streams the transformer block by block: Metal peak drops ~75%, so ask
+    # forge_guard for a lease that matches (a 45GB ask against its 50GB budget stalls
+    # 15 min whenever anything else holds a lease — measured 2026-08-29, three times).
+    gb = min(a.gb, 20.0) if a.low_ram else a.gb
+    # forge-shot already holds a "storyforge-animate <id>" lease (47GB) around this call.
+    # Asking for a second one on top exceeds the 50GB budget and stalls 900s per shot
+    # (s2b_smoke: 16 min for a 70s render, 2026-08-29 06:42). Piggyback on the caller's lease.
+    try:
+        from mem_client import state as _mstate
+        if any(str(l.get("name", "")).startswith("storyforge-animate") for l in _mstate().get("leases", [])):
+            from contextlib import nullcontext
+            print("make-ltx25: caller already holds a storyforge-animate lease, not asking for another", file=sys.stderr)
+            reserve = lambda name, gb: nullcontext()  # noqa: E731
+    except Exception:
+        pass
+    t0 = time.time()
+    with reserve(f"ltx25-{a.label}", gb):
+        t_lease = time.time() - t0
+        t1 = time.time()
+        r = subprocess.run(cmd, capture_output=True, text=True)
+        t_render = time.time() - t1
+    print(f"make-ltx25: lease wait {t_lease:.0f}s, render {t_render:.0f}s ({'a2v' if a.audio else 'i2v' if a.i2v else 't2v'}, "
+          f"{w}x{h}, {frames}f{', low-ram' if a.low_ram else ''})", file=sys.stderr)
+    if r.returncode != 0 or not raw.exists() or raw.stat().st_size < 20000:
+        print((r.stdout or "")[-1500:], file=sys.stderr)
+        print((r.stderr or "")[-1500:], file=sys.stderr)
+        return 1
+
+    if a.audio or a.keep_audio:
+        raw.rename(out)
+        if a.audio:
+            Path(audio_in).unlink(missing_ok=True)
+    else:
+        subprocess.run([FFMPEG, "-v", "error", "-y", "-i", str(raw), "-an", "-c:v", "copy", str(out)], check=True)
+        raw.unlink(missing_ok=True)
+    print(f"done in {time.time() - t0:.1f}s → {out}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

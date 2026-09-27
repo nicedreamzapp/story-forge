@@ -1,0 +1,97 @@
+{
+  "model": "flux2-klein-9b",
+  "model_path": "/Users/dtribe/.cache/huggingface/hub/models--AITRADER--FLUX2-klein-9B-mlx-8bit/snapshots/811313591beda9b3b781da490f9096b2b97e59f4",
+  "data": "dataset/",
+  "seed": 42,
+  "steps": 24,
+  "guidance": 1.0,
+  "quantize": 8,
+  "max_resolution": 768,
+  "low_ram": false,
+  "training_loop": {
+    "num_epochs": 15,
+    "batch_size": 1
+  },
+  "optimizer": {
+    "name": "AdamW",
+    "learning_rate": 0.0001
+  },
+  "checkpoint": {
+    "save_frequency": 60,
+    "output_path": "training"
+  },
+  "monitoring": {
+    "preview_width": 512,
+    "preview_height": 512,
+    "plot_frequency": 100000,
+    "generate_image_frequency": 100000
+  },
+  "lora_layers": {
+    "targets": [
+      {
+        "module_path": "transformer_blocks.{block}.attn.to_q",
+        "blocks": {
+          "start": 0,
+          "end": 4
+        },
+        "rank": 16
+      },
+      {
+        "module_path": "transformer_blocks.{block}.attn.to_k",
+        "blocks": {
+          "start": 0,
+          "end": 4
+        },
+        "rank": 16
+      },
+      {
+        "module_path": "transformer_blocks.{block}.attn.to_v",
+        "blocks": {
+          "start": 0,
+          "end": 4
+        },
+        "rank": 16
+      },
+      {
+        "module_path": "transformer_blocks.{block}.attn.to_out",
+        "blocks": {
+          "start": 0,
+          "end": 4
+        },
+        "rank": 16
+      },
+      {
+        "module_path": "transformer_blocks.{block}.ff.linear_in",
+        "blocks": {
+          "start": 0,
+          "end": 4
+        },
+        "rank": 16
+      },
+      {
+        "module_path": "transformer_blocks.{block}.ff.linear_out",
+        "blocks": {
+          "start": 0,
+          "end": 4
+        },
+        "rank": 16
+      },
+      {
+        "module_path": "single_transformer_blocks.{block}.attn.to_qkv_mlp_proj",
+        "blocks": {
+          "start": 0,
+          "end": 19
+        },
+        "rank": 16
+      },
+      {
+        "module_path": "single_transformer_blocks.{block}.attn.to_out",
+        "blocks": {
+          "start": 0,
+          "end": 19
+        },
+        "rank": 16
+      }
+    ]
+  }
+}

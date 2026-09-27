@@ -1,0 +1,15 @@
+{
+ "shots": [
+  {
+   "id": "s6_final_v2",
+   "clip": "clips/s6_final_v2.mp4",
+   "beat": "a big bear drives his shoulder into a stuck boxcar door and strains against it with his entire body weight, feet planted and dug in, real physical effort",
+   "must_not": [
+    "holding or using a stick, tool, rod or any object",
+    "standing upright and relaxed",
+    "sawdust or debris spraying out of the wall",
+    "poking, prying or fiddling at the wood"
+   ]
+  }
+ ]
+}

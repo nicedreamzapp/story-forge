@@ -1,0 +1,506 @@
+[keepalive 12:15:22] starting director on projects/circus_train (max 8h)
+[director 12:15:22] calibrating the gates against known human verdicts before trusting them
+[director 12:19:11]   CALIBRATION: agrees with 5/6 known human verdicts (83%)
+[director 12:19:11]   GT_pass_s5_door: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies a bloodhound with its nose pressed against a narrow gap between planks of a wooden boxcar door, 
+[director 12:19:11] WIP reel updated: 2 passing shots → WIP_REEL.mp4
+[director 12:19:11] 4 beats still open — working: they arrive at the broken-down train and the trouble is visible
+[keepalive 12:41:47] director died (exit 143) — restart #1 in 30s
+[keepalive 12:41:49] starting director on projects/circus_train (max 8h)
+[director 12:41:49] calibrating the gates against known human verdicts before trusting them
+[director 12:51:14]   CALIBRATION: agrees with 5/6 known human verdicts (83%)
+[director 12:51:14]   GT_pass_s5_door: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies a bloodhound with its nose pressed against a narrow gap between planks of a wooden boxcar door, 
+[director 12:51:16] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 12:51:16] 3 beats still open — working: we SEE who is trapped — the audience gets someone to root for
+[keepalive 13:09:07] director died (exit 143) — restart #1 in 30s
+[keepalive 22:35:19] starting director on projects/circus_train (max 8h)
+[director 22:35:19] calibrating the gates against known human verdicts before trusting them
+[director 22:39:14]   CALIBRATION: agrees with 4/6 known human verdicts (67%)
+[director 22:39:14]   GT_pass_s5_door: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies a bloodhound with its nose pressed against a narrow gap between planks of a wooden boxcar door, 
+[director 22:39:14]   GT_fail_s7_sitting: gate said ERROR, human said PASS — missing or unreadable stills/LOCKED_s7_dooropen.png
+[director 22:39:14]   WARNING: the gate disagrees with humans too often to be trusted — fix the gate or the beat wording before believing any verdict above
+[director 22:39:15] WIP reel updated: 5 passing shots → WIP_REEL.mp4
+[director 22:39:15] 4 beats still open — working: they arrive at the broken-down train and the trouble is visible
+[director 23:18:16]     seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear standing in front of a weathered circus tra
+[director 23:18:16]     seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The beat requires both a bear and a dog, but only a bear is present in the i
+[director 23:18:16]     seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train cars are not all shut — the red car in the foreground clearly has 
+[director 23:18:16]     seed 119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear-like creature and a dog-like creature (tho
+[director 23:18:16]     seed 1011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing in front of a weathere
+[director 23:18:16]     seed 1047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image contains an open door on one of the train cars with the word “SA
+[director 23:18:16]     seed 2011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train doors are open, which violates the requirement that all doors mu
+[director 23:18:16]     seed 2047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a large, orange, furry bear-like creature standi
+[director 23:18:16]     seed 2082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train doors are not all shut — one door is visibly open, revealing the
+[director 23:18:16]     seed 2119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train car’s side door is open, which violates the explicit requirement
+[director 23:18:16]     s4_arrival: NO candidate passed — reported UNBUILT, nothing locked
+[director 23:18:16]     s4_arrival: UNBUILT
+[director 23:18:16]   s4_arrival attempt 0 → UNBUILT
+[director 23:18:17] WIP reel updated: 5 passing shots → WIP_REEL.mp4
+[director 23:18:17] 4 beats still open — working: they arrive at the broken-down train and the trouble is visible
+[director 23:33:04]     seed 3011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a cartoon-style dog standing in front of a weath
+[director 23:33:04]     identity Hank vs hank_canon.png: DRIFT — NO. The character in the right image has a different head and ear shape — the ears are longer and more flop
+[director 23:33:04]     seed 3047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train cars are not all shut — one of the red cars clearly has an open 
+[director 23:33:04]     seed 3082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows two dogs, not a bear and a dog, and while the train is wea
+[director 23:33:04]     seed 3119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows only a bear, not a dog, and while the train cars are shut 
+[director 23:33:04]     seed 4011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a small, orange bear standing on all fours in fr
+[director 23:33:04]     seed 4047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts two bears, not a bear and a dog, and the train is a frei
+[director 23:33:04]     seed 4082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing still in front of a we
+[director 23:33:04]     seed 4119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing upright in front of a 
+[director 23:33:04]     seed 5011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a bear standing alone in front of a weathered train with c
+[director 23:33:04]     seed 5047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing still and observant in
+[director 23:33:04]     seed 5082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing in front of a weathere
+[director 23:33:04]     seed 5119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing in front of a weathere
+[director 23:33:04]     s4_arrival: NO candidate passed — reported UNBUILT, nothing locked
+[director 23:33:04]     s4_arrival: UNBUILT
+[director 23:33:04]   s4_arrival attempt 1 → UNBUILT
+[director 23:33:05] WIP reel updated: 5 passing shots → WIP_REEL.mp4
+[director 23:33:05] 4 beats still open — working: they arrive at the broken-down train and the trouble is visible
+[director 23:40:27]     seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear standing in front of a weathered circus tra
+[director 23:40:27]     seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The beat requires both a bear and a dog, but only a bear is present in the i
+[director 23:40:27]     seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The train cars are not all shut — the red car in the foreground clearly has 
+[director 23:40:27]     seed 119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear-like creature and a dog-like creature (tho
+[director 23:40:27]     seed 1011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing calmly beside a weathe
+[director 23:40:27]     seed 1047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing in front of a weathere
+[director 23:40:27]     identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive round head shape, small rounded ears, light bei
+[director 23:40:27]     LOCKED stills/LOCKED_s4_arrival.png
+[director 23:40:27]     s4_arrival: STILL_LOCKED
+[director 23:40:27]   s4_arrival attempt 2 → STILL_LOCKED
+[director 23:40:27]   BLOCKED s4_arrival — still locks but no animation holds the beat after 3 escalating attempts; moving to the next beat
+[director 23:40:28] WIP reel updated: 5 passing shots → WIP_REEL.mp4
+[director 23:40:28] 3 beats still open — working: we SEE who is trapped — the audience gets someone to root for
+[director 00:07:10]     seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s eye is wide open and expressive, but the visible portion of i
+[director 00:07:10]     seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The eye is wide open and appears alert, but the surrounding skin is smooth a
+[director 00:07:10]     seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s skin is porcelain white, which is explicitly forbidden by th
+[director 00:07:10]     seed 119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The animal’s expression appears alert and curious, which is not forbidden, 
+[director 00:07:10]     seed 1011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s eye is wide open and alert, but the overall expression lac
+[director 00:07:10]     seed 1047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a large, wide-open amber eye through a narrow gap in woode
+[director 00:07:10]     seed 1082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s skin tone is light grayish-white, which qualifies as "porc
+[director 00:07:10]     seed 1119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s skin tone is porcelain white, which is explicitly forbidde
+[director 00:07:10]     seed 2011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The eye is wide open and the surrounding skin shows wrinkles, but the expr
+[director 00:07:10]     seed 2047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single, large, wide-open amber eye through a nar
+[director 00:07:10]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie because the visible eye and facial structure do not mat
+[director 00:07:10]     seed 2082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style eye with a light, smooth skin tone that ap
+[director 00:07:10]     seed 2119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single, large, cartoon-style amber eye peering t
+[director 00:07:10]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie, as the visible eye and facial structure do not match E
+[director 00:07:10]     ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[director 00:07:10]     ellie_eye: UNBUILT
+[director 00:07:10]   ellie_eye attempt 0 → UNBUILT
+[director 00:07:11] WIP reel updated: 5 passing shots → WIP_REEL.mp4
+[director 00:07:11] 3 beats still open — working: we SEE who is trapped — the audience gets someone to root for
+[director 00:30:11]     seed 3011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s eye is wide open and expressive, but the overall expression
+[director 00:30:11]     seed 3047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s eye is wide open and alert, but the visible portion of the 
+[director 00:30:11]     seed 3082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s eye is wide open and expressive, but the overall expression
+[director 00:30:11]     seed 3119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s skin tone is light gray with subtle shading, not porcelain
+[director 00:30:11]     seed 4011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s expression appears calm and slightly curious, not conveying
+[director 00:30:11]     seed 4047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The eye is wide open and appears alert, but the surrounding skin is light 
+[director 00:30:11]     seed 4082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s expression appears calm and slightly smiling, which violate
+[director 00:30:11]     seed 4119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s eye is wide open and the expression appears alert or curio
+[director 00:30:11]     seed 5011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts a stylized animated animal face with large expressive ey
+[director 00:30:11]     seed 5047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s eye and facial features suggest a calm or happy expression
+[director 00:30:11]     seed 5082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The eye is wide open and the surrounding facial area is visible, but the s
+[director 00:30:11]     seed 5119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s expression appears curious or slightly mischievous, not cal
+[director 00:30:11]     ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[director 00:30:11]     ellie_eye: UNBUILT
+[director 00:30:11]   ellie_eye attempt 1 → UNBUILT
+[director 00:30:12] WIP reel updated: 5 passing shots → WIP_REEL.mp4
+[director 00:30:12] 3 beats still open — working: we SEE who is trapped — the audience gets someone to root for
+[director 00:55:15]     seed 11: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The elephant’s eye is wide open and expressive, but the overall expression a
+[director 00:55:15]     seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts a human-like eye, not an elephant eye, and the skin tone i
+[director 00:55:15]     seed 82: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single large, wide-open amber eye through a narrow
+[director 00:55:15]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are inc
+[director 00:55:15]     seed 119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s eye is wide open, but the visible facial features—including
+[director 00:55:15]     seed 1011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s expression, while cautious, is not clearly "calm or happy"
+[director 00:55:15]     seed 1047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single, large, wide-open amber elephant eye peer
+[director 00:55:15]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are inc
+[director 00:55:15]     seed 1082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies a large amber elephant eye, but the image shows a styli
+[director 00:55:15]     seed 1119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The eye is wide open and the character appears to be peering cautiously, b
+[director 00:55:15]     seed 2011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image depicts a calm or happy expression, as indicated by the curved e
+[director 00:55:15]     seed 2047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single, large, wide-open amber eye of a cartoon-
+[director 00:55:15]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie because the visible eye and facial structure do not mat
+[director 00:55:15]     seed 2082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s skin is light-colored and smooth, which could be interpret
+[director 00:55:15]     seed 2119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single, large, cartoon-style amber eye peering t
+[director 00:55:15]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie, as the visible eye and facial structure do not match E
+[director 00:55:15]     ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[director 00:55:15]     ellie_eye: UNBUILT
+[director 00:55:15]   ellie_eye attempt 2 → UNBUILT
+[director 00:55:15]   BLOCKED ellie_eye — still never passed the gates after 3 escalating attempts; moving to the next beat
+[director 00:55:16] WIP reel updated: 5 passing shots → WIP_REEL.mp4
+[director 00:55:16] 2 beats still open — working: THE PAYOFF: the door opens and the trapped animal is free on screen
+[director 01:12:29]     seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a young gray elephant wearing a small red circus-s
+[director 01:12:29]     identity Ellie vs ellie_canon.png: MATCH — YES. The character in the right image matches Ellie in every key design aspect, including the same head s
+[director 01:12:29]     LOCKED stills/LOCKED_s7_dooropen.png
+[director 01:12:29]     clip: beat FAIL (0/5)
+[director 01:12:29]     s7_dooropen: animation never holds the beat — clip NOT used; kept at clips/_failed/s7_dooropen_failed.mp4 so the failure can be diagnosed, still sta
+[director 01:12:29]   s7_dooropen attempt 0 → CLIP_FAILED
+[director 01:12:30] WIP reel updated: 5 passing shots → WIP_REEL.mp4
+[director 01:12:30] 2 beats still open — working: THE PAYOFF: the door opens and the trapped animal is free on screen
+[director 01:22:59]     seed 3011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a young gray elephant wearing a small red circus c
+[director 01:22:59]     identity Ellie vs ellie_canon.png: MATCH — YES. The character in the right image matches Ellie in head and ear shape, body proportions, coat color, 
+[director 01:22:59]     LOCKED stills/LOCKED_s7_dooropen.png
+[director 01:22:59]     clip: beat FAIL (1/5)
+[director 01:22:59]     s7_dooropen: animation never holds the beat — clip NOT used; kept at clips/_failed/s7_dooropen_failed.mp4 so the failure can be diagnosed, still sta
+[director 01:22:59]   s7_dooropen attempt 1 → CLIP_FAILED
+[director 01:23:00] WIP reel updated: 5 passing shots → WIP_REEL.mp4
+[director 01:23:00] 2 beats still open — working: THE PAYOFF: the door opens and the trapped animal is free on screen
+[director 01:25:02]     seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a young gray elephant wearing a small red circus-s
+[director 01:25:02]     identity Ellie vs ellie_canon.png: MATCH — YES. The character in the right image matches Ellie in every key design aspect, including the same head s
+[director 01:25:02]     LOCKED stills/LOCKED_s7_dooropen.png
+[director 01:25:02]     s7_dooropen: STILL_LOCKED
+[director 01:25:02]   s7_dooropen attempt 2 → STILL_LOCKED
+[director 01:25:02]   BLOCKED s7_dooropen — still locks but no animation holds the beat after 3 escalating attempts; moving to the next beat
+[director 01:25:03] WIP reel updated: 5 passing shots → WIP_REEL.mp4
+[director 01:25:03] 1 beats still open — working: the goodbye, with the rescued train alive behind them
+[director 01:41:44]     seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The bear and dog are clearly touching paws (specifically, the bear’s paw is 
+[director 01:41:44]     identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive white chest patch and rounded ear shape, which 
+[director 01:41:44]     LOCKED stills/LOCKED_s8_goodbye.png
+[director 01:41:44]     clip: beat FAIL (0/5)
+[director 01:41:44]     s8_goodbye: animation never holds the beat — clip NOT used; kept at clips/_failed/s8_goodbye_failed.mp4 so the failure can be diagnosed, still stays
+[director 01:41:44]   s8_goodbye attempt 0 → CLIP_FAILED
+[director 01:41:45] WIP reel updated: 5 passing shots → WIP_REEL.mp4
+[director 01:41:45] 1 beats still open — working: the goodbye, with the rescued train alive behind them
+[director 01:52:08]     seed 3011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The bear and dog are clearly touching paws (specifically, the bear’s paw g
+[director 01:52:08]     identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive rounded head shape and ear placement, which are
+[director 01:52:08]     LOCKED stills/LOCKED_s8_goodbye.png
+[director 01:52:08]     clip: beat FAIL (0/5)
+[director 01:52:08]     s8_goodbye: animation never holds the beat — clip NOT used; kept at clips/_failed/s8_goodbye_failed.mp4 so the failure can be diagnosed, still stays
+[director 01:52:08]   s8_goodbye attempt 1 → CLIP_FAILED
+[director 01:52:09] WIP reel updated: 5 passing shots → WIP_REEL.mp4
+[director 01:52:09] 1 beats still open — working: the goodbye, with the rescued train alive behind them
+[director 01:53:31]     seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The bear and dog are clearly touching paws (specifically, the bear’s paw is 
+[director 01:53:31]     identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive white chest patch and rounded ear shape, which 
+[director 01:53:31]     LOCKED stills/LOCKED_s8_goodbye.png
+[director 01:53:31]     s8_goodbye: STILL_LOCKED
+[director 01:53:31]   s8_goodbye attempt 2 → STILL_LOCKED
+[director 01:53:31]   BLOCKED s8_goodbye — still locks but no animation holds the beat after 3 escalating attempts; moving to the next beat
+[director 01:53:32] WIP reel updated: 5 passing shots → WIP_REEL.mp4
+[director 01:53:32] every required beat has footage — assembling the cut
+[director 01:53:32] [build-episode] COMPLETE in 0.0 min → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/EPISODE_v1.mp4
+[director 01:53:32] FILM COMPLETE — stopping because there is nothing left to build
+[director 01:53:32] needs a human decision:
+[director 01:53:32]   s4_arrival: still locks but no animation holds the beat after 3 escalating attempts
+[director 01:53:32]   ellie_eye: still never passed the gates after 3 escalating attempts
+[director 01:53:32]   s7_dooropen: still locks but no animation holds the beat after 3 escalating attempts
+[director 01:53:32]   s8_goodbye: still locks but no animation holds the beat after 3 escalating attempts
+[keepalive 01:53:32] film complete — done
+[keepalive 09:04:53] starting director on projects/circus_train (max 8h)
+[director 09:04:53] calibrating the gates against known human verdicts before trusting them
+[director 09:08:17]   CALIBRATION: agrees with 5/6 known human verdicts (83%)
+[director 09:08:17]   GT_pass_s5_door: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies a bloodhound with its nose pressed against a narrow gap between planks of a wooden boxcar door, 
+[director 09:08:18] WIP reel updated: 5 passing shots → WIP_REEL.mp4
+[director 09:08:18] 4 beats still open — working: they arrive at the broken-down train and the trouble is visible
+[director 09:47:13]     seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear standing in front of a weathered circus tra
+[director 09:47:13]     seed 1011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing calmly beside a weathe
+[director 09:47:13]     seed 1047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts a bear and a dog standing in front of a weathere
+[director 09:47:13]     identity Hank vs hank_canon.png: MATCH — YES. The bear in the right image matches Hank’s distinctive round head shape, small rounded ears, light bei
+[director 09:47:13]     LOCKED stills/LOCKED_s4_arrival.png
+[director 09:47:13]     clip: beat PASS (4/5)
+[director 09:47:13]   s4_arrival attempt 0 → CLIP_KEPT
+[director 09:47:15] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 09:47:15] 3 beats still open — working: we SEE who is trapped — the audience gets someone to root for
+[director 10:15:50]     seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a narro
+[director 10:15:50]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are sig
+[director 10:15:50]     seed 47: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style eye with a brown iris, but the surrounding s
+[director 10:15:50]     seed 82: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style elephant with light-colored skin, which is n
+[director 10:15:50]     seed 119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a narr
+[director 10:15:50]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are sig
+[director 10:15:50]     seed 1011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber-colored eye of a cartoon-style ani
+[director 10:15:50]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are sig
+[director 10:15:50]     seed 1047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a nar
+[director 10:15:50]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie because the visible eye and surrounding facial structur
+[director 10:15:50]     seed 1082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style human face, not an elephant, and the eye i
+[director 10:15:50]     seed 1119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a nar
+[director 10:15:50]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie because the visible eye lacks the distinctive large, ro
+[director 10:15:50]     seed 2011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vert
+[director 10:15:50]     seed 2047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a nar
+[director 10:15:50]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie because the visible eye and facial structure do not mat
+[director 10:15:50]     seed 2082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a nar
+[director 10:15:50]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and iris pattern
+[director 10:15:50]     seed 2119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber-colored cartoon eye peering throug
+[director 10:15:50]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie, as the visible eye and facial structure do not match E
+[director 10:15:50]     ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[director 10:15:50]     ellie_eye: UNBUILT
+[director 10:15:50]   ellie_eye attempt 0 → UNBUILT
+[director 10:15:51] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 10:15:51] 3 beats still open — working: we SEE who is trapped — the audience gets someone to root for
+[director 10:45:04]     seed 3011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon character with porcelain white skin, which is ex
+[director 10:45:04]     seed 3047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single large, cartoon-style amber eye peering th
+[director 10:45:04]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are sig
+[director 10:45:04]     seed 3082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a nar
+[director 10:45:04]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are sig
+[director 10:45:04]     seed 3119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single large, cartoon-style amber eye with long 
+[director 10:45:04]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie because the distinctive red and gold circus hat with a 
+[director 10:45:04]     seed 4011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a nar
+[director 10:45:04]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are sig
+[director 10:45:04]     seed 4047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a nar
+[director 10:45:04]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and size are 
+[director 10:45:04]     seed 4082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a nar
+[director 10:45:04]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are sig
+[director 10:45:04]     seed 4119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a nar
+[director 10:45:04]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and iris pattern
+[director 10:45:04]     seed 5011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies an "elephant eye," but the image clearly shows a styliz
+[director 10:45:04]     seed 5047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a nar
+[director 10:45:04]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie, as the visible eye and facial structure do not match E
+[director 10:45:04]     seed 5082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber-brown eye of a stylized animated c
+[director 10:45:04]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are inc
+[director 10:45:04]     seed 5119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber-brown elephant eye visible through
+[director 10:45:04]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are sig
+[director 10:45:04]     ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[director 10:45:04]     ellie_eye: UNBUILT
+[director 10:45:04]   ellie_eye attempt 1 → UNBUILT
+[director 10:45:05] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 10:45:05] 3 beats still open — working: we SEE who is trapped — the audience gets someone to root for
+[director 11:08:17]     seed 6011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a nar
+[director 11:08:17]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are inc
+[director 11:08:17]     seed 6047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style animal face, but it is not an elephant — i
+[director 11:08:17]     seed 6082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vert
+[director 11:08:17]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie because the distinctive red and gold circus hat with a 
+[director 11:08:17]     seed 6119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peeking through a nar
+[director 11:08:17]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are sig
+[director 11:08:17]     seed 7011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style face with porcelain white skin, which is e
+[director 11:08:17]     seed 7047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a nar
+[director 11:08:17]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie, as the visible eye and facial structure do not match t
+[director 11:08:17]     seed 7082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style animal with light gray fur and large brown
+[director 11:08:17]     seed 7119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single large, cartoon-style amber eye peering th
+[director 11:08:17]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are sig
+[director 11:08:17]     seed 8011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style animal face, but it is not an elephant; it
+[director 11:08:17]     seed 8047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vert
+[director 11:08:17]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are inc
+[director 11:08:17]     seed 8082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a nar
+[director 11:08:17]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image is not Ellie, as the visible eye and facial structure do not match E
+[director 11:08:17]     seed 8119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber cartoon-style eye peering through 
+[director 11:08:17]     identity Ellie vs ellie_canon.png: DRIFT — NO. The character in the right image does not match Ellie’s design because the eye shape and size are inc
+[director 11:08:17]     ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[director 11:08:17]     ellie_eye: UNBUILT
+[director 11:08:17]   ellie_eye attempt 2 → UNBUILT
+[director 11:08:18] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 11:08:18] 3 beats still open — working: we SEE who is trapped — the audience gets someone to root for
+[keepalive 11:33:49] film complete — done
+[keepalive 11:33:52] starting director on projects/circus_train (max 6h)
+[director 11:33:52] calibrating the gates against known human verdicts before trusting them
+[director 11:37:52]   CALIBRATION: agrees with 5/6 known human verdicts (83%)
+[director 11:37:52]   GT_pass_s5_door: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies a bloodhound with its nose pressed against a narrow gap between planks of a wooden boxcar door, 
+[director 11:37:54] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 11:37:54] 3 beats still open — working: we SEE who is trapped — the audience gets someone to root for
+[director 12:15:21]     seed 1011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber-colored eye of a cartoon-style cha
+[director 12:15:21]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and bro
+[director 12:15:21]     seed 1047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a nar
+[director 12:15:21]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape, iris pattern,
+[director 12:15:21]     seed 1082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style eye, but the surrounding face has porcelai
+[director 12:15:21]     seed 1119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber cartoon-style eye peering through 
+[director 12:15:21]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and iri
+[director 12:15:21]     seed 2011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vert
+[director 12:15:21]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape, brow s
+[director 12:15:21]     seed 2047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vert
+[director 12:15:21]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and bro
+[director 12:15:21]     seed 2082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber-colored cartoon-style eye visible 
+[director 12:15:21]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The eye design does not match — the right image shows an eye with a distinct, intricate, sunbur
+[director 12:15:21]     seed 2119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber-colored cartoon eye peering throug
+[director 12:15:21]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and bro
+[director 12:15:21]     ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[director 12:15:21]     ellie_eye: UNBUILT
+[director 12:15:21]   ellie_eye attempt 0 → UNBUILT
+[director 12:15:22] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 12:15:22] 3 beats still open — working: we SEE who is trapped — the audience gets someone to root for
+[director 12:43:36]     seed 3011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vert
+[director 12:43:36]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and iri
+[director 12:43:36]     seed 3047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a nar
+[director 12:43:36]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and iri
+[director 12:43:36]     seed 3082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a nar
+[director 12:43:36]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape and iris patte
+[director 12:43:36]     seed 3119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vert
+[director 12:43:36]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and bro
+[director 12:43:36]     seed 4011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single large, cartoon-style amber eye and part o
+[director 12:43:36]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design in terms of eye shape and bro
+[director 12:43:36]     seed 4047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a nar
+[director 12:43:36]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape and iris patte
+[director 12:43:36]     seed 4082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vert
+[director 12:43:36]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape, iris pattern,
+[director 12:43:36]     seed 4119: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s skin is not porcelain white or pink, but the image clearly
+[director 12:43:36]     seed 5011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies an "elephant eye," but the image clearly shows a styliz
+[director 12:43:36]     seed 5047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a nar
+[director 12:43:36]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The eye color and iris pattern do not match the locked design; the right image shows a golden-y
+[director 12:43:36]     seed 5082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber eye of a stylized animated charact
+[director 12:43:36]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The eye design in the right image does not match the locked set: the iris pattern is different,
+[director 12:43:36]     seed 5119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a nar
+[director 12:43:36]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The eye design does not match — the right image shows a character with a detailed, textured iri
+[director 12:43:36]     ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[director 12:43:36]     ellie_eye: UNBUILT
+[director 12:43:36]   ellie_eye attempt 1 → UNBUILT
+[director 12:43:37] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 12:43:37] 3 beats still open — working: we SEE who is trapped — the audience gets someone to root for
+[director 13:17:52]     seed 6011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a nar
+[director 13:17:52]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The eye design in the right image does not match the locked set: the iris pattern, pupil shape,
+[director 13:17:52]     seed 6047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style animal face with a large amber eye peeking
+[director 13:17:52]     seed 6082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a nar
+[director 13:17:52]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape, iris pattern,
+[director 13:17:52]     seed 6119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a nar
+[director 13:17:52]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape and iris patte
+[director 13:17:52]     seed 7011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character has porcelain white skin, which is explicitly forbidden by t
+[director 13:17:52]     seed 7047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single large amber elephant eye peering through 
+[director 13:17:52]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape, iris pattern,
+[director 13:17:52]     seed 7082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a nar
+[director 13:17:52]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape and iris patte
+[director 13:17:52]     seed 7119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single large, cartoon-style amber eye peering th
+[director 13:17:52]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The eye design does not match — the right image shows a different iris pattern with a distinct 
+[director 13:17:52]     seed 8011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber-brown eye of a cartoon-style chara
+[director 13:17:52]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and bro
+[director 13:17:52]     seed 8047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow vert
+[director 13:17:52]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape, iris pattern,
+[director 13:17:52]     seed 8082: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The character’s skin tone is porcelain white, which is explicitly forbidde
+[director 13:17:52]     seed 8119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber eye of a stylized animated charact
+[director 13:17:52]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and bro
+[director 13:17:52]     ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[director 13:17:52]     ellie_eye: UNBUILT
+[director 13:17:52]   ellie_eye attempt 2 → UNBUILT
+[director 13:17:53] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 13:17:53] 3 beats still open — working: we SEE who is trapped — the audience gets someone to root for
+[director 13:43:04]     seed 9011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a nar
+[director 13:43:04]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape and iris patte
+[director 13:43:04]     seed 9047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a nar
+[director 13:43:04]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape, iris pattern,
+[director 13:43:04]     seed 9082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a nar
+[director 13:43:04]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape, iris p
+[director 13:43:04]     seed 9119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye visible through a nar
+[director 13:43:04]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape, iris pattern,
+[director 13:43:04]     seed 10011: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies an "elephant eye," but the image clearly shows a felin
+[director 13:43:04]     seed 10047: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large, cartoon-style amber eye peering throug
+[director 13:43:04]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and iri
+[director 13:43:04]     seed 10082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber eye of a cartoon-style character 
+[director 13:43:04]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape, iris pattern,
+[director 13:43:04]     seed 10119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single large amber elephant eye peering through
+[director 13:43:04]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape and iris patte
+[director 13:43:04]     seed 11011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye peering through a na
+[director 13:43:04]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and bro
+[director 13:43:04]     seed 11047: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The image shows a cartoon-style white animal with a large amber eye peeki
+[director 13:43:04]     seed 11082: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows one large amber elephant eye through a narrow ver
+[director 13:43:04]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design because the eye shape and bro
+[director 13:43:04]     seed 11119: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a single, large, animated amber eye peering throu
+[director 13:43:04]     identity Ellie's vs ellie_eye_canon.png: DRIFT — NO. The character in the right image does not match the locked design: the eye shape, iris pattern,
+[director 13:43:04]     ellie_eye: NO candidate passed — reported UNBUILT, nothing locked
+[director 13:43:04]     ellie_eye: UNBUILT
+[director 13:43:05]   ellie_eye attempt 3 → UNBUILT
+[director 13:43:05]   BLOCKED ellie_eye — still never passed the gates after 4 escalating attempts; moving to the next beat
+[director 13:43:06] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 13:43:06] 2 beats still open — working: THE PAYOFF: the door opens and the trapped animal is free on screen
+[keepalive 14:41:53] starting director on projects/circus_train (max 6h)
+[director 14:41:53] calibrating the gates against known human verdicts before trusting them
+[director 14:45:19]   CALIBRATION: agrees with 5/6 known human verdicts (83%)
+[director 14:45:19]   GT_pass_s5_door: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies a bloodhound with its nose pressed against a narrow gap between planks of a wooden boxcar door, 
+[director 14:45:20] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 14:45:20] 2 beats still open — working: THE PAYOFF: the door opens and the trapped animal is free on screen
+[director 15:00:48]     seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a young gray elephant wearing a small red circus-sty
+[director 15:00:48]     identity Ellie vs ellie_canon.png: MATCH — YES. The character in the right image matches Ellie in every key design aspect, including the same head s
+[director 15:00:48]     LOCKED stills/LOCKED_s7_dooropen.png
+[director 15:00:48]     animation failed: [make-video] uploading LOCKED_s7_dooropen.png → ComfyUI
+[director 15:00:48]     s7_dooropen: STILL_LOCKED
+[director 15:00:48]   s7_dooropen attempt 0 → STILL_LOCKED
+[director 15:00:49] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 15:00:49] 2 beats still open — working: THE PAYOFF: the door opens and the trapped animal is free on screen
+[director 15:00:53]     s7_dooropen: NO candidate passed — reported UNBUILT, nothing locked
+[director 15:00:53]     s7_dooropen: UNBUILT
+[director 15:00:53]   s7_dooropen attempt 1 → UNBUILT
+[director 15:00:54] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 15:00:54] 2 beats still open — working: THE PAYOFF: the door opens and the trapped animal is free on screen
+[director 15:00:55]     s7_dooropen: NO candidate passed — reported UNBUILT, nothing locked
+[director 15:00:55]     s7_dooropen: UNBUILT
+[director 15:00:55]   s7_dooropen attempt 2 → UNBUILT
+[director 15:00:56] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 15:00:56] 2 beats still open — working: THE PAYOFF: the door opens and the trapped animal is free on screen
+[director 15:00:58]     s7_dooropen: NO candidate passed — reported UNBUILT, nothing locked
+[director 15:00:58]     s7_dooropen: UNBUILT
+[director 15:00:58]   s7_dooropen attempt 3 → UNBUILT
+[director 15:00:58]   BLOCKED s7_dooropen — still never passed the gates after 4 escalating attempts; moving to the next beat
+[director 15:00:59] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 15:00:59] 1 beats still open — working: the goodbye, with the rescued train alive behind them
+[keepalive 15:03:34] starting director on projects/circus_train (max 6h)
+[director 15:03:34] calibrating the gates against known human verdicts before trusting them
+[director 15:10:49]   CALIBRATION: agrees with 5/6 known human verdicts (83%)
+[director 15:10:49]   GT_pass_s5_door: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies a bloodhound with its nose pressed against a narrow gap between planks of a wooden boxcar door, 
+[director 15:10:51] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 15:10:51] 2 beats still open — working: THE PAYOFF: the door opens and the trapped animal is free on screen
+[director 15:29:06]     seed 11: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a young gray elephant wearing a small red circus-sty
+[director 15:29:06]     identity Ellie vs ellie_canon.png: MATCH — YES. The character in the right image matches Ellie in every key design aspect, including the same head s
+[director 15:29:06]     LOCKED stills/LOCKED_s7_dooropen.png
+[director 15:29:06]     clip: beat FAIL (0/5)
+[director 15:29:06]     s7_dooropen: animation never holds the beat — clip NOT used; kept at clips/_failed/s7_dooropen_failed.mp4 so the failure can be diagnosed, still sta
+[director 15:29:06]   s7_dooropen attempt 0 → CLIP_FAILED
+[director 15:29:07] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 15:29:07] 2 beats still open — working: THE PAYOFF: the door opens and the trapped animal is free on screen
+[director 15:48:55]     seed 3011: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly shows a young gray elephant wearing a small red circus-s
+[director 15:48:55]     identity Ellie vs ellie_canon.png: MATCH — YES. The character in the right image matches Ellie in head and ear shape, body proportions, and the dist
+[director 15:48:55]     LOCKED stills/LOCKED_s7_dooropen.png
+[director 15:48:55]     clip: beat FAIL (1/5)
+[director 15:48:55]     s7_dooropen: animation never holds the beat — clip NOT used; kept at clips/_failed/s7_dooropen_failed.mp4 so the failure can be diagnosed, still sta
+[director 15:48:55]   s7_dooropen attempt 1 → CLIP_FAILED
+[director 15:48:56] WIP reel updated: 6 passing shots → WIP_REEL.mp4
+[director 15:48:56] 2 beats still open — working: THE PAYOFF: the door opens and the trapped animal is free on screen
+[keepalive 19:22:59] starting director on /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train (max 8h)
+[keepalive 19:22:59] starting director on /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train (max 8h)
+[keepalive 19:22:59] starting director on /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/ (max 8h)
+[keepalive 19:22:59] starting director on /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/ (max 8h)
+[director 19:22:59] calibrating the gates against known human verdicts before trusting them
+[director 19:22:59] calibrating the gates against known human verdicts before trusting them
+[director 19:25:22]   CALIBRATION: agrees with 1/2 known human verdicts (50%)
+[director 19:25:22]   GT_pass_s5_door: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies a bloodhound with its nose pressed against a narrow gap between planks of a wooden boxcar door, 
+[director 19:25:22]   WARNING: the gate disagrees with humans too often to be trusted — fix the gate or the beat wording before believing any verdict above
+Traceback (most recent call last):
+  File "/Users/dtribe/Desktop/PROJECTS/story-forge/bin/forge-director", line 354, in <module>
+    raise SystemExit(main())
+  File "/Users/dtribe/Desktop/PROJECTS/story-forge/bin/forge-director", line 253, in main
+    wip_reel(proj)
+  File "/Users/dtribe/Desktop/PROJECTS/story-forge/bin/forge-director", line 199, in wip_reel
+    subprocess.run(["ffmpeg", "-v", "error", "-f", "concat", "-safe", "0", "-i", str(lst),
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py", line 1821, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+[keepalive 19:25:22] film complete — done
+[keepalive 19:25:22] film complete — done
+[director 19:25:22]   CALIBRATION: agrees with 1/2 known human verdicts (50%)
+[director 19:25:22]   GT_pass_s5_door: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies a bloodhound with its nose pressed against a narrow gap between planks of a wooden boxcar door, 
+[director 19:25:22]   WARNING: the gate disagrees with humans too often to be trusted — fix the gate or the beat wording before believing any verdict above
+Traceback (most recent call last):
+  File "/Users/dtribe/Desktop/PROJECTS/story-forge/bin/forge-director", line 354, in <module>
+    raise SystemExit(main())
+  File "/Users/dtribe/Desktop/PROJECTS/story-forge/bin/forge-director", line 253, in main
+    wip_reel(proj)
+  File "/Users/dtribe/Desktop/PROJECTS/story-forge/bin/forge-director", line 199, in wip_reel
+    subprocess.run(["ffmpeg", "-v", "error", "-f", "concat", "-safe", "0", "-i", str(lst),
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py", line 1821, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+[keepalive 19:25:22] film complete — done
+[keepalive 19:25:22] film complete — done
+[keepalive 21:26:20] starting director on /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/ (max 8h)
+[keepalive 21:26:20] starting director on /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/ (max 8h)
+[keepalive 21:26:20] starting director on /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train (max 8h)
+[keepalive 21:26:20] starting director on /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train (max 8h)
+[director 21:26:20] calibrating the gates against known human verdicts before trusting them
+[director 21:26:20] calibrating the gates against known human verdicts before trusting them
+[director 21:27:19] WIP reel updated: 9 passing shots → WIP_REEL.mp4
+[director 21:27:19] STOPPING — 9/9 beats have footage and 1 are BLOCKED. This film is NOT complete.
+[director 21:27:19]   blocked: ellie_eye — still never passed the gates after 4 escalating attempts
+[director 21:27:19] decisions needed: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/QUESTIONS.md
+[director 21:27:21] WIP reel updated: 9 passing shots → WIP_REEL.mp4
+[director 21:27:21] needs a human decision:
+[director 21:27:21]   ellie_eye: still never passed the gates after 4 escalating attempts
+[keepalive 21:27:21] film complete — done
+[keepalive 21:27:21] film complete — done
+[director 21:27:36]   CALIBRATION: agrees with 1/3 known human verdicts (33%)
+[director 21:27:36]   GT_pass_s5_door: gate said FAIL, human said PASS — 0 of 3 sampled frames depict the beat. FAIL. The beat specifies a bloodhound with its nose pressed against a narrow gap between planks of a wooden boxcar door, 
+[director 21:27:36]   GT_fail_outro_forest: gate said ERROR, human said FAIL — missing or unreadable build/seg15_L11.mp4
+[director 21:27:36]   WARNING: the gate disagrees with humans too often to be trusted — fix the gate or the beat wording before believing any verdict above
+[director 21:27:37] WIP reel updated: 9 passing shots → WIP_REEL.mp4
+[director 21:27:37] STOPPING — 9/9 beats have footage and 1 are BLOCKED. This film is NOT complete.
+[director 21:27:37]   blocked: ellie_eye — still never passed the gates after 4 escalating attempts
+[director 21:27:37] decisions needed: /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/QUESTIONS.md
+[director 21:27:39] WIP reel updated: 9 passing shots → WIP_REEL.mp4
+[director 21:27:39] needs a human decision:
+[director 21:27:39]   ellie_eye: still never passed the gates after 4 escalating attempts
+[keepalive 21:27:39] film complete — done
+[keepalive 21:27:39] film complete — done

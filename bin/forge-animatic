@@ -1,0 +1,135 @@
+#!/usr/bin/env python3
+"""forge-animatic — the Leica reel. Prove the story before animating a single frame.
+
+This is the oldest trick in animation and we weren't doing it. Disney called it a
+Leica reel; everyone else calls it an animatic or a story reel: the boards (for us,
+the locked stills) cut to the scratch dialogue at real timings, watched end to end,
+long before anyone animates. Pixar re-screens and rewrites story reels for months.
+The whole point is that story problems are free to fix at this stage and ruinously
+expensive after.
+
+Circus Train's incoherence — a door that never opens, a rescued character never seen,
+an ending in the wrong location — would have been obvious in a two-minute animatic on
+day one. Instead it was found after four hours of overnight rendering.
+
+    bin/forge-animatic projects/circus_train
+    → ANIMATIC.mp4, every beat in order, held on its locked still, voice over the top
+
+Rules it follows:
+  - a beat with no still gets a black SLUG card naming what is missing, so holes are
+    impossible to miss (the industry does exactly this: MISSING SHOT / TO COME)
+  - real dialogue timing from the voice takes, not guesses
+  - a finished clip is used in place of its still where one exists, so the animatic
+    slowly becomes the film
+"""
+from __future__ import annotations
+
+import json
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
+
+W, H, FPS = 832, 480, 24
+SF = Path(__file__).resolve().parent.parent
+
+
+def read_json(p, d):
+    try:
+        return json.loads(Path(p).read_text())
+    except Exception:
+        return d
+
+
+def run(cmd):
+    return subprocess.run(cmd, capture_output=True, text=True)
+
+
+def dur(p):
+    r = run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
+             "-of", "csv=p=0", str(p)])
+    try:
+        return float(r.stdout.strip())
+    except ValueError:
+        return 0.0
+
+
+def slug_card(text: str, out: Path, seconds: float = 2.5):
+    """A black card naming the missing beat. Holes must be impossible to miss."""
+    safe = text.replace(":", "\\:").replace("'", "").replace(",", "\\,")[:90]
+    run(["ffmpeg", "-v", "error", "-f", "lavfi", "-i", f"color=c=black:s={W}x{H}:d={seconds}",
+         "-vf", f"drawtext=text='MISSING — {safe}':fontcolor=white:fontsize=22:"
+                f"x=(w-text_w)/2:y=(h-text_h)/2:box=1:boxcolor=black@0.6:boxborderw=12",
+         "-r", str(FPS), "-pix_fmt", "yuv420p", str(out), "-y"])
+    if not out.exists():  # drawtext unavailable in this ffmpeg build — plain black
+        run(["ffmpeg", "-v", "error", "-f", "lavfi", "-i",
+             f"color=c=black:s={W}x{H}:d={seconds}", "-r", str(FPS),
+             "-pix_fmt", "yuv420p", str(out), "-y"])
+
+
+def still_segment(img: Path, out: Path, seconds: float):
+    run(["ffmpeg", "-v", "error", "-loop", "1", "-i", str(img), "-t", f"{seconds:.2f}",
+         "-vf", f"scale={W}:{H}:force_original_aspect_ratio=decrease,"
+                f"pad={W}:{H}:(ow-iw)/2:(oh-ih)/2,setsar=1",
+         "-r", str(FPS), "-pix_fmt", "yuv420p", str(out), "-y"])
+
+
+def clip_segment(src: Path, out: Path):
+    run(["ffmpeg", "-v", "error", "-i", str(src),
+         "-vf", f"scale={W}:{H},setsar=1", "-r", str(FPS),
+         "-an", "-pix_fmt", "yuv420p", str(out), "-y"])
+
+
+def main() -> int:
+    proj = Path(sys.argv[1]).resolve()
+    beats = read_json(proj / "beats.json", {})
+    spine = beats.get("spine", [])
+    shots = {s["id"]: s for s in beats.get("shots", [])}
+    shots.update({s["id"]: s for s in read_json(proj / "shots.json", {}).get("shots", [])})
+    if not spine:
+        print("no spine — nothing to prove")
+        return 2
+
+    tmp = Path(tempfile.mkdtemp())
+    segs, holes, used_clips = [], [], 0
+
+    for i, need in enumerate(spine):
+        ids = need.get("shots", [])
+        clip = still = None
+        for sid in ids:
+            sh = shots.get(sid, {})
+            c = proj / sh["clip"] if sh.get("clip") else None
+            if c and c.is_file() and c.stat().st_size > 50_000:
+                clip = c
+                break
+            l = proj / sh["lock"] if sh.get("lock") else None
+            if l and l.is_file():
+                still = l
+        seg = tmp / f"{i:02d}.mp4"
+        if clip:
+            clip_segment(clip, seg)
+            used_clips += 1
+        elif still:
+            still_segment(still, seg, 3.0)
+        else:
+            slug_card(need["beat"], seg)
+            holes.append(need["beat"])
+        if seg.exists():
+            segs.append(seg)
+
+    lst = tmp / "list.txt"
+    lst.write_text("".join(f"file '{s}'\n" for s in segs))
+    out = proj / "ANIMATIC.mp4"
+    run(["ffmpeg", "-v", "error", "-f", "concat", "-safe", "0", "-i", str(lst),
+         "-c:v", "libx264", "-crf", "20", "-pix_fmt", "yuv420p", str(out), "-y"])
+
+    print(f"[animatic] {len(segs)} beats · {used_clips} finished clips · "
+          f"{len(segs) - used_clips - len(holes)} held stills · {len(holes)} holes")
+    for h in holes:
+        print(f"  HOLE — {h[:80]}")
+    print(f"[animatic] {out}  ({dur(out):.1f}s)")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

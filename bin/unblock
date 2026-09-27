@@ -1,0 +1,16 @@
+#!/bin/bash
+# Unblock shots. No restart needed — forge-director re-reads the block list from
+# disk every cycle (2026-08-02), so an edit here takes effect within one cycle.
+#   bin/unblock <project-dir> <shot-id>...
+PROJ="${1:?usage: unblock <project-dir> <shot-id>...}"; shift
+python3 - "$PROJ" "$@" <<'PY'
+import json, os, sys
+from pathlib import Path
+p = Path(sys.argv[1]) / "director_state.json"
+s = json.loads(p.read_text())
+for sid in sys.argv[2:]:
+    s.get("blocked", {}).pop(sid, None)
+    s.setdefault("attempts", {}).pop(sid, None)
+tmp = p.with_suffix(".json.tmp"); tmp.write_text(json.dumps(s, indent=1)); os.replace(tmp, p)
+print("unblocked:", " ".join(sys.argv[2:]), "| still blocked:", list(s.get("blocked", {})))
+PY

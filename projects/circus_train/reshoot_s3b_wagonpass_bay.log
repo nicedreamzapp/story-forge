@@ -1,0 +1,54 @@
+[10:06:18] judge via in-process VL
+[10:06:18] === s3b_wagonpass — beat: from a low three-quarter front angle: two identical dark bay horses (the same deep mahogan
+[mem] storyforge-still s3b_wagonpass: asking for 41GB — measured, not the 38GB declared
+[10:06:18]   holding 41GB for storyforge-still s3b_wagonpass
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 11595.37it/s]
+[10:07:16]   seed 6101: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The horses are depicted in mid-stride galloping forward, but the beat specifies a low three-qua
+[10:07:20]   prescription: Rotate the entire rig slightly to the right so the wagon’s front wheel is more prominently in the foreground and closer to the camera, and a
+[10:08:18]   seed 6137: beat FAIL (0/3) — 0 of 3 sampled frames depict the beat. FAIL. The horses are depicted in mid-stride with hooves lifted, suggesting galloping, but the beat sp
+[10:08:22]   prescription: Bring the wagon’s front wheel closer to the camera and angle the entire rig more sharply across the frame from upper right to lower left, so
+[10:09:19]   seed 6172: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts two identical dark bay horses in harness, galloping side by side and 
+[10:09:23]   LOCKED stills/LOCKED_s3b_wagonpass.png
+[10:09:24]   released the in-process VL judge before handing the GPU to Wan
+[10:09:24]   released the storyforge-still s3b_wagonpass lease
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[10:09:42]   bounced ComfyUI so Wan loads into a clean process
+[10:09:42]   render backend is back
+[10:09:42]   holding 47GB for storyforge-animate s3b_wagonpass
+[10:09:42]   animate engine: ltx25
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 13111.75it/s]
+[10:11:44]   clip: beat FAIL (2/5)
+[10:11:55]   window probe t=0.4s: FAIL
+[10:12:08]   window probe t=1.21s: FAIL
+[10:12:20]   window probe t=2.02s: PASS
+[10:12:32]   window probe t=2.83s: PASS
+[10:12:44]   window probe t=3.64s: PASS
+[10:12:44]   kept only the stretch that holds the beat: 1.6158333s–4.041667s
+[10:12:44]   released the storyforge-animate s3b_wagonpass lease
+[10:12:45] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[10:12:45] DONE — 1/1 shots produced usable, judged assets
+[10:12:45]   s3b_wagonpass: CLIP_TRIMMED
+[10:13:46] judge via in-process VL
+[10:13:46] === s3b_wagonpass — beat: from a low three-quarter front angle: two identical dark bay horses (the same deep mahogan
+[mem] storyforge-still s3b_wagonpass: asking for 41GB — measured, not the 38GB declared
+[10:13:46]   holding 41GB for storyforge-still s3b_wagonpass
+[10:13:46]   carrying 2 lesson(s) (0 inherited from earlier films) into this shot
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 10625.96it/s]
+[10:14:43]   seed 6101: beat PASS (3/3) — 3 of 3 sampled frames depict the beat. PASS. The image clearly depicts two identical dark bay horses in harness pulling a single open wooden
+[10:14:49]   identity the vs horses_canon.png: MATCH — YES. The horses in the right image match the locked design in coat color, body proportions, head and ear shape, and black lower legs — all consistent 
+[10:14:49]   LOCKED stills/LOCKED_s3b_wagonpass.png
+[10:14:49]   released the in-process VL judge before handing the GPU to Wan
+[10:14:49]   released the storyforge-still s3b_wagonpass lease
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[10:15:08]   bounced ComfyUI so Wan loads into a clean process
+[10:15:08]   render backend is back
+[10:15:08]   holding 47GB for storyforge-animate s3b_wagonpass
+[10:15:08]   animate engine: ltx25
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 14374.99it/s]
+[10:17:14]   clip: beat PASS (5/5)
+[10:17:14]   released the storyforge-animate s3b_wagonpass lease
+[10:17:14] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[10:17:14] DONE — 1/1 shots produced usable, judged assets
+[10:17:14]   s3b_wagonpass: CLIP_KEPT

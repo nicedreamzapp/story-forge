@@ -405,7 +405,20 @@ footer {
       <div id="examples" style="display:flex;flex-direction:column;gap:6px;font-size:12px;">
         <a href="#" data-load="cabin_open.sf">cabin_open.sf</a>
         <a href="#" data-load="test_tiny.sf">test_tiny.sf</a>
+        <a href="#" data-load="multi_voice.sf">multi_voice.sf <span style="color:var(--muted)">· two voices</span></a>
+        <a href="#" data-load="sfx_demo.sf">sfx_demo.sf <span style="color:var(--muted)">· sound fx</span></a>
+        <a href="#" data-load="styled_reel.sf">styled_reel.sf <span style="color:var(--muted)">· style+reel</span></a>
       </div>
+    </div>
+
+    <div class="card" style="margin-top:14px;">
+      <h2>Styles &amp; formats</h2>
+      <div class="hint" style="margin-bottom:6px;">Click to set the look / shape on the <b>film</b> line.</div>
+      <div class="k" style="font-size:11px;text-transform:uppercase;color:var(--muted);margin:6px 0 4px;">Style</div>
+      <div id="pack-styles" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+      <div class="k" style="font-size:11px;text-transform:uppercase;color:var(--muted);margin:10px 0 4px;">Format</div>
+      <div id="pack-formats" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+      <div class="hint" style="margin-top:8px;">Fast mode = use <code>motion ltx</code> per scene (~5× quicker than <code>wan</code>).</div>
     </div>
   </aside>
 
@@ -505,10 +518,10 @@ require(['vs/editor/editor.main'], function () {
       root: [
         [/#.*$/, 'comment'],
         [/"[^"]*"/, 'string'],
-        [/\b(film|scene|still|motion|narrate|voice|music|target|slug|scene_dur|prompt|seed|duration|line|speaker|length|vol|dur)\b/, 'keyword'],
+        [/\b(film|scene|still|motion|narrate|voice|music|sfx|target|slug|scene_dur|style|format|prompt|seed|duration|line|speaker|length|vol|dur|at|lipsync|threshold|ratio|path|image)\b/, 'keyword'],
         [/@\w+/, 'type'],
         [/\$\w+/, 'variable'],
-        [/\b(flux|wan|ltx|piper|ace|m5|mini)\b/, 'type.identifier'],
+        [/\b(flux|wan|ltx|piper|ace|chatterbox|m5|mini)\b/, 'type.identifier'],
         [/\b\d+(\.\d+)?\b/, 'number'],
         [/[:=]/, 'delimiter'],
       ]
@@ -706,6 +719,56 @@ document.querySelectorAll('#examples a[data-load]').forEach(a => {
     }
   });
 });
+
+// ---------- Styles & formats picker -----------
+// Set (or replace) an attr on the film line, e.g. setFilmAttr('style','pixar-3d').
+function setFilmAttr(key, val) {
+  if (!editor) return;
+  const lines = editor.getValue().split('\n');
+  let touched = false;
+  for (let i = 0; i < lines.length; i++) {
+    if (/^\s*film\b/.test(lines[i])) {
+      const re = new RegExp('\\b' + key + '=\\S+');
+      if (re.test(lines[i])) lines[i] = lines[i].replace(re, key + '=' + val);
+      else lines[i] = lines[i].replace(/\s*$/, '') + ' ' + key + '=' + val;
+      touched = true;
+      break;
+    }
+  }
+  if (touched) editor.setValue(lines.join('\n'));
+  else alert('Add a `film "..." slug=...` line first, then pick a ' + key + '.');
+}
+
+function chip(label, title, onClick) {
+  const b = document.createElement('button');
+  b.textContent = label;
+  b.title = title || '';
+  b.style.cssText = 'font-size:11px;padding:3px 9px;border-radius:12px;cursor:pointer;'
+    + 'background:#a855f722;color:#d7c3ff;border:1px solid #a855f744;';
+  b.addEventListener('click', onClick);
+  return b;
+}
+
+async function loadPacks() {
+  try {
+    const r = await fetch('/api/packs');
+    if (!r.ok) return;
+    const data = await r.json();
+    const sEl = $('pack-styles'), fEl = $('pack-formats');
+    if (sEl) {
+      sEl.innerHTML = '';
+      (data.styles || []).forEach(s =>
+        sEl.appendChild(chip(s.name, s.label, () => setFilmAttr('style', s.name))));
+    }
+    if (fEl) {
+      fEl.innerHTML = '';
+      (data.formats || []).forEach(f =>
+        fEl.appendChild(chip(f.name, f.label + ' · ' + f.width + 'x' + f.height,
+          () => setFilmAttr('format', f.name))));
+    }
+  } catch (err) { /* picker is best-effort; ignore */ }
+}
+loadPacks();
 
 // ---------- Render -----------
 let currentJob = null;

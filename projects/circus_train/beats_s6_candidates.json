@@ -1,0 +1,52 @@
+{
+ "shots": [
+  {
+   "id": "heave_41",
+   "image": "stills/s6_rebuild/heave_41.png",
+   "beat": "a big bear drives his shoulder into a stuck boxcar door and strains against it with his entire body weight, feet planted and dug in, real physical effort",
+   "must_not": [
+    "holding or using a stick, tool, rod or any object",
+    "standing upright and relaxed",
+    "smiling casually with no effort",
+    "sawdust or debris spraying out of the wall",
+    "poking, prying or fiddling at the wood"
+   ]
+  },
+  {
+   "id": "heave_88",
+   "image": "stills/s6_rebuild/heave_88.png",
+   "beat": "a big bear drives his shoulder into a stuck boxcar door and strains against it with his entire body weight, feet planted and dug in, real physical effort",
+   "must_not": [
+    "holding or using a stick, tool, rod or any object",
+    "standing upright and relaxed",
+    "smiling casually with no effort",
+    "sawdust or debris spraying out of the wall",
+    "poking, prying or fiddling at the wood"
+   ]
+  },
+  {
+   "id": "heave_156",
+   "image": "stills/s6_rebuild/heave_156.png",
+   "beat": "a big bear drives his shoulder into a stuck boxcar door and strains against it with his entire body weight, feet planted and dug in, real physical effort",
+   "must_not": [
+    "holding or using a stick, tool, rod or any object",
+    "standing upright and relaxed",
+    "smiling casually with no effort",
+    "sawdust or debris spraying out of the wall",
+    "poking, prying or fiddling at the wood"
+   ]
+  },
+  {
+   "id": "heave_233",
+   "image": "stills/s6_rebuild/heave_233.png",
+   "beat": "a big bear drives his shoulder into a stuck boxcar door and strains against it with his entire body weight, feet planted and dug in, real physical effort",
+   "must_not": [
+    "holding or using a stick, tool, rod or any object",
+    "standing upright and relaxed",
+    "smiling casually with no effort",
+    "sawdust or debris spraying out of the wall",
+    "poking, prying or fiddling at the wood"
+   ]
+  }
+ ]
+}

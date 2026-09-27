@@ -1,0 +1,24 @@
+[03:53:27] judge via in-process VL
+[03:53:27] === s6_heave — beat: a big round cartoon bear with a cream belly driving his shoulder against a wooden boxcar d
+[03:53:27]   --stage animate: using the locked still LOCKED_s6.png
+[03:53:27]   LOCKED stills/LOCKED_s6.png
+[mem-gate] restarting ComfyUI to release cached models
+[mem-gate] ComfyUI back up
+[03:53:45]   bounced ComfyUI so Wan loads into a clean process
+[03:53:45]   render backend is back
+[03:53:45]   holding 47GB for storyforge-animate s6_heave
+[03:53:45]   carrying 2 animation correction(s) into the motion prompt
+[03:53:45]   animate engine: ltx25
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files: 100%|██████████| 18/18 [00:00<00:00, 11568.72it/s]
+[03:55:51]   clip: beat FAIL (1/5)
+[03:56:03]   window probe t=0.5s: FAIL
+[03:56:15]   window probe t=1.51s: FAIL
+[03:56:25]   window probe t=2.52s: FAIL
+[03:56:36]   window probe t=3.53s: FAIL
+[03:56:46]   window probe t=4.54s: FAIL
+[03:56:49]   prescription for the next animate: Add visible strain in the bear’s facial expression—tightened eyes, bared teeth, and fur bristling around the neck—and emphasize muscle tensi
+[03:56:49]   s6_heave: animation never holds the beat — clip NOT used; kept at clips/_failed/s6_heave_failed.mp4 so the failure can be diagnosed, still stays locked
+[03:56:49]   released the storyforge-animate s6_heave lease
+[03:56:49] status report written → /Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/STATUS.md
+[03:56:49] DONE — 0/1 shots produced usable, judged assets
+[03:56:49]   s6_heave: CLIP_FAILED

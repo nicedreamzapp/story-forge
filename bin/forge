@@ -1,0 +1,199 @@
+#!/usr/bin/env python3
+"""forge — one command for every film. Say what you want; it knows the rest.
+
+    forge "hank and doug"                      # resume that film exactly where it stopped
+    forge new "a documentary about the harbour" --kind doc
+    forge status                               # what's built, what's blocked, what's next
+    forge stop                                 # stand the director down
+    forge list                                 # every film and how far along it is
+
+The point (Matt, 2026-07-26): "if I said hey, we're working on the Hank and Doug
+project, it should know and take off exactly where we left off. But if I wanted to
+start another video on a totally different subject — not even animated — it still
+uses the rules and all the tricks it gained from Hank and Doug, so the machine gets
+smarter and makes any type of video anytime."
+
+So: every film lives in projects/<name>/ with its own spine, shots and lessons, and
+EVERY film inherits the same two shared brains at the repo root —
+
+    RULES.md      the 20 rules the code enforces, whatever the subject
+    LESSONS.json  house rules earned on earlier films, keyword-matched to new shots
+
+Nothing about those is animation-specific. A live-action documentary shot still has
+to depict its beat, still gets voted on across frames, still fails on text in frame,
+still escalates instead of repeating, and still contributes what it learns back.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+SF = Path(__file__).resolve().parent.parent
+PROJECTS = SF / "projects"
+KEEPALIVE = SF / "bin" / "forge-keepalive"
+REVIEW = SF / "bin" / "forge-review"
+
+
+def log(m):
+    print(m, flush=True)
+
+
+def slug(text: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", text.lower()).strip("_")[:40] or "untitled"
+
+
+def all_projects() -> list:
+    return sorted([p for p in PROJECTS.glob("*/") if (p / "beats.json").is_file()
+                   or (p / "shots.json").is_file()])
+
+
+def find_project(query: str):
+    """'hank and doug' → projects/circus_train. Matches folder name, title, characters."""
+    q = [w for w in re.findall(r"[a-z0-9]+", query.lower()) if len(w) > 2]
+    best, best_score = None, 0
+    for p in all_projects():
+        hay = p.name.lower()
+        for extra in ("SHOOTING_SCRIPT.md", "beats.json", "STATUS.md"):
+            f = p / extra
+            if f.is_file():
+                hay += " " + f.read_text(errors="ignore")[:4000].lower()
+        score = sum(1 for w in q if w in hay)
+        if score > best_score:
+            best, best_score = p, score
+    return best if best_score else None
+
+
+def arm(proj: Path) -> None:
+    (proj / "ACTIVE_FILM").touch()
+    (proj / "STOP_DIRECTOR").unlink(missing_ok=True)
+    for other in all_projects():
+        if other != proj:
+            (other / "ACTIVE_FILM").unlink(missing_ok=True)
+
+
+def start_director(proj: Path, hours: float = 8) -> None:
+    if subprocess.run(["pgrep", "-f", "forge-director"], capture_output=True).returncode == 0:
+        log("director already running")
+        return
+    subprocess.Popen(["bash", str(KEEPALIVE), str(proj), str(hours)],
+                     stdout=open(proj / "director.log", "a"), stderr=subprocess.STDOUT,
+                     start_new_session=True)
+    log(f"director started on {proj.name} — it will not stop until the film is done")
+
+
+def cmd_resume(query: str, hours: float) -> int:
+    proj = find_project(query)
+    if not proj:
+        log(f"no film matches '{query}'. Films I have:")
+        for p in all_projects():
+            log(f"  {p.name}")
+        log(f"\nStart a new one:  forge new \"{query}\"")
+        return 1
+    log(f"resuming {proj.name}")
+    state = json.loads((proj / "director_state.json").read_text()) if (proj / "director_state.json").is_file() else {}
+    if state.get("history"):
+        last = state["history"][-1]
+        log(f"  last action: {last.get('shot')} → {last.get('state')} at {last.get('at')}")
+    if state.get("blocked"):
+        log(f"  {len(state['blocked'])} shot(s) need a decision — see {proj/'QUESTIONS.md'}")
+    arm(proj)
+    start_director(proj, hours)
+    subprocess.run([sys.executable, str(REVIEW), str(proj)], capture_output=True)
+    log(f"  status: {proj/'STATUS.md'}   reel: {proj/'WIP_REEL.mp4'}")
+    return 0
+
+
+TEMPLATE_SPINE = [
+    "the ordinary world is established, so what follows costs something",
+    "something changes and the subject is pulled in",
+    "the first real obstacle is seen",
+    "the attempt — visible effort against the obstacle",
+    "the turn — the thing the piece promised actually happens on screen",
+    "the aftermath, and we leave",
+]
+
+
+def cmd_new(desc: str, kind: str) -> int:
+    name = slug(desc)
+    proj = PROJECTS / name
+    if proj.exists():
+        log(f"{name} already exists — resuming instead")
+        return cmd_resume(name, 8)
+    (proj / "clips").mkdir(parents=True)
+    (proj / "stills" / "wip").mkdir(parents=True)
+    (proj / "canon").mkdir(exist_ok=True)
+
+    beats = {"_note": f"{desc} ({kind}). Beats must be VISIBLE STATES — see RULES.md rule 2.",
+             "shots": [],
+             "spine": [{"beat": b, "shots": []} for b in TEMPLATE_SPINE]}
+    (proj / "beats.json").write_text(json.dumps(beats, indent=1) + "\n")
+    (proj / "shots.json").write_text(json.dumps(
+        {"_note": "One entry per shot. forge-shot proves each one before it is kept.",
+         "defaults": {"res": "832x480", "duration": 5, "seeds": [11, 47, 82, 119], "votes": 3},
+         "shots": []}, indent=1) + "\n")
+    (proj / "BRIEF.md").write_text(
+        f"# {desc}\n\n- kind: {kind}\n- created: {time.strftime('%Y-%m-%d')}\n\n"
+        "## What this piece is\n\n_one paragraph, plain language_\n\n"
+        "## Inherited automatically\n"
+        "- `../../RULES.md` — the 20 rules the code enforces, whatever the subject\n"
+        "- `../../LESSONS.json` — every lesson earned on earlier films, matched by keyword\n"
+        "- `../../METRICS.jsonl` — measured timings, so estimates start honest\n\n"
+        "## Next\n"
+        "1. write the spine in `beats.json` as VISIBLE STATES\n"
+        "2. write one shot per beat in `shots.json`\n"
+        "3. `forge \"" + name + "\"` and the director takes it from there\n")
+    house = json.loads((SF / "LESSONS.json").read_text()).get("lessons", [])
+    log(f"created projects/{name}")
+    log(f"  inherits {len(house)} house rules and the 20 enforced rules — nothing is animation-specific")
+    log(f"  fill in {proj/'BRIEF.md'} and beats.json, then: forge \"{name}\"")
+    arm(proj)
+    return 0
+
+
+def cmd_status() -> int:
+    for p in all_projects():
+        st = p / "STATUS.md"
+        active = "ACTIVE" if (p / "ACTIVE_FILM").is_file() else "      "
+        line = ""
+        if st.is_file():
+            for l in st.read_text().splitlines():
+                if l.startswith("**") and "beats" in l:
+                    line = l.strip("*")
+                    break
+        log(f"[{active}] {p.name:<24} {line}")
+    return 0
+
+
+def cmd_stop() -> int:
+    for p in all_projects():
+        if (p / "ACTIVE_FILM").is_file():
+            (p / "STOP_DIRECTOR").touch()
+            log(f"asked the director to stand down after the current shot: {p.name}")
+    subprocess.run(["pkill", "-f", "forge-director"], capture_output=True)
+    return 0
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(add_help=True)
+    ap.add_argument("what", nargs="*", help='film name, or: new "description" | status | stop | list')
+    ap.add_argument("--kind", default="animated", help="animated, live action, documentary, promo…")
+    ap.add_argument("--hours", type=float, default=8)
+    args = ap.parse_args()
+    words = args.what or ["status"]
+
+    if words[0] == "new":
+        return cmd_new(" ".join(words[1:]) or "untitled film", args.kind)
+    if words[0] in ("status", "list"):
+        return cmd_status()
+    if words[0] == "stop":
+        return cmd_stop()
+    return cmd_resume(" ".join(words), args.hours)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

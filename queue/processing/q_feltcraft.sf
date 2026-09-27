@@ -1,0 +1,33 @@
+# q_feltcraft.sf — STYLE C: handmade felt stop-motion diorama (distinctive, NOT generic 3D)
+$style = "handmade felt stop-motion diorama, miniature crafted set, tilt-shift macro, soft practical lantern light, cozy tactile wool and felt textures, Laika-style, shallow depth of field"
+$kid   = "a tiny felt-craft child figure holding a glowing paper lantern"
+
+film "Last Light - Feltcraft" slug=q_feltcraft target=m5
+
+voice warm: piper/en_US-libritts_r-medium speaker=0 length=1.16
+music score: ace/warm-cinematic-underscore vol=0.30
+
+@transition xfade dur=0.5
+@mix duck voice -> music threshold=-22 ratio=4
+
+scene dusk_path:
+    still flux:
+        prompt: "{$style}, wide shot, {$kid} on a mossy miniature forest path at dusk, felt pine trees, tiny glowing firefly lights, handcrafted detail"
+        seed: auto
+    motion ltx:
+        prompt: "slow gentle push-in, tiny lights drift, lantern glow flickers, subtle handmade motion"
+        duration: 5.0
+    narrate warm:
+        line: "When the last light left the trees, she lit the little lantern and started home."
+    music score vol=0.30
+
+scene the_door:
+    still flux:
+        prompt: "{$style}, a miniature felt cabin doorway spilling warm light into blue dusk, a small felt fox waiting on the step, the felt child approaching with her lantern"
+        seed: auto
+    motion ltx:
+        prompt: "warm light glows from the doorway, the felt fox's ears twitch, soft drift"
+        duration: 5.0
+    narrate warm:
+        line: "Someone had left the door open, and the warmth spilling out already knew her name."
+    music score vol=0.30

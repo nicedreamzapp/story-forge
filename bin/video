@@ -1,0 +1,105 @@
+#!/usr/bin/env python3
+"""
+video — the one command you need.
+
+Just describe what you want. No flags, no options, no thinking required.
+
+    video cats riding skateboards at sunset
+    video a lion walking through neon tokyo, cinematic
+    video ~/photo.jpg make her slowly turn and smile     # auto-detects image = I2V
+
+When it's done, the MP4 opens automatically.
+"""
+import os
+import sys
+import subprocess
+import time
+from pathlib import Path
+
+# Wait for ComfyUI, auto-start if needed
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+
+def ensure_comfyui():
+    import urllib.request, urllib.error
+    try:
+        urllib.request.urlopen("http://127.0.0.1:8188/system_stats", timeout=3)
+        return
+    except (urllib.error.URLError, TimeoutError):
+        print("→ starting ComfyUI…")
+        start = Path.home() / "AI/ComfyUI/start.sh"
+        subprocess.Popen(
+            ["bash", str(start)],
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+            start_new_session=True,
+        )
+        # wait up to 60s
+        for _ in range(60):
+            try:
+                urllib.request.urlopen("http://127.0.0.1:8188/system_stats", timeout=2)
+                print("✓ ComfyUI ready")
+                return
+            except (urllib.error.URLError, TimeoutError):
+                time.sleep(1)
+        sys.exit("ComfyUI didn't come up. Run: bash ~/AI/ComfyUI/start.sh")
+
+
+def parse_input(args: list[str]):
+    """Detect if first arg is an image path → I2V; else T2V."""
+    if not args:
+        sys.exit("Usage: video <describe what you want>\n"
+                 "  video cats riding skateboards at sunset\n"
+                 "  video ~/photo.jpg make her turn and smile")
+    first = Path(args[0]).expanduser()
+    if first.is_file() and first.suffix.lower() in {".jpg", ".jpeg", ".png", ".webp"}:
+        return {"mode": "i2v", "image": first, "prompt": " ".join(args[1:]) or "cinematic motion, natural movement"}
+    return {"mode": "t2v", "image": None, "prompt": " ".join(args)}
+
+
+def main():
+    ensure_comfyui()
+    inp = parse_input(sys.argv[1:])
+
+    from core import (
+        build_wan22_t2v, build_wan22_i2v, build_hunyuan_t2v,
+        run_workflow, upload_image, pick_best_t2v, pick_best_i2v,
+    )
+
+    t0 = time.time()
+
+    if inp["mode"] == "i2v":
+        try:
+            model = pick_best_i2v()
+        except RuntimeError as e:
+            sys.exit(f"⏳ {e}\n  Check download progress: ~/AI/ComfyUI/download_wan22.log")
+        print(f"→ animating {inp['image'].name} via {model}: \"{inp['prompt']}\"")
+        uploaded = upload_image(inp["image"])
+        wf = build_wan22_i2v(prompt=inp["prompt"], image_filename=uploaded, fast=True)
+    else:
+        try:
+            model = pick_best_t2v()
+        except RuntimeError as e:
+            sys.exit(f"⏳ {e}\n  Check download progress: ~/AI/ComfyUI/download.log")
+        print(f"→ rendering via {model}: \"{inp['prompt']}\"")
+        if model == "wan22":
+            wf = build_wan22_t2v(prompt=inp["prompt"], fast=True)
+        else:  # hunyuan
+            wf = build_hunyuan_t2v(prompt=inp["prompt"])
+
+    try:
+        files = run_workflow(wf, label="video")
+    except Exception as e:
+        sys.exit(f"✗ render failed: {e}")
+
+    if not files:
+        sys.exit("✗ no output produced")
+    mp4 = files[0]
+    dt = time.time() - t0
+    size_mb = mp4.stat().st_size / 1024 / 1024
+    print(f"✓ done in {dt:.0f}s → {mp4} ({size_mb:.1f}MB)")
+    # Open in QuickLook for instant preview
+    subprocess.Popen(["qlmanage", "-p", str(mp4)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+
+if __name__ == "__main__":
+    main()

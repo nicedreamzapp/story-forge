@@ -1,0 +1,143 @@
+{
+  "schema_version": "0.1",
+  "film_meta": {
+    "title": "Last Light",
+    "slug": "q_storybook",
+    "target": "m5",
+    "scene_duration": 8.5,
+    "extras": {}
+  },
+  "voice_presets": {
+    "warm": {
+      "value": "piper/en_US-libritts_r-medium",
+      "attrs": {
+        "speaker": 0,
+        "length": 1.16
+      }
+    }
+  },
+  "music_presets": {
+    "score": {
+      "value": "ace/warm-cinematic-underscore",
+      "attrs": {
+        "vol": 0.3
+      }
+    }
+  },
+  "sfx_presets": {},
+  "transitions": [
+    {
+      "name": "xfade",
+      "args": [],
+      "attrs": {
+        "dur": 0.5
+      }
+    }
+  ],
+  "mixes": [
+    {
+      "args": [
+        "duck",
+        "voice",
+        "->",
+        "music"
+      ],
+      "attrs": {
+        "threshold": -22,
+        "ratio": 4
+      }
+    }
+  ],
+  "vars": {
+    "style": "hand-painted children's book illustration, soft gouache and watercolor, Studio Ghibli warmth, golden-hour light, painterly soft edges, gentle and cozy, 4k",
+    "hero": "a small human child age 5, round face, short brown hair under a rust-orange knitted bobble hat, cream knitted sweater, forest-green pants, brown boots, holding a glowing paper lantern"
+  },
+  "scenes": {
+    "dusk_path": {
+      "still_spec": {
+        "engine": "flux",
+        "attrs": {},
+        "prompt": "hand-painted children's book illustration, soft gouache and watercolor, Studio Ghibli warmth, golden-hour light, painterly soft edges, gentle and cozy, 4k, wide shot, a small human child age 5, round face, short brown hair under a rust-orange knitted bobble hat, cream knitted sweater, forest-green pants, brown boots, holding a glowing paper lantern, walking a mossy forest path at dusk, tall pines, drifting fireflies, warm lantern glow, deep painterly shadows",
+        "seed": 778899
+      },
+      "motion_spec": {
+        "engine": "ltx",
+        "attrs": {},
+        "prompt": "slow gentle push-in, fireflies drift, lantern light flickers softly, leaves stir",
+        "duration": 5.0,
+        "seed": 1031279772
+      },
+      "narration_spec": {
+        "engine": "warm",
+        "attrs": {},
+        "line": "When the last light left the trees, she lit the little lantern and started home.",
+        "lipsync": false,
+        "voice": "warm",
+        "seed": 1944003080
+      },
+      "narration_specs": [
+        {
+          "engine": "warm",
+          "attrs": {},
+          "line": "When the last light left the trees, she lit the little lantern and started home.",
+          "lipsync": false,
+          "voice": "warm",
+          "seed": 1944003080
+        }
+      ],
+      "music_spec": {
+        "preset": "score",
+        "value": "ace/warm-cinematic-underscore",
+        "attrs": {
+          "vol": 0.3
+        }
+      },
+      "sfx_specs": [],
+      "attrs": {},
+      "extras": {}
+    },
+    "the_door": {
+      "still_spec": {
+        "engine": "flux",
+        "attrs": {},
+        "prompt": "hand-painted children's book illustration, soft gouache and watercolor, Studio Ghibli warmth, golden-hour light, painterly soft edges, gentle and cozy, 4k, a small human child age 5, round face, short brown hair under a rust-orange knitted bobble hat, cream knitted sweater, forest-green pants, brown boots, holding a glowing paper lantern, standing at a warm wooden cabin doorway in the snow at night, a small red fox sitting on the doorstep beside her, warm golden light spilling from the open door",
+        "seed": 778899
+      },
+      "motion_spec": {
+        "engine": "ltx",
+        "attrs": {},
+        "prompt": "warm light glows from the doorway, the fox's ears twitch, soft snow drifts down",
+        "duration": 5.0,
+        "seed": 3585573105
+      },
+      "narration_spec": {
+        "engine": "warm",
+        "attrs": {},
+        "line": "Someone had left the door open, and the warmth spilling out already knew her name.",
+        "lipsync": false,
+        "voice": "warm",
+        "seed": 2653822722
+      },
+      "narration_specs": [
+        {
+          "engine": "warm",
+          "attrs": {},
+          "line": "Someone had left the door open, and the warmth spilling out already knew her name.",
+          "lipsync": false,
+          "voice": "warm",
+          "seed": 2653822722
+        }
+      ],
+      "music_spec": {
+        "preset": "score",
+        "value": "ace/warm-cinematic-underscore",
+        "attrs": {
+          "vol": 0.3
+        }
+      },
+      "sfx_specs": [],
+      "attrs": {},
+      "extras": {}
+    }
+  }
+}

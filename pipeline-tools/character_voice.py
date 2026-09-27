@@ -11,13 +11,17 @@ Casting (locked 2026-05-25):
 Add a character: drop a clean 3-10s reference wav and add an entry below.
 """
 import argparse
+import os
 from pathlib import Path
 
 import torch
 import torchaudio
 from chatterbox.tts import ChatterboxTTS
 
-VOICES_DIR = Path.home() / "Desktop" / "StoryForge-voices"
+# Reference clips live in <repo>/voices by default; SF_VOICES_DIR overrides
+# (same convention as story_forge/config.py, so a fresh clone can run).
+VOICES_DIR = Path(os.environ.get("SF_VOICES_DIR")
+                  or Path(__file__).resolve().parent.parent / "voices")
 
 VOICES = {
     # bear: Tone 4 = the BUILT-IN voice with NO clone + seed 44 (Matt's pick).
@@ -35,6 +39,15 @@ VOICES = {
                "exaggeration": 0.7, "cfg": 0.4, "seed": 0},
     "voiceC": {"ref": str(VOICES_DIR / "spare_voiceC.wav"),
                "exaggeration": 0.7, "cfg": 0.4, "seed": 0},
+    # African American female voices — Matt's picks from the 2026-08-07 EARS
+    # audition (EARS speakers p098/p080, CC-NC license: fine for personal work,
+    # swap refs before monetized use). Fuller source audio: *_source_full.wav.
+    # ruby: mature (46-55), assertive
+    "ruby": {"ref": str(VOICES_DIR / "ruby.wav"),
+             "exaggeration": 0.5, "cfg": 0.4, "seed": 0},
+    # nia: younger (26-35), same register as ruby but lighter
+    "nia": {"ref": str(VOICES_DIR / "nia.wav"),
+            "exaggeration": 0.5, "cfg": 0.4, "seed": 0},
 }
 
 

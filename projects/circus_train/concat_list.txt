@@ -1,0 +1,5 @@
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/clips/s1_final.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/clips/s2_final.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/clips/s3_final.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/clips/s5_final.mp4'
+file '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/circus_train/clips/s6_final.mp4'

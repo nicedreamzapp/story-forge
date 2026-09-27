@@ -1,0 +1,16 @@
+{
+ "shots": [
+  {
+   "id": "s6_interior_overlay",
+   "clip": "clips/s6_interior_overlay.mp4",
+   "beat": "the dark interior of a boxcar with a thin blade of daylight at the door seam and dust hanging in the light",
+   "must_not": [
+    "any animal or character visible",
+    "a bright or evenly lit interior",
+    "daylight filling the room",
+    "a wide open door",
+    "sparks, embers or fire"
+   ]
+  }
+ ]
+}

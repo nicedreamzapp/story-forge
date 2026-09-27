@@ -1,0 +1,535 @@
+{
+ "blocks": {
+  "STYLE": "Pixar-style 3D animated film still, cinematic volumetric lighting, shallow depth of field, rich warm color grading, highly detailed, soft subsurface scattering, 35mm film look",
+  "SPROCKET_V1": "a small endearing vintage robot assembled from mismatched clip-together parts: rounded cream-white tin chest with copper clip-latches, slender silver right arm, chunky orange toy-excavator left arm, a brass spoked wagon wheel for a left leg, a blue spring piston for a right leg, oversized round head with two circular glass eyes, the LEFT eye glowing warm blue and the right eye dim grey, a small bent antenna on top",
+  "SPROCKET_V2": "a small endearing vintage robot rebuilt from bicycle parts: rounded cream-white tin chest with a silver bicycle bell clipped to its center, slender silver right arm, chunky orange toy-excavator left arm, a small spoked bicycle training wheel for a left leg, a rusty bicycle seat-spring for a right leg, oversized round head with a warm blue glowing left eye and a round red bicycle reflector for a right eye, a small bent antenna with a tiny orange flag",
+  "JUNE": "a 9-year-old girl with curly dark brown hair, light brown skin, freckles, denim overalls over a yellow t-shirt, a red bandana tied around her neck",
+  "SHOP": "inside a cluttered small-town maker's workshop, pegboard walls of hand tools, mason jars full of screws, warm tungsten work lamps"
+ },
+ "stills": {
+  "st_ext_night": {
+   "scene": 1,
+   "p": "wide exterior of a small wooden backyard workshop at night, one warm glowing window, a dented metal bin beside the back wall, cool blue moonlight, fireflies, tall grass. {STYLE}"
+  },
+  "st_bin": {
+   "scene": 1,
+   "p": "a dented metal recall bin stenciled FAILED INSPECTION in worn white paint, filled with jumbled dark robot parts, cool moonlight, night. {STYLE}"
+  },
+  "st_eye_flicker": {
+   "scene": 1,
+   "p": "close-up inside a dark metal bin: an oversized round robot head lying among jumbled parts, its LEFT circular glass eye glowing warm blue while the right eye stays dim grey, soft blue rim light, night. {STYLE}"
+  },
+  "st_parts": {
+   "scene": 1,
+   "p": "robot parts scattered in cool moonlight inside a metal bin: a brass spoked wagon wheel, a blue spring piston, a slender silver arm, a chunky orange toy-excavator arm, a cream-white tin chest plate with copper clips. {STYLE}"
+  },
+  "st_reach": {
+   "scene": 1,
+   "p": "close-up of a slender silver robot hand reaching slowly toward a brass spoked wagon wheel, cool moonlight, shallow focus, night, hopeful mood. {STYLE}"
+  },
+  "st_title": {
+   "scene": 1,
+   "p": "a warm glowing workshop window seen from outside at night, gentle bokeh fireflies, deep blue sky, quiet and inviting. {STYLE}"
+  },
+  "st_wrong1": {
+   "scene": 2,
+   "p": "{SPROCKET_V1} but comically mis-assembled with the brass wheel attached where his right arm should be, sitting on a workshop floor in a warm pool of lamp light at night, head tilted, blue eye bright and curious, {SHOP}. {STYLE}"
+  },
+  "st_fall": {
+   "scene": 2,
+   "p": "{SPROCKET_V1} sitting on the workshop floor at night surrounded by his own scattered springs and wheels, holding his detached chunky orange arm in his silver hand, head tilted, blue eye wide and undaunted, comic and endearing, warm lamp light pool, {SHOP}. {STYLE}"
+  },
+  "st_backhead": {
+   "scene": 2,
+   "p": "seen from behind: a small cream-white tin robot body facing away from the camera, but his oversized round head is clipped on backwards so both glowing eyes and his bent antenna face the camera, warm lamp light, gentle visual comedy, {SHOP}. {STYLE}"
+  },
+  "st_clip": {
+   "scene": 2,
+   "p": "macro close-up of a copper clip-latch snapping a chunky orange toy-excavator arm onto a cream-white tin robot chest, warm lamp light, crisp mechanical detail. {STYLE}"
+  },
+  "st_stand": {
+   "scene": 2,
+   "p": "{SPROCKET_V1} standing upright for the very first time, wobbling, both arms out for balance, blue left eye shining proud, antenna perked straight up, warm lamp light pool on workshop floor at night, {SHOP}. {STYLE}"
+  },
+  "st_roll": {
+   "scene": 2,
+   "p": "{SPROCKET_V1} rolling forward on his brass wheel leg across the workshop floorboards, body leaning eagerly into the motion, morning sunlight streaming through a window, {SHOP}. {STYLE}"
+  },
+  "st_spin": {
+   "scene": 2,
+   "p": "{SPROCKET_V1} mid joyful spin with both arms spread wide in a golden morning sunbeam, sawdust sparkling in the air around him, {SHOP}. {STYLE}"
+  },
+  "st_somebody": {
+   "scene": 2,
+   "p": "{SPROCKET_V1} standing tall and complete in a dawn sunbeam on the workshop floor, head held high, antenna perked, blue left eye bright and eager, heroic low camera angle, {SHOP}. {STYLE}"
+  },
+  "st_june_struggle": {
+   "scene": 3,
+   "p": "{JUNE} crouched beside a rusty red vintage step-through bicycle with a wicker basket, propped on a workbench, gripping a wrench with both hands, shoulders slumped in frustration, golden hour light through the window, {SHOP}. {STYLE}"
+  },
+  "st_window_watch": {
+   "scene": 3,
+   "p": "{SPROCKET_V1} peeking out from behind mason jars on a workshop shelf at screen left, leaning eagerly toward screen right, blue eye glowing, watching from the shadows, golden hour light, {SHOP}. {STYLE}"
+  },
+  "st_bike_wide": {
+   "scene": 3,
+   "p": "a rusty red vintage step-through bicycle with a wicker basket propped beside a cluttered workbench, tools scattered, broken chain hanging loose, golden hour light, {SHOP}. {STYLE}"
+  },
+  "st_fix_chain": {
+   "scene": 3,
+   "p": "close-up of a slender silver robot hand carefully mending a bicycle chain link on a workbench in a warm pool of lamp light at night, precise and gentle. {STYLE}"
+  },
+  "st_fix_oil": {
+   "scene": 3,
+   "p": "close-up of a slender silver robot hand tilting a tiny oil can over a bicycle wheel bearing, one golden drop of oil catching the lamp light, night. {STYLE}"
+  },
+  "st_notes": {
+   "scene": 3,
+   "p": "a mended bicycle chain neatly coiled beside polished bearings on a workbench in a clean morning sunbeam, arranged carefully like a gift, {SHOP}. {STYLE}"
+  },
+  "st_june_smile": {
+   "scene": 3,
+   "p": "{JUNE} holding up a freshly mended bicycle chain, looking at it with a puzzled, growing smile, morning light through the workshop window, {SHOP}. {STYLE}"
+  },
+  "st_calendar": {
+   "scene": 3,
+   "p": "a paper wall calendar pinned to a pegboard with COUNTY RACE circled in red marker, golden hour light raking across it. {STYLE}"
+  },
+  "st_progress": {
+   "scene": 3,
+   "p": "{JUNE} energetically pumping the front tire of the red bicycle, determined grin, the bike visibly cleaner now, golden hour light, {SHOP}. {STYLE}"
+  },
+  "st_storm_ext": {
+   "scene": 4,
+   "p": "wide exterior of the small wooden backyard workshop under churning dark storm clouds at night, heavy rain streaks, the window a dim warm smudge, wind-bent grass. {STYLE}"
+  },
+  "st_rain_window": {
+   "scene": 4,
+   "p": "rain streaming down a dark workshop windowpane seen from inside, blue storm light, blurry storm clouds beyond, moody. {STYLE}"
+  },
+  "st_flood": {
+   "scene": 4,
+   "p": "dark rainwater creeping under a wooden workshop door and spreading across the floorboards, blue gloom, reflections of a work lamp shimmering in the water. {STYLE}"
+  },
+  "st_ruined": {
+   "scene": 4,
+   "p": "the red bicycle's drivetrain soaked and ruined, snapped chain hanging into dark floodwater, gears half submerged, cold blue storm gloom, {SHOP}. {STYLE}"
+  },
+  "st_arm_look": {
+   "scene": 4,
+   "p": "profile close-up of {SPROCKET_V1} holding his own slender silver arm up in front of his face, gazing at it quietly, blue eye glowing steady and calm, dark stormy workshop, single lamp light from above, rain shadows streaking the wall. {STYLE}"
+  },
+  "st_unclip": {
+   "scene": 4,
+   "p": "{SPROCKET_V1} kneeling beside a red vintage bicycle in a dark flooded workshop at night, detaching the brass spoked wheel from his own leg with both hands, copper clips open, pool of warm work-lamp light, rain shadows on the wall, tender and deliberate, {SHOP}. {STYLE}"
+  },
+  "st_give_wheel": {
+   "scene": 4,
+   "p": "close-up of a brass spoked wagon wheel being fitted onto the red bicycle's crank as a gleaming brass chainring, small robot hands pressing it into place, lamp light, night. {STYLE}"
+  },
+  "st_give_spring": {
+   "scene": 4,
+   "p": "close-up of a blue spring piston being clipped under the red bicycle's saddle as a seat spring, small robot hands at work, lamp light, night. {STYLE}"
+  },
+  "st_eye_lamp": {
+   "scene": 4,
+   "p": "a work lamp over the workbench glowing soft BLUE because a circular glass robot eye lens is clipped inside it, blue light pooling over bicycle parts, rain shadows running down the wall. {STYLE}"
+  },
+  "st_bike_done": {
+   "scene": 4,
+   "p": "the red vintage bicycle standing gleaming and fully restored beside the workbench in cold pink dawn light, brass spoked chainring shining, blue spring under the saddle, wicker basket, floodwater gone to puddles, {SHOP}. {STYLE}"
+  },
+  "st_pile": {
+   "scene": 4,
+   "p": "a small neat pile of robot parts beside the workbench leg in cold pink dawn light: a cream tin chest, an orange toy-excavator arm, a silver arm, an oversized round head with BOTH eyes dark, a bent antenna laid on top, quiet and still, {SHOP}. {STYLE}"
+  },
+  "st_june_door": {
+   "scene": 5,
+   "p": "{JUNE} standing frozen in the workshop doorway in morning light wearing a paper race number 7 pinned to her overalls, eyes wide and mouth open in wonder, staring toward the gleaming restored bicycle, {SHOP}. {STYLE}"
+  },
+  "st_trail": {
+   "scene": 5,
+   "p": "a trail of tiny oil drips and thin wheel marks across workshop floorboards in morning light, leading from the workbench toward a small pile of robot parts blurred in the background. {STYLE}"
+  },
+  "st_june_kneel": {
+   "scene": 5,
+   "p": "{JUNE} kneeling beside the small pile of robot parts, gently lifting the oversized round robot head with both hands, both its eyes dark, soft morning light, tender expression of dawning understanding, {SHOP}. {STYLE}"
+  },
+  "st_reclaim_eye": {
+   "scene": 5,
+   "p": "close-up of {JUNE} carefully unclipping a glowing blue glass lens from inside a metal work lamp, her face lit soft blue with concentration, morning light in the workshop behind her. {STYLE}"
+  },
+  "st_rebuild_eye": {
+   "scene": 5,
+   "p": "close-up of {JUNE} gently pressing a small round red bicycle reflector into the right eye socket of a toy-sized cream-white round robot head sitting on the workbench, morning sunbeam, bicycle parts scattered around, careful and loving. {STYLE}"
+  },
+  "st_rebuild_bell": {
+   "scene": 5,
+   "p": "close-up of a girl's small hands clipping a silver bicycle bell onto the center of a cream-white tin robot chest, morning sunbeam, joyful craft energy. {STYLE}"
+  },
+  "st_rebuild_wide": {
+   "scene": 5,
+   "p": "{JUNE} at the workbench carefully rebuilding a small robot laid out in orderly pieces, morning sun flooding the workshop, her tongue poking out in concentration, {SHOP}. {STYLE}"
+  },
+  "st_eye_on": {
+   "scene": 5,
+   "p": "extreme close-up of a small cream-white round robot face on a workbench: his left eye is a circular glowing warm blue glass lens, and where his right eye should be there is a round glowing RED bicycle reflector disc set into the eye socket, bent antenna, behind him the blurred smiling face of {JUNE}, golden morning light, soft bokeh. {STYLE}"
+  },
+  "st_race": {
+   "scene": 5,
+   "p": "{JUNE} riding the gleaming red bicycle with brass chainring left to right past cheering spectators and colorful banners, {SPROCKET_V2} riding in the wicker handlebar basket waving his orange arm, both joyful, bright morning, county fair. {STYLE}"
+  },
+  "st_finish": {
+   "scene": 5,
+   "p": "{JUNE} and {SPROCKET_V2} in the wicker basket crossing a FINISH banner line dead last while a small crowd cheers and confetti drifts down, warm afternoon light, pure joy. {STYLE}"
+  },
+  "st_sunrise": {
+   "scene": 5,
+   "p": "wide shot of an empty country dirt road at golden sunrise, seen from behind: {JUNE} pedaling a red bicycle away from the camera down the road, and beside her a tiny robot with a round head and a small orange flag antenna riding along on little bicycle wheels, long warm shadows, tall glowing grass. {STYLE}"
+  },
+  "st_credits": {
+   "scene": 5,
+   "p": "the dented metal FAILED INSPECTION bin behind the workshop at night, now EMPTY with its lid propped open, warm light from the workshop window falling across it, fireflies, peaceful. {STYLE}"
+  }
+ },
+ "shots": [
+  {
+   "id": "s01",
+   "still": "st_ext_night",
+   "m": "ltx",
+   "mp": "fireflies drift slowly, the warm window light flickers gently, grass sways, camera pushes in very slowly",
+   "d": 6
+  },
+  {
+   "id": "s02",
+   "still": "st_bin",
+   "m": "kb",
+   "kb": "in",
+   "d": 5
+  },
+  {
+   "id": "s03",
+   "still": "st_eye_flicker",
+   "m": "ltx",
+   "mp": "the blue eye flickers and steadies into a warm glow, dust motes drift in the rim light, everything else stays still",
+   "d": 5
+  },
+  {
+   "id": "s04",
+   "still": "st_parts",
+   "m": "kb",
+   "kb": "right",
+   "d": 5
+  },
+  {
+   "id": "s05",
+   "still": "st_reach",
+   "m": "ltx",
+   "mp": "the silver hand reaches slowly forward and gently closes around the brass wheel",
+   "d": 5
+  },
+  {
+   "id": "s06",
+   "still": "st_title",
+   "m": "ltx",
+   "mp": "fireflies drift as gentle bokeh, the window light breathes softly, very subtle slow push in",
+   "d": 7,
+   "title": "The Little Robot\nWho Built Himself"
+  },
+  {
+   "id": "s07",
+   "still": "st_wrong1",
+   "m": "ltx",
+   "mp": "he tilts his head curiously, the wheel mounted as an arm spins slowly and uselessly, lamp light flickers warm",
+   "d": 5
+  },
+  {
+   "id": "s08",
+   "still": "st_fall",
+   "m": "kb",
+   "kb": "in_fast",
+   "d": 2.5
+  },
+  {
+   "id": "s09",
+   "still": "st_backhead",
+   "m": "kb",
+   "kb": "in",
+   "d": 3.5
+  },
+  {
+   "id": "s10",
+   "still": "st_clip",
+   "m": "kb",
+   "kb": "in",
+   "d": 3
+  },
+  {
+   "id": "s11",
+   "still": "st_stand",
+   "m": "ltx",
+   "mp": "he wobbles gently side to side finding his balance, arms out, antenna sways, lamp light steady",
+   "d": 5
+  },
+  {
+   "id": "s12",
+   "still": "st_roll",
+   "m": "ltx",
+   "mp": "he rolls forward across the floorboards on his wheel leg, camera tracks sideways with him, sunlight streaks past",
+   "d": 5
+  },
+  {
+   "id": "s13",
+   "still": "st_spin",
+   "m": "ltx",
+   "mp": "he spins slowly with arms wide, sawdust sparkles drifting around him in the sunbeam",
+   "d": 5
+  },
+  {
+   "id": "s14",
+   "still": "st_somebody",
+   "m": "ltx",
+   "mp": "camera pushes in slowly from low angle, dust motes drift through the dawn sunbeam, his eye glows brighter",
+   "d": 6
+  },
+  {
+   "id": "s15",
+   "still": "st_june_struggle",
+   "m": "ltx",
+   "mp": "her shoulders rise and fall with a heavy sigh, she tugs the stuck wrench, golden dust drifts",
+   "d": 5
+  },
+  {
+   "id": "s16",
+   "still": "st_bike_wide",
+   "m": "kb",
+   "kb": "left",
+   "d": 4
+  },
+  {
+   "id": "s17",
+   "still": "st_window_watch",
+   "m": "ltx",
+   "mp": "he leans forward slightly from behind the jars, his blue eye glowing, soft golden light shifts",
+   "d": 5
+  },
+  {
+   "id": "s18",
+   "still": "st_june_struggle",
+   "m": "kb",
+   "kb": "in",
+   "d": 3.5
+  },
+  {
+   "id": "s19",
+   "still": "st_fix_chain",
+   "m": "ltx",
+   "mp": "the silver hand works the chain link carefully and precisely, lamp light flickers warm",
+   "d": 5
+  },
+  {
+   "id": "s20",
+   "still": "st_fix_oil",
+   "m": "ltx",
+   "mp": "the oil can tilts and a single golden drop falls and glints in the lamp light",
+   "d": 4
+  },
+  {
+   "id": "s21",
+   "still": "st_notes",
+   "m": "kb",
+   "kb": "right",
+   "d": 4
+  },
+  {
+   "id": "s22",
+   "still": "st_june_smile",
+   "m": "ltx",
+   "mp": "she turns the mended chain slowly in her hands, her puzzled smile growing, morning light glows",
+   "d": 5
+  },
+  {
+   "id": "s23",
+   "still": "st_calendar",
+   "m": "kb",
+   "kb": "in",
+   "d": 3.5
+  },
+  {
+   "id": "s24",
+   "still": "st_progress",
+   "m": "ltx",
+   "mp": "she pumps the tire energetically, her curls bounce, determined grin, golden light",
+   "d": 5
+  },
+  {
+   "id": "s25",
+   "still": "st_window_watch",
+   "m": "kb",
+   "kb": "in",
+   "d": 3.5
+  },
+  {
+   "id": "s26",
+   "still": "st_storm_ext",
+   "m": "ltx",
+   "mp": "heavy rain falls, storm clouds churn, distant lightning flickers, grass whips in the wind",
+   "d": 5
+  },
+  {
+   "id": "s27",
+   "still": "st_rain_window",
+   "m": "ltx",
+   "mp": "raindrops run down the windowpane, blue storm light shifts, distant lightning glow",
+   "d": 4
+  },
+  {
+   "id": "s28",
+   "still": "st_flood",
+   "m": "ltx",
+   "mp": "the dark water spreads slowly across the floorboards, lamp reflections shimmer and ripple",
+   "d": 5
+  },
+  {
+   "id": "s29",
+   "still": "st_ruined",
+   "m": "kb",
+   "kb": "in",
+   "d": 4
+  },
+  {
+   "id": "s30",
+   "still": "st_arm_look",
+   "m": "ltx",
+   "mp": "he slowly turns his silver hand over, palm up then down, his blue eye glowing steady, storm shadows move on the wall",
+   "d": 6
+  },
+  {
+   "id": "s31",
+   "still": "st_unclip",
+   "m": "kb",
+   "kb": "in",
+   "d": 4
+  },
+  {
+   "id": "s32",
+   "still": "st_give_wheel",
+   "m": "kb",
+   "kb": "in",
+   "d": 4
+  },
+  {
+   "id": "s33",
+   "still": "st_give_spring",
+   "m": "kb",
+   "kb": "in",
+   "d": 3.5
+  },
+  {
+   "id": "s34",
+   "still": "st_eye_lamp",
+   "m": "ltx",
+   "mp": "the blue lamp light breathes gently, rain shadows stream down the wall, bicycle parts gleam",
+   "d": 5
+  },
+  {
+   "id": "s35",
+   "still": "st_bike_done",
+   "m": "ltx",
+   "mp": "cold dawn light slowly brightens across the gleaming bicycle, the brass chainring catches the light",
+   "d": 6
+  },
+  {
+   "id": "s36",
+   "still": "st_pile",
+   "m": "kb",
+   "kb": "in_slow",
+   "d": 7
+  },
+  {
+   "id": "s37",
+   "still": "st_june_door",
+   "m": "kb",
+   "kb": "in",
+   "d": 4
+  },
+  {
+   "id": "s38",
+   "still": "st_trail",
+   "m": "kb",
+   "kb": "right",
+   "d": 5
+  },
+  {
+   "id": "s39",
+   "still": "st_june_kneel",
+   "m": "ltx",
+   "mp": "she gently lifts the round robot head with both hands, dust motes drift in the morning light",
+   "d": 6
+  },
+  {
+   "id": "s40",
+   "still": "st_reclaim_eye",
+   "m": "kb",
+   "kb": "in",
+   "d": 3.5
+  },
+  {
+   "id": "s41",
+   "still": "st_rebuild_eye",
+   "m": "kb",
+   "kb": "in",
+   "d": 3.5
+  },
+  {
+   "id": "s42",
+   "still": "st_rebuild_bell",
+   "m": "kb",
+   "kb": "in",
+   "d": 3.5
+  },
+  {
+   "id": "s43",
+   "still": "st_rebuild_wide",
+   "m": "ltx",
+   "mp": "she works carefully over the laid-out parts, sunlight drifts, dust sparkles in the beam",
+   "d": 5
+  },
+  {
+   "id": "s44",
+   "still": "st_eye_on",
+   "m": "ltx",
+   "mp": "the blue eye flickers and glows warmly to life, soft bokeh of her smile behind, gentle light bloom",
+   "d": 6
+  },
+  {
+   "id": "s45",
+   "still": "st_race",
+   "m": "ltx",
+   "mp": "they ride side by side steadily left to right, she pedals, the little robot rolls along waving, banners flutter, spectators cheer",
+   "d": 5
+  },
+  {
+   "id": "s46",
+   "still": "st_finish",
+   "m": "ltx",
+   "mp": "confetti drifts down, the banner flutters, the crowd waves and cheers, joyful energy",
+   "d": 5
+  },
+  {
+   "id": "s47",
+   "still": "st_sunrise",
+   "m": "ltx",
+   "mp": "they ride slowly away down the road into the sunrise side by side, tall grass sways, long shadows stretch, camera holds steady",
+   "d": 6
+  },
+  {
+   "id": "s48",
+   "still": "st_credits",
+   "m": "ltx",
+   "mp": "fireflies drift, the warm window light breathes, the open bin lid creaks gently, peaceful night",
+   "d": 6,
+   "credits": true
+  }
+ ]
+}

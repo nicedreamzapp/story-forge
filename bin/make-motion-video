@@ -1,0 +1,132 @@
+#!/usr/bin/env python3
+"""
+make-motion-video — MOTION TRANSFER: make a character perform a real person's move.
+
+Stage 2 of the pipeline (stage 1 = bin/motion_pose.py). Wan 2.2 Animate 14B takes a
+locked character still + an OpenPose track and renders the character performing that
+motion. This is how we get action Wan i2v cannot do (frozen rule 6): cartwheels,
+flips, dances, fights, falls — anything we can find footage of.
+
+    bin/make-motion-video --ref canon/hank_canon.png --pose pose_hank.mp4 \
+        "a cartoon brown bear does a fast athletic cartwheel on green grass"
+
+Proven 2026-07-25 (Matt: "that's pretty good"): 512x512, 81 frames, 8 steps,
+Q6_K GGUF → ~14 min on the M5 with Song Forge resident.
+
+WHY GGUF: the fp16 Animate weights are 34GB. Loading them alongside Song Forge's
+~45GB drives the machine into swap (~110 s/step) and macOS kills the render mid-way
+— that is exactly what happened on the first attempt. The Q6_K quant (14GB) renders
+the same job at ~10 s/step with no memory drama. Do NOT switch back to fp16 here.
+
+KNOWN LIMITS (state these, never paper over them):
+- Identity drifts toward a generic version of the character — a per-character video
+  LoRA is the fix (frozen rule 10 applies: derive from the locked master, never
+  re-generate). Untrained as of 2026-07-25.
+- Fast-motion frames smear at draft resolution.
+- Face can stay upright while the body inverts (face_video input unused so far).
+"""
+import argparse
+import sys
+import time
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from core import (  # noqa: E402
+    COMFY_URL, DEFAULT_NEG, UMT5_XXL, WAN_VAE, run_workflow, upload_image,
+)
+
+ANIMATE_GGUF = "gguf/Wan2.2-Animate-14B-Q6_K.gguf"
+DISTILL_LORA = "lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors"
+
+
+def build(ref_name: str, pose_name: str, prompt: str, width: int, height: int,
+          length: int, steps: int, seed: int, fps: int, trim: bool) -> dict:
+    w: dict = {}
+
+    def node(nid, class_type, inputs):
+        w[nid] = {"class_type": class_type, "inputs": inputs}
+
+    node("m", "UnetLoaderGGUF", {"unet_name": ANIMATE_GGUF})
+    node("mL", "LoraLoaderModelOnly", {
+        "model": ["m", 0], "lora_name": DISTILL_LORA, "strength_model": 1.0})
+    node("mS", "ModelSamplingSD3", {"model": ["mL", 0], "shift": 8.0})
+    node("clip", "CLIPLoader", {"clip_name": UMT5_XXL, "type": "wan", "device": "default"})
+    node("vae", "VAELoader", {"vae_name": WAN_VAE})
+    node("cv", "CLIPVisionLoader", {"clip_name": "clip_vision_h.safetensors"})
+    node("ref", "LoadImage", {"image": ref_name})
+    node("cve", "CLIPVisionEncode", {
+        "clip_vision": ["cv", 0], "image": ["ref", 0], "crop": "none"})
+    node("pv", "VHS_LoadVideo", {
+        "video": pose_name, "force_rate": 0, "custom_width": 0, "custom_height": 0,
+        "frame_load_cap": length, "skip_first_frames": 0, "select_every_nth": 1,
+        "format": "None"})
+    node("pos", "CLIPTextEncode", {"clip": ["clip", 0], "text": prompt})
+    node("neg", "CLIPTextEncode", {"clip": ["clip", 0], "text": DEFAULT_NEG})
+    node("anim", "WanAnimateToVideo", {
+        "positive": ["pos", 0], "negative": ["neg", 0], "vae": ["vae", 0],
+        "width": width, "height": height, "length": length, "batch_size": 1,
+        "continue_motion_max_frames": 5, "video_frame_offset": 0,
+        "clip_vision_output": ["cve", 0], "reference_image": ["ref", 0],
+        "pose_video": ["pv", 0]})
+    node("ks", "KSampler", {
+        "model": ["mS", 0], "seed": seed, "steps": steps, "cfg": 1.0,
+        "sampler_name": "euler", "scheduler": "simple",
+        "positive": ["anim", 0], "negative": ["anim", 1],
+        "latent_image": ["anim", 2], "denoise": 1.0})
+    dec_in = ["ks", 0]
+    if trim:
+        node("trim", "TrimVideoLatent", {"samples": ["ks", 0], "trim_amount": ["anim", 3]})
+        dec_in = ["trim", 0]
+    node("dec", "VAEDecode", {"samples": dec_in, "vae": ["vae", 0]})
+    node("out", "VHS_VideoCombine", {
+        "images": ["dec", 0], "frame_rate": fps, "loop_count": 0,
+        "filename_prefix": "motion", "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p", "crf": 19, "save_metadata": False,
+        "pingpong": False, "save_output": True})
+    return w
+
+
+def main():
+    ap = argparse.ArgumentParser(description="Render a character performing a real person's motion.")
+    ap.add_argument("prompt", nargs="+", help="scene prompt describing the character + action")
+    ap.add_argument("--ref", required=True, help="locked character master still")
+    ap.add_argument("--pose", required=True, help="pose track from bin/motion_pose.py")
+    ap.add_argument("--res", default="512x512", help="WxH (default 512x512)")
+    ap.add_argument("--frames", type=int, default=81, help="4k+1 frames (default 81 = 5s @16fps)")
+    ap.add_argument("--steps", type=int, default=8)
+    ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--fps", type=int, default=16)
+    ap.add_argument("--label", default="motion")
+    args = ap.parse_args()
+
+    if (args.frames - 1) % 4:
+        sys.exit(f"--frames must be 4k+1 (got {args.frames})")
+
+    width, height = (int(x) for x in args.res.lower().split("x"))
+    seed = args.seed or (int(time.time()) & 0x7FFFFFFF)
+
+    ref = Path(args.ref).expanduser().resolve()
+    pose = Path(args.pose).expanduser().resolve()
+    for p in (ref, pose):
+        if not p.is_file():
+            sys.exit(f"not found: {p}")
+
+    import json
+    import urllib.request
+    info = json.load(urllib.request.urlopen(f"{COMFY_URL}/object_info", timeout=60))
+    if "UnetLoaderGGUF" not in info:
+        sys.exit("ComfyUI-GGUF nodes missing — cannot load the Q6_K Animate quant")
+
+    ref_name = upload_image(ref)
+    pose_name = upload_image(pose)
+    wf = build(ref_name, pose_name, " ".join(args.prompt), width, height,
+               args.frames, args.steps, seed, args.fps, "TrimVideoLatent" in info)
+
+    print(f"[make-motion-video] {width}x{height} x{args.frames}f {args.steps} steps seed {seed}")
+    t0 = time.time()
+    files = run_workflow(wf, label=args.label, timeout_s=7200)
+    print(f"[make-motion-video] {(time.time()-t0)/60:.1f} min → {[str(f) for f in files]}")
+
+
+if __name__ == "__main__":
+    main()

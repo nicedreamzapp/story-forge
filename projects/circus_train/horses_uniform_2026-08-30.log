@@ -1,0 +1,14 @@
+[horses 09:53:59] reshooting s3_rollout with the pinned bay pair
+[horses 09:57:50] forge-shot exit 0 — s3_rollout: CLIP_KEPT
+[horses 09:57:50] rebuilding the episode
+[horses 09:57:50] build-episode exit 0
+[horses 09:58:23] rebuilding from segments (the first build skipped everything as already done)
+[horses 10:02:51] build-episode --from segments exit 0
+[horses 10:02:51] horse scene opened on screen
+[horses 10:06:18] reshooting s3b_wagonpass to match the rollout's dark bay pair
+[horses 10:12:45] wagonpass forge-shot exit 0 — s3b_wagonpass: CLIP_TRIMMED
+[horses 10:13:46] reshooting s3b_wagonpass against the horses_canon identity master
+[horses 10:17:15] wagonpass(identity) forge-shot exit 0 — s3b_wagonpass: CLIP_KEPT
+[horses 10:17:50] rebuilding from segments (the first build skipped everything as already done)
+[horses 10:22:27] build-episode --from segments exit 0
+[horses 10:22:27] horse scene opened on screen

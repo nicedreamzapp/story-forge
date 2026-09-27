@@ -1,0 +1,123 @@
+{
+  "schema_version": "0.1",
+  "film_meta": {
+    "title": "capybaras open rooftop spa at sunset",
+    "slug": "vf_capybaras_open_rooftop_spa_at_sunset_28248",
+    "target": "m5",
+    "scene_duration": 5.0,
+    "extras": {
+      "format": "reel"
+    },
+    "format": "reel",
+    "width": 720,
+    "height": 1280,
+    "fps": 30,
+    "aspect": "9:16"
+  },
+  "voice_presets": {},
+  "music_presets": {
+    "bed": {
+      "value": "ace/warm-cinematic-underscore",
+      "attrs": {
+        "vol": 0.32
+      }
+    }
+  },
+  "sfx_presets": {},
+  "transitions": [
+    {
+      "name": "xfade",
+      "args": [],
+      "attrs": {
+        "dur": 0.4
+      }
+    }
+  ],
+  "mixes": [],
+  "vars": {
+    "style": "vibrant sunset cinematography, golden hour lighting, ultra-detailed 8k realism"
+  },
+  "scenes": {
+    "beat_0": {
+      "still_spec": {
+        "engine": "flux",
+        "attrs": {},
+        "prompt": "vibrant sunset cinematography, golden hour lighting, ultra-detailed 8k realism, a group of chubby capybaras in bathrobes standing around a rooftop hot-spring spa with bubbling water and sunset colors reflecting on the ceramic tiles, steam rising gently in the evening air",
+        "seed": 1496930259
+      },
+      "motion_spec": {
+        "engine": "ltx",
+        "attrs": {},
+        "prompt": "slow camera pan across the capybaras as they wave at each other",
+        "duration": 4.0,
+        "seed": 354843132
+      },
+      "narration_spec": null,
+      "narration_specs": [],
+      "music_spec": {
+        "preset": "bed",
+        "value": "ace/warm-cinematic-underscore",
+        "attrs": {
+          "vol": 0.32
+        }
+      },
+      "sfx_specs": [],
+      "attrs": {},
+      "extras": {}
+    },
+    "beat_1": {
+      "still_spec": {
+        "engine": "flux",
+        "attrs": {},
+        "prompt": "vibrant sunset cinematography, golden hour lighting, ultra-detailed 8k realism, the same capybaras sitting in the hot spring with their feet in the warm water, one capybara holding a tiny umbrella, another pouring tea into a small cup, with the golden sunset reflected on their smooth fur",
+        "seed": 1524772803
+      },
+      "motion_spec": {
+        "engine": "ltx",
+        "attrs": {},
+        "prompt": "gentle zoom into their peaceful faces as the camera slowly circles around",
+        "duration": 4.0,
+        "seed": 3359679872
+      },
+      "narration_spec": null,
+      "narration_specs": [],
+      "music_spec": {
+        "preset": "bed",
+        "value": "ace/warm-cinematic-underscore",
+        "attrs": {
+          "vol": 0.32
+        }
+      },
+      "sfx_specs": [],
+      "attrs": {},
+      "extras": {}
+    },
+    "beat_2": {
+      "still_spec": {
+        "engine": "flux",
+        "attrs": {},
+        "prompt": "vibrant sunset cinematography, golden hour lighting, ultra-detailed 8k realism, a wide shot of the rooftop spa with the capybaras floating in the hot spring, their tails gently waving, the sun setting behind them, creating a perfect silhouette with the warm orange sky",
+        "seed": 548070888
+      },
+      "motion_spec": {
+        "engine": "ltx",
+        "attrs": {},
+        "prompt": "slow upward pan from their paws to their contented faces",
+        "duration": 4.0,
+        "seed": 1577805155
+      },
+      "narration_spec": null,
+      "narration_specs": [],
+      "music_spec": {
+        "preset": "bed",
+        "value": "ace/warm-cinematic-underscore",
+        "attrs": {
+          "vol": 0.32
+        }
+      },
+      "sfx_specs": [],
+      "attrs": {},
+      "extras": {}
+    }
+  }
+}

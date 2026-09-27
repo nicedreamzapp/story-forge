@@ -1,0 +1,40 @@
+{
+ "shots": [
+  {
+   "id": "s6_v2_t1.5",
+   "clip": "clips/s6_heave_v2.mp4",
+   "t": 1.5,
+   "beat": "a big bear drives his shoulder into a stuck boxcar door and strains against it with his entire body weight, feet planted and dug in, real physical effort",
+   "must_not": [
+    "holding or using a stick, tool, rod or any object",
+    "standing upright and relaxed",
+    "sawdust or debris spraying out of the wall",
+    "poking, prying or fiddling at the wood"
+   ]
+  },
+  {
+   "id": "s6_v2_t2.7",
+   "clip": "clips/s6_heave_v2.mp4",
+   "t": 2.7,
+   "beat": "a big bear drives his shoulder into a stuck boxcar door and strains against it with his entire body weight, feet planted and dug in, real physical effort",
+   "must_not": [
+    "holding or using a stick, tool, rod or any object",
+    "standing upright and relaxed",
+    "sawdust or debris spraying out of the wall",
+    "poking, prying or fiddling at the wood"
+   ]
+  },
+  {
+   "id": "s6_v2_t4.2",
+   "clip": "clips/s6_heave_v2.mp4",
+   "t": 4.2,
+   "beat": "a big bear drives his shoulder into a stuck boxcar door and strains against it with his entire body weight, feet planted and dug in, real physical effort",
+   "must_not": [
+    "holding or using a stick, tool, rod or any object",
+    "standing upright and relaxed",
+    "sawdust or debris spraying out of the wall",
+    "poking, prying or fiddling at the wood"
+   ]
+  }
+ ]
+}

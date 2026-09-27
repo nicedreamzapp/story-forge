@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.1",
+  "film_meta": {
+    "title": "librarian cat shushing thunderstorms",
+    "slug": "vf_librarian_cat_shushing_thunderstorms_28117",
+    "target": "m5",
+    "scene_duration": 5.0,
+    "extras": {
+      "format": "reel"
+    },
+    "format": "reel",
+    "width": 720,
+    "height": 1280,
+    "fps": 30,
+    "aspect": "9:16"
+  },
+  "voice_presets": {},
+  "music_presets": {
+    "bed": {
+      "value": "ace/whimsical-quiet-mystery",
+      "attrs": {
+        "vol": 0.32
+      }
+    }
+  },
+  "sfx_presets": {},
+  "transitions": [
+    {
+      "name": "xfade",
+      "args": [],
+      "attrs": {
+        "dur": 0.4
+      }
+    }
+  ],
+  "mixes": [],
+  "vars": {
+    "style": "hyper-detailed cartoon realism, dramatic lighting, cinematic composition, 8k"
+  },
+  "scenes": {
+    "beat_0": {
+      "still_spec": {
+        "engine": "flux",
+        "attrs": {},
+        "prompt": "hyper-detailed cartoon realism, dramatic lighting, cinematic composition, 8k, a sophisticated grey tabby cat wearing a tiny librarian hat, sitting behind a wooden desk in a vast library filled with floating books and glowing text, one paw raised in a shushing gesture as thunder rumbles outside the window with dramatic lightning flashes",
+        "seed": 1584785283
+      },
+      "motion_spec": {
+        "engine": "ltx",
+        "attrs": {},
+        "prompt": "camera slowly zooms in from above while the cat's ears perk up to the storm outside",
+        "duration": 4.0,
+        "seed": 1468070689
+      },
+      "narration_spec": null,
+      "narration_specs": [],
+      "music_spec": {
+        "preset": "bed",
+        "value": "ace/whimsical-quiet-mystery",
+        "attrs": {
+          "vol": 0.32
+        }
+      },
+      "sfx_specs": [],
+      "attrs": {},
+      "extras": {}
+    }
+  }
+}

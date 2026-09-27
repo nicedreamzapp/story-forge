@@ -1,0 +1,25 @@
+#!/bin/bash
+# Unblock shots and restart the director so the change sticks.
+#
+# The director holds director_state.json in memory and rewrites it every cycle,
+# so an unblock written underneath a running director is erased. Order matters:
+# wait for the current shot, kill the director, THEN patch, then let keepalive
+# relaunch. Runs detached so it cannot be killed along with the session that
+# started it (that happened twice on 2026-08-01 — the pkill pattern matched the
+# waiter's own command line, so it killed itself before patching).
+PROJ="${1:?usage: unblock-and-restart <project-dir> <shot-id>...}"; shift
+LOG="$PROJ/director.log"
+until ! pgrep -f "bin/forge-sh[o]t" >/dev/null; do sleep 15; done
+pkill -f "forge-direc[t]or" && sleep 4
+python3 - "$PROJ" "$@" <<'PY'
+import json, os, sys
+from pathlib import Path
+p = Path(sys.argv[1]) / "director_state.json"
+s = json.loads(p.read_text())
+for sid in sys.argv[2:]:
+    s.get("blocked", {}).pop(sid, None)
+    s.setdefault("attempts", {}).pop(sid, None)
+tmp = p.with_suffix(".json.tmp"); tmp.write_text(json.dumps(s, indent=1)); os.replace(tmp, p)
+print("blocked now:", list(s.get("blocked", {})))
+PY
+echo "[unblock $(date '+%H:%M:%S')] unblocked $* — keepalive relaunches the director" | tee -a "$LOG"
