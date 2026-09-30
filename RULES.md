@@ -48,3 +48,20 @@ incident behind each one.
     curated house rulebook, keyed by keyword so they fire on the next film.
 20. **Speedups must earn it.** Any multiplier clears bin/measure-render: LPIPS < 0.05 and
     speedup > 1.10×, or it doesn't ship.
+
+## How a film is judged before anyone watches it (added 2026-09-30, The Oldest Tree)
+21. **The story must make sense on screen.** `pipeline-tools/continuity_check.py` runs every
+    film's `continuity.json` state rules (what exists, what's lit, who wears what, what the
+    tree looks like) AND writes a story sheet — one frame per shot beside the narration
+    playing over it — that is read against the story before the film is shown. A viewer's
+    confusion becomes a new rule the same day.
+22. **The ears are measured, never assumed.** `pipeline-tools/audio_check.py`: score vocal
+    stem ≥ 15 dB under the music, no sustained low drone, loops/jumps flagged, music never
+    above the narration, every line re-heard in its own window. Scores are requested with
+    `lyrics: "[instrumental]"`; the person who can hear picks the score.
+23. **No dynamic loudness on a finished mix.** One measured static gain + limiter. loudnorm's
+    dynamic mode pumps the music up between lines.
+24. **Hands never move in close-up.** i2v morphs fingers. Hand inserts are a slow push on a
+    clean locked still (`bin/ken_burns.py --size`), or they are cut.
+25. **A shot that shows a false story state is cut, not kept for coverage.** A snapped tree
+    in a story about a tree that survives is worse than no shot.

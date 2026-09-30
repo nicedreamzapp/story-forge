@@ -1,0 +1,147 @@
+{
+ "defaults": {
+  "res": "1280x544",
+  "duration": 4,
+  "seeds": [
+   11,
+   47,
+   82,
+   119
+  ],
+  "votes": 3,
+  "engine": "ltx25"
+ },
+ "shots": [
+  {
+   "id": "s3_seed",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, soft coastal fog, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: macro shot of a single tiny redwood seedling, two small green needles just sprouting from dark moss on the forest floor, a dew drop on one needle, a soft shaft of morning light falling through fog behind it, extremely shallow depth of field",
+   "beat": "a tiny green seedling sprouting from moss on a forest floor, close up",
+   "must_not": [
+    "any person",
+    "a large tree trunk filling the frame",
+    "readable writing"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "animate": "very slow push-in toward the tiny seedling, the dew drop glistens, fog drifts slowly through the light shaft behind it, nothing else moves",
+   "lock": "stills/LOCKED_s3_seed.png",
+   "clip": "clips/s3_seed_final.mp4",
+   "min_window": 3.0
+  },
+  {
+   "id": "s3_reveal",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, soft coastal fog, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: low-angle wide shot looking up at one colossal ancient redwood tree, its trunk wider than a house, a huge blackened fire-scarred hollow at its base shaped like a tall doorway, an old man in an olive-green jacket and a young girl in a mustard-yellow raincoat standing small at the base seen from behind, looking up, shafts of sunlight cutting through drifting fog, other giant redwoods fading into mist",
+   "beat": "a gigantic redwood trunk with a dark burned hollow at its base, with two small people standing at its base",
+   "must_not": [
+    "no people",
+    "a cartoon",
+    "readable writing",
+    "a small ordinary tree"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/grandpa.png",
+     "subject": "the grandfather, a 75-year-old man with short white hair, a trimmed white beard and an olive-green waxed canvas jacket"
+    },
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "animate": "the camera slowly and smoothly pushes in toward the old man and the girl standing still at the base of the giant tree, both stay fully in frame looking up at the dark hollow, fog drifts slowly through the sun shafts",
+   "lock": "stills/LOCKED_s3_reveal.png",
+   "clip": "clips/s3_reveal_final.mp4",
+   "min_window": 3.0
+  },
+  {
+   "id": "s3_hollow",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, soft coastal fog, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: inside the enormous fire-scarred hollow of an ancient redwood, charred black ridged wood walls like a cathedral cave, soft daylight and fog glowing through the tall doorway-shaped opening, dust motes floating in the light",
+   "beat": "the inside of a burned hollow in a huge tree trunk, charred black walls, light coming through the opening",
+   "must_not": [
+    "any person",
+    "fire or flames",
+    "readable writing"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "animate": "slow dolly forward into the charred hollow, dust motes float gently through the light from the opening",
+   "lock": "stills/LOCKED_s3_hollow.png",
+   "clip": "clips/s3_hollow_final.mp4",
+   "min_window": 3.0
+  },
+  {
+   "id": "s3_profile",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, soft coastal fog, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: medium close-up of the grandfather, a 75-year-old man with short white hair and a trimmed white beard in an olive-green waxed jacket, seen in three-quarter profile looking up at a giant redwood with glistening eyes and a faint closed-mouth smile, the granddaughter with a long dark brown braid and mustard-yellow raincoat beside him in the soft-focus foreground, fog and sun shafts behind",
+   "beat": "close-up side view of an old white-bearded man looking upward with emotion, a girl in a yellow raincoat near him",
+   "must_not": [
+    "an open mouth",
+    "a young man",
+    "readable writing",
+    "a girl with light or blonde hair",
+    "a girl without a braid"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "identity": [
+    {
+     "master": "canon/grandpa.png",
+     "subject": "the grandfather, a 75-year-old man with short white hair, a trimmed white beard and an olive-green waxed canvas jacket"
+    },
+    {
+     "master": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "animate": "very slow push-in on the old man's face as he gazes upward, he blinks once and breathes softly, his mouth stays closed, fog drifts behind him",
+   "lock": "stills/LOCKED_s3_profile.png",
+   "clip": "clips/s3_profile_final.mp4",
+   "min_window": 3.0,
+   "refs": [
+    {
+     "image": "canon/grandpa.png",
+     "subject": "the grandfather, a 75-year-old man with short white hair, a trimmed white beard and an olive-green waxed canvas jacket"
+    },
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ]
+  },
+  {
+   "id": "s3_heart",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, soft coastal fog, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: close-up of a small heart shape carved fifty years ago into deep red-brown redwood bark, the cut edges long since darkened and weathered to the same deep red-brown as the surrounding bark, softened, mossy and partly grown over, clearly very old, simple heart outline with no letters, soft side light raking across the bark texture",
+   "beat": "an old weathered heart shape carved into thick tree bark, close up",
+   "must_not": [
+    "letters or initials",
+    "readable writing",
+    "any person",
+    "a freshly carved heart with pale bare wood"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "animate": "slow gentle push-in on the carved heart, soft light shifts slightly across the bark",
+   "lock": "stills/LOCKED_s3_heart.png",
+   "clip": "clips/s3_heart_final.mp4",
+   "min_window": 3.0
+  },
+  {
+   "id": "s3_hand",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, soft coastal fog, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: extreme close-up where only an elderly man's weathered wrinkled hand and the bark fill the frame, the cuff of an olive-green waxed jacket sleeve at the edge, fingertips resting gently on a small heart shape carved fifty years ago into deep red-brown redwood bark, the cut edges long since darkened and weathered to the same deep red-brown as the surrounding bark, softened, mossy and partly grown over, clearly very old, simple heart outline with no letters, no face in frame, soft side light",
+   "beat": "an old man's hand touching a heart carved in tree bark",
+   "must_not": [
+    "a face or head",
+    "letters or initials",
+    "readable writing",
+    "extra fingers",
+    "a young hand",
+    "a freshly carved heart with pale bare wood"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "animate": "the old hand slowly and gently traces the carved heart with the fingertips, the camera holds still",
+   "lock": "stills/LOCKED_s3_hand.png",
+   "clip": "clips/s3_hand_final.mp4",
+   "min_window": 3.0
+  }
+ ]
+}

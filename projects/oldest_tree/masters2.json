@@ -1,0 +1,46 @@
+{
+ "defaults": {
+  "res": "1024x1024",
+  "seeds": [
+   11,
+   22,
+   33
+  ],
+  "votes": 3
+ },
+ "shots": [
+  {
+   "id": "m_woman",
+   "prompt": "photorealistic cinematic film still, soft overcast light through fog, shallow depth of field, 50mm anamorphic lens, subtle film grain, natural skin texture, high dynamic range: three-quarter view portrait of the same girl from the reference image grown up into a 35-year-old woman, standing in a foggy redwood forest, long dark brown hair in a single braid, freckles, hazel eyes, mustard-yellow hooded raincoat",
+   "refs": [
+    {
+     "image": "canon/girl.png",
+     "subject": "the same person as a 10-year-old girl"
+    }
+   ],
+   "beat": "a portrait of a woman in her thirties with a dark braid and freckles wearing a yellow raincoat, in a forest",
+   "must_not": [
+    "a child",
+    "a cartoon",
+    "readable writing",
+    "more than one person"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, watermark, deformed hands",
+   "lock": "canon/woman.png"
+  },
+  {
+   "id": "m_child",
+   "prompt": "photorealistic cinematic film still, soft overcast light through fog, shallow depth of field, 50mm anamorphic lens, subtle film grain, natural skin texture, high dynamic range: three-quarter view portrait of a 6-year-old boy standing in a foggy redwood forest, curly brown hair, freckles, bright eyes, small red hooded raincoat",
+   "beat": "a portrait of a small boy with curly brown hair wearing a red raincoat, in a forest",
+   "must_not": [
+    "an adult",
+    "a cartoon",
+    "readable writing",
+    "more than one person"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, watermark, deformed hands",
+   "refs": [],
+   "lock": "canon/child.png"
+  }
+ ]
+}

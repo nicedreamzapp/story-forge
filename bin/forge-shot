@@ -672,6 +672,12 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
     else:
         # The still phase weighs mflux (~35GB) plus whatever the in-process judge
         # is holding. Ask for that, not for a token.
+        # 2026-09-28: the judge left loaded by the PREVIOUS shot reads to the guard
+        # as ~19GB of unowned resident memory, so 19 + 45 > the 50GB budget and every
+        # shot after the first was HELD forever (m_girl, oldest_tree). Drop it first;
+        # the next vl_ask reloads it inside this phase's lease.
+        if unload_vl():
+            log("  released the in-process VL judge before asking for the still lease")
         if mem_take(f"storyforge-still {shot['id']}", STILL_GB) == "refused":
             log("  no room for the still pass right now — shot HELD, nothing rolled")
             out["state"] = "STILL_HELD"

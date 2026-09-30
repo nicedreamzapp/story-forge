@@ -1,0 +1,1197 @@
+{
+ "defaults": {
+  "res": "1280x544",
+  "duration": 4,
+  "seeds": [
+   11,
+   47,
+   82,
+   119
+  ],
+  "votes": 3,
+  "engine": "ltx25"
+ },
+ "shots": [
+  {
+   "id": "s1_canopy",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: aerial view skimming just above an endless canopy of giant redwood crowns poking through a sea of morning fog, golden sunrise light",
+   "beat": "an aerial view of tree tops rising out of fog",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s1_canopy.png",
+   "clip": "clips/s1_canopy_final.mp4",
+   "min_window": 2.5,
+   "animate": "the camera glides slowly forward over the fog-covered redwood crowns, fog drifting and curling between the tree tops"
+  },
+  {
+   "id": "s1_descend",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: descending view through thick fog between towering redwood trunks, soft light shafts, mist",
+   "beat": "tall tree trunks disappearing into fog",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s1_descend.png",
+   "clip": "clips/s1_descend_final.mp4",
+   "min_window": 2.5,
+   "animate": "the camera slowly descends through the fog between the giant trunks, mist flowing past"
+  },
+  {
+   "id": "s1_trunk_up",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: looking straight up the trunk of a colossal redwood into the fog and light high above, other giant trunks converging",
+   "beat": "looking straight up giant tree trunks toward the sky",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s1_trunk_up.png",
+   "clip": "clips/s1_trunk_up_final.mp4",
+   "min_window": 2.5,
+   "animate": "slow rotating camera looking straight up the trunks, fog drifting across the canopy far above"
+  },
+  {
+   "id": "s1_rays",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: strong shafts of sunlight slanting through fog between giant redwood trunks, a pair of birds flying through the light",
+   "beat": "sunbeams through fog in a forest of giant trees",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s1_rays.png",
+   "clip": "clips/s1_rays_final.mp4",
+   "min_window": 2.5,
+   "animate": "sun rays shimmer as fog drifts through them, two birds fly across the light from left to right"
+  },
+  {
+   "id": "s1_floor",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: low close shot of the redwood forest floor, lush sword ferns and clover, fog hanging low, light shafts behind",
+   "beat": "ferns on a foggy forest floor",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s1_floor.png",
+   "clip": "clips/s1_floor_final.mp4",
+   "min_window": 2.5,
+   "animate": "the ferns sway gently in a breeze and fog rolls slowly across the forest floor"
+  },
+  {
+   "id": "s2_wide_walk",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: wide shot of an old man in an olive-green jacket and a young girl in a mustard-yellow raincoat walking hand in hand along a narrow dirt trail, tiny beneath enormous redwood trunks, fog and light shafts",
+   "beat": "two small people walking on a trail among enormous trees",
+   "must_not": [
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/grandpa.png",
+     "subject": "the grandfather, a 75-year-old man with short white hair, a trimmed white beard and an olive-green waxed canvas jacket"
+    },
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "lock": "stills/LOCKED_s2_wide_walk.png",
+   "clip": "clips/s2_wide_walk_final.mp4",
+   "min_window": 2.5,
+   "animate": "the old man and the girl walk slowly forward along the trail hand in hand, fog drifting through the light"
+  },
+  {
+   "id": "s2_track_behind",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: tracking shot from behind an old man in an olive-green jacket and a girl in a mustard-yellow raincoat with a long dark braid walking side by side on a redwood trail",
+   "beat": "an old man and a girl walking away from camera on a forest trail",
+   "must_not": [
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/grandpa.png",
+     "subject": "the grandfather, a 75-year-old man with short white hair, a trimmed white beard and an olive-green waxed canvas jacket"
+    },
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "lock": "stills/LOCKED_s2_track_behind.png",
+   "clip": "clips/s2_track_behind_final.mp4",
+   "min_window": 2.5,
+   "animate": "the camera follows behind them as they walk along the trail, her braid swinging, his steps slow and steady"
+  },
+  {
+   "id": "s2_hands",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: close-up of an old man's weathered hand holding a young girl's small hand as they walk, olive-green jacket cuff and mustard-yellow raincoat sleeve, forest trail blurred behind",
+   "beat": "an old hand holding a child's hand",
+   "must_not": [
+    "extra fingers",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s2_hands.png",
+   "clip": "clips/s2_hands_final.mp4",
+   "min_window": 2.5,
+   "animate": "the joined hands swing gently back and forth as they walk",
+   "cut": true,
+   "cut_reason": "editorial cut 2026-09-29: hands deform in motion (Matt 9/29: 'look deformed'); still grip is tangled too"
+  },
+  {
+   "id": "s2_girl_spin",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: medium shot of the granddaughter with a long dark brown braid in a mustard-yellow raincoat, head tilted back looking up in wonder at the giant redwoods, arms out",
+   "beat": "a girl in a yellow raincoat looking up at tall trees in wonder",
+   "must_not": [
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "lock": "stills/LOCKED_s2_girl_spin.png",
+   "clip": "clips/s2_girl_spin_final.mp4",
+   "min_window": 2.5,
+   "identity": [
+    {
+     "master": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "animate": "the girl slowly turns in a circle looking up at the giant trees, arms spread, her braid swinging"
+  },
+  {
+   "id": "s2_talk",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: medium close-up of the grandfather, a 75-year-old man with short white hair and a trimmed white beard in an olive-green waxed jacket, alone in frame, caught mid-word while speaking, lips parted in a small rounded 'oh' shape, calm gentle expression, NOT smiling, soft warm eyes, redwoods and fog behind",
+   "beat": "an old white-bearded man speaking warmly in a forest",
+   "must_not": [
+    "a cartoon",
+    "showing teeth",
+    "readable writing",
+    "a grin",
+    "a broad smile",
+    "more than one person"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/grandpa.png",
+     "subject": "the grandfather, a 75-year-old man with short white hair, a trimmed white beard and an olive-green waxed canvas jacket"
+    }
+   ],
+   "lock": "stills/LOCKED_s2_talk.png",
+   "clip": "clips/s2_talk_final.mp4",
+   "min_window": 2.5,
+   "identity": [
+    {
+     "master": "canon/grandpa.png",
+     "subject": "the grandfather, a 75-year-old man with short white hair, a trimmed white beard and an olive-green waxed canvas jacket"
+    }
+   ],
+   "talk": true
+  },
+  {
+   "id": "s2_girl_listen",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: close-up of the granddaughter with a long dark brown braid, freckles and a mustard-yellow raincoat, looking up at someone off-screen with a small uncertain smile, fog behind",
+   "beat": "a freckled girl in a yellow raincoat listening, looking up",
+   "must_not": [
+    "an open mouth",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "lock": "stills/LOCKED_s2_girl_listen.png",
+   "clip": "clips/s2_girl_listen_final.mp4",
+   "min_window": 2.5,
+   "identity": [
+    {
+     "master": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "animate": "she blinks and her small smile fades slightly as she listens, fog drifting behind"
+  },
+  {
+   "id": "s2_boots",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: low close-up of an old man's worn leather boots and a girl's yellow rubber boots stepping along a trail of red redwood needles",
+   "beat": "boots walking on a trail of needles",
+   "must_not": [
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s2_boots.png",
+   "clip": "clips/s2_boots_final.mp4",
+   "min_window": 2.5,
+   "animate": "the boots step forward along the trail kicking up a few needles"
+  },
+  {
+   "id": "s3_reveal",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, soft coastal fog, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: low-angle wide shot looking up at one colossal ancient redwood tree, its trunk wider than a house, a huge blackened fire-scarred hollow at its base shaped like a tall doorway, an old man in an olive-green jacket and a young girl in a mustard-yellow raincoat standing small at the base seen from behind, looking up, shafts of sunlight cutting through drifting fog, other giant redwoods fading into mist",
+   "beat": "a gigantic redwood trunk with a dark burned hollow at its base, with two small people standing at its base",
+   "must_not": [
+    "no people",
+    "a cartoon",
+    "readable writing",
+    "a small ordinary tree"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/grandpa.png",
+     "subject": "the grandfather, a 75-year-old man with short white hair, a trimmed white beard and an olive-green waxed canvas jacket"
+    },
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "animate": "the camera slowly and smoothly pushes in toward the old man and the girl standing still at the base of the giant tree, both stay fully in frame looking up at the dark hollow, fog drifts slowly through the sun shafts",
+   "lock": "stills/LOCKED_s3_reveal.png",
+   "clip": "clips/s3_reveal_final.mp4",
+   "min_window": 3.0
+  },
+  {
+   "id": "s3_seed",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, soft coastal fog, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: macro shot of a single tiny redwood seedling, two small green needles just sprouting from dark moss on the forest floor, a dew drop on one needle, a soft shaft of morning light falling through fog behind it, extremely shallow depth of field",
+   "beat": "a tiny green seedling sprouting from moss on a forest floor, close up",
+   "must_not": [
+    "any person",
+    "a large tree trunk filling the frame",
+    "readable writing"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "animate": "very slow push-in toward the tiny seedling, the dew drop glistens, fog drifts slowly through the light shaft behind it, nothing else moves",
+   "lock": "stills/LOCKED_s3_seed.png",
+   "clip": "clips/s3_seed_final.mp4",
+   "min_window": 3.0
+  },
+  {
+   "id": "s3_sapling",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, an ancient primeval redwood forest centuries ago, no people, dramatic natural light, subtle film grain, 35mm look: a young redwood sapling taller than a man standing alone in a sunny clearing of an ancient forest, snow on the ground, clouds overhead",
+   "beat": "a young small redwood tree standing in a clearing",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s3_sapling.png",
+   "clip": "clips/s3_sapling_final.mp4",
+   "min_window": 2.5,
+   "animate": "time-lapse: clouds race across the sky, the light sweeps across the clearing and the snow melts around the young tree"
+  },
+  {
+   "id": "s3_hollow",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, soft coastal fog, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: inside the enormous fire-scarred hollow of an ancient redwood, charred black ridged wood walls like a cathedral cave, soft daylight and fog glowing through the tall doorway-shaped opening, dust motes floating in the light",
+   "beat": "the inside of a burned hollow in a huge tree trunk, charred black walls, light coming through the opening",
+   "must_not": [
+    "any person",
+    "fire or flames",
+    "readable writing"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "animate": "slow dolly forward into the charred hollow, dust motes float gently through the light from the opening",
+   "lock": "stills/LOCKED_s3_hollow.png",
+   "clip": "clips/s3_hollow_final.mp4",
+   "min_window": 3.0
+  },
+  {
+   "id": "s3_profile",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, soft coastal fog, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: medium close-up of the grandfather, a 75-year-old man with short white hair and a trimmed white beard in an olive-green waxed jacket, seen in three-quarter profile looking up at a giant redwood with glistening eyes and a faint closed-mouth smile, the granddaughter with a long dark brown braid and mustard-yellow raincoat beside him in the soft-focus foreground, fog and sun shafts behind",
+   "beat": "close-up side view of an old white-bearded man looking upward with emotion, a girl in a yellow raincoat near him",
+   "must_not": [
+    "an open mouth",
+    "a young man",
+    "readable writing",
+    "a girl with light or blonde hair",
+    "a girl without a braid"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "identity": [
+    {
+     "master": "canon/grandpa.png",
+     "subject": "the grandfather, a 75-year-old man with short white hair, a trimmed white beard and an olive-green waxed canvas jacket"
+    },
+    {
+     "master": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "animate": "very slow push-in on the old man's face as he gazes upward, he blinks once and breathes softly, his mouth stays closed, fog drifts behind him",
+   "lock": "stills/LOCKED_s3_profile.png",
+   "clip": "clips/s3_profile_final.mp4",
+   "min_window": 3.0,
+   "refs": [
+    {
+     "image": "canon/grandpa.png",
+     "subject": "the grandfather, a 75-year-old man with short white hair, a trimmed white beard and an olive-green waxed canvas jacket"
+    },
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ]
+  },
+  {
+   "id": "s3_heart",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, soft coastal fog, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: close-up of a small heart shape carved fifty years ago into deep red-brown redwood bark, the cut edges long since darkened and weathered to the same deep red-brown as the surrounding bark, softened, mossy and partly grown over, clearly very old, simple heart outline with no letters, soft side light raking across the bark texture",
+   "beat": "an old weathered heart shape carved into thick tree bark, close up",
+   "must_not": [
+    "letters or initials",
+    "readable writing",
+    "any person",
+    "a freshly carved heart with pale bare wood"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "animate": "slow gentle push-in on the carved heart, soft light shifts slightly across the bark",
+   "lock": "stills/LOCKED_s3_heart.png",
+   "clip": "clips/s3_heart_final.mp4",
+   "min_window": 3.0
+  },
+  {
+   "id": "s3_hand",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, soft coastal fog, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: extreme close-up where only an elderly man's weathered wrinkled hand and the bark fill the frame, the cuff of an olive-green waxed jacket sleeve at the edge, fingertips resting gently on a small heart shape carved fifty years ago into deep red-brown redwood bark, the cut edges long since darkened and weathered to the same deep red-brown as the surrounding bark, softened, mossy and partly grown over, clearly very old, simple heart outline with no letters, no face in frame, soft side light",
+   "beat": "an old man's hand touching a heart carved in tree bark",
+   "must_not": [
+    "a face or head",
+    "letters or initials",
+    "readable writing",
+    "extra fingers",
+    "a young hand",
+    "a freshly carved heart with pale bare wood"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "animate": "the old hand slowly and gently traces the carved heart with the fingertips, the camera holds still",
+   "lock": "stills/LOCKED_s3_hand.png",
+   "clip": "clips/s3_hand_final.mp4",
+   "min_window": 3.0,
+   "finish": "ken_burns pushin on locked still \u2014 i2v morphed the fingers (Matt 9/29)"
+  },
+  {
+   "id": "s4_creek",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: the granddaughter in a mustard-yellow raincoat kneeling at a small clear creek among ferns, filling a metal water bottle, late afternoon light",
+   "beat": "a girl in a yellow raincoat kneeling at a creek filling a bottle",
+   "must_not": [
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "lock": "stills/LOCKED_s4_creek.png",
+   "clip": "clips/s4_creek_final.mp4",
+   "min_window": 2.5,
+   "animate": "the creek water flows and sparkles as she holds the bottle in it, then she stands up"
+  },
+  {
+   "id": "s4_wander",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: from behind, the grandfather with short white hair in an olive-green waxed jacket walking slowly away alone down a redwood trail into thickening fog at dusk, blue evening light, small in the frame, giant trunks on both sides",
+   "beat": "an old man walking away alone into fog on a forest trail at dusk, seen from behind",
+   "must_not": [
+    "a girl",
+    "more than one person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/grandpa.png",
+     "subject": "the grandfather, a 75-year-old man with short white hair, a trimmed white beard and an olive-green waxed canvas jacket"
+    }
+   ],
+   "animate": "the old man walks slowly away from the camera down the trail and the fog thickens around him until he is faint",
+   "lock": "stills/LOCKED_s4_wander.png",
+   "clip": "clips/s4_wander_final.mp4",
+   "min_window": 2.5
+  },
+  {
+   "id": "s4_walkback",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: the girl in a mustard-yellow raincoat walking back up a redwood trail at dusk, fog beginning to thicken, blue evening light",
+   "beat": "a girl in a yellow raincoat walking on a forest trail at dusk",
+   "must_not": [
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "lock": "stills/LOCKED_s4_walkback.png",
+   "clip": "clips/s4_walkback_final.mp4",
+   "min_window": 2.5,
+   "animate": "she walks toward the camera up the trail, fog slowly thickening around her"
+  },
+  {
+   "id": "s4_empty",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: the base of a colossal redwood with a dark burned hollow at dusk, nobody there, an empty spot on the ground, fog creeping in, blue evening light",
+   "beat": "the base of a huge tree at dusk with nobody there",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s4_empty.png",
+   "clip": "clips/s4_empty_final.mp4",
+   "min_window": 2.5,
+   "animate": "fog creeps slowly across the empty ground at the base of the giant tree"
+  },
+  {
+   "id": "s4_turn",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: close-up of the granddaughter with a long dark brown braid, freckles and a mustard-yellow raincoat at dusk, turning her head, eyes wide with worry, fog behind",
+   "beat": "a worried girl in a yellow raincoat looking around at dusk",
+   "must_not": [
+    "a smile",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "lock": "stills/LOCKED_s4_turn.png",
+   "clip": "clips/s4_turn_final.mp4",
+   "min_window": 2.5,
+   "identity": [
+    {
+     "master": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "animate": "she turns her head quickly left then right, searching, her breathing quickening"
+  },
+  {
+   "id": "s4_fog_aerial",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: high aerial view of a vast redwood forest at dusk as a thick bank of fog rolls in from the ocean and swallows the trees, last orange light on the horizon",
+   "beat": "fog rolling over a forest at dusk seen from above",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s4_fog_aerial.png",
+   "clip": "clips/s4_fog_aerial_final.mp4",
+   "min_window": 2.5,
+   "animate": "the fog bank rolls steadily over the forest, swallowing the tree tops as the light fades"
+  },
+  {
+   "id": "s5_beam",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight and a warm flashlight beam, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: a single flashlight beam cutting through thick fog between giant black redwood trunks at night",
+   "beat": "a flashlight beam in fog in a dark forest",
+   "must_not": [
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s5_beam.png",
+   "clip": "clips/s5_beam_final.mp4",
+   "min_window": 2.5,
+   "animate": "the flashlight beam sweeps slowly left and right through the fog"
+  },
+  {
+   "id": "s5_silhouette",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight and a warm flashlight beam, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: silhouette of a small girl in a raincoat holding a flashlight, walking between enormous dark tree trunks in fog, backlit by the beam's glow",
+   "beat": "a small silhouetted figure with a flashlight in a foggy dark forest",
+   "must_not": [
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "lock": "stills/LOCKED_s5_silhouette.png",
+   "clip": "clips/s5_silhouette_final.mp4",
+   "min_window": 2.5,
+   "animate": "she walks slowly forward, the flashlight beam swinging through the fog"
+  },
+  {
+   "id": "s5_face",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight and a warm flashlight beam, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: close-up of the granddaughter with a long dark brown braid and freckles in a mustard-yellow raincoat at night, face lit from below by her flashlight, frightened, fog behind",
+   "beat": "a frightened girl's face lit by a flashlight at night",
+   "must_not": [
+    "a smile",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "lock": "stills/LOCKED_s5_face.png",
+   "clip": "clips/s5_face_final.mp4",
+   "min_window": 2.5,
+   "identity": [
+    {
+     "master": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "animate": "her eyes move as she searches the darkness, she breathes, the light trembles slightly",
+   "clip_beat": "a girl's face lit by a flashlight at night"
+  },
+  {
+   "id": "s5_tiny",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight and a warm flashlight beam, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: extreme wide shot of a tiny point of flashlight glow far below among colossal black redwood trunks swallowed in fog",
+   "beat": "a tiny light among giant dark trees",
+   "must_not": [
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s5_tiny.png",
+   "clip": "clips/s5_tiny_final.mp4",
+   "min_window": 2.5,
+   "animate": "the tiny light moves slowly between the trunks as fog drifts"
+  },
+  {
+   "id": "s5_storm",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, an ancient primeval redwood forest centuries ago, no people, dramatic natural light, subtle film grain, 35mm look: a violent thunderstorm at night centuries ago over an ancient redwood forest, a giant tree's crown silhouetted against lightning-lit clouds",
+   "beat": "lightning in a stormy night sky over giant trees",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s5_storm.png",
+   "clip": "clips/s5_storm_final.mp4",
+   "min_window": 2.5,
+   "animate": "storm clouds churn slowly behind the giant tree and lightning flickers inside the clouds, rain falling",
+   "clip_beat": "a dark stormy night sky over giant trees"
+  },
+  {
+   "id": "s5_crown",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, an ancient primeval redwood forest centuries ago, no people, dramatic natural light, subtle film grain, 35mm look: the crown of a colossal redwood at night after a lightning strike, a glowing orange crack down the trunk, sparks and embers drifting down in the rain",
+   "beat": "a giant tree top glowing with embers after lightning",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s5_crown.png",
+   "clip": "clips/s5_crown_final.mp4",
+   "min_window": 2.5,
+   "animate": "sparks and embers drift down from the glowing crack while rain falls"
+  },
+  {
+   "id": "s5_split",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, an ancient primeval redwood forest centuries ago, no people, dramatic natural light, subtle film grain, 35mm look: the smoking, split top of a giant redwood at grey dawn in light rain, the tree still standing, mist",
+   "beat": "a split smoking tree top at dawn",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s5_split.png",
+   "clip": "clips/s5_split_final.mp4",
+   "min_window": 2.5,
+   "animate": "thin smoke curls up from the split crown as light rain falls",
+   "cut": true,
+   "cut_reason": "editorial cut 2026-09-30: the broken smoking snag reads as the tree burned down to a stump (Matt, twice)"
+  },
+  {
+   "id": "s5_firewall",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, an ancient primeval redwood forest centuries ago, no people, dramatic natural light, subtle film grain, 35mm look: a towering wall of forest fire racing through an ancient redwood forest at night, flames climbing trunks, orange glow and smoke",
+   "beat": "a wall of flames moving through a forest",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s5_firewall.png",
+   "clip": "clips/s5_firewall_final.mp4",
+   "min_window": 2.5,
+   "animate": "the flames surge and roll forward through the forest, smoke billowing upward"
+  },
+  {
+   "id": "s5_embers",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, an ancient primeval redwood forest centuries ago, no people, dramatic natural light, subtle film grain, 35mm look: close shot of glowing embers raining down past the red fibrous bark of a giant redwood trunk at night, orange firelight",
+   "beat": "embers falling past tree bark",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s5_embers.png",
+   "clip": "clips/s5_embers_final.mp4",
+   "min_window": 2.5,
+   "animate": "embers swirl and rain down past the bark, firelight flickering"
+  },
+  {
+   "id": "s5_shelter",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, an ancient primeval redwood forest centuries ago, no people, dramatic natural light, subtle film grain, 35mm look: inside the huge burned hollow of a giant redwood, a small herd of deer and elk huddled safely together, a forest fire glowing orange outside the opening",
+   "beat": "deer sheltering inside a hollow tree while fire glows outside",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s5_shelter.png",
+   "clip": "clips/s5_shelter_final.mp4",
+   "min_window": 2.5,
+   "animate": "the deer and elk stand still, ears twitching, as the orange firelight flickers across them"
+  },
+  {
+   "id": "s5_trunkfire",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, an ancient primeval redwood forest centuries ago, no people, dramatic natural light, subtle film grain, 35mm look: flames climbing the thick bark of a colossal redwood trunk at night, the tree standing strong, sparks spiraling",
+   "beat": "flames climbing a giant tree trunk",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s5_trunkfire.png",
+   "clip": "clips/s5_trunkfire_final.mp4",
+   "min_window": 2.5,
+   "animate": "the flames lick and climb up the bark, sparks spiraling upward"
+  },
+  {
+   "id": "s5_sway",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, an ancient primeval redwood forest centuries ago, no people, dramatic natural light, subtle film grain, 35mm look: giant redwoods bending and swaying in a violent winter storm, rain and wind whipping through the branches, dark sky",
+   "beat": "giant trees swaying in a storm",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s5_sway.png",
+   "clip": "clips/s5_sway_final.mp4",
+   "min_window": 2.5,
+   "animate": "the tall trees bend and sway heavily in the gusting wind, rain streaking sideways"
+  },
+  {
+   "id": "s5_lean",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, an ancient primeval redwood forest centuries ago, no people, dramatic natural light, subtle film grain, 35mm look: a neighboring giant redwood leaning dangerously in a violent storm, its roots lifting the soil, rain and wind",
+   "beat": "a giant tree leaning over in a storm",
+   "must_not": [
+    "any person",
+    "a tree hitting the ground",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s5_lean.png",
+   "clip": "clips/s5_lean_final.mp4",
+   "min_window": 2.5,
+   "animate": "the giant trees sway heavily back and forth in the gusting wind, branches thrashing, rain streaking sideways",
+   "clip_beat": "giant trees in a violent storm",
+   "cut": true,
+   "cut_reason": "editorial cut 2026-09-29: failed the beat gate 3+ passes (flicker still always read as a steady beam; lean motion never held 2.5s). s5_sway covers the storm, s6_hands covers the dead flashlight."
+  },
+  {
+   "id": "s5_fallen",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, an ancient primeval redwood forest centuries ago, no people, dramatic natural light, subtle film grain, 35mm look: a colossal fallen redwood log lying across the forest floor in calm morning mist, ferns growing around it, the old giant still standing behind",
+   "beat": "a huge fallen tree log in morning mist",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s5_fallen.png",
+   "clip": "clips/s5_fallen_final.mp4",
+   "min_window": 2.5,
+   "animate": "mist drifts slowly across the fallen giant, soft light rising",
+   "cut": true,
+   "cut_reason": "editorial cut 2026-09-29: read as OUR tree falling (Matt: 'in one picture it's just a stump'); narration now says the storm took the giant beside her"
+  },
+  {
+   "id": "s6_flicker",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight and a warm flashlight beam, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: close-up of a girl's hand in a mustard-yellow raincoat sleeve holding a flashlight that is dimming, the beam weak and orange",
+   "beat": "a hand holding a dimming flashlight at night",
+   "must_not": [
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s6_flicker.png",
+   "clip": "clips/s6_flicker_final.mp4",
+   "min_window": 2.5,
+   "animate": "the flashlight beam flickers and dims to a weak orange glow, the hand holds still",
+   "clip_beat": "a hand holding a flashlight at night",
+   "cut": true,
+   "cut_reason": "editorial cut 2026-09-29: failed the beat gate 3+ passes (flicker still always read as a steady beam; lean motion never held 2.5s). s5_sway covers the storm, s6_hands covers the dead flashlight."
+  },
+  {
+   "id": "s6_black",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight only, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: near-total darkness in a foggy redwood forest at night, only faint grey shapes of giant trunks in pale moonlit fog, no flashlight, no lamp, no artificial light anywhere",
+   "beat": "a dark foggy forest with faint tree shapes",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon",
+    "a flashlight",
+    "a lamp or lantern",
+    "any beam of artificial light"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s6_black.png",
+   "clip": "clips/s6_black_final.mp4",
+   "min_window": 2.5,
+   "animate": "fog drifts slowly through the darkness between the faint tree shapes",
+   "clip_beat": "a dark foggy forest at night"
+  },
+  {
+   "id": "s6_breath",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight and a warm flashlight beam, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: close-up three-quarter view of the same girl from the reference image, freckles, hazel eyes, her long dark brown braid over her shoulder, in a mustard-yellow raincoat in cold blue moonlight, her breath fogging in the cold air, tears on her cheek",
+   "beat": "a girl crying in the cold with visible breath at night",
+   "must_not": [
+    "a cartoon",
+    "a different girl",
+    "readable writing",
+    "a girl without a braid"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "lock": "stills/LOCKED_s6_breath.png",
+   "clip": "clips/s6_breath_final.mp4",
+   "min_window": 2.5,
+   "identity": [
+    {
+     "master": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "animate": "she breathes out shakily, her breath fogging in the cold air, a tear rolls down"
+  },
+  {
+   "id": "s6_hands",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight and a warm flashlight beam, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: close-up of a girl's small hands trembling as they grip a dead flashlight in cold moonlight",
+   "beat": "trembling hands holding a flashlight in the dark",
+   "must_not": [
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s6_hands.png",
+   "clip": "clips/s6_hands_final.mp4",
+   "min_window": 2.5,
+   "animate": "her hands tremble and tighten around the dead flashlight",
+   "cut": true,
+   "cut_reason": "editorial cut 2026-09-29: hands deform + off-model girl"
+  },
+  {
+   "id": "s6_eyes",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight and a warm flashlight beam, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: extreme close-up of the granddaughter's hazel eyes in cold moonlight, a look of sudden realization",
+   "beat": "a girl's eyes widening in realization",
+   "must_not": [
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "lock": "stills/LOCKED_s6_eyes.png",
+   "clip": "clips/s6_eyes_final.mp4",
+   "min_window": 2.5,
+   "identity": [
+    {
+     "master": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "animate": "her eyes lift and widen with sudden realization"
+  },
+  {
+   "id": "s7_run",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight only, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: the girl in a mustard-yellow raincoat running with empty hands through a moonlit redwood forest in fog, braid flying, no flashlight, lit only by moonlight",
+   "beat": "a girl in a yellow raincoat running through a dark forest",
+   "must_not": [
+    "readable writing",
+    "a cartoon",
+    "a flashlight",
+    "a lamp or lantern",
+    "any beam of artificial light"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "lock": "stills/LOCKED_s7_run.png",
+   "clip": "clips/s7_run_final.mp4",
+   "min_window": 2.5,
+   "animate": "she runs forward through the fog between the giant trunks, braid flying behind her"
+  },
+  {
+   "id": "s7_looms",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight and a warm flashlight beam, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: low angle of the colossal redwood with the dark burned hollow at its base looming in moonlight and fog",
+   "beat": "a huge dark tree looming in moonlight",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s7_looms.png",
+   "clip": "clips/s7_looms_final.mp4",
+   "min_window": 2.5,
+   "animate": "slow push in toward the dark hollow at the base of the giant tree, fog drifting"
+  },
+  {
+   "id": "s7_push",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight only, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: inside the dark burned hollow of a giant redwood at night, pale moonlight falling on the charred walls, the old white-haired grandfather sitting hunched in the shadows, cold, lost and confused, not smiling, no flashlight or lamp",
+   "beat": "an old man sitting hunched inside a dark hollow tree at night",
+   "must_not": [
+    "a smile",
+    "a laughing man",
+    "readable writing",
+    "a cartoon",
+    "a flashlight",
+    "a lamp or lantern",
+    "any beam of artificial light"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/grandpa.png",
+     "subject": "the grandfather, a 75-year-old man with short white hair, a trimmed white beard and an olive-green waxed canvas jacket"
+    }
+   ],
+   "lock": "stills/LOCKED_s7_push.png",
+   "clip": "clips/s7_push_final.mp4",
+   "min_window": 2.5,
+   "animate": "slow push into the hollow, the moonlight slowly revealing the seated old man, he stays still and shivers slightly"
+  },
+  {
+   "id": "s7_back",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight and a warm flashlight beam, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: from behind, the grandfather with short white hair in an olive-green jacket sitting hunched inside the charred hollow of a giant redwood, moonlight on his shoulders",
+   "beat": "an old man sitting alone inside a hollow tree at night seen from behind",
+   "must_not": [
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/grandpa.png",
+     "subject": "the grandfather, a 75-year-old man with short white hair, a trimmed white beard and an olive-green waxed canvas jacket"
+    }
+   ],
+   "lock": "stills/LOCKED_s7_back.png",
+   "clip": "clips/s7_back_final.mp4",
+   "min_window": 2.5,
+   "animate": "the old man sits completely still, only the fog drifts past the opening and the moonlight shifts slightly",
+   "clip_beat": "an old man sitting inside a hollow tree at night"
+  },
+  {
+   "id": "s7_kneel",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight only, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: the granddaughter in a mustard-yellow raincoat kneeling down beside her grandfather inside the charred tree hollow, pale moonlight only, the grandfather looking lost, cold and confused, not smiling, no flashlight",
+   "beat": "a girl kneeling beside an old man inside a hollow tree",
+   "must_not": [
+    "a smiling or laughing old man",
+    "readable writing",
+    "a cartoon",
+    "a flashlight",
+    "a lamp or lantern",
+    "any beam of artificial light"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/grandpa.png",
+     "subject": "the grandfather, a 75-year-old man with short white hair, a trimmed white beard and an olive-green waxed canvas jacket"
+    },
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "lock": "stills/LOCKED_s7_kneel.png",
+   "clip": "clips/s7_kneel_final.mp4",
+   "min_window": 2.5,
+   "animate": "she kneels down beside him and puts her hand on his arm"
+  },
+  {
+   "id": "s7_coat",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight and a warm flashlight beam, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: the granddaughter wrapping her mustard-yellow raincoat around her grandfather's shoulders, the grandfather looking lost, cold and confused with a vacant sad expression, not smiling inside the charred tree hollow, moonlight",
+   "beat": "a girl wrapping a yellow raincoat around an old man's shoulders",
+   "must_not": [
+    "a cartoon",
+    "readable writing",
+    "a smiling or laughing old man"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/grandpa.png",
+     "subject": "the grandfather, a 75-year-old man with short white hair, a trimmed white beard and an olive-green waxed canvas jacket"
+    },
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "lock": "stills/LOCKED_s7_coat.png",
+   "clip": "clips/s7_coat_final.mp4",
+   "min_window": 2.5,
+   "animate": "she drapes the yellow raincoat over his shoulders and tucks it around him"
+  },
+  {
+   "id": "s7_talk",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight and a warm flashlight beam, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: close-up of the grandfather with short white hair and a trimmed white beard in cold moonlight inside the tree hollow, a yellow raincoat around his shoulders, looking at someone with sudden recognition and tears, mouth slightly open mid-word",
+   "beat": "close-up of an old white-bearded man at night looking at someone with emotion",
+   "must_not": [
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/grandpa.png",
+     "subject": "the grandfather, a 75-year-old man with short white hair, a trimmed white beard and an olive-green waxed canvas jacket"
+    }
+   ],
+   "lock": "stills/LOCKED_s7_talk.png",
+   "clip": "clips/s7_talk_final.mp4",
+   "min_window": 2.5,
+   "identity": [
+    {
+     "master": "canon/grandpa.png",
+     "subject": "the grandfather, a 75-year-old man with short white hair, a trimmed white beard and an olive-green waxed canvas jacket"
+    }
+   ],
+   "talk": true
+  },
+  {
+   "id": "s7_wide",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight only, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: wide shot inside the moonlit hollow of the giant redwood: the old grandfather sitting with a mustard-yellow raincoat wrapped around his shoulders, and the granddaughter with a long dark braid now in just a grey wool sweater, her head resting on his shoulder, fog outside, no flashlight",
+   "beat": "an old man wrapped in a yellow raincoat and a girl in a grey sweater sitting together inside a hollow tree at night",
+   "must_not": [
+    "the girl wearing a yellow raincoat",
+    "readable writing",
+    "a cartoon",
+    "a flashlight",
+    "a lamp or lantern",
+    "any beam of artificial light"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/grandpa.png",
+     "subject": "the grandfather, a 75-year-old man with short white hair, a trimmed white beard and an olive-green waxed canvas jacket"
+    },
+    {
+     "image": "canon/girl.png",
+     "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
+    }
+   ],
+   "lock": "stills/LOCKED_s7_wide.png",
+   "clip": "clips/s7_wide_final.mp4",
+   "min_window": 2.5,
+   "animate": "they sit close together, her head resting on his shoulder, fog drifting past the opening"
+  },
+  {
+   "id": "s8_wide",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: wide shot of a 35-year-old woman with a long dark brown braid in a mustard-yellow raincoat and a 6-year-old boy in a small red raincoat standing at the base of a colossal redwood with a burned hollow, bright morning fog and sun",
+   "beat": "a woman and a small boy standing at the base of a giant tree",
+   "must_not": [
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/woman.png",
+     "subject": "the granddaughter grown up, a 35-year-old woman with a long dark brown braid, freckles and a mustard-yellow raincoat"
+    },
+    {
+     "image": "canon/child.png",
+     "subject": "her 6-year-old son with curly brown hair and a small red raincoat"
+    }
+   ],
+   "lock": "stills/LOCKED_s8_wide.png",
+   "clip": "clips/s8_wide_final.mp4",
+   "min_window": 2.5,
+   "animate": "the woman and the boy walk slowly up to the tree, light shafts drifting through fog"
+  },
+  {
+   "id": "s8_hand",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: close-up of the same carved heart from the reference image, old and weathered in deep red-brown redwood bark, with a woman's hand in a mustard-yellow raincoat sleeve resting gently beside it, fingertips just touching the edge of the heart, soft morning light, five natural fingers",
+   "beat": "a woman's hand touching an old heart carved in tree bark",
+   "must_not": [
+    "charred or burned bark",
+    "no heart visible",
+    "extra fingers",
+    "readable writing",
+    "letters or initials"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "stills/LOCKED_s3_heart.png",
+     "subject": "the carved heart in the redwood bark"
+    }
+   ],
+   "lock": "stills/LOCKED_s8_hand.png",
+   "clip": "clips/s8_hand_final.mp4",
+   "min_window": 2.5,
+   "finish": "ken_burns pushin on locked still (fingers never move)"
+  },
+  {
+   "id": "s8_childhand",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: close-up of a small child's hand in a red raincoat sleeve pressing onto the charred bark next to a woman's hand",
+   "beat": "a child's small hand next to a woman's hand on tree bark",
+   "must_not": [
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s8_childhand.png",
+   "clip": "clips/s8_childhand_final.mp4",
+   "min_window": 2.5,
+   "animate": "the small hand presses flat on the bark beside hers",
+   "cut": true,
+   "cut_reason": "editorial cut 2026-09-29: adult hand is in a green sleeve (should be the woman's yellow) + hands deform"
+  },
+  {
+   "id": "s8_pullback",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: the 35-year-old woman with a dark braid in a mustard-yellow raincoat and a small boy in a red raincoat standing hand in hand at the base of the giant redwood, seen from behind, morning fog",
+   "beat": "a woman and a small boy seen from behind at the base of a giant tree",
+   "must_not": [
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [
+    {
+     "image": "canon/woman.png",
+     "subject": "the granddaughter grown up, a 35-year-old woman with a long dark brown braid, freckles and a mustard-yellow raincoat"
+    },
+    {
+     "image": "canon/child.png",
+     "subject": "her 6-year-old son with curly brown hair and a small red raincoat"
+    }
+   ],
+   "lock": "stills/LOCKED_s8_pullback.png",
+   "clip": "clips/s8_pullback_final.mp4",
+   "min_window": 2.5,
+   "animate": "the camera slowly pulls back as they stand looking up at the giant tree"
+  },
+  {
+   "id": "s8_rise",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: looking up the colossal trunk of the redwood from its base toward sunlit fog high above",
+   "beat": "looking up a giant tree trunk toward the light",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s8_rise.png",
+   "clip": "clips/s8_rise_final.mp4",
+   "min_window": 2.5,
+   "animate": "the camera slowly rises up along the trunk toward the light"
+  },
+  {
+   "id": "s8_canopy",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, natural motivated lighting, muted teal-green and warm amber color grade, subtle film grain, 35mm look, high dynamic range, detailed textures: aerial view of the redwood canopy above a sea of fog in golden morning light, one giant crown rising above the rest",
+   "beat": "an aerial view of tree tops above fog",
+   "must_not": [
+    "any person",
+    "readable writing",
+    "a cartoon"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
+   "refs": [],
+   "lock": "stills/LOCKED_s8_canopy.png",
+   "clip": "clips/s8_canopy_final.mp4",
+   "min_window": 2.5,
+   "animate": "the camera drifts slowly back and up over the fog-covered canopy"
+  }
+ ]
+}

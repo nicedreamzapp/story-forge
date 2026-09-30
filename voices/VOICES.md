@@ -14,7 +14,7 @@ Generate a line:
 ## SPARE POOL — ready to cast to new characters this episode
 - voiceA -> spare_voiceA.wav
 - voiceB -> spare_voiceB.wav
-- voiceC -> spare_voiceC.wav
+- ~~voiceC -> spare_voiceC.wav~~ RETIRED 2026-09-29 — Matt: "that gruff one... really isn't useful for anything." Never cast it.
 
 ## ruby & nia — African American female voices (added 2026-08-07)
 Matt's picks from an 8-voice Chatterbox-clone audition of EARS dataset speakers

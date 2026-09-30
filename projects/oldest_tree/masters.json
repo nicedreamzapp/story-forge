@@ -1,0 +1,41 @@
+{
+ "defaults": {
+  "res": "1024x1024",
+  "seeds": [
+   11,
+   22,
+   33
+  ],
+  "votes": 3
+ },
+ "shots": [
+  {
+   "id": "m_grandpa",
+   "prompt": "photorealistic cinematic film still, soft overcast light through fog, shallow depth of field, 50mm anamorphic lens, subtle film grain, natural skin texture, high dynamic range: three-quarter view portrait of a 75-year-old man standing in a foggy redwood forest, kind weathered face, deep laugh lines, short white hair, neatly trimmed white beard, pale blue eyes, faded olive-green waxed canvas field jacket over a gray wool sweater",
+   "beat": "a portrait of an old man with white hair and a white beard wearing an olive-green jacket, in a forest",
+   "must_not": [
+    "a young man",
+    "a cartoon",
+    "readable writing",
+    "more than one person"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, watermark, deformed hands",
+   "refs": [],
+   "lock": "canon/grandpa.png"
+  },
+  {
+   "id": "m_girl",
+   "prompt": "photorealistic cinematic film still, soft overcast light through fog, shallow depth of field, 50mm anamorphic lens, subtle film grain, natural skin texture, high dynamic range: three-quarter view portrait of a 10-year-old girl standing in a foggy redwood forest, long dark brown hair in a single braid, freckles, hazel eyes, bright mustard-yellow hooded raincoat",
+   "beat": "a portrait of a young girl with a dark braid wearing a yellow raincoat, in a forest",
+   "must_not": [
+    "an adult",
+    "a cartoon",
+    "readable writing",
+    "more than one person"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, watermark, deformed hands",
+   "refs": [],
+   "lock": "canon/girl.png"
+  }
+ ]
+}

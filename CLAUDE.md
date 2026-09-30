@@ -528,6 +528,12 @@ dialogue). Never let a screenwriting skill's formatting advice change `.sf` synt
 film bible spec, or any frozen rule — the craft is theirs, the language and the pipeline
 stay ours.
 
+**Story test before the render queue (2026-09-30).** Write, from the SHOT LIST ALONE (no
+narration), the paragraph a first-time viewer would say the film is about. If it doesn't
+match the premise, the shots are missing a beat — The Oldest Tree never showed the
+grandfather wandering off, so the whole plot had to be guessed. Every plot turn needs a
+shot that SHOWS it, and flashbacks need a spoken time marker ("Five hundred years ago").
+
 **Dialogue caveat specific to this pipeline:** lines still get density-matched to the
 mouth motion we prompt for (rule 9 / rule 3 below). A beautifully written speech that a
 shot's mouth motion cannot carry gets rewritten shorter — the mouth wins, always.
@@ -549,6 +555,22 @@ Full detail: SCENE_BUILDING_METHOD.md.
 **Mac mini (parallel render node):** `~/.local/bin/mini "<cmd>"` is the channel. Mini has Wan i2v models + LoRAs + VAE + Piper + Real-ESRGAN + training stack all installed. Inference path not yet end-to-end validated.
 
 **Two-week speedup build status:** ~40% plumbed, 0% operationally validated. See SESSION_HANDOFF roadmap for the priority order. Next concrete win: validate mini Wan inference end-to-end (lowest risk, halves all future renders if it works).
+
+## MANDATORY STORY + SOUND GATES — before ANY film is shown to Matt (added 2026-09-30)
+film_qc checks faces, mouths and glitches. It passed The Oldest Tree while Matt, watching,
+found a buzzing drone, a sung vocal in the "instrumental" score, music louder than the
+narrator, melting fingers, a tree that looked burned to a stump, a flashlight that "went out"
+and kept glowing, and an ending heart shot with no heart. "I'm surprised you're not noticing."
+So three gates now run, in this order, and all three reports are read before showing:
+1. `~/chatterbox-env/bin/python pipeline-tools/audio_check.py FILM --score S --timeline final/timeline.json --narration narration.json`
+2. `~/.local/mlx-server/bin/python pipeline-tools/continuity_check.py projects/<film>` —
+   needs `projects/<film>/continuity.json`; ALSO read `final/story_sheet.png` + `.md` yourself
+   against the story and write down what a first-time viewer would misread.
+3. `film_qc.py` (below).
+Then tell Matt what is still wrong BEFORE he finds it. Rules 21–25 in RULES.md.
+Score requests: always `"lyrics": "[instrumental]"`; Matt picks the score by ear from 2–3 screened candidates.
+Mix: static gain, never loudnorm dynamic. Hands: ken_burns on a locked still. Foley (MMAudio)
+only after audio_check proves it isn't noise.
 
 ## MANDATORY QC STAGE — `pipeline-tools/film_qc.py` (added 2026-07-22, non-negotiable)
 No film, scene, or demo is EVER reported to Matt as "checked/verified/done" until this

@@ -31,7 +31,7 @@ def cover_base(src):
         nh = int(w / target); im = im.crop((0, (h - nh) // 2, w, (h - nh) // 2 + nh))
     # ensure plenty of headroom for sub-pixel sharp zoom
     if im.size[0] < 2560:
-        im = im.resize((2560, 1440), Image.LANCZOS)
+        im = im.resize((2560, round(2560 * im.size[1] / im.size[0])), Image.LANCZOS)
     return im
 
 def main():
@@ -41,7 +41,11 @@ def main():
     ap.add_argument("--mode", default="pushin")
     ap.add_argument("--fps", type=int, default=24)
     ap.add_argument("--zoom", type=float, default=None, help="zoom delta (default per mode)")
+    ap.add_argument("--size", default=None, help="WxH output, e.g. 1280x512 for 2.5:1 films (default 1280x720)")
     a = ap.parse_args()
+    if a.size:  # 2026-09-29: widescreen films were center-cropped to 16:9 then squashed back
+        global OUT_W, OUT_H
+        OUT_W, OUT_H = (int(v) for v in a.size.lower().split("x"))
 
     base = cover_base(a.src)
     bw, bh = base.size

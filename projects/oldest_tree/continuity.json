@@ -1,0 +1,21 @@
+{"_note": "Story-state facts for The Oldest Tree. continuity_check.py votes on each. Add a rule every time a viewer is confused.",
+ "rules": [
+  {"id": "tree_never_falls", "shots": ["*"],
+   "question": "Does this frame show a tree that has burned down, fallen over, snapped off, or been reduced to a stump or a log on the ground?",
+   "expect": "NO"},
+  {"id": "flashlight_dead", "from": "s6_black", "to": "s7_wide",
+   "question": "Is there a lit flashlight, lamp, lantern or any beam of artificial light anywhere in this frame?",
+   "expect": "NO"},
+  {"id": "grandpa_lost_not_happy", "shots": ["s7_push", "s7_back", "s7_kneel"],
+   "question": "Is the old man smiling, grinning or laughing?",
+   "expect": "NO"},
+  {"id": "coat_on_grandpa", "shots": ["s7_wide"],
+   "question": "Is the girl wearing a yellow raincoat?",
+   "expect": "NO"},
+  {"id": "heart_still_there", "shots": ["s8_hand"],
+   "question": "Is a heart shape carved into the tree bark clearly visible in this frame?",
+   "expect": "YES"},
+  {"id": "heart_carved_not_burned", "shots": ["s3_heart", "s3_hand", "s8_hand"],
+   "question": "Is the bark in this frame charred, burned black or ashy?",
+   "expect": "NO"}
+ ]}

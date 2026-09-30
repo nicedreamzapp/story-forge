@@ -1,0 +1,115 @@
+[
+ {
+  "id": "n01",
+  "scene": 1,
+  "text": "My grandfather used to say the redwoods remember everything. So we don't have to."
+ },
+ {
+  "id": "n02",
+  "scene": 2,
+  "text": "The summer I turned ten, he took me to see the oldest one."
+ },
+ {
+  "id": "n03",
+  "scene": 2,
+  "text": "That morning, he called me by my grandmother's name. I didn't correct him."
+ },
+ {
+  "id": "n04",
+  "scene": 3,
+  "text": "Two thousand years ago, this giant was a seed no bigger than a grain of sand."
+ },
+ {
+  "id": "n05",
+  "scene": 3,
+  "text": "Fire burned a door right into her heart, and she just kept growing."
+ },
+ {
+  "id": "n06",
+  "scene": 3,
+  "text": "That's where he asked my grandmother to marry him."
+ },
+ {
+  "id": "n07",
+  "scene": 3,
+  "text": "He carved it there, so the tree would remember for him."
+ },
+ {
+  "id": "n08",
+  "scene": 4,
+  "text": "I was gone five minutes. Maybe ten."
+ },
+ {
+  "id": "n09",
+  "scene": 5,
+  "text": "I kept hearing his stories in my head."
+ },
+ {
+  "id": "n10",
+  "scene": 5,
+  "text": "The night lightning split her crown, and she kept standing."
+ },
+ {
+  "id": "n11",
+  "scene": 5,
+  "text": "The fire that burned for a whole summer."
+ },
+ {
+  "id": "n12",
+  "scene": 5,
+  "text": "The storm that took the giant beside her."
+ },
+ {
+  "id": "n13",
+  "scene": 6,
+  "text": "Then my light went out."
+ },
+ {
+  "id": "n14",
+  "scene": 6,
+  "text": "And I remembered. When the fire came, the animals hid inside the tree. And they lived.",
+  "ex": 0.6
+ },
+ {
+  "id": "n15",
+  "scene": 7,
+  "text": "For one moment, he knew exactly who I was.",
+  "ex": 0.6
+ },
+ {
+  "id": "n16",
+  "scene": 8,
+  "text": "He forgot the tree long before we lost him. But the tree never forgot him."
+ },
+ {
+  "id": "n17",
+  "scene": 8,
+  "text": "Now I bring my son here, and I tell him her stories."
+ },
+ {
+  "id": "nA",
+  "scene": 2,
+  "text": "Grandpa was starting to forget things. Little things, at first.",
+  "seed": 7
+ },
+ {
+  "id": "nB",
+  "scene": 4,
+  "text": "When I came back, he was gone."
+ },
+ {
+  "id": "n10b",
+  "scene": 5,
+  "text": "Five hundred years ago, lightning split her crown, and she kept standing."
+ },
+ {
+  "id": "n11b",
+  "scene": 5,
+  "text": "Centuries ago, a fire burned through this forest for a whole summer."
+ },
+ {
+  "id": "n12b",
+  "scene": 5,
+  "text": "A storm knocked down the giant beside her. But not her."
+ }
+]
