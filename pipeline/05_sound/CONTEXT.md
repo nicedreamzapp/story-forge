@@ -11,7 +11,7 @@ One job: voice every line onto the approved clips and get a score Matt picked by
 
 ## Inputs
 - Working (this film): `stages/01_story/script.md` (the lines), approved `clips/`
-- Reference (every film): `../../CLAUDE.md` "DIALOGUE SCENE-BUILDING WORKFLOW", frozen rule 9
+- Reference (every film): `../../_shared/dialogue-scenes.md`, frozen rule 9 in `../../_shared/frozen-rules.md`
 - Reference (every film): `../../bin/character_voice.py`, `../../RULES.md` rules 22–23
 
 Do NOT load: canon generation tooling, `beats.json` gate history, other films.

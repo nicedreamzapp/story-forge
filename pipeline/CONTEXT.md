@@ -28,7 +28,7 @@ stamp a new film from `_templates/film/`). Each stage's `CONTEXT.md` frontmatter
 one home for its outputs and gate; the script reads it from there.
 
 Factory (stable, every film): `RULES.md`, `SCENE_BUILDING_METHOD.md`, `FILM_BIBLE_SPEC.md`,
-`LESSONS.json`, and the frozen rules in the root `CLAUDE.md`.
+`LESSONS.json`, and `_shared/` (frozen rules, gates, workflows).
 Product (new every film): `projects/<film>/`.
 
 Sending a film back: delete the later stages' `APPROVED.md` files when an earlier stage

@@ -12,8 +12,8 @@ One job: run the three mandatory gates, in order, and write down everything stil
 ## Inputs
 - Working (this film): `final/<Film>.mp4`, `final/timeline.json`, `narration.json`,
   `continuity.json`, the score file
-- Reference (every film): `../../CLAUDE.md` "MANDATORY STORY + SOUND GATES" and
-  "MANDATORY QC STAGE"; `../../RULES.md` rules 21–25
+- Reference (every film): `../../_shared/gates-and-qc.md` (story + sound gates and
+  the film_qc stage); `../../RULES.md` rules 21–25
 
 Do NOT load: generation tooling, other films' reports.
 

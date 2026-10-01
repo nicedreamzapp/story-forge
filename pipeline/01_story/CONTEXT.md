@@ -15,6 +15,7 @@ no still, no `.sf` yet.
 - Reference (every film): the `screenwriting` skills, `sw-premise-theme` FIRST, then
   `sw-story-structure`, `sw-character-conflict`, `sw-dialogue`
 - Reference (every film): `../../LESSONS.json` (filter by the film's keywords)
+- Reference (every film): `../../_shared/script-writing.md` (the bridge from screenplay to `.sf`)
 
 Do NOT load: other films' folders, `RULES.md` render rules, any pipeline-tools source.
 

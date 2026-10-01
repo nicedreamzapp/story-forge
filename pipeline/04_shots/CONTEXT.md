@@ -14,7 +14,8 @@ is reported UNBUILT, never quietly used.
 ## Inputs
 - Working (this film): `beats.json`, `canon/`, `shot_lessons.json` (if present)
 - Reference (every film): `../../RULES.md` "What a shot must prove" + "How motion is made"
-- Reference (every film): frozen rules 6, 11, 12, 14, 16, 18, 19, 27 in `../../CLAUDE.md`
+- Reference (every film): `../../_shared/movie-making-defaults.md`; `../../_shared/motion-transfer.md` only for a stunt driven by real footage
+- Reference (every film): frozen rules 6, 11, 12, 14, 16, 18, 19, 27 in `../../_shared/frozen-rules.md`
 
 Do NOT load: `voices/`, score files, `final/`, other films.
 
