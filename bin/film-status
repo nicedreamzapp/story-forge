@@ -1,0 +1,137 @@
+#!/usr/bin/env python3
+"""film-status — where is this film in the pipeline? Read from disk, never from memory.
+
+The stages, their outputs and their human gates are defined ONCE, in the frontmatter of
+pipeline/NN_name/CONTEXT.md. This script reads them from there and checks what exists in
+projects/<film>/, so a cold agent (or Matt) can tell where a film stands without asking.
+
+    bin/film-status projects/oldest_tree          # one film
+    bin/film-status --all                         # every film under projects/
+    bin/film-status projects/new_film --init      # stamp stages/ from _templates/film/
+
+A stage is DONE when every output exists, is non-empty, no longer carries the TEMPLATE
+marker, and (when its gate is `approved`) stages/NN_name/APPROVED.md exists. The NEXT
+stage is the first one that is not done; its CONTEXT.md is what the agent reads next.
+"""
+from __future__ import annotations
+
+import argparse
+import glob
+import shutil
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+PIPELINE = ROOT / "pipeline"
+TEMPLATE = ROOT / "_templates" / "film"
+MARKER = "<!-- TEMPLATE:"
+
+
+def read_stage(contract: Path) -> dict:
+    """Parse the small frontmatter block: stage, outputs (list), gate."""
+    lines = contract.read_text().splitlines()
+    if not lines or lines[0].strip() != "---":
+        sys.exit(f"{contract}: no frontmatter")
+    meta: dict = {"outputs": []}
+    key = None
+    for line in lines[1:]:
+        if line.strip() == "---":
+            break
+        if line.startswith("  - ") and key == "outputs":
+            meta["outputs"].append(line[4:].strip())
+        elif ":" in line:
+            key, _, val = line.partition(":")
+            key = key.strip()
+            if val.strip():
+                meta[key] = val.strip()
+    return meta
+
+
+def stages() -> list[dict]:
+    return [read_stage(p) for p in sorted(PIPELINE.glob("[0-9][0-9]_*/CONTEXT.md"))]
+
+
+def output_state(film: Path, pattern: str) -> str | None:
+    """None when the output is real; otherwise a short reason it is not."""
+    if pattern.endswith("/"):
+        d = film / pattern
+        if not d.is_dir():
+            return "missing"
+        return None if any(p for p in d.iterdir() if not p.name.startswith(".")) else "empty"
+    hits = [Path(h) for h in glob.glob(str(film / pattern))]
+    if not hits:
+        return "missing"
+    real = [h for h in hits if h.is_file() and h.stat().st_size > 0]
+    if not real:
+        return "empty"
+    for h in real:
+        if h.suffix in (".md", ".json"):
+            with h.open(errors="ignore") as f:
+                if f.readline().startswith(MARKER):
+                    return "still the template"
+    return None
+
+
+def report(film: Path) -> int:
+    print(f"\n{film.name}")
+    next_stage = None
+    for st in stages():
+        name = st["stage"]
+        gaps = []
+        for out in st["outputs"]:
+            why = output_state(film, out)
+            if why:
+                gaps.append(f"{out} ({why})")
+        if st.get("gate") == "approved" and not (film / "stages" / name / "APPROVED.md").exists():
+            gaps.append(f"stages/{name}/APPROVED.md (Matt has not approved)")
+        if gaps:
+            print(f"  [ ] {name}")
+            for g in gaps:
+                print(f"        needs {g}")
+            next_stage = next_stage or name
+        else:
+            print(f"  [x] {name}")
+    if next_stage:
+        print(f"  NEXT: {next_stage} — read pipeline/{next_stage}/CONTEXT.md")
+    else:
+        print("  DONE: every stage complete")
+    return 0
+
+
+def init(film: Path) -> None:
+    film.mkdir(parents=True, exist_ok=True)
+    for src in sorted((TEMPLATE / "stages").rglob("*")):
+        dst = film / "stages" / src.relative_to(TEMPLATE / "stages")
+        if src.is_dir():
+            dst.mkdir(parents=True, exist_ok=True)
+        elif not dst.exists():
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, dst)
+            print(f"  stamped {dst.relative_to(film)}")
+    for st in stages():
+        (film / "stages" / st["stage"]).mkdir(parents=True, exist_ok=True)
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("film", nargs="?", help="projects/<film>")
+    ap.add_argument("--all", action="store_true", help="report every film under projects/")
+    ap.add_argument("--init", action="store_true", help="stamp stages/ from _templates/film/")
+    a = ap.parse_args()
+    if a.all:
+        for d in sorted((ROOT / "projects").iterdir()):
+            if d.is_dir() and not d.name.startswith((".", "_")):
+                report(d)
+        return 0
+    if not a.film:
+        ap.error("give projects/<film> or --all")
+    film = Path(a.film).resolve()
+    if a.init:
+        init(film)
+    elif not film.is_dir():
+        sys.exit(f"{film} does not exist (use --init to start a new film)")
+    return report(film)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

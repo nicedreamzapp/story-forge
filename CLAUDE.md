@@ -2,6 +2,16 @@
 
 This directory is the home of **Story Forge**, a robust 100%-local generative VIDEO system — for making video of ANY kind (narrated explainers, ambient pieces, promos, documentary cuts, sagas, cartoons) in any style, from one readable `.sf` script. It is NOT a cartoon studio. Cartoons are just the case it works decently for right now — talking characters are the hardest case, so they're the proving ground, not the limit. When Claude Code starts here, this file auto-loads to bring you up to speed.
 
+## Making a film? Start at `pipeline/CONTEXT.md` (added 2026-10-01)
+Every film runs the same eight stages, one folder each under `pipeline/` (01_story →
+08_deliver). Each stage's `CONTEXT.md` names exactly what to read, what to write, and the
+one thing Matt checks before the next stage starts. Matt's approvals are files:
+`projects/<film>/stages/NN_name/APPROVED.md`. Where a film stands is read from disk:
+`bin/film-status projects/<film>` (`--init` stamps a new film). Read only the current
+stage's contract and its inputs, not this whole file. The frozen rules below still apply;
+the contracts point at the ones each stage needs. Method: ICM, folder structure as agent
+architecture (github.com/RinDig/Interpretable-Context-Methodology).
+
 ## How we build (the ethos — apply this to every decision)
 - **Build off what we KNOW works.** Perfect the proven win, then extend from it. Never restart from scratch and never chase an unproven path when a working one exists. Every new feature stands on a tested foundation.
 - **This is OUR environment, running OUR language (`.sf`).** We do not lean on other people's systems that are slow, old, and not tuned to our machines. The DSL exists so we control the whole stack end-to-end.
