@@ -18,6 +18,18 @@ Any kind of video, any style: explainers, documentaries, promos, music shorts, a
 
 ## 🍿 Watch the films
 
+### 🌲 Newest: The Oldest Tree (October 2026 progress film)
+
+[![The Oldest Tree](./oldest-tree-hero.jpg)](https://youtu.be/kCnheRjEP14)
+
+A girl, her grandfather, and the oldest redwood in the forest. He's starting to forget things; the tree remembers for him. Photoreal, **2:46**, 47 shots, narrated, original score.
+
+Every month I make a new film to show how far local video has come. This one is about the limit of what one **M5 Max with 128GB** can do today: **2,130** stills generated and judged by a local vision model (28% passed), **270** LTX-2.5 animation renders, about **105 hours** of measured compute. Where it falls short is honest too: the grown granddaughter reads too young, and a few close-ups drift. Per-character LoRAs are the next fix.
+
+Stack: Qwen-Image stills · LTX-2.5 image-to-video · LTX-2 distilled audio-to-video for lip sync · Chatterbox and Kokoro voices · Song Forge (ACE-Step) score · Qwen3-VL judge · Whisper · FFmpeg.
+
+[▶ Watch](https://youtu.be/kCnheRjEP14) · [📁 Project folder](./projects/oldest_tree/)
+
 <table>
 <tr>
 <td width="50%" valign="top">
@@ -43,7 +55,7 @@ An uploaded mind pieces together how the world ended. Psychedelic sci-fi, five a
 </tr>
 </table>
 
-> 🕰️ Both were made on the **first** pipeline (May and June 2026). Nearly every stage has been upgraded since. Here's what runs today 👇
+> 🕰️ The Bear Sister and The Lucid Engine were made on the **first** pipeline (May and June 2026). Nearly every stage has been upgraded since. Here's what runs today 👇
 
 ---
 
@@ -159,11 +171,11 @@ So now a local vision model judges every shot against its story beat before it's
 
 ---
 
-## 🚀 Where it stands (Sept 22, 2026)
+## 🚀 Where it stands (Oct 3, 2026)
 
 | | |
 |---|---|
-| ✅ **Full films, hands-off** | The director keeps working until every beat has footage that passed. Current film: **22 of 23** beats built |
+| ✅ **Full films, hands-off** | The director keeps working until every beat has footage that passed. Latest film: **The Oldest Tree**, 2:46, 47 shots, finished Sept 30 |
 | ✅ **~10× faster animation** | LTX-2.5: **~69 s** a shot vs **13–16 min** on Wan |
 | ✅ **Voice-driven close-ups** | The video is made from the voice recording, so the mouth follows real speech |
 | ✅ **Firsts on a Mac** | LTX 13B running on Apple Silicon · 1-step Wan distillation · a speed harness gated on image quality |

@@ -32,7 +32,7 @@ ANCH = [("n01","s1_descend",0.3),("n02","s2_wide_walk",0.5),("nA","s2_track_behi
         ("n04","s3_reveal",0.8),("n05","s3_hollow",0.3),("n06","s3_profile",0.3),("n07","s3_heart",0.3),
         ("n08","s4_walkback",0.3),("nB","s4_empty",0.5),("n09","s5_silhouette",0.3),("n10b","s5_storm",0.3),("n11b","s5_firewall",0.3),
         ("n12b","s5_sway",0.3),("n13","s6_black",0.5),("n14","s6_eyes",0.3),("n15","s7_wide",0.5),
-        ("n16","s8_wide",0.8),("n17","s8_pullback",0.5)]
+        ("n16b","s8_wide",0.8),("n17","s8_pullback",0.5)]
 nar, last_end = [], 0.0
 for ln, sid, off in ANCH:
     if sid not in at: print("anchor missing", sid); continue
