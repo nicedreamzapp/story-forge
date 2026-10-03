@@ -36,3 +36,15 @@ Pipeline fix made tonight: bin/forge-shot unloads the in-process VL judge before
 - Narrator voice note: nia.wav is an EARS CC-NC reference — fine for personal use, swap before monetizing.
 - 9:13a Matt: score had LYRICS (Song Forge writes lyrics when lyrics blank — always send lyrics "[instrumental]") and drowned the narration -> new score v2 + music 0.32 + hard sidechain duck.
 - 8:15p 9/29 story-clarity pass (Matt: "I don't know what it's about"): added s4_wander (grandpa walks off into fog), lines nA/nB/n10b/n11b/n12b make memory loss, disappearance and "centuries ago" explicit; cut s5_fallen (read as our tree falling). Music = score 3 (Matt's pick), static-gain mix. Hands = ken_burns stills; s2_hands/s6_hands/s8_childhand cut.
+- 11:45a 9/30 Matt's verdict on final/The_Oldest_Tree.mp4 (2:46): "decent, but it wouldn't pass for anything I would wanna watch." Accepting it as-is. Open faults he named: the grown-up granddaughter (canon/woman.png) reads the SAME age as the 10-year-old — the judge passed a ~20-year-old face for "35" at 2:06a and I let it through; and a few girl close-ups drift to a younger/different face. Real fix, if ever revisited: per-character LoRAs (Qwen reference alone doesn't hold faces across angles), recast the adult at a clearly older age with a side-by-side age check, and cut any close-up that fails identity by eye, not only by the judge.
+
+## PARKED 2026-09-30 11:46a — TODO if we come back to The Oldest Tree
+Current cut: final/The_Oldest_Tree.mp4 (2:46). Matt: "decent, but it wouldn't pass for anything I would wanna watch."
+1. Grown-up granddaughter looks the same age as the 10-year-old. Recast canon/woman.png clearly ~40 (side-by-side age check vs canon/girl.png BY EYE), redo s8_wide, s8_pullback, s8_hand.
+2. Girl's face drifts younger/different in a few close-ups. Train per-character LoRAs (girl, grandpa) before any re-render; re-shoot or cut any close-up that fails identity by eye.
+3. Re-render s7_looms + s7_back with moonlight only (cut for flashlight glow) — or leave cut.
+4. Never finished: s6_breath (her crying in the dark) and s7_coat (her wrapping him in the raincoat) — the coat handoff happens off-screen.
+5. Last hollow shot (s7_wide) sits at the tree's opening, not deep inside the hollow.
+6. Sound effects were pulled (MMAudio came out as noise). Need a foley source that passes audio_check.
+7. Mix is quiet (~-22 LUFS, LRA 16): tame the narration peaks so the static gain can reach ~-16 without limiting.
+8. Before showing again: audio_check + continuity_check + film_qc + read final/story_sheet.png against the story (CLAUDE.md gates). The final checks on this 2:46 cut were stopped at Matt's request — it is not fully verified.
