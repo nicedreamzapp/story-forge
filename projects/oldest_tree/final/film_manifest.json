@@ -1,0 +1,265 @@
+{
+ "characters": {
+  "grandpa": "75-year-old man with short white hair, trimmed white beard, olive-green waxed jacket",
+  "girl": "10-year-old girl with a long dark brown braid and a mustard-yellow raincoat"
+ },
+ "scenes": [
+  {
+   "name": "s1_canopy",
+   "start": 0.6,
+   "end": 3.4
+  },
+  {
+   "name": "s1_descend",
+   "start": 4.1,
+   "end": 6.9
+  },
+  {
+   "name": "s1_trunk_up",
+   "start": 7.6,
+   "end": 10.4
+  },
+  {
+   "name": "s1_rays",
+   "start": 11.1,
+   "end": 13.9
+  },
+  {
+   "name": "s1_floor",
+   "start": 14.6,
+   "end": 17.4
+  },
+  {
+   "name": "s2_wide_walk",
+   "start": 18.1,
+   "end": 20.9
+  },
+  {
+   "name": "s2_track_behind",
+   "start": 21.6,
+   "end": 24.4
+  },
+  {
+   "name": "s2_girl_spin",
+   "start": 25.1,
+   "end": 27.9
+  },
+  {
+   "name": "s2_talk",
+   "start": 28.6,
+   "end": 32.98
+  },
+  {
+   "name": "s2_girl_listen",
+   "start": 33.68,
+   "end": 36.48
+  },
+  {
+   "name": "s2_boots",
+   "start": 37.18,
+   "end": 39.98
+  },
+  {
+   "name": "s3_reveal",
+   "start": 40.68,
+   "end": 43.48
+  },
+  {
+   "name": "s3_seed",
+   "start": 44.18,
+   "end": 46.98
+  },
+  {
+   "name": "s3_sapling",
+   "start": 47.68,
+   "end": 50.48
+  },
+  {
+   "name": "s3_hollow",
+   "start": 51.18,
+   "end": 53.98
+  },
+  {
+   "name": "s3_profile",
+   "start": 54.68,
+   "end": 57.48
+  },
+  {
+   "name": "s3_heart",
+   "start": 58.18,
+   "end": 60.98
+  },
+  {
+   "name": "s3_hand",
+   "start": 61.68,
+   "end": 64.48
+  },
+  {
+   "name": "s4_creek",
+   "start": 65.17,
+   "end": 67.98
+  },
+  {
+   "name": "s4_wander",
+   "start": 68.67,
+   "end": 71.48
+  },
+  {
+   "name": "s4_walkback",
+   "start": 72.17,
+   "end": 74.98
+  },
+  {
+   "name": "s4_empty",
+   "start": 75.67,
+   "end": 78.48
+  },
+  {
+   "name": "s4_turn",
+   "start": 79.17,
+   "end": 81.98
+  },
+  {
+   "name": "s4_fog_aerial",
+   "start": 82.67,
+   "end": 85.48
+  },
+  {
+   "name": "s5_beam",
+   "start": 86.17,
+   "end": 88.98
+  },
+  {
+   "name": "s5_silhouette",
+   "start": 89.67,
+   "end": 92.48
+  },
+  {
+   "name": "s5_face",
+   "start": 93.17,
+   "end": 95.98
+  },
+  {
+   "name": "s5_tiny",
+   "start": 96.67,
+   "end": 99.48
+  },
+  {
+   "name": "s5_storm",
+   "start": 100.17,
+   "end": 102.98
+  },
+  {
+   "name": "s5_crown",
+   "start": 103.67,
+   "end": 106.48
+  },
+  {
+   "name": "s5_firewall",
+   "start": 107.17,
+   "end": 109.98
+  },
+  {
+   "name": "s5_embers",
+   "start": 110.67,
+   "end": 113.48
+  },
+  {
+   "name": "s5_shelter",
+   "start": 114.17,
+   "end": 116.98
+  },
+  {
+   "name": "s5_trunkfire",
+   "start": 117.67,
+   "end": 120.48
+  },
+  {
+   "name": "s5_sway",
+   "start": 121.17,
+   "end": 123.98
+  },
+  {
+   "name": "s6_black",
+   "start": 124.67,
+   "end": 127.47
+  },
+  {
+   "name": "s6_eyes",
+   "start": 128.18,
+   "end": 130.97
+  },
+  {
+   "name": "s7_run",
+   "start": 131.67,
+   "end": 134.47
+  },
+  {
+   "name": "s7_looms",
+   "start": 135.17,
+   "end": 137.97
+  },
+  {
+   "name": "s7_push",
+   "start": 138.67,
+   "end": 141.47
+  },
+  {
+   "name": "s7_back",
+   "start": 142.17,
+   "end": 144.97
+  },
+  {
+   "name": "s7_kneel",
+   "start": 145.67,
+   "end": 148.47
+  },
+  {
+   "name": "s7_talk",
+   "start": 149.17,
+   "end": 151.68
+  },
+  {
+   "name": "s7_wide",
+   "start": 152.38,
+   "end": 155.18
+  },
+  {
+   "name": "s8_wide",
+   "start": 155.88,
+   "end": 158.68
+  },
+  {
+   "name": "s8_hand",
+   "start": 159.38,
+   "end": 162.18
+  },
+  {
+   "name": "s8_pullback",
+   "start": 162.88,
+   "end": 165.68
+  },
+  {
+   "name": "s8_rise",
+   "start": 166.38,
+   "end": 169.18
+  },
+  {
+   "name": "s8_canopy",
+   "start": 169.88,
+   "end": 172.68
+  }
+ ],
+ "lines": [
+  {
+   "t": 28.4,
+   "speaker": "grandpa",
+   "text": "Your grandmother used to say these trees were listening."
+  },
+  {
+   "t": 141.97,
+   "speaker": "grandpa",
+   "text": "Lily, you found me."
+  }
+ ]
+}
