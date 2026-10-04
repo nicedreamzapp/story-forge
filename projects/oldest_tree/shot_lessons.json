@@ -19,7 +19,9 @@
   "Reposition the girl mid-stride, with one foot forward and her body angled slightly to the side, as if walking along the trail, and adjust the camera angle to capture her in motion from a slight distance to convey forward movement through the forest.",
   "Reposition the girl mid-stride, turning slightly away from the camera, with one foot forward and her body angled as if moving along the trail, to clearly convey the action of walking.",
   "Reposition the girl mid-stride, with one foot forward and her body angled slightly to the side, as if walking along the trail, and adjust the camera angle to capture her in motion from a slight distance, with the path leading into the foggy forest behind her.",
-  "Reposition the girl mid-stride, with one foot forward and her body angled slightly to the side, as if moving along the trail, and adjust the camera angle to capture her in motion from a slight distance to emphasize forward movement through the foggy forest."
+  "Reposition the girl mid-stride, with one foot forward and her body angled slightly to the side, as if moving along the trail, and adjust the camera angle to capture her in motion from a slight distance to emphasize forward movement through the foggy forest.",
+  "Reposition the girl mid-stride, with one foot forward and her body angled slightly to the side, to clearly show motion along the trail, and adjust the camera angle to capture her moving away from the viewer down the path, with the forest receding behind her.",
+  "the character must be drawn ON-MODEL and large enough in frame to read as the same character as the locked master"
  ],
  "s4_turn": [
   "Turn the girl\u2019s head slightly to the side, tilt her eyes upward and to the side as if scanning the surroundings with visible concern, and add subtle tension in her jaw and furrowed brow to convey worry, while keeping her in the same forest setting with fog.",
@@ -83,10 +85,14 @@
   "Make the child\u2019s hand visibly smaller and more delicate in proportion to the adult\u2019s hand, with shorter fingers and a smaller palm, and position them side-by-side on the tree bark so the size difference is clear and unambiguous."
  ],
  "s2_wide_walk": [
-  "Reposition the two figures mid-stride along the trail, with one foot forward and arms slightly swinging, to clearly convey forward motion, and adjust their gaze slightly ahead to suggest purposeful walking rather than standing still."
+  "Reposition the two figures mid-stride along the trail, with one foot forward and arms slightly swinging, to clearly convey forward motion, and adjust their gaze slightly ahead to suggest purposeful walking rather than standing still.",
+  "the character must be drawn ON-MODEL and large enough in frame to read as the same character as the locked master",
+  "Add forward motion to the man and girl by repositioning their legs mid-stride\u2014feet slightly apart, one leg forward, arms swinging naturally\u2014as if walking toward the camera, while maintaining their hand-holding and facial expressions, to clearly convey movement along the trail."
  ],
  "s2_wide_walk_animation": [
-  "Reposition the two figures mid-stride along the trail, with one foot forward and arms slightly swinging, to clearly convey forward motion, and adjust their gaze slightly ahead to suggest movement through the forest."
+  "Reposition the two figures mid-stride along the trail, with one foot forward and arms slightly swinging, to clearly convey forward motion, and adjust their gaze slightly ahead to suggest movement through the forest.",
+  "keep the face steady and on-model through the whole move; less head turn, slower motion, camera does not push in on the face",
+  "Move the characters forward along the trail, showing motion in their posture\u2014slightly bent knees, one foot ahead of the other\u2014and adjust their arms so their hands are clearly clasped and swinging slightly with their steps, to convey walking rather than standing still."
  ],
  "s2_hands": [
   "Replace the adult-sized hand on the right with a visibly smaller, child\u2019s hand\u2014showing shorter fingers, thinner skin, and proportionally smaller palm\u2014to clearly convey the age difference and fulfill the beat of an old hand holding a child\u2019s hand.",
@@ -138,10 +144,19 @@
  "s7_kneel": [
   "Move the girl and grandfather inside the hollow of a large, charred tree trunk, with the girl kneeling beside him on the forest floor within the hollow, and frame the shot so the tree\u2019s interior encloses them, with the moonlight filtering through the opening above.",
   "Restage the girl into a kneeling position beside the grandfather, with her knees on the ground and her body lowered, while keeping the grandfather seated inside the hollow tree, maintaining the same moonlit, foggy atmosphere.",
-  "Restage the girl so she is kneeling on the ground beside the grandfather, with her knees bent and feet tucked under her, hands resting on her thighs or the ground, clearly in a kneeling position rather than sitting upright."
+  "Restage the girl so she is kneeling on the ground beside the grandfather, with her knees bent and feet tucked under her, hands resting on her thighs or the ground, clearly in a kneeling position rather than sitting upright.",
+  "the character must be drawn ON-MODEL and large enough in frame to read as the same character as the locked master"
  ],
  "s7_wide_animation": [
   "Position the girl so her head is clearly resting on the old man\u2019s shoulder, and adjust the framing to emphasize their closeness within the hollow tree, with fog visibly drifting through the opening behind them.",
   "Position the girl so her head is resting on the old man\u2019s shoulder, and adjust their posture to show them sitting closer together, emphasizing physical intimacy and comfort within the hollow tree."
+ ],
+ "s4_walkback_animation": [
+  "Increase the fog density and lower the ambient light to deepen the dusk atmosphere, ensuring the girl\u2019s face is partially obscured by mist to enhance the sense of mystery and forward motion through the enveloping forest.",
+  "Move the girl slightly closer to the camera and adjust her pose to show forward motion\u2014step one foot ahead, arms slightly swinging at her sides\u2014to clearly convey walking toward the viewer, while maintaining the foggy, dusky atmosphere.",
+  "keep the face steady and on-model through the whole move; less head turn, slower motion, camera does not push in on the face"
+ ],
+ "s7_kneel_animation": [
+  "keep the face steady and on-model through the whole move; less head turn, slower motion, camera does not push in on the face"
  ]
 }

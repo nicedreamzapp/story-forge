@@ -521,6 +521,14 @@ def identity_ok(shot: dict, proj: Path, img: Path) -> bool:
     """
     idents = shot.get("identity")
     if not idents:
+        # A canon character named only under `refs` is still a character on screen.
+        # s4_walkback (The Oldest Tree, 2026-10-03) listed the girl as a Qwen ref and no
+        # identity master, so this gate returned True without looking, and a different,
+        # younger girl walked through four seconds of the film. Refs pointing at canon/
+        # are identity masters too.
+        idents = [{"master": r["image"], "subject": r.get("subject", r["image"])}
+                  for r in (shot.get("refs") or []) if str(r.get("image", "")).startswith("canon/")]
+    if not idents:
         return True
     # A gate that cannot SEE its subject must not vote (2026-08-02). t2_lion is a
     # muzzle pressed into a plank crack — no head, no ears, no markings in frame.
@@ -564,7 +572,29 @@ def identity_ok(shot: dict, proj: Path, img: Path) -> bool:
             f"{'MATCH' if ok else 'DRIFT'} — {ans[:150]}")
         cmp_png.unlink(missing_ok=True)
         ok_all = ok_all and ok
+    # The VL judge reading a side-by-side cannot tell two dark-haired ten-year-olds
+    # apart; a face-recognition embedding can (2026-10-03). Humans only: face_check
+    # finds no face on a cartoon bear and says UNCHECKED, which does not veto.
+    if ok_all and not face_gate(shot, proj, still=img):
+        return False
     return ok_all
+
+
+FACE_PY = Path.home() / "AI/ComfyUI/venv/bin/python"   # has insightface + onnxruntime
+FACE_CHECK = Path(__file__).resolve().parent.parent / "pipeline-tools" / "face_check.py"
+
+
+def face_gate(shot: dict, proj: Path, still: Path | None = None, clip: Path | None = None) -> bool:
+    """pipeline-tools/face_check.py on one still or clip. FAIL vetoes; UNCHECKED does not."""
+    if not (FACE_PY.is_file() and FACE_CHECK.is_file() and (proj / "film_shots.json").is_file()):
+        log("  face gate: face_check or its venv missing, UNCHECKED")
+        return True
+    mode = ["--still", shot["id"], str(still)] if still else ["--clip", shot["id"], str(clip)]
+    r = subprocess.run([str(FACE_PY), str(FACE_CHECK), str(proj), *mode],
+                       capture_output=True, text=True)
+    first = (r.stdout.strip().splitlines() or ["?"])[0]
+    log(f"  face gate ({'still' if still else 'clip'}): {' | '.join(r.stdout.split()[:1] + [l.strip() for l in r.stdout.strip().splitlines()[1:4]])}")
+    return r.returncode == 0
 
 
 def text_free(shot: dict, proj: Path, img: Path) -> bool:
@@ -876,12 +906,22 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
     # ANIMATE ENGINE (2026-08-29): "engine": "ltx25" in shots.json defaults, or
     # SF_ANIMATE_ENGINE=ltx25 in the environment, routes the animate to LTX-2.5 via
     # bin/make-ltx25 (same CLI contract, same "done in Ns → path" line). Default stays Wan.
+    # ROTATE THE ANIMATION SEED PER ATTEMPT (2026-10-03). Every re-animate used seeds[0],
+    # and LTX-2.5 is seed-deterministic, so s2_wide_walk's retry reproduced the failed clip
+    # to the second decimal of its face score. A retry with the same seed and prompt is
+    # not a retry. The attempt count lives on disk so separate runs keep rotating.
+    attempts_f = proj / "wip" / f"{shot['id']}_anim_attempts"
+    attempts_f.parent.mkdir(parents=True, exist_ok=True)
+    n_try = int(attempts_f.read_text() or 0) if attempts_f.is_file() else 0
+    attempts_f.write_text(str(n_try + 1))
+    anim_seed = seeds[n_try % len(seeds)]
+    log(f"  animate attempt {n_try + 1}, seed {anim_seed}")
     engine = os.environ.get("SF_ANIMATE_ENGINE") or shot.get("engine") or defaults.get("engine", "wan")
     anim_bin = MAKE_LTX25 if engine == "ltx25" else MAKE_VIDEO
     log(f"  animate engine: {engine}")
     anim_cmd = [anim_bin, "--i2v", lock_path, "--res", res,
                 "--duration", shot.get("duration", defaults.get("duration", 5)),
-                "--seed", seeds[0],
+                "--seed", anim_seed,
                 "--label", shot["id"], corrected_prompt(shot["animate"], anim_lessons)]
     if engine == "ltx25":
         # measured 2026-08-29: --low-ram renders the same frames (seed-deterministic) in
@@ -964,6 +1004,17 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
                 f"{keep.relative_to(proj)} so the failure can be diagnosed, still stays locked")
             out["state"] = "CLIP_FAILED"
     clip_tmp.unlink(missing_ok=True)
+    # A locked still that is on-model can still melt during animation: s4_walkback's
+    # face slid from 0.23 to 0.11 match across four seconds. Check the kept clip too.
+    if out.get("state") in ("CLIP_KEPT", "CLIP_TRIMMED") and not face_gate(shot, proj, clip=final):
+        failed_dir = proj / "clips" / "_failed"
+        failed_dir.mkdir(parents=True, exist_ok=True)
+        final.rename(failed_dir / f"{shot['id']}_face_failed.mp4")
+        save_lesson(proj, shot["id"] + "_animation",
+                    "keep the face steady and on-model through the whole move; less head turn, "
+                    "slower motion, camera does not push in on the face")
+        log(f"  {shot['id']}: face drifted off the canon character during animation — clip NOT used")
+        out["state"] = "CLIP_FAILED"
     return out
 
 

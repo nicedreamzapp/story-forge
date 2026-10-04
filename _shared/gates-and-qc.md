@@ -3,12 +3,18 @@ film_qc checks faces, mouths and glitches. It passed The Oldest Tree while Matt,
 found a buzzing drone, a sung vocal in the "instrumental" score, music louder than the
 narrator, melting fingers, a tree that looked burned to a stump, a flashlight that "went out"
 and kept glowing, and an ending heart shot with no heart. "I'm surprised you're not noticing."
-So three gates now run, in this order, and all three reports are read before showing:
+So four gates now run, in this order, and all four reports are read before showing:
 1. `~/chatterbox-env/bin/python pipeline-tools/audio_check.py FILM --score S --timeline final/timeline.json --narration narration.json`
 2. `~/.local/mlx-server/bin/python pipeline-tools/continuity_check.py projects/<film>` —
    needs `projects/<film>/continuity.json`; ALSO read `final/story_sheet.png` + `.md` yourself
    against the story and write down what a first-time viewer would misread.
 3. `film_qc.py` (below).
+4. `~/AI/ComfyUI/venv/bin/python pipeline-tools/face_check.py projects/<film>` (added 2026-10-03) —
+   face-recognition match of every on-screen face against its canon portrait, 5 frames per shot.
+   film_qc's identity sheet passed a different, younger girl in s4_walkback; Matt caught it by eye.
+   FAIL = median match < 0.30 in the film (< 0.45 on a still). forge-shot now runs it on every
+   still before lock and every clip before keep, including shots that list canon only under `refs`.
+   Its age numbers are NOT reliable on children (canon 10-year-old reads 37); judge age by eye.
 Then tell Matt what is still wrong BEFORE he finds it. Rules 21–25 in RULES.md.
 Score requests: always `"lyrics": "[instrumental]"`; Matt picks the score by ear from 2–3 screened candidates.
 Mix: static gain, never loudnorm dynamic. Hands: ken_burns on a locked still. Foley (MMAudio)
