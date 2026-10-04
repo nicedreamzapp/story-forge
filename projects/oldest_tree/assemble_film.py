@@ -76,7 +76,7 @@ for sid in order:
     if f.exists() and sid not in talk:
         st = at[sid]; L = lens[order.index(sid)]
         inputs += ["-i", str(f)]; fc.append(f"[{n}:a]atrim=0:{L},afade=t=in:d=0.3,afade=t=out:st={L-0.4:.2f}:d=0.4,volume=0.35,adelay={int(st*1000)}|{int(st*1000)},aformat=channel_layouts=stereo:sample_rates=48000[f{n}]"); fk.append(f"[f{n}]"); n += 1
-fc.append("".join(vk) + f"amix=inputs={len(vk)}:normalize=0,volume=2.0,apad[voc2]")
+fc.append("".join(vk) + f"amix=inputs={len(vk)}:normalize=0,volume=2.0,acompressor=threshold=-24dB:ratio=3:attack=8:release=200:makeup=2,apad[voc2]")
 bed = "[mus]"
 if fk:
     fc.append("[mus]" + "".join(fk) + f"amix=inputs={len(fk)+1}:normalize=0:duration=first[bed]"); bed = "[bed]"
@@ -101,7 +101,8 @@ subprocess.run(cmd, check=True)
 m = subprocess.run([FF, "-i", str(out), "-vn", "-af", "ebur128", "-f", "null", "-"], capture_output=True, text=True).stderr
 import re as _re
 I = float(_re.findall(r"I:\s+(-?[\d.]+) LUFS", m)[-1])
-gain = -19.0 - I   # -19: at -16 the limiter was shaving ~5 dB off voice peaks
+gain = -16.0 - I   # 2026-10-03: the voice bus is compressed now (3:1 above -24 dB), so its peaks no longer
+                   # make the limiter shave ~5 dB at -16; the old -19 target ended at -21.9 LUFS, too quiet
 tmp = out.with_name("_gain_tmp.mp4")
 subprocess.run([FF, "-y", "-i", str(out), "-c:v", "copy", "-af", f"volume={gain:.2f}dB,alimiter=limit=0.89:level=false",
                 "-c:a", "aac", "-b:a", "256k", str(tmp)], check=True)

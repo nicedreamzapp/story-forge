@@ -15,6 +15,10 @@ So four gates now run, in this order, and all four reports are read before showi
    FAIL = median match < 0.30 in the film (< 0.45 on a still). forge-shot now runs it on every
    still before lock and every clip before keep, including shots that list canon only under `refs`.
    Its age numbers are NOT reliable on children (canon 10-year-old reads 37); judge age by eye.
+   FACE LOCK (2026-10-03): `pipeline-tools/face_lock.py` re-renders every face in an animated clip with
+   its canon identity (inswapper), and forge-shot runs it on every kept non-talk clip before the face gate.
+   After a lock, face_check scores ~0.9 by construction, so a locked clip is judged BY EYE: no pop between
+   locked and unlocked frames, no face pasted on bark (det_score >= 0.65), expression still reads.
 Then tell Matt what is still wrong BEFORE he finds it. Rules 21–25 in RULES.md.
 Score requests: always `"lyrics": "[instrumental]"`; Matt picks the score by ear from 2–3 screened candidates.
 Mix: static gain, never loudnorm dynamic. Hands: ken_burns on a locked still. Foley (MMAudio)

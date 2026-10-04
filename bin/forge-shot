@@ -582,6 +582,7 @@ def identity_ok(shot: dict, proj: Path, img: Path) -> bool:
 
 FACE_PY = Path.home() / "AI/ComfyUI/venv/bin/python"   # has insightface + onnxruntime
 FACE_CHECK = Path(__file__).resolve().parent.parent / "pipeline-tools" / "face_check.py"
+FACE_LOCK = Path(__file__).resolve().parent.parent / "pipeline-tools" / "face_lock.py"
 
 
 def face_gate(shot: dict, proj: Path, still: Path | None = None, clip: Path | None = None) -> bool:
@@ -1005,7 +1006,21 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
             out["state"] = "CLIP_FAILED"
     clip_tmp.unlink(missing_ok=True)
     # A locked still that is on-model can still melt during animation: s4_walkback's
-    # face slid from 0.23 to 0.11 match across four seconds. Check the kept clip too.
+    # face slid from 0.23 to 0.11 match across four seconds. Six seeds never converged, so
+    # (2026-10-03) the kept clip is face-locked first: pipeline-tools/face_lock.py re-renders
+    # every face with its canon identity, keeping the motion. Talk shots are skipped so the
+    # lip-sync mouth is never touched. Then the clip is checked like any other.
+    if out.get("state") in ("CLIP_KEPT", "CLIP_TRIMMED") and not shot.get("talk") \
+            and FACE_LOCK.is_file() and FACE_PY.is_file():
+        locked_clip = final.with_name(final.stem + "_lock.mp4")
+        r = subprocess.run([str(FACE_PY), str(FACE_LOCK), str(proj), shot["id"], str(final), str(locked_clip)],
+                           capture_output=True, text=True)
+        if r.returncode == 0 and locked_clip.is_file():
+            final.with_name(final.stem + "_prelock.mp4").write_bytes(final.read_bytes())
+            locked_clip.replace(final)
+            log(f"  face lock: {r.stdout.strip()[:160]}")
+        else:
+            log(f"  face lock skipped: {(r.stdout + r.stderr).strip()[-160:]}")
     if out.get("state") in ("CLIP_KEPT", "CLIP_TRIMMED") and not face_gate(shot, proj, clip=final):
         failed_dir = proj / "clips" / "_failed"
         failed_dir.mkdir(parents=True, exist_ok=True)

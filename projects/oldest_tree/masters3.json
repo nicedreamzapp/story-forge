@@ -1,0 +1,41 @@
+{
+ "defaults": {
+  "res": "1024x1024",
+  "seeds": [
+   11,
+   22,
+   33
+  ],
+  "votes": 3
+ },
+ "shots": [
+  {
+   "id": "m_woman40",
+   "prompt": "photorealistic cinematic film still, soft overcast light through fog, shallow depth of field, 50mm anamorphic lens, subtle film grain, natural skin texture, high dynamic range: three-quarter view portrait of the same girl from the reference image grown up into a 42-year-old woman, a mature adult face clearly in her forties with fine smile lines at the eyes and a stronger jaw, no longer youthful, standing in a foggy redwood forest, long dark brown hair in a single braid, freckles, hazel eyes, mustard-yellow hooded raincoat",
+   "refs": [
+    {
+     "image": "canon/girl.png",
+     "subject": "the same person as a 10-year-old girl"
+    }
+   ],
+   "beat": "a portrait of a woman in her early forties with a long dark braid and a mustard-yellow raincoat",
+   "must_not": [
+    "a child",
+    "a cartoon",
+    "readable writing",
+    "more than one person"
+   ],
+   "negative": "cartoon, illustration, cgi look, plastic skin, text, watermark, deformed hands",
+   "lock": "canon/woman40.png",
+   "seeds": [
+    11,
+    22,
+    33,
+    44,
+    55,
+    66
+   ],
+   "_identity_waived": "an aged-up master is a different age from its reference by design; judged by eye against canon/girl.png"
+  }
+ ]
+}

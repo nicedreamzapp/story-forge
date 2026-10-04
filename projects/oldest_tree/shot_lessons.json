@@ -158,5 +158,8 @@
  ],
  "s7_kneel_animation": [
   "keep the face steady and on-model through the whole move; less head turn, slower motion, camera does not push in on the face"
+ ],
+ "m_woman40": [
+  "the character must be drawn ON-MODEL and large enough in frame to read as the same character as the locked master"
  ]
 }

@@ -6,248 +6,248 @@
  "scenes": [
   {
    "name": "s1_canopy",
-   "start": 0.6,
-   "end": 3.4
+   "start": 0.3,
+   "end": 3.7
   },
   {
    "name": "s1_descend",
-   "start": 4.1,
-   "end": 6.9
+   "start": 3.8,
+   "end": 7.2
   },
   {
    "name": "s1_trunk_up",
-   "start": 7.6,
-   "end": 10.4
+   "start": 7.3,
+   "end": 10.7
   },
   {
    "name": "s1_rays",
-   "start": 11.1,
-   "end": 13.9
+   "start": 10.8,
+   "end": 14.2
   },
   {
    "name": "s1_floor",
-   "start": 14.6,
-   "end": 17.4
+   "start": 14.3,
+   "end": 17.7
   },
   {
    "name": "s2_wide_walk",
-   "start": 18.1,
-   "end": 20.9
+   "start": 17.8,
+   "end": 21.2
   },
   {
    "name": "s2_track_behind",
-   "start": 21.6,
-   "end": 24.4
+   "start": 21.3,
+   "end": 24.7
   },
   {
    "name": "s2_girl_spin",
-   "start": 25.1,
-   "end": 27.9
+   "start": 24.8,
+   "end": 28.2
   },
   {
    "name": "s2_talk",
-   "start": 28.6,
-   "end": 32.98
+   "start": 28.3,
+   "end": 33.28
   },
   {
    "name": "s2_girl_listen",
-   "start": 33.68,
-   "end": 36.48
+   "start": 33.38,
+   "end": 36.78
   },
   {
    "name": "s2_boots",
-   "start": 37.18,
-   "end": 39.98
+   "start": 36.88,
+   "end": 40.28
   },
   {
    "name": "s3_reveal",
-   "start": 40.68,
-   "end": 43.48
+   "start": 40.38,
+   "end": 43.78
   },
   {
    "name": "s3_seed",
-   "start": 44.18,
-   "end": 46.98
+   "start": 43.88,
+   "end": 47.28
   },
   {
    "name": "s3_sapling",
-   "start": 47.68,
-   "end": 50.48
+   "start": 47.38,
+   "end": 50.78
   },
   {
    "name": "s3_hollow",
-   "start": 51.18,
-   "end": 53.98
+   "start": 50.88,
+   "end": 54.28
   },
   {
    "name": "s3_profile",
-   "start": 54.68,
-   "end": 57.48
+   "start": 54.38,
+   "end": 57.78
   },
   {
    "name": "s3_heart",
-   "start": 58.18,
-   "end": 60.98
+   "start": 57.88,
+   "end": 61.28
   },
   {
    "name": "s3_hand",
-   "start": 61.68,
-   "end": 64.48
+   "start": 61.38,
+   "end": 64.78
   },
   {
    "name": "s4_creek",
-   "start": 65.17,
-   "end": 67.98
+   "start": 64.88,
+   "end": 68.28
   },
   {
    "name": "s4_wander",
-   "start": 68.67,
-   "end": 71.48
+   "start": 68.38,
+   "end": 71.78
   },
   {
    "name": "s4_walkback",
-   "start": 72.17,
-   "end": 74.98
+   "start": 71.88,
+   "end": 75.28
   },
   {
    "name": "s4_empty",
-   "start": 75.67,
-   "end": 78.48
+   "start": 75.38,
+   "end": 78.78
   },
   {
    "name": "s4_turn",
-   "start": 79.17,
-   "end": 81.98
+   "start": 78.88,
+   "end": 82.28
   },
   {
    "name": "s4_fog_aerial",
-   "start": 82.67,
-   "end": 85.48
+   "start": 82.38,
+   "end": 85.78
   },
   {
    "name": "s5_beam",
-   "start": 86.17,
-   "end": 88.98
+   "start": 85.88,
+   "end": 89.28
   },
   {
    "name": "s5_silhouette",
-   "start": 89.67,
-   "end": 92.48
+   "start": 89.38,
+   "end": 92.78
   },
   {
    "name": "s5_face",
-   "start": 93.17,
-   "end": 95.98
+   "start": 92.88,
+   "end": 96.28
   },
   {
    "name": "s5_tiny",
-   "start": 96.67,
-   "end": 99.48
+   "start": 96.38,
+   "end": 99.78
   },
   {
    "name": "s5_storm",
-   "start": 100.17,
-   "end": 102.98
+   "start": 99.88,
+   "end": 103.28
   },
   {
    "name": "s5_crown",
-   "start": 103.67,
-   "end": 106.48
+   "start": 103.38,
+   "end": 106.78
   },
   {
    "name": "s5_firewall",
-   "start": 107.17,
-   "end": 109.98
+   "start": 106.88,
+   "end": 110.28
   },
   {
    "name": "s5_embers",
-   "start": 110.67,
-   "end": 113.48
+   "start": 110.38,
+   "end": 113.78
   },
   {
    "name": "s5_shelter",
-   "start": 114.17,
-   "end": 116.98
+   "start": 113.88,
+   "end": 117.28
   },
   {
    "name": "s5_trunkfire",
-   "start": 117.67,
-   "end": 120.48
+   "start": 117.38,
+   "end": 120.78
   },
   {
    "name": "s5_sway",
-   "start": 121.17,
-   "end": 123.98
+   "start": 120.88,
+   "end": 124.28
   },
   {
    "name": "s6_black",
-   "start": 124.67,
-   "end": 127.47
+   "start": 124.38,
+   "end": 127.77
+  },
+  {
+   "name": "s6_breath",
+   "start": 127.88,
+   "end": 131.27
   },
   {
    "name": "s6_eyes",
-   "start": 128.18,
-   "end": 130.97
+   "start": 131.38,
+   "end": 134.77
   },
   {
    "name": "s7_run",
-   "start": 131.67,
-   "end": 134.47
-  },
-  {
-   "name": "s7_looms",
-   "start": 135.17,
-   "end": 137.97
+   "start": 134.88,
+   "end": 138.27
   },
   {
    "name": "s7_push",
-   "start": 138.67,
-   "end": 141.47
-  },
-  {
-   "name": "s7_back",
-   "start": 142.17,
-   "end": 144.97
+   "start": 138.38,
+   "end": 141.77
   },
   {
    "name": "s7_kneel",
-   "start": 145.67,
-   "end": 148.47
+   "start": 141.88,
+   "end": 145.27
   },
   {
    "name": "s7_talk",
-   "start": 149.17,
-   "end": 151.68
+   "start": 145.38,
+   "end": 148.48
   },
   {
    "name": "s7_wide",
-   "start": 152.38,
-   "end": 155.18
+   "start": 148.58,
+   "end": 151.98
+  },
+  {
+   "name": "s7_coat",
+   "start": 152.08,
+   "end": 155.48
   },
   {
    "name": "s8_wide",
-   "start": 155.88,
-   "end": 158.68
+   "start": 155.58,
+   "end": 158.98
   },
   {
    "name": "s8_hand",
-   "start": 159.38,
-   "end": 162.18
+   "start": 159.08,
+   "end": 162.48
   },
   {
    "name": "s8_pullback",
-   "start": 162.88,
-   "end": 165.68
+   "start": 162.58,
+   "end": 165.98
   },
   {
    "name": "s8_rise",
-   "start": 166.38,
-   "end": 169.18
+   "start": 166.08,
+   "end": 169.48
   },
   {
    "name": "s8_canopy",
-   "start": 169.88,
-   "end": 172.68
+   "start": 169.58,
+   "end": 172.98
   }
  ],
  "lines": [
@@ -257,7 +257,7 @@
    "text": "Your grandmother used to say these trees were listening."
   },
   {
-   "t": 141.97,
+   "t": 145.47,
    "speaker": "grandpa",
    "text": "Lily, you found me."
   }
