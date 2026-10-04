@@ -839,7 +839,7 @@
   {
    "id": "s6_breath",
    "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight and a warm flashlight beam, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: close-up three-quarter view of the same girl from the reference image, freckles, hazel eyes, her long dark brown braid over her shoulder, in a mustard-yellow raincoat in cold blue moonlight, her breath fogging in the cold air, tears on her cheek",
-   "beat": "a girl crying in the cold with visible breath at night",
+   "beat": "a girl in a yellow raincoat alone at night in cold blue moonlight, crying",
    "must_not": [
     "a cartoon",
     "a different girl",
@@ -862,7 +862,16 @@
      "subject": "the granddaughter, a 10-year-old girl with a long dark brown braid and a mustard-yellow hooded raincoat"
     }
    ],
-   "animate": "she breathes out shakily, her breath fogging in the cold air, a tear rolls down"
+   "animate": "she lowers her eyes and breathes slowly, a tear on her cheek, her braid still, the camera holds steady",
+   "clip_beat": "a girl in a yellow raincoat alone at night in cold blue moonlight",
+   "seeds": [
+    11,
+    47,
+    82,
+    119,
+    151,
+    203
+   ]
   },
   {
    "id": "s6_hands",
@@ -1046,8 +1055,8 @@
   },
   {
    "id": "s7_coat",
-   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight and a warm flashlight beam, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: the granddaughter wrapping her mustard-yellow raincoat around her grandfather's shoulders, the grandfather looking lost, cold and confused with a vacant sad expression, not smiling inside the charred tree hollow, moonlight",
-   "beat": "a girl wrapping a yellow raincoat around an old man's shoulders",
+   "prompt": "photorealistic cinematic film still, 2.39:1 anamorphic widescreen, NIGHT, cold blue moonlight and a warm flashlight beam, deep shadows, thick fog, subtle film grain, 35mm look, detailed textures: the old grandfather sitting inside the charred tree hollow with a mustard-yellow raincoat wrapped around his shoulders, his granddaughter kneeling close beside him holding the edge of the raincoat, the grandfather looking lost, cold and confused with a vacant sad expression, not smiling inside the charred tree hollow, moonlight",
+   "beat": "an old man with a yellow raincoat around his shoulders and a girl kneeling beside him inside a hollow tree",
    "must_not": [
     "a cartoon",
     "readable writing",
@@ -1067,7 +1076,16 @@
    "lock": "stills/LOCKED_s7_coat.png",
    "clip": "clips/s7_coat_final.mp4",
    "min_window": 2.5,
-   "animate": "she drapes the yellow raincoat over his shoulders and tucks it around him"
+   "animate": "she gently tucks the edge of the yellow raincoat around his shoulders, he stays still, the camera holds steady",
+   "clip_beat": "an old man with a yellow raincoat around his shoulders and a girl kneeling beside him inside a hollow tree",
+   "seeds": [
+    11,
+    47,
+    82,
+    119,
+    151,
+    203
+   ]
   },
   {
    "id": "s7_talk",
@@ -1134,8 +1152,8 @@
    "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
    "refs": [
     {
-     "image": "canon/woman.png",
-     "subject": "the granddaughter grown up, a 35-year-old woman with a long dark brown braid, freckles and a mustard-yellow raincoat"
+     "image": "canon/woman40.png",
+     "subject": "the granddaughter grown up, a 42-year-old woman with a long dark brown braid, freckles and a mustard-yellow raincoat"
     },
     {
      "image": "canon/child.png",
@@ -1198,8 +1216,8 @@
    "negative": "cartoon, illustration, cgi look, plastic skin, text, letters, watermark, deformed hands, extra fingers",
    "refs": [
     {
-     "image": "canon/woman.png",
-     "subject": "the granddaughter grown up, a 35-year-old woman with a long dark brown braid, freckles and a mustard-yellow raincoat"
+     "image": "canon/woman40.png",
+     "subject": "the granddaughter grown up, a 42-year-old woman with a long dark brown braid, freckles and a mustard-yellow raincoat"
     },
     {
      "image": "canon/child.png",

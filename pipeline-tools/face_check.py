@@ -170,6 +170,11 @@ def main():
     canon = canon_faces(proj, list(shots.values()))
     tmp = Path(tempfile.mkdtemp(prefix="face_check_"))
 
+    sid_arg = (a.still or a.clip or [None])[0]
+    if sid_arg and sid_arg not in shots:
+        # masters, portraits and test shots live in other spec files; no cast to compare
+        print("UNCHECKED", f"  {sid_arg} is not in film_shots.json, no cast to compare", sep="\n")
+        sys.exit(0)
     if a.still:
         sid, img_path = a.still
         people = cast(shots[sid])

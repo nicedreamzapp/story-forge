@@ -1,15 +1,15 @@
 # film_qc report — The_Oldest_Tree.mp4
 **Verdict: FAIL — 2 defect(s)**
-Checks run: 172 | passed: 170 | failed: 2
+Checks run: 179 | passed: 177 | failed: 2
 
 ## Defects
-- artifact@82.5s: The image does not feature any animated characters. It is a composite photograph or cinematic still showing a person sup
-- artifact@155.5s: The image shows a hand (likely human) touching a tree trunk in a forest, with a heart carved into the bark. Inside the h
+- artifact@82.5s: The image does not feature any animated characters. It shows a person standing in front of a forest landscape with a thi
+- artifact@162.5s: The image shows a hand (likely human) touching a tree trunk in a forest, with a heart-shaped carving on the tree. Inside
 
 ## Full log
 - [PASS] lipsync@28.4s: grandpa's mouth moving in 6/6 samples (100% of a 1.2s line; need 50%)
-- [PASS] lipsync@142.0s: grandpa's mouth moving in 6/6 samples (100% of a 1.2s line; need 50%)
-- [PASS] silence@86.4s: no. the scene is described as having no one speaking, and there is no indication
+- [PASS] lipsync@145.5s: grandpa's mouth moving in 6/6 samples (100% of a 1.2s line; need 50%)
+- [PASS] silence@88.2s: no. the scene is silent and no character is shown with their mouth open as if sp
 - [PASS] identity-across-scenes: CONSISTENT — The characters maintain consistent design across all scenes, with identical species, body proportions, head and ear shapes, and no visible markings or changes.
 - [PASS] artifact@0.5s: clean
 - [PASS] artifact@1.5s: clean
@@ -93,7 +93,7 @@ Checks run: 172 | passed: 170 | failed: 2
 - [PASS] artifact@79.5s: clean
 - [PASS] artifact@80.5s: clean
 - [PASS] artifact@81.5s: clean
-- [FAIL] artifact@82.5s: The image does not feature any animated characters. It is a composite photograph or cinematic still showing a person sup
+- [FAIL] artifact@82.5s: The image does not feature any animated characters. It shows a person standing in front of a forest landscape with a thi
 - [PASS] artifact@83.5s: clean
 - [PASS] artifact@84.5s: clean
 - [PASS] artifact@85.5s: clean
@@ -166,16 +166,23 @@ Checks run: 172 | passed: 170 | failed: 2
 - [PASS] artifact@152.5s: clean
 - [PASS] artifact@153.5s: clean
 - [PASS] artifact@154.5s: clean
-- [FAIL] artifact@155.5s: The image shows a hand (likely human) touching a tree trunk in a forest, with a heart carved into the bark. Inside the h
+- [PASS] artifact@155.5s: clean
 - [PASS] artifact@156.5s: clean
 - [PASS] artifact@157.5s: clean
 - [PASS] artifact@158.5s: clean
 - [PASS] artifact@159.5s: clean
 - [PASS] artifact@160.5s: clean
 - [PASS] artifact@161.5s: clean
-- [PASS] artifact@162.5s: clean
+- [FAIL] artifact@162.5s: The image shows a hand (likely human) touching a tree trunk in a forest, with a heart-shaped carving on the tree. Inside
 - [PASS] artifact@163.5s: clean
 - [PASS] artifact@164.5s: clean
 - [PASS] artifact@165.5s: clean
+- [PASS] artifact@166.5s: clean
+- [PASS] artifact@167.5s: clean
+- [PASS] artifact@168.5s: clean
+- [PASS] artifact@169.5s: clean
+- [PASS] artifact@170.5s: clean
+- [PASS] artifact@171.5s: clean
+- [PASS] artifact@172.5s: clean
 - [PASS] audio@28.4s: 'Your grandmother used to say t' expected @28.4s, heard @27.0s (4/4 words)
-- [PASS] audio@142.0s: 'Lily, you found me.' expected @142.0s, heard @133.7s (2/2 words)
+- [PASS] audio@145.5s: 'Lily, you found me.' expected @145.5s, heard @145.7s (2/2 words)
