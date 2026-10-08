@@ -16,6 +16,14 @@ Any kind of video, any style: explainers, documentaries, promos, music shorts, a
 
 ---
 
+## What this is
+
+I made Story Forge to turn a written story into a finished video on my own Mac, with no cloud service. You write a script (or let the director break a story into beats), and it makes the pictures, the motion, the voices and the music, then cuts them together. It is for people who want to make short films, explainers or music pieces locally and are comfortable with a terminal.
+
+Requirements: a Mac with Apple Silicon (I build on an M5 Max with 128GB of memory), ffmpeg, and Python 3 (I ran the parser and its tests on 3.11). The quick start further down also needs a running ComfyUI with the Flux and Wan or LTX models loaded. `./bin/sf doctor` lists what is missing on your machine.
+
+---
+
 ## 🍿 Watch the films
 
 ### 🌲 Newest: The Oldest Tree (October 2026 progress film)
@@ -192,6 +200,7 @@ So now a local vision model judges every shot against its story beat before it's
 git clone https://github.com/nicedreamzapp/story-forge && cd story-forge
 ./bin/sf doctor                                     # 🩺 what's missing
 ./bin/sf render story_forge/examples/test_tiny.sf   # 🎬 ~2 min on an M5 Max
+./bin/sf render story_forge/examples/test_tiny.sf --dry   # parse only, no ComfyUI needed
 ```
 
 These commands run the **original `.sf` path**: parse a script, then Flux still → Wan/LTX motion → narration → ffmpeg stitch. It has no judges and no director. Need: **ComfyUI** running · **Flux** + **Wan 2.2** / **LTX** loaded in it · **ffmpeg** · optional **piper**-compatible voice. `sf doctor` tells you what's missing.
@@ -204,9 +213,9 @@ The **gated director pipeline** (everything in "The pipeline today") needs the e
 <br>
 
 ```bash
-forge new "a documentary about the harbour" --kind doc   # start a film
-forge "hank and doug"                                    # pick up exactly where it stopped
-forge status                                             # built · blocked · next
+./bin/forge new "a documentary about the harbour" --kind doc   # start a film
+./bin/forge "hank and doug"                                    # pick up exactly where it stopped
+./bin/forge status                                             # built · blocked · next
 ```
 
 Extra requirements: mflux + Qwen-Image 2.1, [ltx-2-mlx](https://github.com/dgrauet/ltx-2-mlx), a Qwen3-VL-32B judge on MLX, and mlx-whisper. It still has some paths hard-coded to the machine it was built on. It's published so you can read the method and borrow from it.
