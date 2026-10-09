@@ -31,7 +31,7 @@ import re
 import sys
 from pathlib import Path
 
-REPO = Path("/Users/dtribe/Desktop/PROJECTS/AI/videopipe")
+REPO = Path("~/Desktop/PROJECTS/AI/videopipe").expanduser()
 if str(REPO) not in sys.path:
     sys.path.insert(0, str(REPO))
 

@@ -1,7 +1,7 @@
 {
   "slug": "styled_reel",
   "title": "Styled Reel",
-  "mp4": "/Users/dtribe/story-forge-queue/done/styled_reel.mp4",
+  "mp4": "~/story-forge-queue/done/styled_reel.mp4",
   "youtube": null,
   "render_min": 8.3,
   "public": false,

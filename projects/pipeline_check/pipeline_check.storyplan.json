@@ -64,7 +64,7 @@
     }
   ],
   "vars": {
-    "stills": "/Users/dtribe/Desktop/PROJECTS/AI/videopipe/projects/pipeline_check/stills"
+    "stills": "~/Desktop/PROJECTS/AI/videopipe/projects/pipeline_check/stills"
   },
   "scenes": {
     "opening": {

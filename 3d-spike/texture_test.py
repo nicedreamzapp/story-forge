@@ -1,5 +1,5 @@
 import bpy, math, os
-glb="/Users/dtribe/AI/ComfyUI/output/doug_spike_00001_.glb"
+glb=os.path.expanduser("~/AI/ComfyUI/output/doug_spike_00001_.glb")
 portrait=os.path.expanduser("~/Desktop/PROJECTS/story-forge/3d-spike/in/doug_512.jpg")
 outdir=os.path.expanduser("~/Desktop/PROJECTS/story-forge/3d-spike/tex"); os.makedirs(outdir,exist_ok=True)
 

@@ -4,7 +4,7 @@
 # Narrated (warm voice over the action) — NO on-screen dialogue, so it dodges the
 # lip-sync wall entirely. Motion = LTX (fast + light) instead of Wan.
 
-$stills = "/Users/dtribe/Desktop/PROJECTS/AI/distill/hank_doug_stills"
+$stills = "~/Desktop/PROJECTS/AI/distill/hank_doug_stills"
 
 film "Hank and Doug" slug=q_hank_doug target=m5 scene_dur=5.0
 

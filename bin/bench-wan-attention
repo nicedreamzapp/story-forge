@@ -1,4 +1,4 @@
-#!/usr/bin/env -S /Users/dtribe/Desktop/PROJECTS/AI/ComfyUI/venv/bin/python
+#!/usr/bin/env -S ${HOME}/Desktop/PROJECTS/AI/ComfyUI/venv/bin/python
 """bench-wan-attention — Phase 0 of the Wan 2.2 Metal-kernel roadmap.
 
 GOAL: prove (or disprove) that self-attention is >=50% of UNet step latency
@@ -32,7 +32,7 @@ from collections import defaultdict
 from pathlib import Path
 
 # ---- ComfyUI bootstrap -------------------------------------------------------
-COMFY_ROOT = "/Users/dtribe/Desktop/PROJECTS/AI/ComfyUI"
+COMFY_ROOT = os.path.expanduser("~/Desktop/PROJECTS/AI/ComfyUI")
 sys.path.insert(0, COMFY_ROOT)
 
 # Headless: keep ComfyUI from trying to spin up its server / progress UI.

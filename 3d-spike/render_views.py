@@ -1,7 +1,7 @@
 import bpy, math, os, sys
 # args: [glb_path] [outdir] [name_prefix]
 argv = sys.argv[sys.argv.index("--")+1:] if "--" in sys.argv else []
-glb = argv[0] if len(argv)>0 else "/Users/dtribe/AI/ComfyUI/output/doug_spike_00001_.glb"
+glb = argv[0] if len(argv)>0 else os.path.expanduser("~/AI/ComfyUI/output/doug_spike_00001_.glb")
 outdir = os.path.expanduser(argv[1]) if len(argv)>1 else os.path.expanduser("~/Desktop/PROJECTS/story-forge/3d-spike/views")
 prefix = argv[2] if len(argv)>2 else "doug"
 os.makedirs(outdir,exist_ok=True)

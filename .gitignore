@@ -34,3 +34,19 @@ rhubarb-pipeline/*.log
 # Intermediate encodes and editor backups
 *.b64
 *.upsampler-backup
+
+# Machine-specific run artifacts (they carry local paths) — scrubbed 2026-10-09
+projects/**/*.log
+projects/**/*.log.*
+projects/**/*concat*.txt
+projects/**/*_list.txt
+projects/**/build_state.json
+projects/*/final/scene*.txt
+projects/*/final/film.txt
+projects/*/final/audio_report.md
+projects/*/film_music/*.json
+projects/circus_train/build/*.txt
+queue/state.json
+queue/ledger.csv
+queue/processing/
+review/verdicts.json

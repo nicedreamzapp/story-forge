@@ -5,12 +5,12 @@
 # (library = Matt's music only).
 set -u
 SF_API=http://127.0.0.1:8767
-PROJ=/Users/dtribe/Desktop/PROJECTS/story-forge/projects
+PROJ=$HOME/Desktop/PROJECTS/story-forge/projects
 
 # ensure Song Forge is up
 curl -s -m 5 $SF_API/api/status >/dev/null 2>&1 || {
   echo "[music] Song Forge down — starting"
-  cd "/Users/dtribe/Desktop/PROJECTS/Song Forge" && nohup python3 forge_server.py > /tmp/songforge_overnight.log 2>&1 &
+  cd "$HOME/Desktop/PROJECTS/Song Forge" && nohup python3 forge_server.py > /tmp/songforge_overnight.log 2>&1 &
   sleep 20
 }
 

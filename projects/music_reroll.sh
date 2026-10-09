@@ -2,7 +2,7 @@
 # Re-roll ONLY missing scores. Forces instrumental via explicit lyrics="[instrumental]" tag
 # (empty lyrics is why ACE invented vocals). Up to 5 tries each; gate on transcribed words.
 SF_API=http://127.0.0.1:8767
-PROJ=/Users/dtribe/Desktop/PROJECTS/story-forge/projects
+PROJ=$HOME/Desktop/PROJECTS/story-forge/projects
 WHISPER="/opt/homebrew/bin/whisper-cli -m $HOME/whisper-models/ggml-small.en.bin"
 
 gen() { # gen <dir> <name> <style>

@@ -2,8 +2,8 @@
 # render_actions.sh — block2 B2.4: generate remaining film stills on M5 (Flux),
 # then render ALL action-critical shots on M5 via make-video (lightx2v 4-step, ~4 min each).
 # The mini (slow node) handles only its 6 ambient shots independently.
-source /Users/dtribe/Desktop/PROJECTS/story-forge/bin/render_guard.sh
-SF=/Users/dtribe/Desktop/PROJECTS/story-forge
+source $HOME/Desktop/PROJECTS/story-forge/bin/render_guard.sh
+SF=$HOME/Desktop/PROJECTS/story-forge
 PROJ=$SF/projects
 P60="1960s western movie still, slightly faded Technicolor, soft vintage film look"
 MARS="photorealistic cinematic sci-fi, Mars surface, orange-red dust, harsh sunlight"

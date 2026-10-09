@@ -2,7 +2,7 @@
 # Doug the bloodhound + Hank the bear, a Pixar-style rescue crew.
 # Uses the existing Hank & Doug Pixar stills via `still image:` (i2v), no Flux.
 
-$stills = "/Users/dtribe/Desktop/PROJECTS/AI/distill/hank_doug_stills"
+$stills = "~/Desktop/PROJECTS/AI/distill/hank_doug_stills"
 
 film "Hank and Doug" slug=hank_doug target=m5 scene_dur=5.0
 

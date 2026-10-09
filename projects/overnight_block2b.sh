@@ -1,7 +1,7 @@
 #!/bin/bash
 # Block 2b — post-panic resume with stage_reset between every model switch.
-source /Users/dtribe/Desktop/PROJECTS/story-forge/bin/render_guard.sh
-SF=/Users/dtribe/Desktop/PROJECTS/story-forge
+source $HOME/Desktop/PROJECTS/story-forge/bin/render_guard.sh
+SF=$HOME/Desktop/PROJECTS/story-forge
 cd "$SF"
 stage_reset "boot"
 
@@ -20,7 +20,7 @@ echo "=== B2b.2 blonde S2V chain ==="
 bash "$SF/projects/leash_snapped/render_s2v_chain.sh"
 
 echo "=== B2b.3 western S2V ==="
-IN=/Users/dtribe/Desktop/PROJECTS/AI/ComfyUI/input
+IN=$HOME/Desktop/PROJECTS/AI/ComfyUI/input
 cp -f "$SF"/projects/red_rock_standoff/stills/*.png "$IN/" 2>/dev/null
 guarded_run rr_s1 python3 bin/s2v_render.py --image sheriff_close.png --audio s2v_rs1.wav --prompt "weathered cowboy sheriff speaking slowly and gravely, steely calm, wind moving his coat, dusty street, 1960s western film" --seed 701 --out s2v/rr_s1
 guarded_run rr_c1 python3 bin/s2v_render.py --image chief_close.png --audio s2v_rc1.wav --prompt "Native war chief speaking with solemn intensity, head high, feathers moving in wind, 1960s western film" --seed 702 --out s2v/rr_c1 --length 81

@@ -1,6 +1,6 @@
 import bpy, bmesh, math, os, sys
 from mathutils import Vector
-glb="/Users/dtribe/AI/ComfyUI/output/doug_spike_00001_.glb"
+glb=os.path.expanduser("~/AI/ComfyUI/output/doug_spike_00001_.glb")
 outdir=os.path.expanduser("~/Desktop/PROJECTS/story-forge/3d-spike/rig"); os.makedirs(outdir,exist_ok=True)
 
 bpy.ops.wm.read_factory_settings(use_empty=True)

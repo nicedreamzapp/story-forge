@@ -1,6 +1,6 @@
 {
   "model": "flux2-klein-9b",
-  "model_path": "/Users/dtribe/.cache/huggingface/hub/models--AITRADER--FLUX2-klein-9B-mlx-8bit/snapshots/811313591beda9b3b781da490f9096b2b97e59f4",
+  "model_path": "~/.cache/huggingface/hub/models--AITRADER--FLUX2-klein-9B-mlx-8bit/snapshots/811313591beda9b3b781da490f9096b2b97e59f4",
   "data": "dataset/",
   "seed": 42,
   "steps": 24,
