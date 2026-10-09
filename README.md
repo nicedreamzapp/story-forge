@@ -298,6 +298,8 @@ The idea: pin the *last* frame as well as the first, so a character can't drift.
 
 No upload. No queue. No subscription. No telemetry. **Your laptop, your film.** 💚
 
+I took the same no-cloud idea to coding with [claude-code-local](https://github.com/nicedreamzapp/claude-code-local), which runs Claude Code on a Mac with local MLX models and no API key.
+
 ---
 
 <div align="center">
