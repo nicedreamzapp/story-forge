@@ -14,9 +14,9 @@ import torch
 import torch.nn.functional as F
 
 # Set up paths
-COMFY = Path("/Users/dtribe/Desktop/PROJECTS/AI/ComfyUI")
+COMFY = Path("~/Desktop/PROJECTS/AI/ComfyUI").expanduser()
 sys.path.insert(0, str(COMFY))
-sys.path.insert(0, "/Users/dtribe/Desktop/PROJECTS/AI/videopipe/metal")
+sys.path.insert(0, os.path.expanduser("~/Desktop/PROJECTS/AI/videopipe/metal"))
 
 import comfy.ops  # noqa: E402
 from comfy.ldm.wan.model import WanSelfAttention  # noqa: E402

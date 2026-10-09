@@ -1,10 +1,10 @@
 #!/bin/bash
 # Overnight master — block 1: blonde stills (Flux) + cartoon S2V chain. GPU-serial via ComfyUI queue.
-source /Users/dtribe/Desktop/PROJECTS/story-forge/bin/render_guard.sh
-cd /Users/dtribe/Desktop/PROJECTS/story-forge/projects/leash_snapped/stills
+source $HOME/Desktop/PROJECTS/story-forge/bin/render_guard.sh
+cd $HOME/Desktop/PROJECTS/story-forge/projects/leash_snapped/stills
 B="photorealistic beautiful blonde woman, long wavy blonde hair, striking blue-green eyes, orange knit headband, fitted athletic top and leggings"
 PR="photorealistic, shot on 35mm, natural morning light, shallow depth of field"
-f() { guarded_run "still:$2" python3 /Users/dtribe/Scripts/flux_t2i.py "$1" --out "$2" --w 832 --h 480 --seed "$3"; }
+f() { guarded_run "still:$2" python3 $HOME/Scripts/flux_t2i.py "$1" --out "$2" --w 832 --h 480 --seed "$3"; }
 
 f "$B, close-up, shocked wide-eyed expression, mouth open in disbelief, holding up the frayed end of a snapped dog leash, sunny park, $PR" blonde_shock_close.png 403
 f "$B, full body sprinting hard across park grass, athletic running form, yelling, hair flying, urgent, $PR" blonde_sprint.png 404
@@ -21,5 +21,5 @@ f "five dogs of different breeds sitting in a perfect row on park grass looking 
 f "wide establishing shot of a beautiful sunny city park in golden morning light, paths and fountain and big trees, $PR" park_title.png 414
 echo BLONDE_STILLS_DONE
 
-bash /Users/dtribe/Desktop/PROJECTS/story-forge/projects/hank_and_doug/wild_rescue/render_s2v_chain.sh
+bash $HOME/Desktop/PROJECTS/story-forge/projects/hank_and_doug/wild_rescue/render_s2v_chain.sh
 echo MASTER_BLOCK1_DONE

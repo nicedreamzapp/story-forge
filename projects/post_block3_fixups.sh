@@ -1,8 +1,8 @@
 #!/bin/bash
 # Post-block3: lengthening action renders (real animation, no stills) for films 1,2,3
 # then final scores with lyric gate. Auto-runs after block3.
-source /Users/dtribe/Desktop/PROJECTS/story-forge/bin/render_guard.sh
-SF=/Users/dtribe/Desktop/PROJECTS/story-forge
+source $HOME/Desktop/PROJECTS/story-forge/bin/render_guard.sh
+SF=$HOME/Desktop/PROJECTS/story-forge
 PROJ=$SF/projects
 cd "$SF"
 stage_reset "fixups-boot"

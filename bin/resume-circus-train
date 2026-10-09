@@ -3,7 +3,7 @@
 # Five scenes need i2v clips; their stills are locked, on-model and gate-passed.
 # One shot per invocation, retried, because the failure mode is a memory-driven
 # silent kill of ComfyUI and a fresh boot gives the largest free block we get.
-cd /Users/dtribe/Desktop/PROJECTS/story-forge
+cd $HOME/Desktop/PROJECTS/story-forge
 echo "=== free ram at start: $(vm_stat | awk '/Pages free/{gsub(/\./,"",$3); printf "%.1fGB", $3*16384/1073741824}') ==="
 for SHOT in s4_arrival s8_goodbye s2_thecall s6_interior ellie_eye; do
   for TRY in 1 2 3; do

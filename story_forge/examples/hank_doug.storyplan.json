@@ -49,14 +49,14 @@
     }
   ],
   "vars": {
-    "stills": "/Users/dtribe/Desktop/PROJECTS/AI/distill/hank_doug_stills"
+    "stills": "~/Desktop/PROJECTS/AI/distill/hank_doug_stills"
   },
   "scenes": {
     "doug_spots_hank": {
       "still_spec": {
         "engine": "image",
         "attrs": {},
-        "path": "/Users/dtribe/Desktop/PROJECTS/AI/distill/hank_doug_stills/05_doug_spots_hank.png",
+        "path": "~/Desktop/PROJECTS/AI/distill/hank_doug_stills/05_doug_spots_hank.png",
         "seed": 3289816699
       },
       "motion_spec": {
@@ -99,7 +99,7 @@
       "still_spec": {
         "engine": "image",
         "attrs": {},
-        "path": "/Users/dtribe/Desktop/PROJECTS/AI/distill/hank_doug_stills/f04_paw_bump_pixar.png",
+        "path": "~/Desktop/PROJECTS/AI/distill/hank_doug_stills/f04_paw_bump_pixar.png",
         "seed": 2437212882
       },
       "motion_spec": {
@@ -142,7 +142,7 @@
       "still_spec": {
         "engine": "image",
         "attrs": {},
-        "path": "/Users/dtribe/Desktop/PROJECTS/AI/distill/hank_doug_stills/f07_sunset_crew_pixar.png",
+        "path": "~/Desktop/PROJECTS/AI/distill/hank_doug_stills/f07_sunset_crew_pixar.png",
         "seed": 440436645
       },
       "motion_spec": {

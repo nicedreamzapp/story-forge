@@ -2,12 +2,12 @@
 # Block 2 — auto-starts when block 1 (cartoon S2V chain) finishes.
 # Order is strictly GPU-serial: voices (tiny) -> western stills -> blonde S2V chain ->
 # western S2V -> all action shots -> music last. Guard wraps everything.
-source /Users/dtribe/Desktop/PROJECTS/story-forge/bin/render_guard.sh
-SF=/Users/dtribe/Desktop/PROJECTS/story-forge
+source $HOME/Desktop/PROJECTS/story-forge/bin/render_guard.sh
+SF=$HOME/Desktop/PROJECTS/story-forge
 cd "$SF"
 
 echo "=== B2.-1 wild rescue fixups ==="
-bash /Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_fixups.sh
+bash $HOME/Desktop/PROJECTS/story-forge/projects/wild_rescue_fixups.sh
 
 echo "=== B2.0 western voices (ChatterBox, GPU gap) ==="
 ~/chatterbox-env/bin/python "$SF/projects/red_rock_standoff/gen_voices.py" || echo "western voices FAILED" >> /tmp/render_failures.txt
@@ -37,7 +37,7 @@ echo "=== B2.2 blonde S2V chain (12 talking shots) ==="
 bash "$SF/projects/leash_snapped/render_s2v_chain.sh"
 
 echo "=== B2.3 western S2V (4 lines) ==="
-cd "$SF" && IN=/Users/dtribe/Desktop/PROJECTS/AI/ComfyUI/input
+cd "$SF" && IN=$HOME/Desktop/PROJECTS/AI/ComfyUI/input
 cp -f projects/red_rock_standoff/stills/*.png "$IN/" 2>/dev/null
 cp -f projects/red_rock_standoff/voices/s2v_*.wav "$IN/" 2>/dev/null
 guarded_run rr_s1 python3 bin/s2v_render.py --image sheriff_close.png --audio s2v_rs1.wav --prompt "weathered cowboy sheriff speaking slowly and gravely, steely calm, wind moving his coat, dusty street, 1960s western film" --seed 701 --out s2v/rr_s1

@@ -1,6 +1,6 @@
 import bpy, math, os
 from mathutils import Vector
-glb="/Users/dtribe/AI/ComfyUI/output/doug_spike_00001_.glb"
+glb=os.path.expanduser("~/AI/ComfyUI/output/doug_spike_00001_.glb")
 frames_dir=os.path.expanduser("~/Desktop/PROJECTS/story-forge/3d-spike/move_frames")
 os.makedirs(frames_dir,exist_ok=True)
 for f in os.listdir(frames_dir):

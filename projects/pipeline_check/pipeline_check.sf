@@ -9,7 +9,7 @@
 #         path: "{$stills}/your_frame.png"
 # (the locked method: lay voice over the untouched animation, never repaint mouths)
 
-$stills = "/Users/dtribe/Desktop/PROJECTS/AI/videopipe/projects/pipeline_check/stills"
+$stills = "~/Desktop/PROJECTS/AI/videopipe/projects/pipeline_check/stills"
 
 film "Pipeline Check" slug=pipeline_check target=m5 style=pixar-3d format=film
 

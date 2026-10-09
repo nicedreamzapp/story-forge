@@ -1,8 +1,8 @@
 #!/bin/bash
 # Block 3 — films 4+5 talking pipeline (voices -> talk stills -> 12 S2V shots).
 # Auto-starts after block 2b. QC pauses: stills get a 10-min QC window before S2V begins.
-source /Users/dtribe/Desktop/PROJECTS/story-forge/bin/render_guard.sh
-SF=/Users/dtribe/Desktop/PROJECTS/story-forge
+source $HOME/Desktop/PROJECTS/story-forge/bin/render_guard.sh
+SF=$HOME/Desktop/PROJECTS/story-forge
 cd "$SF"
 stage_reset "block3-boot"
 
@@ -25,7 +25,7 @@ echo B3_STILLS_DONE
 echo "QC WINDOW: 10 minutes before S2V begins"; sleep 600
 
 echo "=== B3.2 films 4+5 S2V (12 shots) ==="
-IN=/Users/dtribe/Desktop/PROJECTS/AI/ComfyUI/input
+IN=$HOME/Desktop/PROJECTS/AI/ComfyUI/input
 cp -f "$M"/dean_*.png "$P"/crow_*.png "$IN/" 2>/dev/null
 r() { guarded_run "$5" python3 bin/s2v_render.py --image "$1" --audio "$2" --prompt "$3" --seed "$4" --out "s2v/$5"; }
 r dean_calm.png   s2v_m1.wav "rugged astronaut speaking calmly to his helmet camera, slight head movement, Mars wind dust drifting" 901 rh_m1

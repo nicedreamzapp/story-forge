@@ -55,7 +55,7 @@ import time
 from pathlib import Path
 from typing import Any
 
-REPO = Path("/Users/dtribe/Desktop/PROJECTS/AI/videopipe")
+REPO = Path("~/Desktop/PROJECTS/AI/videopipe").expanduser()
 PIPELINE = REPO / "story_pipeline.py"
 RENDER_ROUTE = REPO / "bin" / "render-route"
 HOME = Path.home()

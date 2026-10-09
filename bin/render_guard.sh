@@ -5,7 +5,7 @@ comfy_up() { curl -s -m 5 http://127.0.0.1:8188/system_stats >/dev/null 2>&1; }
 comfy_restart() {
   echo "[guard] ComfyUI down — restarting" >&2
   pkill -f "main.py --listen" 2>/dev/null; sleep 5
-  cd /Users/dtribe/Desktop/PROJECTS/AI/ComfyUI && nohup ./venv/bin/python main.py --listen >> /tmp/comfyui_overnight.log 2>&1 &
+  cd $HOME/Desktop/PROJECTS/AI/ComfyUI && nohup ./venv/bin/python main.py --listen >> /tmp/comfyui_overnight.log 2>&1 &
   cd - >/dev/null
   for i in $(seq 1 24); do sleep 5; comfy_up && { echo "[guard] back up" >&2; return 0; }; done
   echo "[guard] FAILED to restart ComfyUI" >&2; return 1
@@ -25,7 +25,7 @@ guarded_run() {
 stage_reset() {  # full ComfyUI restart between model stages — memory starts clean
   echo "[guard] stage reset: $1"
   pkill -f "main.py --listen" 2>/dev/null; sleep 8
-  cd /Users/dtribe/Desktop/PROJECTS/AI/ComfyUI && nohup ./venv/bin/python main.py --listen >> /tmp/comfyui_overnight.log 2>&1 &
+  cd $HOME/Desktop/PROJECTS/AI/ComfyUI && nohup ./venv/bin/python main.py --listen >> /tmp/comfyui_overnight.log 2>&1 &
   cd - >/dev/null
   for i in $(seq 1 24); do sleep 5; comfy_up && return 0; done; return 1
 }

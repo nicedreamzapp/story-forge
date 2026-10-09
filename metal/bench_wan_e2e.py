@@ -17,7 +17,7 @@ Assumes:
   - ComfyUI is running on http://127.0.0.1:8188 with the
     custom_nodes/wan_metal_fused shim loaded (so the patch is active and
     the flag controls dispatch).
-  - Test still at /Users/dtribe/AI/videopipe/test_stills/walk_frame.png.
+  - Test still at ~/AI/videopipe/test_stills/walk_frame.png.
 """
 from __future__ import annotations
 
@@ -33,12 +33,12 @@ import numpy as np
 import torch
 
 # allow importing videopipe core
-sys.path.insert(0, "/Users/dtribe/Desktop/PROJECTS/AI/videopipe")
+sys.path.insert(0, os.path.expanduser("~/Desktop/PROJECTS/AI/videopipe"))
 from core import build_wan22_i2v, run_workflow, upload_image  # noqa: E402
 
 FLAG_PATH = Path("/tmp/wan_metal_fused.flag")
 COMFY_LOG = Path("/tmp/m5_comfy.log")  # where start.sh redirects ComfyUI's stdout/stderr
-DEFAULT_STILL = Path("/Users/dtribe/AI/videopipe/test_stills/walk_frame.png")
+DEFAULT_STILL = Path("~/AI/videopipe/test_stills/walk_frame.png").expanduser()
 
 
 def set_flag(on: bool):

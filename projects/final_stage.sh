@@ -1,8 +1,8 @@
 #!/bin/bash
 # FINAL STAGE — runs after extensions (clean GPU). Fix red_rock western score, then assemble
 # + smooth + deliver all 5 films to Desktop. Single GPU customer at a time.
-source /Users/dtribe/Desktop/PROJECTS/story-forge/bin/render_guard.sh
-SF=/Users/dtribe/Desktop/PROJECTS/story-forge
+source $HOME/Desktop/PROJECTS/story-forge/bin/render_guard.sh
+SF=$HOME/Desktop/PROJECTS/story-forge
 PROJ=$SF/projects
 WHISPER="/opt/homebrew/bin/whisper-cli -m $HOME/whisper-models/ggml-small.en.bin"
 

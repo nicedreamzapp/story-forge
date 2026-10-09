@@ -1,7 +1,7 @@
 #!/bin/bash
 # Block 2c — resume after second crash: last Mars clip, pirate actions, music, then block 3.
-source /Users/dtribe/Desktop/PROJECTS/story-forge/bin/render_guard.sh
-SF=/Users/dtribe/Desktop/PROJECTS/story-forge
+source $HOME/Desktop/PROJECTS/story-forge/bin/render_guard.sh
+SF=$HOME/Desktop/PROJECTS/story-forge
 PROJ=$SF/projects
 cd "$SF"
 stage_reset "block2c-boot"
@@ -17,5 +17,5 @@ v "$P/p_a7_sunrise.png" "the ship sailing into the golden sunrise, calm waves, s
 echo ACTIONS_M5_DONE
 stage_reset "actions->music"
 bash "$SF/projects/render_music.sh"
-bash /Users/dtribe/Desktop/PROJECTS/story-forge/projects/overnight_block3.sh >> /tmp/block3.log 2>&1
+bash $HOME/Desktop/PROJECTS/story-forge/projects/overnight_block3.sh >> /tmp/block3.log 2>&1
 echo MASTER_BLOCK2C_DONE

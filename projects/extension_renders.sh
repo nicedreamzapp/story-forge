@@ -1,8 +1,8 @@
 #!/bin/bash
 # Extension renders — bring all five films toward 3 min with REAL animation (no stills ever).
 # Auto-runs after post_block3 fixups+music. ~28 clips.
-source /Users/dtribe/Desktop/PROJECTS/story-forge/bin/render_guard.sh
-SF=/Users/dtribe/Desktop/PROJECTS/story-forge
+source $HOME/Desktop/PROJECTS/story-forge/bin/render_guard.sh
+SF=$HOME/Desktop/PROJECTS/story-forge
 PROJ=$SF/projects
 cd "$SF"
 stage_reset "extensions-boot"

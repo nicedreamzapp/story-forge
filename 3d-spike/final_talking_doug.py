@@ -1,7 +1,7 @@
 import bpy, math, os, wave, struct
 import numpy as np
 from mathutils import Vector
-glb="/Users/dtribe/AI/ComfyUI/output/doug_spike_00001_.glb"
+glb=os.path.expanduser("~/AI/ComfyUI/output/doug_spike_00001_.glb")
 portrait=os.path.expanduser("~/Desktop/PROJECTS/story-forge/3d-spike/in/doug_512.jpg")
 pcm=os.path.expanduser("~/Desktop/PROJECTS/story-forge/3d-spike/audio/doug_pcm.wav")
 frames_dir=os.path.expanduser("~/Desktop/PROJECTS/story-forge/3d-spike/talk_frames")

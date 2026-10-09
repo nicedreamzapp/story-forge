@@ -8,7 +8,7 @@ from PIL import Image
 
 W, H, FPS, DUR = 1280, 720, 24, 32.0
 N = int(DUR * FPS)
-OUT = Path("/Users/dtribe/Desktop/PROJECTS/story-forge/projects/royal_gold/overlay/particles.mov")
+OUT = Path("~/Desktop/PROJECTS/story-forge/projects/royal_gold/overlay/particles.mov").expanduser()
 OUT.parent.mkdir(parents=True, exist_ok=True)
 random.seed(7); np.random.seed(7)
 # card animation windows (intro / outro) — extra sparkle + shimmer here

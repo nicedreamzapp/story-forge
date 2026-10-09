@@ -2,7 +2,7 @@
 # Royal Gold v2 — SMOOTH sub-pixel coverage via ken_burns.py (NO zoompan, no shake).
 set -e
 cd ~/Desktop/PROJECTS/story-forge/projects/royal_gold
-KB="/usr/bin/python3 /Users/dtribe/Desktop/PROJECTS/story-forge/bin/ken_burns.py"
+KB="/usr/bin/python3 $HOME/Desktop/PROJECTS/story-forge/bin/ken_burns.py"
 A=assets; S=stills; C=coverage; mkdir -p "$C"
 
 $KB "$S/humboldt_sunrise.png" "$C/s1_humboldt.mp4"   --dur 4.5 --mode pushin
