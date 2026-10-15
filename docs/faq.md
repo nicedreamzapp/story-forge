@@ -12,6 +12,9 @@ runs on the Mac, through ComfyUI, MLX or local Python environments. The README's
 "no upload, no queue, no subscription, no telemetry". Model weights do have to be downloaded
 once, from wherever you get them.
 
+One exception sits in the repo: `bin/make-ltx-cloud`, an old standalone script that sends a
+single image-to-video job to fal.ai if you set `FAL_KEY`. Nothing in the pipeline calls it.
+
 ## Does it run on NVIDIA, Windows or Linux?
 
 Not today. It is Apple Silicon only. In
@@ -61,8 +64,9 @@ output. See [Credits](credits.md).
 
 No. It is meant for any kind of video: narrated explainers, ambient pieces, promos,
 documentaries and animated films. Talking characters are the hardest case, so that is where
-it is tested hardest. Style and format packs (`photoreal`, `watercolor`, `anime`,
-`claymation`, `noir`; `film`, `reel`, `square`, `cinematic`) are listed on the
+it is tested hardest. Style packs (`pixar-3d`, `flat-2d`, `photoreal`, `watercolor`,
+`anime`, `claymation`, `noir`) and format packs (`film`, `reel`, `square`, `narrated-doc`,
+`cinematic`) are listed on the
 [Configuration](configuration.md#style-and-format-packs) page.
 
 ## Do I have to use the `.sf` language?

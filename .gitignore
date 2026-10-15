@@ -51,3 +51,4 @@ queue/ledger.csv
 queue/processing/
 review/verdicts.json
 site/
+.cache/
