@@ -58,7 +58,11 @@ lean engine:
 2. animates it through `bin/render-route`, which picks Wan or LTX,
 3. conforms the clip to the target size and frame rate,
 4. renders narration if the scene has any,
-5. and stitches everything with ffmpeg.
+5. and stitches everything with ffmpeg, with 0.5 second crossfades and each narration line
+   placed at its scene's start time.
+
+The lean renderer does not mix `music` or `sfx` yet, and it does not judge or retry shots.
+Those live in the gated director pipeline.
 
 Useful flags:
 
@@ -81,11 +85,12 @@ Useful flags:
 - The final video: the `--out` path, else `$SF_OUT_DIR/<slug>.mp4` (default
   `~/story-forge/outputs/<slug>.mp4`).
 - Per-scene stills and clips (`still_01.png`, `raw_01.mp4`, `clip_01.mp4`, ...): the work
-  folder, which `run.py` sets to `~/Desktop/AI Videos/<slug>/`.
+  folder, which `run.py` sets to `~/Desktop/AI Videos/<slug>/`. Files already there are
+  reused, so delete them after you change a scene's prompt.
 
 ## Next steps
 
-- Copy an example and edit it. `story_forge/examples/` has `cabin_open.sf` (narration, music
-  and ducking), `multi_voice.sf`, `sfx_demo.sf` and `styled_reel.sf` (style and format packs).
+- Copy an example and edit it. `story_forge/examples/` has `cabin_open.sf` (narration; its music
+  and ducking lines are parsed but not mixed by the lean renderer), `multi_voice.sf`, `sfx_demo.sf` and `styled_reel.sf` (style and format packs).
 - Read [How it works](how-it-works.md) for the gated director pipeline (`bin/forge`), which
   judges every shot with local vision and audio models before it is kept.

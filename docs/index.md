@@ -60,7 +60,7 @@ film. This path still has some paths hard-coded to the machine it was built on.
 
 See [How it works](how-it-works.md) for the details.
 
-## Why people look at it
+## What it does differently
 
 - **No cloud calls.** Stills, motion, voices, score and judging all run on the Mac.
 - **It judges its own work.** A vision model describes each frame blind, then rules on it
