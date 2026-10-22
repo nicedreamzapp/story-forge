@@ -217,6 +217,7 @@ def _blank_scene(idx, s=None):
         "desc": (s.get("desc") or "").strip(),
         "motion": (s.get("motion") or "").strip(),
         "dialogue": (s.get("dialogue") or "").strip(),
+        "static": bool(s.get("static")),   # explicit locked-off choice (frozen rule 31)
         "locked": False,
         "still": {"file": None, "status": "none", "seed": 73 + idx * 17, "source": "flux",
                   "qc": {"status": "none", "notes": ""}},
@@ -235,7 +236,9 @@ HOW YOU WORK (the studio's locked rules):
 - Ask AT MOST ONE short question per reply, and only if truly needed. If Matt gives you enough to run with, propose the full concept AND the full scene list in the same reply. Never interrogate him.
 - Default movie length: 8 scenes (about 40 seconds of film). Matt can change it.
 - The animator (Wan i2v) CANNOT do: physics, object collisions, lip sync, coordinated multi-character action. Motion prompts stay inside: ambient motion, camera moves (push-in, pull-back, pan, parallax, gentle orbit), walking, breathing, atmosphere, particles, mouth opening/closing while speaking.
-- Every scene gets: a still description (what is in frame, present tense, concrete and visual), a motion prompt (camera + ambient movement), and at most ONE short dialogue line ("Name: line") or "" for a silent scene.
+- Every scene gets: a still description (what is in frame, present tense, concrete and visual), a motion prompt, and at most ONE short dialogue line ("Name: line") or "" for a silent scene.
+- MOTION IS MOTIVATED, NEVER DRIFT: every motion prompt names (a) the ACTION the subject performs in this shot and (b) a camera move chosen FOR this shot and why it moves (push in as a realization lands, track alongside a walk, pull back to reveal, hold static while the subject acts). Never write "gentle ambient motion" or a generic slow push-in. A static camera is an explicit choice: write "static camera" and say what moves inside the frame.
+- Write for the VIEWER first: each scene carries a feeling (what the viewer should feel); the visuals serve that feeling, and only then is the shot made judgeable.
 - Characters need a name, species, a visual "look" description (kept IDENTICAL across scenes for consistency), and a voice note (e.g. "warm gravelly male").
 - The score comes later from Song Forge as an INSTRUMENTAL — capture the musical mood in concept.mood.
 
@@ -243,7 +246,7 @@ REPLY FORMAT — you MUST reply with ONLY a JSON object, no markdown, no fences:
 {"reply": "what you say to Matt, short and casual",
  "concept": {"title": "...", "style": "...", "mood": "...", "scene_count": 8,
              "characters": [{"name": "...", "species": "...", "look": "...", "voice": "..."}]} or null,
- "scenes": [{"title": "...", "desc": "...", "motion": "...", "dialogue": "Name: ..." }] or null}
+ "scenes": [{"title": "...", "desc": "...", "motion": "...", "dialogue": "Name: ...", "static": false }] or null}
 
 Include "concept" only when it changes. Include "scenes" only when creating or changing scenes, and ALWAYS return the FULL scene list (it replaces the old one). Keep "reply" to a few sentences."""
 
@@ -469,6 +472,41 @@ DRAFT_RES = "480x272"      # ~3 min: the cheap gate that kills bad staging early
 FINAL_RES = "832x480"      # ~9 min
 
 
+# Motion is motivated, never drift (frozen rule 31, 2026-10-22, Fable review + Sitka promo).
+# The old fallback, "gentle ambient motion, subtle camera push-in", put the same slow drift
+# on every shot that came back without a motion prompt. The fallback now builds
+# "<subject> <action>, camera <move>" from the scene's own description, with the move
+# chosen from the shot type. Static is an explicit choice: "static": true on the scene,
+# or a motion prompt that is just "static".
+_SHOT_MOVES = (
+    (("extreme close", "macro", "close-up", "closeup", "close up", "insert", "detail"),
+     "slowly pushes in on the detail"),
+    (("wide", "establish", "landscape", "aerial", "vista", "skyline"),
+     "tracks slowly sideways, revealing the space"),
+    (("walk", "run", "ride", "climb", "hike", "drive", "fly", "chase", "march"),
+     "tracks alongside, keeping pace with the movement"),
+    (("over the shoulder", "two-shot", "two shot", "face", "portrait", "talk", "speak"),
+     "eases a little closer as the moment lands"),
+)
+STATIC_MOTION = ("static camera, locked-off tripod shot, the camera does not move at all; "
+                 "only the subject moves")
+
+
+def motivated_motion(scene: dict) -> str:
+    """A per-shot motion prompt for a scene that came back without one."""
+    if scene.get("static") or (scene.get("motion") or "").strip().lower() == "static":
+        return STATIC_MOTION
+    desc = (scene.get("desc") or scene.get("title") or "the subject").strip().rstrip(".")
+    first = re.split(r"(?<=[.;])\s", desc, maxsplit=1)[0].rstrip(".;")
+    low = desc.lower()
+    move = "arcs slowly around the subject"   # medium shot: the parallax reads as depth
+    for words, m in _SHOT_MOVES:
+        if any(w in low for w in words):
+            move = m
+            break
+    return f"{first[:160]}, the action plays out in the frame, camera {move}"
+
+
 def _animate(pid, idx, mode):
     res = DRAFT_RES if mode == "draft" else FINAL_RES
     # let queued stills clear first — they reuse the resident FLUX weights and
@@ -494,7 +532,7 @@ def _animate(pid, idx, mode):
                 comfy_name = json.loads(r.read().decode())["name"]
 
             # 2. queue the i2v render (native 5s — never stretched)
-            motion = s["motion"] or "gentle ambient motion, subtle camera push-in"
+            motion = s["motion"] or motivated_motion(s)
             job = _http_json(f"{SELF_URL}/api/render", {
                 "prompt": motion, "image_name": comfy_name,
                 "duration": 5, "quality": "fast", "resolution": res,

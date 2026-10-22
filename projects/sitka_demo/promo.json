@@ -1,0 +1,162 @@
+{
+ "title": "Sitka demo (promo-mode test fixture)",
+ "brand": "SITKA",
+ "voice": {
+  "character": "matt2",
+  "exaggeration": 0.4,
+  "cfg": 0.5,
+  "pitch": 0.92,
+  "eq": [
+   [
+    180,
+    3.0
+   ],
+   [
+    5000,
+    -3.0
+   ]
+  ],
+  "lufs": -16.0,
+  "retakes": 3
+ },
+ "gap": 0.6,
+ "lead": 0.5,
+ "music": {
+  "bed": "music/bed.wav",
+  "gain": 0.55,
+  "hit": 81.0
+ },
+ "endcard": {
+  "title": "SITKA",
+  "tagline": "Come build one with us.",
+  "url": "github.com/nicedreamzapp/sitka",
+  "dur": 5.0,
+  "slam_after": 0.15
+ },
+ "bug": "SITKA",
+ "renderer": "ffmpeg",
+ "blender": [
+  {
+   "id": "l01_bl_hero_orbit",
+   "line": 1,
+   "setup": "slow low orbit around the standing wearer, studio rims",
+   "glb": [
+    "assets/sitka_stand.glb"
+   ],
+   "world": "studio",
+   "hdri": "assets/studio_small_09_2k.exr",
+   "camera": {
+    "move": "orbit",
+    "start_deg": -50,
+    "end_deg": 15,
+    "elev_deg": 4,
+    "lens": 50,
+    "frame_fill": 0.85
+   },
+   "frames": 150,
+   "res": [
+    1280,
+    720
+   ],
+   "engine": "CYCLES",
+   "samples": 24
+  },
+  {
+   "id": "l02_bl_sit_push",
+   "line": 2,
+   "setup": "push in on the seated wearer as the weight lands on the struts",
+   "glb": [
+    "assets/sitka_chair.glb"
+   ],
+   "world": "hdri",
+   "hdri": "assets/cape_hill_4k.exr",
+   "hdri_rot": 120,
+   "camera": {
+    "move": "push",
+    "start_deg": -75,
+    "elev_deg": 9,
+    "lens": 45,
+    "amount": 0.22,
+    "frame_fill": 0.68
+   },
+   "frames": 150,
+   "res": [
+    1280,
+    720
+   ],
+   "engine": "CYCLES",
+   "samples": 24
+  },
+  {
+   "id": "l03_bl_stand_truck",
+   "line": 3,
+   "setup": "camera trucks past the standing wearer, studio",
+   "glb": [
+    "assets/sitka_stand.glb"
+   ],
+   "world": "studio",
+   "hdri": "assets/studio_small_09_2k.exr",
+   "camera": {
+    "move": "truck",
+    "start_deg": 20,
+    "elev_deg": 3,
+    "lens": 60,
+    "amount": 0.35,
+    "frame_fill": 0.85
+   },
+   "frames": 120,
+   "res": [
+    1280,
+    720
+   ],
+   "engine": "CYCLES",
+   "samples": 24
+  }
+ ],
+ "materials": {
+  "carbon*": "carbon",
+  "alu": "aluminum",
+  "body": "mannequin",
+  "fabric": "fabric",
+  "foam": "foam",
+  "leaf": "glass_fiber",
+  "band": "glow_teal",
+  "rubber": "rubber",
+  "accent": "anodized_orange"
+ },
+ "youtube": {
+  "title": "SITKA in 25 seconds: the open-source exoskeleton you can sit on (promo-mode test cut)",
+  "tags": [
+   "Sitka",
+   "exoskeleton",
+   "open source hardware",
+   "wearable chair"
+  ],
+  "category": "Science & Technology",
+  "description": "A 25 second test cut made end to end by Story Forge's promo mode from the Sitka CAD.\n\nGitHub: https://github.com/nicedreamzapp/sitka\n\nAll visuals are rendered from the real Sitka CAD (Blender). Music: original instrumental made with Song Forge."
+ },
+ "gates": {
+  "lufs": -16.0,
+  "lufs_tol": 1.0,
+  "true_peak_max": -1.0,
+  "design_votes": 3
+ },
+ "extra_cues": [
+  {
+   "line": 2,
+   "word": "Sit",
+   "kind": "overlay",
+   "file": "overlays/d1_strut.mov",
+   "dur": 4.6,
+   "x": 0.5,
+   "y": 0.5,
+   "w": 1.0
+  },
+  {
+   "line": 2,
+   "word": "spring",
+   "kind": "callout",
+   "callout": "knee_spring"
+  }
+ ]
+}

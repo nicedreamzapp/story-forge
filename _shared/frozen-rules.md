@@ -43,6 +43,16 @@ Note: two different rules are numbered 26 (rule 26 `clip_beat`, and rule 26 the 
    when the review session ends. Unreferenced-but-maybe-good material goes in
    projects/<name>/_ARCHIVE_UNUSED_not_in_film/ (README inside says DO NOT USE)
    — an agent assembling a cut pulls ONLY from clips/ via the EDL.
+   AMENDED 2026-10-22 (Fable review + Sitka promo): COVERAGE IS NOT A COMPETING TAKE
+   UNTIL THE FILM IS APPROVED. Deleting every alternate the moment one clip won left
+   every film with exactly one clip per beat, so the edit had nothing to cut to (rule 29).
+   Coverage takes and alternates now survive until Matt approves the FILM: they live in
+   `acquired/` and `clips/alternates/`, every one is listed in `manifest.json` (an
+   unlisted file is a corpse, not coverage), and they die THE SAME SESSION the film is
+   approved — the cut keeps what it used, everything else goes. What did not change: a
+   take Matt DECLINES still dies the same session it is declined, coverage or not, and
+   the corollary above (declined work wired back into a cut by a later agent) is exactly
+   why. Review folders still die when the review ends.
 
 15. LEARN WITHOUT BEING ASKED (Matt, 2026-07-26: "I shouldn't have to tell you
    these special notes to take from here on out"). Every rejection — his, or a gate's —
@@ -410,3 +420,81 @@ Note: two different rules are numbered 26 (rule 26 `clip_beat`, and rule 26 the 
    - Every KEPT clip gets a frame-grid look from the agent before build-episode runs — a
      PASS is a claim to verify, not a reason to skip looking. Matt sees the film; the gate
      sees frames; the agent is the one who has to see both.
+
+28. ACQUIRED-FOOTAGE POLICY (2026-10-22, Sitka promo; Matt's decision). Inference WE run
+   stays local. ACQUIRED footage is allowed: CAD renders, real footage, and two browser
+   tools — ChatGPT images and Grok Imagine video — generated in Matt's logged-in Brave on
+   the Mac mini, and nowhere else.
+   - Only through the browser broker: `bin/browser-acquire projects/<film>/acquire.json`
+     drives hidden lease tabs on the mini. Never focus-stealing, never on the M5's
+     browser, never a script that types into a tab Matt is using.
+   - NEVER an API, for either tool. No keys, no paid endpoints, no "it's faster via API".
+   - Every take gets provenance: `acquired/provenance.json` plus a `<file>.json` sidecar
+     (tool, prompt, refs with sha256, created, src_url, page; schema in
+     `pipeline/formats/promo/SCHEMAS.md`). A file with no provenance is not footage.
+   - Acquired takes are coverage: never deleted before the film is approved (rule 13 as
+     amended), and they pass the SAME gates as anything we render, including
+     `design_check.py` against `design.json` — a pretty Grok clip of the wrong product is
+     a wrong shot.
+   - Free-tier limits are real: Grok Imagine free = 480p and 6 s per clip; the paid
+     options (longer, higher res) pop an upsell. Plan setups around 6 s at 480p, upscale
+     in the finish, and never click an upsell.
+   - THE DESIGN RIDES IN WITH EVERY JOB (Matt, 2026-10-22, upset by a generation that did
+     not look like our design). Every job uploads the product's CAD stills of the matching
+     pose/angle as `refs`, and the prompt tells the tool to reproduce that exact design,
+     photoreal. `bin/browser-acquire` refuses a job with empty `refs[]` and appends a
+     fidelity clause to every prompt: `design.json` `"fidelity_clause"` (optional), else a
+     generic default. Grok takes only the FIRST ref (it animates from that still as the
+     first frame), so the best-matching CAD still goes first.
+   - EDIT, DON'T INVENT; BLENDER FIRST (Matt, same night). A ChatGPT "scene" from the CAD
+     still came back with extra legs and parts we don't have ("horrible"). So: for a
+     physical product the PRIMARY photoreal source is a Blender Cycles render of the exact
+     CAD (`blender-render`: GLB + PBR materials + Cycles on Metal, per-part masks out; promo
+     stage 03). Browser tools are secondary and only EDIT one CAD/Blender close-up per call
+     (`grok-image`, `gemini-image`, `chatgpt-edit`: materials and light change, no part is
+     added, removed or moved), and every take is design-checked against its ref; a failure
+     is rejected, not trimmed. `chatgpt-image` is NOT for photoreal product shots.
+   - OPTIONAL AND NEVER A TEST (2026-10-22, promo mode finished). Browser takes are an
+     extra source, never a requirement: `bin/make-promo` only runs browser-acquire with
+     `--acquire`. Nobody runs a live ChatGPT/Grok/Gemini generation to test a tool; the
+     plumbing is tested with `bin/browser-acquire --mock` (no browser, no mini, fake takes
+     in acquired/_mock/ that ingest never reads).
+
+29. COVERAGE — SHOOT MORE THAN YOU NEED, CUT TO THE BEST (2026-10-22, Fable review +
+   Sitka promo; Matt: "any good movie will have way more footage than it needs to make a
+   compelling story"). Every film so far had ONE clip per beat: forge-shot locks one seed,
+   rule 13 deleted the alternates the same session, and 06_assemble cut "exactly the
+   approved clips". There was never anything to choose between, so nothing was ever cut
+   to the best. For EVERY format:
+   - every narration line or beat gets >= 3 setups from >= 2 different sources (CAD,
+     Grok, ChatGPT, LTX, Wan, Manim, real footage);
+   - acquired seconds >= 3x the target runtime;
+   - selects rank >= 2 takes per line, with a written why, and the cut uses the best;
+   - `pipeline-tools/coverage_gate.py` BLOCKS the edit stage until all of that is true
+     (bin/film-status shows it).
+
+30. READY-FOR-MATT GATE (2026-10-22, Fable review + Sitka promo). Lessons were written and
+   nothing enforced them: films reached Matt before the gates ran, and no step made the
+   agent sit through its own cut. A film cannot be shown to Matt until (a) every gate in
+   the gates stage ran and its report was read, AND (b) the agent watched the full cut
+   start to finish and wrote `stages/<gates stage>/known_defects.md` — dated, every FAIL,
+   WARN and UNCHECKED, what it saw that no gate checks, and a line confirming the full
+   watch. The file must be newer than the newest `final/*.mp4`; a re-cut means a re-watch.
+   `bin/film-status` prints `READY FOR MATT: no` until all of that is on disk.
+
+31. MOTION IS MOTIVATED, NEVER DRIFT (2026-10-22, Fable review + Sitka promo). The defaults
+   produced drift: director.py fell back to "gentle ambient motion, subtle camera
+   push-in", make-ltx25 prepended "static camera, locked-off" to every i2v render, and
+   every cut was a 0.5 s crossfade — Matt rejected that look three times. Every shot's
+   motion prompt now names an ACTION (what the subject does in this shot) or a MOTIVATED
+   camera move chosen per shot (push in as a realization lands, track alongside a walk,
+   pull back to reveal). Static is an explicit choice made per shot (`make-ltx25
+   --static`, `"static": true`), never the default. No shot gets motion just so it is
+   not still.
+
+32. CUT TO WORDS (2026-10-22, Fable review + Sitka promo). Narration was laid over a run of
+   shots and the shots changed wherever the clips happened to end. The edit now follows
+   the voice: mlx-whisper word timings (`vo/words.json`), cue words per line
+   (`cues.json`), and hard cuts landing on word onsets by default. A dissolve exists only
+   where a cue asks for `xfade`. VO is never just laid over picture; the picture changes
+   because a word said so.

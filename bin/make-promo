@@ -1,0 +1,242 @@
+#!/usr/bin/env python3
+"""make-promo — one command from a promo project folder to a gated final mp4 + thumbnail + youtube.json.
+
+    bin/make-promo projects/<film>                  # every stage, stops at the first failing gate
+    bin/make-promo projects/<film> --from edit      # re-run from a stage (after fixing cues, selects...)
+    bin/make-promo projects/<film> --only gates
+    bin/make-promo projects/<film> --renderer remotion
+    bin/make-promo projects/<film> --acquire        # ALSO run bin/browser-acquire on acquire.json (optional,
+                                                    # Matt's Brave on the mini, refs[] required)
+
+The contract is pipeline/formats/promo/CONTEXT.md; this runner only drives it. A new promo starts with
+`bin/film-status projects/<film> --init --format promo`, then script.md, promo.json, coverage.json and
+design.json are written (the template has every field). Stages and their gates:
+
+  story     script.md + promo.json real (not the template)
+  voice     promo_voice.py: matt2 clone + finish chain; whisper must hear every word (retakes, auto-reword)
+  coverage  coverage_lint.py: >= 3 setups from >= 2 sources per line, a sentiment per line
+  footage   promo_footage.py (Blender CAD renders, local i2v) [+ browser-acquire with --acquire],
+            ingest_acquired.py -> manifest.json, design_check.py (every take vs design.json)
+  selects   promo_draft.py drafts selects.json if missing; coverage_gate.py must PASS (>= 3x footage)
+  edit      words_align.py -> promo_draft.py drafts cues.json if missing -> edit_to_words.py -> cue_check.py
+  mix       promo_music.py (only if no bed) -> promo_mix.py -> render_edl.py --audio final/mix.wav
+  gates     cue_check.py, promo_gates.py (whisper the FINAL mix vs the script, loudness, voice over music,
+            ending lands, design of every used shot, frame strips), callout_check.py when callouts exist
+  deliver   promo_deliver.py: final/thumbnail.png + final/youtube.json
+
+Human checks (Matt approves the script and the design facts, picks the score, watches at READY FOR MATT)
+are NOT skipped: the runner builds the draft cut and says which approvals are still open, and
+bin/film-status keeps READY FOR MATT at "no" until the agent watched the whole cut and wrote
+stages/09_gates/known_defects.md (frozen rule 30). Song Forge customer jobs outrank every render:
+heavy stages refuse to start while jobs_running > 0.
+
+Exit 0 = every stage ran and every gate passed; 1 = stopped at a failing gate (the message says which and
+what to fix); 2 = could not run.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+TOOLS = ROOT / "pipeline-tools"
+HOME = Path.home()
+PY = sys.executable
+CB = str(HOME / "chatterbox-env" / "bin" / "python")      # mlx-whisper, soundfile, scipy, PIL, librosa
+MLX = str(HOME / ".local" / "mlx-server" / "bin" / "python")  # the Qwen3-VL judge
+MARKER = "<!-- TEMPLATE:"
+STAGES = ["story", "voice", "coverage", "footage", "selects", "edit", "mix", "gates", "deliver"]
+T0 = time.time()
+
+
+class Stop(Exception):
+    pass
+
+
+def say(msg: str) -> None:
+    print(msg, flush=True)
+
+
+def step(label: str, cmd: list, ok_codes=(0,), cwd=None) -> int:
+    t = time.time()
+    say(f"\n--- {time.strftime('%H:%M')} {label}")
+    r = subprocess.run([str(c) for c in cmd], cwd=cwd)
+    say(f"--- {label}: exit {r.returncode} ({time.time() - t:.0f}s)")
+    if r.returncode not in ok_codes:
+        raise Stop(f"{label} exited {r.returncode}")
+    return r.returncode
+
+
+def real(p: Path) -> bool:
+    return p.exists() and p.stat().st_size > 0 and not p.read_text(errors="ignore").lstrip().startswith(MARKER)
+
+
+def song_forge_idle() -> None:
+    sys.path.insert(0, str(TOOLS))
+    from promo_common import song_forge_busy
+    busy, why = song_forge_busy()
+    if busy:
+        raise Stop(f"Song Forge is busy ({why}); customer jobs outrank renders. Run again when it is idle.")
+
+
+def stage_story(film: Path, a) -> None:
+    for f in ("script.md", "promo.json"):
+        if not real(film / f):
+            raise Stop(f"{f} is missing or still the template. Write it first (pipeline/formats/promo/01_story).")
+    if not (film / "stages" / "01_story" / "APPROVED.md").exists():
+        say("  note: Matt has not approved the script yet (stages/01_story/APPROVED.md); building a DRAFT cut")
+
+
+def stage_voice(film: Path, a) -> None:
+    step("voice: matt2 clone, finish chain, whisper check (retakes, auto-reword)",
+         [CB, TOOLS / "promo_voice.py", film] + (["--force"] if a.force_voice else []))
+
+
+def stage_coverage(film: Path, a) -> None:
+    if not real(film / "coverage.json"):
+        raise Stop("coverage.json is missing or the template (>= 3 setups per line from >= 2 sources)")
+    step("coverage plan lint", [PY, TOOLS / "coverage_lint.py", film])
+    if not real(film / "design.json"):
+        say("  note: no design.json: there is no product geometry to check (design verdicts become n/a)")
+    elif not (film / "stages" / "03_coverage" / "APPROVED.md").exists():
+        say("  note: Matt has not confirmed the design facts yet (stages/03_coverage/APPROVED.md)")
+
+
+def stage_footage(film: Path, a) -> None:
+    step("footage: Blender CAD renders + local i2v (promo.json)", [PY, TOOLS / "promo_footage.py", film])
+    acq = film / "acquire.json"
+    if a.acquire:
+        if not acq.exists():
+            raise Stop("--acquire given but there is no acquire.json")
+        step("browser-acquire (Matt's Brave on the mini, refs required)", [ROOT / "bin" / "browser-acquire", acq], ok_codes=(0, 1))
+    elif acq.exists():
+        say("  note: acquire.json exists; browser takes are optional and run only with --acquire")
+    step("ingest -> manifest.json", [PY, TOOLS / "ingest_acquired.py", film], ok_codes=(0,))
+    if real(film / "design.json"):
+        song_forge_idle()
+        votes = json.loads((film / "promo.json").read_text()).get("gates", {}).get("design_votes", 3)
+        rc = step("design_check: every take vs design.json (Qwen3-VL)",
+                  [MLX, TOOLS / "design_check.py", film, "--votes", votes], ok_codes=(0, 1))
+        if rc == 1:
+            say("  note: some takes failed or could not be judged; they are not cut from (coverage gate decides)")
+    else:
+        man = json.loads((film / "manifest.json").read_text())
+        for c in man["candidates"]:
+            c.setdefault("checks", {})["design"] = c["checks"].get("design") or "n/a"
+        (film / "manifest.json").write_text(json.dumps(man, indent=1))
+
+
+def stage_selects(film: Path, a) -> None:
+    step("selects (drafted only if selects.json is missing)", [PY, TOOLS / "promo_draft.py", film, "--selects"])
+    if json.loads((film / "selects.json").read_text()).get("draft"):
+        say("  note: selects.json is promo_draft's DRAFT; rank the takes yourself (a why per take) before calling it done")
+    step("COVERAGE GATE (>= 3 takes/line, >= 2 design passes, >= 3x footage)", [PY, TOOLS / "coverage_gate.py", film])
+
+
+def stage_edit(film: Path, a) -> None:
+    cfg = json.loads((film / "promo.json").read_text())
+    step("words_align: word timings on the final timeline",
+         [CB, TOOLS / "words_align.py", film, "--gap", cfg.get("gap", 0.6), "--lead", cfg.get("lead", 0.4)])
+    step("cues (drafted only if cues.json is missing)", [PY, TOOLS / "promo_draft.py", film, "--cues"])
+    if json.loads((film / "cues.json").read_text()).get("draft"):
+        say("  note: cues.json is promo_draft's DRAFT; pick the cue words yourself before calling it done")
+    step("edit_to_words: cut to the words -> edl.json", [PY, TOOLS / "edit_to_words.py", film])
+    step("CUE CHECK (every cut/title/overlay on its word, slam after the last word)", [PY, TOOLS / "cue_check.py", film])
+
+
+def stage_mix(film: Path, a) -> None:
+    cfg = json.loads((film / "promo.json").read_text())
+    bed = film / ((cfg.get("music") or {}).get("bed") or "music/bed.wav")
+    if not bed.exists():
+        song_forge_idle()
+        step("music bed from Song Forge (instrumental)", [CB, TOOLS / "promo_music.py", film])
+    step("mix: voice + ducked bed + sfx + sting, static loudness", [CB, TOOLS / "promo_mix.py", film])
+    song_forge_idle()
+    renderer = a.renderer or cfg.get("renderer", "ffmpeg")
+    cmd = [CB, TOOLS / "render_edl.py", "--renderer", renderer, film, "--out", f"final/{film.name}.mp4",
+           "--audio", film / "final" / "mix.wav"]
+    if cfg.get("bug"):
+        cmd += ["--bug", cfg["bug"]]
+    step(f"render picture ({renderer}) + mux the mix -> final/{film.name}.mp4", cmd)
+    sp = film / "stages" / "08_mix" / "score_pick.md"
+    if not real(sp):
+        mj = json.loads((film / "final" / "mix.json").read_text())
+        sp.parent.mkdir(parents=True, exist_ok=True)
+        sp.write_text(f"# Score pick (draft, written by make-promo {time.strftime('%Y-%m-%d %H:%M')})\n\n"
+                      f"| Candidate | File | Notes |\n|---|---|---|\n| bed | `{mj['bed']}` | downbeat {mj['bed_hit']}s "
+                      f"({mj['bed_hit_source']}) lands on the slam at {mj['slam']}s |\n\n## Matt picked\n\n"
+                      "Not yet: Matt hears it at READY FOR MATT and picks by ear.\n\n## His words\n\n")
+
+
+def stage_gates(film: Path, a) -> None:
+    rep = film / "final" / "cue_check_report.md"
+    r = subprocess.run([PY, str(TOOLS / "cue_check.py"), str(film)], capture_output=True, text=True)
+    rep.write_text(f"# Cue check: {film.name}\n\n```\n{r.stdout}{r.stderr}```\n")
+    say(f"\n--- cue_check: exit {r.returncode} -> final/cue_check_report.md")
+    if r.returncode != 0:
+        raise Stop("cue_check failed on the final EDL (final/cue_check_report.md)")
+    rc = step("PROMO GATES: whisper the final mix vs the script, loudness, ending, design, strips",
+              [CB, TOOLS / "promo_gates.py", film], ok_codes=(0, 1))
+    if (film / "callouts.json").exists():
+        song_forge_idle()
+        crc = step("callout_check: every arrow tip on its part (Qwen3-VL)",
+                   [MLX, TOOLS / "callout_check.py", film, "--film", f"final/{film.name}.mp4"], ok_codes=(0, 1, 2))
+        if crc != 0:
+            say("  CALLOUT CHECK did not pass: read final/callout_report.md (UNCHECKED is not a pass)")
+            rc = rc or 1
+    if rc:
+        raise Stop("a gate FAILED: read final/promo_gates_report.md")
+
+
+def stage_deliver(film: Path, a) -> None:
+    step("thumbnail + youtube.json", [CB, TOOLS / "promo_deliver.py", film])
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("film")
+    ap.add_argument("--from", dest="frm", choices=STAGES)
+    ap.add_argument("--to", choices=STAGES)
+    ap.add_argument("--only", choices=STAGES)
+    ap.add_argument("--renderer", choices=["ffmpeg", "remotion"])
+    ap.add_argument("--acquire", action="store_true", help="also run bin/browser-acquire on acquire.json")
+    ap.add_argument("--force-voice", action="store_true", help="re-voice every line")
+    a = ap.parse_args()
+    film = Path(a.film).resolve()
+    if not film.is_dir():
+        print(f"make-promo: no project folder {film}", file=sys.stderr)
+        return 2
+    fmt = (film / "FORMAT").read_text().strip() if (film / "FORMAT").exists() else "film"
+    if fmt != "promo":
+        print(f"make-promo: {film.name} is format '{fmt}', not promo (bin/film-status --init --format promo)",
+              file=sys.stderr)
+        return 2
+    run = STAGES[STAGES.index(a.frm or "story"): STAGES.index(a.to or "deliver") + 1]
+    if a.only:
+        run = [a.only]
+    say(f"make-promo {film.name}: stages {', '.join(run)} (started {time.strftime('%H:%M')})")
+    fns = {s: globals()[f"stage_{s}"] for s in STAGES}
+    for s in run:
+        say(f"\n===== {s} =====")
+        try:
+            fns[s](film, a)
+        except Stop as e:
+            say(f"\nSTOPPED at stage '{s}': {e}")
+            say(f"Fix it, then: bin/make-promo {a.film} --from {s}")
+            return 1
+    say(f"\nmake-promo {film.name}: every stage ran, every gate passed ({(time.time() - T0) / 60:.1f} min)")
+    if "gates" in run:
+        say(f"  final/{film.name}.mp4, final/thumbnail.png, final/youtube.json, final/promo_gates_report.md")
+        say("  NEXT: look at every final/strips/*.jpg, watch the WHOLE cut start to finish, then write "
+            "stages/09_gates/known_defects.md (dated, every WARN/UNCHECKED, what you saw). Until then "
+            "bin/film-status says READY FOR MATT: no.")
+    subprocess.run([PY, str(ROOT / "bin" / "film-status"), str(film)])
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -1,0 +1,279 @@
+{
+ "fps": 30,
+ "w": 1920,
+ "h": 1080,
+ "dur": 23.8,
+ "shots": [
+  {
+   "cid": "l01_bl_hero_orbit_1",
+   "file": "acquired/blender/l01_bl_hero_orbit/beauty.mp4",
+   "kind": "video",
+   "src_in": 0.0,
+   "src_out": 3.0667,
+   "rec_in": 0.0,
+   "rec_out": 3.0667,
+   "line": 1,
+   "transition": "cut",
+   "xfade": 0.0,
+   "anchor_word": 0,
+   "anchor_text": "This",
+   "speed": 1.0,
+   "head": 0.0,
+   "tail": 0.0,
+   "src_dur": 5.0
+  },
+  {
+   "cid": "l01_cad_s02_hero_reveal",
+   "file": "footage/s02_hero_reveal.mp4",
+   "kind": "video",
+   "src_in": 0.0,
+   "src_out": 3.0,
+   "rec_in": 3.0667,
+   "rec_out": 6.0667,
+   "line": 1,
+   "transition": "cut",
+   "xfade": 0.0,
+   "anchor_word": 4,
+   "anchor_text": "light",
+   "speed": 1.0,
+   "head": 0.0,
+   "tail": 0.0,
+   "src_dur": 4.733
+  },
+  {
+   "cid": "l02_bl_sit_push_1",
+   "file": "acquired/blender/l02_bl_sit_push/beauty.mp4",
+   "kind": "video",
+   "src_in": 0.0,
+   "src_out": 2.4333,
+   "rec_in": 6.0667,
+   "rec_out": 8.5,
+   "line": 2,
+   "transition": "cut",
+   "xfade": 0.0,
+   "anchor_word": 10,
+   "anchor_text": "Sit",
+   "speed": 1.0,
+   "head": 0.0,
+   "tail": 0.0,
+   "src_dur": 5.0
+  },
+  {
+   "cid": "l02_cad_s10_sit_wide",
+   "file": "footage/s10_sit_wide.mp4",
+   "kind": "video",
+   "src_in": 0.0,
+   "src_out": 2.2,
+   "rec_in": 8.5,
+   "rec_out": 10.7,
+   "line": 2,
+   "transition": "cut",
+   "xfade": 0.0,
+   "anchor_word": 19,
+   "anchor_text": "hip",
+   "speed": 1.0,
+   "head": 0.0,
+   "tail": 0.0,
+   "src_dur": 5.233
+  },
+  {
+   "cid": "l02_cad_s12_knee_sit_close",
+   "file": "footage/s12_knee_sit_close.mp4",
+   "kind": "video",
+   "src_in": 0.0,
+   "src_out": 2.7,
+   "rec_in": 10.7,
+   "rec_out": 13.4,
+   "line": 2,
+   "transition": "cut",
+   "xfade": 0.0,
+   "anchor_word": 27,
+   "anchor_text": "spring",
+   "speed": 1.0,
+   "head": 0.0,
+   "tail": 0.0,
+   "src_dur": 4.9
+  },
+  {
+   "cid": "l03_bl_stand_truck_1",
+   "file": "acquired/blender/l03_bl_stand_truck/beauty.mp4",
+   "kind": "video",
+   "src_in": 0.0,
+   "src_out": 2.1,
+   "rec_in": 13.4,
+   "rec_out": 15.5,
+   "line": 3,
+   "transition": "cut",
+   "xfade": 0.0,
+   "anchor_word": 33,
+   "anchor_text": "Sitka",
+   "speed": 1.0,
+   "head": 0.0,
+   "tail": 0.0,
+   "src_dur": 4.0
+  },
+  {
+   "cid": "l03_cad_s26_finale",
+   "file": "footage/s26_finale.mp4",
+   "kind": "video",
+   "src_in": 0.0,
+   "src_out": 1.6667,
+   "rec_in": 15.5,
+   "rec_out": 17.1667,
+   "line": 3,
+   "transition": "cut",
+   "xfade": 0.0,
+   "anchor_word": 38,
+   "anchor_text": "design",
+   "speed": 1.0,
+   "head": 0.0,
+   "tail": 0.0,
+   "src_dur": 2.733
+  },
+  {
+   "cid": "l03_cad_s20_walk_bands",
+   "file": "footage/s20_walk_bands.mp4",
+   "kind": "video",
+   "src_in": 0.0,
+   "src_out": 1.6333,
+   "rec_in": 17.1667,
+   "rec_out": 18.8,
+   "line": 3,
+   "transition": "cut",
+   "xfade": 0.0,
+   "anchor_word": 42,
+   "anchor_text": "part",
+   "speed": 1.0,
+   "head": 0.0,
+   "tail": 0.0,
+   "src_dur": 5.833
+  }
+ ],
+ "audio": [
+  {
+   "file": "vo/final/part000.wav",
+   "rec_in": 0.5,
+   "kind": "vo",
+   "line": 1
+  },
+  {
+   "file": "vo/final/part001.wav",
+   "rec_in": 6.073,
+   "kind": "vo",
+   "line": 2
+  },
+  {
+   "file": "vo/final/part002.wav",
+   "rec_in": 13.398,
+   "kind": "vo",
+   "line": 3
+  }
+ ],
+ "titles": [
+  {
+   "text": "SITKA",
+   "rec_in": 1.5333,
+   "rec_out": 3.1333,
+   "line": 1,
+   "word": "Sitka",
+   "i": 2
+  }
+ ],
+ "overlays": [
+  {
+   "file": "overlays/d1_strut.mov",
+   "rec_in": 6.1333,
+   "rec_out": 10.7333,
+   "x": 0.5,
+   "y": 0.5,
+   "w": 1.0,
+   "opacity": 1.0,
+   "cue_word": "Sit",
+   "line": 2,
+   "src_in": 0.0
+  }
+ ],
+ "events": [
+  {
+   "kind": "title",
+   "line": 1,
+   "word": "Sitka",
+   "nth": 1,
+   "i": 2,
+   "t": 1.5333,
+   "dur": 1.6
+  },
+  {
+   "kind": "cut",
+   "line": 1,
+   "word": "light",
+   "nth": 1,
+   "i": 4,
+   "t": 3.0667
+  },
+  {
+   "kind": "cut",
+   "line": 2,
+   "word": "hip",
+   "nth": 1,
+   "i": 19,
+   "t": 8.5
+  },
+  {
+   "kind": "cut",
+   "line": 2,
+   "word": "spring",
+   "nth": 1,
+   "i": 27,
+   "t": 10.7
+  },
+  {
+   "kind": "cut",
+   "line": 3,
+   "word": "design",
+   "nth": 1,
+   "i": 38,
+   "t": 15.5
+  },
+  {
+   "kind": "cut",
+   "line": 3,
+   "word": "part",
+   "nth": 1,
+   "i": 42,
+   "t": 17.1667
+  },
+  {
+   "kind": "overlay",
+   "line": 2,
+   "word": "Sit",
+   "nth": 1,
+   "i": 10,
+   "t": 6.1333,
+   "dur": 4.6
+  },
+  {
+   "kind": "callout",
+   "line": 2,
+   "word": "spring",
+   "nth": 1,
+   "i": 27,
+   "t": 10.7,
+   "callout": "knee_spring"
+  }
+ ],
+ "callouts": "callouts.json",
+ "words": "vo/words.json",
+ "tail": 0.6,
+ "endcard": {
+  "rec_in": 18.8,
+  "rec_out": 23.8,
+  "title": "SITKA",
+  "tagline": "Come build one with us.",
+  "url": "github.com/nicedreamzapp/sitka",
+  "after_word": "us",
+  "last_word_end": 18.658
+ },
+ "jcut": 0.0,
+ "notes": []
+}

@@ -928,6 +928,13 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
         # measured 2026-08-29: --low-ram renders the same frames (seed-deterministic) in
         # ~70s vs ~79s full, and keeps Metal peak small; full mode ended at 32GB swap.
         anim_cmd.insert(1, "--low-ram")
+        # forge-shot judges the clip against its LOCKED still, so drift the still never had
+        # fails the clip gate (s1_coldopen / s4_arrival, 2026-08-29). That is an explicit
+        # need for locked-off, so ask for it by flag now that make-ltx25 no longer forces it
+        # (frozen rule 31, 2026-10-22). make-ltx25 still skips the wording when the animate
+        # prompt names a camera move. A shot opts out with "static": false in shots.json.
+        if shot.get("static", defaults.get("static", True)):
+            anim_cmd.insert(1, "--static")
     t_anim = time.time()
     r = run(anim_cmd, timeout=5400)
     metric(shot["id"], "animate", time.time() - t_anim)

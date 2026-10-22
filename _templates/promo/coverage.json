@@ -1,0 +1,5 @@
+<!-- TEMPLATE: replace this whole file. film-status counts it as missing until this line is gone. -->
+{"target_runtime": 0, "lines": [{"line": 1, "text": "", "sentiment": "",
+  "setups": [{"setup": "slow low orbit, the product revealed", "source": "blender-render", "file": "acquired/blender/l01_bl_hero_orbit/beauty.mp4"},
+             {"setup": "push in on the part the line names", "source": "blender-render", "file": "acquired/blender/l01_bl_detail_push/beauty.mp4"},
+             {"setup": "the product in use, real or rendered", "source": "cad", "file": "footage/l01_in_use.mp4"}]}]}

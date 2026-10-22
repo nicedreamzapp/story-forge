@@ -22,6 +22,9 @@ Do NOT load: other films' folders, `RULES.md` render rules, any pipeline-tools s
 ## Process
 1. Fill `premise.md`: controlling idea, who wants what, what stops them, the ending.
 2. Write `script.md` in ordinary screenplay terms: scenes, beats, every spoken line.
+   Every beat carries a `Sentiment:` line, what the VIEWER should feel there ("dread, then
+   relief"). Write the story for the viewer first. The VL judge's limits decide how a
+   shot is staged later; they never override the viewer's story (RULES.md 32).
 3. Every plot turn must be something a camera can SHOW. Flashbacks get a spoken time marker.
 4. Lines must fit prompted mouth motion: short beats, one talker per beat.
 

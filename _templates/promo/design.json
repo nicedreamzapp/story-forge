@@ -1,0 +1,8 @@
+<!-- TEMPLATE: replace this whole file. film-status counts it as missing until this line is gone. -->
+{"product": "",
+ "references": {"side": "refs/ref_side.png", "front": "refs/ref_front.png"},
+ "facts": [{"q": "", "expect": "yes", "angle": "side", "when": "(optional) a visible precondition, e.g. the person is sitting"}],
+ "must_not": [],
+ "parts": [],
+ "materials": {},
+ "fidelity_clause": "Reproduce this exact <product> from the reference: <the parts that must be right>. Do not add, remove or move any part. Photoreal."}

@@ -372,6 +372,182 @@
    ],
    "lesson": "emotion and vibe words in a beat or clip_beat make the judge rule on mood it cannot verify \u2014 'celebrating/joyfully' failed a frame that showed every required animal present. Name observable cues (ears swaying, head tipped back, mouth open) or drop the word.",
    "learned_on": "c1_celebration / s7b_hank_flat 2026-08-31"
+  },
+  {
+   "when": [
+    "coverage",
+    "take",
+    "takes",
+    "alternate",
+    "alternates",
+    "seed",
+    "edit",
+    "cut",
+    "selects",
+    "assemble"
+   ],
+   "lesson": "one clip per beat is not a film: shoot >= 3 setups per line from >= 2 sources (acquired seconds >= 3x runtime), keep alternates in acquired/ and clips/alternates/ listed in manifest.json until the FILM is approved, rank >= 2 takes per line in selects.json, and cut to the best. coverage_gate.py blocks the edit until this holds (frozen rules 13 amended, 29).",
+   "learned_on": "Fable review + Sitka promo 2026-10-22"
+  },
+  {
+   "when": [
+    "motion",
+    "camera",
+    "push-in",
+    "push",
+    "drift",
+    "ambient",
+    "static",
+    "locked-off",
+    "pan",
+    "animate"
+   ],
+   "lesson": "drift is not motion: 'gentle ambient motion, subtle camera push-in' and a forced 'static camera, locked-off' prefix gave every shot the same nothing, and Matt rejected that look three times. Name the subject's action and a camera move chosen for THIS shot (push in as the realization lands, track alongside the walk, pull back to reveal); static is an explicit --static / \"static\": true choice (frozen rule 31).",
+   "learned_on": "Fable review + Sitka promo 2026-10-22"
+  },
+  {
+   "when": [
+    "narration",
+    "vo",
+    "voiceover",
+    "voice-over",
+    "crossfade",
+    "xfade",
+    "dissolve",
+    "transition",
+    "words",
+    "timing"
+   ],
+   "lesson": "narration laid over a run of clips with a 0.5 s crossfade at every join reads as a slideshow. Align the VO to words (words_align.py), pick cue words per line (cues.json), hard-cut on word onsets, and dissolve only where a cue says xfade (frozen rule 32).",
+   "learned_on": "Fable review + Sitka promo 2026-10-22"
+  },
+  {
+   "when": [
+    "product",
+    "design",
+    "cad",
+    "exoskeleton",
+    "leg",
+    "legs",
+    "geometry",
+    "part",
+    "parts",
+    "device",
+    "sitka"
+   ],
+   "lesson": "QC that checks faces never notices a product drawn wrong (an extra leg, a motor in the wrong place). Every product shot is checked against design.json (reference angles, counted facts, must_not) by design_check.py before it can be selected (RULES.md 29).",
+   "learned_on": "Fable review + Sitka promo 2026-10-22"
+  },
+  {
+   "when": [
+    "grok",
+    "chatgpt",
+    "acquired",
+    "browser",
+    "acquire",
+    "imagine",
+    "dall-e",
+    "sora"
+   ],
+   "lesson": "ChatGPT images and Grok Imagine video are allowed ONLY via bin/browser-acquire in Matt's Brave on the mini (hidden lease tabs, never focus-stealing, never an API), each take with a provenance sidecar, and they pass every gate including design_check. Grok free tier = 480p and 6 s; never click the upsell (frozen rule 28).",
+   "learned_on": "Fable review + Sitka promo 2026-10-22"
+  },
+  {
+   "when": [
+    "show",
+    "matt",
+    "review",
+    "ready",
+    "watch",
+    "final",
+    "known_defects",
+    "deliver",
+    "done"
+   ],
+   "lesson": "never show Matt a cut the agent has not watched start to finish: all gate reports read, then known_defects.md dated, confirming the full watch, newer than the newest final/*.mp4. bin/film-status prints READY FOR MATT: no until then (frozen rule 30).",
+   "learned_on": "Fable review + Sitka promo 2026-10-22"
+  },
+  {
+   "when": [
+    "script",
+    "story",
+    "premise",
+    "beat",
+    "beats",
+    "sentiment",
+    "feel",
+    "judge",
+    "viewer"
+   ],
+   "lesson": "scripts were written for the VL judge, not the viewer, and no spec ever said what the viewer should feel. Every line/beat carries a SENTIMENT line; write the story for the viewer, then stage the shot so the judge can verify it, never the other way round (RULES.md 32).",
+   "learned_on": "Fable review + Sitka promo 2026-10-22"
+  },
+  {
+   "when": [
+    "grok",
+    "chatgpt",
+    "acquire",
+    "acquired",
+    "refs",
+    "reference",
+    "cad",
+    "design",
+    "fidelity",
+    "prompt"
+   ],
+   "lesson": "a browser generation that does not look like OUR design is a wrong shot, however pretty (Matt was upset by one). Every browser-acquire job uploads CAD stills of the matching pose/angle as refs, best match FIRST (Grok animates from the first ref only), and every prompt carries the design.json fidelity_clause telling the tool to reproduce that exact design, photoreal. browser-acquire refuses empty refs (frozen rule 28).",
+   "learned_on": "Fable review + Sitka promo 2026-10-22"
+  },
+  {
+   "when": [
+    "voice",
+    "narration",
+    "chatterbox",
+    "whisper",
+    "pitch",
+    "tts",
+    "clone"
+   ],
+   "lesson": "a voice line is only usable once whisper hears every word of it AFTER the finish chain: the pitch shift turned 'camp chair' into 'cam chair' (Sitka) and 'This is Sitka' into 'to Sitka' three takes running (sitka_demo). promo_voice.py retakes, then auto-rewords (alt: lines, numbers as words, the misheard word set off by commas), and every later gate checks what was SPOKEN.",
+   "learned_on": "promo mode build (sitka_demo fixture) 2026-10-22"
+  },
+  {
+   "when": [
+    "blender",
+    "hdri",
+    "render",
+    "cad",
+    "ground",
+    "shadow catcher",
+    "floating"
+   ],
+   "lesson": "an HDRI world with only a shadow catcher left the product floating over the photo's far-away ground (sitka_demo l02, struts in the air). HDRI shots get a real rough ground under the product that fades to transparent at ~3x its size; studio shots get a dark sweep that fades to black so no horizon line shows.",
+   "learned_on": "promo mode build (sitka_demo fixture) 2026-10-22"
+  },
+  {
+   "when": [
+    "ending",
+    "end card",
+    "slam",
+    "sting",
+    "music",
+    "last word"
+   ],
+   "lesson": "the end-card slam (flash + hit + the bed's downbeat + the sting) lands AFTER the last word ends (slam_after 0.15 s), never on it: on Sitka the hit masked 'Come'. edit_to_words stops the shots at the slam, promo_mix offsets the bed's downbeat onto it, cue_check and promo_gates fail a slam that starts before the last heard word ends.",
+   "learned_on": "promo mode build (sitka_demo fixture) 2026-10-22"
+  },
+  {
+   "when": [
+    "browser",
+    "acquire",
+    "test",
+    "grok",
+    "chatgpt",
+    "gemini",
+    "mock"
+   ],
+   "lesson": "never run a live browser generation to test a tool: bin/browser-acquire --mock runs the same validation, prompt building, numbering, sidecars and provenance with no browser and no mini, and its fake takes go to acquired/_mock/, which ingest never reads.",
+   "learned_on": "promo mode build (sitka_demo fixture) 2026-10-22"
   }
  ]
 }

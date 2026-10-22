@@ -119,6 +119,11 @@ FORMAT_PACKS: dict[str, dict[str, Any]] = {
         "label": "2.39:1 widescreen", "width": 1280, "height": 536,
         "fps": 24, "aspect": "2.39:1", "scene_dur": 6.0,
     },
+    # 2026-10-22: the promo format (pipeline/formats/promo/), cut to the narration's words
+    "promo": {
+        "label": "16:9 product promo", "width": 1920, "height": 1080,
+        "fps": 30, "aspect": "16:9", "scene_dur": 4.0,
+    },
 }
 
 DEFAULT_FORMAT = "film"   # only applied when a film explicitly asks for a format

@@ -1,0 +1,59 @@
+{
+ "draft": true,
+ "cues": [
+  {
+   "line": 1,
+   "word": "Sitka",
+   "nth": 1,
+   "kind": "title",
+   "text": "SITKA",
+   "dur": 1.6
+  },
+  {
+   "line": 1,
+   "word": "light",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 2,
+   "word": "hip",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 2,
+   "word": "spring",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 3,
+   "word": "design",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 3,
+   "word": "part",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 2,
+   "word": "Sit",
+   "kind": "overlay",
+   "file": "overlays/d1_strut.mov",
+   "dur": 4.6,
+   "x": 0.5,
+   "y": 0.5,
+   "w": 1.0
+  },
+  {
+   "line": 2,
+   "word": "spring",
+   "kind": "callout",
+   "callout": "knee_spring"
+  }
+ ]
+}

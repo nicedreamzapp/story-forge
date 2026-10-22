@@ -5,4 +5,7 @@ These are standing direction. Apply them automatically to every film; do not mak
 2. **Prompt the mouth motion to the dialogue.** On any shot with a line, write the i2v motion prompt to make that character's mouth move when we want the line ("Doug's mouth opens and closes as he speaks"). Direct mouth motion on purpose so it lands with the dialogue, then lay voice over the untouched result and density-match. NOT repainting mouths (still banned) — we prompt the motion, then voice it. i2v gives open/close jaw motion, not phonetic lip-sync; time it + density-match rather than expecting perfect sync.
 3. **Character consistency via LoRAs.** For true new angles / new poses, generate on-model using per-character LoRAs (Doug, Hank, etc.). Build the LoRA the first time a film needs real new angles; reuse forever after.
 
+4. **Coverage, then cut to the best (2026-10-22).** For every format: >= 3 setups per line/beat from >= 2 sources, acquired seconds >= 3x runtime, alternates kept until the film is approved, selects ranked with a why (frozen rules 13 amended, 29).
+5. **Motivated motion, cut to words (2026-10-22).** Every shot names an action or a camera move chosen for it; static is an explicit flag, drift is never a default. Cuts land on word onsets; dissolves only where a cue asks (frozen rules 31, 32).
+
 Full detail: SCENE_BUILDING_METHOD.md.

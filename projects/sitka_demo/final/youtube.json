@@ -1,0 +1,17 @@
+{
+ "title": "SITKA in 25 seconds: the open-source exoskeleton you can sit on (promo-mode test cut)",
+ "description": "A 25 second test cut made end to end by Story Forge's promo mode from the Sitka CAD.\n\nGitHub: https://github.com/nicedreamzapp/sitka\n\nAll visuals are rendered from the real Sitka CAD (Blender). Music: original instrumental made with Song Forge.",
+ "tags": [
+  "Sitka",
+  "exoskeleton",
+  "open source hardware",
+  "wearable chair"
+ ],
+ "category": "Science & Technology",
+ "language": "en",
+ "made_for_kids": false,
+ "files": {
+  "video": "sitka_demo.mp4",
+  "thumbnail": "thumbnail.png"
+ }
+}

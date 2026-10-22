@@ -1,0 +1,26 @@
+<!-- TEMPLATE: replace this whole file. film-status counts it as missing until this line is gone. -->
+{
+ "title": "Product name: one-line promise",
+ "brand": "BRAND",
+ "voice": {"character": "matt2", "exaggeration": 0.40, "cfg": 0.5, "pitch": 0.92,
+           "eq": [[180, 3.0], [5000, -3.0]], "lufs": -16.0, "retakes": 3},
+ "gap": 0.6,
+ "lead": 0.5,
+ "music": {"bed": null, "style": "cinematic orchestral and piano build, hopeful, instrumental",
+           "gain": 0.55, "hit": null, "fade": 1.6, "tail": 1.1},
+ "endcard": {"title": "BRAND", "tagline": "The invitation, as spoken in the last line.", "url": "github.com/...",
+             "dur": 6.0, "slam_after": 0.15},
+ "bug": "BRAND",
+ "renderer": "ffmpeg",
+ "materials": {"carbon*": "carbon", "alu*": "aluminum", "body": "mannequin"},
+ "blender": [
+  {"id": "l01_bl_hero_orbit", "line": 1, "setup": "slow low orbit, the product revealed (motivated: the first look)",
+   "glb": ["assets/product.glb"], "world": "studio", "hdri": "assets/studio.exr",
+   "camera": {"move": "orbit", "start_deg": -50, "end_deg": 15, "elev_deg": 4, "lens": 50, "frame_fill": 0.85},
+   "frames": 150, "res": [1920, 1080], "engine": "CYCLES", "samples": 48}
+ ],
+ "i2v": [],
+ "extra_cues": [],
+ "youtube": {"title": "", "tags": [], "category": "Science & Technology", "description": "", "thumb_text": ""},
+ "gates": {"lufs": -16.0, "lufs_tol": 1.0, "true_peak_max": -1.0, "design_votes": 3}
+}

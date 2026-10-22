@@ -12,6 +12,9 @@ None of this starts from scratch. Here's whose work this is built on, and under 
 | 👄 [Rhubarb Lip Sync](https://github.com/DanielSWolf/rhubarb-lip-sync) | Mouth shapes from audio | [Daniel Wolf](https://github.com/DanielSWolf) | MIT |
 | 🌟 [Compositor](https://robbietilton.com/compositor) ([GitHub](https://github.com/robbietilton/Compositor)) | The ideas behind `bin/forge-finish`, the finishing pass — bloom with Screen blending, a colour grade, contrast — Photoshop-style compositing, rebuilt as one ffmpeg pass | [Robbie Tilton](https://x.com/robbietilton) | MIT (ideas only, no code used) |
 | 🎬 [FFmpeg](https://ffmpeg.org/) | Every cut, mux and grade | The FFmpeg project | LGPL/GPL depending on build |
+| 🧩 [Remotion](https://www.remotion.dev/) | Promo edit, kinetic type, springs, tracked callout arrows (`promo-remotion/`) | Jonny Burger and the Remotion team | Remotion License: free for individuals and companies of up to 3 people, which covers this solo-operator use; larger companies need a company license |
+| 📐 [Manim Community Edition](https://www.manim.community/) | Animated diagrams rendered as alpha clips (`pipeline-tools/manim/`) | The Manim Community developers (after 3Blue1Brown's Manim) | MIT |
+| 👂 [mlx-whisper](https://github.com/ml-explore/mlx-examples/tree/main/whisper) | Word timestamps for cutting on words (`pipeline-tools/words_align.py`) | Apple's MLX team, on OpenAI's Whisper | MIT |
 
 ## A note on the FLUX weights
 

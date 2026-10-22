@@ -1,0 +1,121 @@
+{
+ "target_runtime": 25,
+ "lines": [
+  {
+   "line": 1,
+   "text": "This is Sitka. Strong, light, and it bends without breaking.",
+   "sentiment": "quiet awe, 'that's beautiful'",
+   "setups": [
+    {
+     "setup": "hero reveal, camera rises past the knee to the wearer",
+     "source": "cad",
+     "file": "footage/s02_hero_reveal.mp4"
+    },
+    {
+     "setup": "wearer on the golden-hour bluff, slow push",
+     "source": "cad",
+     "file": "footage/s03_bluff.mp4"
+    },
+    {
+     "setup": "hills wide, the wearer small in the landscape",
+     "source": "cad",
+     "file": "footage/s24_hills_wide.mp4"
+    },
+    {
+     "setup": "leaf spring flexes as the knee bends ('bends without breaking')",
+     "source": "cad",
+     "file": "footage/s05_leaf_flex.mp4"
+    },
+    {
+     "setup": "ghosted walk cycle, the frame reads light",
+     "source": "cad",
+     "file": "footage/s06_ghost_walk.mp4"
+    },
+    {
+     "setup": "slow low orbit around the standing wearer, studio rims",
+     "source": "blender-render",
+     "file": "acquired/blender/l01_bl_hero_orbit/beauty.mp4"
+    }
+   ]
+  },
+  {
+   "line": 2,
+   "text": "Sit down anywhere, and a light pole under each hip takes most of your weight. A carbon spring at each knee catches you.",
+   "sentiment": "relief, then 'oh, that's clever'",
+   "setups": [
+    {
+     "setup": "wearer sits down in the open, wide",
+     "source": "cad",
+     "file": "footage/s10_sit_wide.mp4"
+    },
+    {
+     "setup": "knee close-up as the wearer sits",
+     "source": "cad",
+     "file": "footage/s12_knee_sit_close.mp4"
+    },
+    {
+     "setup": "strut foot plants, macro",
+     "source": "cad",
+     "file": "footage/s04_strut_macro.mp4"
+    },
+    {
+     "setup": "carbon spring loads, macro",
+     "source": "cad",
+     "file": "footage/s07_spring_macro.mp4"
+    },
+    {
+     "setup": "wearer leans back into the straps",
+     "source": "cad",
+     "file": "footage/s13_lean_back.mp4"
+    },
+    {
+     "setup": "push in on the seated wearer as the weight lands on the struts",
+     "source": "blender-render",
+     "file": "acquired/blender/l02_bl_sit_push/beauty.mp4"
+    }
+   ]
+  },
+  {
+   "line": 3,
+   "text": "Sitka is completely open. The design, the math, every part. Come build one with us.",
+   "sentiment": "invitation, belonging",
+   "setups": [
+    {
+     "setup": "every part floats into place",
+     "source": "cad",
+     "file": "footage/s27_every_part.mp4"
+    },
+    {
+     "setup": "module tiles dock into the hub",
+     "source": "cad",
+     "file": "footage/s25_kit_dock.mp4"
+    },
+    {
+     "setup": "finale, wearer turns to camera",
+     "source": "cad",
+     "file": "footage/s26_finale.mp4"
+    },
+    {
+     "setup": "walking, bands glow",
+     "source": "cad",
+     "file": "footage/s20_walk_bands.mp4"
+    },
+    {
+     "setup": "clutch engages mid-stride",
+     "source": "cad",
+     "file": "footage/s22_clutch_walk.mp4"
+    },
+    {
+     "setup": "knee macro, the spring and pivot",
+     "source": "cad",
+     "file": "footage/s01_knee_macro.mp4"
+    },
+    {
+     "setup": "camera trucks past the standing wearer, studio",
+     "source": "blender-render",
+     "file": "acquired/blender/l03_bl_stand_truck/beauty.mp4"
+    }
+   ]
+  }
+ ]
+}

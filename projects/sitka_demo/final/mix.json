@@ -1,0 +1,28 @@
+{
+ "bed": "music/bed.wav",
+ "bed_len": 96.0,
+ "bed_hit": 81.0,
+ "bed_hit_source": "promo.json",
+ "bed_offset": 62.2,
+ "slam": 18.8,
+ "total": 23.8,
+ "gain": 0.55,
+ "events": [
+  {
+   "what": "title hit",
+   "t": 1.533
+  },
+  {
+   "what": "callout blip",
+   "t": 10.7
+  },
+  {
+   "what": "overlay whoosh",
+   "t": 6.133
+  },
+  {
+   "what": "end slam + sting",
+   "t": 18.8
+  }
+ ]
+}
