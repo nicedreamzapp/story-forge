@@ -14,17 +14,26 @@ Any kind of video, any style: explainers, documentaries, promos, music shorts, a
 
 </div>
 
----
+<a id="what"></a>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s01-banner-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s01-banner-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s01-banner.svg" width="100%" alt="01. What this is. A written story becomes a finished video on my own Mac"></picture>
 
-## What this is
+**0 cloud calls**
+
+💻 **Apple Silicon** · Built on an M5 Max with 128GB of memory.
+
+🎬 **Any kind of video** · Explainers, documentaries, promos, music shorts and animated films.
+
 
 I made Story Forge to turn a written story into a finished video on my own Mac, with no cloud service. You write a script (or let the director break a story into beats), and it makes the pictures, the motion, the voices and the music, then cuts them together. It is for people who want to make short films, explainers or music pieces locally and are comfortable with a terminal.
 
 Requirements: a Mac with Apple Silicon (I build on an M5 Max with 128GB of memory), ffmpeg, and Python 3 (I ran the parser and its tests on 3.11). The quick start further down also needs a running ComfyUI with the Flux and Wan or LTX models loaded. `./bin/sf doctor` lists what is missing on your machine.
 
----
+<img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s01-rule.svg" width="100%" alt="">
 
-## 🍿 Watch the films
+
+<a id="films"></a>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s02-banner-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s02-banner-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s02-banner.svg" width="100%" alt="02. Watch the films. The Oldest Tree, The Bear Sister and The Lucid Engine"></picture>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s02-r1-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s02-r1-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s02-r1.svg" width="100%" alt="The Oldest Tree. October 2026 progress film, 2:53, 49 shots. The Bear Sister. Made on the first pipeline, May and June 2026. The Lucid Engine. Made on the first pipeline, May and June 2026."></picture>
 
 ### 🌲 Newest: The Oldest Tree (October 2026 progress film)
 
@@ -67,9 +76,12 @@ An uploaded mind pieces together how the world ended. Psychedelic sci-fi, five a
 
 > 🕰️ The Bear Sister and The Lucid Engine were made on the **first** pipeline (May and June 2026). Nearly every stage has been upgraded since. Here's what runs today 👇
 
----
+<img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s02-rule.svg" width="100%" alt="">
 
-## 🛠️ What I built
+
+<a id="built"></a>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s03-banner-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s03-banner-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s03-banner.svg" width="100%" alt="03. What I built. The pipeline, the judges and the director"></picture>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s03-r1-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s03-r1-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s03-r1.svg" width="100%" alt="A script language. The.sf language with its own parser, resolver and emitter. A director. Runs until every beat has footage that passed. Judges. Vision and audio judges check each shot."></picture>
 
 **Matt Macosko** designed and built the pipeline. The models (Qwen-Image, LTX, Wan, Flux, Kokoro, ChatterBox, ACE-Step, Qwen3-VL, Whisper) are upstream open models; the code here is what turns them into a film.
 
@@ -82,9 +94,12 @@ An uploaded mind pieces together how the world ended. Psychedelic sci-fi, five a
 - ✂️ **Assembly** ([`bin/build-episode`](bin/build-episode), [`bin/forge-finish`](bin/forge-finish)): preflight checks, score, title cards, ducked mix, finishing grade, final QC
 - 🖥️ **A local web UI** ([`server.py`](server.py), [`ui/`](ui/)) for rendering, live status and reviewing clips
 
----
+<img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s03-rule.svg" width="100%" alt="">
 
-## ⚡ The pipeline today
+
+<a id="pipeline"></a>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s04-banner-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s04-banner-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s04-banner.svg" width="100%" alt="04. The pipeline today. Make, sound, check"></picture>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s04-r1-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s04-r1-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s04-r1.svg" width="100%" alt="Make. Pictures and motion. Sound. Voices and original music. Check. A local vision judge reviews each shot."></picture>
 
 <div align="center">
 
@@ -139,9 +154,18 @@ An uploaded mind pieces together how the world ended. Psychedelic sci-fi, five a
 </tr>
 </table>
 
----
+<img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s04-rule.svg" width="100%" alt="">
 
-## 🧠 It reviews its own work
+
+<a id="reviews"></a>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s05-banner-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s05-banner-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s05-banner.svg" width="100%" alt="05. It reviews its own work. Gates and four rules that keep it honest"></picture>
+
+**86 of 91 checks passed on an episode that made no sense**
+
+🙈 **Judge blind first** · Describe the frame, then hear the beat.
+
+🚦 **Seven gates** · Beat, forbidden, identity, set, spine, technical, memory.
+
 
 > **The story that started it:** one episode passed **86 of 91** automated checks and still made no sense. The bear was supposed to shoulder a jammed door open. Instead he poked the wall with a stick. Every check passed anyway, because none of them asked what the picture actually *showed*.
 
@@ -179,9 +203,12 @@ So now a local vision model judges every shot against its story beat before it's
 </tr>
 </table>
 
----
+<img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s05-rule.svg" width="100%" alt="">
 
-## 🚀 Where it stands (Oct 3, 2026)
+
+<a id="try"></a>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s06-banner-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s06-banner-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s06-banner.svg" width="100%" alt="06. Where it stands and how to try it. Oct 3, 2026"></picture>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s06-r1-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s06-r1-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s06-r1.svg" width="100%" alt="~69 s a shot with LTX-2.5. 13-16 min a shot on Wan. 2:53 The Oldest Tree, 49 shots."></picture>
 
 | | |
 |---|---|
@@ -192,9 +219,8 @@ So now a local vision model judges every shot against its story beat before it's
 | 🧪 **Tried, measured, dropped** | A hand-written Metal kernel (no real gain) · Bernini-R (25× slower for the same result) · Wav2Lip (paints human lips on cartoons 😬) |
 | ⏳ **Next up** | The Mac mini as a second render node · finishing pass built into assembly · new engines in the chat UI |
 
----
 
-## 🏁 Try it
+### 🏁 Try it
 
 ```bash
 git clone https://github.com/nicedreamzapp/story-forge && cd story-forge
@@ -284,9 +310,12 @@ The idea: pin the *last* frame as well as the first, so a character can't drift.
 
 </details>
 
----
+<img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s06-rule.svg" width="100%" alt="">
 
-## 💸 Why local
+
+<a id="why"></a>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s07-banner-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s07-banner-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s07-banner.svg" width="100%" alt="07. Why local and credits. Zero dollars, just electricity"></picture>
+<picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s07-r1-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s07-r1-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s07-r1.svg" width="100%" alt="$0 for a 4-min film, just electricity. ~$204 Runway Gen-3 for the same film."></picture>
 
 | Service | Cost for a 4-min film (~51 clips) |
 |---|---|
@@ -300,7 +329,6 @@ No upload. No queue. No subscription. No telemetry. **Your laptop, your film.** 
 
 I took the same no-cloud idea to coding with [claude-code-local](https://github.com/nicedreamzapp/claude-code-local), which runs Claude Code on a Mac with local MLX models and no API key.
 
----
 
 <div align="center">
 
@@ -316,3 +344,6 @@ Full credits and licenses → [CREDITS.md](CREDITS.md)
 *Story by Matt Macosko + Claude · made on one MacBook Pro · zero cloud* ✨
 
 </div>
+
+<img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/main/assets/readme/s07-rule.svg" width="100%" alt="">
+
