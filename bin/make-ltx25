@@ -5,6 +5,7 @@ Added 2026-08-29. Drop-in animate engine for forge-shot / render-route:
   make-ltx25 --i2v LOCKED.png --res 832x480 --duration 5 --seed 11 --label s1 "motion prompt"
   make-ltx25 --i2v canon/hank_face.png --audio voices/L01_hank.wav --label L01 "hank talking"
   make-ltx25 --hq ...        # dev transformer + CFG two-stage instead of the distilled path
+  make-ltx25 --static ...    # prepend the locked-off tripod wording (explicit; frozen rule 31)
 
 Prints exactly what make-video prints on success:   done in 12.3s → /path/to/clip.mp4
 so forge-shot's `re.search(r"done in [\d.]+s → (\S+)")` keeps working unchanged.
@@ -67,6 +68,8 @@ def main() -> int:
     ap.add_argument("--keep-audio", action="store_true", help="keep LTX's generated audio on a non-a2v clip")
     ap.add_argument("--low-ram", action="store_true", help="stream transformer blocks (slower, ~75%% less Metal peak)")
     ap.add_argument("--gb", type=float, default=45.0, help="forge_guard lease size in GB")
+    ap.add_argument("--static", action="store_true",
+                    help="prepend the locked-off tripod wording (an explicit choice, never the default; frozen rule 31)")
     # accepted for CLI compatibility with make-video; no effect here
     ap.add_argument("--gguf", action="store_true"); ap.add_argument("--fp16-i2v", action="store_true")
     ap.add_argument("--steps", type=int, default=None)
@@ -77,8 +80,12 @@ def main() -> int:
     # to — s1_coldopen and s4_arrival both failed their clip gates on drift the STILL never
     # had (2026-08-29). Wording that held: "locked off ... does not move at all, the framing
     # never changes". Prepend it for i2v unless the prompt asks for a camera move itself.
+    # 2026-10-22 (frozen rule 31, Fable review + Sitka promo): this used to fire on EVERY
+    # i2v render, so every shot without a named move came out locked-off or drifting and
+    # nothing was ever motivated. Static is now an explicit choice: --static. The default
+    # is the prompt as written, which must name an action and a motivated camera move.
     import re as _re
-    if a.i2v and not a.audio and not _re.search(r"\b(tracking|pan|pans|push[- ]in|pull[- ]back|dolly|orbit|zoom|crane|handheld)\b", prompt, _re.I):
+    if a.static and a.i2v and not a.audio and not _re.search(r"\b(tracking|pan|pans|push[- ]in|pull[- ]back|dolly|orbit|zoom|crane|handheld)\b", prompt, _re.I):
         prompt = ("Static camera, locked-off tripod shot, the camera does not move at all and the framing "
                   "never changes from the first frame. " + prompt)
     w, h = (int(x) for x in a.res.lower().split("x"))

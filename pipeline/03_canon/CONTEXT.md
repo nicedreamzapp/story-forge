@@ -19,7 +19,8 @@ Do NOT load: `clips/`, sound files, other films' canon.
 
 ## Process
 1. Generate candidates per character and set; keep the winner in `canon/`.
-2. Delete every losing candidate the same session (frozen rule 13).
+2. Delete every losing candidate the same session (frozen rule 13; canon masters are not
+   coverage, there is one per character).
 3. Need new angles later? Train or reuse the character LoRA now.
 
 ## Outputs

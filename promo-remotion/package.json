@@ -1,0 +1,22 @@
+{
+  "name": "promo-remotion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Story Forge promo renderer: edl.json + callouts.json + vo/words.json -> mp4 (Remotion v4).",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render src/index.ts Promo",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.537",
+    "@remotion/media-utils": "4.0.537",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "remotion": "4.0.537"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.0",
+    "typescript": "5.8.3"
+  }
+}

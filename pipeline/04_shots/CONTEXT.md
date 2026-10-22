@@ -25,7 +25,10 @@ Do NOT load: `voices/`, score files, `final/`, other films.
    time: `~/.local/mlx-server/bin/python bin/forge-shot projects/<film>/shots.json --only ID`).
 3. Every KEPT clip gets a frame-grid look from the agent (rule 26). Record each verdict
    in `kept_clips_review.md`: shot id, clip path, what you saw, keep or reshoot.
-4. Delete declined takes the same session (frozen rule 13).
+4. Keep every passing alternate as coverage in `clips/alternates/`, listed in
+   `manifest.json`, until the film is approved. Delete DECLINED takes the same session
+   (frozen rule 13 as amended). Motion prompts name an action or a motivated camera move;
+   static is an explicit `"static": true` (frozen rule 31).
 
 ## Outputs
 - `projects/<film>/shots.json`, `clips/`, `stages/04_shots/kept_clips_review.md`

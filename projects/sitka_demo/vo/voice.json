@@ -1,0 +1,58 @@
+{
+ "voice": {
+  "character": "matt2",
+  "exaggeration": 0.4,
+  "cfg": 0.5,
+  "pitch": 0.92,
+  "eq": [
+   [
+    180,
+    3.0
+   ],
+   [
+    5000,
+    -3.0
+   ]
+  ],
+  "lufs": -16.0,
+  "retakes": 3
+ },
+ "lines": [
+  {
+   "line": 1,
+   "text": "This is Sitka. Strong, light, and it bends without breaking.",
+   "spoken": "This is, Sitka,. Strong, light, and it bends without breaking.",
+   "wav": "vo/final/part000.wav",
+   "heard": "This is Sitka. Strong, light, and it bends without breaking.",
+   "match": true,
+   "take": "reword1_1",
+   "reworded": false,
+   "hash": "6b17b191bffb",
+   "notes": []
+  },
+  {
+   "line": 2,
+   "text": "Sit down anywhere, and a light pole under each hip takes most of your weight. A carbon spring at each knee catches you.",
+   "spoken": "Sit down anywhere, and a light pole under each hip takes most of your weight. A carbon spring at each knee catches you.",
+   "wav": "vo/final/part001.wav",
+   "heard": "Sit down anywhere, and a light pole under each hip takes most of your weight. A carbon spring at each knee catches you.",
+   "match": true,
+   "take": "take1",
+   "reworded": false,
+   "hash": "b2583adbe9de",
+   "notes": []
+  },
+  {
+   "line": 3,
+   "text": "Sitka is completely open. The design, the math, every part. Come build one with us.",
+   "spoken": "Sitka is completely open. The design, the math, every part. Come build one with us.",
+   "wav": "vo/final/part002.wav",
+   "heard": "Sitka is completely open. The design, the math, every part. Come build one with us.",
+   "match": true,
+   "take": "retake1",
+   "reworded": false,
+   "hash": "15e8981067c0",
+   "notes": []
+  }
+ ]
+}

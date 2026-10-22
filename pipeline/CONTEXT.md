@@ -15,13 +15,16 @@ This folder is the METHOD (one contract per stage). Each film is an INSTANCE tha
 | `03_canon` | one master per character and set | 02 | `canon/` | Matt approves every master |
 | `04_shots` | gated stills → locked → animated | 02, 03 | `shots.json`, `clips/`, `stages/04_shots/kept_clips_review.md` | Matt approves each scene standalone |
 | `05_sound` | voices, mouth sync, score | 01, 04 | `voices/`, `stages/05_sound/score_pick.md` | Matt picks the score by ear |
-| `06_assemble` | EDL → the cut | 04, 05 | `final/*.mp4`, `final/timeline.json` | none, 07 runs straight after |
-| `07_gates` | audio, continuity, film_qc | 06 | `final/*report*.md`, `stages/07_gates/known_defects.md` | Matt watches, told the defects first |
+| `06_assemble` | coverage → selects → cut to words | 04, 05 | `final/*.mp4`, `final/timeline.json` | none, 07 runs straight after (coverage gate blocks it) |
+| `07_gates` | audio, continuity, film_qc, design, full watch | 06 | `final/*report*.md`, `stages/07_gates/known_defects.md` | Matt watches only at READY FOR MATT, told the defects first |
 | `08_deliver` | publish | 07 | `stages/08_deliver/published.md` | none |
 
 **A stage is DONE** when every output exists, is non-empty, no longer carries the
 `TEMPLATE` marker, and (where there is a human check) `stages/NN_name/APPROVED.md` exists.
 Write `APPROVED.md` only after Matt says yes: date, what he approved, his words.
+
+**Other formats:** a product promo runs its own stages from `formats/promo/CONTEXT.md`;
+`projects/<film>/FORMAT` (one word, default `film`) tells film-status which set to read.
 
 **Status is whatever exists on disk:** `bin/film-status projects/<film>` (add `--init` to
 stamp a new film from `_templates/film/`). Each stage's `CONTEXT.md` frontmatter is the

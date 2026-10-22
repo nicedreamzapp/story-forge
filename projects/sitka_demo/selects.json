@@ -1,0 +1,153 @@
+{
+ "draft": true,
+ "lines": [
+  {
+   "line": 1,
+   "takes": [
+    {
+     "cid": "l01_bl_hero_orbit_1",
+     "rank": 1,
+     "in": 0.0,
+     "out": 5.0,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): slow low orbit around the standing wearer, studio rims; source blender-render; design pass; sentiment to land: quiet awe, 'that's beautiful'"
+    },
+    {
+     "cid": "l01_cad_s02_hero_reveal",
+     "rank": 2,
+     "in": 0.0,
+     "out": 4.733,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): hero reveal, camera rises past the knee to the wearer; source cad; design pass; sentiment to land: quiet awe, 'that's beautiful'"
+    },
+    {
+     "cid": "l01_cad_s03_bluff",
+     "rank": 3,
+     "in": 0.0,
+     "out": 4.333,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): wearer on the golden-hour bluff, slow push; source cad; design pass; sentiment to land: quiet awe, 'that's beautiful'"
+    },
+    {
+     "cid": "l01_cad_s06_ghost_walk",
+     "rank": 4,
+     "in": 0.0,
+     "out": 2.933,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): ghosted walk cycle, the frame reads light; source cad; design pass; sentiment to land: quiet awe, 'that's beautiful'"
+    },
+    {
+     "cid": "l01_cad_s24_hills_wide",
+     "rank": 5,
+     "in": 0.0,
+     "out": 1.333,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): hills wide, the wearer small in the landscape; source cad; design unchecked; sentiment to land: quiet awe, 'that's beautiful'"
+    },
+    {
+     "cid": "l01_cad_s05_leaf_flex",
+     "rank": 6,
+     "in": 0.0,
+     "out": 2.533,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): leaf spring flexes as the knee bends ('bends without breaking'); source cad; design unchecked; sentiment to land: quiet awe, 'that's beautiful'"
+    }
+   ]
+  },
+  {
+   "line": 2,
+   "takes": [
+    {
+     "cid": "l02_bl_sit_push_1",
+     "rank": 1,
+     "in": 0.0,
+     "out": 5.0,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): push in on the seated wearer as the weight lands on the struts; source blender-render; design pass; sentiment to land: relief, then 'oh, that's clever'"
+    },
+    {
+     "cid": "l02_cad_s10_sit_wide",
+     "rank": 2,
+     "in": 0.0,
+     "out": 5.233,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): wearer sits down in the open, wide; source cad; design pass; sentiment to land: relief, then 'oh, that's clever'"
+    },
+    {
+     "cid": "l02_cad_s12_knee_sit_close",
+     "rank": 3,
+     "in": 0.0,
+     "out": 4.9,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): knee close-up as the wearer sits; source cad; design pass; sentiment to land: relief, then 'oh, that's clever'"
+    },
+    {
+     "cid": "l02_cad_s13_lean_back",
+     "rank": 4,
+     "in": 0.0,
+     "out": 5.8,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): wearer leans back into the straps; source cad; design pass; sentiment to land: relief, then 'oh, that's clever'"
+    },
+    {
+     "cid": "l02_cad_s04_strut_macro",
+     "rank": 5,
+     "in": 0.0,
+     "out": 1.333,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): strut foot plants, macro; source cad; design unchecked; sentiment to land: relief, then 'oh, that's clever'"
+    },
+    {
+     "cid": "l02_cad_s07_spring_macro",
+     "rank": 6,
+     "in": 0.0,
+     "out": 1.333,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): carbon spring loads, macro; source cad; design unchecked; sentiment to land: relief, then 'oh, that's clever'"
+    }
+   ]
+  },
+  {
+   "line": 3,
+   "takes": [
+    {
+     "cid": "l03_bl_stand_truck_1",
+     "rank": 1,
+     "in": 0.0,
+     "out": 4.0,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): camera trucks past the standing wearer, studio; source blender-render; design pass; sentiment to land: invitation, belonging"
+    },
+    {
+     "cid": "l03_cad_s26_finale",
+     "rank": 2,
+     "in": 0.0,
+     "out": 2.733,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): finale, wearer turns to camera; source cad; design pass; sentiment to land: invitation, belonging"
+    },
+    {
+     "cid": "l03_cad_s20_walk_bands",
+     "rank": 3,
+     "in": 0.0,
+     "out": 5.833,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): walking, bands glow; source cad; design pass; sentiment to land: invitation, belonging"
+    },
+    {
+     "cid": "l03_cad_s22_clutch_walk",
+     "rank": 4,
+     "in": 0.0,
+     "out": 4.8,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): clutch engages mid-stride; source cad; design pass; sentiment to land: invitation, belonging"
+    },
+    {
+     "cid": "l03_cad_s27_every_part",
+     "rank": 5,
+     "in": 0.0,
+     "out": 2.733,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): every part floats into place; source cad; design unchecked; sentiment to land: invitation, belonging"
+    },
+    {
+     "cid": "l03_cad_s25_kit_dock",
+     "rank": 6,
+     "in": 0.0,
+     "out": 12.2,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): module tiles dock into the hub; source cad; design unchecked; sentiment to land: invitation, belonging"
+    },
+    {
+     "cid": "l03_cad_s01_knee_macro",
+     "rank": 7,
+     "in": 0.0,
+     "out": 2.333,
+     "why": "DRAFT (promo_draft.py, not yet judged by the agent): knee macro, the spring and pivot; source cad; design unchecked; sentiment to land: invitation, belonging"
+    }
+   ]
+  }
+ ]
+}

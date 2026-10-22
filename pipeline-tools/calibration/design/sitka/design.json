@@ -1,0 +1,9 @@
+{"product": "Sitka exoskeleton",
+ "references": {"side": "refs/ref_side.png", "back": "refs/ref_back.png"},
+ "facts": [
+  {"q": "Is there a thin black rod that runs from under the thigh down to the floor BEHIND the knee (on the buttocks side), rather than in front of the shin?", "expect": "yes", "angle": "side", "when": "the figure is in a sitting pose with thighs roughly horizontal (a chair is not required)"},
+  {"q": "How many thin black support rods reach from under the thighs down to the floor?", "expect": 2, "angle": "side", "when": "the figure is in a sitting pose with thighs roughly horizontal (a chair is not required)"},
+  {"q": "Is there a round motor disc with a red gear on the outside of the knee joint?", "expect": "yes", "angle": "side"}
+ ],
+ "must_not": ["a support rod or leg in front of the knee or shin", "wheels", "a support rod that ends in the air instead of on the floor"],
+ "fidelity_clause": "the device is worn ON the person's own legs; one carbon rear leg behind each thigh"}

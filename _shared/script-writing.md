@@ -40,6 +40,14 @@ match the premise, the shots are missing a beat — The Oldest Tree never showed
 grandfather wandering off, so the whole plot had to be guessed. Every plot turn needs a
 shot that SHOWS it, and flashbacks need a spoken time marker ("Five hundred years ago").
 
+**Sentiment, and who the script is for (2026-10-22, Fable review + Sitka promo).** Scripts
+were being written for the VL judge, not the viewer, and no spec ever said what the viewer
+should feel. Every beat (every narration line in a promo) carries a SENTIMENT line: what the
+viewer feels there ("curiosity, then 'oh, that's clever'"). The judge's limits never override
+the viewer's story: write the story for the viewer, then make each shot judgeable (a visible
+state, RULES.md 1–2), not the other way round. If a beat cannot be made judgeable, it is
+staged differently or checked by eye and marked UNCHECKED; it is not cut from the story.
+
 **Dialogue caveat specific to this pipeline:** lines still get density-matched to the
 mouth motion we prompt for (rule 9 / rule 3 below). A beautifully written speech that a
 shot's mouth motion cannot carry gets rewritten shorter — the mouth wins, always.

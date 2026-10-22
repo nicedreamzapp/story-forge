@@ -1,0 +1,517 @@
+{
+ "gap": 0.6,
+ "lead": 0.5,
+ "engine": "mlx",
+ "model": "mlx-community/whisper-large-v3-turbo",
+ "lines": [
+  {
+   "line": 1,
+   "wav": "vo/final/part000.wav",
+   "start": 0.5,
+   "end": 5.473,
+   "dur": 4.973,
+   "text": "This is, Sitka, strong, light, and it bends without breaking.",
+   "script_text": "This is, Sitka,. Strong, light, and it bends without breaking."
+  },
+  {
+   "line": 2,
+   "wav": "vo/final/part001.wav",
+   "start": 6.073,
+   "end": 12.798,
+   "dur": 6.724,
+   "text": "Sit down anywhere, and a light pole under each hip takes most of your weight. A carbon spring at each knee catches you.",
+   "script_text": "Sit down anywhere, and a light pole under each hip takes most of your weight. A carbon spring at each knee catches you."
+  },
+  {
+   "line": 3,
+   "wav": "vo/final/part002.wav",
+   "start": 13.398,
+   "end": 18.951,
+   "dur": 5.554,
+   "text": "Sitka is completely open. The design, the math, every part. Come build one with us.",
+   "script_text": "Sitka is completely open. The design, the math, every part. Come build one with us."
+  }
+ ],
+ "words": [
+  {
+   "i": 0,
+   "line": 1,
+   "word": "This",
+   "start": 0.54,
+   "end": 0.82,
+   "heard": "This",
+   "onset": "energy",
+   "w_start": 0.5
+  },
+  {
+   "i": 1,
+   "line": 1,
+   "word": "is",
+   "start": 0.92,
+   "end": 1.32,
+   "heard": "is,",
+   "onset": "energy",
+   "w_start": 0.82
+  },
+  {
+   "i": 2,
+   "line": 1,
+   "word": "Sitka",
+   "start": 1.54,
+   "end": 1.98,
+   "heard": "Sitka,",
+   "onset": "energy",
+   "w_start": 1.42
+  },
+  {
+   "i": 3,
+   "line": 1,
+   "word": "Strong",
+   "start": 2.34,
+   "end": 2.84,
+   "heard": "strong,",
+   "onset": "energy",
+   "w_start": 2.34
+  },
+  {
+   "i": 4,
+   "line": 1,
+   "word": "light",
+   "start": 3.07,
+   "end": 3.42,
+   "heard": "light,",
+   "onset": "energy",
+   "w_start": 3.0
+  },
+  {
+   "i": 5,
+   "line": 1,
+   "word": "and",
+   "start": 3.7,
+   "end": 3.8,
+   "heard": "and",
+   "onset": "energy",
+   "w_start": 3.74
+  },
+  {
+   "i": 6,
+   "line": 1,
+   "word": "it",
+   "start": 3.8,
+   "end": 3.96,
+   "heard": "it",
+   "onset": "whisper",
+   "w_start": 3.8
+  },
+  {
+   "i": 7,
+   "line": 1,
+   "word": "bends",
+   "start": 3.99,
+   "end": 4.22,
+   "heard": "bends",
+   "onset": "energy",
+   "w_start": 3.96
+  },
+  {
+   "i": 8,
+   "line": 1,
+   "word": "without",
+   "start": 4.22,
+   "end": 4.52,
+   "heard": "without",
+   "onset": "whisper",
+   "w_start": 4.22
+  },
+  {
+   "i": 9,
+   "line": 1,
+   "word": "breaking",
+   "start": 4.52,
+   "end": 5.18,
+   "heard": "breaking.",
+   "onset": "whisper",
+   "w_start": 4.52
+  },
+  {
+   "i": 10,
+   "line": 2,
+   "word": "Sit",
+   "start": 6.123,
+   "end": 6.293,
+   "heard": "Sit",
+   "onset": "energy",
+   "w_start": 6.073
+  },
+  {
+   "i": 11,
+   "line": 2,
+   "word": "down",
+   "start": 6.293,
+   "end": 6.513,
+   "heard": "down",
+   "onset": "whisper",
+   "w_start": 6.293
+  },
+  {
+   "i": 12,
+   "line": 2,
+   "word": "anywhere",
+   "start": 6.513,
+   "end": 6.893,
+   "heard": "anywhere,",
+   "onset": "whisper",
+   "w_start": 6.513
+  },
+  {
+   "i": 13,
+   "line": 2,
+   "word": "and",
+   "start": 7.313,
+   "end": 7.433,
+   "heard": "and",
+   "onset": "energy",
+   "w_start": 7.153
+  },
+  {
+   "i": 14,
+   "line": 2,
+   "word": "a",
+   "start": 7.433,
+   "end": 7.533,
+   "heard": "a",
+   "onset": "whisper",
+   "w_start": 7.433
+  },
+  {
+   "i": 15,
+   "line": 2,
+   "word": "light",
+   "start": 7.533,
+   "end": 7.713,
+   "heard": "light",
+   "onset": "whisper",
+   "w_start": 7.533
+  },
+  {
+   "i": 16,
+   "line": 2,
+   "word": "pole",
+   "start": 7.713,
+   "end": 7.993,
+   "heard": "pole",
+   "onset": "whisper",
+   "w_start": 7.713
+  },
+  {
+   "i": 17,
+   "line": 2,
+   "word": "under",
+   "start": 7.993,
+   "end": 8.213,
+   "heard": "under",
+   "onset": "whisper",
+   "w_start": 7.993
+  },
+  {
+   "i": 18,
+   "line": 2,
+   "word": "each",
+   "start": 8.213,
+   "end": 8.513,
+   "heard": "each",
+   "onset": "whisper",
+   "w_start": 8.213
+  },
+  {
+   "i": 19,
+   "line": 2,
+   "word": "hip",
+   "start": 8.513,
+   "end": 8.733,
+   "heard": "hip",
+   "onset": "whisper",
+   "w_start": 8.513
+  },
+  {
+   "i": 20,
+   "line": 2,
+   "word": "takes",
+   "start": 8.833,
+   "end": 8.993,
+   "heard": "takes",
+   "onset": "energy",
+   "w_start": 8.733
+  },
+  {
+   "i": 21,
+   "line": 2,
+   "word": "most",
+   "start": 9.063,
+   "end": 9.253,
+   "heard": "most",
+   "onset": "energy",
+   "w_start": 8.993
+  },
+  {
+   "i": 22,
+   "line": 2,
+   "word": "of",
+   "start": 9.333,
+   "end": 9.413,
+   "heard": "of",
+   "onset": "energy",
+   "w_start": 9.253
+  },
+  {
+   "i": 23,
+   "line": 2,
+   "word": "your",
+   "start": 9.413,
+   "end": 9.533,
+   "heard": "your",
+   "onset": "whisper",
+   "w_start": 9.413
+  },
+  {
+   "i": 24,
+   "line": 2,
+   "word": "weight",
+   "start": 9.533,
+   "end": 9.833,
+   "heard": "weight.",
+   "onset": "whisper",
+   "w_start": 9.533
+  },
+  {
+   "i": 25,
+   "line": 2,
+   "word": "A",
+   "start": 10.263,
+   "end": 10.393,
+   "heard": "A",
+   "onset": "energy",
+   "w_start": 10.013
+  },
+  {
+   "i": 26,
+   "line": 2,
+   "word": "carbon",
+   "start": 10.403,
+   "end": 10.713,
+   "heard": "carbon",
+   "onset": "energy",
+   "w_start": 10.393
+  },
+  {
+   "i": 27,
+   "line": 2,
+   "word": "spring",
+   "start": 10.713,
+   "end": 11.053,
+   "heard": "spring",
+   "onset": "whisper",
+   "w_start": 10.713
+  },
+  {
+   "i": 28,
+   "line": 2,
+   "word": "at",
+   "start": 11.053,
+   "end": 11.313,
+   "heard": "at",
+   "onset": "whisper",
+   "w_start": 11.053
+  },
+  {
+   "i": 29,
+   "line": 2,
+   "word": "each",
+   "start": 11.313,
+   "end": 11.493,
+   "heard": "each",
+   "onset": "whisper",
+   "w_start": 11.313
+  },
+  {
+   "i": 30,
+   "line": 2,
+   "word": "knee",
+   "start": 11.493,
+   "end": 11.713,
+   "heard": "knee",
+   "onset": "whisper",
+   "w_start": 11.493
+  },
+  {
+   "i": 31,
+   "line": 2,
+   "word": "catches",
+   "start": 11.713,
+   "end": 12.093,
+   "heard": "catches",
+   "onset": "whisper",
+   "w_start": 11.713
+  },
+  {
+   "i": 32,
+   "line": 2,
+   "word": "you",
+   "start": 12.093,
+   "end": 12.493,
+   "heard": "you.",
+   "onset": "whisper",
+   "w_start": 12.093
+  },
+  {
+   "i": 33,
+   "line": 3,
+   "word": "Sitka",
+   "start": 13.438,
+   "end": 13.718,
+   "heard": "Sitka",
+   "onset": "energy",
+   "w_start": 13.398
+  },
+  {
+   "i": 34,
+   "line": 3,
+   "word": "is",
+   "start": 13.718,
+   "end": 13.998,
+   "heard": "is",
+   "onset": "energy",
+   "w_start": 13.818
+  },
+  {
+   "i": 35,
+   "line": 3,
+   "word": "completely",
+   "start": 14.038,
+   "end": 14.458,
+   "heard": "completely",
+   "onset": "energy",
+   "w_start": 13.998
+  },
+  {
+   "i": 36,
+   "line": 3,
+   "word": "open",
+   "start": 14.458,
+   "end": 14.938,
+   "heard": "open.",
+   "onset": "whisper",
+   "w_start": 14.458
+  },
+  {
+   "i": 37,
+   "line": 3,
+   "word": "The",
+   "start": 15.408,
+   "end": 15.498,
+   "heard": "The",
+   "onset": "energy",
+   "w_start": 15.178
+  },
+  {
+   "i": 38,
+   "line": 3,
+   "word": "design",
+   "start": 15.498,
+   "end": 15.998,
+   "heard": "design,",
+   "onset": "whisper",
+   "w_start": 15.498
+  },
+  {
+   "i": 39,
+   "line": 3,
+   "word": "the",
+   "start": 16.228,
+   "end": 16.318,
+   "heard": "the",
+   "onset": "energy",
+   "w_start": 16.238
+  },
+  {
+   "i": 40,
+   "line": 3,
+   "word": "math",
+   "start": 16.318,
+   "end": 16.758,
+   "heard": "math,",
+   "onset": "whisper",
+   "w_start": 16.318
+  },
+  {
+   "i": 41,
+   "line": 3,
+   "word": "every",
+   "start": 16.938,
+   "end": 17.178,
+   "heard": "every",
+   "onset": "energy",
+   "w_start": 16.918
+  },
+  {
+   "i": 42,
+   "line": 3,
+   "word": "part",
+   "start": 17.178,
+   "end": 17.498,
+   "heard": "part.",
+   "onset": "whisper",
+   "w_start": 17.178
+  },
+  {
+   "i": 43,
+   "line": 3,
+   "word": "Come",
+   "start": 17.668,
+   "end": 17.778,
+   "heard": "Come",
+   "onset": "energy",
+   "w_start": 17.678
+  },
+  {
+   "i": 44,
+   "line": 3,
+   "word": "build",
+   "start": 17.778,
+   "end": 18.018,
+   "heard": "build",
+   "onset": "whisper",
+   "w_start": 17.778
+  },
+  {
+   "i": 45,
+   "line": 3,
+   "word": "one",
+   "start": 18.018,
+   "end": 18.178,
+   "heard": "one",
+   "onset": "whisper",
+   "w_start": 18.018
+  },
+  {
+   "i": 46,
+   "line": 3,
+   "word": "with",
+   "start": 18.178,
+   "end": 18.318,
+   "heard": "with",
+   "onset": "whisper",
+   "w_start": 18.178
+  },
+  {
+   "i": 47,
+   "line": 3,
+   "word": "us",
+   "start": 18.348,
+   "end": 18.658,
+   "heard": "us.",
+   "onset": "energy",
+   "w_start": 18.318
+  }
+ ]
+}

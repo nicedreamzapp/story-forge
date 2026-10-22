@@ -1,0 +1,337 @@
+#!/usr/bin/env python3
+"""browser-acquire — make footage with the browser tools Matt is logged into, on the mini.
+
+Frozen rule 28 (2026-10-22): ChatGPT images and Grok Imagine video are allowed Story Forge
+sources, made in Matt's logged-in Brave ON THE MAC MINI through the browser broker — hidden
+lease tabs only, never focus-stealing, never bb-show, never an API. What comes back is
+ACQUIRED footage: it lands in projects/<film>/acquired/ with provenance, is never deleted
+before the film is approved (rule 13 as amended), and passes the same gates as anything we
+render ourselves (design_check, coverage gate, film_qc).
+
+    bin/browser-acquire projects/sitka/acquire.json              # every job in the file
+    bin/browser-acquire projects/sitka/acquire.json --only l05_rearleg_trail
+    bin/browser-acquire --film projects/sitka --id test --backend grok-video \\
+        --prompt "camera orbits as the rear leg plants" --ref footage/still.png --count 3
+
+acquire.json: {"jobs": [{"id", "backend": "chatgpt-image"|"grok-video", "prompt", "refs": [...],
+"count": 3, "duration": 6, "line": 5, "setup": "..."}]}  (pipeline/formats/promo/SCHEMAS.md)
+
+How it works: refs are copied to the mini (~/sf-acquire/refs/<sha>.ext — the file input must
+see a path ON THE MINI), bin/browser_acquire_driver.py is pushed and run there from a clean
+dir (~/sf-acquire, never /tmp), it prints one JSON line per take, and each finished take is
+copied back to acquired/<id>_<n>.<ext> with a <file>.json sidecar and an entry in
+acquired/provenance.json. Numbering continues after existing takes; nothing is overwritten.
+Backends run in parallel (one lease tab each); takes within a backend run in order.
+
+REFS ARE REQUIRED (Matt, 2026-10-22): every job uploads the product's CAD stills of the
+matching pose/angle as reference images, and the prompt is sent with a fidelity clause telling
+the tool to reproduce that exact design photoreal. A job with no refs is refused. The clause
+comes from design.json "fidelity_clause" when the film has one, else DEFAULT_FIDELITY below.
+
+Backends: grok-image / gemini-image / chatgpt-edit EDIT one CAD close-up (materials + light only,
+the EDIT_TEMPLATE prompt); grok-video animates from the first ref; chatgpt-image invents a scene and
+is NOT for photoreal product shots (Matt 2026-10-22: "horrible"). For product films the PRIMARY
+photoreal source is a Blender Cycles render of the exact CAD (promo stage 04_footage, blender-render);
+browser AI is secondary.
+
+Free-tier facts (probed 2026-10-22): Grok free = 480p (~736x400), 6 s; 720p/1080p/10 s pop an
+upsell and are skipped. ChatGPT free has a small daily image quota; a refusal or quota message
+comes back as a failed take with a screenshot, never a silent pass.
+
+TESTING: never run a live generation to test this tool. `--mock` runs the same validation, prompt
+building, numbering, sidecars and provenance with no browser and no mini (fake takes from the first
+ref, in acquired/_mock/, which ingest never reads).
+
+Exit 0 = every requested take arrived, 1 = some takes failed (read the lines), 2 = couldn't run.
+"""
+from __future__ import annotations
+
+import argparse
+import fcntl
+import hashlib
+import json
+import os
+import shlex
+import subprocess
+import sys
+import threading
+import time
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+DRIVER = ROOT / "bin" / "browser_acquire_driver.py"
+HOST = os.environ.get("SF_MINI", "mini-vps")
+REMOTE_DIR = "sf-acquire"          # under the mini's $HOME; a clean dir, never /tmp
+BACKENDS = {"chatgpt-image": "chatgpt.com (Brave on the mini)", "chatgpt-edit": "chatgpt.com image edit (Brave on the mini)",
+            "grok-image": "grok.com/imagine image edit (Brave on the mini)", "gemini-image": "gemini.google.com image edit (Brave on the mini)", "grok-video": "grok.com/imagine (Brave on the mini)"}
+DEFAULT_FIDELITY = ("Reproduce the exact device design shown in the reference image(s), every part in the same "
+                    "place, shape, color and count; do not add, remove or reinvent parts. Photoreal.")
+# chatgpt-edit (Matt, 2026-10-22, after a ChatGPT "scene" grew extra legs): ChatGPT EDITS one
+# uploaded CAD close-up instead of inventing a scene. job["prompt"] only names the materials/light.
+EDIT_TEMPLATE = ("Edit this exact image. Keep every part, its count, position, shape and proportions exactly "
+                 "as shown; do not add, remove or move any part, limb or leg. Only change materials and "
+                 "lighting to a photoreal product photo: {look}")
+DEFAULT_LOOK = ("brushed 7075 aluminum, matte black carbon tube, steel ratchet, matte charcoal PA-CF printed "
+                "parts, studio lighting.")
+# Image EDIT backends: one CAD close-up in, the same image back with only materials + light changed.
+EDIT_BACKENDS = ("chatgpt-edit", "grok-image", "gemini-image")
+_lock = threading.Lock()
+
+
+def fidelity_clause(film: Path) -> str:
+    d = film / "design.json"
+    if d.exists():
+        try:
+            c = json.loads(d.read_text()).get("fidelity_clause")
+            if c:
+                return c
+        except ValueError:
+            pass
+    return DEFAULT_FIDELITY
+
+
+def sh(cmd: list[str], **kw) -> subprocess.CompletedProcess:
+    return subprocess.run(cmd, capture_output=True, text=True, **kw)
+
+
+def sha256(p: Path) -> str:
+    h = hashlib.sha256()
+    with p.open("rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def say(msg: str) -> None:
+    with _lock:
+        print(msg, flush=True)
+
+
+def remote_home() -> str:
+    r = sh(["ssh", "-o", "ConnectTimeout=15", HOST, "mkdir -p ~/%s/refs ~/%s/jobs && echo $HOME" % (REMOTE_DIR, REMOTE_DIR)])
+    if r.returncode != 0 or not r.stdout.strip():
+        sys.exit(f"browser-acquire: can't reach the mini ({HOST}): {r.stderr.strip()[:200]}")
+    return r.stdout.strip().splitlines()[-1]
+
+
+def push_refs(film: Path, refs: list[str], rhome: str) -> list[dict]:
+    out = []
+    for ref in refs:
+        p = Path(ref)
+        if not p.is_absolute():
+            p = (film / ref) if (film / ref).exists() else Path(ref).resolve()
+        if not p.exists():
+            raise FileNotFoundError(f"ref not found: {ref}")
+        digest = sha256(p)
+        remote = f"{rhome}/{REMOTE_DIR}/refs/{digest[:16]}{p.suffix.lower()}"
+        r = sh(["scp", "-q", str(p), f"{HOST}:{remote}"])
+        if r.returncode != 0:
+            raise RuntimeError(f"scp ref failed: {r.stderr.strip()[:200]}")
+        out.append({"path": str(p.relative_to(film)) if p.is_relative_to(film) else str(p), "sha256": digest, "remote": remote})
+    return out
+
+
+def next_n(acq: Path, jid: str) -> int:
+    taken = [int(p.stem.rsplit("_", 1)[1]) for p in acq.glob(f"{jid}_*") if p.suffix in (".png", ".jpg", ".webp", ".mp4")
+             and p.stem.rsplit("_", 1)[-1].isdigit()]
+    return max(taken, default=0) + 1
+
+
+def record(acq: Path, entry: dict) -> None:
+    """Append one take to provenance.json under a file lock (backends finish concurrently)."""
+    prov = acq / "provenance.json"
+    lockf = acq / ".provenance.lock"
+    with lockf.open("w") as lf:
+        fcntl.flock(lf, fcntl.LOCK_EX)
+        data = json.loads(prov.read_text()) if prov.exists() else {"takes": []}
+        data["takes"].append(entry)
+        tmp = prov.with_suffix(".json.tmp")
+        tmp.write_text(json.dumps(data, indent=1))
+        tmp.replace(prov)
+
+
+def run_job(film: Path, job: dict, rhome: str, results: list) -> None:
+    jid, backend = job["id"], job["backend"]
+    acq = film / "acquired"
+    acq.mkdir(parents=True, exist_ok=True)
+    try:
+        refs = push_refs(film, job.get("refs", []), rhome)
+    except Exception as e:
+        say(f"  {jid}: FAILED before start: {e}")
+        results.append((jid, 0, int(job.get("count", 3))))
+        return
+    start = next_n(acq, jid)
+    if backend in EDIT_BACKENDS:
+        prompt = EDIT_TEMPLATE.format(look=(job.get("prompt") or DEFAULT_LOOK).strip())
+    else:
+        prompt = job["prompt"].rstrip() + " " + fidelity_clause(film)
+    rjob = {"id": jid, "backend": backend, "prompt": prompt, "refs": [r["remote"] for r in refs],
+            "count": int(job.get("count", 3)), "start": start, "outdir": f"{rhome}/{REMOTE_DIR}/out/{film.name}",
+            "duration": job.get("duration"), "resolution": job.get("resolution"), "timeout": job.get("timeout")}
+    rjob = {k: v for k, v in rjob.items() if v is not None}
+    jpath = f"{REMOTE_DIR}/jobs/{film.name}__{jid}.json"
+    p = subprocess.run(["ssh", HOST, f"cat > {shlex.quote(jpath)}"], input=json.dumps(rjob), text=True, capture_output=True)
+    if p.returncode != 0:
+        say(f"  {jid}: FAILED writing job on the mini: {p.stderr.strip()[:200]}")
+        results.append((jid, 0, rjob["count"]))
+        return
+    say(f"  {jid}: {backend} x{rjob['count']} (takes {start}..{start + rjob['count'] - 1}) started {time.strftime('%H:%M')}")
+    proc = subprocess.Popen(["ssh", HOST, f"cd ~/{REMOTE_DIR} && python3 browser_acquire_driver.py {shlex.quote(jpath[len(REMOTE_DIR) + 1:])}"],
+                            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    ok = 0
+    for line in proc.stdout:
+        try:
+            ev = json.loads(line)
+        except ValueError:
+            continue
+        if "note" in ev:
+            say(f"  {jid}: note: {ev['note']}")
+            continue
+        n = ev.get("n")
+        if not ev.get("ok"):
+            shot = ""
+            if ev.get("shot"):
+                local = acq / "_failed" / Path(ev["shot"]).name
+                local.parent.mkdir(exist_ok=True)
+                if sh(["scp", "-q", f"{HOST}:{ev['shot']}", str(local)]).returncode == 0:
+                    shot = f" (screenshot {local.relative_to(film)})"
+            say(f"  {jid}_{n}: FAILED {ev.get('error')}{shot}")
+            continue
+        remote = ev["file"]
+        local = acq / f"{jid}_{n}{Path(remote).suffix}"
+        if local.exists():  # never overwrite a take
+            local = acq / f"{jid}_{n}_{int(time.time())}{Path(remote).suffix}"
+        r = sh(["scp", "-q", f"{HOST}:{remote}", str(local)])
+        if r.returncode != 0 or not local.exists() or local.stat().st_size == 0:
+            say(f"  {jid}_{n}: FAILED copying back: {r.stderr.strip()[:200]}")
+            continue
+        entry = {"file": str(local.relative_to(film)), "id": jid, "n": n, "line": job.get("line"), "setup": job.get("setup"),
+                 "backend": backend, "tool": BACKENDS[backend], "prompt": prompt,
+                 "refs": [{"path": r_["path"], "sha256": r_["sha256"]} for r_ in refs],
+                 "sha256": sha256(local), "bytes": local.stat().st_size,
+                 "created": time.strftime("%Y-%m-%dT%H:%M:%S"), "gen_secs": ev.get("secs"),
+                 "src_url": ev.get("src"), "page": ev.get("page"), "mini_file": remote}
+        local.with_name(local.name + ".json").write_text(json.dumps(entry, indent=1))
+        record(acq, entry)
+        ok += 1
+        say(f"  {jid}_{n}: OK {local.relative_to(film)} ({entry['bytes'] // 1024} KB, {ev.get('secs')} s)")
+    proc.wait()
+    err = proc.stderr.read().strip()
+    if proc.returncode != 0 and err:
+        say(f"  {jid}: driver exited {proc.returncode}: {err[-400:]}")
+    results.append((jid, ok, rjob["count"]))
+
+
+def mock_job(film: Path, job: dict, results: list) -> None:
+    """--mock: the whole job path (refs required, fidelity clause, numbering, sidecars, provenance) with NO
+    browser and NO mini. Takes are made from the first ref (a copy, or a 6 s 480p push-in for grok-video) and
+    land in acquired/_mock/, which ingest_acquired never reads, so a mock can never become footage."""
+    jid, backend = job["id"], job["backend"]
+    acq = film / "acquired" / "_mock"
+    acq.mkdir(parents=True, exist_ok=True)
+    refs = []
+    for ref in job["refs"]:
+        p = Path(ref) if Path(ref).is_absolute() else film / ref
+        if not p.exists():
+            say(f"  {jid}: FAILED before start: ref not found: {ref}")
+            results.append((jid, 0, int(job.get("count", 3))))
+            return
+        refs.append({"path": ref, "sha256": sha256(p), "local": p})
+    prompt = (EDIT_TEMPLATE.format(look=(job.get("prompt") or DEFAULT_LOOK).strip()) if backend in EDIT_BACKENDS
+              else job["prompt"].rstrip() + " " + fidelity_clause(film))
+    start, ok = next_n(acq, jid), 0
+    for n in range(start, start + int(job.get("count", 3))):
+        src = refs[0]["local"]
+        if backend == "grok-video":
+            local = acq / f"{jid}_{n}.mp4"
+            r = sh(["ffmpeg", "-v", "error", "-y", "-loop", "1", "-i", str(src), "-t", str(job.get("duration") or 6),
+                    "-vf", "scale=854:480:force_original_aspect_ratio=increase,crop=854:480,"
+                           "zoompan=z='1+0.0008*on':d=1:s=854x480:fps=24", "-pix_fmt", "yuv420p", str(local)])
+        else:
+            local = acq / f"{jid}_{n}.png"
+            r = sh(["ffmpeg", "-v", "error", "-y", "-i", str(src), "-frames:v", "1", str(local)])
+        if r.returncode != 0 or not local.exists():
+            say(f"  {jid}_{n}: MOCK FAILED {r.stderr.strip()[:200]}")
+            continue
+        entry = {"file": str(local.relative_to(film)), "id": jid, "n": n, "line": job.get("line"), "setup": job.get("setup"),
+                 "backend": backend, "tool": "MOCK (bin/browser-acquire --mock; no browser, test only)", "prompt": prompt,
+                 "refs": [{"path": r_["path"], "sha256": r_["sha256"]} for r_ in refs], "sha256": sha256(local),
+                 "bytes": local.stat().st_size, "created": time.strftime("%Y-%m-%dT%H:%M:%S"), "mock": True}
+        local.with_name(local.name + ".json").write_text(json.dumps(entry, indent=1))
+        record(acq, entry)
+        ok += 1
+        say(f"  {jid}_{n}: MOCK OK {local.relative_to(film)}")
+    results.append((jid, ok, int(job.get("count", 3))))
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("acquire_json", nargs="?", help="projects/<film>/acquire.json")
+    ap.add_argument("--only", action="append", help="run only these job ids")
+    ap.add_argument("--film", help="ad-hoc mode: projects/<film>")
+    ap.add_argument("--id"); ap.add_argument("--backend", choices=sorted(BACKENDS)); ap.add_argument("--prompt")
+    ap.add_argument("--ref", action="append", default=[]); ap.add_argument("--count", type=int, default=3)
+    ap.add_argument("--duration", type=int); ap.add_argument("--line", type=int); ap.add_argument("--setup")
+    ap.add_argument("--dry-run", action="store_true", help="print the jobs and exit")
+    ap.add_argument("--mock", action="store_true",
+                    help="test the job path with NO browser and NO mini: fake takes from the first ref in acquired/_mock/")
+    a = ap.parse_args()
+
+    if a.acquire_json:
+        spec = Path(a.acquire_json).resolve()
+        film = spec.parent
+        jobs = json.loads(spec.read_text())["jobs"]
+    elif a.film and a.id and a.backend and (a.prompt or a.backend in EDIT_BACKENDS):
+        film = Path(a.film).resolve()
+        jobs = [{"id": a.id, "backend": a.backend, "prompt": a.prompt or "", "refs": a.ref, "count": a.count,
+                 "duration": a.duration, "line": a.line, "setup": a.setup}]
+    else:
+        ap.error("give acquire.json, or --film --id --backend --prompt")
+    if a.only:
+        jobs = [j for j in jobs if j["id"] in a.only]
+    for j in jobs:
+        if j.get("backend") not in BACKENDS:
+            sys.exit(f"browser-acquire: job {j.get('id')}: unknown backend {j.get('backend')!r}")
+        if not j.get("refs"):
+            sys.exit(f"browser-acquire: job {j.get('id')}: refs[] is required — upload the CAD stills of the "
+                     "matching pose/angle (frozen rule 28)")
+        if j["backend"] in EDIT_BACKENDS and len(j["refs"]) != 1:
+            sys.exit(f"browser-acquire: job {j['id']}: {j['backend']} takes exactly ONE CAD close-up per call")
+        if j["backend"] == "chatgpt-image":
+            say(f"  WARNING {j['id']}: chatgpt-image is NOT for photoreal product shots (it invents parts); "
+                "use grok-image / gemini-image edits or blender-render")
+        if int(j.get("count", 3)) < 3:
+            say(f"  note: {j['id']} asks for {j.get('count')} takes; coverage (frozen rule 29) wants >= 3")
+    if a.dry_run or not jobs:
+        print(json.dumps(jobs, indent=1))
+        return 0
+
+    if a.mock:
+        results: list = []
+        for j in jobs:
+            mock_job(film, j, results)
+        got, want = sum(r[1] for r in results), sum(r[2] for r in results)
+        say(f"browser-acquire --mock: {got}/{want} mock takes in {film.name}/acquired/_mock/ (no browser was used)")
+        return 0 if got == want else 1
+
+    rhome = remote_home()
+    if sh(["scp", "-q", str(DRIVER), f"{HOST}:{REMOTE_DIR}/browser_acquire_driver.py"]).returncode != 0:
+        sys.exit("browser-acquire: couldn't push the driver to the mini")
+    say(f"browser-acquire: {len(jobs)} job(s) for {film.name} on {HOST}")
+    results: list = []
+    by_backend: dict[str, list] = {}
+    for j in jobs:
+        by_backend.setdefault(j["backend"], []).append(j)
+    threads = [threading.Thread(target=lambda js=js: [run_job(film, j, rhome, results) for j in js]) for js in by_backend.values()]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    got = sum(r[1] for r in results)
+    want = sum(r[2] for r in results)
+    say(f"browser-acquire: {got}/{want} takes arrived in {film.name}/acquired/")
+    return 0 if got == want else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

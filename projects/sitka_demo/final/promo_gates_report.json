@@ -1,0 +1,63 @@
+{
+ "film": "sitka_demo.mp4",
+ "counts": {
+  "PASS": 8,
+  "FAIL": 0,
+  "WARN": 1,
+  "UNCHECKED": 0,
+  "REVIEW": 1
+ },
+ "rows": [
+  {
+   "gate": "words (final mix vs script)",
+   "verdict": "WARN",
+   "detail": "whole-film pass 45/46 (expected 'pole' heard 'pull'); every line heard word for word in its own window of the final mix. Listen for it in the full watch."
+  },
+  {
+   "gate": "word timing vs plan",
+   "verdict": "PASS",
+   "detail": "median offset 20 ms over 45 words"
+  },
+  {
+   "gate": "loudness",
+   "verdict": "PASS",
+   "detail": "integrated -16.0 LUFS (target -16.0+/-1.0), true peak -1.5 dBFS (max -1.0), LRA 2.9"
+  },
+  {
+   "gate": "voice over music",
+   "verdict": "PASS",
+   "detail": "voice stem -13.2 LUFS, ducked music -27.2 LUFS: 14.0 dB apart (want >= 10)"
+  },
+  {
+   "gate": "slam after last word",
+   "verdict": "PASS",
+   "detail": "last heard word ends 18.60s, slam 18.80s (+200 ms)"
+  },
+  {
+   "gate": "last words heard",
+   "verdict": "PASS",
+   "detail": "want 'one with us' in the last seconds; heard 'ka is completely open. The design, the math, every part. Come build one with us.'"
+  },
+  {
+   "gate": "sting rings",
+   "verdict": "PASS",
+   "detail": "RMS -16.4 dBFS in the 2 s after the slam"
+  },
+  {
+   "gate": "end card on screen",
+   "verdict": "PASS",
+   "detail": "95% dark, 3.6% bright type at 20.30s"
+  },
+  {
+   "gate": "design (shots in the cut)",
+   "verdict": "PASS",
+   "detail": "all 8 used shots passed design_check"
+  },
+  {
+   "gate": "frame strips",
+   "verdict": "REVIEW",
+   "detail": "7 strips in final/strips/ (look at every one; then watch the whole cut and write stages/09_gates/known_defects.md)"
+  }
+ ],
+ "heard": "This is Sitka. Strong, light, and it bends without breaking. Sit down anywhere, and a light pull under each hip takes most of your weight. A carbon spring at each knee catches you. Sitka is completely open. The design, the math, every part. Come build one with us."
+}

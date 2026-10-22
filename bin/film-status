@@ -8,6 +8,18 @@ projects/<film>/, so a cold agent (or Matt) can tell where a film stands without
     bin/film-status projects/oldest_tree          # one film
     bin/film-status --all                         # every film under projects/
     bin/film-status projects/new_film --init      # stamp stages/ from _templates/film/
+    bin/film-status projects/sitka --init --format promo   # a promo: pipeline/formats/promo/
+
+FORMAT (2026-10-22): projects/<film>/FORMAT holds one word, default "film". "film" reads
+pipeline/NN_name/CONTEXT.md and _templates/film/; "promo" reads
+pipeline/formats/promo/NN_name/CONTEXT.md and _templates/promo/.
+
+Two checks ride on top of the stages (frozen rules 29, 30):
+  coverage gate   pipeline-tools/coverage_gate.py gate(film_dir) -> (ok, lines), once
+                  manifest.json exists; a FAIL (or UNCHECKED) holds the edit stage
+                  (06_edit for promo, 06_assemble for film).
+  READY FOR MATT  "no" unless the gates stage's known_defects.md is real, confirms the full
+                  watch, is newer than the newest final/*.mp4, and final/*report*.md exist.
 
 A stage is DONE when every output exists, is non-empty, no longer carries the TEMPLATE
 marker, and (when its gate is `approved`) stages/NN_name/APPROVED.md exists. The NEXT
@@ -17,14 +29,22 @@ from __future__ import annotations
 
 import argparse
 import glob
+import importlib.util
+import re
 import shutil
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PIPELINE = ROOT / "pipeline"
-TEMPLATE = ROOT / "_templates" / "film"
 MARKER = "<!-- TEMPLATE:"
+FORMATS = {   # format -> (stage contracts dir, template dir, the stage the coverage gate holds)
+    "film": (PIPELINE, ROOT / "_templates" / "film", "06_assemble"),
+    "promo": (PIPELINE / "formats" / "promo", ROOT / "_templates" / "promo", "06_edit"),
+}
+# The confirmation must be the template's own line, filled in: "Watched the full cut start to finish on
+# <date>". A loose match let "Nobody has listened to it start to finish" read as a watch (sitka_demo).
+WATCH_RE = re.compile(r"^\s*watched the full cut start to finish on:?\s*(?!<)\S", re.I | re.M)
 
 
 def read_stage(contract: Path) -> dict:
@@ -47,8 +67,65 @@ def read_stage(contract: Path) -> dict:
     return meta
 
 
-def stages() -> list[dict]:
-    return [read_stage(p) for p in sorted(PIPELINE.glob("[0-9][0-9]_*/CONTEXT.md"))]
+def film_format(film: Path) -> str:
+    f = film / "FORMAT"
+    fmt = f.read_text().strip().split()[0].lower() if f.is_file() and f.read_text().strip() else "film"
+    if fmt not in FORMATS:
+        sys.exit(f"{f}: unknown format '{fmt}' (known: {', '.join(FORMATS)})")
+    return fmt
+
+
+def stages(fmt: str = "film") -> list[dict]:
+    base = FORMATS[fmt][0]
+    out = []
+    for p in sorted(base.glob("[0-9][0-9]_*/CONTEXT.md")):
+        st = read_stage(p)
+        st["contract"] = p.relative_to(ROOT)
+        out.append(st)
+    return out
+
+
+def coverage_gate(film: Path) -> tuple[bool | None, list[str]]:
+    """(True/False, report) from pipeline-tools/coverage_gate.py; (None, why) when it can't judge.
+    Imported lazily: another tool owns it, and a missing tool is UNCHECKED, never a pass."""
+    tool = ROOT / "pipeline-tools" / "coverage_gate.py"
+    if not tool.is_file():
+        return None, ["UNCHECKED (tool missing)"]
+    try:
+        spec = importlib.util.spec_from_file_location("coverage_gate", tool)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        ok, lines = mod.gate(film)
+        return bool(ok), [str(l) for l in lines]
+    except SystemExit as e:
+        return None, [f"UNCHECKED (the tool exited {e.code})"]
+    except Exception as e:  # couldn't-judge is never a verdict either way (frozen rule 22)
+        return None, [f"UNCHECKED ({type(e).__name__}: {e})"]
+
+
+def ready_for_matt(film: Path, sts: list[dict]) -> list[str]:
+    """Reasons the film can NOT be shown to Matt yet (frozen rule 30); empty = ready."""
+    gates = next((st["stage"] for st in sts if st["stage"].endswith("_gates")), None)
+    if not gates:
+        return ["this format has no gates stage"]
+    why = []
+    cuts = [Path(h) for h in glob.glob(str(film / "final" / "*.mp4"))]
+    if not cuts:
+        why.append("no final/*.mp4 cut yet")
+    if not glob.glob(str(film / "final" / "*report*.md")):
+        why.append("no gate reports in final/*report*.md")
+    kd = film / "stages" / gates / "known_defects.md"
+    if not kd.is_file() or kd.stat().st_size == 0:
+        why.append(f"stages/{gates}/known_defects.md not written")
+    else:
+        text = kd.read_text(errors="ignore")
+        if text.startswith(MARKER):
+            why.append(f"stages/{gates}/known_defects.md is still the template")
+        elif not WATCH_RE.search(text):
+            why.append(f"stages/{gates}/known_defects.md does not confirm a full start-to-finish watch")
+        if cuts and kd.stat().st_mtime < max(c.stat().st_mtime for c in cuts):
+            why.append(f"stages/{gates}/known_defects.md is older than the newest cut (re-watch)")
+    return why
 
 
 def output_state(film: Path, pattern: str) -> str | None:
@@ -73,11 +150,19 @@ def output_state(film: Path, pattern: str) -> str | None:
 
 
 def report(film: Path) -> int:
-    print(f"\n{film.name}")
+    fmt = film_format(film)
+    sts = stages(fmt)
+    print(f"\n{film.name}  (format: {fmt})")
+    cov = None
+    if (film / "manifest.json").is_file():
+        cov = coverage_gate(film)
+    hold = FORMATS[fmt][2]
     next_stage = None
-    for st in stages():
+    for st in sts:
         name = st["stage"]
         gaps = []
+        if name == hold and cov and cov[0] is not True:
+            gaps.append("the coverage gate to pass (frozen rule 29)")
         for out in st["outputs"]:
             why = output_state(film, out)
             if why:
@@ -91,24 +176,43 @@ def report(film: Path) -> int:
             next_stage = next_stage or name
         else:
             print(f"  [x] {name}")
+    if cov is None:
+        print("  coverage gate: not yet (no manifest.json)")
+    else:
+        verdict = {True: "PASS", False: "FAIL"}.get(cov[0], "UNCHECKED")
+        head = cov[1][0] if cov[0] is None and cov[1] else verdict
+        print(f"  coverage gate: {head}" + ("" if cov[0] else f" — holds {hold}"))
+        for line in (cov[1] if cov[0] is not None else cov[1][1:])[:12]:
+            print(f"        {line}")
+    why = ready_for_matt(film, sts)
+    print(f"  READY FOR MATT: {'no' if why else 'yes'}")
+    for w in why:
+        print(f"        {w}")
     if next_stage:
-        print(f"  NEXT: {next_stage} — read pipeline/{next_stage}/CONTEXT.md")
+        contract = next(st["contract"] for st in sts if st["stage"] == next_stage)
+        print(f"  NEXT: {next_stage} — read {contract}")
     else:
         print("  DONE: every stage complete")
     return 0
 
 
-def init(film: Path) -> None:
+def init(film: Path, fmt: str) -> None:
     film.mkdir(parents=True, exist_ok=True)
-    for src in sorted((TEMPLATE / "stages").rglob("*")):
-        dst = film / "stages" / src.relative_to(TEMPLATE / "stages")
+    template = FORMATS[fmt][1]
+    fmt_file = film / "FORMAT"
+    if fmt != "film" or fmt_file.exists():
+        fmt_file.write_text(fmt + "\n")
+    for src in sorted(template.rglob("*")):
+        if src.name == "README.md" and src.parent == template:
+            continue   # the template's own README is not part of the film
+        dst = film / src.relative_to(template)
         if src.is_dir():
             dst.mkdir(parents=True, exist_ok=True)
         elif not dst.exists():
             dst.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(src, dst)
             print(f"  stamped {dst.relative_to(film)}")
-    for st in stages():
+    for st in stages(fmt):
         (film / "stages" / st["stage"]).mkdir(parents=True, exist_ok=True)
 
 
@@ -116,7 +220,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("film", nargs="?", help="projects/<film>")
     ap.add_argument("--all", action="store_true", help="report every film under projects/")
-    ap.add_argument("--init", action="store_true", help="stamp stages/ from _templates/film/")
+    ap.add_argument("--init", action="store_true", help="stamp the film from _templates/<format>/")
+    ap.add_argument("--format", choices=sorted(FORMATS), help="with --init: the film's format (written to FORMAT)")
     a = ap.parse_args()
     if a.all:
         for d in sorted((ROOT / "projects").iterdir()):
@@ -126,8 +231,10 @@ def main() -> int:
     if not a.film:
         ap.error("give projects/<film> or --all")
     film = Path(a.film).resolve()
+    if a.format and not a.init:
+        ap.error("--format only goes with --init (the film's FORMAT file is the record)")
     if a.init:
-        init(film)
+        init(film, a.format or (film_format(film) if film.is_dir() else "film"))
     elif not film.is_dir():
         sys.exit(f"{film} does not exist (use --init to start a new film)")
     return report(film)

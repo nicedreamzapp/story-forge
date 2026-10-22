@@ -19,7 +19,15 @@ So four gates now run, in this order, and all four reports are read before showi
    its canon identity (inswapper), and forge-shot runs it on every kept non-talk clip before the face gate.
    After a lock, face_check scores ~0.9 by construction, so a locked clip is judged BY EYE: no pop between
    locked and unlocked frames, no face pasted on bark (det_score >= 0.65), expression still reads.
-Then tell Matt what is still wrong BEFORE he finds it. Rules 21–25 in RULES.md.
+5. `~/.local/mlx-server/bin/python pipeline-tools/design_check.py projects/<film>` (added 2026-10-22) —
+   any film that shows a real product: every candidate is checked against `design.json` (reference
+   angles, counted facts, must_not). Faces passing says nothing about a leg drawn in the wrong place.
+COVERAGE GATE (2026-10-22): `pipeline-tools/coverage_gate.py` blocks the edit stage until coverage
+holds (frozen rule 29); `bin/film-status` reports it.
+FULL WATCH (2026-10-22, frozen rule 30): after the gates, the agent watches the whole cut start to
+finish and writes the dated `known_defects.md` confirming it. `bin/film-status` prints
+`READY FOR MATT: no` until that file is newer than the newest cut and the reports exist.
+Then tell Matt what is still wrong BEFORE he finds it. Rules 21–25 and 26–32 in RULES.md.
 Score requests: always `"lyrics": "[instrumental]"`; Matt picks the score by ear from 2–3 screened candidates.
 Mix: static gain, never loudnorm dynamic. Hands: ken_burns on a locked still. Foley (MMAudio)
 only after audio_check proves it isn't noise.

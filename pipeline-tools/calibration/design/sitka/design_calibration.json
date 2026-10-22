@@ -1,0 +1,17 @@
+{
+ "_note": "Ground truth for design_check.py. PASS = untouched Sitka CAD frames (+ a horizontal mirror, a control: a mirrored side view is still the correct device). FAIL = planted-wrong PIL edits built by make_planted.py, plus two real browser-tool failures (ChatGPT, Grok).",
+ "design": "design.json",
+ "shots": [
+  {"id": "pass_side_seated", "image": "stills/pass_side_seated.png", "expect": "PASS"},
+  {"id": "pass_side_orbit", "image": "stills/pass_side_orbit.png", "expect": "PASS"},
+  {"id": "pass_threequarter_orbit", "image": "stills/pass_threequarter_orbit.png", "expect": "PASS"},
+  {"id": "pass_mirror_h", "image": "stills/pass_mirror_h.png", "expect": "PASS", "why": "mirror is not a design error"},
+  {"id": "fail_no_rear_leg", "image": "stills/fail_no_rear_leg.png", "expect": "FAIL", "why": "rear legs erased"},
+  {"id": "fail_leg_in_front_of_knee", "image": "stills/fail_leg_in_front_of_knee.png", "expect": "FAIL", "why": "rear leg painted in front of the knee"},
+  {"id": "fail_duplicate_rear_leg", "image": "stills/fail_duplicate_rear_leg.png", "expect": "FAIL", "why": "a third rear leg"},
+  {"id": "fail_upside_down", "image": "stills/fail_upside_down.png", "expect": "FAIL", "why": "flipped: legs end in the air"},
+  {"id": "fail_wheels_on_legs", "image": "stills/fail_wheels_on_legs.png", "expect": "FAIL", "why": "wheels"},
+  {"id": "fail_chatgpt_two_sets_of_legs", "image": "stills/fail_chatgpt_two_sets_of_legs.png", "expect": "FAIL", "why": "device legs beside his real legs, not worn on them"},
+  {"id": "fail_grok_prosthetic_legs", "clip": "stills/fail_grok_prosthetic_legs.mp4", "expect": "FAIL", "why": "device legs turn into prosthetic legs, one extends forward"}
+ ]
+}

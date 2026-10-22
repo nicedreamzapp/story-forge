@@ -1,0 +1,39 @@
+{
+ "product": "Sitka exoskeleton (v2, 2026-10-22 CAD)",
+ "references": {
+  "side": "refs/ref_side.png",
+  "front": "refs/ref_front.png"
+ },
+ "facts": [
+  {
+   "q": "Is the person wearing a device on their legs, with braces or cuffs on the thighs and shins?",
+   "expect": "yes",
+   "angle": "front"
+  },
+  {
+   "q": "Are there thin dark poles reaching from under the hips or thighs down to the ground?",
+   "expect": "yes",
+   "angle": "side",
+   "when": "the person is sitting with thighs roughly horizontal"
+  }
+ ],
+ "must_not": [
+  "wheels",
+  "a pole or leg in front of the knee or shin",
+  "a person with more than two legs"
+ ],
+ "parts": [
+  "strut_l",
+  "strut_r",
+  "knee_spring_l",
+  "knee_spring_r",
+  "back_panel",
+  "belt"
+ ],
+ "materials": {
+  "carbon": "carbon",
+  "alu": "aluminum",
+  "body": "mannequin"
+ },
+ "fidelity_clause": "Reproduce this exact Sitka exoskeleton from the reference: braces on the thighs and shins worn on the person's own legs, one thin carbon pole under each hip that reaches the ground only when seated, a carbon leaf spring at each knee, the back panel and belt. Do not add, remove or move any part. Photoreal."
+}

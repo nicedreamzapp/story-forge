@@ -233,6 +233,18 @@ These commands run the **original `.sf` path**: parse a script, then Flux still 
 
 The **gated director pipeline** (everything in "The pipeline today") needs the extra requirements below.
 
+**🛞 Product promos (new, Oct 22 2026).** A narrated product film from the real CAD, in one command:
+Blender Cycles renders of the GLBs, the narrator's voice heard back by whisper, cuts and titles on the
+words, a ducked music bed, an end card that lands after the last word, then gates (whisper the final mix
+against the script, loudness, design check of every shot, frame strips) and a thumbnail + `youtube.json`.
+It is how the [SITKA promo](https://youtu.be/XvE-1hMoaXw) was made by hand, encoded. Contract:
+`pipeline/formats/promo/CONTEXT.md`; example project: `projects/sitka_demo/`.
+
+```bash
+./bin/film-status projects/my_promo --init --format promo   # stamp script.md, promo.json, coverage.json, design.json
+./bin/make-promo projects/my_promo                            # every stage; stops at the first failing gate
+```
+
 <details>
 <summary>🎛️ <b>The full gated pipeline</b> (forge / director / forge-shot)</summary>
 

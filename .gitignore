@@ -52,3 +52,27 @@ queue/processing/
 review/verdicts.json
 site/
 .cache/
+
+# Acquired footage (frozen rule 28, 2026-10-22): the media stays local (mp4 is ignored above);
+# acquired/provenance.json and the per-take .json sidecars ARE tracked.
+projects/*/acquired/*.png
+projects/*/acquired/*.jpg
+projects/*/acquired/*.jpeg
+projects/*/acquired/*.webp
+projects/*/acquired/**/*.png
+projects/*/acquired/**/*.exr
+projects/*/acquired/_mock/
+
+# Promo format (2026-10-22): local media a project rebuilds (CAD GLBs, HDRIs, raw takes, strips)
+projects/*/assets/
+projects/*/vo/raw/
+projects/*/final/strips/
+projects/*/final/*.png
+*.glb
+*.exr
+projects/*/acquired/.provenance.lock
+projects/*/acquired/blender/*/spec.json
+projects/*/refs/*.png
+projects/*/final/_*
+projects/*/design_report.*
+projects/*/callout_report.*

@@ -1,0 +1,488 @@
+{
+ "fps": 30,
+ "w": 1920,
+ "h": 1080,
+ "candidates": [
+  {
+   "cid": "l01_bl_hero_orbit_1",
+   "file": "acquired/blender/l01_bl_hero_orbit/beauty.mp4",
+   "kind": "video",
+   "source": "blender-render",
+   "line": 1,
+   "setup": "slow low orbit around the standing wearer, studio rims",
+   "dur": 5.0,
+   "w": 1280,
+   "h": 720,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     5.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "id": "l01_bl_hero_orbit",
+   "n": 1,
+   "origin": "acquired",
+   "bytes": 1161399,
+   "mtime": 1792695763
+  },
+  {
+   "cid": "l01_cad_s02_hero_reveal",
+   "file": "footage/s02_hero_reveal.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 1,
+   "setup": "hero reveal, camera rises past the knee to the wearer",
+   "dur": 4.733,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     4.733
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "bytes": 2341216,
+   "mtime": 1792692787
+  },
+  {
+   "cid": "l01_cad_s03_bluff",
+   "file": "footage/s03_bluff.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 1,
+   "setup": "wearer on the golden-hour bluff, slow push",
+   "dur": 4.333,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     4.333
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "bytes": 9811206,
+   "mtime": 1792692788
+  },
+  {
+   "cid": "l01_cad_s05_leaf_flex",
+   "file": "footage/s05_leaf_flex.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 1,
+   "setup": "leaf spring flexes as the knee bends ('bends without breaking')",
+   "dur": 2.533,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     2.533
+    ]
+   ],
+   "checks": {
+    "design": "unchecked",
+    "faces": null
+   },
+   "origin": "coverage",
+   "bytes": 2448031,
+   "mtime": 1792692789
+  },
+  {
+   "cid": "l01_cad_s06_ghost_walk",
+   "file": "footage/s06_ghost_walk.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 1,
+   "setup": "ghosted walk cycle, the frame reads light",
+   "dur": 2.933,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     2.933
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "bytes": 1779165,
+   "mtime": 1792692791
+  },
+  {
+   "cid": "l01_cad_s24_hills_wide",
+   "file": "footage/s24_hills_wide.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 1,
+   "setup": "hills wide, the wearer small in the landscape",
+   "dur": 1.333,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     1.333
+    ]
+   ],
+   "checks": {
+    "design": "unchecked",
+    "faces": null
+   },
+   "origin": "coverage",
+   "bytes": 4770297,
+   "mtime": 1792692789
+  },
+  {
+   "cid": "l02_bl_sit_push_1",
+   "file": "acquired/blender/l02_bl_sit_push/beauty.mp4",
+   "kind": "video",
+   "source": "blender-render",
+   "line": 2,
+   "setup": "push in on the seated wearer as the weight lands on the struts",
+   "dur": 5.0,
+   "w": 1280,
+   "h": 720,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     5.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "id": "l02_bl_sit_push",
+   "n": 1,
+   "origin": "acquired",
+   "bytes": 982643,
+   "mtime": 1792697150
+  },
+  {
+   "cid": "l02_cad_s04_strut_macro",
+   "file": "footage/s04_strut_macro.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 2,
+   "setup": "strut foot plants, macro",
+   "dur": 1.333,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     1.333
+    ]
+   ],
+   "checks": {
+    "design": "unchecked",
+    "faces": null
+   },
+   "origin": "coverage",
+   "bytes": 608674,
+   "mtime": 1792692794
+  },
+  {
+   "cid": "l02_cad_s07_spring_macro",
+   "file": "footage/s07_spring_macro.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 2,
+   "setup": "carbon spring loads, macro",
+   "dur": 1.333,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     1.333
+    ]
+   ],
+   "checks": {
+    "design": "unchecked",
+    "faces": null
+   },
+   "origin": "coverage",
+   "bytes": 1690595,
+   "mtime": 1792692794
+  },
+  {
+   "cid": "l02_cad_s10_sit_wide",
+   "file": "footage/s10_sit_wide.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 2,
+   "setup": "wearer sits down in the open, wide",
+   "dur": 5.233,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     5.233
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "bytes": 12197965,
+   "mtime": 1792692792
+  },
+  {
+   "cid": "l02_cad_s12_knee_sit_close",
+   "file": "footage/s12_knee_sit_close.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 2,
+   "setup": "knee close-up as the wearer sits",
+   "dur": 4.9,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     4.9
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "bytes": 4046135,
+   "mtime": 1792692793
+  },
+  {
+   "cid": "l02_cad_s13_lean_back",
+   "file": "footage/s13_lean_back.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 2,
+   "setup": "wearer leans back into the straps",
+   "dur": 5.8,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     5.8
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "bytes": 9289112,
+   "mtime": 1792692796
+  },
+  {
+   "cid": "l03_bl_stand_truck_1",
+   "file": "acquired/blender/l03_bl_stand_truck/beauty.mp4",
+   "kind": "video",
+   "source": "blender-render",
+   "line": 3,
+   "setup": "camera trucks past the standing wearer, studio",
+   "dur": 4.0,
+   "w": 1280,
+   "h": 720,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     4.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "id": "l03_bl_stand_truck",
+   "n": 1,
+   "origin": "acquired",
+   "bytes": 1121734,
+   "mtime": 1792696430
+  },
+  {
+   "cid": "l03_cad_s01_knee_macro",
+   "file": "footage/s01_knee_macro.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 3,
+   "setup": "knee macro, the spring and pivot",
+   "dur": 2.333,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     2.333
+    ]
+   ],
+   "checks": {
+    "design": "unchecked",
+    "faces": null
+   },
+   "origin": "coverage",
+   "bytes": 2066339,
+   "mtime": 1792692790
+  },
+  {
+   "cid": "l03_cad_s20_walk_bands",
+   "file": "footage/s20_walk_bands.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 3,
+   "setup": "walking, bands glow",
+   "dur": 5.833,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     5.833
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "bytes": 4297713,
+   "mtime": 1792692800
+  },
+  {
+   "cid": "l03_cad_s22_clutch_walk",
+   "file": "footage/s22_clutch_walk.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 3,
+   "setup": "clutch engages mid-stride",
+   "dur": 4.8,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     4.8
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "bytes": 6708938,
+   "mtime": 1792692801
+  },
+  {
+   "cid": "l03_cad_s25_kit_dock",
+   "file": "footage/s25_kit_dock.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 3,
+   "setup": "module tiles dock into the hub",
+   "dur": 12.2,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     12.2
+    ]
+   ],
+   "checks": {
+    "design": "unchecked",
+    "faces": null
+   },
+   "origin": "coverage",
+   "bytes": 4809046,
+   "mtime": 1792692798
+  },
+  {
+   "cid": "l03_cad_s26_finale",
+   "file": "footage/s26_finale.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 3,
+   "setup": "finale, wearer turns to camera",
+   "dur": 2.733,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     2.733
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "bytes": 7959284,
+   "mtime": 1792692799
+  },
+  {
+   "cid": "l03_cad_s27_every_part",
+   "file": "footage/s27_every_part.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 3,
+   "setup": "every part floats into place",
+   "dur": 2.733,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     2.733
+    ]
+   ],
+   "checks": {
+    "design": "unchecked",
+    "faces": null
+   },
+   "origin": "coverage",
+   "bytes": 1597797,
+   "mtime": 1792692796
+  }
+ ]
+}

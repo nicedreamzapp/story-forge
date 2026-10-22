@@ -1,0 +1,13 @@
+EDL  sitka_demo  23.80s  8 shots  fps 30  jcut 0.0
+
+   0.00-   3.07 (3.07s) CUT   L1  on 'This'  l01_bl_hero_orbit_1  src 0.00-3.07
+   3.07-   6.07 (3.00s) CUT   L1  on 'light'  l01_cad_s02_hero_reveal  src 0.00-3.00
+   6.07-   8.50 (2.43s) CUT   L2  on 'Sit'  l02_bl_sit_push_1  src 0.00-2.43
+   8.50-  10.70 (2.20s) CUT   L2  on 'hip'  l02_cad_s10_sit_wide  src 0.00-2.20
+  10.70-  13.40 (2.70s) CUT   L2  on 'spring'  l02_cad_s12_knee_sit_close  src 0.00-2.70
+  13.40-  15.50 (2.10s) CUT   L3  on 'Sitka'  l03_bl_stand_truck_1  src 0.00-2.10
+  15.50-  17.17 (1.67s) CUT   L3  on 'design'  l03_cad_s26_finale  src 0.00-1.67
+  17.17-  18.80 (1.63s) CUT   L3  on 'part'  l03_cad_s20_walk_bands  src 0.00-1.63
+   6.13-  10.73 OVERLAY overlays/d1_strut.mov on 'Sit'
+  18.80-  23.80 END CARD 'SITKA' (slam 0.14s after the last word)
+   1.53-   3.13 TITLE 'SITKA' on 'Sitka'
