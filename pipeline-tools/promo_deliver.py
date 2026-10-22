@@ -73,9 +73,30 @@ def main() -> int:
     raw.unlink()
     yt = cfg["youtube"]
     desc = yt.get("description") or "\n\n".join(ln["text"] for ln in parse_script(film / "script.md"))
+    chapters, why = [], ""
+    if yt.get("chapters"):
+        words = json.loads((film / "vo" / "words.json").read_text())["words"]
+        total = float(json.loads((film / "edl.json").read_text())["dur"])
+        for k, ch in enumerate(yt["chapters"]):
+            ws = [w for w in words if w["line"] == int(ch["line"])]
+            at = 0 if k == 0 else int(ws[0]["start"]) if ws else None
+            if at is None:
+                why = f"chapter '{ch['title']}' names line {ch['line']}, which has no words"
+                break
+            chapters.append({"t": at, "stamp": f"{at // 60}:{at % 60:02d}", "title": ch["title"], "line": ch["line"]})
+        ends = [c["t"] for c in chapters[1:]] + [int(total)]
+        short = [c["title"] for c, e in zip(chapters, ends) if e - c["t"] < 10]
+        if not why and (len(chapters) < 3 or short):
+            why = "YouTube needs >= 3 chapters of >= 10 s each" + (f" (short: {', '.join(short)})" if short else "")
+        if why:
+            print(f"[deliver] CHAPTERS NOT WRITTEN: {why}", file=sys.stderr)
+            chapters = []
+        else:
+            desc = desc.rstrip() + "\n\nChapters\n" + "\n".join(f"{c['stamp']} {c['title']}" for c in chapters)
     meta = {"title": yt.get("title") or cfg.get("title") or brand, "description": desc, "tags": yt.get("tags", []),
             "category": yt.get("category", "Science & Technology"), "language": "en", "made_for_kids": False,
-            "files": {"video": mp4.name, "thumbnail": thumb.name}}
+            "files": {"video": mp4.name, "thumbnail": thumb.name},
+            **({"chapters": [{"start": c["stamp"], "title": c["title"]} for c in chapters]} if chapters else {})}
     (film / "final" / "youtube.json").write_text(json.dumps(meta, indent=1))
     print(f"[deliver] final/thumbnail.png (frame at {t:.2f}s) + final/youtube.json ('{meta['title'][:60]}')")
     return 0

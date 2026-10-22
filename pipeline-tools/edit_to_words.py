@@ -302,7 +302,8 @@ def main():
         overlays.append({"file": c["file"], "rec_in": t_in, "rec_out": q(min(total, t_in + want)),
                          "x": float(c.get("x", 0.5)), "y": float(c.get("y", 0.5)), "w": float(c.get("w", 1.0)),
                          "opacity": float(c.get("opacity", 1.0)), "cue_word": w["word"], "line": c["line"],
-                         "src_in": float(c.get("src_in", 0.0))})
+                         "src_in": float(c.get("src_in", 0.0)),
+                         **({"whoosh": False} if c.get("whoosh") is False else {})})
 
     # ---- titles and callouts land on their words
     for c, w in resolved:
