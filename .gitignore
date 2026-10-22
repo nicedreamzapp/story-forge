@@ -50,6 +50,8 @@ queue/state.json
 queue/ledger.csv
 queue/processing/
 review/verdicts.json
+site/
+.cache/
 
 # Acquired footage (frozen rule 28, 2026-10-22): the media stays local (mp4 is ignored above);
 # acquired/provenance.json and the per-take .json sidecars ARE tracked.
