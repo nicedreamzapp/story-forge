@@ -343,7 +343,7 @@ def judge(path: Path, design: dict, design_root: Path, votes: int, B: Ballots, t
         ballots = []
         for t, fr in frames:
             if not seen[str(fr)]:
-                ballots.append({"t": t, "raw": "(device not visible in this frame)", "parsed": None})
+                ballots.append({"t": t, "raw": "(device not visible in this frame)", "parsed": None, "_fr": str(fr)})
                 continue
             if f.get("when"):
                 wraw = B.ask(fr, WHEN_Q.format(w=f["when"]))
@@ -354,7 +354,10 @@ def judge(path: Path, design: dict, design_root: Path, votes: int, B: Ballots, t
             raw = B.ask(panel(fr, f.get("angle", default_angle)), q)
             p = parse_number(raw) if numeric else parse_yesno(raw)
             ballots.append({"t": t, "raw": raw, "parsed": p})
-        vals = [b["parsed"] for b in ballots if b["parsed"] != "n/a"]
+        # frames where VISIBLE said the device is not there are already accounted for in rec["visible"];
+        # they are not unreadable answers to THIS fact (sitka_v3: a walk shot whose only non-n/a frame was a
+        # device-not-visible frame came back "no majority" -> UNCHECKED instead of n/a)
+        vals = [b["parsed"] for b in ballots if b["parsed"] != "n/a" and seen.get(str(b.get("_fr")), True)]
         if not vals:
             result, maj = "n/a", None
         else:
@@ -381,7 +384,7 @@ def judge(path: Path, design: dict, design_root: Path, votes: int, B: Ballots, t
                 continue
             raw = B.ask(panel(fr, default_angle), MUSTNOT_Q.format(x=x))
             ballots.append({"t": t, "raw": raw, "parsed": parse_yesno(raw)})
-        vals = [b["parsed"] for b in ballots]
+        vals = [b["parsed"] for b in ballots if b["raw"] != "(device not visible in this frame)"]
         yes = sum(v == "yes" for v in vals)
         if yes * 2 > len(vals):
             result = "fail"
