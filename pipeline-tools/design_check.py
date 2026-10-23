@@ -22,6 +22,14 @@ design.json (SCHEMAS.md) — optional extra field per fact (added 2026-10-22):
   "when": "the person is seated"   a visible precondition; frames where it is false make the
                                    fact n/a for that frame (a walking shot has no planted leg).
 
+Take profiles (added 2026-10-22, sitka_v3): a close-up of one part, a part on a 3D printer, the
+kit laid out flat or a parts table can never pass full-body facts (VISIBLE says "not the same
+device", or every fact is n/a -> UNCHECKED forever). design.json "profiles": {"<name>":
+{"references": {...}, "facts": [...], "must_not": [...]}} and a coverage.json setup's
+"design": "<name>" (ingest copies it to the candidate as "design_profile") judge that take
+against its own reference and facts instead. Keys the profile leaves out come from the top
+level; the house must_not list always applies. An unknown profile name is UNCHECKED, never a pass.
+
 Usage:
   ~/.local/mlx-server/bin/python pipeline-tools/design_check.py projects/<film> [--votes 5]
         [--only CID] [--force]
@@ -335,7 +343,7 @@ def judge(path: Path, design: dict, design_root: Path, votes: int, B: Ballots, t
         ballots = []
         for t, fr in frames:
             if not seen[str(fr)]:
-                ballots.append({"t": t, "raw": "(device not visible in this frame)", "parsed": None})
+                ballots.append({"t": t, "raw": "(device not visible in this frame)", "parsed": None, "_fr": str(fr)})
                 continue
             if f.get("when"):
                 wraw = B.ask(fr, WHEN_Q.format(w=f["when"]))
@@ -346,7 +354,10 @@ def judge(path: Path, design: dict, design_root: Path, votes: int, B: Ballots, t
             raw = B.ask(panel(fr, f.get("angle", default_angle)), q)
             p = parse_number(raw) if numeric else parse_yesno(raw)
             ballots.append({"t": t, "raw": raw, "parsed": p})
-        vals = [b["parsed"] for b in ballots if b["parsed"] != "n/a"]
+        # frames where VISIBLE said the device is not there are already accounted for in rec["visible"];
+        # they are not unreadable answers to THIS fact (sitka_v3: a walk shot whose only non-n/a frame was a
+        # device-not-visible frame came back "no majority" -> UNCHECKED instead of n/a)
+        vals = [b["parsed"] for b in ballots if b["parsed"] != "n/a" and seen.get(str(b.get("_fr")), True)]
         if not vals:
             result, maj = "n/a", None
         else:
@@ -373,7 +384,7 @@ def judge(path: Path, design: dict, design_root: Path, votes: int, B: Ballots, t
                 continue
             raw = B.ask(panel(fr, default_angle), MUSTNOT_Q.format(x=x))
             ballots.append({"t": t, "raw": raw, "parsed": parse_yesno(raw)})
-        vals = [b["parsed"] for b in ballots]
+        vals = [b["parsed"] for b in ballots if b["raw"] != "(device not visible in this frame)"]
         yes = sum(v == "yes" for v in vals)
         if yes * 2 > len(vals):
             result = "fail"
@@ -446,7 +457,7 @@ def check_film(film: Path, votes: int, only: str | None, force: bool) -> int:
         print("[design_check] no design.json — every candidate marked n/a (no product to check)")
         return 0
     design = json.loads(des_path.read_text())
-    todo = [c for c in cands if (only is None or c["cid"] == only)
+    todo = [c for c in cands if (only is None or c["cid"] in only.split(","))
             and (force or (c.get("checks") or {}).get("design") not in ("pass", "fail"))]
     print(f"[design_check] {design.get('product')}: {len(todo)} of {len(cands)} candidates to judge, "
           f"{votes} frames per clip", flush=True)
@@ -463,7 +474,13 @@ def check_film(film: Path, votes: int, only: str | None, force: bool) -> int:
         verdicts = {}
         for c in todo:
             try:
-                r = judge(film / c["file"], design, film, votes, B, tmp)
+                prof = c.get("design_profile")
+                if prof and prof not in design.get("profiles", {}):
+                    raise KeyError(f"design profile '{prof}' is not in design.json profiles")
+                d = {**design, **design["profiles"][prof]} if prof else design
+                r = judge(film / c["file"], d, film, votes, B, tmp)
+                if prof:
+                    r["profile"] = prof
             except Exception as e:                           # noqa: BLE001
                 r = {"file": c["file"], "verdict": "unchecked", "why": f"{type(e).__name__}: {e}"}
             r["cid"] = c["cid"]
@@ -540,7 +557,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("film", nargs="?", help="projects/<film>")
     ap.add_argument("--votes", type=int, default=5, help="frames per clip (stills always 1)")
-    ap.add_argument("--only", default=None, help="judge one cid")
+    ap.add_argument("--only", default=None, help="judge one cid, or several comma-separated")
     ap.add_argument("--force", action="store_true", help="re-judge candidates already pass/fail")
     ap.add_argument("--calibrate", nargs="?", const="", default=None,
                     help="grade the judge on a calibration file (default <film>/design_calibration.json)")

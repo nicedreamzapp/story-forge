@@ -38,6 +38,11 @@ and a provenance take like the browser ones plus `"glb"`, `"glb_sha256"`, `"came
 (part -> PBR preset), `"samples"`, `"tool": "Blender <ver> Cycles Metal"`. Part names match
 `design.json` `"parts"` so masks, facts and callouts all speak the same names.
 
+A coverage setup may name a design profile, `"design": "<name>"` (added 2026-10-22, sitka_v3): ingest copies it
+to the candidate as `"design_profile"` and design_check judges that take against `design.json "profiles"[name]`
+(its own references, facts, must_not) instead of the full-body facts. For close-ups of one part, a part on a
+printer, the kit laid out flat, a parts table: takes the full-body facts can only ever call UNCHECKED.
+
 ## manifest.json (04_footage → 05_selects, written by `pipeline-tools/ingest_acquired.py`)
 ```json
 {"fps": 30, "w": 1920, "h": 1080, "candidates": [
@@ -59,6 +64,10 @@ and a provenance take like the browser ones plus `"glb"`, `"glb_sha256"`, `"came
  "materials": {"rear_leg_L": "matte black carbon tube", "knee_motor_L": "brushed 7075 aluminum"},
  "fidelity_clause": "Reproduce exactly the design in the reference: ... (appended to every browser-acquire prompt)"}
 ```
+
+`"profiles": {"knee_closeup": {"references": {"side": "refs/knee.png"}, "facts": [...], "must_not": [...]}}` is
+optional in design.json; a profile's missing keys come from the top level, the house must_not list always applies,
+an unknown profile name is UNCHECKED.
 
 ## selects.json (05_selects)
 ```json
@@ -102,6 +111,8 @@ Overlays (added 2026-10-22): `"overlays": [{"file": "overlays/tripod.mov", "rec_
 width, normalized to the frame (height keeps the clip's aspect). Supplied by a cues.json entry
 `{"line": 3, "word": "Walking", "kind": "overlay", "file": "overlays/tripod.mov", "dur": 2.8, "x": 0.5, "y": 0.5,
 "w": 0.6, "opacity": 1.0}` (`overlay` joins the cue kinds; `dur` defaults to the clip's length and never loops).
+`"whoosh": false` on an overlay cue (added 2026-10-22, sitka_v3) skips promo_mix's whoosh into it: an overlay
+that starts ON a spoken word (kinetic type at a line's first word) must not lay a whoosh over that word.
 cue_check gates overlay onsets like every other cue.
 
 ## callouts.json (07_callouts)
@@ -137,6 +148,11 @@ arrow tip sits on the named part.
  "youtube": {"title": "...", "tags": [], "category": "Science & Technology", "description": "...", "thumb_text": ""},
  "gates": {"lufs": -16.0, "lufs_tol": 1.0, "true_peak_max": -1.0, "design_votes": 3}}
 ```
+`youtube.chapters` (optional, added 2026-10-22): `[{"line": 1, "title": "What it is"}, {"line": 3, "title": "..."}]`;
+promo_deliver turns each into a chapter at that line's first word on the final timeline (first forced to 0:00), refuses
+fewer than 3 or any under 10 s, and writes them to youtube.json "chapters" and the description.
+`music.sting_root` (Hz, optional, default 65.41 = C2): the end sting's major chord root, set to the bed's key
+(A1 = 55.0 for a bed in A major) so the resolve does not clash.
 `music.hit` = seconds into the bed of its big downbeat (null = auto-detect); it lands on the slam.
 `camera.move`: orbit, push, pull, truck, crane, static. Material presets: see `pipeline-tools/blender_render.py`.
 

@@ -148,7 +148,8 @@ def gather(film: Path) -> tuple[list, list]:
                 seen.add(rel)
                 stubs.append({"cid": f"l{int(ln['line']):02d}_{su.get('source', 'x')}_{slug(Path(rel).stem)}",
                               "file": rel, "source": su.get("source"), "line": ln["line"],
-                              "setup": su.get("setup"), "origin": "coverage"})
+                              "setup": su.get("setup"), "origin": "coverage",
+                              "design_profile": su.get("design")})
     return stubs, missing
 
 

@@ -173,10 +173,14 @@ def main() -> int:
         place(fx, blip(), float(co["rec_in"]), 0.5)
         events.append(("callout blip", co["rec_in"]))
     for ov in edl.get("overlays", []):
+        if ov.get("whoosh") is False:      # cue {"whoosh": false}: an overlay that starts ON a spoken word
+            continue                       # (kinetic type at a line's first word) must not get a whoosh over it
         place(fx, whoosh(0.6), float(ov["rec_in"]) - 0.3, 0.35)
         events.append(("overlay whoosh", ov["rec_in"]))
     place(fx, hit(), slam, 0.8)
-    place(fx, sting(), slam, float(mu.get("sting_gain", 0.9)))
+    # music.sting_root (Hz, added 2026-10-22 sitka_v3): the resolved chord in the BED's key. The default C
+    # root clashed with a bed in A major (Body Movin' "Star Jumps Coach"); A1 = 55.0, F#1 = 46.25, G1 = 49.0 ...
+    place(fx, sting(float(mu.get("sting_root", 65.41))), slam, float(mu.get("sting_gain", 0.9)))
     events.append(("end slam + sting", slam))
     final = film / "final"
     final.mkdir(exist_ok=True)
