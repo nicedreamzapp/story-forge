@@ -1,0 +1,430 @@
+{
+ "lines": [
+  {
+   "line": 1,
+   "takes": [
+    {
+     "cid": "l01_cad_v1_s01_knee_macro",
+     "rank": 1,
+     "in": 0.0,
+     "out": 1.8,
+     "why": "cold open on the knee joint flexing: 'fight your body' needs the machine up close"
+    },
+    {
+     "cid": "l01_cad_v1_s22_clutch_walk",
+     "rank": 2,
+     "in": 0.5,
+     "out": 2.58,
+     "why": "the knee hinge and clutch working at walking pace under MOTORS. METAL."
+    },
+    {
+     "cid": "l01_cad_v1_s02_hero_reveal",
+     "rank": 3,
+     "in": 0.3,
+     "out": 2.225,
+     "why": "the reveal lands on 'Sitka works with it'"
+    },
+    {
+     "cid": "l01_cad_n01_hero_orbit",
+     "rank": 4,
+     "in": 0.0,
+     "out": 3.0,
+     "why": "alternate: alternate reveal, studio orbit"
+    },
+    {
+     "cid": "l01_bl_hero_orbit_1",
+     "rank": 5,
+     "in": 0.0,
+     "out": 4.0,
+     "why": "alternate: GLB orbit alternate"
+    }
+   ]
+  },
+  {
+   "line": 2,
+   "takes": [
+    {
+     "cid": "l01_cad_n01_hero_orbit",
+     "rank": 1,
+     "in": 1.5,
+     "out": 2.86,
+     "why": "the standing wearer under the SITKA title slam"
+    },
+    {
+     "cid": "l02_cad_n02_bluff_walk",
+     "rank": 2,
+     "in": 0.5,
+     "out": 5.08,
+     "why": "he walks the Trinidad bluff while the name is explained: sense of place"
+    },
+    {
+     "cid": "l02_cad_n07_run_low",
+     "rank": 3,
+     "in": 0.4,
+     "out": 1.94,
+     "why": "low running shot carries STRONG and LIGHT"
+    },
+    {
+     "cid": "l04_cad_n04_sit_med",
+     "rank": 4,
+     "in": 1.0,
+     "out": 3.116,
+     "why": "the knees bend as he sits, the springs take it: 'bends without breaking'"
+    },
+    {
+     "cid": "l02_cad_v1_s03_bluff",
+     "rank": 5,
+     "in": 0.0,
+     "out": 4.3,
+     "why": "alternate: v1 bluff orbit alternate"
+    },
+    {
+     "cid": "l02_bl_bluff_push_1",
+     "rank": 6,
+     "in": 0.0,
+     "out": 3.0,
+     "why": "alternate: GLB bluff push alternate"
+    }
+   ]
+  },
+  {
+   "line": 3,
+   "takes": [
+    {
+     "cid": "l03_cad_n03_ghost_walk",
+     "rank": 1,
+     "in": 0.0,
+     "out": 3.86,
+     "why": "ghosted body walking: the bones carry the weight, the frame adds the muscle"
+    },
+    {
+     "cid": "l03_cad_v1_s20_walk_bands",
+     "rank": 2,
+     "in": 1.0,
+     "out": 2.24,
+     "why": "the legs walking, springs and clutches at work under SPRINGS / CLUTCHES"
+    },
+    {
+     "cid": "l03_cad_v1_s09_tendon_glow",
+     "rank": 3,
+     "in": 0.0,
+     "out": 2.534,
+     "why": "the tendons glow on 'cables that work like tendons'"
+    },
+    {
+     "cid": "l03_cad_v1_s06_ghost_walk",
+     "rank": 4,
+     "in": 0.0,
+     "out": 2.9,
+     "why": "alternate: v1 ghost walk"
+    },
+    {
+     "cid": "l03_bl_walk_truck_1",
+     "rank": 5,
+     "in": 0.0,
+     "out": 3.0,
+     "why": "alternate: GLB truck alternate"
+    }
+   ]
+  },
+  {
+   "line": 4,
+   "takes": [
+    {
+     "cid": "l04_cad_v1_s10_sit_wide",
+     "rank": 1,
+     "in": 0.0,
+     "out": 3.76,
+     "why": "sits down outdoors, the poles swing down and take the weight; card on the right"
+    },
+    {
+     "cid": "l04_cad_v1_s12_knee_sit_close",
+     "rank": 2,
+     "in": 0.0,
+     "out": 4.912,
+     "why": "knee close: the carbon spring loads as he sits and gives it back as he stands"
+    },
+    {
+     "cid": "l04_cad_n04_sit_med",
+     "rank": 3,
+     "in": 0.0,
+     "out": 6.0,
+     "why": "alternate: medium sit from the other side"
+    }
+   ]
+  },
+  {
+   "line": 5,
+   "takes": [
+    {
+     "cid": "l05_cad_v1_s13_lean_back",
+     "rank": 1,
+     "in": 0.0,
+     "out": 2.74,
+     "why": "leans back and the two straps take him"
+    },
+    {
+     "cid": "l05_cad_n05_lean_front",
+     "rank": 2,
+     "in": 3.0,
+     "out": 4.838,
+     "why": "front three-quarter on 'camp chair you wear'"
+    },
+    {
+     "cid": "l05_bl_chair_orbit_1",
+     "rank": 3,
+     "in": 0.0,
+     "out": 3.0,
+     "why": "alternate: GLB orbit to the straps"
+    }
+   ]
+  },
+  {
+   "line": 6,
+   "takes": [
+    {
+     "cid": "l06_cad_n06_lift_front",
+     "rank": 1,
+     "in": 0.3,
+     "out": 2.02,
+     "why": "from behind he bends to the box"
+    },
+    {
+     "cid": "l06_cad_v1_s16_tendon_back",
+     "rank": 2,
+     "in": 0.6,
+     "out": 2.96,
+     "why": "the back tendon glows as it stores energy"
+    },
+    {
+     "cid": "l06_cad_v1_s15_lift_side",
+     "rank": 3,
+     "in": 1.6,
+     "out": 6.739,
+     "why": "the lift itself, side on, with the 15 / 12 / no-motor card on the right"
+    },
+    {
+     "cid": "l06_cad_v1_s17_lift_34",
+     "rank": 4,
+     "in": 0.0,
+     "out": 2.3,
+     "why": "alternate: three-quarter lift"
+    }
+   ]
+  },
+  {
+   "line": 7,
+   "takes": [
+    {
+     "cid": "l07_cad_n07_walk_track",
+     "rank": 1,
+     "in": 0.2,
+     "out": 1.32,
+     "why": "smooth walk on the bluff (clinical gait, no stop-start)"
+    },
+    {
+     "cid": "l07_cad_n07_walk_bands",
+     "rank": 2,
+     "in": 0.0,
+     "out": 5.957,
+     "why": "studio walk, the bands glow teal, the band diagram on the right"
+    },
+    {
+     "cid": "l07_cad_n07_run_track",
+     "rank": 3,
+     "in": 0.0,
+     "out": 5.0,
+     "why": "alternate: smooth run"
+    },
+    {
+     "cid": "l07_cad_n07_run_bands_34",
+     "rank": 4,
+     "in": 0.0,
+     "out": 5.0,
+     "why": "alternate: run with bands glowing"
+    }
+   ]
+  },
+  {
+   "line": 8,
+   "takes": [
+    {
+     "cid": "l01_bl_hero_orbit_1",
+     "rank": 1,
+     "in": 1.0,
+     "out": 2.04,
+     "why": "'Want more?' over the GLB hero orbit"
+    },
+    {
+     "cid": "l03_cad_n08_clutch_walk",
+     "rank": 2,
+     "in": 0.0,
+     "out": 3.64,
+     "why": "the knee clutch flicks on in early stance"
+    },
+    {
+     "cid": "l08_cad_v1_s23_motor_back",
+     "rank": 3,
+     "in": 0.0,
+     "out": 3.08,
+     "why": "orbit in to the one motor on the back"
+    },
+    {
+     "cid": "l08_cad_n08_stairs_side",
+     "rank": 4,
+     "in": 0.4,
+     "out": 1.84,
+     "why": "a real stair climb on bluff steps under STAIRS and HILLS"
+    },
+    {
+     "cid": "l06_cad_v1_s17_lift_34",
+     "rank": 5,
+     "in": 0.4,
+     "out": 2.028,
+     "why": "the heavy lift"
+    },
+    {
+     "cid": "l08_cad_n08_stairs_front",
+     "rank": 6,
+     "in": 0.0,
+     "out": 6.0,
+     "why": "alternate: stairs front"
+    },
+    {
+     "cid": "l08_cad_n08_hills_walk",
+     "rank": 7,
+     "in": 0.0,
+     "out": 6.0,
+     "why": "alternate: toward the hills"
+    },
+    {
+     "cid": "l08_bl_stoop_crane_1",
+     "rank": 8,
+     "in": 0.0,
+     "out": 3.0,
+     "why": "alternate: GLB crane up the back"
+    }
+   ]
+  },
+  {
+   "line": 9,
+   "takes": [
+    {
+     "cid": "l01_cad_n01_hero_orbit",
+     "rank": 1,
+     "in": 0.0,
+     "out": 1.44,
+     "why": "the whole system on the wearer on 'fully modular'"
+    },
+    {
+     "cid": "l09_cad_n09_starter_orbit",
+     "rank": 2,
+     "in": 0.0,
+     "out": 5.92,
+     "why": "only the seat + back starter kit on the wearer while the card gives about 14 lb and ~$2,000 a set"
+    },
+    {
+     "cid": "l02_cad_n02_bluff_front",
+     "rank": 3,
+     "in": 4.0,
+     "out": 6.78,
+     "why": "the full system (hips, ankles, shoulders, power) walking toward camera while the card docks them on their words"
+    },
+    {
+     "cid": "l01_cad_n01_hero_orbit",
+     "rank": 4,
+     "in": 3.5,
+     "out": 5.952,
+     "why": "the complete kit, every module on the one hub"
+    },
+    {
+     "cid": "l09_cad_v1_s18_walk_track",
+     "rank": 5,
+     "in": 0.0,
+     "out": 1.8,
+     "why": "alternate: full system walking"
+    }
+   ]
+  },
+  {
+   "line": 10,
+   "takes": [
+    {
+     "cid": "l10_cad_n10_print_close",
+     "rank": 1,
+     "in": 0.8,
+     "out": 3.19,
+     "why": "a seat cup printing layer by layer on a desktop printer"
+    },
+    {
+     "cid": "l10_cad_n10_knoll_top",
+     "rank": 2,
+     "in": 1.4,
+     "out": 3.94,
+     "why": "every part flies off and lands in PRINTED / METAL / BOUGHT"
+    },
+    {
+     "cid": "l10_manim_parts_list_scroll",
+     "rank": 3,
+     "in": 0.3,
+     "out": 2.419,
+     "why": "the real parts list scrolls, every part with its price; GitHub pill on 'GitHub'"
+    },
+    {
+     "cid": "l10_cad_n10_print_wide",
+     "rank": 4,
+     "in": 0.0,
+     "out": 5.0,
+     "why": "alternate: the whole printer"
+    },
+    {
+     "cid": "l10_cad_n10_knoll_low",
+     "rank": 5,
+     "in": 0.0,
+     "out": 5.0,
+     "why": "alternate: low dolly over the layout"
+    }
+   ]
+  },
+  {
+   "line": 11,
+   "takes": [
+    {
+     "cid": "l01_bl_hero_orbit_1",
+     "rank": 1,
+     "in": 2.2,
+     "out": 4.26,
+     "why": "the GLB orbit of the whole design on 'completely open'"
+    },
+    {
+     "cid": "l10_cad_n10_knoll_low",
+     "rank": 2,
+     "in": 1.6,
+     "out": 3.6,
+     "why": "every part laid out under THE DESIGN / THE MATH / EVERY PART"
+    },
+    {
+     "cid": "l11_cad_n11_finale_crane",
+     "rank": 3,
+     "in": 2.6,
+     "out": 4.05,
+     "why": "the camera cranes up and away from him on the bluff on 'Come build one with us'; the end card slams after 'us'"
+    },
+    {
+     "cid": "l11_cad_v1_s26_finale",
+     "rank": 4,
+     "in": 0.0,
+     "out": 2.7,
+     "why": "alternate: v1 bluff finale"
+    },
+    {
+     "cid": "l11_cad_n11_walk_away",
+     "rank": 5,
+     "in": 0.0,
+     "out": 8.0,
+     "why": "alternate: walks away along the bluff"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "title": "Sitka: an open-source exoskeleton that works with your body",
+ "description": "Sitka is an open-source exoskeleton that works with your body instead of fighting it. Your bones carry the weight; springs, clutches and cable tendons do what your muscles do, and one small motor helps only where you need it.\n\nThe numbers (counted part by part in the parts list, not guessed):\n- Seat + back starter kit: 6.31 kg (about 14 lb). About $1,925 a set in a batch of 10 (estimate), $2,671 for the first one-off build.\n- Full body (hips, ankles, shoulders, one motor): 10.25 kg, $5,049 for the first build.\n- About 175 printer hours for the whole body on a Bambu X1C / P1S class printer.\nThese are design targets, not yet measured on a prototype.\n\nEverything is open: the CAD, the math, every part with its price.\nCode, CAD and docs: https://github.com/nicedreamzapp/sitka\nParts list and cost: https://github.com/nicedreamzapp/sitka/blob/main/PARTS_LIST.md\n\nFootage is rendered from the real CAD in Blender. The wearer is a digital human (MakeHuman / MPFB 2, CC0) driven by real motion capture.\n\nCredits\nMotion capture: CMU Graphics Lab Motion Capture Database, http://mocap.cs.cmu.edu/ (walk 35_01, run 35_17, sit and stand 86_09, stoop lift 115_01, stairs 13_35). The data used in this project was obtained from mocap.cs.cmu.edu. The database was created with funding from NSF EIA-0196217.\nRunning shoes by punkduck (MakeHuman community), CC-BY 4.0.\nHDRIs and textures: Poly Haven (CC0).\nMusic: Star Jumps Coach (instrumental), made with Song Forge, from Body Movin'.\n\nCome build one with us.\n\nChapters\n0:00 What Sitka is\n0:15 Bones, springs and tendons: sit anywhere\n0:35 Lift, walk and run\n0:51 Smart clutches and one small motor\n1:02 The kit: weight and cost\n1:14 3D printed, priced, open",
+ "tags": [
+  "exoskeleton",
+  "open source",
+  "3D printing",
+  "wearable",
+  "biomechanics",
+  "Sitka",
+  "DIY",
+  "chairless chair"
+ ],
+ "category": "Science & Technology",
+ "language": "en",
+ "made_for_kids": false,
+ "files": {
+  "video": "sitka_v3.mp4",
+  "thumbnail": "thumbnail.png"
+ },
+ "chapters": [
+  {
+   "start": "0:00",
+   "title": "What Sitka is"
+  },
+  {
+   "start": "0:15",
+   "title": "Bones, springs and tendons: sit anywhere"
+  },
+  {
+   "start": "0:35",
+   "title": "Lift, walk and run"
+  },
+  {
+   "start": "0:51",
+   "title": "Smart clutches and one small motor"
+  },
+  {
+   "start": "1:02",
+   "title": "The kit: weight and cost"
+  },
+  {
+   "start": "1:14",
+   "title": "3D printed, priced, open"
+  }
+ ]
+}

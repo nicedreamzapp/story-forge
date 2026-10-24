@@ -1,0 +1,1513 @@
+{
+ "fps": 30,
+ "w": 1920,
+ "h": 1080,
+ "candidates": [
+  {
+   "cid": "l01_bl_hero_orbit_1",
+   "file": "acquired/blender/l01_bl_hero_orbit/beauty.mp4",
+   "kind": "video",
+   "source": "blender-render",
+   "line": 1,
+   "setup": "slow low orbit around the standing wearer, the first look (studio rims)",
+   "dur": 5.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     5.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "id": "l01_bl_hero_orbit",
+   "n": 1,
+   "origin": "acquired",
+   "bytes": 2062309,
+   "mtime": 1792784040
+  },
+  {
+   "cid": "l01_cad_n01_hero_orbit",
+   "file": "footage/n01_hero_orbit.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 1,
+   "setup": "slow low orbit around the standing wearer, studio",
+   "dur": 6.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     6.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 3392712,
+   "mtime": 1792784037
+  },
+  {
+   "cid": "l01_cad_v1_s01_knee_macro",
+   "file": "footage/v1_s01_knee_macro.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 1,
+   "setup": "knee macro: the joint flexes, the arc and cables catch the light",
+   "dur": 2.333,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     2.333
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "knee_closeup",
+   "bytes": 1887666,
+   "mtime": 1792783966
+  },
+  {
+   "cid": "l01_cad_v1_s02_hero_reveal",
+   "file": "footage/v1_s02_hero_reveal.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 1,
+   "setup": "hero reveal: camera rises past the knee to the wearer",
+   "dur": 4.733,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     4.733
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 1602826,
+   "mtime": 1792784033
+  },
+  {
+   "cid": "l01_cad_v1_s08_clutch_macro",
+   "file": "footage/v1_s08_clutch_macro.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 1,
+   "setup": "clutch housing macro, slow orbit",
+   "dur": 2.433,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     2.433
+    ]
+   ],
+   "checks": {
+    "design": "unchecked",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "knee_closeup",
+   "bytes": 1291835,
+   "mtime": 1792704838
+  },
+  {
+   "cid": "l01_cad_v1_s22_clutch_walk",
+   "file": "footage/v1_s22_clutch_walk.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 1,
+   "setup": "knee close while walking: the clutch and arc at work (v1 take)",
+   "dur": 4.8,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     4.8
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "knee_closeup",
+   "bytes": 3702972,
+   "mtime": 1792790666
+  },
+  {
+   "cid": "l02_bl_bluff_push_1",
+   "file": "acquired/blender/l02_bl_bluff_push/beauty.mp4",
+   "kind": "video",
+   "source": "blender-render",
+   "line": 2,
+   "setup": "slow push on the standing wearer on the coastal bluff, golden hour",
+   "dur": 3.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     3.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "id": "l02_bl_bluff_push",
+   "n": 1,
+   "origin": "acquired",
+   "bytes": 3697862,
+   "mtime": 1792709705
+  },
+  {
+   "cid": "l02_cad_n02_bluff_front",
+   "file": "footage/n02_bluff_front.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 2,
+   "setup": "he walks the bluff toward camera, smooth gait",
+   "dur": 8.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     8.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 14998430,
+   "mtime": 1792790972
+  },
+  {
+   "cid": "l02_cad_n02_bluff_walk",
+   "file": "footage/n02_bluff_walk.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 2,
+   "setup": "wearer walks the bluff, camera arcs with him",
+   "dur": 6.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     6.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 18835641,
+   "mtime": 1792790916
+  },
+  {
+   "cid": "l02_cad_n07_run_low",
+   "file": "footage/n07_run_low.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 2,
+   "setup": "low running shot on 'light'",
+   "dur": 4.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     4.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null,
+    "design_vl": "fail",
+    "design_by_eye": {
+     "by": "agent (Opus) frame review",
+     "date": "2026-10-23",
+     "note": "VL flags the orange running band between the shins as 'impossible'; it is the real CAD part running_band (KINETICS.md T6, shoe-to-shoe interleg band, RUN only). Feet in flight phase is correct for a run."
+    }
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 9153519,
+   "mtime": 1792799398
+  },
+  {
+   "cid": "l02_cad_v1_s03_bluff",
+   "file": "footage/v1_s03_bluff.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 2,
+   "setup": "wearer on the golden-hour bluff, slow orbit",
+   "dur": 4.333,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     4.333
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 9675223,
+   "mtime": 1792704827
+  },
+  {
+   "cid": "l02_cad_v1_s04_strut_macro",
+   "file": "footage/v1_s04_strut_macro.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 2,
+   "setup": "strut macro on 'strong'",
+   "dur": 1.333,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     1.333
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "strut_closeup",
+   "bytes": 570769,
+   "mtime": 1792704829
+  },
+  {
+   "cid": "l02_cad_v1_s05_leaf_flex",
+   "file": "footage/v1_s05_leaf_flex.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 2,
+   "setup": "leaf spring flexes as the knee bends, on 'bends'",
+   "dur": 2.533,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     2.533
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "knee_closeup",
+   "bytes": 2331648,
+   "mtime": 1792704831
+  },
+  {
+   "cid": "l03_bl_walk_truck_1",
+   "file": "acquired/blender/l03_bl_walk_truck/beauty.mp4",
+   "kind": "video",
+   "source": "blender-render",
+   "line": 3,
+   "setup": "camera trucks past the wearer mid-stride: bones carry, the frame follows",
+   "dur": 3.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     3.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "id": "l03_bl_walk_truck",
+   "n": 1,
+   "origin": "acquired",
+   "bytes": 1458678,
+   "mtime": 1792709820
+  },
+  {
+   "cid": "l03_cad_n03_ghost_walk",
+   "file": "footage/n03_ghost_walk.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 3,
+   "setup": "ghosted body walks: the bones carry the weight",
+   "dur": 5.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     5.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 2723888,
+   "mtime": 1792791051
+  },
+  {
+   "cid": "l03_cad_n08_clutch_walk",
+   "file": "footage/n08_clutch_walk.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 3,
+   "setup": "clutch flicks on at stance, on 'clutches'",
+   "dur": 5.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     5.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "knee_closeup",
+   "bytes": 5134327,
+   "mtime": 1792790742
+  },
+  {
+   "cid": "l03_cad_v1_s06_ghost_walk",
+   "file": "footage/v1_s06_ghost_walk.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 3,
+   "setup": "ghosted walk, v1 take",
+   "dur": 2.933,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     2.933
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 1709489,
+   "mtime": 1792704834
+  },
+  {
+   "cid": "l03_cad_v1_s07_spring_macro",
+   "file": "footage/v1_s07_spring_macro.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 3,
+   "setup": "spring macro on 'springs'",
+   "dur": 1.333,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     1.333
+    ]
+   ],
+   "checks": {
+    "design": "fail",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "knee_closeup",
+   "bytes": 1656350,
+   "mtime": 1792704836
+  },
+  {
+   "cid": "l03_cad_v1_s09_tendon_glow",
+   "file": "footage/v1_s09_tendon_glow.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 3,
+   "setup": "tendons glow along the body, on 'tendons'",
+   "dur": 2.633,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     2.633
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 1307089,
+   "mtime": 1792784042
+  },
+  {
+   "cid": "l03_cad_v1_s20_walk_bands",
+   "file": "footage/v1_s20_walk_bands.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 3,
+   "setup": "walking legs in the studio, springs and clutches at work (v1 take)",
+   "dur": 5.833,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     5.833
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null,
+    "design_vl": "fail",
+    "design_by_eye": {
+     "by": "agent (Opus) frame review",
+     "date": "2026-10-23",
+     "note": "VL reads the stowed strut along the outer thigh as 'a pole in front of the knee'; in the used range (1.0-2.2 s) the strut is folded along the side of the thigh, above the knee, per design."
+    }
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 2040585,
+   "mtime": 1792790793
+  },
+  {
+   "cid": "l04_cad_n04_sit_med",
+   "file": "footage/n04_sit_med.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 4,
+   "setup": "sit down, medium, from the other side",
+   "dur": 6.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     6.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 7618929,
+   "mtime": 1792794579
+  },
+  {
+   "cid": "l04_cad_v1_s10_sit_wide",
+   "file": "footage/v1_s10_sit_wide.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 4,
+   "setup": "sit down outdoors, the struts deploy, wide",
+   "dur": 5.233,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     5.233
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 12795298,
+   "mtime": 1792793349
+  },
+  {
+   "cid": "l04_cad_v1_s12_knee_sit_close",
+   "file": "footage/v1_s12_knee_sit_close.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 4,
+   "setup": "knee close-up while sitting: the spring catches",
+   "dur": 4.9,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     4.9
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "knee_closeup",
+   "bytes": 4994138,
+   "mtime": 1792793355
+  },
+  {
+   "cid": "l05_bl_chair_orbit_1",
+   "file": "acquired/blender/l05_bl_chair_orbit/beauty.mp4",
+   "kind": "video",
+   "source": "blender-render",
+   "line": 5,
+   "setup": "orbit behind the seated wearer to reveal the two straps holding the lean",
+   "dur": 3.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     3.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "id": "l05_bl_chair_orbit",
+   "n": 1,
+   "origin": "acquired",
+   "bytes": 7082695,
+   "mtime": 1792709940
+  },
+  {
+   "cid": "l05_cad_n05_lean_front",
+   "file": "footage/n05_lean_front.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 5,
+   "setup": "lean back from the front three-quarter",
+   "dur": 5.5,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     5.5
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null,
+    "design_vl": "fail",
+    "design_by_eye": {
+     "by": "agent (Opus) frame review",
+     "date": "2026-10-23",
+     "note": "VL reads the seat pole as 'in front of the knee' from the front camera; by eye it drops from under the hip, outside the leg, to the ground while seated, exactly the design fact."
+    }
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 5366605,
+   "mtime": 1792794588
+  },
+  {
+   "cid": "l05_cad_n05_lean_orbit",
+   "file": "footage/n05_lean_orbit.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 5,
+   "setup": "orbit around the seated wearer as he leans back into the straps",
+   "dur": 8.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     8.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 22752149,
+   "mtime": 1792715108
+  },
+  {
+   "cid": "l05_cad_v1_s13_lean_back",
+   "file": "footage/v1_s13_lean_back.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 5,
+   "setup": "lean back on the bluff, the straps take the load",
+   "dur": 5.8,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     5.8
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 7226800,
+   "mtime": 1792794584
+  },
+  {
+   "cid": "l06_cad_n06_lift_front",
+   "file": "footage/n06_lift_front.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 6,
+   "setup": "lift from behind, the back panel and tendon",
+   "dur": 8.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     8.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 1908488,
+   "mtime": 1792795811
+  },
+  {
+   "cid": "l06_cad_v1_s15_lift_side",
+   "file": "footage/v1_s15_lift_side.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 6,
+   "setup": "stoop lift of a box, side, tendon glows",
+   "dur": 8.5,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     8.5
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 2806685,
+   "mtime": 1792799394
+  },
+  {
+   "cid": "l06_cad_v1_s16_tendon_back",
+   "file": "footage/v1_s16_tendon_back.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 6,
+   "setup": "back tendon close as the box comes up",
+   "dur": 3.533,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     3.533
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "back_closeup",
+   "bytes": 3579923,
+   "mtime": 1792795814
+  },
+  {
+   "cid": "l06_cad_v1_s17_lift_34",
+   "file": "footage/v1_s17_lift_34.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 6,
+   "setup": "lift from the three-quarter front",
+   "dur": 2.333,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     2.333
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 1292724,
+   "mtime": 1792799395
+  },
+  {
+   "cid": "l07_cad_n07_run_bands_34",
+   "file": "footage/n07_run_bands_34.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 7,
+   "setup": "run three-quarter, bands glow",
+   "dur": 5.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     5.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 3618658,
+   "mtime": 1792706627
+  },
+  {
+   "cid": "l07_cad_n07_run_track",
+   "file": "footage/n07_run_track.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 7,
+   "setup": "smooth run on the bluff, tracking",
+   "dur": 5.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     5.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 19527750,
+   "mtime": 1792706605
+  },
+  {
+   "cid": "l07_cad_n07_walk_bands",
+   "file": "footage/n07_walk_bands.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 7,
+   "setup": "walk in the studio, bands glow teal",
+   "dur": 6.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     6.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 5232934,
+   "mtime": 1792792128
+  },
+  {
+   "cid": "l07_cad_n07_walk_track",
+   "file": "footage/n07_walk_track.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 7,
+   "setup": "smooth walk on the bluff, tracking",
+   "dur": 6.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     6.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 7429966,
+   "mtime": 1792790823
+  },
+  {
+   "cid": "l08_bl_stoop_crane_1",
+   "file": "acquired/blender/l08_bl_stoop_crane/beauty.mp4",
+   "kind": "video",
+   "source": "blender-render",
+   "line": 8,
+   "setup": "crane up the back of the stooping wearer to the motor and lift leaf",
+   "dur": 3.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     3.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "id": "l08_bl_stoop_crane",
+   "n": 1,
+   "origin": "acquired",
+   "bytes": 1736964,
+   "mtime": 1792710078
+  },
+  {
+   "cid": "l08_cad_n08_hills_walk",
+   "file": "footage/n08_hills_walk.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 8,
+   "setup": "walking toward the hills",
+   "dur": 6.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     6.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 18662493,
+   "mtime": 1792705655
+  },
+  {
+   "cid": "l08_cad_n08_stairs_front",
+   "file": "footage/n08_stairs_front.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 8,
+   "setup": "stair climb, front three-quarter, studio",
+   "dur": 6.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     6.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 3852848,
+   "mtime": 1792706616
+  },
+  {
+   "cid": "l08_cad_n08_stairs_motor",
+   "file": "footage/n08_stairs_motor.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 8,
+   "setup": "stair climb, close on the back motor",
+   "dur": 5.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     5.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "back_closeup",
+   "bytes": 3456641,
+   "mtime": 1792708317
+  },
+  {
+   "cid": "l08_cad_n08_stairs_side",
+   "file": "footage/n08_stairs_side.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 8,
+   "setup": "real stair climb on bluff steps, side",
+   "dur": 7.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     7.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 5633740,
+   "mtime": 1792799396
+  },
+  {
+   "cid": "l08_cad_v1_s23_motor_back",
+   "file": "footage/v1_s23_motor_back.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 8,
+   "setup": "orbit in to the one motor on the back panel",
+   "dur": 4.3,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     4.3
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "back_closeup",
+   "bytes": 4472418,
+   "mtime": 1792784046
+  },
+  {
+   "cid": "l08_cad_v1_s24_hills_wide",
+   "file": "footage/v1_s24_hills_wide.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 8,
+   "setup": "hills wide, v1 take",
+   "dur": 1.333,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     1.333
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 4664663,
+   "mtime": 1792704879
+  },
+  {
+   "cid": "l09_cad_n09_kit_dock_v3",
+   "file": "footage/n09_kit_dock_v3.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 9,
+   "setup": "modules fly in and dock into the hub, each on its word (re-keyed to v3's narration)",
+   "dur": 12.6,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     12.6
+    ]
+   ],
+   "checks": {
+    "design": "fail",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "kit_dock",
+   "bytes": 4699294,
+   "mtime": 1792706641
+  },
+  {
+   "cid": "l09_cad_n09_starter_orbit",
+   "file": "footage/n09_starter_orbit.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 9,
+   "setup": "only the seat + back starter kit on the wearer, slow orbit ('the seat and back kit')",
+   "dur": 6.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     6.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 2957886,
+   "mtime": 1792784050
+  },
+  {
+   "cid": "l09_cad_v1_s18_walk_track",
+   "file": "footage/v1_s18_walk_track.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 9,
+   "setup": "the full system walking (every module docked), v1 take",
+   "dur": 1.833,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     1.833
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 6354172,
+   "mtime": 1792704864
+  },
+  {
+   "cid": "l09_cad_v1_s21_run_low",
+   "file": "footage/v1_s21_run_low.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 9,
+   "setup": "the full system running low, v1 take",
+   "dur": 2.233,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     2.233
+    ]
+   ],
+   "checks": {
+    "design": "fail",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 7768952,
+   "mtime": 1792704870
+  },
+  {
+   "cid": "l09_cad_v1_s25_kit_dock",
+   "file": "footage/v1_s25_kit_dock.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 9,
+   "setup": "modules dock into the hub, v1 take (v1 word timing)",
+   "dur": 12.2,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     12.2
+    ]
+   ],
+   "checks": {
+    "design": "fail",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "kit_dock",
+   "bytes": 4549579,
+   "mtime": 1792704885
+  },
+  {
+   "cid": "l10_cad_n10_knoll_low",
+   "file": "footage/n10_knoll_low.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 10,
+   "setup": "low dolly across the laid-out parts",
+   "dur": 5.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     5.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "knoll_low",
+   "bytes": 2749577,
+   "mtime": 1792784058
+  },
+  {
+   "cid": "l10_cad_n10_knoll_top",
+   "file": "footage/n10_knoll_top.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 10,
+   "setup": "every part flies off the frame and lands in PRINTED / METAL / BOUGHT",
+   "dur": 7.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     7.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "knoll_top",
+   "bytes": 5046810,
+   "mtime": 1792784055
+  },
+  {
+   "cid": "l10_cad_n10_print_close",
+   "file": "footage/n10_print_close.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 10,
+   "setup": "a seat cup printing layer by layer on a desktop printer, close",
+   "dur": 6.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     6.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "printing",
+   "bytes": 4263078,
+   "mtime": 1792708269
+  },
+  {
+   "cid": "l10_cad_n10_print_wide",
+   "file": "footage/n10_print_wide.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 10,
+   "setup": "the same print, wider, the whole printer",
+   "dur": 5.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     5.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "printing",
+   "bytes": 2796810,
+   "mtime": 1792711070
+  },
+  {
+   "cid": "l10_manim_parts_list_scroll",
+   "file": "footage/parts_list_scroll.mp4",
+   "kind": "video",
+   "source": "manim",
+   "line": 10,
+   "setup": "the parts list scrolls: every part with its price",
+   "dur": 6.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     6.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "parts_list",
+   "bytes": 1831557,
+   "mtime": 1792705533
+  },
+  {
+   "cid": "l11_bl_run_pull_1",
+   "file": "acquired/blender/l11_bl_run_pull/beauty.mp4",
+   "kind": "video",
+   "source": "blender-render",
+   "line": 11,
+   "setup": "pull back from the running wearer on the bluff: the invitation",
+   "dur": 3.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     3.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "id": "l11_bl_run_pull",
+   "n": 1,
+   "origin": "acquired",
+   "bytes": 11699231,
+   "mtime": 1792710199
+  },
+  {
+   "cid": "l11_cad_n11_finale_crane",
+   "file": "footage/n11_finale_crane.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 11,
+   "setup": "crane up and away from the wearer on the bluff: the invitation",
+   "dur": 8.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     8.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 8516685,
+   "mtime": 1792784063
+  },
+  {
+   "cid": "l11_cad_n11_walk_away",
+   "file": "footage/n11_walk_away.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 11,
+   "setup": "he walks away along the bluff, camera rising",
+   "dur": 8.0,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     8.0
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 25429233,
+   "mtime": 1792715125
+  },
+  {
+   "cid": "l11_cad_v1_s26_finale",
+   "file": "footage/v1_s26_finale.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 11,
+   "setup": "finale on the bluff, camera pulls back and rises",
+   "dur": 2.733,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     2.733
+    ]
+   ],
+   "checks": {
+    "design": "pass",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": null,
+   "bytes": 7870960,
+   "mtime": 1792704889
+  },
+  {
+   "cid": "l11_cad_v1_s27_every_part",
+   "file": "footage/v1_s27_every_part.mp4",
+   "kind": "video",
+   "source": "cad",
+   "line": 11,
+   "setup": "every part, exploded, slow orbit",
+   "dur": 2.733,
+   "w": 1920,
+   "h": 1080,
+   "fps": 30,
+   "shots": [
+    [
+     0.0,
+     2.733
+    ]
+   ],
+   "checks": {
+    "design": "unchecked",
+    "faces": null
+   },
+   "origin": "coverage",
+   "design_profile": "exploded",
+   "bytes": 1527580,
+   "mtime": 1792704892
+  }
+ ]
+}

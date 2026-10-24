@@ -1,0 +1,2629 @@
+{
+ "gap": 0.6,
+ "lead": 0.5,
+ "engine": "mlx",
+ "model": "mlx-community/whisper-large-v3-turbo",
+ "lines": [
+  {
+   "line": 1,
+   "wav": "vo/final/part000.wav",
+   "start": 0.5,
+   "end": 5.085,
+   "dur": 4.585,
+   "text": "Most exoskeletons fight your body with motors and metal. Sitka works with it.",
+   "script_text": "Most exoskeletons fight your body with motors and metal. Sitka works with it."
+  },
+  {
+   "line": 2,
+   "wav": "vo/final/part001.wav",
+   "start": 5.685,
+   "end": 14.521,
+   "dur": 8.836,
+   "text": "This is Sitka. Named after the tall Sitka spruce trees on the bluffs of Trinidad, California. Strong, light, and it bends without breaking.",
+   "script_text": "This is Sitka. Named after the tall Sitka spruce trees on the bluffs of Trinidad, California. Strong, light, and it bends without breaking."
+  },
+  {
+   "line": 3,
+   "wav": "vo/final/part002.wav",
+   "start": 15.121,
+   "end": 22.035,
+   "dur": 6.914,
+   "text": "Your bones already carry the weight. Sitka adds what your muscles do, with springs, clutches, and cables that work like tendons.",
+   "script_text": "Your bones already carry the weight. Sitka adds what your muscles do, with springs, clutches, and cables that work like tendons."
+  },
+  {
+   "line": 4,
+   "wav": "vo/final/part003.wav",
+   "start": 22.635,
+   "end": 30.627,
+   "dur": 7.992,
+   "text": "Sit down anywhere, and a light pole under each hip takes most of your weight. A carbon spring at each knee catches you, and gives that energy back when you stand.",
+   "script_text": "Sit down anywhere, and a light pole under each hip takes most of your weight. A carbon spring at each knee catches you, and gives that energy back when you stand."
+  },
+  {
+   "line": 5,
+   "wav": "vo/final/part004.wav",
+   "start": 31.227,
+   "end": 35.125,
+   "dur": 3.898,
+   "text": "Lean back, and two simple straps hold you, like a camp chair you wear.",
+   "script_text": "Lean back, and two simple straps hold you, like a camp chair you wear."
+  },
+  {
+   "line": 6,
+   "wav": "vo/final/part005.wav",
+   "start": 35.725,
+   "end": 44.224,
+   "dur": 8.498,
+   "text": "Bend to lift, and a tendon along your back stores energy. A fifteen kilo box feels about twelve kilos lighter, with no motor at all.",
+   "script_text": "Bend to lift, and a tendon along your back stores energy. A fifteen kilo box feels about twelve kilos lighter, with no motor at all."
+  },
+  {
+   "line": 7,
+   "wav": "vo/final/part006.wav",
+   "start": 44.824,
+   "end": 51.221,
+   "dur": 6.397,
+   "text": "Walking and running, elastic bands link your hips, knees, and ankles the way your own hamstrings and calves do.",
+   "script_text": "Walking and running, elastic bands link your hips, knees, and ankles, the way your own hamstrings and calves do."
+  },
+  {
+   "line": 8,
+   "wav": "vo/final/part007.wav",
+   "start": 51.821,
+   "end": 61.849,
+   "dur": 10.028,
+   "text": "Want more? Smart clutches switch the springs on at exactly the right moment. And one small motor on your back helps only where you need it, on stairs, hills, and heavy lifts.",
+   "script_text": "Want more? Smart clutches switch the springs on at exactly the right moment. And one small motor on your back helps only where you need it, on stairs, hills, and heavy lifts."
+  },
+  {
+   "line": 9,
+   "wav": "vo/final/part008.wav",
+   "start": 62.449,
+   "end": 74.281,
+   "dur": 11.832,
+   "text": "It's fully modular. The seat and back kit weighs about fourteen pounds, and runs around two thousand dollars a set when it's built in small batches. Then add hips, ankles, shoulders, and power, all docking into one hub.",
+   "script_text": "It's fully modular. The seat and back kit weighs about fourteen pounds, and runs around two thousand dollars a set when it's built in small batches. Then add hips, ankles, shoulders, and power, all docking into one hub."
+  },
+  {
+   "line": 10,
+   "wav": "vo/final/part009.wav",
+   "start": 74.881,
+   "end": 81.21,
+   "dur": 6.329,
+   "text": "Most of the frame is 3D printed on a desktop printer, and every part is listed with its price, on GitHub.",
+   "script_text": "Most of the frame is 3D printed on a desktop printer, and every part is listed with its price, on GitHub."
+  },
+  {
+   "line": 11,
+   "wav": "vo/final/part010.wav",
+   "start": 81.81,
+   "end": 87.353,
+   "dur": 5.543,
+   "text": "Sitka is completely open. The design, the math, every part. Come build one with us.",
+   "script_text": "Sitka is completely open. The design, the math, every part. Come build one with us."
+  }
+ ],
+ "words": [
+  {
+   "i": 0,
+   "line": 1,
+   "word": "Most",
+   "start": 0.54,
+   "end": 0.8,
+   "heard": "Most",
+   "onset": "energy",
+   "w_start": 0.5
+  },
+  {
+   "i": 1,
+   "line": 1,
+   "word": "exoskeletons",
+   "start": 0.82,
+   "end": 1.68,
+   "heard": "exoskeletons",
+   "onset": "energy",
+   "w_start": 0.8
+  },
+  {
+   "i": 2,
+   "line": 1,
+   "word": "fight",
+   "start": 1.76,
+   "end": 1.9,
+   "heard": "fight",
+   "onset": "energy",
+   "w_start": 1.68
+  },
+  {
+   "i": 3,
+   "line": 1,
+   "word": "your",
+   "start": 1.9,
+   "end": 2.04,
+   "heard": "your",
+   "onset": "whisper",
+   "w_start": 1.9
+  },
+  {
+   "i": 4,
+   "line": 1,
+   "word": "body",
+   "start": 2.04,
+   "end": 2.32,
+   "heard": "body",
+   "onset": "whisper",
+   "w_start": 2.04
+  },
+  {
+   "i": 5,
+   "line": 1,
+   "word": "with",
+   "start": 2.32,
+   "end": 2.5,
+   "heard": "with",
+   "onset": "whisper",
+   "w_start": 2.32
+  },
+  {
+   "i": 6,
+   "line": 1,
+   "word": "motors",
+   "start": 2.53,
+   "end": 2.84,
+   "heard": "motors",
+   "onset": "energy",
+   "w_start": 2.5
+  },
+  {
+   "i": 7,
+   "line": 1,
+   "word": "and",
+   "start": 2.84,
+   "end": 3.02,
+   "heard": "and",
+   "onset": "whisper",
+   "w_start": 2.84
+  },
+  {
+   "i": 8,
+   "line": 1,
+   "word": "metal",
+   "start": 3.02,
+   "end": 3.3,
+   "heard": "metal.",
+   "onset": "whisper",
+   "w_start": 3.02
+  },
+  {
+   "i": 9,
+   "line": 1,
+   "word": "Sitka",
+   "start": 3.8,
+   "end": 4.09,
+   "heard": "Sitka",
+   "onset": "energy",
+   "w_start": 3.66
+  },
+  {
+   "i": 10,
+   "line": 1,
+   "word": "works",
+   "start": 4.09,
+   "end": 4.44,
+   "heard": "works",
+   "onset": "energy",
+   "w_start": 4.16
+  },
+  {
+   "i": 11,
+   "line": 1,
+   "word": "with",
+   "start": 4.5,
+   "end": 4.62,
+   "heard": "with",
+   "onset": "energy",
+   "w_start": 4.44
+  },
+  {
+   "i": 12,
+   "line": 1,
+   "word": "it",
+   "start": 4.62,
+   "end": 4.8,
+   "heard": "it.",
+   "onset": "whisper",
+   "w_start": 4.62
+  },
+  {
+   "i": 13,
+   "line": 2,
+   "word": "This",
+   "start": 5.705,
+   "end": 5.945,
+   "heard": "This",
+   "onset": "energy",
+   "w_start": 5.685
+  },
+  {
+   "i": 14,
+   "line": 2,
+   "word": "is",
+   "start": 6.005,
+   "end": 6.265,
+   "heard": "is",
+   "onset": "energy",
+   "w_start": 5.945
+  },
+  {
+   "i": 15,
+   "line": 2,
+   "word": "Sitka",
+   "start": 6.265,
+   "end": 6.705,
+   "heard": "Sitka.",
+   "onset": "whisper",
+   "w_start": 6.265
+  },
+  {
+   "i": 16,
+   "line": 2,
+   "word": "Named",
+   "start": 7.005,
+   "end": 7.325,
+   "heard": "Named",
+   "onset": "energy",
+   "w_start": 6.905
+  },
+  {
+   "i": 17,
+   "line": 2,
+   "word": "after",
+   "start": 7.325,
+   "end": 7.545,
+   "heard": "after",
+   "onset": "whisper",
+   "w_start": 7.325
+  },
+  {
+   "i": 18,
+   "line": 2,
+   "word": "the",
+   "start": 7.545,
+   "end": 7.765,
+   "heard": "the",
+   "onset": "energy",
+   "w_start": 7.585
+  },
+  {
+   "i": 19,
+   "line": 2,
+   "word": "tall",
+   "start": 7.765,
+   "end": 8.065,
+   "heard": "tall",
+   "onset": "whisper",
+   "w_start": 7.765
+  },
+  {
+   "i": 20,
+   "line": 2,
+   "word": "Sitka",
+   "start": 8.065,
+   "end": 8.505,
+   "heard": "Sitka",
+   "onset": "whisper",
+   "w_start": 8.065
+  },
+  {
+   "i": 21,
+   "line": 2,
+   "word": "spruce",
+   "start": 8.505,
+   "end": 8.965,
+   "heard": "spruce",
+   "onset": "energy",
+   "w_start": 8.605
+  },
+  {
+   "i": 22,
+   "line": 2,
+   "word": "trees",
+   "start": 9.045,
+   "end": 9.225,
+   "heard": "trees",
+   "onset": "energy",
+   "w_start": 8.965
+  },
+  {
+   "i": 23,
+   "line": 2,
+   "word": "on",
+   "start": 9.225,
+   "end": 9.445,
+   "heard": "on",
+   "onset": "whisper",
+   "w_start": 9.225
+  },
+  {
+   "i": 24,
+   "line": 2,
+   "word": "the",
+   "start": 9.445,
+   "end": 9.545,
+   "heard": "the",
+   "onset": "whisper",
+   "w_start": 9.445
+  },
+  {
+   "i": 25,
+   "line": 2,
+   "word": "bluffs",
+   "start": 9.545,
+   "end": 9.885,
+   "heard": "bluffs",
+   "onset": "whisper",
+   "w_start": 9.545
+  },
+  {
+   "i": 26,
+   "line": 2,
+   "word": "of",
+   "start": 9.885,
+   "end": 10.025,
+   "heard": "of",
+   "onset": "whisper",
+   "w_start": 9.885
+  },
+  {
+   "i": 27,
+   "line": 2,
+   "word": "Trinidad",
+   "start": 10.065,
+   "end": 10.465,
+   "heard": "Trinidad,",
+   "onset": "energy",
+   "w_start": 10.025
+  },
+  {
+   "i": 28,
+   "line": 2,
+   "word": "California",
+   "start": 10.595,
+   "end": 11.105,
+   "heard": "California.",
+   "onset": "energy",
+   "w_start": 10.585
+  },
+  {
+   "i": 29,
+   "line": 2,
+   "word": "Strong",
+   "start": 11.545,
+   "end": 11.985,
+   "heard": "Strong,",
+   "onset": "energy",
+   "w_start": 11.545
+  },
+  {
+   "i": 30,
+   "line": 2,
+   "word": "light",
+   "start": 12.245,
+   "end": 12.605,
+   "heard": "light,",
+   "onset": "energy",
+   "w_start": 12.185
+  },
+  {
+   "i": 31,
+   "line": 2,
+   "word": "and",
+   "start": 12.825,
+   "end": 12.925,
+   "heard": "and",
+   "onset": "energy",
+   "w_start": 12.745
+  },
+  {
+   "i": 32,
+   "line": 2,
+   "word": "it",
+   "start": 12.925,
+   "end": 13.045,
+   "heard": "it",
+   "onset": "whisper",
+   "w_start": 12.925
+  },
+  {
+   "i": 33,
+   "line": 2,
+   "word": "bends",
+   "start": 13.045,
+   "end": 13.345,
+   "heard": "bends",
+   "onset": "whisper",
+   "w_start": 13.045
+  },
+  {
+   "i": 34,
+   "line": 2,
+   "word": "without",
+   "start": 13.435,
+   "end": 13.645,
+   "heard": "without",
+   "onset": "energy",
+   "w_start": 13.345
+  },
+  {
+   "i": 35,
+   "line": 2,
+   "word": "breaking",
+   "start": 13.755,
+   "end": 14.225,
+   "heard": "breaking.",
+   "onset": "energy",
+   "w_start": 13.645
+  },
+  {
+   "i": 36,
+   "line": 3,
+   "word": "Your",
+   "start": 15.131,
+   "end": 15.281,
+   "heard": "Your",
+   "onset": "energy",
+   "w_start": 15.121
+  },
+  {
+   "i": 37,
+   "line": 3,
+   "word": "bones",
+   "start": 15.281,
+   "end": 15.621,
+   "heard": "bones",
+   "onset": "whisper",
+   "w_start": 15.281
+  },
+  {
+   "i": 38,
+   "line": 3,
+   "word": "already",
+   "start": 15.621,
+   "end": 15.961,
+   "heard": "already",
+   "onset": "whisper",
+   "w_start": 15.621
+  },
+  {
+   "i": 39,
+   "line": 3,
+   "word": "carry",
+   "start": 16.061,
+   "end": 16.281,
+   "heard": "carry",
+   "onset": "energy",
+   "w_start": 15.961
+  },
+  {
+   "i": 40,
+   "line": 3,
+   "word": "the",
+   "start": 16.281,
+   "end": 16.441,
+   "heard": "the",
+   "onset": "whisper",
+   "w_start": 16.281
+  },
+  {
+   "i": 41,
+   "line": 3,
+   "word": "weight",
+   "start": 16.441,
+   "end": 16.741,
+   "heard": "weight.",
+   "onset": "whisper",
+   "w_start": 16.441
+  },
+  {
+   "i": 42,
+   "line": 3,
+   "word": "Sitka",
+   "start": 17.011,
+   "end": 17.291,
+   "heard": "Sitka",
+   "onset": "energy",
+   "w_start": 17.021
+  },
+  {
+   "i": 43,
+   "line": 3,
+   "word": "adds",
+   "start": 17.291,
+   "end": 17.661,
+   "heard": "adds",
+   "onset": "energy",
+   "w_start": 17.381
+  },
+  {
+   "i": 44,
+   "line": 3,
+   "word": "what",
+   "start": 17.661,
+   "end": 17.821,
+   "heard": "what",
+   "onset": "whisper",
+   "w_start": 17.661
+  },
+  {
+   "i": 45,
+   "line": 3,
+   "word": "your",
+   "start": 17.821,
+   "end": 17.961,
+   "heard": "your",
+   "onset": "whisper",
+   "w_start": 17.821
+  },
+  {
+   "i": 46,
+   "line": 3,
+   "word": "muscles",
+   "start": 17.961,
+   "end": 18.301,
+   "heard": "muscles",
+   "onset": "whisper",
+   "w_start": 17.961
+  },
+  {
+   "i": 47,
+   "line": 3,
+   "word": "do",
+   "start": 18.301,
+   "end": 18.581,
+   "heard": "do,",
+   "onset": "whisper",
+   "w_start": 18.301
+  },
+  {
+   "i": 48,
+   "line": 3,
+   "word": "with",
+   "start": 18.791,
+   "end": 18.941,
+   "heard": "with",
+   "onset": "energy",
+   "w_start": 18.721
+  },
+  {
+   "i": 49,
+   "line": 3,
+   "word": "springs",
+   "start": 18.941,
+   "end": 19.341,
+   "heard": "springs,",
+   "onset": "whisper",
+   "w_start": 18.941
+  },
+  {
+   "i": 50,
+   "line": 3,
+   "word": "clutches",
+   "start": 19.581,
+   "end": 19.921,
+   "heard": "clutches,",
+   "onset": "energy",
+   "w_start": 19.581
+  },
+  {
+   "i": 51,
+   "line": 3,
+   "word": "and",
+   "start": 19.961,
+   "end": 20.141,
+   "heard": "and",
+   "onset": "whisper",
+   "w_start": 19.961
+  },
+  {
+   "i": 52,
+   "line": 3,
+   "word": "cables",
+   "start": 20.141,
+   "end": 20.561,
+   "heard": "cables",
+   "onset": "whisper",
+   "w_start": 20.141
+  },
+  {
+   "i": 53,
+   "line": 3,
+   "word": "that",
+   "start": 20.561,
+   "end": 20.761,
+   "heard": "that",
+   "onset": "whisper",
+   "w_start": 20.561
+  },
+  {
+   "i": 54,
+   "line": 3,
+   "word": "work",
+   "start": 20.761,
+   "end": 21.001,
+   "heard": "work",
+   "onset": "whisper",
+   "w_start": 20.761
+  },
+  {
+   "i": 55,
+   "line": 3,
+   "word": "like",
+   "start": 21.021,
+   "end": 21.201,
+   "heard": "like",
+   "onset": "energy",
+   "w_start": 21.001
+  },
+  {
+   "i": 56,
+   "line": 3,
+   "word": "tendons",
+   "start": 21.251,
+   "end": 21.751,
+   "heard": "tendons.",
+   "onset": "energy",
+   "w_start": 21.201
+  },
+  {
+   "i": 57,
+   "line": 4,
+   "word": "Sit",
+   "start": 22.655,
+   "end": 22.815,
+   "heard": "Sit",
+   "onset": "energy",
+   "w_start": 22.635
+  },
+  {
+   "i": 58,
+   "line": 4,
+   "word": "down",
+   "start": 22.815,
+   "end": 23.015,
+   "heard": "down",
+   "onset": "whisper",
+   "w_start": 22.815
+  },
+  {
+   "i": 59,
+   "line": 4,
+   "word": "anywhere",
+   "start": 23.015,
+   "end": 23.435,
+   "heard": "anywhere,",
+   "onset": "whisper",
+   "w_start": 23.015
+  },
+  {
+   "i": 60,
+   "line": 4,
+   "word": "and",
+   "start": 23.675,
+   "end": 23.755,
+   "heard": "and",
+   "onset": "whisper",
+   "w_start": 23.675
+  },
+  {
+   "i": 61,
+   "line": 4,
+   "word": "a",
+   "start": 23.755,
+   "end": 23.875,
+   "heard": "a",
+   "onset": "whisper",
+   "w_start": 23.755
+  },
+  {
+   "i": 62,
+   "line": 4,
+   "word": "light",
+   "start": 23.875,
+   "end": 24.055,
+   "heard": "light",
+   "onset": "whisper",
+   "w_start": 23.875
+  },
+  {
+   "i": 63,
+   "line": 4,
+   "word": "pole",
+   "start": 24.055,
+   "end": 24.175,
+   "heard": "pole",
+   "onset": "whisper",
+   "w_start": 24.055
+  },
+  {
+   "i": 64,
+   "line": 4,
+   "word": "under",
+   "start": 24.175,
+   "end": 24.475,
+   "heard": "under",
+   "onset": "energy",
+   "w_start": 24.275
+  },
+  {
+   "i": 65,
+   "line": 4,
+   "word": "each",
+   "start": 24.475,
+   "end": 24.725,
+   "heard": "each",
+   "onset": "whisper",
+   "w_start": 24.475
+  },
+  {
+   "i": 66,
+   "line": 4,
+   "word": "hip",
+   "start": 24.725,
+   "end": 24.935,
+   "heard": "hip",
+   "onset": "energy",
+   "w_start": 24.735
+  },
+  {
+   "i": 67,
+   "line": 4,
+   "word": "takes",
+   "start": 25.015,
+   "end": 25.195,
+   "heard": "takes",
+   "onset": "energy",
+   "w_start": 24.935
+  },
+  {
+   "i": 68,
+   "line": 4,
+   "word": "most",
+   "start": 25.265,
+   "end": 25.475,
+   "heard": "most",
+   "onset": "energy",
+   "w_start": 25.195
+  },
+  {
+   "i": 69,
+   "line": 4,
+   "word": "of",
+   "start": 25.535,
+   "end": 25.635,
+   "heard": "of",
+   "onset": "energy",
+   "w_start": 25.475
+  },
+  {
+   "i": 70,
+   "line": 4,
+   "word": "your",
+   "start": 25.635,
+   "end": 25.755,
+   "heard": "your",
+   "onset": "whisper",
+   "w_start": 25.635
+  },
+  {
+   "i": 71,
+   "line": 4,
+   "word": "weight",
+   "start": 25.755,
+   "end": 26.015,
+   "heard": "weight.",
+   "onset": "whisper",
+   "w_start": 25.755
+  },
+  {
+   "i": 72,
+   "line": 4,
+   "word": "A",
+   "start": 26.355,
+   "end": 26.455,
+   "heard": "A",
+   "onset": "energy",
+   "w_start": 26.175
+  },
+  {
+   "i": 73,
+   "line": 4,
+   "word": "carbon",
+   "start": 26.485,
+   "end": 26.775,
+   "heard": "carbon",
+   "onset": "energy",
+   "w_start": 26.455
+  },
+  {
+   "i": 74,
+   "line": 4,
+   "word": "spring",
+   "start": 26.775,
+   "end": 26.975,
+   "heard": "spring",
+   "onset": "whisper",
+   "w_start": 26.775
+  },
+  {
+   "i": 75,
+   "line": 4,
+   "word": "at",
+   "start": 26.975,
+   "end": 27.235,
+   "heard": "at",
+   "onset": "energy",
+   "w_start": 27.055
+  },
+  {
+   "i": 76,
+   "line": 4,
+   "word": "each",
+   "start": 27.235,
+   "end": 27.415,
+   "heard": "each",
+   "onset": "whisper",
+   "w_start": 27.235
+  },
+  {
+   "i": 77,
+   "line": 4,
+   "word": "knee",
+   "start": 27.415,
+   "end": 27.615,
+   "heard": "knee",
+   "onset": "whisper",
+   "w_start": 27.415
+  },
+  {
+   "i": 78,
+   "line": 4,
+   "word": "catches",
+   "start": 27.715,
+   "end": 27.975,
+   "heard": "catches",
+   "onset": "energy",
+   "w_start": 27.615
+  },
+  {
+   "i": 79,
+   "line": 4,
+   "word": "you",
+   "start": 27.975,
+   "end": 28.235,
+   "heard": "you,",
+   "onset": "whisper",
+   "w_start": 27.975
+  },
+  {
+   "i": 80,
+   "line": 4,
+   "word": "and",
+   "start": 28.355,
+   "end": 28.435,
+   "heard": "and",
+   "onset": "whisper",
+   "w_start": 28.355
+  },
+  {
+   "i": 81,
+   "line": 4,
+   "word": "gives",
+   "start": 28.435,
+   "end": 28.655,
+   "heard": "gives",
+   "onset": "whisper",
+   "w_start": 28.435
+  },
+  {
+   "i": 82,
+   "line": 4,
+   "word": "that",
+   "start": 28.655,
+   "end": 28.855,
+   "heard": "that",
+   "onset": "whisper",
+   "w_start": 28.655
+  },
+  {
+   "i": 83,
+   "line": 4,
+   "word": "energy",
+   "start": 28.855,
+   "end": 29.195,
+   "heard": "energy",
+   "onset": "whisper",
+   "w_start": 28.855
+  },
+  {
+   "i": 84,
+   "line": 4,
+   "word": "back",
+   "start": 29.195,
+   "end": 29.495,
+   "heard": "back",
+   "onset": "whisper",
+   "w_start": 29.195
+  },
+  {
+   "i": 85,
+   "line": 4,
+   "word": "when",
+   "start": 29.495,
+   "end": 29.655,
+   "heard": "when",
+   "onset": "whisper",
+   "w_start": 29.495
+  },
+  {
+   "i": 86,
+   "line": 4,
+   "word": "you",
+   "start": 29.655,
+   "end": 29.875,
+   "heard": "you",
+   "onset": "energy",
+   "w_start": 29.755
+  },
+  {
+   "i": 87,
+   "line": 4,
+   "word": "stand",
+   "start": 29.875,
+   "end": 30.325,
+   "heard": "stand.",
+   "onset": "whisper",
+   "w_start": 29.875
+  },
+  {
+   "i": 88,
+   "line": 5,
+   "word": "Lean",
+   "start": 31.257,
+   "end": 31.447,
+   "heard": "Lean",
+   "onset": "energy",
+   "w_start": 31.227
+  },
+  {
+   "i": 89,
+   "line": 5,
+   "word": "back",
+   "start": 31.447,
+   "end": 31.867,
+   "heard": "back,",
+   "onset": "whisper",
+   "w_start": 31.447
+  },
+  {
+   "i": 90,
+   "line": 5,
+   "word": "and",
+   "start": 32.087,
+   "end": 32.187,
+   "heard": "and",
+   "onset": "energy",
+   "w_start": 31.967
+  },
+  {
+   "i": 91,
+   "line": 5,
+   "word": "two",
+   "start": 32.187,
+   "end": 32.387,
+   "heard": "two",
+   "onset": "whisper",
+   "w_start": 32.187
+  },
+  {
+   "i": 92,
+   "line": 5,
+   "word": "simple",
+   "start": 32.387,
+   "end": 32.687,
+   "heard": "simple",
+   "onset": "whisper",
+   "w_start": 32.387
+  },
+  {
+   "i": 93,
+   "line": 5,
+   "word": "straps",
+   "start": 32.687,
+   "end": 33.027,
+   "heard": "straps",
+   "onset": "whisper",
+   "w_start": 32.687
+  },
+  {
+   "i": 94,
+   "line": 5,
+   "word": "hold",
+   "start": 33.027,
+   "end": 33.307,
+   "heard": "hold",
+   "onset": "whisper",
+   "w_start": 33.027
+  },
+  {
+   "i": 95,
+   "line": 5,
+   "word": "you",
+   "start": 33.307,
+   "end": 33.507,
+   "heard": "you,",
+   "onset": "whisper",
+   "w_start": 33.307
+  },
+  {
+   "i": 96,
+   "line": 5,
+   "word": "like",
+   "start": 33.687,
+   "end": 33.807,
+   "heard": "like",
+   "onset": "whisper",
+   "w_start": 33.687
+  },
+  {
+   "i": 97,
+   "line": 5,
+   "word": "a",
+   "start": 33.827,
+   "end": 33.907,
+   "heard": "a",
+   "onset": "energy",
+   "w_start": 33.807
+  },
+  {
+   "i": 98,
+   "line": 5,
+   "word": "camp",
+   "start": 33.927,
+   "end": 34.127,
+   "heard": "camp",
+   "onset": "energy",
+   "w_start": 33.907
+  },
+  {
+   "i": 99,
+   "line": 5,
+   "word": "chair",
+   "start": 34.127,
+   "end": 34.347,
+   "heard": "chair",
+   "onset": "whisper",
+   "w_start": 34.127
+  },
+  {
+   "i": 100,
+   "line": 5,
+   "word": "you",
+   "start": 34.347,
+   "end": 34.507,
+   "heard": "you",
+   "onset": "whisper",
+   "w_start": 34.347
+  },
+  {
+   "i": 101,
+   "line": 5,
+   "word": "wear",
+   "start": 34.507,
+   "end": 34.847,
+   "heard": "wear.",
+   "onset": "whisper",
+   "w_start": 34.507
+  },
+  {
+   "i": 102,
+   "line": 6,
+   "word": "Bend",
+   "start": 35.755,
+   "end": 36.125,
+   "heard": "Bend",
+   "onset": "energy",
+   "w_start": 35.725
+  },
+  {
+   "i": 103,
+   "line": 6,
+   "word": "to",
+   "start": 36.125,
+   "end": 36.265,
+   "heard": "to",
+   "onset": "whisper",
+   "w_start": 36.125
+  },
+  {
+   "i": 104,
+   "line": 6,
+   "word": "lift",
+   "start": 36.265,
+   "end": 36.765,
+   "heard": "lift,",
+   "onset": "energy",
+   "w_start": 36.365
+  },
+  {
+   "i": 105,
+   "line": 6,
+   "word": "and",
+   "start": 37.045,
+   "end": 37.185,
+   "heard": "and",
+   "onset": "energy",
+   "w_start": 36.905
+  },
+  {
+   "i": 106,
+   "line": 6,
+   "word": "a",
+   "start": 37.185,
+   "end": 37.385,
+   "heard": "a",
+   "onset": "whisper",
+   "w_start": 37.185
+  },
+  {
+   "i": 107,
+   "line": 6,
+   "word": "tendon",
+   "start": 37.405,
+   "end": 37.585,
+   "heard": "tendon",
+   "onset": "energy",
+   "w_start": 37.385
+  },
+  {
+   "i": 108,
+   "line": 6,
+   "word": "along",
+   "start": 37.585,
+   "end": 37.885,
+   "heard": "along",
+   "onset": "whisper",
+   "w_start": 37.585
+  },
+  {
+   "i": 109,
+   "line": 6,
+   "word": "your",
+   "start": 37.885,
+   "end": 38.105,
+   "heard": "your",
+   "onset": "whisper",
+   "w_start": 37.885
+  },
+  {
+   "i": 110,
+   "line": 6,
+   "word": "back",
+   "start": 38.105,
+   "end": 38.385,
+   "heard": "back",
+   "onset": "whisper",
+   "w_start": 38.105
+  },
+  {
+   "i": 111,
+   "line": 6,
+   "word": "stores",
+   "start": 38.385,
+   "end": 38.705,
+   "heard": "stores",
+   "onset": "energy",
+   "w_start": 38.385
+  },
+  {
+   "i": 112,
+   "line": 6,
+   "word": "energy",
+   "start": 38.705,
+   "end": 39.145,
+   "heard": "energy.",
+   "onset": "whisper",
+   "w_start": 38.705
+  },
+  {
+   "i": 113,
+   "line": 6,
+   "word": "A",
+   "start": 39.725,
+   "end": 39.825,
+   "heard": "A",
+   "onset": "energy",
+   "w_start": 39.505
+  },
+  {
+   "i": 114,
+   "line": 6,
+   "word": "fifteen",
+   "start": 39.885,
+   "end": 40.065,
+   "heard": "fifteen",
+   "onset": "energy",
+   "w_start": 39.825
+  },
+  {
+   "i": 115,
+   "line": 6,
+   "word": "kilo",
+   "start": 40.065,
+   "end": 40.485,
+   "heard": "kilo",
+   "onset": "energy",
+   "w_start": 40.105
+  },
+  {
+   "i": 116,
+   "line": 6,
+   "word": "box",
+   "start": 40.485,
+   "end": 40.885,
+   "heard": "box",
+   "onset": "whisper",
+   "w_start": 40.485
+  },
+  {
+   "i": 117,
+   "line": 6,
+   "word": "feels",
+   "start": 40.885,
+   "end": 41.165,
+   "heard": "feels",
+   "onset": "whisper",
+   "w_start": 40.885
+  },
+  {
+   "i": 118,
+   "line": 6,
+   "word": "about",
+   "start": 41.165,
+   "end": 41.425,
+   "heard": "about",
+   "onset": "whisper",
+   "w_start": 41.165
+  },
+  {
+   "i": 119,
+   "line": 6,
+   "word": "twelve",
+   "start": 41.515,
+   "end": 41.575,
+   "heard": "twelve",
+   "onset": "energy",
+   "w_start": 41.425
+  },
+  {
+   "i": 120,
+   "line": 6,
+   "word": "kilos",
+   "start": 41.575,
+   "end": 42.065,
+   "heard": "kilos",
+   "onset": "energy",
+   "w_start": 41.685
+  },
+  {
+   "i": 121,
+   "line": 6,
+   "word": "lighter",
+   "start": 42.065,
+   "end": 42.445,
+   "heard": "lighter,",
+   "onset": "whisper",
+   "w_start": 42.065
+  },
+  {
+   "i": 122,
+   "line": 6,
+   "word": "with",
+   "start": 42.825,
+   "end": 42.965,
+   "heard": "with",
+   "onset": "energy",
+   "w_start": 42.665
+  },
+  {
+   "i": 123,
+   "line": 6,
+   "word": "no",
+   "start": 42.985,
+   "end": 43.165,
+   "heard": "no",
+   "onset": "energy",
+   "w_start": 42.965
+  },
+  {
+   "i": 124,
+   "line": 6,
+   "word": "motor",
+   "start": 43.165,
+   "end": 43.465,
+   "heard": "motor",
+   "onset": "whisper",
+   "w_start": 43.165
+  },
+  {
+   "i": 125,
+   "line": 6,
+   "word": "at",
+   "start": 43.465,
+   "end": 43.645,
+   "heard": "at",
+   "onset": "whisper",
+   "w_start": 43.465
+  },
+  {
+   "i": 126,
+   "line": 6,
+   "word": "all",
+   "start": 43.645,
+   "end": 43.925,
+   "heard": "all.",
+   "onset": "whisper",
+   "w_start": 43.645
+  },
+  {
+   "i": 127,
+   "line": 7,
+   "word": "Walking",
+   "start": 44.864,
+   "end": 45.144,
+   "heard": "Walking",
+   "onset": "energy",
+   "w_start": 44.824
+  },
+  {
+   "i": 128,
+   "line": 7,
+   "word": "and",
+   "start": 45.144,
+   "end": 45.404,
+   "heard": "and",
+   "onset": "energy",
+   "w_start": 45.204
+  },
+  {
+   "i": 129,
+   "line": 7,
+   "word": "running",
+   "start": 45.404,
+   "end": 45.744,
+   "heard": "running,",
+   "onset": "whisper",
+   "w_start": 45.404
+  },
+  {
+   "i": 130,
+   "line": 7,
+   "word": "elastic",
+   "start": 45.904,
+   "end": 46.324,
+   "heard": "elastic",
+   "onset": "energy",
+   "w_start": 45.924
+  },
+  {
+   "i": 131,
+   "line": 7,
+   "word": "bands",
+   "start": 46.324,
+   "end": 46.784,
+   "heard": "bands",
+   "onset": "energy",
+   "w_start": 46.344
+  },
+  {
+   "i": 132,
+   "line": 7,
+   "word": "link",
+   "start": 46.884,
+   "end": 47.084,
+   "heard": "link",
+   "onset": "energy",
+   "w_start": 46.784
+  },
+  {
+   "i": 133,
+   "line": 7,
+   "word": "your",
+   "start": 47.154,
+   "end": 47.264,
+   "heard": "your",
+   "onset": "energy",
+   "w_start": 47.084
+  },
+  {
+   "i": 134,
+   "line": 7,
+   "word": "hips",
+   "start": 47.344,
+   "end": 47.624,
+   "heard": "hips,",
+   "onset": "energy",
+   "w_start": 47.264
+  },
+  {
+   "i": 135,
+   "line": 7,
+   "word": "knees",
+   "start": 47.744,
+   "end": 48.064,
+   "heard": "knees,",
+   "onset": "energy",
+   "w_start": 47.724
+  },
+  {
+   "i": 136,
+   "line": 7,
+   "word": "and",
+   "start": 48.224,
+   "end": 48.284,
+   "heard": "and",
+   "onset": "whisper",
+   "w_start": 48.224
+  },
+  {
+   "i": 137,
+   "line": 7,
+   "word": "ankles",
+   "start": 48.284,
+   "end": 48.664,
+   "heard": "ankles",
+   "onset": "whisper",
+   "w_start": 48.284
+  },
+  {
+   "i": 138,
+   "line": 7,
+   "word": "the",
+   "start": 48.664,
+   "end": 48.874,
+   "heard": "the",
+   "onset": "whisper",
+   "w_start": 48.664
+  },
+  {
+   "i": 139,
+   "line": 7,
+   "word": "way",
+   "start": 48.874,
+   "end": 49.104,
+   "heard": "way",
+   "onset": "energy",
+   "w_start": 48.944
+  },
+  {
+   "i": 140,
+   "line": 7,
+   "word": "your",
+   "start": 49.104,
+   "end": 49.284,
+   "heard": "your",
+   "onset": "whisper",
+   "w_start": 49.104
+  },
+  {
+   "i": 141,
+   "line": 7,
+   "word": "own",
+   "start": 49.284,
+   "end": 49.544,
+   "heard": "own",
+   "onset": "whisper",
+   "w_start": 49.284
+  },
+  {
+   "i": 142,
+   "line": 7,
+   "word": "hamstrings",
+   "start": 49.544,
+   "end": 50.084,
+   "heard": "hamstrings",
+   "onset": "whisper",
+   "w_start": 49.544
+  },
+  {
+   "i": 143,
+   "line": 7,
+   "word": "and",
+   "start": 50.084,
+   "end": 50.264,
+   "heard": "and",
+   "onset": "whisper",
+   "w_start": 50.084
+  },
+  {
+   "i": 144,
+   "line": 7,
+   "word": "calves",
+   "start": 50.334,
+   "end": 50.584,
+   "heard": "calves",
+   "onset": "energy",
+   "w_start": 50.264
+  },
+  {
+   "i": 145,
+   "line": 7,
+   "word": "do",
+   "start": 50.584,
+   "end": 50.944,
+   "heard": "do.",
+   "onset": "whisper",
+   "w_start": 50.584
+  },
+  {
+   "i": 146,
+   "line": 8,
+   "word": "Want",
+   "start": 51.851,
+   "end": 52.041,
+   "heard": "Want",
+   "onset": "energy",
+   "w_start": 51.821
+  },
+  {
+   "i": 147,
+   "line": 8,
+   "word": "more",
+   "start": 52.041,
+   "end": 52.321,
+   "heard": "more?",
+   "onset": "whisper",
+   "w_start": 52.041
+  },
+  {
+   "i": 148,
+   "line": 8,
+   "word": "Smart",
+   "start": 52.821,
+   "end": 53.101,
+   "heard": "Smart",
+   "onset": "energy",
+   "w_start": 52.621
+  },
+  {
+   "i": 149,
+   "line": 8,
+   "word": "clutches",
+   "start": 53.171,
+   "end": 53.541,
+   "heard": "clutches",
+   "onset": "energy",
+   "w_start": 53.101
+  },
+  {
+   "i": 150,
+   "line": 8,
+   "word": "switch",
+   "start": 53.541,
+   "end": 53.861,
+   "heard": "switch",
+   "onset": "whisper",
+   "w_start": 53.541
+  },
+  {
+   "i": 151,
+   "line": 8,
+   "word": "the",
+   "start": 53.961,
+   "end": 54.021,
+   "heard": "the",
+   "onset": "energy",
+   "w_start": 53.861
+  },
+  {
+   "i": 152,
+   "line": 8,
+   "word": "springs",
+   "start": 54.021,
+   "end": 54.321,
+   "heard": "springs",
+   "onset": "whisper",
+   "w_start": 54.021
+  },
+  {
+   "i": 153,
+   "line": 8,
+   "word": "on",
+   "start": 54.321,
+   "end": 54.621,
+   "heard": "on",
+   "onset": "whisper",
+   "w_start": 54.321
+  },
+  {
+   "i": 154,
+   "line": 8,
+   "word": "at",
+   "start": 54.621,
+   "end": 54.781,
+   "heard": "at",
+   "onset": "whisper",
+   "w_start": 54.621
+  },
+  {
+   "i": 155,
+   "line": 8,
+   "word": "exactly",
+   "start": 54.781,
+   "end": 55.181,
+   "heard": "exactly",
+   "onset": "whisper",
+   "w_start": 54.781
+  },
+  {
+   "i": 156,
+   "line": 8,
+   "word": "the",
+   "start": 55.181,
+   "end": 55.401,
+   "heard": "the",
+   "onset": "energy",
+   "w_start": 55.181
+  },
+  {
+   "i": 157,
+   "line": 8,
+   "word": "right",
+   "start": 55.401,
+   "end": 55.561,
+   "heard": "right",
+   "onset": "whisper",
+   "w_start": 55.401
+  },
+  {
+   "i": 158,
+   "line": 8,
+   "word": "moment",
+   "start": 55.561,
+   "end": 55.981,
+   "heard": "moment.",
+   "onset": "whisper",
+   "w_start": 55.561
+  },
+  {
+   "i": 159,
+   "line": 8,
+   "word": "And",
+   "start": 56.421,
+   "end": 56.521,
+   "heard": "And",
+   "onset": "energy",
+   "w_start": 56.221
+  },
+  {
+   "i": 160,
+   "line": 8,
+   "word": "one",
+   "start": 56.521,
+   "end": 56.761,
+   "heard": "one",
+   "onset": "whisper",
+   "w_start": 56.521
+  },
+  {
+   "i": 161,
+   "line": 8,
+   "word": "small",
+   "start": 56.761,
+   "end": 57.081,
+   "heard": "small",
+   "onset": "whisper",
+   "w_start": 56.761
+  },
+  {
+   "i": 162,
+   "line": 8,
+   "word": "motor",
+   "start": 57.081,
+   "end": 57.401,
+   "heard": "motor",
+   "onset": "whisper",
+   "w_start": 57.081
+  },
+  {
+   "i": 163,
+   "line": 8,
+   "word": "on",
+   "start": 57.401,
+   "end": 57.561,
+   "heard": "on",
+   "onset": "whisper",
+   "w_start": 57.401
+  },
+  {
+   "i": 164,
+   "line": 8,
+   "word": "your",
+   "start": 57.561,
+   "end": 57.661,
+   "heard": "your",
+   "onset": "whisper",
+   "w_start": 57.561
+  },
+  {
+   "i": 165,
+   "line": 8,
+   "word": "back",
+   "start": 57.661,
+   "end": 57.901,
+   "heard": "back",
+   "onset": "whisper",
+   "w_start": 57.661
+  },
+  {
+   "i": 166,
+   "line": 8,
+   "word": "helps",
+   "start": 57.901,
+   "end": 58.201,
+   "heard": "helps",
+   "onset": "whisper",
+   "w_start": 57.901
+  },
+  {
+   "i": 167,
+   "line": 8,
+   "word": "only",
+   "start": 58.311,
+   "end": 58.561,
+   "heard": "only",
+   "onset": "energy",
+   "w_start": 58.201
+  },
+  {
+   "i": 168,
+   "line": 8,
+   "word": "where",
+   "start": 58.561,
+   "end": 58.781,
+   "heard": "where",
+   "onset": "whisper",
+   "w_start": 58.561
+  },
+  {
+   "i": 169,
+   "line": 8,
+   "word": "you",
+   "start": 58.781,
+   "end": 58.921,
+   "heard": "you",
+   "onset": "whisper",
+   "w_start": 58.781
+  },
+  {
+   "i": 170,
+   "line": 8,
+   "word": "need",
+   "start": 58.921,
+   "end": 59.141,
+   "heard": "need",
+   "onset": "whisper",
+   "w_start": 58.921
+  },
+  {
+   "i": 171,
+   "line": 8,
+   "word": "it",
+   "start": 59.161,
+   "end": 59.281,
+   "heard": "it,",
+   "onset": "energy",
+   "w_start": 59.141
+  },
+  {
+   "i": 172,
+   "line": 8,
+   "word": "on",
+   "start": 59.461,
+   "end": 59.601,
+   "heard": "on",
+   "onset": "energy",
+   "w_start": 59.361
+  },
+  {
+   "i": 173,
+   "line": 8,
+   "word": "stairs",
+   "start": 59.601,
+   "end": 60.021,
+   "heard": "stairs,",
+   "onset": "whisper",
+   "w_start": 59.601
+  },
+  {
+   "i": 174,
+   "line": 8,
+   "word": "hills",
+   "start": 60.331,
+   "end": 60.601,
+   "heard": "hills,",
+   "onset": "energy",
+   "w_start": 60.281
+  },
+  {
+   "i": 175,
+   "line": 8,
+   "word": "and",
+   "start": 60.781,
+   "end": 60.861,
+   "heard": "and",
+   "onset": "whisper",
+   "w_start": 60.781
+  },
+  {
+   "i": 176,
+   "line": 8,
+   "word": "heavy",
+   "start": 60.861,
+   "end": 61.081,
+   "heard": "heavy",
+   "onset": "whisper",
+   "w_start": 60.861
+  },
+  {
+   "i": 177,
+   "line": 8,
+   "word": "lifts",
+   "start": 61.081,
+   "end": 61.551,
+   "heard": "lifts.",
+   "onset": "whisper",
+   "w_start": 61.081
+  },
+  {
+   "i": 178,
+   "line": 9,
+   "word": "It's",
+   "start": 62.469,
+   "end": 62.569,
+   "heard": "It's",
+   "onset": "energy",
+   "w_start": 62.449
+  },
+  {
+   "i": 179,
+   "line": 9,
+   "word": "fully",
+   "start": 62.589,
+   "end": 62.769,
+   "heard": "fully",
+   "onset": "energy",
+   "w_start": 62.569
+  },
+  {
+   "i": 180,
+   "line": 9,
+   "word": "modular",
+   "start": 62.769,
+   "end": 63.229,
+   "heard": "modular.",
+   "onset": "whisper",
+   "w_start": 62.769
+  },
+  {
+   "i": 181,
+   "line": 9,
+   "word": "The",
+   "start": 63.449,
+   "end": 63.849,
+   "heard": "The",
+   "onset": "whisper",
+   "w_start": 63.449
+  },
+  {
+   "i": 182,
+   "line": 9,
+   "word": "seat",
+   "start": 63.849,
+   "end": 64.089,
+   "heard": "seat",
+   "onset": "whisper",
+   "w_start": 63.849
+  },
+  {
+   "i": 183,
+   "line": 9,
+   "word": "and",
+   "start": 64.089,
+   "end": 64.189,
+   "heard": "and",
+   "onset": "whisper",
+   "w_start": 64.089
+  },
+  {
+   "i": 184,
+   "line": 9,
+   "word": "back",
+   "start": 64.189,
+   "end": 64.449,
+   "heard": "back",
+   "onset": "whisper",
+   "w_start": 64.189
+  },
+  {
+   "i": 185,
+   "line": 9,
+   "word": "kit",
+   "start": 64.519,
+   "end": 64.569,
+   "heard": "kit",
+   "onset": "energy",
+   "w_start": 64.449
+  },
+  {
+   "i": 186,
+   "line": 9,
+   "word": "weighs",
+   "start": 64.569,
+   "end": 64.909,
+   "heard": "weighs",
+   "onset": "energy",
+   "w_start": 64.669
+  },
+  {
+   "i": 187,
+   "line": 9,
+   "word": "about",
+   "start": 64.909,
+   "end": 65.149,
+   "heard": "about",
+   "onset": "whisper",
+   "w_start": 64.909
+  },
+  {
+   "i": 188,
+   "line": 9,
+   "word": "fourteen",
+   "start": 65.149,
+   "end": 65.459,
+   "heard": "fourteen",
+   "onset": "whisper",
+   "w_start": 65.149
+  },
+  {
+   "i": 189,
+   "line": 9,
+   "word": "pounds",
+   "start": 65.459,
+   "end": 65.989,
+   "heard": "pounds,",
+   "onset": "energy",
+   "w_start": 65.489
+  },
+  {
+   "i": 190,
+   "line": 9,
+   "word": "and",
+   "start": 66.189,
+   "end": 66.209,
+   "heard": "and",
+   "onset": "whisper",
+   "w_start": 66.189
+  },
+  {
+   "i": 191,
+   "line": 9,
+   "word": "runs",
+   "start": 66.209,
+   "end": 66.449,
+   "heard": "runs",
+   "onset": "whisper",
+   "w_start": 66.209
+  },
+  {
+   "i": 192,
+   "line": 9,
+   "word": "around",
+   "start": 66.449,
+   "end": 66.709,
+   "heard": "around",
+   "onset": "whisper",
+   "w_start": 66.449
+  },
+  {
+   "i": 193,
+   "line": 9,
+   "word": "two",
+   "start": 66.709,
+   "end": 66.909,
+   "heard": "two",
+   "onset": "whisper",
+   "w_start": 66.709
+  },
+  {
+   "i": 194,
+   "line": 9,
+   "word": "thousand",
+   "start": 66.909,
+   "end": 67.209,
+   "heard": "thousand",
+   "onset": "whisper",
+   "w_start": 66.909
+  },
+  {
+   "i": 195,
+   "line": 9,
+   "word": "dollars",
+   "start": 67.209,
+   "end": 67.429,
+   "heard": "dollars",
+   "onset": "whisper",
+   "w_start": 67.209
+  },
+  {
+   "i": 196,
+   "line": 9,
+   "word": "a",
+   "start": 67.429,
+   "end": 67.689,
+   "heard": "a",
+   "onset": "whisper",
+   "w_start": 67.429
+  },
+  {
+   "i": 197,
+   "line": 9,
+   "word": "set",
+   "start": 67.689,
+   "end": 67.889,
+   "heard": "set",
+   "onset": "whisper",
+   "w_start": 67.689
+  },
+  {
+   "i": 198,
+   "line": 9,
+   "word": "when",
+   "start": 67.889,
+   "end": 68.069,
+   "heard": "when",
+   "onset": "whisper",
+   "w_start": 67.889
+  },
+  {
+   "i": 199,
+   "line": 9,
+   "word": "it's",
+   "start": 68.069,
+   "end": 68.249,
+   "heard": "it's",
+   "onset": "whisper",
+   "w_start": 68.069
+  },
+  {
+   "i": 200,
+   "line": 9,
+   "word": "built",
+   "start": 68.299,
+   "end": 68.449,
+   "heard": "built",
+   "onset": "energy",
+   "w_start": 68.249
+  },
+  {
+   "i": 201,
+   "line": 9,
+   "word": "in",
+   "start": 68.449,
+   "end": 68.549,
+   "heard": "in",
+   "onset": "whisper",
+   "w_start": 68.449
+  },
+  {
+   "i": 202,
+   "line": 9,
+   "word": "small",
+   "start": 68.549,
+   "end": 68.809,
+   "heard": "small",
+   "onset": "whisper",
+   "w_start": 68.549
+  },
+  {
+   "i": 203,
+   "line": 9,
+   "word": "batches",
+   "start": 68.809,
+   "end": 69.369,
+   "heard": "batches.",
+   "onset": "whisper",
+   "w_start": 68.809
+  },
+  {
+   "i": 204,
+   "line": 9,
+   "word": "Then",
+   "start": 69.729,
+   "end": 70.009,
+   "heard": "Then",
+   "onset": "energy",
+   "w_start": 69.529
+  },
+  {
+   "i": 205,
+   "line": 9,
+   "word": "add",
+   "start": 70.009,
+   "end": 70.309,
+   "heard": "add",
+   "onset": "whisper",
+   "w_start": 70.009
+  },
+  {
+   "i": 206,
+   "line": 9,
+   "word": "hips",
+   "start": 70.309,
+   "end": 70.649,
+   "heard": "hips,",
+   "onset": "whisper",
+   "w_start": 70.309
+  },
+  {
+   "i": 207,
+   "line": 9,
+   "word": "ankles",
+   "start": 70.749,
+   "end": 71.069,
+   "heard": "ankles,",
+   "onset": "energy",
+   "w_start": 70.749
+  },
+  {
+   "i": 208,
+   "line": 9,
+   "word": "shoulders",
+   "start": 71.189,
+   "end": 71.449,
+   "heard": "shoulders,",
+   "onset": "whisper",
+   "w_start": 71.189
+  },
+  {
+   "i": 209,
+   "line": 9,
+   "word": "and",
+   "start": 71.549,
+   "end": 71.669,
+   "heard": "and",
+   "onset": "whisper",
+   "w_start": 71.549
+  },
+  {
+   "i": 210,
+   "line": 9,
+   "word": "power",
+   "start": 71.669,
+   "end": 72.029,
+   "heard": "power,",
+   "onset": "whisper",
+   "w_start": 71.669
+  },
+  {
+   "i": 211,
+   "line": 9,
+   "word": "all",
+   "start": 72.469,
+   "end": 72.689,
+   "heard": "all",
+   "onset": "energy",
+   "w_start": 72.289
+  },
+  {
+   "i": 212,
+   "line": 9,
+   "word": "docking",
+   "start": 72.689,
+   "end": 73.019,
+   "heard": "docking",
+   "onset": "whisper",
+   "w_start": 72.689
+  },
+  {
+   "i": 213,
+   "line": 9,
+   "word": "into",
+   "start": 73.019,
+   "end": 73.309,
+   "heard": "into",
+   "onset": "energy",
+   "w_start": 73.129
+  },
+  {
+   "i": 214,
+   "line": 9,
+   "word": "one",
+   "start": 73.309,
+   "end": 73.589,
+   "heard": "one",
+   "onset": "whisper",
+   "w_start": 73.309
+  },
+  {
+   "i": 215,
+   "line": 9,
+   "word": "hub",
+   "start": 73.589,
+   "end": 73.979,
+   "heard": "hub.",
+   "onset": "whisper",
+   "w_start": 73.589
+  },
+  {
+   "i": 216,
+   "line": 10,
+   "word": "Most",
+   "start": 74.911,
+   "end": 75.201,
+   "heard": "Most",
+   "onset": "energy",
+   "w_start": 74.881
+  },
+  {
+   "i": 217,
+   "line": 10,
+   "word": "of",
+   "start": 75.201,
+   "end": 75.341,
+   "heard": "of",
+   "onset": "whisper",
+   "w_start": 75.201
+  },
+  {
+   "i": 218,
+   "line": 10,
+   "word": "the",
+   "start": 75.341,
+   "end": 75.461,
+   "heard": "the",
+   "onset": "whisper",
+   "w_start": 75.341
+  },
+  {
+   "i": 219,
+   "line": 10,
+   "word": "frame",
+   "start": 75.551,
+   "end": 75.741,
+   "heard": "frame",
+   "onset": "energy",
+   "w_start": 75.461
+  },
+  {
+   "i": 220,
+   "line": 10,
+   "word": "is",
+   "start": 75.741,
+   "end": 75.921,
+   "heard": "is",
+   "onset": "whisper",
+   "w_start": 75.741
+  },
+  {
+   "i": 221,
+   "line": 10,
+   "word": "3D",
+   "start": 75.981,
+   "end": 76.241,
+   "heard": "3D",
+   "onset": "energy",
+   "w_start": 75.921
+  },
+  {
+   "i": 222,
+   "line": 10,
+   "word": "printed",
+   "start": 76.241,
+   "end": 76.561,
+   "heard": "printed",
+   "onset": "whisper",
+   "w_start": 76.241
+  },
+  {
+   "i": 223,
+   "line": 10,
+   "word": "on",
+   "start": 76.561,
+   "end": 76.801,
+   "heard": "on",
+   "onset": "whisper",
+   "w_start": 76.561
+  },
+  {
+   "i": 224,
+   "line": 10,
+   "word": "a",
+   "start": 76.801,
+   "end": 76.921,
+   "heard": "a",
+   "onset": "whisper",
+   "w_start": 76.801
+  },
+  {
+   "i": 225,
+   "line": 10,
+   "word": "desktop",
+   "start": 76.921,
+   "end": 77.231,
+   "heard": "desktop",
+   "onset": "whisper",
+   "w_start": 76.921
+  },
+  {
+   "i": 226,
+   "line": 10,
+   "word": "printer",
+   "start": 77.231,
+   "end": 77.761,
+   "heard": "printer,",
+   "onset": "energy",
+   "w_start": 77.241
+  },
+  {
+   "i": 227,
+   "line": 10,
+   "word": "and",
+   "start": 78.131,
+   "end": 78.241,
+   "heard": "and",
+   "onset": "energy",
+   "w_start": 77.921
+  },
+  {
+   "i": 228,
+   "line": 10,
+   "word": "every",
+   "start": 78.241,
+   "end": 78.481,
+   "heard": "every",
+   "onset": "whisper",
+   "w_start": 78.241
+  },
+  {
+   "i": 229,
+   "line": 10,
+   "word": "part",
+   "start": 78.481,
+   "end": 78.761,
+   "heard": "part",
+   "onset": "whisper",
+   "w_start": 78.481
+  },
+  {
+   "i": 230,
+   "line": 10,
+   "word": "is",
+   "start": 78.761,
+   "end": 78.901,
+   "heard": "is",
+   "onset": "whisper",
+   "w_start": 78.761
+  },
+  {
+   "i": 231,
+   "line": 10,
+   "word": "listed",
+   "start": 78.901,
+   "end": 79.151,
+   "heard": "listed",
+   "onset": "whisper",
+   "w_start": 78.901
+  },
+  {
+   "i": 232,
+   "line": 10,
+   "word": "with",
+   "start": 79.151,
+   "end": 79.441,
+   "heard": "with",
+   "onset": "energy",
+   "w_start": 79.221
+  },
+  {
+   "i": 233,
+   "line": 10,
+   "word": "its",
+   "start": 79.441,
+   "end": 79.621,
+   "heard": "its",
+   "onset": "whisper",
+   "w_start": 79.441
+  },
+  {
+   "i": 234,
+   "line": 10,
+   "word": "price",
+   "start": 79.731,
+   "end": 80.021,
+   "heard": "price,",
+   "onset": "energy",
+   "w_start": 79.621
+  },
+  {
+   "i": 235,
+   "line": 10,
+   "word": "on",
+   "start": 80.221,
+   "end": 80.381,
+   "heard": "on",
+   "onset": "energy",
+   "w_start": 80.121
+  },
+  {
+   "i": 236,
+   "line": 10,
+   "word": "GitHub",
+   "start": 80.381,
+   "end": 80.931,
+   "heard": "GitHub.",
+   "onset": "whisper",
+   "w_start": 80.381
+  },
+  {
+   "i": 237,
+   "line": 11,
+   "word": "Sitka",
+   "start": 81.85,
+   "end": 82.13,
+   "heard": "Sitka",
+   "onset": "energy",
+   "w_start": 81.81
+  },
+  {
+   "i": 238,
+   "line": 11,
+   "word": "is",
+   "start": 82.13,
+   "end": 82.53,
+   "heard": "is",
+   "onset": "energy",
+   "w_start": 82.25
+  },
+  {
+   "i": 239,
+   "line": 11,
+   "word": "completely",
+   "start": 82.61,
+   "end": 83.15,
+   "heard": "completely",
+   "onset": "energy",
+   "w_start": 82.53
+  },
+  {
+   "i": 240,
+   "line": 11,
+   "word": "open",
+   "start": 83.15,
+   "end": 83.61,
+   "heard": "open.",
+   "onset": "whisper",
+   "w_start": 83.15
+  },
+  {
+   "i": 241,
+   "line": 11,
+   "word": "The",
+   "start": 83.75,
+   "end": 83.83,
+   "heard": "The",
+   "onset": "whisper",
+   "w_start": 83.75
+  },
+  {
+   "i": 242,
+   "line": 11,
+   "word": "design",
+   "start": 83.83,
+   "end": 84.27,
+   "heard": "design,",
+   "onset": "whisper",
+   "w_start": 83.83
+  },
+  {
+   "i": 243,
+   "line": 11,
+   "word": "the",
+   "start": 84.47,
+   "end": 84.53,
+   "heard": "the",
+   "onset": "whisper",
+   "w_start": 84.47
+  },
+  {
+   "i": 244,
+   "line": 11,
+   "word": "math",
+   "start": 84.53,
+   "end": 84.87,
+   "heard": "math,",
+   "onset": "whisper",
+   "w_start": 84.53
+  },
+  {
+   "i": 245,
+   "line": 11,
+   "word": "every",
+   "start": 84.99,
+   "end": 85.21,
+   "heard": "every",
+   "onset": "energy",
+   "w_start": 84.99
+  },
+  {
+   "i": 246,
+   "line": 11,
+   "word": "part",
+   "start": 85.3,
+   "end": 85.53,
+   "heard": "part.",
+   "onset": "energy",
+   "w_start": 85.21
+  },
+  {
+   "i": 247,
+   "line": 11,
+   "word": "Come",
+   "start": 85.79,
+   "end": 85.97,
+   "heard": "Come",
+   "onset": "energy",
+   "w_start": 85.75
+  },
+  {
+   "i": 248,
+   "line": 11,
+   "word": "build",
+   "start": 85.97,
+   "end": 86.23,
+   "heard": "build",
+   "onset": "whisper",
+   "w_start": 85.97
+  },
+  {
+   "i": 249,
+   "line": 11,
+   "word": "one",
+   "start": 86.23,
+   "end": 86.47,
+   "heard": "one",
+   "onset": "whisper",
+   "w_start": 86.23
+  },
+  {
+   "i": 250,
+   "line": 11,
+   "word": "with",
+   "start": 86.47,
+   "end": 86.69,
+   "heard": "with",
+   "onset": "whisper",
+   "w_start": 86.47
+  },
+  {
+   "i": 251,
+   "line": 11,
+   "word": "us",
+   "start": 86.75,
+   "end": 87.05,
+   "heard": "us.",
+   "onset": "energy",
+   "w_start": 86.69
+  }
+ ]
+}

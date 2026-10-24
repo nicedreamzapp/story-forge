@@ -1,0 +1,6 @@
+<!-- TEMPLATE: replace this whole file. film-status counts it as missing until this line is gone. -->
+{"product": "",
+ "references": {"side": "", "front": "", "back": ""},
+ "fidelity_clause": "e.g. Sitka: Reproduce this exact exoskeleton design from the reference image, photoreal: the carbon rear legs behind each thigh, one knee motor with the red steel ratchet per knee, the belt with two battery packs, the thigh and shin cuffs. Do not add, remove or move any part.",
+ "facts": [{"q": "", "expect": "", "angle": "side"}],
+ "must_not": []}

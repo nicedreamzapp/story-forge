@@ -1,0 +1,3 @@
+(1) The image shows a 3D-printing-like machine in operation, with a partially formed, translucent, curved object being built on a platform.  
+(2) The machine consists of a vertical frame with a horizontal arm extending from the top, holding a print head that is positioned above the object. The object sits on a flat, square build platform, which is mounted on top of a larger, rectangular base. The print head is directly above the object, and the entire structure is enclosed within a frame that rises vertically behind the base.  
+(3) The large, rectangular base of the machine touches the ground, supporting the entire structure.

@@ -1,0 +1,5 @@
+(1) The image displays a parts list for a product called "SITKA," detailing various components, their materials, manufacturing methods (e.g., "BUY," "PRINT," "METAL"), and estimated prices in USD. The list is organized into sections, including general parts and a specific "KNEE + SEAT (M1)" section.
+
+(2) The image is a digital table with columns labeled "PART," "MAKE," "MATERIAL," and "PRICE (USD)." The "MAKE" column contains buttons labeled "BUY," "PRINT," or "METAL," indicating the production method. The parts are listed vertically, with no physical machine or device depicted—only text and structured data.
+
+(3) Nothing in the image touches the ground, as it is a digital graphic displayed on a black background with no physical objects or environment shown.

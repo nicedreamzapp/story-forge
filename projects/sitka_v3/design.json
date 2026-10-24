@@ -1,0 +1,185 @@
+{
+ "product": "Sitka exoskeleton (render two, kinetics-first CAD, run-sit-exo/cad 2026-10-22)",
+ "references": {
+  "side": "refs/cad_chair_side.png",
+  "front": "refs/cad_stand_front.png",
+  "back": "refs/cad_stand_back.png"
+ },
+ "facts": [
+  {
+   "q": "Is the person wearing a device on their legs, with braces or cuffs on the thighs and shins?",
+   "expect": "yes",
+   "angle": "front"
+  },
+  {
+   "q": "Are there thin dark poles reaching from under the hips or thighs down to the ground?",
+   "expect": "yes",
+   "angle": "side",
+   "when": "the person is sitting down, with thighs roughly level, not walking or climbing"
+  }
+ ],
+ "must_not": [
+  "wheels",
+  "a pole or leg in front of the knee or shin",
+  "a person with more than two legs",
+  "a large motor or gearbox at the knee joint"
+ ],
+ "parts": [
+  "strut_l",
+  "strut_r",
+  "sit_leaf_l",
+  "sit_leaf_r",
+  "knee_arc_l",
+  "knee_manifold_l",
+  "back_panel",
+  "hip_belt",
+  "p1_motor",
+  "m2_leaf"
+ ],
+ "materials": {
+  "carbon": "carbon",
+  "alu": "aluminum",
+  "body": "mannequin"
+ },
+ "fidelity_clause": "Reproduce this exact Sitka exoskeleton from the reference: braces on the thighs and shins worn on the person's own legs, one thin carbon pole under each hip that reaches the ground only when seated, a glass-fibre leaf spring and a grooved metal arc at each knee, the padded hip belt, back panel and harness, one small motor on the back panel only. Do not add, remove or move any part. Photoreal.",
+ "references_note": "Independent of the video renders: the CAD agent's own renders (run-sit-exo/cad/renders, render two).",
+ "profiles": {
+  "knee_closeup": {
+   "references": {
+    "side": "refs/cad_knee_close.png"
+   },
+   "facts": [
+    {
+     "q": "Is this a close-up of a brace worn at a person's knee, with a round hinge at the side of the knee and cuffs or straps above and below it?",
+     "expect": "yes",
+     "angle": "side"
+    }
+   ],
+   "must_not": [
+    "a large motor or gearbox at the knee joint",
+    "wheels"
+   ]
+  },
+  "strut_closeup": {
+   "references": {
+    "side": "refs/cad_strut_close.png"
+   },
+   "facts": [
+    {
+     "q": "Is there a thin dark pole or tube with collars or joints along it?",
+     "expect": "yes",
+     "angle": "side"
+    }
+   ],
+   "must_not": [
+    "wheels",
+    "a pole in front of the knee or shin"
+   ]
+  },
+  "back_closeup": {
+   "references": {
+    "back": "refs/cad_back_close.png"
+   },
+   "facts": [
+    {
+     "q": "Is this a close-up of a panel or harness worn on a person's back, with a round hub or motor unit mounted on the panel?",
+     "expect": "yes",
+     "angle": "back"
+    }
+   ],
+   "must_not": [
+    "wheels",
+    "more than one motor unit on the back"
+   ]
+  },
+  "knoll_top": {
+   "references": {
+    "side": "refs/knoll_low_ref.png"
+   },
+   "facts": [
+    {
+     "q": "Are many separate parts set out on colored panels on a table or floor?",
+     "expect": "yes",
+     "angle": "side"
+    }
+   ],
+   "must_not": [
+    "a person"
+   ]
+  },
+  "knoll_low": {
+   "references": {
+    "side": "refs/knoll_top_ref.png"
+   },
+   "facts": [
+    {
+     "q": "Are many separate parts set out on colored panels on a table or floor?",
+     "expect": "yes",
+     "angle": "side"
+    }
+   ],
+   "must_not": [
+    "a person"
+   ]
+  },
+  "parts_list": {
+   "references": {
+    "side": "refs/parts_list_ref.png"
+   },
+   "facts": [
+    {
+     "q": "Is this a table that lists parts, with a column saying how each is made (PRINT, METAL or BUY) and a price on each row?",
+     "expect": "yes",
+     "angle": "side"
+    }
+   ],
+   "must_not": []
+  },
+  "printing": {
+   "references": {
+    "side": "refs/print_wide_pv_ref.png"
+   },
+   "facts": [
+    {
+     "q": "Is a curved shell-shaped part being 3D printed on a printer bed, with a print head or gantry above it?",
+     "expect": "yes",
+     "angle": "side"
+    }
+   ],
+   "must_not": [
+    "a person"
+   ]
+  },
+  "kit_dock": {
+   "references": {
+    "front": "refs/cad_stand_front.png"
+   },
+   "facts": [
+    {
+     "q": "Is a person standing while separate device parts move toward, or sit attached on, their legs, hips and back?",
+     "expect": "yes",
+     "angle": "front"
+    }
+   ],
+   "must_not": [
+    "wheels"
+   ]
+  },
+  "exploded": {
+   "references": {
+    "front": "refs/cad_stand_front.png"
+   },
+   "facts": [
+    {
+     "q": "Are the parts of a wearable leg-and-back device shown spread apart around a see-through body, like an exploded view?",
+     "expect": "yes",
+     "angle": "front"
+    }
+   ],
+   "must_not": [
+    "wheels"
+   ]
+  }
+ },
+ "facts_note": "2026-10-22: the 'wide belt around the hips' fact was dropped: the judge answered no on backlit silhouettes where the belt is present in the CAD (lean back, stairs, finale), a judge limit, not a design change."
+}

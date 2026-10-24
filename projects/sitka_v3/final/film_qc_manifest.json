@@ -1,0 +1,155 @@
+{
+ "characters": {
+  "man": "a realistic young man with short brown hair and a grey t-shirt, wearing a black leg exoskeleton with a chest harness"
+ },
+ "scenes": [
+  {
+   "name": "cad_v1_s02_hero_reveal_4",
+   "start": 3.8,
+   "end": 5.7
+  },
+  {
+   "name": "cad_n01_hero_orbit_6",
+   "start": 5.7,
+   "end": 7.0
+  },
+  {
+   "name": "cad_n02_bluff_walk_7",
+   "start": 7.0,
+   "end": 11.53
+  },
+  {
+   "name": "cad_v1_s09_tendon_glow_20",
+   "start": 20.13,
+   "end": 22.63
+  },
+  {
+   "name": "cad_v1_s10_sit_wide_23",
+   "start": 22.63,
+   "end": 26.37
+  },
+  {
+   "name": "cad_n05_lean_front_34",
+   "start": 33.93,
+   "end": 35.73
+  },
+  {
+   "name": "cad_v1_s15_lift_side_40",
+   "start": 39.73,
+   "end": 44.83
+  },
+  {
+   "name": "cad_n07_walk_track_45",
+   "start": 44.83,
+   "end": 45.9
+  },
+  {
+   "name": "bl_hero_orbit_1_52",
+   "start": 51.83,
+   "end": 52.83
+  },
+  {
+   "name": "cad_n08_stairs_side_59",
+   "start": 59.47,
+   "end": 60.87
+  },
+  {
+   "name": "cad_v1_s17_lift_34_61",
+   "start": 60.87,
+   "end": 62.43
+  },
+  {
+   "name": "cad_n01_hero_orbit_62",
+   "start": 62.43,
+   "end": 63.83
+  },
+  {
+   "name": "cad_n09_starter_orbit_64",
+   "start": 63.83,
+   "end": 69.73
+  },
+  {
+   "name": "cad_n02_bluff_front_70",
+   "start": 69.73,
+   "end": 72.47
+  },
+  {
+   "name": "cad_n01_hero_orbit_72",
+   "start": 72.47,
+   "end": 74.87
+  },
+  {
+   "name": "bl_hero_orbit_1_82",
+   "start": 81.8,
+   "end": 83.83
+  }
+ ],
+ "lines": [
+  {
+   "t": 0.5,
+   "speaker": "narrator",
+   "offscreen": true,
+   "text": "Most exoskeletons fight your body with motors and metal. Sitka works with it."
+  },
+  {
+   "t": 5.68,
+   "speaker": "narrator",
+   "offscreen": true,
+   "text": "This is Sitka. Named after the tall Sitka spruce trees on the bluffs of Trinidad, California. Strong, light, and it bends without breaking."
+  },
+  {
+   "t": 15.12,
+   "speaker": "narrator",
+   "offscreen": true,
+   "text": "Your bones already carry the weight. Sitka adds what your muscles do, with springs, clutches, and cables that work like tendons."
+  },
+  {
+   "t": 22.64,
+   "speaker": "narrator",
+   "offscreen": true,
+   "text": "Sit down anywhere, and a light pole under each hip takes most of your weight. A carbon spring at each knee catches you, and gives that energy back when you stand."
+  },
+  {
+   "t": 31.23,
+   "speaker": "narrator",
+   "offscreen": true,
+   "text": "Lean back, and two simple straps hold you, like a camp chair you wear."
+  },
+  {
+   "t": 35.73,
+   "speaker": "narrator",
+   "offscreen": true,
+   "text": "Bend to lift, and a tendon along your back stores energy. A fifteen kilo box feels about twelve kilos lighter, with no motor at all."
+  },
+  {
+   "t": 44.82,
+   "speaker": "narrator",
+   "offscreen": true,
+   "text": "Walking and running, elastic bands link your hips, knees, and ankles, the way your own hamstrings and calves do."
+  },
+  {
+   "t": 51.82,
+   "speaker": "narrator",
+   "offscreen": true,
+   "text": "Want more? Smart clutches switch the springs on at exactly the right moment. And one small motor on your back helps only where you need it, on stairs, hills, and heavy lifts."
+  },
+  {
+   "t": 62.45,
+   "speaker": "narrator",
+   "offscreen": true,
+   "text": "It's fully modular. The seat and back kit weighs about fourteen pounds, and runs around two thousand dollars a set when it's built in small batches. Then add hips, ankles, shoulders, and power, all docking into one hub."
+  },
+  {
+   "t": 74.88,
+   "speaker": "narrator",
+   "offscreen": true,
+   "text": "Most of the frame is 3D printed on a desktop printer, and every part is listed with its price, on GitHub."
+  },
+  {
+   "t": 81.81,
+   "speaker": "narrator",
+   "offscreen": true,
+   "text": "Sitka is completely open. The design, the math, every part. Come build one with us."
+  }
+ ]
+}

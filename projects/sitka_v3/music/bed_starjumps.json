@@ -1,0 +1,12 @@
+{
+ "track": "Body Movin' - Star Jumps Coach",
+ "song_forge_job": "43f329f4dc7d4251b7e9b86f51854ab3",
+ "source": "mini:~/Desktop/PROJECTS/body-movin/bodymovin/assets/music/starjumps.mp3",
+ "style": "upbeat feel-good funk workout, live drums, handclaps, bright horns, slap bass, motivating (rendered [instrumental])",
+ "vocal_removal": "demucs htdemucs --two-stems=vocals (mini, airband-stems venv); vocal stem -57 dB vs music -17 dB before removal",
+ "start_in_track": 9.465,
+ "slam_downbeat_track": 96.665,
+ "lift_film_time": 6.557,
+ "key": "A major (chroma, Krumhansl)",
+ "tempo_bpm": 123
+}

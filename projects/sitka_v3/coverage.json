@@ -1,0 +1,418 @@
+{
+ "target_runtime": 94,
+ "lines": [
+  {
+   "line": 1,
+   "text": "Most exoskeletons fight your body with motors and metal. Sitka works with it.",
+   "sentiment": "unease at the status quo, then 'oh, that's different'",
+   "setups": [
+    {
+     "setup": "knee macro: the joint flexes, the arc and cables catch the light",
+     "source": "cad",
+     "file": "footage/v1_s01_knee_macro.mp4",
+     "design": "knee_closeup"
+    },
+    {
+     "setup": "clutch housing macro, slow orbit",
+     "source": "cad",
+     "file": "footage/v1_s08_clutch_macro.mp4",
+     "design": "knee_closeup"
+    },
+    {
+     "setup": "knee close while walking: the clutch and arc at work (v1 take)",
+     "source": "cad",
+     "file": "footage/v1_s22_clutch_walk.mp4",
+     "design": "knee_closeup"
+    },
+    {
+     "setup": "hero reveal: camera rises past the knee to the wearer",
+     "source": "cad",
+     "file": "footage/v1_s02_hero_reveal.mp4"
+    },
+    {
+     "setup": "slow low orbit around the standing wearer, studio",
+     "source": "cad",
+     "file": "footage/n01_hero_orbit.mp4"
+    },
+    {
+     "setup": "GLB orbit around the standing wearer, the first look",
+     "source": "blender-render",
+     "file": "acquired/blender/l01_bl_hero_orbit/beauty.mp4"
+    }
+   ]
+  },
+  {
+   "line": 2,
+   "text": "This is Sitka. Named after the tall Sitka spruce trees on the bluffs of Trinidad, California. Strong, light, and it bends without breaking.",
+   "sentiment": "quiet awe and a sense of place: 'that's beautiful'",
+   "setups": [
+    {
+     "setup": "wearer on the golden-hour bluff, slow orbit",
+     "source": "cad",
+     "file": "footage/v1_s03_bluff.mp4"
+    },
+    {
+     "setup": "wearer walks the bluff, camera arcs with him",
+     "source": "cad",
+     "file": "footage/n02_bluff_walk.mp4"
+    },
+    {
+     "setup": "strut macro on 'strong'",
+     "source": "cad",
+     "file": "footage/v1_s04_strut_macro.mp4",
+     "design": "strut_closeup"
+    },
+    {
+     "setup": "low running shot on 'light'",
+     "source": "cad",
+     "file": "footage/n07_run_low.mp4"
+    },
+    {
+     "setup": "leaf spring flexes as the knee bends, on 'bends'",
+     "source": "cad",
+     "file": "footage/v1_s05_leaf_flex.mp4",
+     "design": "knee_closeup"
+    },
+    {
+     "setup": "GLB push on the standing wearer on the bluff",
+     "source": "blender-render",
+     "file": "acquired/blender/l02_bl_bluff_push/beauty.mp4"
+    },
+    {
+     "setup": "he walks the bluff toward camera, smooth gait",
+     "source": "cad",
+     "file": "footage/n02_bluff_front.mp4"
+    }
+   ]
+  },
+  {
+   "line": 3,
+   "text": "Your bones already carry the weight. Sitka adds what your muscles do, with springs, clutches, and cables that work like tendons.",
+   "sentiment": "'oh, it's like a second set of tendons': understanding",
+   "setups": [
+    {
+     "setup": "ghosted body walks: the bones carry the weight",
+     "source": "cad",
+     "file": "footage/n03_ghost_walk.mp4"
+    },
+    {
+     "setup": "ghosted walk, v1 take",
+     "source": "cad",
+     "file": "footage/v1_s06_ghost_walk.mp4"
+    },
+    {
+     "setup": "spring macro on 'springs'",
+     "source": "cad",
+     "file": "footage/v1_s07_spring_macro.mp4",
+     "design": "knee_closeup"
+    },
+    {
+     "setup": "clutch flicks on at stance, on 'clutches'",
+     "source": "cad",
+     "file": "footage/n08_clutch_walk.mp4",
+     "design": "knee_closeup"
+    },
+    {
+     "setup": "tendons glow along the body, on 'tendons'",
+     "source": "cad",
+     "file": "footage/v1_s09_tendon_glow.mp4"
+    },
+    {
+     "setup": "GLB truck past the wearer mid-stride",
+     "source": "blender-render",
+     "file": "acquired/blender/l03_bl_walk_truck/beauty.mp4"
+    },
+    {
+     "setup": "walking legs in the studio, springs and clutches at work (v1 take)",
+     "source": "cad",
+     "file": "footage/v1_s20_walk_bands.mp4"
+    }
+   ]
+  },
+  {
+   "line": 4,
+   "text": "Sit down anywhere, and a light pole under each hip takes most of your weight. A carbon spring at each knee catches you, and gives that energy back when you stand.",
+   "sentiment": "relief: 'I could sit anywhere'",
+   "setups": [
+    {
+     "setup": "sit down outdoors, the struts deploy, wide",
+     "source": "cad",
+     "file": "footage/v1_s10_sit_wide.mp4"
+    },
+    {
+     "setup": "sit down, medium, from the other side",
+     "source": "cad",
+     "file": "footage/n04_sit_med.mp4"
+    },
+    {
+     "setup": "knee close-up while sitting: the spring catches",
+     "source": "cad",
+     "file": "footage/v1_s12_knee_sit_close.mp4",
+     "design": "knee_closeup"
+    },
+    {
+     "setup": "strut macro, seated",
+     "source": "cad",
+     "file": "footage/v1_s04_strut_macro.mp4",
+     "design": "strut_closeup"
+    },
+    {
+     "setup": "strut load-path diagram (manim, overlay)",
+     "source": "manim"
+    },
+    {
+     "setup": "knee spring energy diagram (manim, overlay)",
+     "source": "manim"
+    }
+   ]
+  },
+  {
+   "line": 5,
+   "text": "Lean back, and two simple straps hold you, like a camp chair you wear.",
+   "sentiment": "comfort, a smile: 'like a camp chair'",
+   "setups": [
+    {
+     "setup": "lean back on the bluff, the straps take the load",
+     "source": "cad",
+     "file": "footage/v1_s13_lean_back.mp4"
+    },
+    {
+     "setup": "lean back from the front three-quarter",
+     "source": "cad",
+     "file": "footage/n05_lean_front.mp4"
+    },
+    {
+     "setup": "GLB orbit behind the seated wearer to the straps",
+     "source": "blender-render",
+     "file": "acquired/blender/l05_bl_chair_orbit/beauty.mp4"
+    },
+    {
+     "setup": "orbit around the seated wearer as he leans back into the straps",
+     "source": "cad",
+     "file": "footage/n05_lean_orbit.mp4"
+    }
+   ]
+  },
+  {
+   "line": 6,
+   "text": "Bend to lift, and a tendon along your back stores energy. A fifteen kilo box feels about twelve kilos lighter, with no motor at all.",
+   "sentiment": "'no motor at all?': surprise",
+   "setups": [
+    {
+     "setup": "stoop lift of a box, side, tendon glows",
+     "source": "cad",
+     "file": "footage/v1_s15_lift_side.mp4"
+    },
+    {
+     "setup": "back tendon close as the box comes up",
+     "source": "cad",
+     "file": "footage/v1_s16_tendon_back.mp4",
+     "design": "back_closeup"
+    },
+    {
+     "setup": "lift from the three-quarter front",
+     "source": "cad",
+     "file": "footage/v1_s17_lift_34.mp4"
+    },
+    {
+     "setup": "lift from behind, the back panel and tendon",
+     "source": "cad",
+     "file": "footage/n06_lift_front.mp4"
+    },
+    {
+     "setup": "lift diagram: 15 kg box, 12 kg lighter, no motor (manim, overlay)",
+     "source": "manim"
+    }
+   ]
+  },
+  {
+   "line": 7,
+   "text": "Walking and running, elastic bands link your hips, knees, and ankles, the way your own hamstrings and calves do.",
+   "sentiment": "ease and rhythm: it moves like you do",
+   "setups": [
+    {
+     "setup": "smooth walk on the bluff, tracking",
+     "source": "cad",
+     "file": "footage/n07_walk_track.mp4"
+    },
+    {
+     "setup": "smooth run on the bluff, tracking",
+     "source": "cad",
+     "file": "footage/n07_run_track.mp4"
+    },
+    {
+     "setup": "walk in the studio, bands glow teal",
+     "source": "cad",
+     "file": "footage/n07_walk_bands.mp4"
+    },
+    {
+     "setup": "run three-quarter, bands glow",
+     "source": "cad",
+     "file": "footage/n07_run_bands_34.mp4"
+    },
+    {
+     "setup": "hamstring and calf band diagram (manim, overlay)",
+     "source": "manim"
+    }
+   ]
+  },
+  {
+   "line": 8,
+   "text": "Want more? Smart clutches switch the springs on at exactly the right moment. And one small motor on your back helps only where you need it, on stairs, hills, and heavy lifts.",
+   "sentiment": "'and when I need more, it's there': confidence",
+   "setups": [
+    {
+     "setup": "knee close while walking: the clutch switches on at stance",
+     "source": "cad",
+     "file": "footage/n08_clutch_walk.mp4",
+     "design": "knee_closeup"
+    },
+    {
+     "setup": "orbit in to the one motor on the back panel",
+     "source": "cad",
+     "file": "footage/v1_s23_motor_back.mp4",
+     "design": "back_closeup"
+    },
+    {
+     "setup": "real stair climb on bluff steps, side",
+     "source": "cad",
+     "file": "footage/n08_stairs_side.mp4"
+    },
+    {
+     "setup": "stair climb, front three-quarter, studio",
+     "source": "cad",
+     "file": "footage/n08_stairs_front.mp4"
+    },
+    {
+     "setup": "stair climb, close on the back motor",
+     "source": "cad",
+     "file": "footage/n08_stairs_motor.mp4",
+     "design": "back_closeup"
+    },
+    {
+     "setup": "walking toward the hills",
+     "source": "cad",
+     "file": "footage/n08_hills_walk.mp4"
+    },
+    {
+     "setup": "hills wide, v1 take",
+     "source": "cad",
+     "file": "footage/v1_s24_hills_wide.mp4"
+    },
+    {
+     "setup": "GLB crane up the back of the stooping wearer",
+     "source": "blender-render",
+     "file": "acquired/blender/l08_bl_stoop_crane/beauty.mp4"
+    }
+   ]
+  },
+  {
+   "line": 9,
+   "text": "It's fully modular. The seat and back kit weighs about fourteen pounds, and runs around two thousand dollars a set when it's built in small batches. Then add hips, ankles, shoulders, and power, all docking into one hub.",
+   "sentiment": "'I can start small': it's within reach",
+   "setups": [
+    {
+     "setup": "only the seat + back starter kit on the wearer, slow orbit ('the seat and back kit')",
+     "source": "cad",
+     "file": "footage/n09_starter_orbit.mp4"
+    },
+    {
+     "setup": "modules fly in and dock into the hub, each on its word (re-keyed to v3's narration)",
+     "source": "cad",
+     "file": "footage/n09_kit_dock_v3.mp4",
+     "design": "kit_dock"
+    },
+    {
+     "setup": "modules dock into the hub, v1 take (v1 word timing)",
+     "source": "cad",
+     "file": "footage/v1_s25_kit_dock.mp4",
+     "design": "kit_dock"
+    },
+    {
+     "setup": "seat and back kit card: about 14 lb, about $2,000 a set in small batches (manim, overlay)",
+     "source": "manim"
+    },
+    {
+     "setup": "the full system walking (every module docked), v1 take",
+     "source": "cad",
+     "file": "footage/v1_s18_walk_track.mp4"
+    },
+    {
+     "setup": "the full system running low, v1 take",
+     "source": "cad",
+     "file": "footage/v1_s21_run_low.mp4"
+    }
+   ]
+  },
+  {
+   "line": 10,
+   "text": "Most of the frame is 3D printed on a desktop printer, and every part is listed with its price, on GitHub.",
+   "sentiment": "'I could actually make this': empowerment",
+   "setups": [
+    {
+     "setup": "a seat cup printing layer by layer on a desktop printer, close",
+     "source": "cad",
+     "file": "footage/n10_print_close.mp4",
+     "design": "printing"
+    },
+    {
+     "setup": "the same print, wider, the whole printer",
+     "source": "cad",
+     "file": "footage/n10_print_wide.mp4",
+     "design": "printing"
+    },
+    {
+     "setup": "every part flies off the frame and lands in PRINTED / METAL / BOUGHT",
+     "source": "cad",
+     "file": "footage/n10_knoll_top.mp4",
+     "design": "knoll_top"
+    },
+    {
+     "setup": "low dolly across the laid-out parts",
+     "source": "cad",
+     "file": "footage/n10_knoll_low.mp4",
+     "design": "knoll_low"
+    },
+    {
+     "setup": "the parts list scrolls: every part with its price",
+     "source": "manim",
+     "file": "footage/parts_list_scroll.mp4",
+     "design": "parts_list"
+    }
+   ]
+  },
+  {
+   "line": 11,
+   "text": "Sitka is completely open. The design, the math, every part. Come build one with us.",
+   "sentiment": "an open door: 'come build one with us'",
+   "setups": [
+    {
+     "setup": "every part, exploded, slow orbit",
+     "source": "cad",
+     "file": "footage/v1_s27_every_part.mp4",
+     "design": "exploded"
+    },
+    {
+     "setup": "finale on the bluff, camera pulls back and rises",
+     "source": "cad",
+     "file": "footage/v1_s26_finale.mp4"
+    },
+    {
+     "setup": "GLB pull back from the runner on the cliffs",
+     "source": "blender-render",
+     "file": "acquired/blender/l11_bl_run_pull/beauty.mp4"
+    },
+    {
+     "setup": "crane up and away from the wearer on the bluff: the invitation",
+     "source": "cad",
+     "file": "footage/n11_finale_crane.mp4"
+    },
+    {
+     "setup": "he walks away along the bluff, camera rising",
+     "source": "cad",
+     "file": "footage/n11_walk_away.mp4"
+    }
+   ]
+  }
+ ]
+}

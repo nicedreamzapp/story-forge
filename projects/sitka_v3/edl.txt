@@ -1,0 +1,54 @@
+EDL  sitka_v3  93.70s  34 shots  fps 30  jcut 0.0
+
+   0.00-   1.77 (1.77s) CUT   L1  on 'Most'  l01_cad_v1_s01_knee_macro  src 0.00-1.77
+   1.77-   3.80 (2.03s) CUT   L1  on 'fight'  l01_cad_v1_s22_clutch_walk  src 0.50-2.53
+   3.80-   5.70 (1.90s) CUT   L1  on 'Sitka'  l01_cad_v1_s02_hero_reveal  src 0.30-2.20
+   5.70-   7.00 (1.30s) CUT   L2  on 'This'  l01_cad_n01_hero_orbit  src 1.50-2.80
+   7.00-  11.53 (4.53s) CUT   L2  on 'Named'  l02_cad_n02_bluff_walk  src 0.50-5.03
+  11.53-  13.03 (1.50s) CUT   L2  on 'Strong'  l02_cad_n07_run_low  src 0.40-1.90
+  13.03-  15.13 (2.10s) CUT   L2  on 'bends'  l04_cad_n04_sit_med  src 1.00-3.10
+  15.13-  18.93 (3.80s) CUT   L3  on 'Your'  l03_cad_n03_ghost_walk  src 0.00-3.80
+  18.93-  20.13 (1.20s) CUT   L3  on 'springs'  l03_cad_v1_s20_walk_bands  src 1.00-2.20
+  20.13-  22.63 (2.50s) CUT   L3  on 'cables'  l03_cad_v1_s09_tendon_glow  src 0.00-2.50
+  22.63-  26.37 (3.73s) CUT   L4  on 'Sit'  l04_cad_v1_s10_sit_wide  src 0.00-3.73
+  26.37-  31.23 (4.87s) CUT   L4  on 'A'  l04_cad_v1_s12_knee_sit_close  src 0.00-4.87
+  31.23-  33.93 (2.70s) CUT   L5  on 'Lean'  l05_cad_v1_s13_lean_back  src 0.00-2.70
+  33.93-  35.73 (1.80s) CUT   L5  on 'camp'  l05_cad_n05_lean_front  src 3.00-4.80
+  35.73-  37.40 (1.67s) CUT   L6  on 'Bend'  l06_cad_n06_lift_front  src 0.30-1.97
+  37.40-  39.73 (2.33s) CUT   L6  on 'tendon'  l06_cad_v1_s16_tendon_back  src 0.60-2.93
+  39.73-  44.83 (5.10s) CUT   L6  on 'A'  l06_cad_v1_s15_lift_side  src 1.60-6.70
+  44.83-  45.90 (1.07s) CUT   L7  on 'Walking'  l07_cad_n07_walk_track  src 0.20-1.27
+  45.90-  51.83 (5.93s) CUT   L7  on 'elastic'  l07_cad_n07_walk_bands  src 0.00-5.93
+  51.83-  52.83 (1.00s) CUT   L8  on 'Want'  l01_bl_hero_orbit_1  src 1.00-2.00
+  52.83-  56.43 (3.60s) CUT   L8  on 'Smart'  l03_cad_n08_clutch_walk  src 0.00-3.60
+  56.43-  59.47 (3.03s) CUT   L8  on 'And'  l08_cad_v1_s23_motor_back  src 0.00-3.03
+  59.47-  60.87 (1.40s) CUT   L8  on 'on'  l08_cad_n08_stairs_side  src 0.40-1.80
+  60.87-  62.43 (1.57s) CUT   L8  on 'heavy'  l06_cad_v1_s17_lift_34  src 0.40-1.97
+  62.43-  63.83 (1.40s) CUT   L9  on 'It's'  l01_cad_n01_hero_orbit  src 0.00-1.40
+  63.83-  69.73 (5.90s) CUT   L9  on 'seat'  l09_cad_n09_starter_orbit  src 0.00-5.90
+  69.73-  72.47 (2.73s) CUT   L9  on 'Then'  l02_cad_n02_bluff_front  src 4.00-6.73
+  72.47-  74.87 (2.40s) CUT   L9  on 'all'  l01_cad_n01_hero_orbit  src 3.50-5.90
+  74.87-  77.23 (2.37s) CUT   L10 on 'Most'  l10_cad_n10_print_close  src 0.80-3.17
+  77.23-  79.73 (2.50s) CUT   L10 on 'printer'  l10_cad_n10_knoll_top  src 1.40-3.90
+  79.73-  81.80 (2.07s) CUT   L10 on 'price'  l10_manim_parts_list_scroll  src 0.30-2.37
+  81.80-  83.83 (2.03s) CUT   L11 on 'Sitka'  l01_bl_hero_orbit_1  src 2.20-4.23
+  83.83-  85.80 (1.97s) CUT   L11 on 'design'  l10_cad_n10_knoll_low  src 1.60-3.57
+  85.80-  87.20 (1.40s) CUT   L11 on 'Come'  l11_cad_n11_finale_crane  src 2.60-4.00
+   0.53-   5.67 OVERLAY overlays/l01.mov on 'Most'
+   5.70-  15.10 OVERLAY overlays/l02.mov on 'This'
+  15.13-  22.63 OVERLAY overlays/l03.mov on 'Your'
+  22.67-  31.23 OVERLAY overlays/l04.mov on 'Sit'
+  31.27-  35.73 OVERLAY overlays/l05.mov on 'Lean'
+  35.77-  44.83 OVERLAY overlays/l06.mov on 'Bend'
+  44.87-  51.83 OVERLAY overlays/l07.mov on 'Walking'
+  51.87-  62.47 OVERLAY overlays/l08.mov on 'Want'
+  62.47-  74.87 OVERLAY overlays/l09.mov on 'It's'
+  74.90-  81.80 OVERLAY overlays/l10.mov on 'Most'
+  81.87-  87.23 OVERLAY overlays/l11.mov on 'Sitka'
+  87.20-  93.70 END CARD 'SITKA' (slam 0.15s after the last word)
+   6.27-   7.87 TITLE 'SITKA' on 'Sitka'
+
+NOTES:
+  - line 4: l04_cad_v1_s12_knee_sit_close out 4.91 > clip dur 4.90; clamped
+  - callout lift_tendon moved onto 'tendon' at 37.40s
+  - callout one_motor moved onto 'motor' at 57.07s

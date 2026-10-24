@@ -1,0 +1,295 @@
+{
+ "cues": [
+  {
+   "line": 1,
+   "word": "fight",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 1,
+   "word": "Sitka",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 2,
+   "word": "Named",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 2,
+   "word": "Strong",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 2,
+   "word": "bends",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 3,
+   "word": "springs",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 3,
+   "word": "cables",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 4,
+   "word": "A",
+   "nth": 2,
+   "kind": "cut"
+  },
+  {
+   "line": 5,
+   "word": "camp",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 6,
+   "word": "tendon",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 6,
+   "word": "A",
+   "nth": 2,
+   "kind": "cut"
+  },
+  {
+   "line": 7,
+   "word": "elastic",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 8,
+   "word": "Smart",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 8,
+   "word": "And",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 8,
+   "word": "on",
+   "nth": 3,
+   "kind": "cut"
+  },
+  {
+   "line": 8,
+   "word": "heavy",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 9,
+   "word": "seat",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 9,
+   "word": "Then",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 9,
+   "word": "all",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 10,
+   "word": "printer",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 10,
+   "word": "price",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 11,
+   "word": "design",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 11,
+   "word": "Come",
+   "nth": 1,
+   "kind": "cut"
+  },
+  {
+   "line": 2,
+   "word": "Sitka",
+   "nth": 1,
+   "kind": "title",
+   "text": "SITKA"
+  },
+  {
+   "line": 1,
+   "word": "Most",
+   "nth": 1,
+   "kind": "overlay",
+   "file": "overlays/l01.mov",
+   "x": 0.5,
+   "y": 0.5,
+   "w": 1.0,
+   "opacity": 1.0,
+   "whoosh": false
+  },
+  {
+   "line": 2,
+   "word": "This",
+   "nth": 1,
+   "kind": "overlay",
+   "file": "overlays/l02.mov",
+   "x": 0.5,
+   "y": 0.5,
+   "w": 1.0,
+   "opacity": 1.0,
+   "whoosh": false
+  },
+  {
+   "line": 3,
+   "word": "Your",
+   "nth": 1,
+   "kind": "overlay",
+   "file": "overlays/l03.mov",
+   "x": 0.5,
+   "y": 0.5,
+   "w": 1.0,
+   "opacity": 1.0,
+   "whoosh": false
+  },
+  {
+   "line": 4,
+   "word": "Sit",
+   "nth": 1,
+   "kind": "overlay",
+   "file": "overlays/l04.mov",
+   "x": 0.5,
+   "y": 0.5,
+   "w": 1.0,
+   "opacity": 1.0,
+   "whoosh": false
+  },
+  {
+   "line": 5,
+   "word": "Lean",
+   "nth": 1,
+   "kind": "overlay",
+   "file": "overlays/l05.mov",
+   "x": 0.5,
+   "y": 0.5,
+   "w": 1.0,
+   "opacity": 1.0,
+   "whoosh": false
+  },
+  {
+   "line": 6,
+   "word": "Bend",
+   "nth": 1,
+   "kind": "overlay",
+   "file": "overlays/l06.mov",
+   "x": 0.5,
+   "y": 0.5,
+   "w": 1.0,
+   "opacity": 1.0,
+   "whoosh": false
+  },
+  {
+   "line": 7,
+   "word": "Walking",
+   "nth": 1,
+   "kind": "overlay",
+   "file": "overlays/l07.mov",
+   "x": 0.5,
+   "y": 0.5,
+   "w": 1.0,
+   "opacity": 1.0,
+   "whoosh": false
+  },
+  {
+   "line": 8,
+   "word": "Want",
+   "nth": 1,
+   "kind": "overlay",
+   "file": "overlays/l08.mov",
+   "x": 0.5,
+   "y": 0.5,
+   "w": 1.0,
+   "opacity": 1.0,
+   "whoosh": false
+  },
+  {
+   "line": 9,
+   "word": "It's",
+   "nth": 1,
+   "kind": "overlay",
+   "file": "overlays/l09.mov",
+   "x": 0.5,
+   "y": 0.5,
+   "w": 1.0,
+   "opacity": 1.0,
+   "whoosh": false
+  },
+  {
+   "line": 10,
+   "word": "Most",
+   "nth": 1,
+   "kind": "overlay",
+   "file": "overlays/l10.mov",
+   "x": 0.5,
+   "y": 0.5,
+   "w": 1.0,
+   "opacity": 1.0,
+   "whoosh": false
+  },
+  {
+   "line": 11,
+   "word": "Sitka",
+   "nth": 1,
+   "kind": "overlay",
+   "file": "overlays/l11.mov",
+   "x": 0.5,
+   "y": 0.5,
+   "w": 1.0,
+   "opacity": 1.0,
+   "whoosh": false
+  },
+  {
+   "line": 6,
+   "word": "tendon",
+   "nth": 1,
+   "kind": "callout",
+   "callout": "lift_tendon"
+  },
+  {
+   "line": 8,
+   "word": "motor",
+   "nth": 1,
+   "kind": "callout",
+   "callout": "one_motor"
+  }
+ ]
+}

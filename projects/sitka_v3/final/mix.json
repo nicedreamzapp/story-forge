@@ -1,0 +1,28 @@
+{
+ "bed": "music/bed_starjumps.wav",
+ "bed_len": 124.308,
+ "bed_hit": 87.2,
+ "bed_hit_source": "promo.json",
+ "bed_offset": 0.0,
+ "slam": 87.2,
+ "total": 93.7,
+ "gain": 0.55,
+ "events": [
+  {
+   "what": "title hit",
+   "t": 6.267
+  },
+  {
+   "what": "callout blip",
+   "t": 37.4
+  },
+  {
+   "what": "callout blip",
+   "t": 57.067
+  },
+  {
+   "what": "end slam + sting",
+   "t": 87.2
+  }
+ ]
+}

@@ -1,0 +1,154 @@
+{
+ "voice": {
+  "character": "matt2",
+  "exaggeration": 0.4,
+  "cfg": 0.5,
+  "pitch": 0.92,
+  "eq": [
+   [
+    180,
+    3.0
+   ],
+   [
+    5000,
+    -3.0
+   ]
+  ],
+  "lufs": -16.0,
+  "retakes": 3
+ },
+ "lines": [
+  {
+   "line": 1,
+   "text": "Most exoskeletons fight your body with motors and metal. Sitka works with it.",
+   "spoken": "Most exoskeletons fight your body with motors and metal. Sitka works with it.",
+   "wav": "vo/final/part000.wav",
+   "heard": "Most exoskeletons fight your body with motors and metal. Sitka works with it.",
+   "match": true,
+   "take": "take1",
+   "reworded": false,
+   "hash": "87e423e3cf85",
+   "notes": []
+  },
+  {
+   "line": 2,
+   "text": "This is Sitka. Named after the tall Sitka spruce trees on the bluffs of Trinidad, California. Strong, light, and it bends without breaking.",
+   "spoken": "This is Sitka. Named after the tall Sitka spruce trees on the bluffs of Trinidad, California. Strong, light, and it bends without breaking.",
+   "wav": "vo/final/part001.wav",
+   "heard": "This is Sitka, named after the tall Sitka spruce trees on the bluffs of Trinidad, California. Strong, light, and it bends without breaking.",
+   "match": true,
+   "take": "take1",
+   "reworded": false,
+   "hash": "f1cefaeeabf9",
+   "notes": []
+  },
+  {
+   "line": 3,
+   "text": "Your bones already carry the weight. Sitka adds what your muscles do, with springs, clutches, and cables that work like tendons.",
+   "spoken": "Your bones already carry the weight. Sitka adds what your muscles do, with springs, clutches, and cables that work like tendons.",
+   "wav": "vo/final/part002.wav",
+   "heard": "Your bones already carry the weight. Sitka adds what your muscles do, with springs, clutches, and cables that work like tendons.",
+   "match": true,
+   "take": "take1",
+   "reworded": false,
+   "hash": "9b44b861a569",
+   "notes": []
+  },
+  {
+   "line": 4,
+   "text": "Sit down anywhere, and a light pole under each hip takes most of your weight. A carbon spring at each knee catches you, and gives that energy back when you stand.",
+   "spoken": "Sit down anywhere, and a light pole under each hip takes most of your weight. A carbon spring at each knee catches you, and gives that energy back when you stand.",
+   "wav": "vo/final/part003.wav",
+   "heard": "sit down anywhere and a light pole under each hip takes most of your weight. A carbon spring at each knee catches you and gives that energy back when you stand.",
+   "match": true,
+   "take": "take1",
+   "reworded": false,
+   "hash": "749ec21356ff",
+   "notes": []
+  },
+  {
+   "line": 5,
+   "text": "Lean back, and two simple straps hold you, like a camp chair you wear.",
+   "spoken": "Lean back, and two simple straps hold you, like a camp chair you wear.",
+   "wav": "vo/final/part004.wav",
+   "heard": "lean back, and two simple straps hold you like a camp chair you wear.",
+   "match": true,
+   "take": "take1",
+   "reworded": false,
+   "hash": "d231622bc2b0",
+   "notes": []
+  },
+  {
+   "line": 6,
+   "text": "Bend to lift, and a tendon along your back stores energy. A fifteen kilo box feels about twelve kilos lighter, with no motor at all.",
+   "spoken": "Bend to lift, and a tendon along your back stores energy. A fifteen kilo box feels about twelve kilos lighter, with no motor at all.",
+   "wav": "vo/final/part005.wav",
+   "heard": "bend to lift, and a tendon along your back stores energy. A 15 kilo box feels about 12 kilos lighter with no motor at all.",
+   "match": true,
+   "take": "retake1",
+   "reworded": false,
+   "hash": "0ded6a83cdb6",
+   "notes": []
+  },
+  {
+   "line": 7,
+   "text": "Walking and running, elastic bands link your hips, knees, and ankles, the way your own hamstrings and calves do.",
+   "spoken": "Walking and running, elastic bands link your hips, knees, and ankles, the way your own hamstrings and calves do.",
+   "wav": "vo/final/part006.wav",
+   "heard": "Walking and running, elastic bands link your hips, knees, and ankles the way your own hamstrings and calves do.",
+   "match": true,
+   "take": "take1",
+   "reworded": false,
+   "hash": "ea99e3055654",
+   "notes": []
+  },
+  {
+   "line": 8,
+   "text": "Want more? Smart clutches switch the springs on at exactly the right moment. And one small motor on your back helps only where you need it, on stairs, hills, and heavy lifts.",
+   "spoken": "Want more? Smart clutches switch the springs on at exactly the right moment. And one small motor on your back helps only where you need it, on stairs, hills, and heavy lifts.",
+   "wav": "vo/final/part007.wav",
+   "heard": "Want more? Smart clutches switch the springs on at exactly the right moment, and one small motor on your back helps only where you need it, on stairs, hills, and heavy lifts.",
+   "match": true,
+   "take": "take1",
+   "reworded": false,
+   "hash": "78c85d4218ed",
+   "notes": []
+  },
+  {
+   "line": 9,
+   "text": "It's fully modular. The seat and back kit weighs about fourteen pounds, and runs around two thousand dollars a set when it's built in small batches. Then add hips, ankles, shoulders, and power, all docking into one hub.",
+   "spoken": "It's fully modular. The seat and back kit weighs about fourteen pounds, and runs around two thousand dollars a set when it's built in small batches. Then add hips, ankles, shoulders, and power, all docking into one hub.",
+   "wav": "vo/final/part008.wav",
+   "heard": "It's fully modular. The seat and back kit weighs about 14 pounds and runs around $2,000 a set when it's built in small batches. Then add hips, ankles, shoulders, and power, all docking into one hub.",
+   "match": true,
+   "take": "take1",
+   "reworded": false,
+   "hash": "7acb1f65bb60",
+   "notes": []
+  },
+  {
+   "line": 10,
+   "text": "Most of the frame is 3D printed on a desktop printer, and every part is listed with its price, on GitHub.",
+   "spoken": "Most of the frame is 3D printed on a desktop printer, and every part is listed with its price, on GitHub.",
+   "wav": "vo/final/part009.wav",
+   "heard": "Most of the frame is 3D printed on a desktop printer, and every part is listed with its price, on GitHub.",
+   "match": true,
+   "take": "take1",
+   "reworded": false,
+   "hash": "c44c63f9a1c9",
+   "notes": []
+  },
+  {
+   "line": 11,
+   "text": "Sitka is completely open. The design, the math, every part. Come build one with us.",
+   "spoken": "Sitka is completely open. The design, the math, every part. Come build one with us.",
+   "wav": "vo/final/part010.wav",
+   "heard": "Sitka is completely open. The design, the math, every part. Come build one with us.",
+   "match": true,
+   "take": "take1",
+   "reworded": false,
+   "hash": "15e8981067c0",
+   "notes": []
+  }
+ ]
+}

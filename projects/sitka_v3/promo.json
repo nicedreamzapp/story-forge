@@ -1,0 +1,258 @@
+{
+ "title": "Sitka: an open-source exoskeleton that works with your body",
+ "brand": "SITKA",
+ "voice": {
+  "character": "matt2",
+  "exaggeration": 0.4,
+  "cfg": 0.5,
+  "pitch": 0.92,
+  "eq": [
+   [
+    180,
+    3.0
+   ],
+   [
+    5000,
+    -3.0
+   ]
+  ],
+  "lufs": -16.0,
+  "retakes": 3
+ },
+ "gap": 0.6,
+ "lead": 0.5,
+ "music": {
+  "bed": "music/bed_starjumps.wav",
+  "style": "Body Movin' - Star Jumps Coach (Song Forge, instrumental)",
+  "gain": 0.55,
+  "hit": 87.2,
+  "fade": 1.6,
+  "tail": 1.1,
+  "sting_root": 55.0
+ },
+ "endcard": {
+  "title": "SITKA",
+  "tagline": "Come build one with us.",
+  "url": "github.com/nicedreamzapp/sitka",
+  "dur": 6.5,
+  "slam_after": 0.15
+ },
+ "bug": "SITKA",
+ "renderer": "ffmpeg",
+ "materials": {
+  "carbon*": "carbon",
+  "alu": "aluminum",
+  "body": "mannequin",
+  "fabric": "fabric",
+  "foam": "foam",
+  "leaf": "glass_fiber",
+  "band": "glow_teal",
+  "rubber": "rubber",
+  "accent": "anodized_orange"
+ },
+ "blender": [
+  {
+   "id": "l01_bl_hero_orbit",
+   "line": 1,
+   "setup": "slow low orbit around the standing wearer, the first look (studio rims)",
+   "glb": [
+    "assets/sitka_stand.glb"
+   ],
+   "world": "studio",
+   "hdri": "assets/studio_small_09_2k.exr",
+   "camera": {
+    "move": "orbit",
+    "start_deg": -50,
+    "end_deg": 15,
+    "elev_deg": 4,
+    "lens": 50,
+    "frame_fill": 0.85
+   },
+   "frames": 150,
+   "res": [
+    1920,
+    1080
+   ],
+   "engine": "CYCLES",
+   "samples": 32
+  },
+  {
+   "id": "l02_bl_bluff_push",
+   "line": 2,
+   "setup": "slow push on the standing wearer on the coastal bluff, golden hour",
+   "glb": [
+    "assets/sitka_stand.glb"
+   ],
+   "world": "hdri",
+   "hdri": "assets/cape_hill_4k.exr",
+   "camera": {
+    "move": "push",
+    "start_deg": 150,
+    "elev_deg": 6,
+    "lens": 40,
+    "amount": 0.2,
+    "frame_fill": 0.7
+   },
+   "frames": 90,
+   "res": [
+    1920,
+    1080
+   ],
+   "engine": "EEVEE",
+   "samples": 32,
+   "hdri_rot": 180
+  },
+  {
+   "id": "l03_bl_walk_truck",
+   "line": 3,
+   "setup": "camera trucks past the wearer mid-stride: bones carry, the frame follows",
+   "glb": [
+    "assets/sitka_walk.glb"
+   ],
+   "world": "studio",
+   "hdri": "assets/studio_small_09_2k.exr",
+   "camera": {
+    "move": "truck",
+    "start_deg": 80,
+    "elev_deg": 3,
+    "lens": 50,
+    "amount": 0.35,
+    "frame_fill": 0.85
+   },
+   "frames": 90,
+   "res": [
+    1920,
+    1080
+   ],
+   "engine": "EEVEE",
+   "samples": 32
+  },
+  {
+   "id": "l05_bl_chair_orbit",
+   "line": 5,
+   "setup": "orbit behind the seated wearer to reveal the two straps holding the lean",
+   "glb": [
+    "assets/sitka_chair.glb"
+   ],
+   "world": "hdri",
+   "hdri": "assets/cape_hill_4k.exr",
+   "camera": {
+    "move": "orbit",
+    "start_deg": 120,
+    "end_deg": 170,
+    "elev_deg": 12,
+    "lens": 40,
+    "frame_fill": 0.75
+   },
+   "frames": 90,
+   "res": [
+    1920,
+    1080
+   ],
+   "engine": "EEVEE",
+   "samples": 32,
+   "hdri_rot": 200
+  },
+  {
+   "id": "l08_bl_stoop_crane",
+   "line": 8,
+   "setup": "crane up the back of the stooping wearer to the motor and lift leaf",
+   "glb": [
+    "assets/sitka_stoop.glb"
+   ],
+   "world": "studio",
+   "hdri": "assets/studio_small_09_2k.exr",
+   "camera": {
+    "move": "crane",
+    "start_deg": 160,
+    "elev_deg": 10,
+    "lens": 45,
+    "amount": 0.3,
+    "frame_fill": 0.8
+   },
+   "frames": 90,
+   "res": [
+    1920,
+    1080
+   ],
+   "engine": "EEVEE",
+   "samples": 32
+  },
+  {
+   "id": "l11_bl_run_pull",
+   "line": 11,
+   "setup": "pull back from the running wearer on the bluff: the invitation",
+   "glb": [
+    "assets/sitka_run.glb"
+   ],
+   "world": "hdri",
+   "hdri": "assets/cliffside_4k.exr",
+   "camera": {
+    "move": "pull",
+    "start_deg": 70,
+    "elev_deg": 5,
+    "lens": 40,
+    "amount": 0.25,
+    "frame_fill": 0.7
+   },
+   "frames": 90,
+   "res": [
+    1920,
+    1080
+   ],
+   "engine": "EEVEE",
+   "samples": 32,
+   "hdri_rot": 90
+  }
+ ],
+ "i2v": [],
+ "extra_cues": [],
+ "youtube": {
+  "title": "Sitka: an open-source exoskeleton that works with your body",
+  "tags": [
+   "exoskeleton",
+   "open source",
+   "3D printing",
+   "wearable",
+   "biomechanics",
+   "Sitka",
+   "DIY",
+   "chairless chair"
+  ],
+  "category": "Science & Technology",
+  "description": "Sitka is an open-source exoskeleton that works with your body instead of fighting it. Your bones carry the weight; springs, clutches and cable tendons do what your muscles do, and one small motor helps only where you need it.\n\nThe numbers (counted part by part in the parts list, not guessed):\n- Seat + back starter kit: 6.31 kg (about 14 lb). About $1,925 a set in a batch of 10 (estimate), $2,671 for the first one-off build.\n- Full body (hips, ankles, shoulders, one motor): 10.25 kg, $5,049 for the first build.\n- About 175 printer hours for the whole body on a Bambu X1C / P1S class printer.\nThese are design targets, not yet measured on a prototype.\n\nEverything is open: the CAD, the math, every part with its price.\nCode, CAD and docs: https://github.com/nicedreamzapp/sitka\nParts list and cost: https://github.com/nicedreamzapp/sitka/blob/main/PARTS_LIST.md\n\nFootage is rendered from the real CAD in Blender. The wearer is a digital human (MakeHuman / MPFB 2, CC0) driven by real motion capture.\n\nCredits\nMotion capture: CMU Graphics Lab Motion Capture Database, http://mocap.cs.cmu.edu/ (walk 35_01, run 35_17, sit and stand 86_09, stoop lift 115_01, stairs 13_35). The data used in this project was obtained from mocap.cs.cmu.edu. The database was created with funding from NSF EIA-0196217.\nRunning shoes by punkduck (MakeHuman community), CC-BY 4.0.\nHDRIs and textures: Poly Haven (CC0).\nMusic: Star Jumps Coach (instrumental), made with Song Forge, from Body Movin'.\n\nCome build one with us.",
+  "thumb_text": "WORKS WITH YOUR BODY",
+  "chapters": [
+   {
+    "line": 1,
+    "title": "What Sitka is"
+   },
+   {
+    "line": 3,
+    "title": "Bones, springs and tendons: sit anywhere"
+   },
+   {
+    "line": 6,
+    "title": "Lift, walk and run"
+   },
+   {
+    "line": 8,
+    "title": "Smart clutches and one small motor"
+   },
+   {
+    "line": 9,
+    "title": "The kit: weight and cost"
+   },
+   {
+    "line": 10,
+    "title": "3D printed, priced, open"
+   }
+  ]
+ },
+ "gates": {
+  "lufs": -16.0,
+  "lufs_tol": 1.0,
+  "true_peak_max": -1.0,
+  "design_votes": 3
+ }
+}
