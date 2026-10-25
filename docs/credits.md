@@ -7,7 +7,7 @@ description: The open models and tools Story Forge is built on (FLUX, LTX-Video,
 
 Story Forge is orchestration code. The models that draw, animate, speak, score and judge are
 other people's work, and none of it is claimed here. Matt Macosko designed and built the
-pipeline code in this repo; the README credits the stories to "Matt Macosko + Claude".
+pipeline code in this repo and wrote the stories.
 
 ## Listed in CREDITS.md
 

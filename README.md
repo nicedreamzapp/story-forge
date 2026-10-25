@@ -353,7 +353,7 @@ Full credits and licenses → [CREDITS.md](CREDITS.md)
 
 🐛 Something broken? [Open an issue](https://github.com/nicedreamzapp/story-forge/issues/new) with your Mac chip, RAM, and the stage that failed.
 
-*Story by Matt Macosko + Claude · made on one MacBook Pro · zero cloud* ✨
+*Story by Matt Macosko · made on one MacBook Pro · zero cloud* ✨
 
 </div>
 
