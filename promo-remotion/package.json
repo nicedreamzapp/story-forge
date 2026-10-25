@@ -9,14 +9,17 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@remotion/cli": "4.0.537",
-    "@remotion/media-utils": "4.0.537",
+    "@remotion/cli": "4.0.538",
+    "@remotion/media-utils": "4.0.538",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "remotion": "4.0.537"
+    "remotion": "4.0.538"
   },
   "devDependencies": {
     "@types/react": "19.1.0",
     "typescript": "5.8.3"
+  },
+  "overrides": {
+    "zod": "^4.6.7"
   }
 }
