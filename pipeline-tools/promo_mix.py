@@ -190,6 +190,12 @@ def main() -> int:
     bed_len = duration(bed)
     bed_hit = float(mu["hit"]) if mu.get("hit") is not None else find_hit(bed, slam)
     off = bed_hit - slam          # seconds of bed skipped so its downbeat lands on the slam
+    if off + total > bed_len + 0.5 and bed_len > total + 0.5:
+        # 10/26 moonstone: the downbeat finder picked a hit near the bed's end, leaving ~4 s of music
+        # under a 29 s film and a silent mix (loudnorm measured -inf). Keep the whole film covered.
+        print(f"[mix] downbeat at {bed_hit:.1f}s leaves the film short of bed; using offset "
+              f"{bed_len - total - 0.5:.1f}s so the bed covers the whole film")
+        off = bed_len - total - 0.5
     if off + total > bed_len + 0.5:
         print(f"[mix] WARNING: the bed ({bed_len:.1f}s) runs out {off + total - bed_len:.1f}s before the film ends")
     gain = float(mu.get("gain", 0.55))

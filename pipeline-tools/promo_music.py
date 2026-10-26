@@ -83,8 +83,15 @@ def main() -> int:
         out.write_bytes(r.read())
     print(f"[music] saved {out.relative_to(film)} ({out.stat().st_size // 1024} KB) after {time.time() - t0:.0f}s")
     import mlx_whisper
-    text = mlx_whisper.transcribe(str(out), path_or_hf_repo=WHISPER_ID, language="en").get("text", "").strip()
-    words = [w for w in text.split() if w.strip(".,!?").lower() not in ("thank", "you", "thanks", "for", "watching")]
+    res = mlx_whisper.transcribe(str(out), path_or_hf_repo=WHISPER_ID, language="en")
+    text = res.get("text", "").strip()
+    # whisper invents words on instrumentals ("healthy healthy healthy...", "Mix Mix Psalm Psalm", 10/26).
+    # Real singing comes back as confident, non-repetitive segments: only those count, and it takes
+    # more than 3 DIFFERENT words to call it vocals.
+    real = " ".join(sg.get("text", "") for sg in res.get("segments", [])
+                    if sg.get("no_speech_prob", 0) < 0.5 and sg.get("compression_ratio", 0) < 2.2
+                    and sg.get("avg_logprob", 0) > -1.0)
+    words = {w.strip(".,!?").lower() for w in real.split()} - {"thank", "you", "thanks", "for", "watching", ""}
     vocal = len(words) > 3
     (out.parent / (out.stem + ".json")).write_text(json.dumps(
         {"style": style, "seconds": secs, "job": jid, "whisper": text, "vocals": vocal}, indent=1))

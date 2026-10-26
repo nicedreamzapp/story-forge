@@ -32,6 +32,12 @@ One `<file>.json` sidecar per take carries the same record.
 ```
 `source` is one of `blender-render` (primary for products), `cad`, `grok-image`, `gemini-image`, `chatgpt-edit`, `grok-video`, `chatgpt-image` (never for product geometry), `flux-img2img`, `ltx25`, `wan`, `still-kb` (a ken_burns move on a still), `manim`.
 
+Screen-only promos (software, no CAD, Matt 2026-10-26): `still-kb` setups that carry `"still": "refs/<file>.png"`
+count as one source per distinct still, so two pan/zooms over different real screenshots plus a third meet
+">= 2 sources". Make them with promo.json `"kb"` jobs (`id`, `line`, `setup`, `still`, `move`: push-in |
+pull-out | pan-left | pan-right | pan-down, `seconds`), rendered by promo_footage.py with ffmpeg (~1 GB, no
+model). Never LTX/i2v on the M5 while the Liquid model is loaded (10/26 OOM freeze).
+
 ## acquired/blender/<shot>/ (blender-render, the primary product source)
 `beauty_####.png` or `beauty.mp4`, `masks/<part>_####.png` (white = that part), `depth_####.exr`,
 and a provenance take like the browser ones plus `"glb"`, `"glb_sha256"`, `"camera"`, `"materials"`
