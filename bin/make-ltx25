@@ -67,7 +67,7 @@ def main() -> int:
     ap.add_argument("--hq", action="store_true", help="dev transformer + CFG two-stage (slower, no distilled shortcut)")
     ap.add_argument("--keep-audio", action="store_true", help="keep LTX's generated audio on a non-a2v clip")
     ap.add_argument("--low-ram", action="store_true", help="stream transformer blocks (slower, ~75%% less Metal peak)")
-    ap.add_argument("--gb", type=float, default=45.0, help="forge_guard lease size in GB")
+    ap.add_argument("--gb", type=float, default=82.0, help="forge_guard lease size in GB (real LTX-2.5 peak 81GB, measured 2026-10-26)")
     ap.add_argument("--static", action="store_true",
                     help="prepend the locked-off tripod wording (an explicit choice, never the default; frozen rule 31)")
     # accepted for CLI compatibility with make-video; no effect here
@@ -155,7 +155,17 @@ def main() -> int:
     except Exception:
         pass
     t0 = time.time()
-    with reserve(f"ltx25-{a.label}", gb):
+    # 2026-10-26 (M5 out-of-memory freeze): mem_client.reserve() runs the body even when the guard REFUSES, so an 81GB
+    # render started on a full box. With the real guard client, a refusal now stops the render; "no guard" still proceeds.
+    _rx = None
+    if getattr(reserve, "__name__", "") == "reserve":   # the real mem_client.reserve, not a nullcontext stand-in
+        try:
+            from mem_client import reserve_ex as _rx  # noqa: E402
+        except Exception:
+            _rx = None
+    with (_rx(f"ltx25-{a.label}", gb) if _rx else reserve(f"ltx25-{a.label}", gb)) as _got:
+        if _rx and _got[1] == "refused":
+            sys.exit(f"make-ltx25: memory guard refused {gb:.0f}GB for ltx25-{a.label} (not enough room), not rendering")
         t_lease = time.time() - t0
         t1 = time.time()
         r = subprocess.run(cmd, capture_output=True, text=True)
