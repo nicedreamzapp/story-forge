@@ -11,6 +11,8 @@ Sources, in order of trust (frozen rule 28, Matt 2026-10-22):
      "seconds": 5, "res": "832x480", "static": false} through bin/make-ltx25 (LTX-2.5 on the M5;
      the prompt names an action or a motivated camera move, frozen rule 31). Out:
      acquired/<id>_1.mp4.
+  2b. kb still moves (software/screenshots): promo.json "kb" jobs, ffmpeg pan/zoom over a real still,
+     pixel-exact (see kb_job). Out: acquired/<id>_1.mp4, backend still-kb.
   3. Browser takes are NOT made here. bin/browser-acquire is a separate, optional, manual step
      (Matt's Brave on the mini; refs[] required; ChatGPT never for photoreal product shots).
 Every take gets a record in acquired/provenance.json and a <file>.json sidecar (SCHEMAS.md), so
@@ -146,6 +148,66 @@ def i2v_job(film: Path, job: dict, force: bool) -> bool:
     return True
 
 
+KB_MOVES = {   # zoompan expressions over the shot's frames (n = frame index, N = frame count)
+    "push-in":   ("1+0.18*on/{N}", "iw/2-(iw/zoom/2)", "ih/2-(ih/zoom/2)"),
+    "pull-out":  ("1.18-0.18*on/{N}", "iw/2-(iw/zoom/2)", "ih/2-(ih/zoom/2)"),
+    "pan-right": ("1.15", "(iw-iw/zoom)*on/{N}", "ih/2-(ih/zoom/2)"),
+    "pan-left":  ("1.15", "(iw-iw/zoom)*(1-on/{N})", "ih/2-(ih/zoom/2)"),
+    "pan-down":  ("1.15", "iw/2-(iw/zoom/2)", "(ih-ih/zoom)*on/{N}"),
+}
+
+
+def kb_job(film: Path, job: dict, force: bool) -> bool:
+    """A pan/zoom over a real still (screenshots of software, photos): the "still-kb" source. 10/26: a
+    software promo has no CAD to render and i2v warps UI text, so the stills move with ffmpeg instead,
+    pixel-exact. promo.json "kb" jobs {"id", "line", "setup", "still", "move": push-in|pull-out|
+    pan-left|pan-right|pan-down, "seconds": 5}. Out: acquired/<id>_1.mp4 at 1920x1080@30."""
+    jid = job["id"]
+    dst = film / "acquired" / f"{jid}_1.mp4"
+    # 10/30 ladder: "up to date" used to mean only "the file exists", so changing a job's seconds/move/still
+    # never re-rendered (Liquid set 8 s per move and the gate kept counting the old 1.3 s clips). A clip is up
+    # to date only when its sidecar records the same settings and the file is a real video.
+    sig = json.dumps({k: job.get(k) for k in ("still", "move", "seconds")}, sort_keys=True)
+    side = dst.with_name(dst.name + ".json")
+    if dst.exists() and not force:
+        try:
+            old_sig = json.loads(side.read_text()).get("kb_sig")
+        except Exception:
+            old_sig = None
+        if old_sig == sig and dst.stat().st_size > 10000:
+            print(f"  {jid}: up to date ({dst.relative_to(film)})")
+            return True
+        print(f"  {jid}: settings changed or clip broken since the last render, re-rendering")
+    still = film / job["still"]
+    if not still.exists():
+        print(f"  {jid}: kb FAILED: missing still {job['still']} (copy it into the project first)")
+        return False
+    move = job.get("move", "push-in")
+    if move not in KB_MOVES:
+        print(f"  {jid}: kb FAILED: move '{move}' is not one of {', '.join(KB_MOVES)}")
+        return False
+    n = int(round(float(job.get("seconds", 5)) * 30))
+    z, x, y = (e.replace("{N}", str(n)) for e in KB_MOVES[move])
+    # fit the still into 16:9 on a dark ground first, upscaled 2x so the zoom stays sharp
+    vf = ("scale=3840:2160:force_original_aspect_ratio=decrease,pad=3840:2160:(ow-iw)/2:(oh-ih)/2:color=0x0b0d12,"
+          f"zoompan=z='{z}':x='{x}':y='{y}':d={n}:s=1920x1080:fps=30,format=yuv420p")
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    t0 = time.time()
+    r = subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-loop", "1", "-i", str(still), "-vf", vf,
+                        "-frames:v", str(n), "-c:v", "libx264", "-crf", "14", str(dst)], capture_output=True, text=True)
+    if r.returncode != 0 or not dst.exists():
+        print(f"  {jid}: kb FAILED: {r.stderr.strip()[-300:]}")
+        return False
+    record(film, {"file": str(dst.relative_to(film)), "id": jid, "n": 1, "line": job.get("line"),
+                  "setup": job.get("setup"), "backend": "still-kb", "tool": f"ffmpeg zoompan ({move})",
+                  "refs": [{"path": job["still"], "sha256": sha256(still)}],
+                  "sha256": sha256(dst), "bytes": dst.stat().st_size,
+                  "created": time.strftime("%Y-%m-%dT%H:%M:%S"), "gen_secs": round(time.time() - t0),
+                  "kb_sig": sig})
+    print(f"  {jid}: OK {dst.relative_to(film)} ({move})")
+    return True
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("film")
@@ -157,8 +219,9 @@ def main() -> int:
     cfg = load_promo(film)
     shots = [s for s in cfg.get("blender", []) if not a.only or s["id"] in a.only]
     jobs = [j for j in cfg.get("i2v", []) if not a.only or j["id"] in a.only]
-    if not shots and not jobs:
-        print("[footage] promo.json lists no blender shots or i2v jobs; nothing to render")
+    kbs = [j for j in cfg.get("kb", []) if not a.only or j["id"] in a.only]
+    if not shots and not jobs and not kbs:
+        print("[footage] promo.json lists no blender shots, i2v or kb jobs; nothing to render")
         return 0
     busy, why = song_forge_busy()
     if busy:
@@ -167,9 +230,9 @@ def main() -> int:
     if subprocess.run([str(SF / "bin" / "mem-gate"), f"promo_footage {film.name}"]).returncode != 0:
         print("[footage] memory gate refused; not rendering", file=sys.stderr)
         return 2
-    print(f"[footage] {len(shots)} blender shot(s), {len(jobs)} i2v job(s); Song Forge {why}")
+    print(f"[footage] {len(shots)} blender shot(s), {len(jobs)} i2v job(s), {len(kbs)} kb still move(s); Song Forge {why}")
     ok = all([blender_shot(film, s, cfg, a.preview, a.force) for s in shots] +
-             [i2v_job(film, j, a.force) for j in jobs])
+             [i2v_job(film, j, a.force) for j in jobs] + [kb_job(film, j, a.force) for j in kbs])
     return 0 if ok else 1
 
 

@@ -208,6 +208,12 @@ def main() -> int:
     a = ap.parse_args()
     film = Path(a.film).resolve()
     if not film.is_dir():
+        # 10/26: agents launch from inside the project or anywhere else; "projects/<film>" and a bare
+        # "<film>" both mean the folder under story-forge/projects
+        alt = Path(__file__).resolve().parent.parent / "projects" / Path(a.film).name
+        if alt.is_dir():
+            film = alt
+    if not film.is_dir():
         print(f"make-promo: no project folder {film}", file=sys.stderr)
         return 2
     fmt = (film / "FORMAT").read_text().strip() if (film / "FORMAT").exists() else "film"

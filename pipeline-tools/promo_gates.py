@@ -170,6 +170,13 @@ def main() -> int:
         add("ending", "FAIL", "no end card in edl.json (promo.json endcard.dur > 0)")
     else:
         slam = float(ec["rec_in"])
+        # 10/30 ladder: whisper hears "Thank you." in an instrumental tail (it was in final/_music.wav, not the voice
+        # stem), which failed both ending gates on a film whose last scripted word landed fine. A trailing run of the
+        # classic hallucination words after the voice is done is not narration.
+        _HALLUC = {"thank", "you", "thanks", "for", "watching", "bye", "subscribe"}
+        hw = list(hw)
+        while hw and norm_words(hw[-1]["w"]) and all(t in _HALLUC for t in norm_words(hw[-1]["w"])):
+            hw.pop()
         last_heard = max((h["e"] for h in hw), default=0.0)
         add("slam after last word", "PASS" if slam >= last_heard - 0.03 else "FAIL",
             f"last heard word ends {last_heard:.2f}s, slam {slam:.2f}s ({(slam - last_heard) * 1000:+.0f} ms)")
@@ -178,6 +185,8 @@ def main() -> int:
         want = norm_words(last_line)[-3:]
         have = norm_words(tail_txt)
         ok_tail = any(have[i:i + len(want)] == want for i in range(len(have)))
+        # 10/30: "story forge page" vs whisper's "StoryForge page": compare with the spaces taken out too
+        ok_tail = ok_tail or ("".join(want) in "".join(have))
         add("last words heard", "PASS" if ok_tail else "FAIL",
             f"want '{' '.join(want)}' in the last seconds; heard '{tail_txt[-80:]}'")
         import soundfile as sf

@@ -109,7 +109,7 @@ def norm_words(text: str) -> list[str]:
     t = re.sub(r"(\d)%", r"\1 percent", t)
     t = re.sub(r"(\d),(\d{3})", r"\1\2", t)
     t = re.sub(r"\d+", lambda m: " " + _say_int(int(m.group(0))) + " ", t)
-    t = t.replace("-", " ")
+    t = re.sub(r"[-\u2010-\u2015]", " ", t)  # hyphens AND en/em dashes: "hardware—zero" is two words (10/26)
     t = re.sub(r"\band\b", " and ", t)
     return [w for w in (re.sub(r"[^a-z0-9']", "", w).strip("'") for w in t.split()) if w and w != "and"]
 

@@ -34,6 +34,10 @@ def lint(cov: dict) -> tuple[bool, list]:
         su = ln.get("setups") or []
         srcs = {s.get("source") for s in su}
         bad_src = sorted(str(s) for s in srcs if s not in SOURCES)
+        # screen-only promos (software, no CAD; Matt OK'd 10/26 after the LTX OOM freeze): pan/zooms over
+        # DIFFERENT real screenshots count as different sources, keyed by the setup's "still"
+        srcs = {f"still-kb:{s['still']}" if s.get("source") == "still-kb" and s.get("still") else s.get("source")
+                for s in su}
         why = []
         if len(su) < MIN_SETUPS:
             why.append(f"{len(su)} setups (< {MIN_SETUPS})")

@@ -83,13 +83,25 @@ def main() -> int:
         out.write_bytes(r.read())
     print(f"[music] saved {out.relative_to(film)} ({out.stat().st_size // 1024} KB) after {time.time() - t0:.0f}s")
     import mlx_whisper
-    text = mlx_whisper.transcribe(str(out), path_or_hf_repo=WHISPER_ID, language="en").get("text", "").strip()
-    words = [w for w in text.split() if w.strip(".,!?").lower() not in ("thank", "you", "thanks", "for", "watching")]
+    res = mlx_whisper.transcribe(str(out), path_or_hf_repo=WHISPER_ID, language="en")
+    text = res.get("text", "").strip()
+    # whisper invents words on instrumentals ("healthy healthy healthy...", "Mix Mix Psalm Psalm", 10/26).
+    # Real singing comes back as confident, non-repetitive segments: only those count, and it takes
+    # more than 3 DIFFERENT words to call it vocals.
+    real = " ".join(sg.get("text", "") for sg in res.get("segments", [])
+                    if sg.get("no_speech_prob", 0) < 0.5 and sg.get("compression_ratio", 0) < 2.2
+                    and sg.get("avg_logprob", 0) > -1.0)
+    words = {w.strip(".,!?").lower() for w in real.split()} - {"thank", "you", "thanks", "for", "watching", ""}
     vocal = len(words) > 3
     (out.parent / (out.stem + ".json")).write_text(json.dumps(
         {"style": style, "seconds": secs, "job": jid, "whisper": text, "vocals": vocal}, indent=1))
     if vocal:
-        print(f"[music] VOCALS in the bed (whisper: '{text[:120]}'); render another (--force)", file=sys.stderr)
+        # 10/30 ladder: the rejected bed used to stay at music/bed.wav, so the next make-promo saw "bed exists",
+        # skipped this check and mixed the vocal bed into the film (Gemma's 10:50 cut). Move it aside.
+        rej = out.with_name(out.stem + ".rejected" + out.suffix)
+        out.replace(rej)
+        print(f"[music] VOCALS in the bed (whisper: '{text[:120]}'); moved it to {rej.name}. Run the mix stage "
+              f"again and a new bed is rendered: bin/make-promo <film> --from mix", file=sys.stderr)
         return 1
     return 0
 
