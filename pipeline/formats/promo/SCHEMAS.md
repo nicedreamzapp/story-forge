@@ -60,6 +60,9 @@ printer, the kit laid out flat, a parts table: takes the full-body facts can onl
 (`"pass"`, `"fail"`, `"unchecked"`).
 
 ## design.json (the physical-accuracy contract, 03_coverage)
+
+**Screen-only promo (screenshots of software, no physical product): delete design.json.** `design_check` then marks every take n/a ("no product to check") and the coverage gate counts them; invented facts about a screenshot fail the VL judge (10/30 ladder: two models stalled here).
+
 ```json
 {"product": "Sitka exoskeleton",
  "references": {"side": "footage/ref_side.png", "front": "footage/ref_front.png", "back": "footage/ref_back.png"},

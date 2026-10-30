@@ -164,9 +164,20 @@ def kb_job(film: Path, job: dict, force: bool) -> bool:
     pan-left|pan-right|pan-down, "seconds": 5}. Out: acquired/<id>_1.mp4 at 1920x1080@30."""
     jid = job["id"]
     dst = film / "acquired" / f"{jid}_1.mp4"
+    # 10/30 ladder: "up to date" used to mean only "the file exists", so changing a job's seconds/move/still
+    # never re-rendered (Liquid set 8 s per move and the gate kept counting the old 1.3 s clips). A clip is up
+    # to date only when its sidecar records the same settings and the file is a real video.
+    sig = json.dumps({k: job.get(k) for k in ("still", "move", "seconds")}, sort_keys=True)
+    side = dst.with_name(dst.name + ".json")
     if dst.exists() and not force:
-        print(f"  {jid}: up to date ({dst.relative_to(film)})")
-        return True
+        try:
+            old_sig = json.loads(side.read_text()).get("kb_sig")
+        except Exception:
+            old_sig = None
+        if old_sig == sig and dst.stat().st_size > 10000:
+            print(f"  {jid}: up to date ({dst.relative_to(film)})")
+            return True
+        print(f"  {jid}: settings changed or clip broken since the last render, re-rendering")
     still = film / job["still"]
     if not still.exists():
         print(f"  {jid}: kb FAILED: missing still {job['still']} (copy it into the project first)")
@@ -191,7 +202,8 @@ def kb_job(film: Path, job: dict, force: bool) -> bool:
                   "setup": job.get("setup"), "backend": "still-kb", "tool": f"ffmpeg zoompan ({move})",
                   "refs": [{"path": job["still"], "sha256": sha256(still)}],
                   "sha256": sha256(dst), "bytes": dst.stat().st_size,
-                  "created": time.strftime("%Y-%m-%dT%H:%M:%S"), "gen_secs": round(time.time() - t0)})
+                  "created": time.strftime("%Y-%m-%dT%H:%M:%S"), "gen_secs": round(time.time() - t0),
+                  "kb_sig": sig})
     print(f"  {jid}: OK {dst.relative_to(film)} ({move})")
     return True
 

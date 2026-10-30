@@ -425,7 +425,25 @@ def _evict_picture_eyes() -> float:
 
 
 PICTURE_EYES_URL = os.environ.get("PE_URL", "http://127.0.0.1:8181")
-EVICTORS = (_evict_comfy_cache, _evict_picture_eyes)
+def _evict_brain() -> float:
+    """SWAP MODE (10/30): a local brain model driving this film (brainswap / the Liquid tap on :8795) steps out of
+    memory while a heavy stage runs; its next request waits for the stage, then it reloads and carries on.
+    Only an IDLE brain yields (the tap refuses mid-answer). Returns 1 when it unloaded."""
+    import urllib.request
+    try:
+        req = urllib.request.Request("http://127.0.0.1:8795/liquid/stop?if_idle=1", data=b"{}", method="POST",
+                                     headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=90) as r:
+            out = r.read().decode()
+        if json.loads(out).get("stopped") is True:
+            print("[dam] the brain model stepped out of memory for this stage (swap mode)", flush=True)
+            return 1.0
+    except Exception:
+        pass
+    return 0.0
+
+
+EVICTORS = (_evict_brain, _evict_comfy_cache, _evict_picture_eyes)
 
 
 def prepare_for_stage(need_gb: float, label: str = "stage") -> None:

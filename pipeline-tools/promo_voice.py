@@ -108,7 +108,11 @@ def main() -> int:
     v = cfg["voice"]
     lines = parse_script(film / "script.md") if (film / "script.md").exists() else []
     if not lines:
-        print("[voice] script.md has no numbered lines", file=sys.stderr)
+        # 10/30 ladder: say the format the parser wants, so any model can fix it from the error alone
+        print("[voice] script.md has no numbered lines. Write each voiceover line as a numbered list item, "
+              "one per line, exactly like:\n1. First line of narration.\n2. Second line.\n"
+              "(an optional [shot note] may follow the number: 1. [hero] First line.) "
+              "See projects/sitka_demo/script.md.", file=sys.stderr)
         return 2
     state_p = film / "vo" / "voice.json"
     state = {ln["line"]: ln for ln in (json.loads(state_p.read_text()).get("lines", []) if state_p.exists() else [])}

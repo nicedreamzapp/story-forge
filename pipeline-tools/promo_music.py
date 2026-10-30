@@ -96,7 +96,12 @@ def main() -> int:
     (out.parent / (out.stem + ".json")).write_text(json.dumps(
         {"style": style, "seconds": secs, "job": jid, "whisper": text, "vocals": vocal}, indent=1))
     if vocal:
-        print(f"[music] VOCALS in the bed (whisper: '{text[:120]}'); render another (--force)", file=sys.stderr)
+        # 10/30 ladder: the rejected bed used to stay at music/bed.wav, so the next make-promo saw "bed exists",
+        # skipped this check and mixed the vocal bed into the film (Gemma's 10:50 cut). Move it aside.
+        rej = out.with_name(out.stem + ".rejected" + out.suffix)
+        out.replace(rej)
+        print(f"[music] VOCALS in the bed (whisper: '{text[:120]}'); moved it to {rej.name}. Run the mix stage "
+              f"again and a new bed is rendered: bin/make-promo <film> --from mix", file=sys.stderr)
         return 1
     return 0
 

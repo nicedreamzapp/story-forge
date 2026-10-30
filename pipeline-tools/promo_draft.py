@@ -33,8 +33,17 @@ TRUST = ["blender-render", "cad", "real", "ltx25", "wan", "flux-img2img", "manim
 def draft_selects(film: Path) -> int:
     out = film / "selects.json"
     if out.exists():
-        print("[draft] selects.json exists; left alone")
-        return 0
+        # 10/30 ladder: a draft nobody edited goes stale when the takes change (Gemma's was drafted while every take
+        # failed the design check, so 3 lines had 0 takes forever). An untouched draft is redrafted; a selects.json
+        # the agent wrote or edited (no "draft": true) is left alone as before.
+        try:
+            still_draft = json.loads(out.read_text()).get("draft") is True
+        except Exception:
+            still_draft = False
+        if not still_draft:
+            print("[draft] selects.json exists; left alone")
+            return 0
+        print("[draft] selects.json is still the untouched draft; redrafting it from the current manifest")
     try:
         man = json.loads((film / "manifest.json").read_text())
         cov = json.loads((film / "coverage.json").read_text())
