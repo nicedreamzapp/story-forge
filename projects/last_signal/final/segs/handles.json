@@ -1,0 +1,290 @@
+[
+ {
+  "seg": "00_c01_asteroids.mp4",
+  "pre": 4,
+  "n": 36,
+  "post": 4
+ },
+ {
+  "seg": "01_c02a_cockpit.mp4",
+  "pre": 4,
+  "n": 24,
+  "post": 4
+ },
+ {
+  "seg": "02_c02b_lever.mp4",
+  "pre": 4,
+  "n": 22,
+  "post": 4
+ },
+ {
+  "seg": "03_c01b_asteroids_close.mp4",
+  "pre": 4,
+  "n": 22,
+  "post": 4
+ },
+ {
+  "seg": "04_c03_dive.mp4",
+  "pre": 4,
+  "n": 36,
+  "post": 4
+ },
+ {
+  "seg": "05_c03b_dive_clouds.mp4",
+  "pre": 4,
+  "n": 29,
+  "post": 4
+ },
+ {
+  "seg": "06_c04_arrival.mp4",
+  "pre": 4,
+  "n": 106,
+  "post": 4
+ },
+ {
+  "seg": "07_c05_claws.mp4",
+  "pre": 4,
+  "n": 29,
+  "post": 4
+ },
+ {
+  "seg": "08_c06_monolith_reveal.mp4",
+  "pre": 4,
+  "n": 38,
+  "post": 4
+ },
+ {
+  "seg": "09_c06b_crew_walk.mp4",
+  "pre": 4,
+  "n": 31,
+  "post": 4
+ },
+ {
+  "seg": "10_c07_handwriting.mp4",
+  "pre": 4,
+  "n": 48,
+  "post": 4
+ },
+ {
+  "seg": "11_c07b_captain_face.mp4",
+  "pre": 4,
+  "n": 34,
+  "post": 4
+ },
+ {
+  "seg": "12_c08_lightwave.mp4",
+  "pre": 4,
+  "n": 62,
+  "post": 4
+ },
+ {
+  "seg": "13_c09_welcome.mp4",
+  "pre": 4,
+  "n": 91,
+  "post": 1
+ },
+ {
+  "seg": "14_c10_second_sun.mp4",
+  "pre": 4,
+  "n": 24,
+  "post": 4
+ },
+ {
+  "seg": "15_c11_yanked.mp4",
+  "pre": 1,
+  "n": 22,
+  "post": 4
+ },
+ {
+  "seg": "16_c12_engines.mp4",
+  "pre": 2,
+  "n": 22,
+  "post": 4
+ },
+ {
+  "seg": "17_c13_mountain.mp4",
+  "pre": 4,
+  "n": 24,
+  "post": 4
+ },
+ {
+  "seg": "18_c14_boots.mp4",
+  "pre": 4,
+  "n": 17,
+  "post": 4
+ },
+ {
+  "seg": "19_c14b_sprint.mp4",
+  "pre": 4,
+  "n": 17,
+  "post": 4
+ },
+ {
+  "seg": "20_c15_grab.mp4",
+  "pre": 4,
+  "n": 22,
+  "post": 4
+ },
+ {
+  "seg": "21_c11b_yanked.mp4",
+  "pre": 2,
+  "n": 14,
+  "post": 4
+ },
+ {
+  "seg": "22_c12b_engines.mp4",
+  "pre": 4,
+  "n": 14,
+  "post": 4
+ },
+ {
+  "seg": "23_c13b_mountain.mp4",
+  "pre": 4,
+  "n": 17,
+  "post": 4
+ },
+ {
+  "seg": "24_c14c_boots.mp4",
+  "pre": 4,
+  "n": 12,
+  "post": 4
+ },
+ {
+  "seg": "25_c15b_grab.mp4",
+  "pre": 4,
+  "n": 14,
+  "post": 4
+ },
+ {
+  "seg": "26_c15c_sprint.mp4",
+  "pre": 4,
+  "n": 12,
+  "post": 4
+ },
+ {
+  "seg": "27_c10b_second_sun.mp4",
+  "pre": 4,
+  "n": 12,
+  "post": 4
+ },
+ {
+  "seg": "28_c16_00_light.mp4",
+  "pre": 4,
+  "n": 11,
+  "post": 4
+ },
+ {
+  "seg": "29_c16_01_eye.mp4",
+  "pre": 4,
+  "n": 10,
+  "post": 4
+ },
+ {
+  "seg": "30_c16_02_claw.mp4",
+  "pre": 4,
+  "n": 10,
+  "post": 4
+ },
+ {
+  "seg": "31_c16_03_fire.mp4",
+  "pre": 4,
+  "n": 9,
+  "post": 4
+ },
+ {
+  "seg": "32_c16_04_monolith.mp4",
+  "pre": 4,
+  "n": 9,
+  "post": 4
+ },
+ {
+  "seg": "33_c16_05_scream.mp4",
+  "pre": 4,
+  "n": 8,
+  "post": 4
+ },
+ {
+  "seg": "34_c16_06_eye.mp4",
+  "pre": 4,
+  "n": 8,
+  "post": 4
+ },
+ {
+  "seg": "35_c16_07_mountain.mp4",
+  "pre": 4,
+  "n": 7,
+  "post": 4
+ },
+ {
+  "seg": "36_c16_08_claws.mp4",
+  "pre": 4,
+  "n": 7,
+  "post": 4
+ },
+ {
+  "seg": "37_c16_09_scream.mp4",
+  "pre": 4,
+  "n": 6,
+  "post": 4
+ },
+ {
+  "seg": "38_c16_10_fire.mp4",
+  "pre": 4,
+  "n": 6,
+  "post": 4
+ },
+ {
+  "seg": "39_c16_11_eye.mp4",
+  "pre": 4,
+  "n": 6,
+  "post": 4
+ },
+ {
+  "seg": "40_c16_12_light.mp4",
+  "pre": 4,
+  "n": 5,
+  "post": 4
+ },
+ {
+  "seg": "41_c16_13_monolith.mp4",
+  "pre": 4,
+  "n": 5,
+  "post": 4
+ },
+ {
+  "seg": "42_c16_14_mountain.mp4",
+  "pre": 4,
+  "n": 5,
+  "post": 4
+ },
+ {
+  "seg": "43_c16_15_scream.mp4",
+  "pre": 4,
+  "n": 5,
+  "post": 4
+ },
+ {
+  "seg": "44_c16_16_claw.mp4",
+  "pre": 4,
+  "n": 4,
+  "post": 4
+ },
+ {
+  "seg": "45_c16_17_eye.mp4",
+  "pre": 4,
+  "n": 4,
+  "post": 4
+ },
+ {
+  "seg": "46_c16_18_fire.mp4",
+  "pre": 4,
+  "n": 4,
+  "post": 4
+ },
+ {
+  "seg": "47_c16_19_scream.mp4",
+  "pre": 4,
+  "n": 4,
+  "post": 4
+ }
+]

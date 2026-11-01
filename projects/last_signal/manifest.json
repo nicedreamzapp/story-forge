@@ -1,0 +1,765 @@
+{
+ "_note": "Coverage + alternates for THE LAST SIGNAL (frozen rule 13 amended): every file here survives until Matt approves the film; unlisted = corpse.",
+ "previs": [
+  "clips/previs/R01_asteroids_t1.mp4",
+  "clips/previs/R02_cockpit_alarm_t1.mp4",
+  "clips/previs/R03_dive_t1.mp4",
+  "clips/previs/R04_arrival_t1.mp4",
+  "clips/previs/R05_claws_t1.mp4",
+  "clips/previs/R06_monolith_reveal_t1.mp4",
+  "clips/previs/R07_crew_walk_t1.mp4",
+  "clips/previs/R08_handwriting_glow_t1.mp4",
+  "clips/previs/R09_captain_face_t1.mp4",
+  "clips/previs/R10_lightwave_t1.mp4",
+  "clips/previs/R11_captain_welcome_t1.mp4",
+  "clips/previs/R12_second_sun_t1.mp4",
+  "clips/previs/R13_crewmate_yanked_t1.mp4",
+  "clips/previs/R14_engines_fire_t1.mp4",
+  "clips/previs/R15_mountain_shape_t1.mp4",
+  "clips/previs/R16_boots_crack_t1.mp4",
+  "clips/previs/R17_captain_sprint_t1.mp4",
+  "clips/previs/R18_ship_grab_t1.mp4",
+  "clips/previs/R19_giant_eye_t1.mp4",
+  "clips/previs/R20_crewmate_scream_t1.mp4"
+ ],
+ "takes": "clips/takes/*.mp4 (quality pass, appended as they finish; .done sidecars hold seed/time)",
+ "blender_motion": [
+  "ship/renders/anim_04_arrival.mp4",
+  "ship/renders/anim_15_liftoff.mp4"
+ ],
+ "previs_cut": "final/previs_cut.mp4",
+ "candidates": [
+  {
+   "cid": "hq_R01_asteroids_t1",
+   "file": "clips/takes/R01_asteroids_t1.mp4",
+   "line": 1,
+   "kind": "video",
+   "dur": 3.708,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R02_cockpit_alarm_t1",
+   "file": "clips/takes/R02_cockpit_alarm_t1.mp4",
+   "line": 1,
+   "kind": "video",
+   "dur": 3.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R02_cockpit_alarm_t2",
+   "file": "clips/takes/R02_cockpit_alarm_t2.mp4",
+   "line": 1,
+   "kind": "video",
+   "dur": 3.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R03_dive_t1",
+   "file": "clips/takes/R03_dive_t1.mp4",
+   "line": 1,
+   "kind": "video",
+   "dur": 3.708,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R04_arrival_t1",
+   "file": "clips/takes/R04_arrival_t1.mp4",
+   "line": 2,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R04_arrival_t2",
+   "file": "clips/takes/R04_arrival_t2.mp4",
+   "line": 2,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R05_claws_t1",
+   "file": "clips/takes/R05_claws_t1.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 2.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R06_monolith_reveal_t1",
+   "file": "clips/takes/R06_monolith_reveal_t1.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 2.375,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R06_monolith_reveal_t2",
+   "file": "clips/takes/R06_monolith_reveal_t2.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 2.375,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R06_monolith_reveal_t3",
+   "file": "clips/takes/R06_monolith_reveal_t3.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 2.375,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R07_crew_walk_t1",
+   "file": "clips/takes/R07_crew_walk_t1.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 2.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R08_handwriting_glow_t1",
+   "file": "clips/takes/R08_handwriting_glow_t1.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 2.708,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R08_handwriting_glow_t2",
+   "file": "clips/takes/R08_handwriting_glow_t2.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 2.708,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R08_handwriting_glow_t3",
+   "file": "clips/takes/R08_handwriting_glow_t3.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 2.708,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R09_captain_face_t1",
+   "file": "clips/takes/R09_captain_face_t1.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 2.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R09_captain_face_t2",
+   "file": "clips/takes/R09_captain_face_t2.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 2.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R10_lightwave_t1",
+   "file": "clips/takes/R10_lightwave_t1.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 3.708,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R10_lightwave_t2",
+   "file": "clips/takes/R10_lightwave_t2.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 3.708,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R10_lightwave_t3",
+   "file": "clips/takes/R10_lightwave_t3.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 3.708,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R11_captain_welcome_t1",
+   "file": "clips/takes/R11_captain_welcome_t1.mp4",
+   "line": 4,
+   "kind": "video",
+   "dur": 4.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R11_captain_welcome_t2",
+   "file": "clips/takes/R11_captain_welcome_t2.mp4",
+   "line": 4,
+   "kind": "video",
+   "dur": 4.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R12_second_sun_t1",
+   "file": "clips/takes/R12_second_sun_t1.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 3.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R13_crewmate_yanked_t1",
+   "file": "clips/takes/R13_crewmate_yanked_t1.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 2.375,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R13_crewmate_yanked_t2",
+   "file": "clips/takes/R13_crewmate_yanked_t2.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 2.375,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R14_engines_fire_t1",
+   "file": "clips/takes/R14_engines_fire_t1.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 3.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R15_mountain_shape_t1",
+   "file": "clips/takes/R15_mountain_shape_t1.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 3.375,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R15_mountain_shape_t2",
+   "file": "clips/takes/R15_mountain_shape_t2.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 3.375,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R15_mountain_shape_t3",
+   "file": "clips/takes/R15_mountain_shape_t3.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 3.375,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R16_boots_crack_t1",
+   "file": "clips/takes/R16_boots_crack_t1.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 2.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R17_captain_sprint_t1",
+   "file": "clips/takes/R17_captain_sprint_t1.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 2.375,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R17_captain_sprint_t2",
+   "file": "clips/takes/R17_captain_sprint_t2.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 2.375,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R18_ship_grab_t1",
+   "file": "clips/takes/R18_ship_grab_t1.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 3.375,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R18_ship_grab_t2",
+   "file": "clips/takes/R18_ship_grab_t2.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 3.375,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "hq_R18_ship_grab_t3",
+   "file": "clips/takes/R18_ship_grab_t3.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 3.375,
+   "origin": "coverage",
+   "source": "LTX-2.5 hq",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R01_asteroids_t1",
+   "file": "clips/previs/R01_asteroids_t1.mp4",
+   "line": 1,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R02_cockpit_alarm_t1",
+   "file": "clips/previs/R02_cockpit_alarm_t1.mp4",
+   "line": 1,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R03_dive_t1",
+   "file": "clips/previs/R03_dive_t1.mp4",
+   "line": 1,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R04_arrival_t1",
+   "file": "clips/previs/R04_arrival_t1.mp4",
+   "line": 2,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R05_claws_t1",
+   "file": "clips/previs/R05_claws_t1.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R06_monolith_reveal_t1",
+   "file": "clips/previs/R06_monolith_reveal_t1.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R07_crew_walk_t1",
+   "file": "clips/previs/R07_crew_walk_t1.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R08_handwriting_glow_t1",
+   "file": "clips/previs/R08_handwriting_glow_t1.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R09_captain_face_t1",
+   "file": "clips/previs/R09_captain_face_t1.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R10_lightwave_t1",
+   "file": "clips/previs/R10_lightwave_t1.mp4",
+   "line": 3,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R11_captain_welcome_t1",
+   "file": "clips/previs/R11_captain_welcome_t1.mp4",
+   "line": 4,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R12_second_sun_t1",
+   "file": "clips/previs/R12_second_sun_t1.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R13_crewmate_yanked_t1",
+   "file": "clips/previs/R13_crewmate_yanked_t1.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R14_engines_fire_t1",
+   "file": "clips/previs/R14_engines_fire_t1.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R15_mountain_shape_t1",
+   "file": "clips/previs/R15_mountain_shape_t1.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R16_boots_crack_t1",
+   "file": "clips/previs/R16_boots_crack_t1.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R17_captain_sprint_t1",
+   "file": "clips/previs/R17_captain_sprint_t1.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R18_ship_grab_t1",
+   "file": "clips/previs/R18_ship_grab_t1.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R19_giant_eye_t1",
+   "file": "clips/previs/R19_giant_eye_t1.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "previs_R20_crewmate_scream_t1",
+   "file": "clips/previs/R20_crewmate_scream_t1.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 5.042,
+   "origin": "coverage",
+   "source": "LTX-2.5 distilled previs",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "blender_anim_04_arrival",
+   "file": "ship/renders/anim_04_arrival.mp4",
+   "line": 2,
+   "kind": "video",
+   "dur": 4.0,
+   "origin": "coverage",
+   "source": "Blender Cycles camera move",
+   "checks": {
+    "design": "n/a"
+   }
+  },
+  {
+   "cid": "blender_anim_15_liftoff",
+   "file": "ship/renders/anim_15_liftoff.mp4",
+   "line": 5,
+   "kind": "video",
+   "dur": 3.0,
+   "origin": "coverage",
+   "source": "Blender Cycles camera move",
+   "checks": {
+    "design": "n/a"
+   }
+  }
+ ],
+ "characters": {
+  "captain": "woman in her 40s with a weathered lined face, hair pulled back, worn olive flight suit",
+  "crewmate": "man in his 30s with curly dark hair and a beard, armored grey spacesuit"
+ },
+ "scenes": [
+  {
+   "name": "cockpit",
+   "start": 1.5,
+   "end": 3.417
+  },
+  {
+   "name": "crew_walk",
+   "start": 14.25,
+   "end": 15.542
+  },
+  {
+   "name": "captain_face",
+   "start": 17.542,
+   "end": 18.958
+  },
+  {
+   "name": "welcome",
+   "start": 21.542,
+   "end": 25.333
+  },
+  {
+   "name": "yanked",
+   "start": 26.333,
+   "end": 27.25
+  },
+  {
+   "name": "sprint",
+   "start": 29.875,
+   "end": 30.583
+  }
+ ],
+ "lines": [
+  {
+   "t": 1.62,
+   "dur": 0.8,
+   "speaker": "ship computer",
+   "text": "Uncharted.",
+   "offscreen": true
+  },
+  {
+   "t": 22.09,
+   "dur": 1.6,
+   "speaker": "the planet",
+   "text": "Welcome back, Captain.",
+   "offscreen": true
+  },
+  {
+   "t": 42.0,
+   "dur": 1.2,
+   "speaker": "captain",
+   "text": "I've never been here.",
+   "offscreen": true
+  }
+ ],
+ "_film_qc_note": "characters/scenes/lines are film_qc's schema; candidates/previs/takes are the coverage record. All three lines are voice-over by design (ship AI, the planet, the captain's whisper over black)."
+}

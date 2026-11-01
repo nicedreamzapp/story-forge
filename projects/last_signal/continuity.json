@@ -1,0 +1,92 @@
+{
+ "_note": "Story-state facts for THE LAST SIGNAL. continuity_check.py votes on each (3 frames per shot). Add a rule whenever a viewer is confused. Rule ranges re-pointed to the final cut ids 2026-10-31 (strobe ids c16_NN_*).",
+ "rules": [
+  {
+   "id": "no_text_anywhere",
+   "question": "Is there any legible text, lettering or numbers painted or printed anywhere in this frame?",
+   "expect": "NO",
+   "from": "c01_asteroids",
+   "to": "c16_19_scream",
+   "_note": "the title card is excluded: its text is the point"
+  },
+  {
+   "id": "planet_sky_orange",
+   "from": "c04_arrival",
+   "to": "c16_19_scream",
+   "question": "Is the sky in this frame a clear blue daytime sky?",
+   "expect": "NO"
+  },
+  {
+   "id": "ground_black_glass",
+   "from": "c05_claws",
+   "to": "c16_19_scream",
+   "question": "Is the ground in this frame green grass, a road, or pale yellow desert sand?",
+   "expect": "NO"
+  },
+  {
+   "id": "ship_is_huge",
+   "shots": [
+    "c01_asteroids",
+    "c03_dive",
+    "c04_arrival",
+    "c05_claws",
+    "c12_engines",
+    "c15_grab"
+   ],
+   "question": "Does the spaceship or vehicle in this frame look small, like a fighter jet, car or small shuttle?",
+   "expect": "NO"
+  },
+  {
+   "id": "captain_is_a_woman",
+   "shots": [
+    "c02a_cockpit",
+    "c07b_captain_face",
+    "c09_welcome",
+    "c14b_sprint"
+   ],
+   "question": "Is the main person in this frame a woman?",
+   "expect": "YES"
+  },
+  {
+   "id": "crewmate_is_a_man",
+   "shots": [
+    "c11_yanked",
+    "c11b_yanked",
+    "c16_05_scream"
+   ],
+   "question": "Is the main person in this frame a man?",
+   "expect": "YES"
+  },
+  {
+   "id": "crewmate_gone_after_taken",
+   "from": "c12_engines",
+   "to": "c15c_sprint",
+   "question": "Are two people visible together in this frame?",
+   "expect": "NO"
+  },
+  {
+   "id": "monoliths_dark_before_touch",
+   "from": "c06_monolith_reveal",
+   "to": "c06b_crew_walk",
+   "question": "Are the stone monoliths in this frame glowing with bright teal light?",
+   "expect": "NO"
+  },
+  {
+   "id": "monoliths_lit_after_wave",
+   "shots": [
+    "c08_lightwave",
+    "c09_welcome"
+   ],
+   "question": "Are carved stone monoliths in this frame glowing with teal light?",
+   "expect": "YES"
+  },
+  {
+   "id": "nobody_smiles",
+   "shots": [
+    "*"
+   ],
+   "question": "Is any person in this frame smiling or laughing?",
+   "expect": "NO"
+  }
+ ]
+}

@@ -1,0 +1,232 @@
+[
+ {
+  "name": "arrival_rumble",
+  "prompt": "colossal spaceship descending overhead, deep thunderous engine rumble, roaring thrusters, wind blast and debris",
+  "seconds": 4.89,
+  "video": "projects/last_signal/sfx/src/arrival_rumble.mp4",
+  "out": "projects/last_signal/sfx/arrival_rumble.wav",
+  "seed": 7,
+  "negative": "music, speech, voice, talking, singing, melody",
+  "film_start": 7.0417
+ },
+ {
+  "name": "claws_impact",
+  "prompt": "massive metal landing claw slamming into black glass ground, huge heavy impact, glass shattering, shards scattering",
+  "seconds": 1.89,
+  "video": "projects/last_signal/sfx/src/claws_impact.mp4",
+  "out": "projects/last_signal/sfx/claws_impact.wav",
+  "seed": 7,
+  "negative": "music, speech, voice, talking, singing, melody",
+  "film_start": 11.4583
+ },
+ {
+  "name": "engines_explosion",
+  "prompt": "enormous explosion, blue fire roaring out of rocket engines, crackling sparks, violent blast",
+  "seconds": 2.94,
+  "video": "projects/last_signal/sfx/src/engines_explosion.mp4",
+  "out": "projects/last_signal/sfx/engines_explosion.wav",
+  "seed": 7,
+  "negative": "music, speech, voice, talking, singing, melody",
+  "film_start": 27.25
+ },
+ {
+  "name": "lightwave_whoosh",
+  "prompt": "deep resonant energy whoosh sweeping outward, rising electric hum, powerful wave of light",
+  "seconds": 3.31,
+  "video": "projects/last_signal/sfx/src/lightwave_whoosh.mp4",
+  "out": "projects/last_signal/sfx/lightwave_whoosh.wav",
+  "seed": 7,
+  "negative": "music, speech, voice, talking, singing, melody",
+  "film_start": 18.9583
+ },
+ {
+  "name": "creature_rise",
+  "prompt": "colossal stone giant rising, grinding rock, deep earth rumble, monstrous low groan",
+  "seconds": 3.08,
+  "video": "projects/last_signal/sfx/src/creature_rise.mp4",
+  "out": "projects/last_signal/sfx/creature_rise.wav",
+  "seed": 7,
+  "negative": "music, speech, voice, talking, singing, melody",
+  "film_start": 28.1667
+ },
+ {
+  "name": "ship_grab",
+  "prompt": "giant metal starship hull crushed and groaning, electric crackling, huge impact, metal screeching",
+  "seconds": 3.08,
+  "video": "projects/last_signal/sfx/src/ship_grab.mp4",
+  "out": "projects/last_signal/sfx/ship_grab.wav",
+  "seed": 7,
+  "negative": "music, speech, voice, talking, singing, melody",
+  "film_start": 30.5833
+ },
+ {
+  "name": "glass_crack",
+  "prompt": "boots running on glass, glass cracking and splintering loudly under each footstep",
+  "seconds": 1.84,
+  "video": "projects/last_signal/sfx/src/glass_crack.mp4",
+  "out": "projects/last_signal/sfx/glass_crack.wav",
+  "seed": 7,
+  "negative": "music, speech, voice, talking, singing, melody",
+  "film_start": 29.1667
+ },
+ {
+  "name": "asteroids_flyby",
+  "prompt": "spaceship roaring toward camera, rocks whooshing past, deep engine rumble",
+  "seconds": 4.64,
+  "video": "projects/last_signal/sfx/src/asteroids_flyby.mp4",
+  "out": "projects/last_signal/sfx/asteroids_flyby.wav",
+  "seed": 7,
+  "negative": "music, speech, voice, talking, singing, melody",
+  "film_start": 0.0
+ },
+ {
+  "name": "cockpit_alarm",
+  "prompt": "spaceship cockpit alarm klaxon blaring, rattling cabin, electrical sparks",
+  "seconds": 2.84,
+  "video": "projects/last_signal/sfx/src/cockpit_alarm.mp4",
+  "out": "projects/last_signal/sfx/cockpit_alarm.wav",
+  "seed": 7,
+  "negative": "music, speech, voice, talking, singing, melody",
+  "film_start": 1.5
+ },
+ {
+  "name": "dive_thunder",
+  "prompt": "thunder cracking, lightning strikes, howling storm wind, distant engine roar",
+  "seconds": 3.41,
+  "video": "projects/last_signal/sfx/src/dive_thunder.mp4",
+  "out": "projects/last_signal/sfx/dive_thunder.wav",
+  "seed": 7,
+  "negative": "music, speech, voice, talking, singing, melody",
+  "film_start": 4.3333
+ },
+ {
+  "name": "yanked",
+  "prompt": "violent whoosh, body dragged away through dust, sudden wind gust",
+  "seconds": 2.33,
+  "video": "projects/last_signal/sfx/src/yanked.mp4",
+  "out": "projects/last_signal/sfx/yanked.wav",
+  "seed": 7,
+  "negative": "music, speech, voice, talking, singing, melody",
+  "film_start": 26.3333
+ },
+ {
+  "name": "second_sun",
+  "prompt": "blinding flash, searing rising tone, deep rumble",
+  "seconds": 2.74,
+  "video": "projects/last_signal/sfx/src/second_sun.mp4",
+  "out": "projects/last_signal/sfx/second_sun.wav",
+  "seed": 7,
+  "negative": "music, speech, voice, talking, singing, melody",
+  "film_start": 25.3333
+ },
+ {
+  "name": "monolith_reveal",
+  "prompt": "rushing wind through fog, rolling thunder",
+  "seconds": 2.17,
+  "video": "projects/last_signal/sfx/src/monolith_reveal.mp4",
+  "out": "projects/last_signal/sfx/monolith_reveal.wav",
+  "seed": 7,
+  "negative": "music, speech, voice, talking, singing, melody",
+  "film_start": 12.6667
+ },
+ {
+  "name": "handwriting_glow",
+  "prompt": "soft resonant hum growing, shimmering energy, stone vibrating",
+  "seconds": 2.41,
+  "video": "projects/last_signal/sfx/src/handwriting_glow.mp4",
+  "out": "projects/last_signal/sfx/handwriting_glow.wav",
+  "seed": 7,
+  "negative": "music, speech, voice, talking, singing, melody",
+  "film_start": 15.5417
+ },
+ {
+  "name": "crew_walk",
+  "prompt": "footsteps crunching on glass gravel, howling wind",
+  "seconds": 1.84,
+  "video": "projects/last_signal/sfx/src/crew_walk.mp4",
+  "out": "projects/last_signal/sfx/crew_walk.wav",
+  "seed": 7,
+  "negative": "music, speech, voice, talking, singing, melody",
+  "film_start": 14.25
+ },
+ {
+  "name": "boom_1",
+  "prompt": "deep cinematic trailer boom hit, huge impact, sub bass",
+  "seconds": 4,
+  "out": "projects/last_signal/sfx/boom_1.wav",
+  "seed": 21,
+  "negative": "music, speech, voice, talking, singing, melody"
+ },
+ {
+  "name": "boom_2",
+  "prompt": "massive cinematic impact boom, deep thud with long rumble tail",
+  "seconds": 4,
+  "out": "projects/last_signal/sfx/boom_2.wav",
+  "seed": 22,
+  "negative": "music, speech, voice, talking, singing, melody"
+ },
+ {
+  "name": "braam",
+  "prompt": "massive low brass braam, enormous foghorn blast, cinematic trailer",
+  "seconds": 5,
+  "out": "projects/last_signal/sfx/braam.wav",
+  "seed": 23,
+  "negative": "music, speech, voice, talking, singing, melody"
+ },
+ {
+  "name": "riser_4s",
+  "prompt": "cinematic tension riser, rising whoosh building up, reverse swell",
+  "seconds": 4,
+  "out": "projects/last_signal/sfx/riser_4s.wav",
+  "seed": 24,
+  "negative": "music, speech, voice, talking, singing, melody"
+ },
+ {
+  "name": "riser_6s",
+  "prompt": "long cinematic riser, rising metallic screech and whoosh building to a peak",
+  "seconds": 6,
+  "out": "projects/last_signal/sfx/riser_6s.wav",
+  "seed": 25,
+  "negative": "music, speech, voice, talking, singing, melody"
+ },
+ {
+  "name": "radio_beep",
+  "prompt": "radio beep, electronic sonar ping",
+  "seconds": 2,
+  "out": "projects/last_signal/sfx/radio_beep.wav",
+  "seed": 26,
+  "negative": "music, speech, voice, talking, singing, melody"
+ },
+ {
+  "name": "horn_hit",
+  "prompt": "short loud brass horn stab hit, orchestral",
+  "seconds": 2,
+  "out": "projects/last_signal/sfx/horn_hit.wav",
+  "seed": 27,
+  "negative": "music, speech, voice, talking, singing, melody"
+ },
+ {
+  "name": "whoosh",
+  "prompt": "fast whoosh swish transition",
+  "seconds": 2,
+  "out": "projects/last_signal/sfx/whoosh.wav",
+  "seed": 28,
+  "negative": "music, speech, voice, talking, singing, melody"
+ },
+ {
+  "name": "final_hit",
+  "prompt": "colossal cinematic final impact hit with long reverb tail",
+  "seconds": 5,
+  "out": "projects/last_signal/sfx/final_hit.wav",
+  "seed": 29,
+  "negative": "music, speech, voice, talking, singing, melody"
+ },
+ {
+  "name": "sub_drop",
+  "prompt": "deep sub bass drop boom",
+  "seconds": 3,
+  "out": "projects/last_signal/sfx/sub_drop.wav",
+  "seed": 30,
+  "negative": "music, speech, voice, talking, singing, melody"
+ }
+]

@@ -1,0 +1,886 @@
+{
+ "_note": "THE LAST SIGNAL (script v3, locked). shots[] = the ~40 CUTS in script order; each cut is pulled from a RENDER (renders.json). Several half-second cuts come from one 5s render. beat = one-frame visible state for beat_gate; clip_beat = what stays true over the clip.",
+ "spine": [
+  {
+   "beat": "a spaceship is in danger, racing through an asteroid field",
+   "shots": [
+    "c01_asteroids"
+   ]
+  },
+  {
+   "beat": "a woman captain is at the controls under red alarms",
+   "shots": [
+    "c02a_cockpit",
+    "c02b_lever"
+   ]
+  },
+  {
+   "beat": "the ship plunges into an orange lightning storm",
+   "shots": [
+    "c03_dive"
+   ]
+  },
+  {
+   "beat": "the ship is colossal, city-sized, and arrives over an alien plain",
+   "shots": [
+    "c04_arrival"
+   ]
+  },
+  {
+   "beat": "the ship lands hard on black glass",
+   "shots": [
+    "c05_claws"
+   ]
+  },
+  {
+   "beat": "the plain is covered with endless carved monoliths",
+   "shots": [
+    "c06_monolith_reveal"
+   ]
+  },
+  {
+   "beat": "the captain and her crewmate walk among the monoliths",
+   "shots": [
+    "c06b_crew_walk"
+   ]
+  },
+  {
+   "beat": "the captain's touch makes a carved symbol glow, and she recognizes it",
+   "shots": [
+    "c07_handwriting",
+    "c07b_captain_face"
+   ]
+  },
+  {
+   "beat": "every monolith lights up in a wave across the planet",
+   "shots": [
+    "c08_lightwave"
+   ]
+  },
+  {
+   "beat": "the captain stands frozen as the planet speaks to her",
+   "shots": [
+    "c09_welcome"
+   ]
+  },
+  {
+   "beat": "the planet attacks: second sun, crewmate taken, engines destroyed, a colossal shape rises",
+   "shots": [
+    "c10_second_sun",
+    "c11_yanked",
+    "c12_engines",
+    "c13_mountain"
+   ]
+  },
+  {
+   "beat": "the captain runs for her life",
+   "shots": [
+    "c14_boots",
+    "c14b_sprint"
+   ]
+  },
+  {
+   "beat": "something huge grabs the ship as it tries to leave",
+   "shots": [
+    "c15_grab"
+   ]
+  }
+ ],
+ "set_masters": {
+  "plain_monoliths": "canon/plain_monoliths.png",
+  "cockpit": "canon/cockpit.png",
+  "ship": "canon/ship.png"
+ },
+ "shots": [
+  {
+   "id": "c01_asteroids",
+   "script_shot": 1,
+   "seconds": 1.6,
+   "sentiment": "instant adrenaline",
+   "render": "R01_asteroids",
+   "clip": "clips/R01_asteroids.mp4",
+   "lock": "stills/LOCKED_R01_asteroids.png",
+   "beat": "an enormous dark armored spaceship racing through a dense field of tumbling asteroids in deep space",
+   "clip_beat": "the huge spaceship rushes toward camera between asteroids for the whole shot, rocks streaking past",
+   "must_not": [
+    "a small fighter jet",
+    "an airplane",
+    "a planet surface",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/ship.png"
+  },
+  {
+   "id": "c02a_cockpit",
+   "script_shot": 2,
+   "seconds": 1.0,
+   "sentiment": "danger",
+   "render": "R02_cockpit_alarm",
+   "clip": "clips/R02_cockpit_alarm.mp4",
+   "lock": "stills/LOCKED_R02_cockpit_alarm.png",
+   "beat": "a woman pilot in her 40s gripping the flight controls in a dark spaceship cockpit lit by red alarm lights",
+   "clip_beat": "the cockpit stays bathed in pulsing red alarm light while the pilot holds the lever, the cabin shaking",
+   "must_not": [
+    "a man as the pilot",
+    "daylight",
+    "a calm smiling face",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "identity": [
+    {
+     "master": "canon/captain.png",
+     "subject": "the Captain, a weathered woman in her 40s"
+    }
+   ],
+   "set": "canon/cockpit.png"
+  },
+  {
+   "id": "c02b_lever",
+   "script_shot": 2,
+   "seconds": 0.9,
+   "sentiment": "danger",
+   "render": "R02_cockpit_alarm",
+   "clip": "clips/R02_cockpit_alarm.mp4",
+   "lock": "stills/LOCKED_R02_cockpit_alarm.png",
+   "beat": "a woman pilot in her 40s gripping the flight controls in a dark spaceship cockpit lit by red alarm lights",
+   "clip_beat": "the cockpit stays bathed in pulsing red alarm light while the pilot holds the lever, the cabin shaking",
+   "must_not": [
+    "a man as the pilot",
+    "daylight",
+    "a calm smiling face",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "identity": [
+    {
+     "master": "canon/captain.png",
+     "subject": "the Captain, a weathered woman in her 40s"
+    }
+   ],
+   "set": "canon/cockpit.png"
+  },
+  {
+   "id": "c01b_asteroids_close",
+   "script_shot": 1,
+   "seconds": 0.8,
+   "sentiment": "instant adrenaline",
+   "render": "R01_asteroids",
+   "clip": "clips/R01_asteroids.mp4",
+   "lock": "stills/LOCKED_R01_asteroids.png",
+   "beat": "an enormous dark armored spaceship racing through a dense field of tumbling asteroids in deep space",
+   "clip_beat": "the huge spaceship rushes toward camera between asteroids for the whole shot, rocks streaking past",
+   "must_not": [
+    "a small fighter jet",
+    "an airplane",
+    "a planet surface",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/ship.png"
+  },
+  {
+   "id": "c03_dive",
+   "script_shot": 3,
+   "seconds": 1.6,
+   "sentiment": "point of no return",
+   "render": "R03_dive",
+   "clip": "clips/R03_dive.mp4",
+   "lock": "stills/LOCKED_R03_dive.png",
+   "beat": "the dark armored spaceship seen from behind, engines blazing blue, flying into a vast orange storm",
+   "clip_beat": "the spaceship dives into the orange storm wall for the whole shot, lightning flashing inside the clouds",
+   "must_not": [
+    "blue sky",
+    "a small airplane",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/ship.png"
+  },
+  {
+   "id": "c03b_dive_clouds",
+   "script_shot": 3,
+   "seconds": 1.0,
+   "sentiment": "point of no return",
+   "render": "R03_dive",
+   "clip": "clips/R03_dive.mp4",
+   "lock": "stills/LOCKED_R03_dive.png",
+   "beat": "the dark armored spaceship seen from behind, engines blazing blue, flying into a vast orange storm",
+   "clip_beat": "the spaceship dives into the orange storm wall for the whole shot, lightning flashing inside the clouds",
+   "must_not": [
+    "blue sky",
+    "a small airplane",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/ship.png"
+  },
+  {
+   "id": "c04_arrival",
+   "script_shot": 4,
+   "seconds": 4.0,
+   "sentiment": "overwhelming awe, the floor shakes",
+   "render": "R04_arrival",
+   "clip": "clips/R04_arrival.mp4",
+   "lock": "stills/LOCKED_R04_arrival.png",
+   "beat": "a colossal city-sized spaceship emerging from an orange cloud ceiling above a black glass plain, its dark underbelly filling the sky, tiny lights across its hull",
+   "clip_beat": "the colossal ship descends out of the clouds for the whole shot, its hull filling the sky and its shadow over the plain",
+   "must_not": [
+    "a small ship",
+    "blue sky",
+    "green land",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/ship.png"
+  },
+  {
+   "id": "c05_claws",
+   "script_shot": 5,
+   "seconds": 1.0,
+   "sentiment": "impact",
+   "render": "R05_claws",
+   "clip": "clips/R05_claws.mp4",
+   "lock": "stills/LOCKED_R05_claws.png",
+   "beat": "a massive mechanical landing leg with a claw foot planted on dark ground beneath the looming lit hull of a giant spaceship, orange storm sky",
+   "clip_beat": "the landing claw stays planted while a ring of glass shards and black dust rushes outward toward camera",
+   "must_not": [
+    "a robot hand",
+    "an animal claw",
+    "green ground",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/ship.png"
+  },
+  {
+   "id": "c06_monolith_reveal",
+   "script_shot": 6,
+   "seconds": 1.4,
+   "sentiment": "wonder",
+   "render": "R06_monolith_reveal",
+   "clip": "clips/R06_monolith_reveal.mp4",
+   "lock": "stills/LOCKED_R06_monolith_reveal.png",
+   "beat": "a vast dark glassy plain covered with tall carved dark stone monoliths stretching to the horizon under an orange storm sky with lightning, fog drifting between them",
+   "clip_beat": "thousands of carved monoliths fill the plain to the horizon for the whole shot while fog streams past the camera",
+   "must_not": [
+    "trees or grass",
+    "buildings or a city",
+    "people",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c06b_crew_walk",
+   "script_shot": 6,
+   "seconds": 1.2,
+   "sentiment": "wary wonder",
+   "render": "R07_crew_walk",
+   "clip": "clips/R07_crew_walk.mp4",
+   "lock": "stills/LOCKED_R07_crew_walk.png",
+   "beat": "a woman and a man in worn spacesuits walking between towering carved dark monoliths on black glass sand under an orange storm sky",
+   "clip_beat": "the two crew members keep walking between the monoliths, wind blowing fog and grit past them",
+   "must_not": [
+    "more than two people",
+    "helmets hiding both faces",
+    "daylight blue sky",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "identity": [
+    {
+     "master": "canon/captain.png",
+     "subject": "the Captain, a weathered woman in her 40s"
+    },
+    {
+     "master": "canon/crewmate.png",
+     "subject": "the Crewmate, a man in his 30s"
+    }
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c07_handwriting",
+   "script_shot": 7,
+   "seconds": 1.6,
+   "sentiment": "the chill",
+   "render": "R08_handwriting_glow",
+   "clip": "clips/R08_handwriting_glow.mp4",
+   "lock": "stills/LOCKED_R08_handwriting_glow.png",
+   "beat": "close-up of a gloved hand pressed flat on carved handwritten-looking glyphs in a dark stone monolith, the carved grooves glowing bright teal under the fingers",
+   "clip_beat": "the hand stays still on the stone while teal light spreads through the carved grooves for the whole shot",
+   "must_not": [
+    "moving or morphing fingers",
+    "extra fingers",
+    "a bare skeletal hand",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c07b_captain_face",
+   "script_shot": 7,
+   "seconds": 1.0,
+   "sentiment": "the chill",
+   "render": "R09_captain_face",
+   "clip": "clips/R09_captain_face.mp4",
+   "lock": "stills/LOCKED_R09_captain_face.png",
+   "beat": "close-up of the weathered woman in her 40s, her face lit from below by teal light, eyes wide with shocked recognition",
+   "clip_beat": "the woman's face stays lit by the teal glow, eyes wide, for the whole shot",
+   "must_not": [
+    "a smile",
+    "a young woman",
+    "a man",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "identity": [
+    {
+     "master": "canon/captain.png",
+     "subject": "the Captain, a weathered woman in her 40s"
+    }
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c08_lightwave",
+   "script_shot": 8,
+   "seconds": 2.2,
+   "sentiment": "wonder turning to fear",
+   "render": "R10_lightwave",
+   "clip": "clips/R10_lightwave.mp4",
+   "lock": "stills/LOCKED_R10_lightwave.png",
+   "beat": "a high wide view of the dark monolith plain with a huge ring of bright teal light glowing among the monoliths",
+   "clip_beat": "a wave of teal light keeps racing outward across the monoliths toward the horizon for the whole shot",
+   "must_not": [
+    "a city with streets",
+    "water",
+    "people in the foreground",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c09_welcome",
+   "script_shot": 9,
+   "seconds": 3.0,
+   "sentiment": "the gut-punch",
+   "render": "R11_captain_welcome",
+   "clip": "clips/R11_captain_welcome.mp4",
+   "lock": "stills/LOCKED_R11_captain_welcome.png",
+   "beat": "the weathered woman in a worn spacesuit standing small and frozen among towering glowing teal monoliths, looking up at the orange storm sky",
+   "clip_beat": "the woman stays frozen among the glowing monoliths, looking up, for the whole shot",
+   "must_not": [
+    "a smile",
+    "the woman running",
+    "more than one person",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "identity": [
+    {
+     "master": "canon/captain.png",
+     "subject": "the Captain, a weathered woman in her 40s"
+    }
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c10_second_sun",
+   "script_shot": 10,
+   "seconds": 0.6,
+   "sentiment": "panic",
+   "render": "R12_second_sun",
+   "clip": "clips/R12_second_sun.mp4",
+   "lock": "stills/LOCKED_R12_second_sun.png",
+   "beat": "two suns in an orange storm sky above dark monoliths: a dim orange sun low on the horizon and a second blinding white sun high above, blazing through a rip in the clouds",
+   "clip_beat": "the blinding second sun keeps burning through the torn clouds, rays sweeping over the monoliths",
+   "must_not": [
+    "a normal sunset",
+    "a moon",
+    "blue sky",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c10b_second_sun",
+   "script_shot": 10,
+   "seconds": 0.5,
+   "sentiment": "panic",
+   "render": "R12_second_sun",
+   "clip": "clips/R12_second_sun.mp4",
+   "lock": "stills/LOCKED_R12_second_sun.png",
+   "beat": "two suns in an orange storm sky above dark monoliths: a dim orange sun low on the horizon and a second blinding white sun high above, blazing through a rip in the clouds",
+   "clip_beat": "the blinding second sun keeps burning through the torn clouds, rays sweeping over the monoliths",
+   "must_not": [
+    "a normal sunset",
+    "a moon",
+    "blue sky",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c11_yanked",
+   "script_shot": 11,
+   "seconds": 0.7,
+   "sentiment": "panic",
+   "render": "R13_crewmate_yanked",
+   "clip": "clips/R13_crewmate_yanked.mp4",
+   "lock": "stills/LOCKED_R13_crewmate_yanked.png",
+   "beat": "a man in a worn spacesuit with his feet off the ground, his body bent backward as he is dragged away sideways into a wall of dark fog among monoliths",
+   "clip_beat": "the man is pulled backward away into the fog for the whole shot, receding and vanishing",
+   "must_not": [
+    "the man standing calmly",
+    "a woman",
+    "a visible creature",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "identity": [
+    {
+     "master": "canon/crewmate.png",
+     "subject": "the Crewmate, a man in his 30s"
+    }
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c11b_yanked",
+   "script_shot": 11,
+   "seconds": 0.5,
+   "sentiment": "panic",
+   "render": "R13_crewmate_yanked",
+   "clip": "clips/R13_crewmate_yanked.mp4",
+   "lock": "stills/LOCKED_R13_crewmate_yanked.png",
+   "beat": "a man in a worn spacesuit with his feet off the ground, his body bent backward as he is dragged away sideways into a wall of dark fog among monoliths",
+   "clip_beat": "the man is pulled backward away into the fog for the whole shot, receding and vanishing",
+   "must_not": [
+    "the man standing calmly",
+    "a woman",
+    "a visible creature",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "identity": [
+    {
+     "master": "canon/crewmate.png",
+     "subject": "the Crewmate, a man in his 30s"
+    }
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c12_engines",
+   "script_shot": 12,
+   "seconds": 0.6,
+   "sentiment": "panic",
+   "render": "R14_engines_fire",
+   "clip": "clips/R14_engines_fire.mp4",
+   "lock": "stills/LOCKED_R14_engines_fire.png",
+   "beat": "the rear engine bank of the giant dark spaceship erupting in roaring blue fire and sparks against an orange sky",
+   "clip_beat": "the engines keep blasting blue fire and sparks for the whole shot",
+   "must_not": [
+    "orange flames only",
+    "a car",
+    "a rocket on a launch pad",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/ship.png"
+  },
+  {
+   "id": "c12b_engines",
+   "script_shot": 12,
+   "seconds": 0.5,
+   "sentiment": "panic",
+   "render": "R14_engines_fire",
+   "clip": "clips/R14_engines_fire.mp4",
+   "lock": "stills/LOCKED_R14_engines_fire.png",
+   "beat": "the rear engine bank of the giant dark spaceship erupting in roaring blue fire and sparks against an orange sky",
+   "clip_beat": "the engines keep blasting blue fire and sparks for the whole shot",
+   "must_not": [
+    "orange flames only",
+    "a car",
+    "a rocket on a launch pad",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/ship.png"
+  },
+  {
+   "id": "c13_mountain",
+   "script_shot": 13,
+   "seconds": 0.9,
+   "sentiment": "terror",
+   "render": "R15_mountain_shape",
+   "clip": "clips/R15_mountain_shape.mp4",
+   "lock": "stills/LOCKED_R15_mountain_shape.png",
+   "beat": "a towering thin giant made of dark stone and fog with long arms, a crown of jagged spines and a vertical line of glowing teal eyes down its face, standing behind a field of carved monoliths under an orange storm sky, a tiny human figure in the foreground",
+   "clip_beat": "the colossal stone-and-fog giant keeps rising behind the monoliths for the whole shot, its vertical line of teal eyes glowing",
+   "must_not": [
+    "a cute monster",
+    "a normal mountain with snow",
+    "a city",
+    "a robot",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c13b_mountain",
+   "script_shot": 13,
+   "seconds": 0.6,
+   "sentiment": "terror",
+   "render": "R15_mountain_shape",
+   "clip": "clips/R15_mountain_shape.mp4",
+   "lock": "stills/LOCKED_R15_mountain_shape.png",
+   "beat": "a towering thin giant made of dark stone and fog with long arms, a crown of jagged spines and a vertical line of glowing teal eyes down its face, standing behind a field of carved monoliths under an orange storm sky, a tiny human figure in the foreground",
+   "clip_beat": "the colossal stone-and-fog giant keeps rising behind the monoliths for the whole shot, its vertical line of teal eyes glowing",
+   "must_not": [
+    "a cute monster",
+    "a normal mountain with snow",
+    "a city",
+    "a robot",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c14_boots",
+   "script_shot": 14,
+   "seconds": 0.5,
+   "sentiment": "panic",
+   "render": "R16_boots_crack",
+   "clip": "clips/R16_boots_crack.mp4",
+   "lock": "stills/LOCKED_R16_boots_crack.png",
+   "beat": "low close view of heavy space boots running on black glass sand, bright cracks splitting through the glass under them",
+   "clip_beat": "the boots keep running while cracks race through the black glass behind them",
+   "must_not": [
+    "bare feet",
+    "grass",
+    "a road",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c14b_sprint",
+   "script_shot": 14,
+   "seconds": 0.6,
+   "sentiment": "panic",
+   "render": "R17_captain_sprint",
+   "clip": "clips/R17_captain_sprint.mp4",
+   "lock": "stills/LOCKED_R17_captain_sprint.png",
+   "beat": "the weathered woman in a worn spacesuit sprinting toward camera between dark monoliths, fog and orange storm light behind her, face desperate",
+   "clip_beat": "the woman keeps sprinting toward the camera between the monoliths for the whole shot",
+   "must_not": [
+    "a smile",
+    "a man",
+    "the woman standing still",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "identity": [
+    {
+     "master": "canon/captain.png",
+     "subject": "the Captain, a weathered woman in her 40s"
+    }
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c14c_boots",
+   "script_shot": 14,
+   "seconds": 0.4,
+   "sentiment": "panic",
+   "render": "R16_boots_crack",
+   "clip": "clips/R16_boots_crack.mp4",
+   "lock": "stills/LOCKED_R16_boots_crack.png",
+   "beat": "low close view of heavy space boots running on black glass sand, bright cracks splitting through the glass under them",
+   "clip_beat": "the boots keep running while cracks race through the black glass behind them",
+   "must_not": [
+    "bare feet",
+    "grass",
+    "a road",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c15_grab",
+   "script_shot": 15,
+   "seconds": 0.9,
+   "sentiment": "overload",
+   "render": "R18_ship_grab",
+   "clip": "clips/R18_ship_grab.mp4",
+   "lock": "stills/LOCKED_R18_ship_grab.png",
+   "beat": "the giant dark spaceship caught in the air between enormous dark stone claws rising from the plain, lightning in an orange storm sky",
+   "clip_beat": "the giant claws keep closing around the rising ship for the whole shot",
+   "must_not": [
+    "a small ship",
+    "a human hand",
+    "blue sky",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/ship.png"
+  },
+  {
+   "id": "c15b_grab",
+   "script_shot": 15,
+   "seconds": 0.6,
+   "sentiment": "overload",
+   "render": "R18_ship_grab",
+   "clip": "clips/R18_ship_grab.mp4",
+   "lock": "stills/LOCKED_R18_ship_grab.png",
+   "beat": "the giant dark spaceship caught in the air between enormous dark stone claws rising from the plain, lightning in an orange storm sky",
+   "clip_beat": "the giant claws keep closing around the rising ship for the whole shot",
+   "must_not": [
+    "a small ship",
+    "a human hand",
+    "blue sky",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/ship.png"
+  },
+  {
+   "id": "c15c_sprint",
+   "script_shot": 15,
+   "seconds": 0.4,
+   "sentiment": "overload",
+   "render": "R17_captain_sprint",
+   "clip": "clips/R17_captain_sprint.mp4",
+   "lock": "stills/LOCKED_R17_captain_sprint.png",
+   "beat": "the weathered woman in a worn spacesuit sprinting toward camera between dark monoliths, fog and orange storm light behind her, face desperate",
+   "clip_beat": "the woman keeps sprinting toward the camera between the monoliths for the whole shot",
+   "must_not": [
+    "a smile",
+    "a man",
+    "the woman standing still",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "identity": [
+    {
+     "master": "canon/captain.png",
+     "subject": "the Captain, a weathered woman in her 40s"
+    }
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c16a_light",
+   "script_shot": 16,
+   "seconds": 0.35,
+   "sentiment": "overload",
+   "render": "R12_second_sun",
+   "clip": "clips/R12_second_sun.mp4",
+   "lock": "stills/LOCKED_R12_second_sun.png",
+   "beat": "two suns in an orange storm sky above dark monoliths: a dim orange sun low on the horizon and a second blinding white sun high above, blazing through a rip in the clouds",
+   "clip_beat": "the blinding second sun keeps burning through the torn clouds, rays sweeping over the monoliths",
+   "must_not": [
+    "a normal sunset",
+    "a moon",
+    "blue sky",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c16b_eye",
+   "script_shot": 16,
+   "seconds": 0.35,
+   "sentiment": "overload",
+   "render": "R19_giant_eye",
+   "clip": "clips/R19_giant_eye.mp4",
+   "lock": "stills/LOCKED_R19_giant_eye.png",
+   "beat": "close-up of a vertical line of glowing teal eyes set in a dark stone-and-fog face",
+   "clip_beat": "the vertical line of teal eyes stays open and glowing for the whole shot",
+   "must_not": [
+    "a human face",
+    "a cartoon eye",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c16c_claw",
+   "script_shot": 16,
+   "seconds": 0.3,
+   "sentiment": "overload",
+   "render": "R18_ship_grab",
+   "clip": "clips/R18_ship_grab.mp4",
+   "lock": "stills/LOCKED_R18_ship_grab.png",
+   "beat": "the giant dark spaceship caught in the air between enormous dark stone claws rising from the plain, lightning in an orange storm sky",
+   "clip_beat": "the giant claws keep closing around the rising ship for the whole shot",
+   "must_not": [
+    "a small ship",
+    "a human hand",
+    "blue sky",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/ship.png"
+  },
+  {
+   "id": "c16d_fire",
+   "script_shot": 16,
+   "seconds": 0.3,
+   "sentiment": "overload",
+   "render": "R14_engines_fire",
+   "clip": "clips/R14_engines_fire.mp4",
+   "lock": "stills/LOCKED_R14_engines_fire.png",
+   "beat": "the rear engine bank of the giant dark spaceship erupting in roaring blue fire and sparks against an orange sky",
+   "clip_beat": "the engines keep blasting blue fire and sparks for the whole shot",
+   "must_not": [
+    "orange flames only",
+    "a car",
+    "a rocket on a launch pad",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/ship.png"
+  },
+  {
+   "id": "c16e_monolith",
+   "script_shot": 16,
+   "seconds": 0.25,
+   "sentiment": "overload",
+   "render": "R10_lightwave",
+   "clip": "clips/R10_lightwave.mp4",
+   "lock": "stills/LOCKED_R10_lightwave.png",
+   "beat": "a high wide view of the dark monolith plain with a huge ring of bright teal light glowing among the monoliths",
+   "clip_beat": "a wave of teal light keeps racing outward across the monoliths toward the horizon for the whole shot",
+   "must_not": [
+    "a city with streets",
+    "water",
+    "people in the foreground",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c16f_scream",
+   "script_shot": 16,
+   "seconds": 0.3,
+   "sentiment": "overload",
+   "render": "R20_crewmate_scream",
+   "clip": "clips/R20_crewmate_scream.mp4",
+   "lock": "stills/LOCKED_R20_crewmate_scream.png",
+   "beat": "close-up of the man in his 30s in a worn spacesuit screaming in terror, face lit by flashing light, fog behind him",
+   "clip_beat": "the man keeps screaming in terror for the whole shot, light flashing on his face",
+   "must_not": [
+    "a smile",
+    "a woman",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "identity": [
+    {
+     "master": "canon/crewmate.png",
+     "subject": "the Crewmate, a man in his 30s"
+    }
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c16g_eye",
+   "script_shot": 16,
+   "seconds": 0.25,
+   "sentiment": "overload",
+   "render": "R19_giant_eye",
+   "clip": "clips/R19_giant_eye.mp4",
+   "lock": "stills/LOCKED_R19_giant_eye.png",
+   "beat": "close-up of a vertical line of glowing teal eyes set in a dark stone-and-fog face",
+   "clip_beat": "the vertical line of teal eyes stays open and glowing for the whole shot",
+   "must_not": [
+    "a human face",
+    "a cartoon eye",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c16h_mountain",
+   "script_shot": 16,
+   "seconds": 0.2,
+   "sentiment": "overload",
+   "render": "R15_mountain_shape",
+   "clip": "clips/R15_mountain_shape.mp4",
+   "lock": "stills/LOCKED_R15_mountain_shape.png",
+   "beat": "a towering thin giant made of dark stone and fog with long arms, a crown of jagged spines and a vertical line of glowing teal eyes down its face, standing behind a field of carved monoliths under an orange storm sky, a tiny human figure in the foreground",
+   "clip_beat": "the colossal stone-and-fog giant keeps rising behind the monoliths for the whole shot, its vertical line of teal eyes glowing",
+   "must_not": [
+    "a cute monster",
+    "a normal mountain with snow",
+    "a city",
+    "a robot",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c16i_scream",
+   "script_shot": 16,
+   "seconds": 0.2,
+   "sentiment": "overload",
+   "render": "R20_crewmate_scream",
+   "clip": "clips/R20_crewmate_scream.mp4",
+   "lock": "stills/LOCKED_R20_crewmate_scream.png",
+   "beat": "close-up of the man in his 30s in a worn spacesuit screaming in terror, face lit by flashing light, fog behind him",
+   "clip_beat": "the man keeps screaming in terror for the whole shot, light flashing on his face",
+   "must_not": [
+    "a smile",
+    "a woman",
+    "legible text, letters or numbers anywhere in frame",
+    "a cartoon or toy look"
+   ],
+   "identity": [
+    {
+     "master": "canon/crewmate.png",
+     "subject": "the Crewmate, a man in his 30s"
+    }
+   ],
+   "set": "canon/plain_monoliths.png"
+  },
+  {
+   "id": "c17_black",
+   "script_shot": 17,
+   "seconds": 2.5,
+   "sentiment": "the question that stays",
+   "render": null,
+   "kind": "graphic",
+   "beat": "black frame",
+   "note": "made in part 2 (edit/graphics), no render"
+  },
+  {
+   "id": "c18_title",
+   "script_shot": 18,
+   "seconds": 4.0,
+   "sentiment": "wanting more",
+   "render": null,
+   "kind": "graphic",
+   "beat": "the title THE LAST SIGNAL on black",
+   "note": "made in part 2 (edit/graphics), no render"
+  }
+ ]
+}

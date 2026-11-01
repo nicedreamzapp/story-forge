@@ -1,0 +1,126 @@
+{
+ "_note": "face_check cast per final-cut shot id (THE LAST SIGNAL, 2026-10-31); refs point at the canon portraits",
+ "shots": [
+  {
+   "id": "c02a_cockpit",
+   "refs": [
+    {
+     "image": "canon/captain.png",
+     "subject": "captain"
+    }
+   ]
+  },
+  {
+   "id": "c02b_lever",
+   "refs": [
+    {
+     "image": "canon/captain.png",
+     "subject": "captain"
+    }
+   ]
+  },
+  {
+   "id": "c07b_captain_face",
+   "refs": [
+    {
+     "image": "canon/captain.png",
+     "subject": "captain"
+    }
+   ]
+  },
+  {
+   "id": "c09_welcome",
+   "refs": [
+    {
+     "image": "canon/captain.png",
+     "subject": "captain"
+    }
+   ]
+  },
+  {
+   "id": "c14b_sprint",
+   "refs": [
+    {
+     "image": "canon/captain.png",
+     "subject": "captain"
+    }
+   ]
+  },
+  {
+   "id": "c15c_sprint",
+   "refs": [
+    {
+     "image": "canon/captain.png",
+     "subject": "captain"
+    }
+   ]
+  },
+  {
+   "id": "c11_yanked",
+   "refs": [
+    {
+     "image": "canon/crewmate.png",
+     "subject": "crewmate"
+    }
+   ]
+  },
+  {
+   "id": "c11b_yanked",
+   "refs": [
+    {
+     "image": "canon/crewmate.png",
+     "subject": "crewmate"
+    }
+   ]
+  },
+  {
+   "id": "c16_05_scream",
+   "refs": [
+    {
+     "image": "canon/crewmate.png",
+     "subject": "crewmate"
+    }
+   ]
+  },
+  {
+   "id": "c16_09_scream",
+   "refs": [
+    {
+     "image": "canon/crewmate.png",
+     "subject": "crewmate"
+    }
+   ]
+  },
+  {
+   "id": "c16_15_scream",
+   "refs": [
+    {
+     "image": "canon/crewmate.png",
+     "subject": "crewmate"
+    }
+   ]
+  },
+  {
+   "id": "c16_19_scream",
+   "refs": [
+    {
+     "image": "canon/crewmate.png",
+     "subject": "crewmate"
+    }
+   ]
+  },
+  {
+   "id": "c06b_crew_walk",
+   "refs": [
+    {
+     "image": "canon/captain.png",
+     "subject": "captain"
+    },
+    {
+     "image": "canon/crewmate.png",
+     "subject": "crewmate"
+    }
+   ]
+  }
+ ]
+}

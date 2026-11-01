@@ -1,0 +1,210 @@
+{
+ "takes": {
+  "captain_t1.wav": {
+   "who": "captain",
+   "heard": "I've never been here.",
+   "match": true,
+   "avg_logprob": -0.195,
+   "dur": 1.49,
+   "words": [
+    {
+     "w": " I've",
+     "s": 0.0,
+     "e": 0.38
+    },
+    {
+     "w": " never",
+     "s": 0.38,
+     "e": 0.58
+    },
+    {
+     "w": " been",
+     "s": 0.58,
+     "e": 0.78
+    },
+    {
+     "w": " here.",
+     "s": 0.78,
+     "e": 1.08
+    }
+   ]
+  },
+  "captain_t2.wav": {
+   "who": "captain",
+   "heard": "I've never been here.",
+   "match": true,
+   "avg_logprob": -0.345,
+   "dur": 2.15,
+   "words": [
+    {
+     "w": " I've",
+     "s": 0.0,
+     "e": 0.58
+    },
+    {
+     "w": " never",
+     "s": 0.58,
+     "e": 0.84
+    },
+    {
+     "w": " been",
+     "s": 0.84,
+     "e": 1.14
+    },
+    {
+     "w": " here.",
+     "s": 1.14,
+     "e": 1.52
+    }
+   ]
+  },
+  "captain_t3.wav": {
+   "who": "captain",
+   "heard": "I've never been here.",
+   "match": true,
+   "avg_logprob": -0.33,
+   "dur": 2.73,
+   "words": [
+    {
+     "w": " I've",
+     "s": 0.0,
+     "e": 0.66
+    },
+    {
+     "w": " never",
+     "s": 0.66,
+     "e": 1.26
+    },
+    {
+     "w": " been",
+     "s": 1.26,
+     "e": 2.04
+    },
+    {
+     "w": " here.",
+     "s": 2.04,
+     "e": 2.38
+    }
+   ]
+  },
+  "computer_t1.wav": {
+   "who": "computer",
+   "heard": "Uncharted.",
+   "match": true,
+   "avg_logprob": -0.526,
+   "dur": 1.37,
+   "words": [
+    {
+     "w": " Uncharted.",
+     "s": 0.0,
+     "e": 0.64
+    }
+   ]
+  },
+  "computer_t2.wav": {
+   "who": "computer",
+   "heard": "Uncharted.",
+   "match": true,
+   "avg_logprob": -0.269,
+   "dur": 1.57,
+   "words": [
+    {
+     "w": " Uncharted.",
+     "s": 0.0,
+     "e": 0.76
+    }
+   ]
+  },
+  "computer_t3.wav": {
+   "who": "computer",
+   "heard": "uncharted",
+   "match": true,
+   "avg_logprob": -0.664,
+   "dur": 1.67,
+   "words": [
+    {
+     "w": " uncharted",
+     "s": 0.0,
+     "e": 0.86
+    }
+   ]
+  },
+  "planet_t1.wav": {
+   "who": "planet",
+   "heard": "Welcome back, Captain.",
+   "match": true,
+   "avg_logprob": -0.549,
+   "dur": 5.21,
+   "words": [
+    {
+     "w": " Welcome",
+     "s": 0.0,
+     "e": 0.36
+    },
+    {
+     "w": " back,",
+     "s": 0.36,
+     "e": 0.74
+    },
+    {
+     "w": " Captain.",
+     "s": 0.78,
+     "e": 1.06
+    }
+   ]
+  },
+  "planet_t2.wav": {
+   "who": "planet",
+   "heard": "Welcome back, Captain.",
+   "match": true,
+   "avg_logprob": -0.47,
+   "dur": 5.4,
+   "words": [
+    {
+     "w": " Welcome",
+     "s": 0.0,
+     "e": 0.3
+    },
+    {
+     "w": " back,",
+     "s": 0.3,
+     "e": 0.7
+    },
+    {
+     "w": " Captain.",
+     "s": 0.84,
+     "e": 1.14
+    }
+   ]
+  },
+  "planet_t3.wav": {
+   "who": "planet",
+   "heard": "Welcome back, Captain.",
+   "match": true,
+   "avg_logprob": -0.465,
+   "dur": 5.29,
+   "words": [
+    {
+     "w": " Welcome",
+     "s": 0.0,
+     "e": 0.34
+    },
+    {
+     "w": " back,",
+     "s": 0.34,
+     "e": 0.7
+    },
+    {
+     "w": " Captain.",
+     "s": 0.82,
+     "e": 1.08
+    }
+   ]
+  }
+ },
+ "best": {
+  "captain": "captain_t1.wav",
+  "computer": "computer_t2.wav",
+  "planet": "planet_t3.wav"
+ }
+}

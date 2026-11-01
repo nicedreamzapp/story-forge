@@ -1,0 +1,273 @@
+[
+ {
+  "id": "c01_asteroids",
+  "render": "R01_asteroids",
+  "src": "clips/previs/R01_asteroids_t1.mp4",
+  "in": 0.4,
+  "len": 1.6
+ },
+ {
+  "id": "c02a_cockpit",
+  "render": "R02_cockpit_alarm",
+  "src": "clips/previs/R02_cockpit_alarm_t1.mp4",
+  "in": 0.4,
+  "len": 1.0
+ },
+ {
+  "id": "c02b_lever",
+  "render": "R02_cockpit_alarm",
+  "src": "clips/previs/R02_cockpit_alarm_t1.mp4",
+  "in": 1.7,
+  "len": 0.9
+ },
+ {
+  "id": "c01b_asteroids_close",
+  "render": "R01_asteroids",
+  "src": "clips/previs/R01_asteroids_t1.mp4",
+  "in": 2.3,
+  "len": 0.8
+ },
+ {
+  "id": "c03_dive",
+  "render": "R03_dive",
+  "src": "clips/previs/R03_dive_t1.mp4",
+  "in": 0.4,
+  "len": 1.6
+ },
+ {
+  "id": "c03b_dive_clouds",
+  "render": "R03_dive",
+  "src": "clips/previs/R03_dive_t1.mp4",
+  "in": 2.3,
+  "len": 1.0
+ },
+ {
+  "id": "c04_arrival",
+  "render": "R04_arrival",
+  "src": "clips/previs/R04_arrival_t1.mp4",
+  "in": 0.4,
+  "len": 4.0
+ },
+ {
+  "id": "c05_claws",
+  "render": "R05_claws",
+  "src": "clips/previs/R05_claws_t1.mp4",
+  "in": 0.4,
+  "len": 1.0
+ },
+ {
+  "id": "c06_monolith_reveal",
+  "render": "R06_monolith_reveal",
+  "src": "clips/previs/R06_monolith_reveal_t1.mp4",
+  "in": 0.4,
+  "len": 1.4
+ },
+ {
+  "id": "c06b_crew_walk",
+  "render": "R07_crew_walk",
+  "src": "clips/previs/R07_crew_walk_t1.mp4",
+  "in": 0.4,
+  "len": 1.2
+ },
+ {
+  "id": "c07_handwriting",
+  "render": "R08_handwriting_glow",
+  "src": "clips/previs/R08_handwriting_glow_t1.mp4",
+  "in": 0.4,
+  "len": 1.6
+ },
+ {
+  "id": "c07b_captain_face",
+  "render": "R09_captain_face",
+  "src": "clips/previs/R09_captain_face_t1.mp4",
+  "in": 0.4,
+  "len": 1.0
+ },
+ {
+  "id": "c08_lightwave",
+  "render": "R10_lightwave",
+  "src": "clips/previs/R10_lightwave_t1.mp4",
+  "in": 0.4,
+  "len": 2.2
+ },
+ {
+  "id": "c09_welcome",
+  "render": "R11_captain_welcome",
+  "src": "clips/previs/R11_captain_welcome_t1.mp4",
+  "in": 0.4,
+  "len": 3.0
+ },
+ {
+  "id": "c10_second_sun",
+  "render": "R12_second_sun",
+  "src": "clips/previs/R12_second_sun_t1.mp4",
+  "in": 0.4,
+  "len": 0.6
+ },
+ {
+  "id": "c10b_second_sun",
+  "render": "R12_second_sun",
+  "src": "clips/previs/R12_second_sun_t1.mp4",
+  "in": 1.3,
+  "len": 0.5
+ },
+ {
+  "id": "c11_yanked",
+  "render": "R13_crewmate_yanked",
+  "src": "clips/previs/R13_crewmate_yanked_t1.mp4",
+  "in": 0.4,
+  "len": 0.7
+ },
+ {
+  "id": "c11b_yanked",
+  "render": "R13_crewmate_yanked",
+  "src": "clips/previs/R13_crewmate_yanked_t1.mp4",
+  "in": 1.4,
+  "len": 0.5
+ },
+ {
+  "id": "c12_engines",
+  "render": "R14_engines_fire",
+  "src": "clips/previs/R14_engines_fire_t1.mp4",
+  "in": 0.4,
+  "len": 0.6
+ },
+ {
+  "id": "c12b_engines",
+  "render": "R14_engines_fire",
+  "src": "clips/previs/R14_engines_fire_t1.mp4",
+  "in": 1.3,
+  "len": 0.5
+ },
+ {
+  "id": "c13_mountain",
+  "render": "R15_mountain_shape",
+  "src": "clips/previs/R15_mountain_shape_t1.mp4",
+  "in": 0.4,
+  "len": 0.9
+ },
+ {
+  "id": "c13b_mountain",
+  "render": "R15_mountain_shape",
+  "src": "clips/previs/R15_mountain_shape_t1.mp4",
+  "in": 1.6,
+  "len": 0.6
+ },
+ {
+  "id": "c14_boots",
+  "render": "R16_boots_crack",
+  "src": "clips/previs/R16_boots_crack_t1.mp4",
+  "in": 0.4,
+  "len": 0.5
+ },
+ {
+  "id": "c14b_sprint",
+  "render": "R17_captain_sprint",
+  "src": "clips/previs/R17_captain_sprint_t1.mp4",
+  "in": 0.4,
+  "len": 0.6
+ },
+ {
+  "id": "c14c_boots",
+  "render": "R16_boots_crack",
+  "src": "clips/previs/R16_boots_crack_t1.mp4",
+  "in": 1.2,
+  "len": 0.4
+ },
+ {
+  "id": "c15_grab",
+  "render": "R18_ship_grab",
+  "src": "clips/previs/R18_ship_grab_t1.mp4",
+  "in": 0.4,
+  "len": 0.9
+ },
+ {
+  "id": "c15b_grab",
+  "render": "R18_ship_grab",
+  "src": "clips/previs/R18_ship_grab_t1.mp4",
+  "in": 1.6,
+  "len": 0.6
+ },
+ {
+  "id": "c15c_sprint",
+  "render": "R17_captain_sprint",
+  "src": "clips/previs/R17_captain_sprint_t1.mp4",
+  "in": 1.3,
+  "len": 0.4
+ },
+ {
+  "id": "c16a_light",
+  "render": "R12_second_sun",
+  "src": "clips/previs/R12_second_sun_t1.mp4",
+  "in": 2.1,
+  "len": 0.35
+ },
+ {
+  "id": "c16b_eye",
+  "render": "R19_giant_eye",
+  "src": "clips/previs/R19_giant_eye_t1.mp4",
+  "in": 0.4,
+  "len": 0.35
+ },
+ {
+  "id": "c16c_claw",
+  "render": "R18_ship_grab",
+  "src": "clips/previs/R18_ship_grab_t1.mp4",
+  "in": 2.5,
+  "len": 0.3
+ },
+ {
+  "id": "c16d_fire",
+  "render": "R14_engines_fire",
+  "src": "clips/previs/R14_engines_fire_t1.mp4",
+  "in": 2.1,
+  "len": 0.3
+ },
+ {
+  "id": "c16e_monolith",
+  "render": "R10_lightwave",
+  "src": "clips/previs/R10_lightwave_t1.mp4",
+  "in": 2.9,
+  "len": 0.25
+ },
+ {
+  "id": "c16f_scream",
+  "render": "R20_crewmate_scream",
+  "src": "clips/previs/R20_crewmate_scream_t1.mp4",
+  "in": 0.4,
+  "len": 0.3
+ },
+ {
+  "id": "c16g_eye",
+  "render": "R19_giant_eye",
+  "src": "clips/previs/R19_giant_eye_t1.mp4",
+  "in": 1.05,
+  "len": 0.25
+ },
+ {
+  "id": "c16h_mountain",
+  "render": "R15_mountain_shape",
+  "src": "clips/previs/R15_mountain_shape_t1.mp4",
+  "in": 2.5,
+  "len": 0.2
+ },
+ {
+  "id": "c16i_scream",
+  "render": "R20_crewmate_scream",
+  "src": "clips/previs/R20_crewmate_scream_t1.mp4",
+  "in": 1.0,
+  "len": 0.2
+ },
+ {
+  "id": "c17_black",
+  "src": null,
+  "in": 0,
+  "len": 2.5
+ },
+ {
+  "id": "c18_title",
+  "src": null,
+  "in": 0,
+  "len": 4.0
+ }
+]

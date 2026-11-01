@@ -1,0 +1,161 @@
+[
+ {
+  "id": "R01_asteroids",
+  "takes": 1,
+  "seconds": 3.6,
+  "cuts": [
+   "c01_asteroids",
+   "c01b_asteroids_close"
+  ]
+ },
+ {
+  "id": "R02_cockpit_alarm",
+  "takes": 2,
+  "seconds": 3.1,
+  "cuts": [
+   "c02a_cockpit",
+   "c02b_lever"
+  ]
+ },
+ {
+  "id": "R03_dive",
+  "takes": 1,
+  "seconds": 3.8,
+  "cuts": [
+   "c03_dive",
+   "c03b_dive_clouds"
+  ]
+ },
+ {
+  "id": "R04_arrival",
+  "takes": 3,
+  "seconds": 4.9,
+  "cuts": [
+   "c04_arrival"
+  ]
+ },
+ {
+  "id": "R05_claws",
+  "takes": 1,
+  "seconds": 1.9,
+  "cuts": [
+   "c05_claws"
+  ]
+ },
+ {
+  "id": "R06_monolith_reveal",
+  "takes": 3,
+  "seconds": 2.3,
+  "cuts": [
+   "c06_monolith_reveal"
+  ]
+ },
+ {
+  "id": "R07_crew_walk",
+  "takes": 1,
+  "seconds": 2.1,
+  "cuts": [
+   "c06b_crew_walk"
+  ]
+ },
+ {
+  "id": "R08_handwriting_glow",
+  "takes": 3,
+  "seconds": 2.5,
+  "cuts": [
+   "c07_handwriting"
+  ]
+ },
+ {
+  "id": "R09_captain_face",
+  "takes": 2,
+  "seconds": 1.9,
+  "cuts": [
+   "c07b_captain_face"
+  ]
+ },
+ {
+  "id": "R10_lightwave",
+  "takes": 3,
+  "seconds": 3.65,
+  "cuts": [
+   "c08_lightwave",
+   "c16e_monolith"
+  ]
+ },
+ {
+  "id": "R11_captain_welcome",
+  "takes": 2,
+  "seconds": 3.9,
+  "cuts": [
+   "c09_welcome"
+  ]
+ },
+ {
+  "id": "R12_second_sun",
+  "takes": 1,
+  "seconds": 2.95,
+  "cuts": [
+   "c10_second_sun",
+   "c10b_second_sun",
+   "c16a_light"
+  ]
+ },
+ {
+  "id": "R13_crewmate_yanked",
+  "takes": 2,
+  "seconds": 2.4,
+  "cuts": [
+   "c11_yanked",
+   "c11b_yanked"
+  ]
+ },
+ {
+  "id": "R14_engines_fire",
+  "takes": 1,
+  "seconds": 2.9,
+  "cuts": [
+   "c12_engines",
+   "c12b_engines",
+   "c16d_fire"
+  ]
+ },
+ {
+  "id": "R15_mountain_shape",
+  "takes": 3,
+  "seconds": 3.2,
+  "cuts": [
+   "c13_mountain",
+   "c13b_mountain",
+   "c16h_mountain"
+  ]
+ },
+ {
+  "id": "R16_boots_crack",
+  "takes": 1,
+  "seconds": 2.1,
+  "cuts": [
+   "c14_boots",
+   "c14c_boots"
+  ]
+ },
+ {
+  "id": "R17_captain_sprint",
+  "takes": 2,
+  "seconds": 2.2,
+  "cuts": [
+   "c14b_sprint",
+   "c15c_sprint"
+  ]
+ },
+ {
+  "id": "R18_ship_grab",
+  "takes": 3,
+  "seconds": 3.3,
+  "cuts": [
+   "c15_grab",
+   "c15b_grab",
+   "c16c_claw"
+  ]
+ }
+]

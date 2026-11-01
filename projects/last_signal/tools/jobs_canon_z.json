@@ -1,0 +1,98 @@
+[
+ {
+  "out": "projects/last_signal/stills/canon_cand/captain_s11.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, shot on anamorphic lens, dramatic teal and orange color grade, fine film grain, highly detailed. Waist-up portrait of a woman in her mid-forties, a veteran cargo starship captain. Weathered, lightly sun-lined face, calm steady grey-green eyes, a thin pale scar across her chin, dark brown hair streaked with grey tied back tightly. She wears a worn olive-grey flight jacket with scuffed armored shoulder plates over a dark utility spacesuit with hoses and buckles. She stands in a dim industrial spaceship corridor lit by cool teal panel lights and warm orange glow, looking just past the camera with quiet, unreadable calm. Shallow depth of field.",
+  "w": 928,
+  "h": 1152,
+  "seed": 11,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/canon_cand/captain_s23.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, shot on anamorphic lens, dramatic teal and orange color grade, fine film grain, highly detailed. Waist-up portrait of a woman in her mid-forties, a veteran cargo starship captain. Weathered, lightly sun-lined face, calm steady grey-green eyes, a thin pale scar across her chin, dark brown hair streaked with grey tied back tightly. She wears a worn olive-grey flight jacket with scuffed armored shoulder plates over a dark utility spacesuit with hoses and buckles. She stands in a dim industrial spaceship corridor lit by cool teal panel lights and warm orange glow, looking just past the camera with quiet, unreadable calm. Shallow depth of field.",
+  "w": 928,
+  "h": 1152,
+  "seed": 23,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/canon_cand/captain_s37.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, shot on anamorphic lens, dramatic teal and orange color grade, fine film grain, highly detailed. Waist-up portrait of a woman in her mid-forties, a veteran cargo starship captain. Weathered, lightly sun-lined face, calm steady grey-green eyes, a thin pale scar across her chin, dark brown hair streaked with grey tied back tightly. She wears a worn olive-grey flight jacket with scuffed armored shoulder plates over a dark utility spacesuit with hoses and buckles. She stands in a dim industrial spaceship corridor lit by cool teal panel lights and warm orange glow, looking just past the camera with quiet, unreadable calm. Shallow depth of field.",
+  "w": 928,
+  "h": 1152,
+  "seed": 37,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/canon_cand/crewmate_s11.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, shot on anamorphic lens, dramatic teal and orange color grade, fine film grain, highly detailed. Waist-up portrait of a man in his early thirties, a starship cargo crewmate and engineer. Warm brown skin, short dark curly hair, a short trimmed beard, alert dark eyes, a nervous but brave expression. He wears a worn dark utility spacesuit with an olive-grey padded vest, scuffed armored shoulder plates, tool loops and hoses. He stands in a dim industrial spaceship corridor lit by cool teal panel lights and warm orange glow. Shallow depth of field.",
+  "w": 928,
+  "h": 1152,
+  "seed": 11,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/canon_cand/crewmate_s23.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, shot on anamorphic lens, dramatic teal and orange color grade, fine film grain, highly detailed. Waist-up portrait of a man in his early thirties, a starship cargo crewmate and engineer. Warm brown skin, short dark curly hair, a short trimmed beard, alert dark eyes, a nervous but brave expression. He wears a worn dark utility spacesuit with an olive-grey padded vest, scuffed armored shoulder plates, tool loops and hoses. He stands in a dim industrial spaceship corridor lit by cool teal panel lights and warm orange glow. Shallow depth of field.",
+  "w": 928,
+  "h": 1152,
+  "seed": 23,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/canon_cand/crewmate_s37.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, shot on anamorphic lens, dramatic teal and orange color grade, fine film grain, highly detailed. Waist-up portrait of a man in his early thirties, a starship cargo crewmate and engineer. Warm brown skin, short dark curly hair, a short trimmed beard, alert dark eyes, a nervous but brave expression. He wears a worn dark utility spacesuit with an olive-grey padded vest, scuffed armored shoulder plates, tool loops and hoses. He stands in a dim industrial spaceship corridor lit by cool teal panel lights and warm orange glow. Shallow depth of field.",
+  "w": 928,
+  "h": 1152,
+  "seed": 37,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/canon_cand/plain_monoliths_s11.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, shot on anamorphic lens, dramatic teal and orange color grade, fine film grain, highly detailed. Epic wide establishing shot of an alien world: a flat endless plain of glossy black glass sand with sharp glassy shards catching the light, covered with thousands of tall dark carved stone monoliths standing in loose rows all the way to the horizon, each monolith covered in deep carved looping handwritten-style glyphs. Low drifting fog between them. Above, a churning dark orange and rust storm sky with a distant fork of lightning. Ominous, vast, silent.",
+  "w": 1248,
+  "h": 720,
+  "seed": 11,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/canon_cand/plain_monoliths_s23.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, shot on anamorphic lens, dramatic teal and orange color grade, fine film grain, highly detailed. Epic wide establishing shot of an alien world: a flat endless plain of glossy black glass sand with sharp glassy shards catching the light, covered with thousands of tall dark carved stone monoliths standing in loose rows all the way to the horizon, each monolith covered in deep carved looping handwritten-style glyphs. Low drifting fog between them. Above, a churning dark orange and rust storm sky with a distant fork of lightning. Ominous, vast, silent.",
+  "w": 1248,
+  "h": 720,
+  "seed": 23,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/canon_cand/plain_monoliths_s37.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, shot on anamorphic lens, dramatic teal and orange color grade, fine film grain, highly detailed. Epic wide establishing shot of an alien world: a flat endless plain of glossy black glass sand with sharp glassy shards catching the light, covered with thousands of tall dark carved stone monoliths standing in loose rows all the way to the horizon, each monolith covered in deep carved looping handwritten-style glyphs. Low drifting fog between them. Above, a churning dark orange and rust storm sky with a distant fork of lightning. Ominous, vast, silent.",
+  "w": 1248,
+  "h": 720,
+  "seed": 37,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/canon_cand/cockpit_s11.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, shot on anamorphic lens, dramatic teal and orange color grade, fine film grain, highly detailed. Interior of the cockpit of a huge heavy industrial cargo starship: two worn pilot seats, angled thick windows showing a raging orange storm with lightning outside, dense consoles of physical switches, chunky dials and small glowing teal screens with abstract graphs, a big brass-and-steel throttle lever between the seats, exposed cables and pipes, scuffed metal, dim and moody, red warning lamps on the ceiling.",
+  "w": 1248,
+  "h": 720,
+  "seed": 11,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/canon_cand/cockpit_s23.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, shot on anamorphic lens, dramatic teal and orange color grade, fine film grain, highly detailed. Interior of the cockpit of a huge heavy industrial cargo starship: two worn pilot seats, angled thick windows showing a raging orange storm with lightning outside, dense consoles of physical switches, chunky dials and small glowing teal screens with abstract graphs, a big brass-and-steel throttle lever between the seats, exposed cables and pipes, scuffed metal, dim and moody, red warning lamps on the ceiling.",
+  "w": 1248,
+  "h": 720,
+  "seed": 23,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/canon_cand/cockpit_s37.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, shot on anamorphic lens, dramatic teal and orange color grade, fine film grain, highly detailed. Interior of the cockpit of a huge heavy industrial cargo starship: two worn pilot seats, angled thick windows showing a raging orange storm with lightning outside, dense consoles of physical switches, chunky dials and small glowing teal screens with abstract graphs, a big brass-and-steel throttle lever between the seats, exposed cables and pipes, scuffed metal, dim and moody, red warning lamps on the ceiling.",
+  "w": 1248,
+  "h": 720,
+  "seed": 37,
+  "steps": 9
+ }
+]

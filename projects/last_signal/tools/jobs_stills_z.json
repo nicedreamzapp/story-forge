@@ -1,0 +1,300 @@
+[
+ {
+  "out": "projects/last_signal/stills/cand/R01_asteroids_polish.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. A real photographed frame from a big-budget film of a colossal 8 km dark gunmetal cargo hauler with a long slightly wedge-shaped armored spine, stepped superstructure ridge, tall bridge tower near the stern, broad flat underbelly, blunt layered-armor prow, dense panel plating and greebles, thousands of tiny warm-white window lights, dashed cold teal running-light strips, six huge round blue-white engine nozzles. Realistic hull materials with subtle reflections, volumetric atmosphere and haze, glowing bloom on the lights and engines, rich cinematic lighting; any ground is glossy black glass sand with sharp glassy shards.",
+  "init": "projects/last_signal/ship/renders/r01_asteroids.png",
+  "strength": 0.42,
+  "w": 1248,
+  "h": 720,
+  "seed": 7,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R02_cockpit_alarm_s101.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Medium shot from the side: the Captain in the pilot seat gripping the big throttle lever with both hands, jaw set, everything lit deep red by flashing alarm lamps, the orange storm outside the windows. People: the Captain: a weathered woman in her mid-forties with lightly sun-lined skin, grey-green eyes, dark brown hair streaked with grey tied back tightly, wearing a worn olive-grey zip-up flight suit with mission patches and a utility belt. Inside the cockpit of a huge heavy industrial cargo starship: worn consoles with physical switches and small teal screens, thick angled windows, a big steel throttle lever.",
+  "w": 1248,
+  "h": 720,
+  "seed": 101,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R02_cockpit_alarm_s202.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Medium shot from the side: the Captain in the pilot seat gripping the big throttle lever with both hands, jaw set, everything lit deep red by flashing alarm lamps, the orange storm outside the windows. People: the Captain: a weathered woman in her mid-forties with lightly sun-lined skin, grey-green eyes, dark brown hair streaked with grey tied back tightly, wearing a worn olive-grey zip-up flight suit with mission patches and a utility belt. Inside the cockpit of a huge heavy industrial cargo starship: worn consoles with physical switches and small teal screens, thick angled windows, a big steel throttle lever.",
+  "w": 1248,
+  "h": 720,
+  "seed": 202,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R03_dive_polish.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. A real photographed frame from a big-budget film of a colossal 8 km dark gunmetal cargo hauler with a long slightly wedge-shaped armored spine, stepped superstructure ridge, tall bridge tower near the stern, broad flat underbelly, blunt layered-armor prow, dense panel plating and greebles, thousands of tiny warm-white window lights, dashed cold teal running-light strips, six huge round blue-white engine nozzles. Realistic hull materials with subtle reflections, volumetric atmosphere and haze, glowing bloom on the lights and engines, rich cinematic lighting; any ground is glossy black glass sand with sharp glassy shards.",
+  "init": "projects/last_signal/ship/renders/r03_dive.png",
+  "strength": 0.42,
+  "w": 1248,
+  "h": 720,
+  "seed": 7,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R04_arrival_polish.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. A real photographed frame from a big-budget film of a colossal 8 km dark gunmetal cargo hauler with a long slightly wedge-shaped armored spine, stepped superstructure ridge, tall bridge tower near the stern, broad flat underbelly, blunt layered-armor prow, dense panel plating and greebles, thousands of tiny warm-white window lights, dashed cold teal running-light strips, six huge round blue-white engine nozzles. Realistic hull materials with subtle reflections, volumetric atmosphere and haze, glowing bloom on the lights and engines, rich cinematic lighting; any ground is glossy black glass sand with sharp glassy shards.",
+  "init": "projects/last_signal/ship/renders/r04_arrival_a.png",
+  "strength": 0.42,
+  "w": 1248,
+  "h": 720,
+  "seed": 7,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R05_claws_polish.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. A real photographed frame from a big-budget film of a colossal 8 km dark gunmetal cargo hauler with a long slightly wedge-shaped armored spine, stepped superstructure ridge, tall bridge tower near the stern, broad flat underbelly, blunt layered-armor prow, dense panel plating and greebles, thousands of tiny warm-white window lights, dashed cold teal running-light strips, six huge round blue-white engine nozzles. Realistic hull materials with subtle reflections, volumetric atmosphere and haze, glowing bloom on the lights and engines, rich cinematic lighting; any ground is glossy black glass sand with sharp glassy shards.",
+  "init": "projects/last_signal/ship/renders/r05_claws.png",
+  "strength": 0.42,
+  "w": 1248,
+  "h": 720,
+  "seed": 7,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R06_monolith_reveal_s101.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Low camera just above the black glass ground, looking down an endless avenue of towering monoliths that recede to the horizon, torn fog in the foreground, epic scale. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 101,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R06_monolith_reveal_s202.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Low camera just above the black glass ground, looking down an endless avenue of towering monoliths that recede to the horizon, torn fog in the foreground, epic scale. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 202,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R07_crew_walk_s101.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Wide side-on shot: the Captain in front and the Crewmate just behind her, both walking warily between two towering monoliths, small against them, faces visible in three-quarter view. People: the Captain: a weathered woman in her mid-forties with lightly sun-lined skin, grey-green eyes, dark brown hair streaked with grey tied back tightly, wearing a worn olive-grey zip-up flight suit with mission patches and a utility belt; and the Crewmate: a man in his early thirties with warm brown skin, short dark curly hair and a short trimmed beard, wearing a worn dark armored spacesuit with a metal neck ring and an olive-grey chest plate and scuffed shoulder armor. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 101,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R07_crew_walk_s202.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Wide side-on shot: the Captain in front and the Crewmate just behind her, both walking warily between two towering monoliths, small against them, faces visible in three-quarter view. People: the Captain: a weathered woman in her mid-forties with lightly sun-lined skin, grey-green eyes, dark brown hair streaked with grey tied back tightly, wearing a worn olive-grey zip-up flight suit with mission patches and a utility belt; and the Crewmate: a man in his early thirties with warm brown skin, short dark curly hair and a short trimmed beard, wearing a worn dark armored spacesuit with a metal neck ring and an olive-grey chest plate and scuffed shoulder armor. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 202,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R08_handwriting_glow_s101.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Extreme close-up: a gloved right hand pressed flat against the dark stone; deep carved looping handwritten-style strokes, like a giant signature, run under and around the fingers and glow bright teal from within; dust in the light. Five fingers, natural pose. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 101,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R08_handwriting_glow_s202.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Extreme close-up: a gloved right hand pressed flat against the dark stone; deep carved looping handwritten-style strokes, like a giant signature, run under and around the fingers and glow bright teal from within; dust in the light. Five fingers, natural pose. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 202,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R09_captain_face_s101.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Tight close-up of the Captain's face, lit from below by teal light, eyes wide with shocked recognition, lips slightly parted, wind-blown strands of hair, dark monolith behind. People: the Captain: a weathered woman in her mid-forties with lightly sun-lined skin, grey-green eyes, dark brown hair streaked with grey tied back tightly, wearing a worn olive-grey zip-up flight suit with mission patches and a utility belt. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 101,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R09_captain_face_s202.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Tight close-up of the Captain's face, lit from below by teal light, eyes wide with shocked recognition, lips slightly parted, wind-blown strands of hair, dark monolith behind. People: the Captain: a weathered woman in her mid-forties with lightly sun-lined skin, grey-green eyes, dark brown hair streaked with grey tied back tightly, wearing a worn olive-grey zip-up flight suit with mission patches and a utility belt. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 202,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R10_lightwave_s101.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. High aerial view over the monolith plain at dusk-dark storm light: a huge expanding ring of teal-white light spreading outward across thousands of monoliths, lit ones glowing, unlit ones dark beyond the ring, curved horizon. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 101,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R10_lightwave_s202.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. High aerial view over the monolith plain at dusk-dark storm light: a huge expanding ring of teal-white light spreading outward across thousands of monoliths, lit ones glowing, unlit ones dark beyond the ring, curved horizon. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 202,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R11_captain_welcome_s101.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Wide low-angle shot: the Captain tiny and alone in the middle of a forest of towering monoliths that all glow teal, she looks up at the orange storm sky, frozen. People: the Captain: a weathered woman in her mid-forties with lightly sun-lined skin, grey-green eyes, dark brown hair streaked with grey tied back tightly, wearing a worn olive-grey zip-up flight suit with mission patches and a utility belt. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 101,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R11_captain_welcome_s202.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Wide low-angle shot: the Captain tiny and alone in the middle of a forest of towering monoliths that all glow teal, she looks up at the orange storm sky, frozen. People: the Captain: a weathered woman in her mid-forties with lightly sun-lined skin, grey-green eyes, dark brown hair streaked with grey tied back tightly, wearing a worn olive-grey zip-up flight suit with mission patches and a utility belt. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 202,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R12_second_sun_s101.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Wide shot looking up over monolith tops: the orange storm clouds torn open around a blinding white second sun, god rays blasting down, lens flare. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 101,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R12_second_sun_s202.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Wide shot looking up over monolith tops: the orange storm clouds torn open around a blinding white second sun, god rays blasting down, lens flare. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 202,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R13_crewmate_yanked_s101.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Dynamic action frame: the Crewmate airborne, body horizontal, flying backward away from camera into a wall of dark fog, arms and face toward camera in terror, motion blur, monoliths around. People: the Crewmate: a man in his early thirties with warm brown skin, short dark curly hair and a short trimmed beard, wearing a worn dark armored spacesuit with a metal neck ring and an olive-grey chest plate and scuffed shoulder armor. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 101,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R13_crewmate_yanked_s202.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Dynamic action frame: the Crewmate airborne, body horizontal, flying backward away from camera into a wall of dark fog, arms and face toward camera in terror, motion blur, monoliths around. People: the Crewmate: a man in his early thirties with warm brown skin, short dark curly hair and a short trimmed beard, wearing a worn dark armored spacesuit with a metal neck ring and an olive-grey chest plate and scuffed shoulder armor. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 202,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R14_engines_fire_polish.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. A real photographed frame from a big-budget film of a colossal 8 km dark gunmetal cargo hauler with a long slightly wedge-shaped armored spine, stepped superstructure ridge, tall bridge tower near the stern, broad flat underbelly, blunt layered-armor prow, dense panel plating and greebles, thousands of tiny warm-white window lights, dashed cold teal running-light strips, six huge round blue-white engine nozzles. Realistic hull materials with subtle reflections, volumetric atmosphere and haze, glowing bloom on the lights and engines, rich cinematic lighting; any ground is glossy black glass sand with sharp glassy shards.",
+  "init": "projects/last_signal/ship/renders/r12_engines.png",
+  "strength": 0.42,
+  "w": 1248,
+  "h": 720,
+  "seed": 7,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R15_mountain_shape_s101.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Use the painted layout guide ONLY for composition and silhouette, and render it fully photoreal: The Watcher Beyond the Stones, a colossal tall thin giant made of weathered dark stone and drifting fog, long thin arms hanging to the ground, a crown of jagged stone spines on its head, a single vertical line of glowing teal eyes running down the center of its face and chest, standing behind the field of carved monoliths, as tall as a mountain. A tiny human figure in a spacesuit stands on the black glass in the foreground for scale. Orange storm sky with a blinding second sun and forks of lightning. Real rock texture, atmospheric haze, terrifying scale. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 101,
+  "steps": 9,
+  "init": "projects/last_signal/stills/refs/creature_layout_nobanner.png",
+  "strength": 0.82
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R15_mountain_shape_s202.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Use the painted layout guide ONLY for composition and silhouette, and render it fully photoreal: The Watcher Beyond the Stones, a colossal tall thin giant made of weathered dark stone and drifting fog, long thin arms hanging to the ground, a crown of jagged stone spines on its head, a single vertical line of glowing teal eyes running down the center of its face and chest, standing behind the field of carved monoliths, as tall as a mountain. A tiny human figure in a spacesuit stands on the black glass in the foreground for scale. Orange storm sky with a blinding second sun and forks of lightning. Real rock texture, atmospheric haze, terrifying scale. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 202,
+  "steps": 9,
+  "init": "projects/last_signal/stills/refs/creature_layout_nobanner.png",
+  "strength": 0.9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R16_boots_crack_s101.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Low ground-level close shot: heavy scuffed space boots mid-stride on the glossy black glass, bright white-hot cracks splitting through the glass beneath them, shards flying, motion blur. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 101,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R16_boots_crack_s202.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Low ground-level close shot: heavy scuffed space boots mid-stride on the glossy black glass, bright white-hot cracks splitting through the glass beneath them, shards flying, motion blur. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 202,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R17_captain_sprint_s101.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Medium-wide shot from the front: the Captain sprinting straight toward camera between monoliths, desperate, motion blur, fog and orange lightning behind her. People: the Captain: a weathered woman in her mid-forties with lightly sun-lined skin, grey-green eyes, dark brown hair streaked with grey tied back tightly, wearing a worn olive-grey zip-up flight suit with mission patches and a utility belt. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 101,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R17_captain_sprint_s202.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Medium-wide shot from the front: the Captain sprinting straight toward camera between monoliths, desperate, motion blur, fog and orange lightning behind her. People: the Captain: a weathered woman in her mid-forties with lightly sun-lined skin, grey-green eyes, dark brown hair streaked with grey tied back tightly, wearing a worn olive-grey zip-up flight suit with mission patches and a utility belt. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 202,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R18_ship_grab_s101.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. A real photographed film frame: a colossal 8 km dark gunmetal cargo hauler with a long slightly wedge-shaped armored spine, stepped superstructure ridge, tall bridge tower near the stern, broad flat underbelly, blunt layered-armor prow, dense panel plating and greebles, thousands of tiny warm-white window lights, dashed cold teal running-light strips, six huge round blue-white engine nozzles, lifting off a glossy black glass plain, engines blazing blue, while enormous dark rock-like claws, each bigger than a skyscraper, rise out of the ground and close around its hull from below, rock and glass pouring off them, lightning in a churning orange storm sky.",
+  "init": "projects/last_signal/ship/renders/r15_liftoff.png",
+  "strength": 0.6,
+  "w": 1248,
+  "h": 720,
+  "seed": 101,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R18_ship_grab_s202.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. A real photographed film frame: a colossal 8 km dark gunmetal cargo hauler with a long slightly wedge-shaped armored spine, stepped superstructure ridge, tall bridge tower near the stern, broad flat underbelly, blunt layered-armor prow, dense panel plating and greebles, thousands of tiny warm-white window lights, dashed cold teal running-light strips, six huge round blue-white engine nozzles, lifting off a glossy black glass plain, engines blazing blue, while enormous dark rock-like claws, each bigger than a skyscraper, rise out of the ground and close around its hull from below, rock and glass pouring off them, lightning in a churning orange storm sky.",
+  "init": "projects/last_signal/ship/renders/r15_liftoff.png",
+  "strength": 0.72,
+  "w": 1248,
+  "h": 720,
+  "seed": 202,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R19_giant_eye_s101.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Photoreal close shot of the Watcher's face from the painted guide: weathered dark stone and drifting fog, a vertical line of enormous glowing teal eyes down the center, jagged stone spines above, dust falling, orange storm light. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 101,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R19_giant_eye_s202.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Photoreal close shot of the Watcher's face from the painted guide: weathered dark stone and drifting fog, a vertical line of enormous glowing teal eyes down the center, jagged stone spines above, dust falling, orange storm light. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 202,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R20_crewmate_scream_s101.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Tight close-up of the Crewmate screaming in terror, mouth wide open, harsh flashing white light on one side and orange on the other, fog behind. People: the Crewmate: a man in his early thirties with warm brown skin, short dark curly hair and a short trimmed beard, wearing a worn dark armored spacesuit with a metal neck ring and an olive-grey chest plate and scuffed shoulder armor. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 101,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R20_crewmate_scream_s202.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Tight close-up of the Crewmate screaming in terror, mouth wide open, harsh flashing white light on one side and orange on the other, fog behind. People: the Crewmate: a man in his early thirties with warm brown skin, short dark curly hair and a short trimmed beard, wearing a worn dark armored spacesuit with a metal neck ring and an olive-grey chest plate and scuffed shoulder armor. The alien world: an endless flat plain of glossy black glass sand with sharp glassy shards, thousands of tall dark carved stone monoliths covered in deep looping handwritten-style glyphs, drifting fog, a churning dark orange and rust storm sky with lightning.",
+  "w": 1248,
+  "h": 720,
+  "seed": 202,
+  "steps": 9
+ }
+]

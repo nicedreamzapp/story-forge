@@ -1,0 +1,53 @@
+{
+ "sections": [
+  [
+   "drone",
+   0.0,
+   7.0417
+  ],
+  [
+   "arrival",
+   7.0417,
+   11.4583
+  ],
+  [
+   "build",
+   11.4583,
+   21.5417
+  ],
+  [
+   "ramp",
+   25.3333,
+   41.0
+  ]
+ ],
+ "candidates": {
+  "1": {
+   "windows_in_candidate": {
+    "arrival": 9.75,
+    "ramp": 16.45,
+    "build": 32.5,
+    "drone": 0.5
+   },
+   "fitness": -8.69
+  },
+  "2": {
+   "windows_in_candidate": {
+    "arrival": 19.25,
+    "ramp": 25.7,
+    "build": 5.25,
+    "drone": 41.35
+   },
+   "fitness": -11.3
+  },
+  "3": {
+   "windows_in_candidate": {
+    "arrival": 29.15,
+    "ramp": 13.5,
+    "build": 3.4,
+    "drone": 41.4
+   },
+   "fitness": -13.02
+  }
+ }
+}

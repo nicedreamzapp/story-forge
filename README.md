@@ -35,7 +35,23 @@ Requirements: a Mac with Apple Silicon (I build on an M5 Max with 128GB of memor
 <picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-banner-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-banner-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-banner.svg" width="100%" alt="02. Watch the films. The Oldest Tree, The Bear Sister and The Lucid Engine"></picture>
 <picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-r1-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-r1-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-r1.svg" width="100%" alt="The Oldest Tree. October 2026 progress film, 2:53, 49 shots. The Bear Sister. Made on the first pipeline, May and June 2026. The Lucid Engine. Made on the first pipeline, May and June 2026."></picture>
 
-### 🌲 Newest: The Oldest Tree (October 2026 progress film)
+### 🛸 Newest: THE LAST SIGNAL (sci-fi teaser, October 31 2026)
+
+[![THE LAST SIGNAL](./last-signal-hero.jpg)](https://youtu.be/HSgm6hOsLTs)
+
+A cargo ship follows a signal nobody has charted, and the planet at the end of it already knows the captain's name. **46.6 s**, 50 cuts, 4K deliverable, 5.1 surround plus stereo.
+
+Made in one day on one **MacBook Pro M5 Max with 128GB**, one model in memory at a time: story locked around 2 AM, finished trailer at **5:38 PM**. About 5 h of that was LTX-2.5 motion, about 3.4 h the SeedVR2 upscale, and about 2 h were stalls (the full ledger is in the plan).
+
+**New this film: previs first.** Every shot gets a fast LTX-2.5 distilled draft, a rough cut decides which seconds actually make the trailer, and only those get the slow hq pass. Also new: [`bin/make-sfx`](bin/make-sfx) (MMAudio, picture-synced), [`bin/grade`](bin/grade) with our own [LUTs](luts/), and [`bin/surround-mix`](bin/surround-mix), our 5.1 panner.
+
+Stack: Blender 5.1.1 Cycles (Metal) ship · Z-Image-Turbo bf16 stills (creature from a MattPaint layout via img2img) · LTX-2.5 MLX bf16 previs + hq · SeedVR2-3B upscale (held shots at 720p, then resized to 4K, so not native 4K detail) · MMAudio SFX + numpy sub-bass · ChatterBox voices · ACE-Step score · Qwen3-VL-32B + Whisper QC (film_qc 51/53) · ArcFace face check + inswapper face lock · FFmpeg.
+
+Honest about the rough spots: [known defects](projects/last_signal/stages/07_gates/known_defects.md).
+
+[▶ Watch](https://youtu.be/HSgm6hOsLTs) · [📁 Project folder](./projects/last_signal/) · [⏱ Plan and time ledger](./projects/last_signal/PRODUCTION-PLAN.md)
+
+### 🌲 The Oldest Tree (October 2026 progress film)
 
 [![The Oldest Tree](./oldest-tree-hero.jpg)](https://youtu.be/OaGwc2lGpCo)
 

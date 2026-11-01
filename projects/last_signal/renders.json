@@ -1,0 +1,397 @@
+{
+ "_note": "Render plan: each render is one 5s start-still->motion clip (plus takes); feeds_cuts = the cuts in beats.json pulled from it.",
+ "renders": [
+  {
+   "id": "R01_asteroids",
+   "source": "blender",
+   "hero": false,
+   "takes": 2,
+   "start_still": "stills/LOCKED_R01_asteroids.png",
+   "source_still": "ship/renders/r01_asteroids_832.png",
+   "animate": "fast forward rush: the camera flies backward as the massive spaceship charges straight at it, asteroids tumble and streak past the lens left and right, engine glow flickers, debris flashes by",
+   "beat": "an enormous dark armored spaceship racing through a dense field of tumbling asteroids in deep space",
+   "clip_beat": "the huge spaceship rushes toward camera between asteroids for the whole shot, rocks streaking past",
+   "identity": [],
+   "set": "canon/ship.png",
+   "feeds_cuts": [
+    "c01_asteroids",
+    "c01b_asteroids_close"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R02_cockpit_alarm",
+   "source": "qwen",
+   "hero": false,
+   "takes": 2,
+   "start_still": "stills/LOCKED_R02_cockpit_alarm.png",
+   "source_still": "stills/R02_cockpit_alarm.png",
+   "animate": "red alarm lights pulse and strobe across the cockpit, the woman shoves the big throttle lever forward hard, the whole cabin shudders violently, sparks drift, the camera shakes with the turbulence",
+   "beat": "a woman pilot in her 40s gripping the flight controls in a dark spaceship cockpit lit by red alarm lights",
+   "clip_beat": "the cockpit stays bathed in pulsing red alarm light while the pilot holds the lever, the cabin shaking",
+   "identity": [
+    "canon/captain.png"
+   ],
+   "set": "canon/cockpit.png",
+   "feeds_cuts": [
+    "c02a_cockpit",
+    "c02b_lever"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R03_dive",
+   "source": "blender",
+   "hero": false,
+   "takes": 2,
+   "start_still": "stills/LOCKED_R03_dive.png",
+   "source_still": "ship/renders/r03_dive_832.png",
+   "animate": "the camera chases the spaceship from behind as it dives steeply into the wall of orange storm clouds, lightning bolts flash and fork inside the clouds, engines blaze blue, cloud vapor whips past",
+   "beat": "the dark armored spaceship seen from behind, engines blazing blue, flying into a vast orange storm",
+   "clip_beat": "the spaceship dives into the orange storm wall for the whole shot, lightning flashing inside the clouds",
+   "identity": [],
+   "set": "canon/ship.png",
+   "feeds_cuts": [
+    "c03_dive",
+    "c03b_dive_clouds"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R04_arrival",
+   "source": "blender",
+   "hero": true,
+   "takes": 3,
+   "start_still": "stills/LOCKED_R04_arrival.png",
+   "source_still": "ship/renders/r04_arrival_a_832.png",
+   "animate": "the colossal ship pushes down out of the churning orange clouds, cloud vapor tearing off its hull and spilling around it, the camera whips forward and tilts up under its enormous belly while its huge dark shadow races across the black glass ground toward and past the camera, swallowing the light, lightning flickers in the clouds",
+   "beat": "a colossal city-sized spaceship emerging from an orange cloud ceiling above a black glass plain, its dark underbelly filling the sky, tiny lights across its hull",
+   "clip_beat": "the colossal ship descends out of the clouds for the whole shot, its hull filling the sky and its shadow over the plain",
+   "identity": [],
+   "set": "canon/ship.png",
+   "feeds_cuts": [
+    "c04_arrival"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R05_claws",
+   "source": "blender",
+   "hero": false,
+   "takes": 2,
+   "start_still": "stills/LOCKED_R05_claws.png",
+   "source_still": "ship/renders/r05_claws_832.png",
+   "animate": "a shockwave ring of shattered black glass shards and dust blasts outward from the planted landing claw and rushes toward the camera, the hull above rumbles, the camera shakes from the shockwave",
+   "beat": "a massive mechanical landing leg with a claw foot planted on dark ground beneath the looming lit hull of a giant spaceship, orange storm sky",
+   "clip_beat": "the landing claw stays planted while a ring of glass shards and black dust rushes outward toward camera",
+   "identity": [],
+   "set": "canon/ship.png",
+   "feeds_cuts": [
+    "c05_claws"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R06_monolith_reveal",
+   "source": "qwen",
+   "hero": true,
+   "takes": 3,
+   "start_still": "stills/LOCKED_R06_monolith_reveal.png",
+   "source_still": "stills/R06_monolith_reveal.png",
+   "animate": "the camera rockets forward low and fast through thick fog, the fog tears apart and thousands of carved monoliths rush into view stretching to the horizon, fog streaming past the lens, lightning flickers in the orange storm sky",
+   "beat": "a vast dark glassy plain covered with tall carved dark stone monoliths stretching to the horizon under an orange storm sky with lightning, fog drifting between them",
+   "clip_beat": "thousands of carved monoliths fill the plain to the horizon for the whole shot while fog streams past the camera",
+   "identity": [],
+   "set": "canon/plain_monoliths.png",
+   "feeds_cuts": [
+    "c06_monolith_reveal"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R07_crew_walk",
+   "source": "qwen",
+   "hero": false,
+   "takes": 2,
+   "start_still": "stills/LOCKED_R07_crew_walk.png",
+   "source_still": "stills/R07_crew_walk.png",
+   "animate": "the camera tracks sideways alongside the woman and the man as they walk warily between the towering monoliths, wind whips fog and black grit across the ground, their suits flutter, lightning flickers above",
+   "beat": "a woman and a man in worn spacesuits walking between towering carved dark monoliths on black glass sand under an orange storm sky",
+   "clip_beat": "the two crew members keep walking between the monoliths, wind blowing fog and grit past them",
+   "identity": [
+    "canon/captain.png",
+    "canon/crewmate.png"
+   ],
+   "set": "canon/plain_monoliths.png",
+   "feeds_cuts": [
+    "c06b_crew_walk"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R08_handwriting_glow",
+   "source": "qwen",
+   "hero": true,
+   "takes": 3,
+   "start_still": "stills/LOCKED_R08_handwriting_glow.png",
+   "source_still": "stills/R08_handwriting_glow.png",
+   "animate": "the hand stays perfectly still on the stone while bright teal light flows outward through the carved handwritten grooves, spreading from under the fingers across the rock, dust motes drift in the glow, the camera pushes in slowly as the light grows",
+   "beat": "close-up of a gloved hand pressed flat on carved handwritten-looking glyphs in a dark stone monolith, the carved grooves glowing bright teal under the fingers",
+   "clip_beat": "the hand stays still on the stone while teal light spreads through the carved grooves for the whole shot",
+   "identity": [],
+   "set": "canon/plain_monoliths.png",
+   "feeds_cuts": [
+    "c07_handwriting"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R09_captain_face",
+   "source": "qwen",
+   "hero": false,
+   "takes": 2,
+   "start_still": "stills/LOCKED_R09_captain_face.png",
+   "source_still": "stills/R09_captain_face.png",
+   "animate": "the teal glow pulses brighter on her face from below, her eyes widen and her breath catches, wind moves strands of her hair, the camera pushes in slowly on her eyes",
+   "beat": "close-up of the weathered woman in her 40s, her face lit from below by teal light, eyes wide with shocked recognition",
+   "clip_beat": "the woman's face stays lit by the teal glow, eyes wide, for the whole shot",
+   "identity": [
+    "canon/captain.png"
+   ],
+   "set": "canon/plain_monoliths.png",
+   "feeds_cuts": [
+    "c07b_captain_face"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R10_lightwave",
+   "source": "qwen",
+   "hero": true,
+   "takes": 3,
+   "start_still": "stills/LOCKED_R10_lightwave.png",
+   "source_still": "stills/R10_lightwave.png",
+   "animate": "a wave of teal-white light races outward from the center across thousands of monoliths, each one igniting in turn all the way to the curved horizon, the camera rises and pulls back to reveal the scale, storm clouds churn above",
+   "beat": "a high wide view of the dark monolith plain with a huge ring of bright teal light glowing among the monoliths",
+   "clip_beat": "a wave of teal light keeps racing outward across the monoliths toward the horizon for the whole shot",
+   "identity": [],
+   "set": "canon/plain_monoliths.png",
+   "feeds_cuts": [
+    "c08_lightwave",
+    "c16e_monolith"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R11_captain_welcome",
+   "source": "qwen",
+   "hero": false,
+   "takes": 2,
+   "start_still": "stills/LOCKED_R11_captain_welcome.png",
+   "source_still": "stills/R11_captain_welcome.png",
+   "animate": "the woman stands frozen, slowly lifting her gaze upward as the glowing monoliths around her pulse together like a heartbeat, wind drives grit past her, the camera slowly pulls back and rises above her",
+   "beat": "the weathered woman in a worn spacesuit standing small and frozen among towering glowing teal monoliths, looking up at the orange storm sky",
+   "clip_beat": "the woman stays frozen among the glowing monoliths, looking up, for the whole shot",
+   "identity": [
+    "canon/captain.png"
+   ],
+   "set": "canon/plain_monoliths.png",
+   "feeds_cuts": [
+    "c09_welcome"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R12_second_sun",
+   "source": "qwen",
+   "hero": false,
+   "takes": 2,
+   "start_still": "stills/LOCKED_R12_second_sun.png",
+   "source_still": "stills/R12_second_sun.png",
+   "animate": "the storm clouds rip open around a blinding white second sun, light rays explode outward and sweep across the monolith field, clouds boil away from the tear, lens flare, the camera tilts up fast toward the light",
+   "beat": "two suns in an orange storm sky above dark monoliths: a dim orange sun low on the horizon and a second blinding white sun high above, blazing through a rip in the clouds",
+   "clip_beat": "the blinding second sun keeps burning through the torn clouds, rays sweeping over the monoliths",
+   "identity": [],
+   "set": "canon/plain_monoliths.png",
+   "feeds_cuts": [
+    "c10_second_sun",
+    "c10b_second_sun",
+    "c16a_light"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R13_crewmate_yanked",
+   "source": "qwen",
+   "hero": false,
+   "takes": 2,
+   "start_still": "stills/LOCKED_R13_crewmate_yanked.png",
+   "source_still": "stills/R13_crewmate_yanked.png",
+   "animate": "the man is yanked backward off his feet and hurtles away into the thick fog, arms flailing toward the camera, fog swirling violently around him, he vanishes into the dark, the camera lurches after him",
+   "beat": "a man in a worn spacesuit with his feet off the ground, his body bent backward as he is dragged away sideways into a wall of dark fog among monoliths",
+   "clip_beat": "the man is pulled backward away into the fog for the whole shot, receding and vanishing",
+   "identity": [
+    "canon/crewmate.png"
+   ],
+   "set": "canon/plain_monoliths.png",
+   "feeds_cuts": [
+    "c11_yanked",
+    "c11b_yanked"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R14_engines_fire",
+   "source": "blender",
+   "hero": false,
+   "takes": 2,
+   "start_still": "stills/LOCKED_R14_engines_fire.png",
+   "source_still": "ship/renders/r12_engines_832.png",
+   "animate": "the huge engine nozzles explode into roaring blue fire, jets of blue flame and showers of sparks blast outward, heat distortion ripples, debris flies, the camera is rocked by the blast",
+   "beat": "the rear engine bank of the giant dark spaceship erupting in roaring blue fire and sparks against an orange sky",
+   "clip_beat": "the engines keep blasting blue fire and sparks for the whole shot",
+   "identity": [],
+   "set": "canon/ship.png",
+   "feeds_cuts": [
+    "c12_engines",
+    "c12b_engines",
+    "c16d_fire"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R15_mountain_shape",
+   "source": "qwen",
+   "hero": true,
+   "takes": 3,
+   "start_still": "stills/LOCKED_R15_mountain_shape.png",
+   "source_still": "stills/R15_mountain_shape.png",
+   "animate": "the colossal stone-and-fog giant rises up behind the monoliths, rock and black sand pouring off its long arms, fog streaming off its spine crown, its vertical line of teal eyes igniting one by one from top to bottom, lightning silhouettes it, the camera tilts up slowly to follow its terrifying height",
+   "beat": "a towering thin giant made of dark stone and fog with long arms, a crown of jagged spines and a vertical line of glowing teal eyes down its face, standing behind a field of carved monoliths under an orange storm sky, a tiny human figure in the foreground",
+   "clip_beat": "the colossal stone-and-fog giant keeps rising behind the monoliths for the whole shot, its vertical line of teal eyes glowing",
+   "identity": [],
+   "set": "canon/plain_monoliths.png",
+   "feeds_cuts": [
+    "c13_mountain",
+    "c13b_mountain",
+    "c16h_mountain"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R16_boots_crack",
+   "source": "qwen",
+   "hero": false,
+   "takes": 2,
+   "start_still": "stills/LOCKED_R16_boots_crack.png",
+   "source_still": "stills/R16_boots_crack.png",
+   "animate": "low tracking shot racing alongside heavy boots sprinting across the black glass, bright cracks race and split through the glass under each step, shards and grit kick up, the camera tracks fast and low",
+   "beat": "low close view of heavy space boots running on black glass sand, bright cracks splitting through the glass under them",
+   "clip_beat": "the boots keep running while cracks race through the black glass behind them",
+   "identity": [],
+   "set": "canon/plain_monoliths.png",
+   "feeds_cuts": [
+    "c14_boots",
+    "c14c_boots"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R17_captain_sprint",
+   "source": "qwen",
+   "hero": false,
+   "takes": 2,
+   "start_still": "stills/LOCKED_R17_captain_sprint.png",
+   "source_still": "stills/R17_captain_sprint.png",
+   "animate": "the woman sprints straight toward the camera, the camera tracks backward fast in front of her, monoliths whip past on both sides, fog and grit blast around her, orange lightning flashes behind",
+   "beat": "the weathered woman in a worn spacesuit sprinting toward camera between dark monoliths, fog and orange storm light behind her, face desperate",
+   "clip_beat": "the woman keeps sprinting toward the camera between the monoliths for the whole shot",
+   "identity": [
+    "canon/captain.png"
+   ],
+   "set": "canon/plain_monoliths.png",
+   "feeds_cuts": [
+    "c14b_sprint",
+    "c15c_sprint"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R18_ship_grab",
+   "source": "blender",
+   "hero": true,
+   "takes": 3,
+   "start_still": "stills/LOCKED_R18_ship_grab.png",
+   "source_still": "stills/R18_ship_grab.png",
+   "animate": "the giant ship strains upward, engines blazing blue, while the enormous dark claws rise and tighten around its hull, rock and black glass pouring off them, lightning flashes, the camera tilts up with the ship and shakes",
+   "beat": "the giant dark spaceship caught in the air between enormous dark stone claws rising from the plain, lightning in an orange storm sky",
+   "clip_beat": "the giant claws keep closing around the rising ship for the whole shot",
+   "identity": [],
+   "set": "canon/ship.png",
+   "feeds_cuts": [
+    "c15_grab",
+    "c15b_grab",
+    "c16c_claw"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R19_giant_eye",
+   "source": "qwen",
+   "hero": false,
+   "takes": 2,
+   "start_still": "stills/LOCKED_R19_giant_eye.png",
+   "source_still": "stills/R19_giant_eye.png",
+   "animate": "the vertical line of teal eyes snaps open one after another down the dark stone face, the glowing irises contract and focus on the camera, dust and fog shake loose around them, the camera jolts forward",
+   "beat": "close-up of a vertical line of glowing teal eyes set in a dark stone-and-fog face",
+   "clip_beat": "the vertical line of teal eyes stays open and glowing for the whole shot",
+   "identity": [],
+   "set": "canon/plain_monoliths.png",
+   "feeds_cuts": [
+    "c16b_eye",
+    "c16g_eye"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  },
+  {
+   "id": "R20_crewmate_scream",
+   "source": "qwen",
+   "hero": false,
+   "takes": 2,
+   "start_still": "stills/LOCKED_R20_crewmate_scream.png",
+   "source_still": "stills/R20_crewmate_scream.png",
+   "animate": "the man screams in terror, mouth wide open, flashing white and orange light strobes across his face, fog whips behind him, the camera shakes",
+   "beat": "close-up of the man in his 30s in a worn spacesuit screaming in terror, face lit by flashing light, fog behind him",
+   "clip_beat": "the man keeps screaming in terror for the whole shot, light flashing on his face",
+   "identity": [
+    "canon/crewmate.png"
+   ],
+   "set": "canon/plain_monoliths.png",
+   "feeds_cuts": [
+    "c16f_scream",
+    "c16i_scream"
+   ],
+   "res": "832x480",
+   "duration": 5.0
+  }
+ ]
+}

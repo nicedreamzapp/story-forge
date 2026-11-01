@@ -1,0 +1,55 @@
+{
+ "target_runtime": 47,
+ "lines": [
+  {
+   "line": 1,
+   "section": "hook",
+   "renders": [
+    "R01",
+    "R02",
+    "R03"
+   ]
+  },
+  {
+   "line": 2,
+   "section": "arrival",
+   "renders": [
+    "R04"
+   ]
+  },
+  {
+   "line": 3,
+   "section": "reveal",
+   "renders": [
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10"
+   ]
+  },
+  {
+   "line": 4,
+   "section": "welcome",
+   "renders": [
+    "R11"
+   ]
+  },
+  {
+   "line": 5,
+   "section": "ramp",
+   "renders": [
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20"
+   ]
+  }
+ ]
+}

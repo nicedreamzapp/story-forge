@@ -1,0 +1,10 @@
+#!/bin/bash
+# surround-mix — Story Forge 5.1 panner. Usage: surround-mix plan.json --out mix_51.wav --stereo mix_stereo.wav [--video in.mp4 --mux out.mp4]
+# Pure numpy/scipy/soundfile + ffmpeg; runs in the ComfyUI venv Story Forge already uses (mlx-server venv as fallback).
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+for PY in "$HOME/AI/ComfyUI/venv/bin/python" "$HOME/.local/mlx-server/bin/python" python3; do
+  if "$PY" -c "import numpy, scipy, soundfile" 2>/dev/null; then
+    exec "$PY" "$HERE/tools/surround_mix.py" "$@"
+  fi
+done
+echo "surround-mix: no python with numpy+scipy+soundfile found" >&2; exit 1

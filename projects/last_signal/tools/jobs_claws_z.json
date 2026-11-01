@@ -1,0 +1,26 @@
+[
+ {
+  "out": "projects/last_signal/stills/plates/R18_claws_s11.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Wide low-angle shot of a flat glossy black glass plain under a churning orange storm sky with lightning. Rising out of the ground are the fingers of a colossal buried stone hand: four enormous curved dark rock talons, each taller than a skyscraper, made of weathered stone and fog, curling upward and inward from the left, right and bottom of the frame as if closing around something above the center. The middle and upper center of the sky between the talons is empty. Rock and black glass shards pour off the talons, dust and fog.",
+  "w": 1664,
+  "h": 960,
+  "seed": 11,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/plates/R18_claws_s22.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Wide low-angle shot of a flat glossy black glass plain under a churning orange storm sky with lightning. Rising out of the ground are the fingers of a colossal buried stone hand: four enormous curved dark rock talons, each taller than a skyscraper, made of weathered stone and fog, curling upward and inward from the left, right and bottom of the frame as if closing around something above the center. The middle and upper center of the sky between the talons is empty. Rock and black glass shards pour off the talons, dust and fog.",
+  "w": 1664,
+  "h": 960,
+  "seed": 22,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/plates/R18_claws_s33.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Wide low-angle shot of a flat glossy black glass plain under a churning orange storm sky with lightning. Rising out of the ground are the fingers of a colossal buried stone hand: four enormous curved dark rock talons, each taller than a skyscraper, made of weathered stone and fog, curling upward and inward from the left, right and bottom of the frame as if closing around something above the center. The middle and upper center of the sky between the talons is empty. Rock and black glass shards pour off the talons, dust and fog.",
+  "w": 1664,
+  "h": 960,
+  "seed": 33,
+  "steps": 9
+ }
+]

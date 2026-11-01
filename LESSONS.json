@@ -9,7 +9,7 @@
     "steps",
     "widens"
    ],
-   "lesson": "a beat used to judge a CLIP must be judgeable from a single frame \u2014 describe a STATE, not a change over time. 'the crack of light widens' and 'she steps down out of the doorway' were rejected on every probe because no single frame can show a change.",
+   "lesson": "a beat used to judge a CLIP must be judgeable from a single frame — describe a STATE, not a change over time. 'the crack of light widens' and 'she steps down out of the doorway' were rejected on every probe because no single frame can show a change.",
    "learned_on": "s6_interior / s7_dooropen animations 2026-07-26"
   },
   {
@@ -20,7 +20,7 @@
     "distance",
     "heroes"
    ],
-   "lesson": "identity drifts hardest when a character is SMALL in frame \u2014 wide shots came back with a smaller head and lighter orange fur and failed the identity gate. Frame characters large enough to read on-model, or build the wide as a plate and place characters via crops/inserts.",
+   "lesson": "identity drifts hardest when a character is SMALL in frame — wide shots came back with a smaller head and lighter orange fur and failed the identity gate. Frame characters large enough to read on-model, or build the wide as a plate and place characters via crops/inserts.",
    "learned_on": "s4_arrival 2026-07-26"
   },
   {
@@ -31,7 +31,7 @@
     "broken",
     "trouble"
    ],
-   "lesson": "a diffusion model draws 'circus train' as a happy train rolling along. To read as trouble it must be described as STOPPED DEAD and in distress with no motion cues at all \u2014 cold, stranded, crooked on the rails, smoke pouring up.",
+   "lesson": "a diffusion model draws 'circus train' as a happy train rolling along. To read as trouble it must be described as STOPPED DEAD and in distress with no motion cues at all — cold, stranded, crooked on the rails, smoke pouring up.",
    "learned_on": "s2_thecall 2026-07-26"
   },
   {
@@ -42,7 +42,7 @@
     "burst",
     "splinters"
    ],
-   "lesson": "NEVER prompt an impact or collision. Wan converts 'splinters bursting' into a continuous particle spray that reads as drilling. Render the effort, and let the bang be felt from elsewhere \u2014 dust, shudder, a widening light crack.",
+   "lesson": "NEVER prompt an impact or collision. Wan converts 'splinters bursting' into a continuous particle spray that reads as drilling. Render the effort, and let the bang be felt from elsewhere — dust, shudder, a widening light crack.",
    "learned_on": "s6_heave 2026-07-24"
   },
   {
@@ -53,7 +53,7 @@
     "speed",
     "memory"
    ],
-   "lesson": "batch a queue BY MODEL, not by shot \u2014 all stills first, then all animations. Alternating mflux and Wan GGUF per shot pushes the box into swap and the memory gate bounces ComfyUI (~90s, six times in one hour = ~15% of wall clock).",
+   "lesson": "batch a queue BY MODEL, not by shot — all stills first, then all animations. Alternating mflux and Wan GGUF per shot pushes the box into swap and the memory gate bounces ComfyUI (~90s, six times in one hour = ~15% of wall clock).",
    "learned_on": "forge-shot first instrumented run 2026-07-26"
   },
   {
@@ -75,7 +75,7 @@
     "wide",
     "distance"
    ],
-   "lesson": "identity questions must allow for scale, distance, lighting and angle. Comparing a close portrait master to a wide shot literally makes every wide 'drift' \u2014 ask about DESIGN (species, build, head/ear shape, colour scheme, art style), never about apparent size or warmth.",
+   "lesson": "identity questions must allow for scale, distance, lighting and angle. Comparing a close portrait master to a wide shot literally makes every wide 'drift' — ask about DESIGN (species, build, head/ear shape, colour scheme, art style), never about apparent size or warmth.",
    "learned_on": "s4_arrival 2026-07-26"
   },
   {
@@ -108,7 +108,7 @@
     "resolution",
     "steps"
    ],
-   "lesson": "the local-AI videos that actually earn thousands of upvotes use MANY steps (up to 60) and finish at high resolution with ZERO film grain \u2014 grain is how people hide smeared texture after upscaling. 24 steps at 832x480 is a draft, not a finish.",
+   "lesson": "the local-AI videos that actually earn thousands of upvotes use MANY steps (up to 60) and finish at high resolution with ZERO film grain — grain is how people hide smeared texture after upscaling. 24 steps at 832x480 is a draft, not a finish.",
    "learned_on": "r/StableDiffusion 1774-upvote Wan 2.2 realism post"
   },
   {
@@ -119,7 +119,7 @@
     "long",
     "chain"
    ],
-   "lesson": "what earns upvotes is CONSISTENCY across a whole scene, not one pretty clip \u2014 the 2.6k-upvote local anime post chained image-to-video off the last frame to reach 30-second continuous scenes with the same characters.",
+   "lesson": "what earns upvotes is CONSISTENCY across a whole scene, not one pretty clip — the 2.6k-upvote local anime post chained image-to-video off the last frame to reach 30-second continuous scenes with the same characters.",
    "learned_on": "r/StableDiffusion 2610-upvote Wan 2.1 anime post"
   },
   {
@@ -130,7 +130,7 @@
     "no characters",
     "scene"
    ],
-   "lesson": "FLUX.2 accepts NO negative prompt and treats 'NO animals/people' in a positive prompt as an instruction to draw them. To get an empty plate, describe it positively \u2014 deserted, abandoned, silent, not a soul in sight \u2014 and let the gate's must_not do the rejecting.",
+   "lesson": "FLUX.2 accepts NO negative prompt and treats 'NO animals/people' in a positive prompt as an instruction to draw them. To get an empty plate, describe it positively — deserted, abandoned, silent, not a soul in sight — and let the gate's must_not do the rejecting.",
    "learned_on": "s4/s8 plates 2026-07-26"
   },
   {
@@ -141,11 +141,11 @@
     "door",
     "location"
    ],
-   "lesson": "LOCK THE SET, not just the characters. The door Hank pushes and the door that opens were different cars entirely \u2014 sliding wooden panel on a plain red car vs double hinged doors on a yellow-banded car in a different landscape. beat_gate supports set_masters and this film never armed it. Any shot sharing a location declares its set and is checked against the locked plate.",
+   "lesson": "LOCK THE SET, not just the characters. The door Hank pushes and the door that opens were different cars entirely — sliding wooden panel on a plain red car vs double hinged doors on a yellow-banded car in a different landscape. beat_gate supports set_masters and this film never armed it. Any shot sharing a location declares its set and is checked against the locked plate.",
    "learned_on": "circus_train door continuity 2026-07-26"
   },
   {
-   "lesson": "Never put a word in CAPITAL LETTERS in an image prompt \u2014 the model renders capitalised words as literal painted signage. 'boxcars with SHUT doors' put the word SHUT in yellow capitals across two train cars. Use lower case, and add 'no lettering or writing anywhere' for vehicles.",
+   "lesson": "Never put a word in CAPITAL LETTERS in an image prompt — the model renders capitalised words as literal painted signage. 'boxcars with SHUT doors' put the word SHUT in yellow capitals across two train cars. Use lower case, and add 'no lettering or writing anywhere' for vehicles.",
    "learned_on": "circus_train s4_arrival 2026-07-27",
    "when": [
     "flux",
@@ -159,7 +159,7 @@
    ]
   },
   {
-   "lesson": "A beat must name PHYSICAL VISIBLE facts. A single frame cannot show absence-of-motion ('stopped') or an internal state ('clearly worried') \u2014 both failed every ballot until restated. If independent runs fail with the SAME words, the beat is wrong, not the roll: stop re-rolling.",
+   "lesson": "A beat must name PHYSICAL VISIBLE facts. A single frame cannot show absence-of-motion ('stopped') or an internal state ('clearly worried') — both failed every ballot until restated. If independent runs fail with the SAME words, the beat is wrong, not the roll: stop re-rolling.",
    "learned_on": "circus_train s2_thecall + s4_arrival 2026-07-27",
    "when": [
     "beat",
@@ -184,7 +184,7 @@
    ]
   },
   {
-   "lesson": "A gate that writes the WRONG lesson is worse than no gate. Distinct rejection reasons must stay distinct \u2014 text-in-frame recorded as identity DRIFT taught 'draw the character on-model and larger', a correction unrelated to the defect, saved permanently and carried into later films.",
+   "lesson": "A gate that writes the WRONG lesson is worse than no gate. Distinct rejection reasons must stay distinct — text-in-frame recorded as identity DRIFT taught 'draw the character on-model and larger', a correction unrelated to the defect, saved permanently and carried into later films.",
    "learned_on": "circus_train s4_arrival 2026-07-27",
    "when": [
     "gate",
@@ -195,7 +195,7 @@
    ]
   },
   {
-   "lesson": "i2v dies silently with NO crash log when jetsam SIGKILLs it, while memory_pressure reports 93% free \u2014 the nearly-full swap file is what runs out, and nothing measures it. Bounce ComfyUI immediately before every animate, and reclaim on BOTH sides of the render, not just before.",
+   "lesson": "i2v dies silently with NO crash log when jetsam SIGKILLs it, while memory_pressure reports 93% free — the nearly-full swap file is what runs out, and nothing measures it. Bounce ComfyUI immediately before every animate, and reclaim on BOTH sides of the render, not just before.",
    "learned_on": "circus_train 2026-07-27",
    "when": [
     "i2v",
@@ -208,7 +208,7 @@
    ]
   },
   {
-   "lesson": "Gates judge ASSETS; nothing judges the POINTER. An EDL entry aimed at the wrong file gets a truthful verdict to the wrong question. Cross-check EDL ids against beats.json by id before any model loads \u2014 it is a string compare.",
+   "lesson": "Gates judge ASSETS; nothing judges the POINTER. An EDL entry aimed at the wrong file gets a truthful verdict to the wrong question. Cross-check EDL ids against beats.json by id before any model loads — it is a string compare.",
    "learned_on": "circus_train s4_arrival 2026-07-27",
    "when": [
     "edl",
@@ -224,7 +224,7 @@
     "doug",
     "bloodhound"
    ],
-   "lesson": "never describe Doug as lanky, slim or long-legged in any prompt \u2014 he is a STURDY bloodhound (deep chest, heavy build, long dark ears past the jaw, droopy eyes); prompt adjectives override the LoRA and produce a skinny off-model dog (Matt rejected it 2026-07-31)",
+   "lesson": "never describe Doug as lanky, slim or long-legged in any prompt — he is a STURDY bloodhound (deep chest, heavy build, long dark ears past the jaw, droopy eyes); prompt adjectives override the LoRA and produce a skinny off-model dog (Matt rejected it 2026-07-31)",
    "learned_on": "s8_goodbye"
   },
   {
@@ -240,7 +240,7 @@
     "embrace",
     "high-five"
    ],
-   "lesson": "NEVER prompt physical contact between two characters \u2014 a paw under a chin, a hug, a handshake. Wan fuses the touching limbs into a mangled lump (rule 6). Stage characters with clear air between them; warmth comes from posture, gaze and light, not touch.",
+   "lesson": "NEVER prompt physical contact between two characters — a paw under a chin, a hug, a handshake. Wan fuses the touching limbs into a mangled lump (rule 6). Stage characters with clear air between them; warmth comes from posture, gaze and light, not touch.",
    "learned_on": "s8_goodbye declined by Matt 2026-07-31"
   },
   {
@@ -255,7 +255,7 @@
     "hang",
     "900s"
    ],
-   "lesson": "A process killed while holding a forge_guard lease keeps the lease until its TTL (film_qc: 1h). Every later ask that would exceed the 50GB non-forge budget then silently waits the full 900s timeout and only THEN proceeds. Three renders and one QC lost 15 minutes each on 2026-08-29. Before diagnosing a 'stuck' judge or render: `python3 ~/SongForgeM5/mem_client.py state` \u2192 release orphan leases. Ask for what the job really needs (\u226420GB with --low-ram)."
+   "lesson": "A process killed while holding a forge_guard lease keeps the lease until its TTL (film_qc: 1h). Every later ask that would exceed the 50GB non-forge budget then silently waits the full 900s timeout and only THEN proceeds. Three renders and one QC lost 15 minutes each on 2026-08-29. Before diagnosing a 'stuck' judge or render: `python3 ~/SongForgeM5/mem_client.py state` → release orphan leases. Ask for what the job really needs (≤20GB with --low-ram)."
   },
   {
    "id": "ltx25-scene-engine",
@@ -269,7 +269,7 @@
     "speed",
     "low-ram"
    ],
-   "lesson": "Scene i2v: LTX-2.5 distilled --low-ram \u2248 70s per 5s clip vs Wan 13\u201316 min, same composition held. Dialogue a2v: keep mlx-video LTX-2 distilled (42s) \u2014 ltx-2-mlx a2v is dev+CFG and takes 4+ min with a swap spike. Numbers in RENDER_SPEED_RESEARCH.md 2026-08-29."
+   "lesson": "Scene i2v: LTX-2.5 distilled --low-ram ≈ 70s per 5s clip vs Wan 13–16 min, same composition held. Dialogue a2v: keep mlx-video LTX-2 distilled (42s) — ltx-2-mlx a2v is dev+CFG and takes 4+ min with a swap spike. Numbers in RENDER_SPEED_RESEARCH.md 2026-08-29."
   },
   {
    "id": "ltx25-invents-camera-moves",
@@ -296,7 +296,7 @@
     "kept clips",
     "review"
    ],
-   "lesson": "The rollout shipped with the horse BEHIND the wagon it pulls (Matt: 'the wagon is pulling the horse, it makes no sense'). Three failures stacked: (1) the beat gate only asks 'does this depict the beat' \u2014 a horse + wagon + dust is a PASS with no physics check; (2) the trim rule kept a 2s window (t=3.5\u20134.5s) that passed the same question while the full clip failed 1/5; (3) nobody looked at KEPT clips \u2014 only failed ones got eyeballed. Fixes: HOUSE_MUST_NOT in beat_gate fails impossible geometry on every ballot; a pulling shot must state the geometry in beat AND must_not ('horses out in front, wagon behind them'); and every kept clip gets a frame-grid look by the agent before assembly."
+   "lesson": "The rollout shipped with the horse BEHIND the wagon it pulls (Matt: 'the wagon is pulling the horse, it makes no sense'). Three failures stacked: (1) the beat gate only asks 'does this depict the beat' — a horse + wagon + dust is a PASS with no physics check; (2) the trim rule kept a 2s window (t=3.5–4.5s) that passed the same question while the full clip failed 1/5; (3) nobody looked at KEPT clips — only failed ones got eyeballed. Fixes: HOUSE_MUST_NOT in beat_gate fails impossible geometry on every ballot; a pulling shot must state the geometry in beat AND must_not ('horses out in front, wagon behind them'); and every kept clip gets a frame-grid look by the agent before assembly."
   },
   {
    "id": "pulled-rig-stage-in-profile",
@@ -315,7 +315,7 @@
     "prescribe",
     "kept clips"
    ],
-   "lesson": "Second rollout failure the same morning, AFTER HOUSE_MUST_NOT shipped: both wagon shots came back as a CONVOY (a horse's rump at frame left, two loose horses charging at camera behind the wagon) and the judge passed the clips 5/5. Causes: (1) the init plate wagon_canon.png is a REAR three-quarter view, so from that angle a horse in front of the wagon is hidden by the wagon body and the model invents horses elsewhere; (2) the stored prescribe() lessons said 'add a galloping horse in the foreground on the left' \u2014 written for that plate, they kept manufacturing the rump; (3) a VL judge cannot be trusted on who-pulls-whom geometry even when told the rule. Fixes: any shot where one thing pulls another is staged in clean SIDE PROFILE or a low three-quarter FRONT view with no init plate, the prompt says 'a single wagon, the only vehicle on the road', must_not forbids a second wagon/convoy, loose horses, head-on horses, a horse cut by the frame edge and a rear end in the foreground; retire prescriptions when the staging changes; and every kept clip is eyeballed at full frame at 4+ timestamps before it goes near the cut."
+   "lesson": "Second rollout failure the same morning, AFTER HOUSE_MUST_NOT shipped: both wagon shots came back as a CONVOY (a horse's rump at frame left, two loose horses charging at camera behind the wagon) and the judge passed the clips 5/5. Causes: (1) the init plate wagon_canon.png is a REAR three-quarter view, so from that angle a horse in front of the wagon is hidden by the wagon body and the model invents horses elsewhere; (2) the stored prescribe() lessons said 'add a galloping horse in the foreground on the left' — written for that plate, they kept manufacturing the rump; (3) a VL judge cannot be trusted on who-pulls-whom geometry even when told the rule. Fixes: any shot where one thing pulls another is staged in clean SIDE PROFILE or a low three-quarter FRONT view with no init plate, the prompt says 'a single wagon, the only vehicle on the road', must_not forbids a second wagon/convoy, loose horses, head-on horses, a horse cut by the frame edge and a rear end in the foreground; retire prescriptions when the staging changes; and every kept clip is eyeballed at full frame at 4+ timestamps before it goes near the cut."
   },
   {
    "id": "count-heads-against-bodies",
@@ -332,7 +332,7 @@
     "kept clips",
     "review"
    ],
-   "lesson": "Matt caught a THREE-headed pair of horses in the first frame of the rebuilt rollout after the agent had looked at it and called it right ('two-to-three horses' was written down and waved through). Any shot with two or more of the same animal side by side: count heads, count bodies, count legs \u2014 they must match \u2014 and put 'three or more heads / more heads than bodies / animals merged into each other' in must_not. Give a pair different coats so the model keeps them separate. A defect the reviewer can name in words and still ships is worse than one never seen."
+   "lesson": "Matt caught a THREE-headed pair of horses in the first frame of the rebuilt rollout after the agent had looked at it and called it right ('two-to-three horses' was written down and waved through). Any shot with two or more of the same animal side by side: count heads, count bodies, count legs — they must match — and put 'three or more heads / more heads than bodies / animals merged into each other' in must_not. Give a pair different coats so the model keeps them separate. A defect the reviewer can name in words and still ships is worse than one never seen."
   },
   {
    "lesson": "A clip_beat must describe what ONE frame shows at any moment of the motion, never the CHANGE itself. 's6c: the seam of light steadily WIDENING' failed 0/5 on a clip that widened perfectly, because each sampled frame was judged alone and no single frame depicts 'widening'. Write clip_beats as a state true of every frame (e.g. 'light pouring through a partly or fully open doorway'), and let a human confirm the motion.",
@@ -358,7 +358,7 @@
     "repaired",
     "broken"
    ],
-   "lesson": "never put a MOTION or STATE-CHANGE claim in a beat used to judge a STILL \u2014 the judge infers motion from smoke shape and leg pose and fails BOTH directions ('smoke plume is dynamic so the train is moving' killed 'stopped train'; 'legs not blurred so not rolling' killed 'wagon rolling away'; 'steaming so not repaired' killed 'repaired train'). State only what pixels can prove: doors shut, smoke pouring, horses out front, dust behind the wheels.",
+   "lesson": "never put a MOTION or STATE-CHANGE claim in a beat used to judge a STILL — the judge infers motion from smoke shape and leg pose and fails BOTH directions ('smoke plume is dynamic so the train is moving' killed 'stopped train'; 'legs not blurred so not rolling' killed 'wagon rolling away'; 'steaming so not repaired' killed 'repaired train'). State only what pixels can prove: doors shut, smoke pouring, horses out front, dust behind the wheels.",
    "learned_on": "s2b_smoke / s4_arrival / s8_goodbye base rolls 2026-08-31"
   },
   {
@@ -370,7 +370,7 @@
     "dazed",
     "relaxed"
    ],
-   "lesson": "emotion and vibe words in a beat or clip_beat make the judge rule on mood it cannot verify \u2014 'celebrating/joyfully' failed a frame that showed every required animal present. Name observable cues (ears swaying, head tipped back, mouth open) or drop the word.",
+   "lesson": "emotion and vibe words in a beat or clip_beat make the judge rule on mood it cannot verify — 'celebrating/joyfully' failed a frame that showed every required animal present. Name observable cues (ears swaying, head tipped back, mouth open) or drop the word.",
    "learned_on": "c1_celebration / s7b_hank_flat 2026-08-31"
   },
   {
@@ -548,6 +548,132 @@
    ],
    "lesson": "never run a live browser generation to test a tool: bin/browser-acquire --mock runs the same validation, prompt building, numbering, sidecars and provenance with no browser and no mini, and its fake takes go to acquired/_mock/, which ingest never reads.",
    "learned_on": "promo mode build (sitka_demo fixture) 2026-10-22"
+  },
+  {
+   "when": [
+    "plan",
+    "model",
+    "inventory",
+    "wan",
+    "flux",
+    "qwen"
+   ],
+   "lesson": "before writing any production plan, list the model weights actually on disk (du the real files, not the cache folder names): on 10/31 the plan named Wan 2.2 and Flux, both deleted on 10/25, and the Qwen-Image cache entry was 4 KB. Plan only with what is there.",
+   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+  },
+  {
+   "when": [
+    "estimate",
+    "eta",
+    "timing",
+    "ltx"
+   ],
+   "lesson": "never give a finish time before the first clip is timed. Measured on the M5 10/31: LTX-2.5 --hq --low-ram at 832x480 ~9-10 min per ~3.5 s take (~160 s per second of footage); LTX previs ~106 s per 5 s clip; Blender Cycles ship stills 11-41 s, volumetric 6 min, animation ~12 s/frame at 48 samples.",
+   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+  },
+  {
+   "when": [
+    "memory",
+    "guard",
+    "stall",
+    "image"
+   ],
+   "lesson": "check the memory guard's free allowance BEFORE the image phase and pick a model that fits: on 10/31 Qwen-Image needed 48 GB, the guard allowed 23 because of another job, and the phase stalled 16 min until Z-Image-Turbo (bf16, fits) took over.",
+   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+  },
+  {
+   "when": [
+    "ltx",
+    "haze",
+    "length",
+    "previs"
+   ],
+   "lesson": "LTX shots on this film degraded into haze/darkness after 2-3.5 s: render each shot at the cut length plus ~0.5 s handles, never a blanket 5 s (baked into 04_shots step 5).",
+   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+  },
+  {
+   "when": [
+    "sfx",
+    "gated",
+    "login",
+    "huggingface"
+   ],
+   "lesson": "a gated download is never a reason to ask Matt to sign in: swap to a model already on disk (Stable Audio Open was HF-gated, MMAudio already local and Matt approved its rumble by ear).",
+   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+  },
+  {
+   "when": [
+    "seedvr2",
+    "upscale",
+    "4k",
+    "budget",
+    "mps"
+   ],
+   "lesson": "SeedVR2-3B fp16 on the M5 (torch MPS) runs ~13 s per OUTPUT frame at 720p short side; the VAE decode is ~70% of it, VAE tiling does not speed it up, and 4K direct is ~6x slower (7 min just to encode 21 frames). Budget the upscale before promising 4K: SeedVR2 only the held shots (>= ~0.9 s) to ~2x, lanczos to 4K, and lanczos the sub-second cuts.",
+   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+  },
+  {
+   "when": [
+    "seedvr2",
+    "flash_attn",
+    "transformers",
+    "crash"
+   ],
+   "lesson": "the SeedVR2 node CLI stubs a fake flash_attn module on Macs; newer transformers then dies with KeyError 'flash_attn'. Launch it through projects/last_signal/tools/seedvr2_run.py, which imports transformers' flash-attention probe before the stub exists.",
+   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+  },
+  {
+   "when": [
+    "clip_beat",
+    "beat_gate",
+    "clip",
+    "motion",
+    "gate"
+   ],
+   "lesson": "the VL clip gate failed 34 of 44 good takes because clip_beats said motion ('rushes toward', 'keeps rising', 'for the whole shot') and the judge reads each sampled frame as 'static'. Write clip_beats as what ONE frame can show at any point of the shot (the ship large in frame with streaking rocks, the giant towering over the monoliths), never a verb of motion.",
+   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+  },
+  {
+   "when": [
+    "mix",
+    "surround",
+    "silence",
+    "clamp",
+    "score"
+   ],
+   "lesson": "when a mix plan clamps sources out of a silence window (dead stop, black), never clamp the full-length timeline tracks (score, beep, sub hits): the first pass cut the score at the dead stop and the whole ramp went near-silent. Check per-half-second RMS of every render against the beat map before calling a mix done.",
+   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+  },
+  {
+   "when": [
+    "sfx",
+    "mmaudio",
+    "noise",
+    "riser"
+   ],
+   "lesson": "MMAudio text-mode 'long riser' came back as white-noise hiss (spectral flatness 0.45, centroid 10.7 kHz). Measure flatness + centroid of every generated SFX and drop anything noise-like before it reaches the mix.",
+   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+  },
+  {
+   "when": [
+    "wait",
+    "pgrep",
+    "background",
+    "monitor"
+   ],
+   "lesson": "an 'until ! pgrep -f PATTERN' waiter matches its OWN command line and never exits; wait on the job's PID or its log file instead.",
+   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+  },
+  {
+   "when": [
+    "seedvr2",
+    "batch",
+    "grey",
+    "artifact",
+    "validate"
+   ],
+   "lesson": "SeedVR2 CLI on MPS: in a run with THREE temporal batches the middle batch came back grey with white smears, twice (batch 45 and 41, seeds unchanged); 1- and 2-batch runs were clean. Keep every run to <= 2 batches (split long shots into chunks of one batch each) and compare every output frame to its source at thumbnail size before using it (tools/seedvr2_batch.py bad_frames).",
+   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
   }
  ]
 }

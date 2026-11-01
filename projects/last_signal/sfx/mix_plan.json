@@ -1,0 +1,702 @@
+{
+ "sample_rate": 48000,
+ "duration": 46.625,
+ "tail": 0,
+ "master": {
+  "lufs_51": null,
+  "lufs_stereo": null,
+  "ceiling_db": -1.0
+ },
+ "sources": [
+  {
+   "name": "score_FL",
+   "file": "score_L.wav",
+   "start": 0,
+   "gain_db": -7.0,
+   "position": {
+    "azimuth": -30,
+    "distance": 1
+   },
+   "lfe": 0.15
+  },
+  {
+   "name": "score_FR",
+   "file": "score_R.wav",
+   "start": 0,
+   "gain_db": -7.0,
+   "position": {
+    "azimuth": 30,
+    "distance": 1
+   },
+   "lfe": 0.15
+  },
+  {
+   "name": "score_RL",
+   "file": "score_L.wav",
+   "start": 0,
+   "gain_db": -14.0,
+   "position": {
+    "azimuth": -110,
+    "distance": 1
+   }
+  },
+  {
+   "name": "score_RR",
+   "file": "score_R.wav",
+   "start": 0,
+   "gain_db": -14.0,
+   "position": {
+    "azimuth": 110,
+    "distance": 1
+   }
+  },
+  {
+   "name": "beep",
+   "file": "beep_track.wav",
+   "start": 0,
+   "gain_db": -16.0,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.25
+   }
+  },
+  {
+   "name": "sub_arrival",
+   "file": "sub_arrival.wav",
+   "start": 6.7417,
+   "gain_db": -6.0,
+   "lfe": 1.0,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 1.0
+   }
+  },
+  {
+   "name": "sub_hits",
+   "file": "sub_hits.wav",
+   "start": 0,
+   "gain_db": -8.0,
+   "trim": [
+    0,
+    41.0
+   ],
+   "fade_out": 0.03,
+   "lfe": 0.9,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.6
+   }
+  },
+  {
+   "name": "title_sub",
+   "file": "title_sub.wav",
+   "start": 43.625,
+   "gain_db": -5.0,
+   "lfe": 1.0,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 1.0
+   }
+  },
+  {
+   "name": "arrival_rumble",
+   "file": "arrival_rumble.wav",
+   "start": 7.0417,
+   "gain_db": -4.0,
+   "lfe": 0.7,
+   "doppler": true,
+   "doppler_scale": 0.6,
+   "path": [
+    {
+     "t": 0,
+     "azimuth": 0,
+     "distance": 30
+    },
+    {
+     "t": 2.2,
+     "azimuth": 15,
+     "distance": 5
+    },
+    {
+     "t": 3.2,
+     "azimuth": 90,
+     "distance": 0.8
+    },
+    {
+     "t": 4.4,
+     "azimuth": 170,
+     "distance": 8
+    },
+    {
+     "t": 6.0,
+     "azimuth": 180,
+     "distance": 30
+    }
+   ]
+  },
+  {
+   "name": "asteroids_flyby",
+   "file": "asteroids_flyby.wav",
+   "start": 0.0,
+   "gain_db": -9.0,
+   "lfe": 0.3,
+   "doppler": true,
+   "path": [
+    {
+     "t": 0,
+     "azimuth": 0,
+     "distance": 25
+    },
+    {
+     "t": 1.3,
+     "azimuth": 10,
+     "distance": 3
+    },
+    {
+     "t": 2.2,
+     "azimuth": 120,
+     "distance": 6
+    },
+    {
+     "t": 4.5,
+     "azimuth": 170,
+     "distance": 30
+    }
+   ]
+  },
+  {
+   "name": "cockpit_alarm",
+   "file": "cockpit_alarm.wav",
+   "start": 1.5,
+   "gain_db": -17.0,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.7
+   }
+  },
+  {
+   "name": "dive_thunder",
+   "file": "dive_thunder.wav",
+   "start": 4.3333,
+   "gain_db": -8.0,
+   "lfe": 0.4,
+   "position": {
+    "azimuth": 0,
+    "distance": 2,
+    "spread": 0.5
+   }
+  },
+  {
+   "name": "claws_impact",
+   "file": "claws_impact.wav",
+   "start": 11.4583,
+   "gain_db": -4.0,
+   "lfe": 0.8,
+   "path": [
+    {
+     "t": 0,
+     "azimuth": 0,
+     "distance": 6
+    },
+    {
+     "t": 0.6,
+     "azimuth": 0,
+     "distance": 0.9
+    },
+    {
+     "t": 1.6,
+     "azimuth": 0,
+     "distance": 1.0
+    }
+   ]
+  },
+  {
+   "name": "monolith_reveal",
+   "file": "monolith_reveal.wav",
+   "start": 12.6667,
+   "gain_db": -10.0,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.6
+   }
+  },
+  {
+   "name": "crew_walk",
+   "file": "crew_walk.wav",
+   "start": 14.25,
+   "gain_db": -3.0,
+   "position": {
+    "azimuth": 0,
+    "distance": 1.5
+   }
+  },
+  {
+   "name": "handwriting_glow",
+   "file": "handwriting_glow.wav",
+   "start": 15.5417,
+   "gain_db": -12.0,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.3
+   }
+  },
+  {
+   "name": "lightwave_whoosh",
+   "file": "lightwave_whoosh.wav",
+   "start": 18.9583,
+   "gain_db": -6.0,
+   "lfe": 0.4,
+   "path": [
+    {
+     "t": 0,
+     "azimuth": 0,
+     "distance": 4
+    },
+    {
+     "t": 0.9,
+     "azimuth": 120,
+     "distance": 3
+    },
+    {
+     "t": 1.8,
+     "azimuth": 240,
+     "distance": 3
+    },
+    {
+     "t": 2.6,
+     "azimuth": 360,
+     "distance": 4
+    }
+   ],
+   "trim": [
+    0,
+    2.5834
+   ],
+   "fade_out": 0.03
+  },
+  {
+   "name": "second_sun",
+   "file": "second_sun.wav",
+   "start": 25.3333,
+   "gain_db": -9.0,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.5
+   }
+  },
+  {
+   "name": "yanked",
+   "file": "yanked.wav",
+   "start": 26.3333,
+   "gain_db": -7.0,
+   "path": [
+    {
+     "t": 0,
+     "azimuth": 0,
+     "distance": 2
+    },
+    {
+     "t": 1.0,
+     "azimuth": -150,
+     "distance": 15
+    }
+   ]
+  },
+  {
+   "name": "engines_explosion",
+   "file": "engines_explosion.wav",
+   "start": 27.25,
+   "gain_db": -5.0,
+   "lfe": 0.7,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.5
+   }
+  },
+  {
+   "name": "creature_rise",
+   "file": "creature_rise.wav",
+   "start": 28.1667,
+   "gain_db": -6.0,
+   "lfe": 0.8,
+   "position": {
+    "azimuth": 0,
+    "distance": 3,
+    "spread": 0.7
+   }
+  },
+  {
+   "name": "glass_crack",
+   "file": "glass_crack.wav",
+   "start": 29.1667,
+   "gain_db": -3.0,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.3
+   }
+  },
+  {
+   "name": "ship_grab",
+   "file": "ship_grab.wav",
+   "start": 30.5833,
+   "gain_db": -5.0,
+   "lfe": 0.6,
+   "path": [
+    {
+     "t": 0,
+     "azimuth": -40,
+     "distance": 4
+    },
+    {
+     "t": 2.5,
+     "azimuth": 40,
+     "distance": 4
+    }
+   ]
+  },
+  {
+   "name": "riser_into_arrival",
+   "file": "riser_4s.wav",
+   "start": 3.0417,
+   "gain_db": -12.0,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.8
+   },
+   "fade_in": 0.5
+  },
+  {
+   "name": "braam",
+   "file": "braam.wav",
+   "start": 7.0417,
+   "gain_db": -5.0,
+   "lfe": 0.6,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.7
+   }
+  },
+  {
+   "name": "boom_arrival",
+   "file": "boom_1.wav",
+   "start": 7.0417,
+   "gain_db": -6.0,
+   "lfe": 0.9,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.8
+   }
+  },
+  {
+   "name": "horn_c10_second_sun",
+   "file": "horn_hit.wav",
+   "start": 25.3333,
+   "gain_db": -6.0,
+   "trim": [
+    0,
+    0.9
+   ],
+   "fade_out": 0.2,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.6
+   }
+  },
+  {
+   "name": "horn_c11_yanked",
+   "file": "horn_hit.wav",
+   "start": 26.3333,
+   "gain_db": -6.0,
+   "trim": [
+    0,
+    0.9
+   ],
+   "fade_out": 0.2,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.6
+   }
+  },
+  {
+   "name": "horn_c12_engines",
+   "file": "horn_hit.wav",
+   "start": 27.25,
+   "gain_db": -6.0,
+   "trim": [
+    0,
+    0.9
+   ],
+   "fade_out": 0.2,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.6
+   }
+  },
+  {
+   "name": "horn_c13_mountain",
+   "file": "horn_hit.wav",
+   "start": 28.1667,
+   "gain_db": -6.0,
+   "trim": [
+    0,
+    0.9
+   ],
+   "fade_out": 0.2,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.6
+   }
+  },
+  {
+   "name": "horn_c14_boots",
+   "file": "horn_hit.wav",
+   "start": 29.1667,
+   "gain_db": -6.0,
+   "trim": [
+    0,
+    0.9
+   ],
+   "fade_out": 0.2,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.6
+   }
+  },
+  {
+   "name": "horn_c14b_sprint",
+   "file": "horn_hit.wav",
+   "start": 29.875,
+   "gain_db": -6.0,
+   "trim": [
+    0,
+    0.9
+   ],
+   "fade_out": 0.2,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.6
+   }
+  },
+  {
+   "name": "horn_c15_grab",
+   "file": "horn_hit.wav",
+   "start": 30.5833,
+   "gain_db": -6.0,
+   "trim": [
+    0,
+    0.9
+   ],
+   "fade_out": 0.2,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.6
+   }
+  },
+  {
+   "name": "horn_c11b_yanked",
+   "file": "horn_hit.wav",
+   "start": 31.5,
+   "gain_db": -6.0,
+   "trim": [
+    0,
+    0.9
+   ],
+   "fade_out": 0.2,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.6
+   }
+  },
+  {
+   "name": "horn_c12b_engines",
+   "file": "horn_hit.wav",
+   "start": 32.0833,
+   "gain_db": -6.0,
+   "trim": [
+    0,
+    0.9
+   ],
+   "fade_out": 0.2,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.6
+   }
+  },
+  {
+   "name": "horn_c13b_mountain",
+   "file": "horn_hit.wav",
+   "start": 32.6667,
+   "gain_db": -6.0,
+   "trim": [
+    0,
+    0.9
+   ],
+   "fade_out": 0.2,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.6
+   }
+  },
+  {
+   "name": "horn_c14c_boots",
+   "file": "horn_hit.wav",
+   "start": 33.375,
+   "gain_db": -6.0,
+   "trim": [
+    0,
+    0.9
+   ],
+   "fade_out": 0.2,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.6
+   }
+  },
+  {
+   "name": "horn_c15b_grab",
+   "file": "horn_hit.wav",
+   "start": 33.875,
+   "gain_db": -6.0,
+   "trim": [
+    0,
+    0.9
+   ],
+   "fade_out": 0.2,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.6
+   }
+  },
+  {
+   "name": "horn_c15c_sprint",
+   "file": "horn_hit.wav",
+   "start": 34.4583,
+   "gain_db": -6.0,
+   "trim": [
+    0,
+    0.9
+   ],
+   "fade_out": 0.2,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.6
+   }
+  },
+  {
+   "name": "horn_c10b_second_sun",
+   "file": "horn_hit.wav",
+   "start": 34.9583,
+   "gain_db": -6.0,
+   "trim": [
+    0,
+    0.9
+   ],
+   "fade_out": 0.2,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.6
+   }
+  },
+  {
+   "name": "scream",
+   "file": "scream.wav",
+   "start": 37.5,
+   "gain_db": -12.0,
+   "position": {
+    "azimuth": 0,
+    "distance": 1.5,
+    "spread": 0.5
+   },
+   "fade_out": 0.2
+  },
+  {
+   "name": "riser_into_black",
+   "file": "riser_4s.wav",
+   "start": 37.0,
+   "gain_db": -11.0,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.9
+   },
+   "fade_in": 0.8
+  },
+  {
+   "name": "final_hit",
+   "file": "final_hit.wav",
+   "start": 43.625,
+   "gain_db": -4.0,
+   "lfe": 0.8,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.8
+   }
+  },
+  {
+   "name": "boom_title",
+   "file": "boom_2.wav",
+   "start": 43.625,
+   "gain_db": -6.0,
+   "lfe": 0.9,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 0.8
+   }
+  },
+  {
+   "name": "computer",
+   "file": "../voices/computer.wav",
+   "start": 1.62,
+   "gain_db": -5.0,
+   "dialog": true
+  },
+  {
+   "name": "planet",
+   "file": "../voices/planet.wav",
+   "start": 22.0917,
+   "gain_db": -4.0,
+   "lfe": 0.12,
+   "position": {
+    "azimuth": 0,
+    "distance": 1,
+    "spread": 1.0
+   }
+  },
+  {
+   "name": "captain",
+   "file": "../voices/captain.wav",
+   "start": 42.0,
+   "gain_db": -4.0,
+   "dialog": true
+  }
+ ]
+}

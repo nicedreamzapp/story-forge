@@ -1,0 +1,479 @@
+{
+ "_why": "see stages/04_shots/selects.md",
+ "lines": [
+  {
+   "line": 1,
+   "section": "hook",
+   "takes": [
+    {
+     "cid": "previs_R01_asteroids_t1",
+     "rank": 1,
+     "cut": "c01_asteroids",
+     "in": 0.4,
+     "out": 1.9
+    },
+    {
+     "cid": "hq_R02_cockpit_alarm_t2",
+     "rank": 1,
+     "cut": "c02a_cockpit",
+     "in": 0.2,
+     "out": 1.2
+    },
+    {
+     "cid": "hq_R02_cockpit_alarm_t2",
+     "rank": 1,
+     "cut": "c02b_lever",
+     "in": 1.6,
+     "out": 2.5167
+    },
+    {
+     "cid": "previs_R01_asteroids_t1",
+     "rank": 1,
+     "cut": "c01b_asteroids_close",
+     "in": 2.6,
+     "out": 3.5167
+    },
+    {
+     "cid": "hq_R03_dive_t1",
+     "rank": 1,
+     "cut": "c03_dive",
+     "in": 0.3,
+     "out": 1.8
+    },
+    {
+     "cid": "hq_R03_dive_t1",
+     "rank": 1,
+     "cut": "c03b_dive_clouds",
+     "in": 1.9,
+     "out": 3.1083
+    },
+    {
+     "cid": "hq_R01_asteroids_t1",
+     "rank": 2
+    },
+    {
+     "cid": "hq_R02_cockpit_alarm_t1",
+     "rank": 2
+    },
+    {
+     "cid": "previs_R02_cockpit_alarm_t1",
+     "rank": 2
+    },
+    {
+     "cid": "previs_R03_dive_t1",
+     "rank": 2
+    }
+   ]
+  },
+  {
+   "line": 2,
+   "section": "arrival",
+   "takes": [
+    {
+     "cid": "hq_R04_arrival_t1",
+     "rank": 1,
+     "cut": "c04_arrival",
+     "in": 0.15,
+     "out": 4.5667
+    },
+    {
+     "cid": "hq_R04_arrival_t2",
+     "rank": 2
+    },
+    {
+     "cid": "previs_R04_arrival_t1",
+     "rank": 2
+    },
+    {
+     "cid": "blender_anim_04_arrival",
+     "rank": 2
+    }
+   ]
+  },
+  {
+   "line": 3,
+   "section": "reveal",
+   "takes": [
+    {
+     "cid": "hq_R05_claws_t1",
+     "rank": 1,
+     "cut": "c05_claws",
+     "in": 0.15,
+     "out": 1.3583
+    },
+    {
+     "cid": "hq_R06_monolith_reveal_t2",
+     "rank": 1,
+     "cut": "c06_monolith_reveal",
+     "in": 0.2,
+     "out": 1.7833
+    },
+    {
+     "cid": "hq_R07_crew_walk_t1",
+     "rank": 1,
+     "cut": "c06b_crew_walk",
+     "in": 0.2,
+     "out": 1.4917
+    },
+    {
+     "cid": "hq_R08_handwriting_glow_t1",
+     "rank": 1,
+     "cut": "c07_handwriting",
+     "in": 0.3,
+     "out": 2.3
+    },
+    {
+     "cid": "hq_R09_captain_face_t2",
+     "rank": 1,
+     "cut": "c07b_captain_face",
+     "in": 0.4,
+     "out": 1.8167
+    },
+    {
+     "cid": "hq_R10_lightwave_t1",
+     "rank": 1,
+     "cut": "c08_lightwave",
+     "in": 0.4,
+     "out": 2.9833
+    },
+    {
+     "cid": "hq_R06_monolith_reveal_t1",
+     "rank": 2
+    },
+    {
+     "cid": "hq_R06_monolith_reveal_t3",
+     "rank": 2
+    },
+    {
+     "cid": "hq_R08_handwriting_glow_t2",
+     "rank": 2
+    },
+    {
+     "cid": "hq_R08_handwriting_glow_t3",
+     "rank": 2
+    },
+    {
+     "cid": "hq_R09_captain_face_t1",
+     "rank": 2
+    },
+    {
+     "cid": "hq_R10_lightwave_t2",
+     "rank": 2
+    },
+    {
+     "cid": "hq_R10_lightwave_t3",
+     "rank": 2
+    },
+    {
+     "cid": "previs_R05_claws_t1",
+     "rank": 2
+    },
+    {
+     "cid": "previs_R06_monolith_reveal_t1",
+     "rank": 2
+    },
+    {
+     "cid": "previs_R07_crew_walk_t1",
+     "rank": 2
+    },
+    {
+     "cid": "previs_R08_handwriting_glow_t1",
+     "rank": 2
+    },
+    {
+     "cid": "previs_R09_captain_face_t1",
+     "rank": 2
+    },
+    {
+     "cid": "previs_R10_lightwave_t1",
+     "rank": 2
+    }
+   ]
+  },
+  {
+   "line": 4,
+   "section": "welcome",
+   "takes": [
+    {
+     "cid": "hq_R11_captain_welcome_t2",
+     "rank": 1,
+     "cut": "c09_welcome",
+     "in": 0.2,
+     "out": 3.9917
+    },
+    {
+     "cid": "hq_R11_captain_welcome_t1",
+     "rank": 2
+    },
+    {
+     "cid": "previs_R11_captain_welcome_t1",
+     "rank": 2
+    }
+   ]
+  },
+  {
+   "line": 5,
+   "section": "ramp",
+   "takes": [
+    {
+     "cid": "hq_R12_second_sun_t1",
+     "rank": 1,
+     "cut": "c10_second_sun",
+     "in": 0.3,
+     "out": 1.3
+    },
+    {
+     "cid": "hq_R13_crewmate_yanked_t1",
+     "rank": 1,
+     "cut": "c11_yanked",
+     "in": 0.05,
+     "out": 0.9667
+    },
+    {
+     "cid": "hq_R14_engines_fire_t1",
+     "rank": 1,
+     "cut": "c12_engines",
+     "in": 0.1,
+     "out": 1.0167
+    },
+    {
+     "cid": "hq_R15_mountain_shape_t1",
+     "rank": 1,
+     "cut": "c13_mountain",
+     "in": 0.3,
+     "out": 1.3
+    },
+    {
+     "cid": "hq_R16_boots_crack_t1",
+     "rank": 1,
+     "cut": "c14_boots",
+     "in": 0.2,
+     "out": 0.9083
+    },
+    {
+     "cid": "hq_R17_captain_sprint_t2",
+     "rank": 1,
+     "cut": "c14b_sprint",
+     "in": 0.3,
+     "out": 1.0083
+    },
+    {
+     "cid": "hq_R18_ship_grab_t2",
+     "rank": 1,
+     "cut": "c15_grab",
+     "in": 0.3,
+     "out": 1.2167
+    },
+    {
+     "cid": "hq_R13_crewmate_yanked_t2",
+     "rank": 1,
+     "cut": "c11b_yanked",
+     "in": 0.1,
+     "out": 0.6833
+    },
+    {
+     "cid": "previs_R14_engines_fire_t1",
+     "rank": 1,
+     "cut": "c12b_engines",
+     "in": 0.5,
+     "out": 1.0833
+    },
+    {
+     "cid": "hq_R15_mountain_shape_t3",
+     "rank": 1,
+     "cut": "c13b_mountain",
+     "in": 1.8,
+     "out": 2.5083
+    },
+    {
+     "cid": "hq_R16_boots_crack_t1",
+     "rank": 1,
+     "cut": "c14c_boots",
+     "in": 1.2,
+     "out": 1.7
+    },
+    {
+     "cid": "hq_R18_ship_grab_t3",
+     "rank": 1,
+     "cut": "c15b_grab",
+     "in": 1.6,
+     "out": 2.1833
+    },
+    {
+     "cid": "hq_R17_captain_sprint_t1",
+     "rank": 1,
+     "cut": "c15c_sprint",
+     "in": 1.2,
+     "out": 1.7
+    },
+    {
+     "cid": "hq_R12_second_sun_t1",
+     "rank": 1,
+     "cut": "c10b_second_sun",
+     "in": 2.2,
+     "out": 2.7
+    },
+    {
+     "cid": "previs_R12_second_sun_t1",
+     "rank": 1,
+     "cut": "c16_00_light",
+     "in": 1.5,
+     "out": 1.9583
+    },
+    {
+     "cid": "previs_R19_giant_eye_t1",
+     "rank": 1,
+     "cut": "c16_01_eye",
+     "in": 0.5,
+     "out": 0.9167
+    },
+    {
+     "cid": "hq_R18_ship_grab_t1",
+     "rank": 1,
+     "cut": "c16_02_claw",
+     "in": 2.2,
+     "out": 2.6167
+    },
+    {
+     "cid": "hq_R14_engines_fire_t1",
+     "rank": 1,
+     "cut": "c16_03_fire",
+     "in": 1.8,
+     "out": 2.175
+    },
+    {
+     "cid": "hq_R10_lightwave_t3",
+     "rank": 1,
+     "cut": "c16_04_monolith",
+     "in": 2.0,
+     "out": 2.375
+    },
+    {
+     "cid": "previs_R20_crewmate_scream_t1",
+     "rank": 1,
+     "cut": "c16_05_scream",
+     "in": 0.5,
+     "out": 0.8333
+    },
+    {
+     "cid": "previs_R19_giant_eye_t1",
+     "rank": 1,
+     "cut": "c16_06_eye",
+     "in": 1.6,
+     "out": 1.9333
+    },
+    {
+     "cid": "hq_R15_mountain_shape_t3",
+     "rank": 1,
+     "cut": "c16_07_mountain",
+     "in": 2.6,
+     "out": 2.8917
+    },
+    {
+     "cid": "previs_R05_claws_t1",
+     "rank": 1,
+     "cut": "c16_08_claws",
+     "in": 2.2,
+     "out": 2.4917
+    },
+    {
+     "cid": "previs_R20_crewmate_scream_t1",
+     "rank": 1,
+     "cut": "c16_09_scream",
+     "in": 2.0,
+     "out": 2.25
+    },
+    {
+     "cid": "previs_R14_engines_fire_t1",
+     "rank": 1,
+     "cut": "c16_10_fire",
+     "in": 2.5,
+     "out": 2.75
+    },
+    {
+     "cid": "previs_R19_giant_eye_t1",
+     "rank": 1,
+     "cut": "c16_11_eye",
+     "in": 3.0,
+     "out": 3.25
+    },
+    {
+     "cid": "previs_R12_second_sun_t1",
+     "rank": 1,
+     "cut": "c16_12_light",
+     "in": 3.2,
+     "out": 3.4083
+    },
+    {
+     "cid": "hq_R10_lightwave_t2",
+     "rank": 1,
+     "cut": "c16_13_monolith",
+     "in": 2.5,
+     "out": 2.7083
+    },
+    {
+     "cid": "previs_R15_mountain_shape_t1",
+     "rank": 1,
+     "cut": "c16_14_mountain",
+     "in": 3.5,
+     "out": 3.7083
+    },
+    {
+     "cid": "previs_R20_crewmate_scream_t1",
+     "rank": 1,
+     "cut": "c16_15_scream",
+     "in": 3.5,
+     "out": 3.7083
+    },
+    {
+     "cid": "previs_R18_ship_grab_t1",
+     "rank": 1,
+     "cut": "c16_16_claw",
+     "in": 1.0,
+     "out": 1.1667
+    },
+    {
+     "cid": "previs_R19_giant_eye_t1",
+     "rank": 1,
+     "cut": "c16_17_eye",
+     "in": 4.0,
+     "out": 4.1667
+    },
+    {
+     "cid": "hq_R14_engines_fire_t1",
+     "rank": 1,
+     "cut": "c16_18_fire",
+     "in": 2.4,
+     "out": 2.5667
+    },
+    {
+     "cid": "previs_R20_crewmate_scream_t1",
+     "rank": 1,
+     "cut": "c16_19_scream",
+     "in": 4.2,
+     "out": 4.3667
+    },
+    {
+     "cid": "hq_R15_mountain_shape_t2",
+     "rank": 2
+    },
+    {
+     "cid": "previs_R13_crewmate_yanked_t1",
+     "rank": 2
+    },
+    {
+     "cid": "previs_R16_boots_crack_t1",
+     "rank": 2
+    },
+    {
+     "cid": "previs_R17_captain_sprint_t1",
+     "rank": 2
+    },
+    {
+     "cid": "blender_anim_15_liftoff",
+     "rank": 2
+    }
+   ]
+  }
+ ]
+}

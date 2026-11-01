@@ -26,6 +26,14 @@ Do NOT load: `_ARCHIVE_UNUSED_not_in_film/`, review folders, declined takes.
 4. Run `bin/build-episode projects/<film>`. Its preflight cross-checks the EDL against
    `beats.json` and hard-stops on a mismatch; never bypass it.
 5. Static gain mix, never loudnorm dynamic.
+6. Surround (added 2026-10-31): render the mix with `bin/surround-mix sfx/mix_plan.json
+   --out final/mix_51.wav --stereo final/mix_stereo.wav --no-loudnorm` (keep step 5: static
+   gain, no dynamic loudnorm), then `--video final/<Film>.mp4 --mux final/<Film>_51.mp4`
+   for the 5.1 E-AC3 + stereo AAC deliverable. Dialogue sits in Center.
+7. Grade (added 2026-10-31): `bin/grade in.mp4 out.mp4 --lut NAME [--grain 0-1] [--scope]`
+   with a LUT from `../../luts/` (teal_orange_blockbuster, bleach_bypass, cold_space_teal,
+   warm_alien_haze, kodak_2383_style, neutral_filmic; regenerate with tools/make_luts.py).
+   Pick the LUT per film in `final/timeline.json`; `--scope` for 2.39:1 cinema bars.
 
 ## Outputs
 - `projects/<film>/final/<Film>.mp4`, `final/timeline.json`

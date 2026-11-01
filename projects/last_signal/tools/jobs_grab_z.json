@@ -1,0 +1,22 @@
+[
+ {
+  "out": "projects/last_signal/stills/cand/R18_ship_grab_s101.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. A real photographed film frame: a colossal 8 km dark gunmetal cargo hauler with a long slightly wedge-shaped armored spine, stepped superstructure ridge, tall bridge tower near the stern, broad flat underbelly, blunt layered-armor prow, dense panel plating and greebles, thousands of tiny warm-white window lights, dashed cold teal running-light strips, six huge round blue-white engine nozzles, lifting off a glossy black glass plain, engines blazing blue, while enormous dark rock-like claws, each bigger than a skyscraper, rise out of the ground and close around its hull from below, rock and glass pouring off them, lightning in a churning orange storm sky.",
+  "init": "projects/last_signal/stills/plates/R18_comp_s22.png",
+  "strength": 0.3,
+  "w": 1248,
+  "h": 720,
+  "seed": 101,
+  "steps": 9
+ },
+ {
+  "out": "projects/last_signal/stills/cand/R18_ship_grab_s202.png",
+  "prompt": "Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. A real photographed film frame: a colossal 8 km dark gunmetal cargo hauler with a long slightly wedge-shaped armored spine, stepped superstructure ridge, tall bridge tower near the stern, broad flat underbelly, blunt layered-armor prow, dense panel plating and greebles, thousands of tiny warm-white window lights, dashed cold teal running-light strips, six huge round blue-white engine nozzles, lifting off a glossy black glass plain, engines blazing blue, while enormous dark rock-like claws, each bigger than a skyscraper, rise out of the ground and close around its hull from below, rock and glass pouring off them, lightning in a churning orange storm sky.",
+  "init": "projects/last_signal/stills/plates/R18_comp_s22.png",
+  "strength": 0.42,
+  "w": 1248,
+  "h": 720,
+  "seed": 202,
+  "steps": 9
+ }
+]
