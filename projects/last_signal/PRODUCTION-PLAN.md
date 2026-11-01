@@ -3,7 +3,7 @@ Goal: feature-film trailer feel, all local on the M5, one model in memory at a t
 
 Phases run in model order (load, batch everything for that model, unload, next):
 1. Ship model: Hunyuan3D draft mesh -> Blender refine -> Cycles hero renders + flythrough camera paths (real scale, consistent ship)
-2. Look frames: Qwen-Image 2.1 (bf16) all stills, Flux.1-dev for alternates -> unload
+2. Look frames: Krea 2 Turbo (bf16, 8 steps) all text-to-image stills, Z-Image-Turbo (bf16) for img2img (ship polish, creature guide) -> unload (2026-11-01 switch, tools/zimage_batch.py)
 3. Motion: Wan 2.2 A14B (MLX bf16) i2v/t2v, 3+ takes per shot -> unload. LTX 2.5 only for fast previs.
 4. Restore: SeedVR2-3B upscale to 4K -> unload; RIFE to 24fps-smooth motion
 5. Finish: ffmpeg grade (teal/orange LUT), anamorphic 2.39:1 bars, grain, lens flare plates from Blender
