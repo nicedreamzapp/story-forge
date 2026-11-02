@@ -35,6 +35,16 @@ Requirements: a Mac with Apple Silicon (I build on an M5 Max with 128GB of memor
 <picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-banner-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-banner-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-banner.svg" width="100%" alt="02. Watch the films. The Oldest Tree, The Bear Sister and The Lucid Engine"></picture>
 <picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-r1-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-r1-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-r1.svg" width="100%" alt="The Oldest Tree. October 2026 progress film, 2:53, 49 shots. The Bear Sister. Made on the first pipeline, May and June 2026. The Lucid Engine. Made on the first pipeline, May and June 2026."></picture>
 
+### 🤖 New: Robot in the Forest, painted stroke by stroke in MattPaint (November 2, 2026)
+
+![Robot in the Forest](./robot-in-the-forest.jpg)
+
+A giant robot has knelt in a forest so long that moss grows over it. The sun breaks through and its chest light flickers on. **10 s**, 120 frames, and **every frame painted into [MattPaint](https://github.com/nicedreamzapp/MattPaint)**, my Paint app, about 67 million strokes in all.
+
+How it was made: Claude Opus wrote the whole scene as Blender Python, no image or video model and no stock assets. Blender 5.1.1 Cycles on Metal rendered each frame in about 3.6 s, and MattPaint painted every frame on screen. The whole shot took 7 minutes. The scene writing is the one cloud step; the rendering and painting are local. Sound, score and the full cut come next, through Story Forge.
+
+[🎨 MattPaint, the sister project](https://github.com/nicedreamzapp/MattPaint) · [📜 The scene code](https://github.com/nicedreamzapp/MattPaint/tree/gen6-scene-engine/fast/blender)
+
 ### 🛸 Newest: THE LAST SIGNAL (sci-fi teaser, October 31 2026)
 
 [![THE LAST SIGNAL](./last-signal-hero.jpg)](https://youtu.be/HSgm6hOsLTs)
