@@ -38,10 +38,11 @@ COMFY = HOME / "AI/ComfyUI"; COMFY_PY = COMFY / "venv/bin/python"
 FPS = 24
 K6_FRAMES = 73; K6_SEEDS = (1101, 2202)
 LONG = {"R04_arrival": 4.6, "R11_captain_welcome": 4.0}   # seconds -> make-k6 frames_for: 113 / 97
-FACE_LOCK = ("c06b_crew_walk", "c09_welcome", "c14b_sprint", "c15c_sprint")   # the original's face-locked cuts
+FACE_LOCK = ("c06b_crew_walk", "c09_welcome", "c14b_sprint", "c15c_sprint",   # the original's face-locked cuts
+             "c11_yanked", "c11b_yanked")   # 11/2 v2c: crewmate face drifted in the yank (qc_cuts 0.705), locked to canon/crewmate.png
 # 11/2: held cuts with a readable captain/crewmate face -> LTX-2.5 Refine instead of SeedVR2 (fake skin texture)
 REFINE = ("c02a_cockpit", "c02b_lever", "c06b_crew_walk", "c07b_captain_face", "c09_welcome", "c11_yanked",
-          "c14b_sprint", "c15c_sprint")
+          "c14b_sprint", "c15c_sprint", "c11b_yanked")
 # 11/2 v2b (Matt): the sprint cuts are under 0.9 s, so they skipped the upscale and with it the face lock (her face
 # changed every frame). Face-lock cuts are upscaled whatever their length (tools/sprint_v2b.py did it for v2b).
 LTX_PY = HOME / "Desktop/PROJECTS/ltx-2-mlx-main/.venv/bin/python"
@@ -51,8 +52,13 @@ REFINE_W, REFINE_H, REFINE_MAX = 1920, 800, 49   # 49 frames = the test's proven
 STILL_OVERRIDE = {"R02_cockpit_alarm": {"seed": 606, "prompt": 'Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Medium side shot: the Captain: a weathered woman in her mid-forties with lightly sun-lined skin, grey-green eyes, dark brown hair streaked with grey tied back tightly, wearing a worn olive-grey zip-up flight suit with mission patches and a utility belt, sits in the pilot seat gripping a compact black flight side-stick mounted on the armrest console with her right hand, her left hand on the console beside it, both hands natural and relaxed-tense, no tall floor lever, no oversized handle; everything lit deep red by flashing alarm lamps, a raging orange lightning storm outside the windows. Inside the cockpit of a huge heavy industrial cargo starship: worn consoles with physical switches and small teal screens, thick angled windows.'}}
 # 11/2 v2b: v2's R17 had the camera tracking back at her pace, so she ran in place. Locked-off camera, she closes on
 # the lens and grows in frame (make-k6 --static).
-K6_OVERRIDE = {"R17_captain_sprint": {"static": True, "seeds": (3303, 4404)}}   # 3303 picked by eye: she clearly closes on the lens, background holds still
-ANIM_OVERRIDE = {"R17_captain_sprint": "the woman sprints hard straight at the camera and closes the distance fast, she grows larger in the "
+K6_OVERRIDE = {"R07_crew_walk": {"static": True, "seeds": (3303, 4404)},   # 11/2 v2c: they barely advanced (6.6%), seed picked in tools/recut_v2c.py
+               "R17_captain_sprint": {"static": True, "seeds": (3303, 4404)}}   # 3303 picked by eye: she clearly closes on the lens, background holds still
+ANIM_OVERRIDE = {"R07_crew_walk": "the woman and the man walk steadily straight toward the camera, closing the distance with every step, "
+                 "they grow larger in the frame as they come closer, natural confident walking strides, arms swinging, wary eyes scanning "
+                 "the towering monoliths, the monoliths stay put and slide past behind them, wind whips fog and black grit across the "
+                 "ground, their suits flutter, lightning flickers above",
+                 "R17_captain_sprint": "the woman sprints hard straight at the camera and closes the distance fast, she grows larger in the "
                  "frame with every stride until her chest and face fill the frame, natural long running strides with her body leaning "
                  "forward, boots pounding the black gravel, arms pumping, ponytail bouncing, the monoliths stay put behind her as she "
                  "leaves them behind, fog and grit swirl around her legs, orange lightning flashes behind",
