@@ -35,17 +35,40 @@ Requirements: a Mac with Apple Silicon (I build on an M5 Max with 128GB of memor
 <picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-banner-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-banner-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-banner.svg" width="100%" alt="02. Watch the films. The Oldest Tree, The Bear Sister and The Lucid Engine"></picture>
 <picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-r1-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-r1-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-r1.svg" width="100%" alt="The Oldest Tree. October 2026 progress film, 2:53, 49 shots. The Bear Sister. Made on the first pipeline, May and June 2026. The Lucid Engine. Made on the first pipeline, May and June 2026."></picture>
 
+### 🛸 Newest: THE LAST SIGNAL v2 (November 2 2026)
+
+[▶ **Watch v2**](https://youtu.be/hbihC91Bgkc) · [v1 for comparison](https://youtu.be/HSgm6hOsLTs)
+
+The same trailer rebuilt after v1 went up on Reddit. Same story, same cut and same mix (**46.6 s**, 50 cuts, 4K, 5.1 plus stereo), but every picture and every second of motion is new.
+
+**What the feedback taught us, and what changed:**
+- 🖼️ **Stills: Krea 2 replaced Z-Image.** "Krea 2 is a better model than ZIT" came up on my thread. Krea 2 Turbo (bf16) now makes every text to image still; Z-Image Turbo stays only for image to image work (ship polish, the creature guide).
+- 🎞️ **Motion: Kandinsky 6 Pro replaced LTX 2.5.** "LTX just hallucinates too much and it isn't very prompt accurate." Kandinsky 6 Pro (29B, bf16, MIT) is now the default motion engine ([`bin/make-k6`](bin/make-k6)), about 12 minutes for a 3 s clip at a 68.7 GB peak on the M5. LTX 2.5 stays as the fast previs drafter. The research and the bake off: [`MODEL-CONSENSUS-2026-11.md`](MODEL-CONSENSUS-2026-11.md), [`VIDEO-MODEL-2026-11-01.md`](VIDEO-MODEL-2026-11-01.md).
+- 🙂 **Faces: LTX 2.5 IC LoRA Refine instead of SeedVR2.** In our side by side on the captain close-up, SeedVR2 drew fake looking wrinkles; Refine kept the skin natural. Face cuts now upscale with Refine, tiled ([`UPSCALE-TEST-2026-11-02.md`](UPSCALE-TEST-2026-11-02.md)).
+- 🚀 **Scenes: SeedVR2 3B kept.** It is still crisper on ships, sets and hard surfaces. Its batches are capped at 37 frames after a memory crash. [`bin/upscale-route`](bin/upscale-route) picks the upscaler per cut: SeedVR2 by default, Refine when an on device face probe finds a face, plain resize for cuts under 0.9 s.
+- 🎬 **Shot fixes:** the cockpit uses a compact side stick instead of a tall floor lever, the running shot and the crew walk were re-rendered with a locked off camera so the actors close on the lens instead of running in place, and the yank cuts are face locked to the crewmate.
+
+**New: frame by frame QC.** The v1 review looked at one frame every 1.5 s and missed a sub-second sprint cut where the captain's face changed from frame to frame while she ran in place. [`tools/qc_cuts.py`](tools/qc_cuts.py) now walks every cut in the edit at 12 fps (every frame when a cut is shorter than that), writes a strip of consecutive frames per cut, scores each face against the cut and the cast reference (InsightFace ArcFace), and checks that running and walking cuts actually move forward. The final v2 pass: 50 cuts checked, 0 flagged, and every strip read by eye before calling it done.
+
+<img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/07120e9950a8f31489af730ebf01be7b6dba8990/assets/readme/last-signal-v2-qc-sprint.jpg" width="100%" alt="qc_cuts strip of the v2 sprint cut: eight consecutive frames of the captain running toward the camera, each with its face identity score between 0.97 and 0.99">
+
+*The fixed sprint cut in v2, every frame with its identity score.*
+
+Tools: Krea 2 Turbo · Z-Image Turbo i2i · Blender (opening) · Kandinsky 6 Pro · SeedVR2 3B · LTX 2.5 Refine · inswapper 128 + InsightFace face lock · ChatterBox · ACE Step 1.5 · MMAudio · ffmpeg.
+
+[▶ Watch v2](https://youtu.be/hbihC91Bgkc) · [📁 Project folder](./projects/last_signal/) · [🔍 qc_cuts.py](tools/qc_cuts.py)
+
 ### 🤖 New: Robot in the Forest, painted stroke by stroke in MattPaint (November 2, 2026)
 
 ![Robot in the Forest](./robot-in-the-forest.jpg)
 
 A giant robot has knelt in a forest so long that moss grows over it. The sun breaks through and its chest light flickers on. **10 s**, 120 frames, and **every frame painted into [MattPaint](https://github.com/nicedreamzapp/MattPaint)**, my Paint app, about 67 million strokes in all.
 
-How it was made: Claude Opus wrote the whole scene as Blender Python, no image or video model and no stock assets. Blender 5.1.1 Cycles on Metal rendered each frame in about 3.6 s, and MattPaint painted every frame on screen. The whole shot took 7 minutes. The scene writing is the one cloud step; the rendering and painting are local. Sound, score and the full cut come next, through Story Forge.
+How it was made: the whole scene was written as Blender Python from a text prompt, no image or video model and no stock assets. Blender 5.1.1 Cycles on Metal rendered each frame in about 3.6 s, and MattPaint painted every frame on screen. The whole shot took 7 minutes. The scene writing is the one cloud step; the rendering and painting are local. Sound, score and the full cut come next, through Story Forge.
 
 [🎨 MattPaint, the sister project](https://github.com/nicedreamzapp/MattPaint) · [📜 The scene code](https://github.com/nicedreamzapp/MattPaint/tree/gen6-scene-engine/fast/blender)
 
-### 🛸 Newest: THE LAST SIGNAL (sci-fi teaser, October 31 2026)
+### 🛸 THE LAST SIGNAL v1 (sci-fi teaser, October 31 2026)
 
 [![THE LAST SIGNAL](./last-signal-hero.jpg)](https://youtu.be/HSgm6hOsLTs)
 
@@ -101,6 +124,20 @@ An uploaded mind pieces together how the world ended. Psychedelic sci-fi, five a
 </table>
 
 > 🕰️ The Bear Sister and The Lucid Engine were made on the **first** pipeline (May and June 2026). Nearly every stage has been upgraded since. Here's what runs today 👇
+
+### 🎨 Related: MattPaint
+
+[MattPaint](https://github.com/nicedreamzapp/MattPaint) is my Paint app for the web, and it now makes films where every frame is painted on screen. A frame is rendered, painted into the MattPaint canvas while you watch, saved from that canvas, and the frames are joined into a video. Robot in the Forest (above) is the first: Blender Cycles light, about 590k strokes a frame, 120 frames in 7 minutes. In the photoreal path the strokes are one color horizontal lines painted top to bottom, like a printer; the older gen 6 engine is the one with brush style strokes. The film code is on MattPaint's [`gen6-scene-engine`](https://github.com/nicedreamzapp/MattPaint/tree/gen6-scene-engine/fast) branch (`pt_film.py`, `paint_frames.py`, `slow_paint.py`, `blender/`).
+
+### 🧪 Next: new ways of blending video
+
+These are plans, not results. Nothing below has been rendered yet. Every experiment goes through the same [`qc_cuts.py`](tools/qc_cuts.py) frame by frame check (face identity, forward motion, a strip per cut) before it counts.
+
+- 🖌️ **The MattPaint method as its own shot type.** How MattPaint makes a film today: the scene is written as Blender Python, Blender Cycles on Metal renders each frame (about 3.6 s a frame), [`paint_frames.py`](https://github.com/nicedreamzapp/MattPaint/blob/gen6-scene-engine/fast/paint_frames.py) watches the render folder and paints each frame into MattPaint on screen as it lands, keeps the canvas it painted, and joins the frames into an mp4. Its path traced sibling, `pt_film.py`, animates on twos (12 drawings a second, each held two frames) with a fixed noise seed so the grain does not crawl. The plan is to make that a shot type inside Story Forge, so one film can cut between painted shots and generated ones, with Story Forge adding the sound, score and finished cut.
+- 🔑 **Painted keyframes driving image to video.** Use a MattPaint painted frame as the start still for Kandinsky 6 Pro or LTX 2.5 image to video, so the motion model animates a painting instead of a generated picture, then compare it with the same shot from a Krea 2 still.
+- 🎨 **MattPaint passes over generated footage.** Feed Kandinsky 6 or LTX clips, frame by frame, through the same painting step, to see whether one painted look can pull shots from different models into a single style.
+- 🧱 **Blender as structure, generated texture on top.** Precise motion (ships, vehicles, camera moves) is already blocked in Blender and used as the start frame. The next step is to keep the Blender render as the structure for the whole shot and let the video model paint the surface on top.
+- 🔀 **Mixing models per shot on purpose.** `upscale-route` already picks an upscaler per cut. The same idea for motion: Kandinsky 6 Pro for scenes, LTX 2.5 audio to video for lip sync close-ups, Wan Animate 2 for acting once it renders a clean clip, and Blender plus MattPaint for painted shots.
 
 <img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-rule.svg" width="100%" alt="">
 
