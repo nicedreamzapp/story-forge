@@ -257,7 +257,7 @@ def refine(src, out, n):
     for (ci, m), o in zip(spans, outs):   # drop the clone-padding frames at the end of each chunk
         t = tmp / f"t_{o.name}"; ff("-i", o, "-frames:v", m, "-r", FPS, "-c:v", "libx264", "-crf", "4", "-pix_fmt", "yuv420p", t); trimmed.append(t)
     (tmp / "list.txt").write_text("".join(f"file '{x}'\n" for x in trimmed))
-    ff("-f", "concat", "-safe", "0", "-i", tmp / "list.txt", "-r", FPS, "-c:v", "libx264", "-crf", "8", "-pix_fmt", "yuv420p", out)
+    ff("-f", "concat", "-safe", "0", "-i", tmp / "list.txt", "-r", FPS, "-frames:v", n, "-c:v", "libx264", "-crf", "8", "-pix_fmt", "yuv420p", out)   # 11/2: concat + -r added 1 frame
     shutil.rmtree(tmp, ignore_errors=True)
     return 0, res
 
