@@ -10,6 +10,10 @@
             the cut is slowed to fit (logged). Cuts that used different LTX takes of one render now share its one K6
             clip at non-overlapping in-points where the clip has room.
   upscale : SeedVR2-3B 720p on every cut held >= 0.9 s, lanczos for the rest (same as tools/seedvr2_batch.py).
+            11/2 (Matt, after the SeedVR2 vs LTX-2.5 Refine test): SeedVR2 gives faces fake AI wrinkles, so every
+            held cut where a captain/crewmate face is readable (REFINE) goes through LTX-2.5 IC-LoRA Refine-Details
+            instead (tools/ltx25_refine_tiled.py, 1920x800, 3x2 fused tiles, seed 42), in <= 49-frame chunks under
+            its own 64 GB lease, never at the same time as SeedVR2.
   finish  : face_lock on the same 4 captain/crewmate cuts, bloom + bin/grade + scope bars (tools/finish_4k.py),
             original title card, original mix (sfx/mix_plan.json via bin/surround-mix), deliver.py's three muxes.
 Everything goes to renders_v2_krea_k6/; the original trailer and stills are only read. Resumable: every stage
@@ -35,6 +39,10 @@ FPS = 24
 K6_FRAMES = 73; K6_SEEDS = (1101, 2202)
 LONG = {"R04_arrival": 4.6, "R11_captain_welcome": 4.0}   # seconds -> make-k6 frames_for: 113 / 97
 FACE_LOCK = ("c06b_crew_walk", "c09_welcome", "c14b_sprint", "c15c_sprint")   # the original's face-locked cuts
+# 11/2: held cuts with a readable captain/crewmate face -> LTX-2.5 Refine instead of SeedVR2 (fake skin texture)
+REFINE = ("c02a_cockpit", "c02b_lever", "c06b_crew_walk", "c07b_captain_face", "c09_welcome", "c11_yanked")
+LTX_PY = HOME / "Desktop/PROJECTS/ltx-2-mlx-main/.venv/bin/python"
+REFINE_W, REFINE_H, REFINE_MAX = 1920, 800, 49   # 49 frames = the test's proven size (56 GB Metal peak)
 STOP = V2 / "logs/STOP"
 PROG = V2 / "logs/progress.log"
 T0 = time.time()
@@ -221,18 +229,73 @@ def seedvr(src, out, b, seed):
   except subprocess.TimeoutExpired:
     return subprocess.CompletedProcess([], 124, "", "seedvr2 timeout after 90 min")
 
+def refine(src, out, n):
+    """LTX-2.5 Refine one scope segment (n frames) -> out at 1920x800, exactly n frames, 24 fps."""
+    tmp = out.parent / f"rf_{out.stem}"; shutil.rmtree(tmp, ignore_errors=True); tmp.mkdir()
+    parts = math.ceil(n / REFINE_MAX); per = math.ceil(n / parts); spans, ins = [], []
+    for j in range(parts):
+        a, z = j * per, min(n, (j + 1) * per); m = z - a; p8 = 8 * math.ceil((m - 1) / 8) + 1
+        ci = tmp / f"p{j}.mp4"; spans.append((ci, m)); ins.append(str(ci))
+        ff("-i", src, "-vf", f"select='between(n\\,{a}\\,{z-1})',setpts=N/{FPS}/TB,scale={REFINE_W}:{REFINE_H}:flags=lanczos,"
+           f"tpad=stop_mode=clone:stop={p8-m}", "-frames:v", p8, "-r", FPS, "-c:v", "libx264", "-crf", "4", "-pix_fmt", "yuv420p", ci)
+    try:
+        r = subprocess.run([str(LTX_PY), str(SF / "tools/ltx25_refine_tiled.py"), str(tmp), str(REFINE_W), str(REFINE_H),
+                            "3", "2", "16", "9", *ins], cwd=str(SF), capture_output=True, text=True, timeout=4 * 3600)
+    except subprocess.TimeoutExpired:
+        r = subprocess.CompletedProcess([], 124, "", "refine timeout after 4 h")
+    res = [l for l in (r.stdout or "").splitlines() if l.startswith("RESULT")]
+    outs = [tmp / f"p{j}_refine_{REFINE_W}x{REFINE_H}.mp4" for j in range(parts)]
+    if r.returncode != 0 or not all(o.exists() for o in outs):
+        print(r.stdout[-1500:], r.stderr[-1500:], flush=True); shutil.rmtree(tmp, ignore_errors=True); return r.returncode or 1, res
+    trimmed = []
+    for (ci, m), o in zip(spans, outs):   # drop the clone-padding frames at the end of each chunk
+        t = tmp / f"t_{o.name}"; ff("-i", o, "-frames:v", m, "-r", FPS, "-c:v", "libx264", "-crf", "4", "-pix_fmt", "yuv420p", t); trimmed.append(t)
+    (tmp / "list.txt").write_text("".join(f"file '{x}'\n" for x in trimmed))
+    ff("-f", "concat", "-safe", "0", "-i", tmp / "list.txt", "-r", FPS, "-c:v", "libx264", "-crf", "8", "-pix_fmt", "yuv420p", out)
+    shutil.rmtree(tmp, ignore_errors=True)
+    return 0, res
+
+def run_upscale_refine(e, S, todo, frames):
+    from mem_client import reserve_ex
+    rt = [nm for nm in todo if nm.split("_", 1)[1][:-4] in REFINE]
+    for nm in rt:   # a face cut upscaled by SeedVR2 before 11/2 has no .refine marker: delete it so Refine redoes it
+        if (S / "up" / nm).exists() and not (S / "up" / (nm[:-4] + ".refine.json")).exists():
+            (S / "up" / nm).unlink(); log(f"[refine] removed old SeedVR2 output {nm}")
+    log(f"[refine] {sum((S / 'up' / nm).exists() for nm in rt)}/{len(rt)} face cuts done, {sum(frames[nm] for nm in rt)} frames")
+    for i, nm in enumerate(rt, 1):
+        stop_check()
+        out, src, n = S / "up" / nm, S / "scope" / nm, frames[nm]
+        if out.exists(): continue
+        while songforge_busy(): print("Song Forge job running, waiting 30s", flush=True); time.sleep(30)
+        while True:   # honest lease: ~56 GB Metal peak measured on 49 frames, + headroom
+            with reserve_ex("ltx25-refine", 64) as (lid, status):
+                if status == "refused": print("ltx25-refine lease refused, retrying in 60s", flush=True); time.sleep(60); continue
+                t = time.time(); rc, res = refine(src, out, n)
+                break
+        got = nfr(out) if out.exists() else 0
+        bad = bad_frames(src, out) if got else ["no output"]
+        if got and got != n:
+            out.rename(out.with_suffix(".badcount.mp4")); bad = [f"{got} frames != {n}"]
+        elif got:
+            (S / "up" / (nm[:-4] + ".refine.json")).write_text(json.dumps({"engine": "ltx-2.5 ic-lora refine-details", "w": REFINE_W,
+                "h": REFINE_H, "tiles": "3x2 ov 16x9", "seed": 42, "frames": n, "secs": round(time.time() - t), "results": res,
+                "finished": time.strftime("%Y-%m-%d %H:%M:%S")}))
+        log(f"[refine] {nm}: {n} frames, rc {rc}, {time.time()-t:.0f}s, frames out {got}, bad frames {len(bad)}{' ' + str(bad[:3]) if bad else ''} - {i}/{len(rt)}")
+    return set(rt)
+
 def run_upscale():
     sys.path.insert(0, str(HOME / "SongForgeM5"))
     from mem_client import reserve
     e = json.load(open(V2 / "final/edl_v2.json")); S = V2 / "final/segs"
     todo = [(f"{k:02d}_{c['id']}.mp4") for k, c in enumerate(e["cuts"]) if c["src"] and c["section"] != "title" and c["len"] >= 0.9]
     frames = {nm: nfr(S / "scope" / nm) for nm in todo}
+    rdone = run_upscale_refine(e, S, todo, frames)   # face cuts first, Refine and SeedVR2 never overlap
     log(f"[upscale] {sum((S / 'up' / nm).exists() for nm in todo)}/{len(todo)} done, {sum(frames.values())} frames total")
     with reserve("seedvr2-3b", 60):
         for i, nm in enumerate(todo, 1):
             stop_check()
             out, src, n = S / "up" / nm, S / "scope" / nm, frames[nm]
-            if out.exists(): continue
+            if out.exists() or nm in rdone: continue
             while songforge_busy(): print("Song Forge job running, waiting 30s", flush=True); time.sleep(30)
             t = time.time()
             for seed in (42, 7, 1234):
@@ -300,7 +363,8 @@ def run_finish():
         src, sharpen = S / "up" / nm, ""
         if not src.exists():
             src, sharpen = S / "scope" / nm, ",unsharp=5:5:0.6:5:5:0.0"
-        c["upscale"] = "seedvr2-3b 720p + lanczos" if not sharpen else "lanczos + unsharp"
+        c["upscale"] = ("ltx-2.5 refine 1920x800 + lanczos" if (S / "up" / (nm[:-4] + ".refine.json")).exists() else
+                        "seedvr2-3b 720p + lanczos") if not sharpen else "lanczos + unsharp"
         if (S / "locked" / nm).exists(): src = S / "locked" / nm; c["face_lock"] = True
         c["lut"] = lut; c["bloom"] = BLOOM.get(c["id"], 0.5 if c["section"] == "strobe" else 0)
         if o.exists(): continue
@@ -336,7 +400,7 @@ def run_deliver():
 
 STAGES = [("stills", run_stills), ("clips", run_clips), ("edit", run_edit), ("upscale", run_upscale), ("finish", run_finish), ("deliver", run_deliver)]
 if __name__ == "__main__":
-    log(f"=== THE LAST SIGNAL v2 redo start (Krea 2 stills, K6 motion, SeedVR2-3B) -> {V2}")
+    log(f"=== THE LAST SIGNAL v2 redo start (Krea 2 stills, K6 motion, SeedVR2-3B + LTX-2.5 Refine on faces) -> {V2}")
     for name, fn in STAGES:
         mark = V2 / f"logs/STAGE_DONE_{name}"
         if mark.exists() and name not in ("stills", "clips"): continue
