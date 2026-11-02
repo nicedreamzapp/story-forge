@@ -10,7 +10,10 @@ jobs: [{"out","prompt","w","h","seed", optional "init","strength"}]"""
 import gc, json, os, subprocess, sys, threading, time, urllib.request
 from pathlib import Path
 KREA_PY = Path.home() / "AI/krea2/venv/bin/python"
-if KREA_PY.exists() and Path(sys.prefix) != KREA_PY.parent.parent:
+# resolve: ~/AI is a symlink, and the unresolved compare re-exec'd forever (11/1: the Krea verify frame sat 17 min
+# with an empty log in that loop until it was SIGTERM'd). ZIMG_REEXEC makes a second re-exec impossible either way.
+if KREA_PY.exists() and Path(sys.prefix).resolve() != KREA_PY.parent.parent.resolve() and not os.environ.get("ZIMG_REEXEC"):
+    os.environ["ZIMG_REEXEC"] = "1"
     os.execv(str(KREA_PY), [str(KREA_PY), *sys.argv])
 SF = Path.home() / "Desktop/PROJECTS/story-forge"
 jobs = json.load(open(sys.argv[1]))
