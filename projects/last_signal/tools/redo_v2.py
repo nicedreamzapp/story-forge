@@ -40,13 +40,23 @@ K6_FRAMES = 73; K6_SEEDS = (1101, 2202)
 LONG = {"R04_arrival": 4.6, "R11_captain_welcome": 4.0}   # seconds -> make-k6 frames_for: 113 / 97
 FACE_LOCK = ("c06b_crew_walk", "c09_welcome", "c14b_sprint", "c15c_sprint")   # the original's face-locked cuts
 # 11/2: held cuts with a readable captain/crewmate face -> LTX-2.5 Refine instead of SeedVR2 (fake skin texture)
-REFINE = ("c02a_cockpit", "c02b_lever", "c06b_crew_walk", "c07b_captain_face", "c09_welcome", "c11_yanked")
+REFINE = ("c02a_cockpit", "c02b_lever", "c06b_crew_walk", "c07b_captain_face", "c09_welcome", "c11_yanked",
+          "c14b_sprint", "c15c_sprint")
+# 11/2 v2b (Matt): the sprint cuts are under 0.9 s, so they skipped the upscale and with it the face lock (her face
+# changed every frame). Face-lock cuts are upscaled whatever their length (tools/sprint_v2b.py did it for v2b).
 LTX_PY = HOME / "Desktop/PROJECTS/ltx-2-mlx-main/.venv/bin/python"
 REFINE_W, REFINE_H, REFINE_MAX = 1920, 800, 49   # 49 frames = the test's proven size (56 GB Metal peak)
 # 11/2 viewer note via Matt: R02's tall chrome floor lever looked weird. New still: a compact side-stick on the console
 # (Krea 2 seed 606 of 606/2606/3606, picked by eye), and the K6 motion prompt follows it. Only R02 changes.
 STILL_OVERRIDE = {"R02_cockpit_alarm": {"seed": 606, "prompt": 'Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Medium side shot: the Captain: a weathered woman in her mid-forties with lightly sun-lined skin, grey-green eyes, dark brown hair streaked with grey tied back tightly, wearing a worn olive-grey zip-up flight suit with mission patches and a utility belt, sits in the pilot seat gripping a compact black flight side-stick mounted on the armrest console with her right hand, her left hand on the console beside it, both hands natural and relaxed-tense, no tall floor lever, no oversized handle; everything lit deep red by flashing alarm lamps, a raging orange lightning storm outside the windows. Inside the cockpit of a huge heavy industrial cargo starship: worn consoles with physical switches and small teal screens, thick angled windows.'}}
-ANIM_OVERRIDE = {"R02_cockpit_alarm": "red alarm lights pulse and strobe across the cockpit, the woman grips the compact flight "
+# 11/2 v2b: v2's R17 had the camera tracking back at her pace, so she ran in place. Locked-off camera, she closes on
+# the lens and grows in frame (make-k6 --static).
+K6_OVERRIDE = {"R17_captain_sprint": {"static": True, "seeds": (3303, 4404)}}   # 3303 picked by eye: she clearly closes on the lens, background holds still
+ANIM_OVERRIDE = {"R17_captain_sprint": "the woman sprints hard straight at the camera and closes the distance fast, she grows larger in the "
+                 "frame with every stride until her chest and face fill the frame, natural long running strides with her body leaning "
+                 "forward, boots pounding the black gravel, arms pumping, ponytail bouncing, the monoliths stay put behind her as she "
+                 "leaves them behind, fog and grit swirl around her legs, orange lightning flashes behind",
+                 "R02_cockpit_alarm": "red alarm lights pulse and strobe across the cockpit, the woman grips the compact flight "
                  "side-stick and pushes it forward hard, the whole cabin shudders violently, sparks drift, the camera shakes with the turbulence"}
 STOP = V2 / "logs/STOP"
 PROG = V2 / "logs/progress.log"
@@ -135,11 +145,12 @@ def run_clips():
         stop_check()
         if done(rid): continue
         r = renders[rid]; still = V2 / f"stills/locked/LOCKED_{rid}.png"
-        tries = [(LONG.get(rid, K6_FRAMES / FPS), K6_SEEDS[0]), (K6_FRAMES / FPS, K6_SEEDS[1])]
+        ko = K6_OVERRIDE.get(rid, {}); sd = ko.get("seeds", K6_SEEDS)
+        tries = [(LONG.get(rid, K6_FRAMES / FPS), sd[0]), (K6_FRAMES / FPS, sd[1])]
         while tries:
             dur, seed = tries.pop(0)
             cmd = [str(KREA_PY), str(SF / "bin/make-k6"), "--i2v", str(still), "--res", "832x480", "--duration", f"{dur:.3f}",
-                   "--seed", str(seed), "--label", f"ls_v2_{rid}", ANIM_OVERRIDE.get(rid, r["animate"])]
+                   "--seed", str(seed), "--label", f"ls_v2_{rid}", *(["--static"] if ko.get("static") else []), ANIM_OVERRIDE.get(rid, r["animate"])]
             t = time.time()
             try: p = subprocess.run(cmd, capture_output=True, text=True, timeout=90 * 60); rc = p.returncode; out, err = p.stdout, p.stderr
             except subprocess.TimeoutExpired: rc, out, err = "timeout", "", ""
@@ -293,7 +304,7 @@ def run_upscale():
     sys.path.insert(0, str(HOME / "SongForgeM5"))
     from mem_client import reserve
     e = json.load(open(V2 / "final/edl_v2.json")); S = V2 / "final/segs"
-    todo = [(f"{k:02d}_{c['id']}.mp4") for k, c in enumerate(e["cuts"]) if c["src"] and c["section"] != "title" and c["len"] >= 0.9]
+    todo = [(f"{k:02d}_{c['id']}.mp4") for k, c in enumerate(e["cuts"]) if c["src"] and c["section"] != "title" and (c["len"] >= 0.9 or c["id"] in FACE_LOCK)]
     frames = {nm: nfr(S / "scope" / nm) for nm in todo}
     rdone = run_upscale_refine(e, S, todo, frames)   # face cuts first, Refine and SeedVR2 never overlap
     log(f"[upscale] {sum((S / 'up' / nm).exists() for nm in todo)}/{len(todo)} done, {sum(frames.values())} frames total")
@@ -415,3 +426,4 @@ if __name__ == "__main__":
         log(f"--- stage {name} done in {(time.time()-t)/60:.1f} min (total {(time.time()-T0)/60:.0f} min)")
     (V2 / "logs/REDO_V2_FINISHED").write_text(time.strftime("%Y-%m-%d %H:%M:%S"))
     log(f"=== DONE: {V2 / 'final/LAST_SIGNAL_v2.mp4'} in {(time.time()-T0)/3600:.2f} h")
+
