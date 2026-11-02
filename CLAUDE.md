@@ -42,6 +42,8 @@ This directory is the home of **Story Forge**, a robust local-first generative V
 - `story_pipeline.py` — the core pipeline (Flux + Wan + Kokoro Heart narration + ACE-Step + ffmpeg, config-driven)
 - `server.py` — Flask UI server on port 17600
 - `ui/story.html` — Story Forge web form
+- `bin/make-k6` — Kandinsky 6 Pro i2v, the DEFAULT scene video engine (2026-11-01, `VIDEO-MODEL-2026-11-01.md`)
+- `bin/make-wa2` — Wan-Animate-2 performance transfer (driving video → character), acting candidate, not a default
 - `bin/make-video` — Wan inference CLI (works)
 - `bin/make-ltx-video` — LTX-Video fast-mode CLI (BROKEN, see SESSION_HANDOFF "Open problems #1")
 - `bin/render-route` — auto-picks Wan vs LTX per scene

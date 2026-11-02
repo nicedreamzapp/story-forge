@@ -1,0 +1,323 @@
+#!/usr/bin/env python3
+r"""upscale-route: pick the upscaler per shot, then run it. Matt's call on 2026-11-02 (UPSCALE-TEST-2026-11-02.md).
+
+  SeedVR2-3B (720p restore)   every shot by default (crisper on ships, sets and hard surfaces)
+  LTX-2.5 Refine-Details      faces and close-ups. SeedVR2 invents skin ("her wrinkles look fake and AI");
+                              Refine stays true to the source and doesn't boil from frame to frame
+  lanczos only                cuts under 0.9 s (unchanged rule: the eye can't inspect them)
+
+Usage:
+  upscale-route projects/<film> --edl final/edl.json --segs final/segs/scope --out final/segs/up --dry-run
+  upscale-route projects/<film> --edl ... --segs ... --out ...            # runs it (GPU; respect the schedule)
+  upscale-route projects/<film> --edl ... --segs ... --mark-beats --dry-run   # also write face_auto into beats.json
+
+Segments are the files `<k:02d>_<cut id>.mp4` in --segs, one per EDL cut (the convention every film uses).
+
+Route for each cut, first match wins:
+  1. manual override  `"upscale": "seedvr2" | "refine" | "lanczos"` on the EDL cut, or on its beats.json shot
+  2. cut shorter than 0.9 s  -> lanczos
+  3. explicit `"face": true | false` on the cut or its shot (stage 04 sets it)  -> refine | seedvr2
+  4. the shot's `"framing"` is close / close-up / cu / ecu / mcu / medium close, and it has a character
+     (`identity` is not empty)  -> refine
+  5. auto: Apple Vision face probe (bin/face_area) on 3 frames; the largest face covers >= --face-min
+     (default 0.05) of the frame  -> refine. Cartoon and animal faces are NOT detected, so stage 04 must set
+     `face: true` on those shots by hand
+  6. otherwise -> seedvr2
+A cut is matched to a beats.json shot by `cut.shot`, then an equal id, then a shared id prefix, then the shot's
+`render` name appearing in the cut's src.
+
+Run mode honours the house rules: it refuses while another heavy GPU job is alive, waits out Song Forge customer
+jobs, calls bin/mem-gate, and holds a forge_guard lease (seedvr2-3b 34 GB, ltx25-refine 20 GB with --low-ram,
+measured peak 56 GB Metal). Output files keep their names in --out. Refine outputs come out about 2.3x the source
+(e.g. 1920x800 from 832x348) and SeedVR2 outputs 720p short side, so the 4K finish must scale by the delivery
+canvas, never assume one input size. --dry-run prints the plan and launches nothing.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import math
+import re
+import subprocess
+import sys
+import tempfile
+import time
+import urllib.request
+from pathlib import Path
+
+SF = Path(__file__).resolve().parent.parent
+HOME = Path.home()
+COMFY = HOME / "AI/ComfyUI"
+LTX_PY = HOME / "Desktop/PROJECTS/ltx-2-mlx-main/.venv/bin/python"
+REFINE = SF / "tools/ltx25_refine_tiled.py"
+FACE = SF / "bin/face_area"
+FPS = 24
+CLOSE = re.compile(r"\b(close|close-?up|cu|ecu|mcu|medium[- ]close|extreme close)\b", re.I)
+GPU_PAT = re.compile(r"make-k6|make-wa2|make-ltx|kandinsky|seedvr|zimage|krea|comfy|mflux|blender|face_lock|ltx-2-mlx|refine_tiled", re.I)
+SEC_PER_FRAME = {"seedvr2": 13.0, "refine": 18.0, "lanczos": 0.05}   # measured on the M5 10/31 and 11/2
+
+
+def sh(*a, **k):
+    return subprocess.run([str(x) for x in a], capture_output=True, text=True, **k)
+
+
+def nframes(f: Path) -> int:
+    return int(sh("ffprobe", "-v", "error", "-count_frames", "-select_streams", "v", "-show_entries",
+                  "stream=nb_read_frames", "-of", "csv=p=0", f).stdout.strip() or 0)
+
+
+def size(f: Path) -> tuple[int, int]:
+    w, h = sh("ffprobe", "-v", "error", "-select_streams", "v", "-show_entries", "stream=width,height",
+              "-of", "csv=p=0", f).stdout.strip().split(",")[:2]
+    return int(w), int(h)
+
+
+def face_fraction(f: Path, n: int) -> float:
+    if not FACE.exists():
+        return 0.0
+    with tempfile.TemporaryDirectory() as td:
+        pngs = []
+        for j, idx in enumerate((n // 4, n // 2, (3 * n) // 4)):
+            p = Path(td) / f"f{j}.png"
+            sh("ffmpeg", "-v", "error", "-y", "-i", f, "-vf", f"select=eq(n\\,{idx})", "-frames:v", "1", p)
+            if p.exists():
+                pngs.append(p)
+        if not pngs:
+            return 0.0
+        vals = [float(line.split()[-2]) for line in sh(FACE, *pngs).stdout.splitlines() if line.strip()]
+        return max(vals or [0.0])
+
+
+def match_shot(cut: dict, shots: list[dict]) -> dict | None:
+    cid = cut.get("shot") or cut.get("id", "")
+    for s in shots:
+        if s.get("id") == cid:
+            return s
+    for s in shots:
+        sid = s.get("id", "")
+        if sid and (cid.startswith(sid) or sid.startswith(cid)):
+            return s
+    src = str(cut.get("src", "")) + " " + str(cut.get("orig_src", ""))
+    for s in shots:
+        r = s.get("render")
+        if r and r in src:
+            return s
+    return None
+
+
+def route(cut: dict, shot: dict | None, seg: Path, face_min: float) -> tuple[str, str, float | None]:
+    for where, d in (("cut", cut), ("shot", shot or {})):
+        u = d.get("upscale")
+        if u in ("seedvr2", "refine", "lanczos"):
+            return u, f"manual override on the {where}", None
+    if float(cut.get("len", 99)) < 0.9:
+        return "lanczos", f"held {cut.get('len')}s < 0.9 s", None
+    for where, d in (("cut", cut), ("shot", shot or {})):
+        if isinstance(d.get("face"), bool):
+            return ("refine" if d["face"] else "seedvr2"), f"face={str(d['face']).lower()} on the {where}", None
+    if shot and CLOSE.search(str(shot.get("framing", ""))) and shot.get("identity"):
+        return "refine", f"framing '{shot['framing']}' with {shot['identity']}", None
+    if seg.exists():
+        fr = face_fraction(seg, max(1, nframes(seg)))
+        if fr >= face_min:
+            return "refine", f"auto: face covers {fr:.1%} of the frame", fr
+        return "seedvr2", f"auto: largest face {fr:.1%} < {face_min:.0%}", fr
+    return "seedvr2", "default (segment missing, no face check)", None
+
+
+# ---------------- run helpers (GPU) ----------------
+def gpu_busy() -> str:
+    me = str(Path(__file__).name)
+    for line in sh("ps", "-axo", "pid=,command=").stdout.splitlines():
+        if me in line or "grep" in line:
+            continue
+        if re.search(r"python|blender", line, re.I) and GPU_PAT.search(line):
+            return line.strip()[:140]
+    return ""
+
+
+def songforge_busy() -> bool:
+    try:
+        with urllib.request.urlopen("http://127.0.0.1:8767/api/status", timeout=5) as r:
+            return int(json.load(r).get("jobs_running", 0)) > 0
+    except Exception:
+        return False
+
+
+def bad_frames(src: Path, up: Path) -> list[int]:
+    """SeedVR2 on MPS can return a grey/smeared temporal batch (LESSONS 10/31): compare every frame at thumbnail size."""
+    import numpy as np
+
+    a = subprocess.run(["ffmpeg", "-v", "error", "-i", str(src), "-vf", "scale=208:117", "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], capture_output=True).stdout
+    b = subprocess.run(["ffmpeg", "-v", "error", "-i", str(up), "-vf", "scale=208:117", "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], capture_output=True).stdout
+    A = np.frombuffer(a, np.uint8).reshape(-1, 117, 208, 3).astype(np.float32)
+    B = np.frombuffer(b, np.uint8).reshape(-1, 117, 208, 3).astype(np.float32)
+    if len(A) != len(B):
+        return [-1]
+    return [int(i) for i in np.where(np.abs(A - B).mean(axis=(1, 2, 3)) > 12)[0]]
+
+
+def run_seedvr2(src: Path, out: Path, n: int) -> bool:
+    def one(i, o, b, seed):
+        return subprocess.run([str(COMFY / "venv/bin/python"), str(SF / "tools/seedvr2_run.py"), str(i), "--output", str(o),
+                               "--resolution", "720", "--batch_size", str(b), "--uniform_batch_size", "--model_dir",
+                               str(COMFY / "models/SEEDVR2"), "--dit_model", "seedvr2_ema_3b_fp16.safetensors",
+                               "--video_backend", "ffmpeg", "--color_correction", "lab", "--seed", str(seed)],
+                              cwd=str(COMFY), capture_output=True, text=True, timeout=5400).returncode
+    for seed in (42, 7, 1234):
+        k = math.ceil(n / 49)
+        if k >= 3:   # 3 temporal batches came back grey twice (10/31): single-batch chunks of <= 57
+            parts = math.ceil(n / 57); per = math.ceil(n / parts); chunks = []
+            for j in range(parts):
+                a, z = j * per, min(n, (j + 1) * per)
+                cs, co = out.parent / f"_chunk{j}_{out.name}", out.parent / f"_chunkup{j}_{out.name}"
+                sh("ffmpeg", "-v", "error", "-y", "-i", src, "-vf", f"select='between(n\\,{a}\\,{z-1})',setpts=N/{FPS}/TB",
+                   "-c:v", "libx264", "-crf", "4", "-pix_fmt", "yuv420p", cs)
+                one(cs, co, 4 * math.ceil((z - a - 1) / 4) + 1, seed); cs.unlink(missing_ok=True); chunks.append(co)
+            if all(c.exists() for c in chunks):
+                lst = out.parent / f"_chunks_{out.stem}.txt"
+                lst.write_text("".join(f"file '{c}'\n" for c in chunks))
+                sh("ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-c:v", "libx264", "-crf", "8",
+                   "-pix_fmt", "yuv420p", out); lst.unlink(missing_ok=True)
+            for c in chunks:
+                c.unlink(missing_ok=True)
+        else:
+            per = math.ceil(n / k)
+            one(src, out, 4 * math.ceil((per - 1) / 4) + 1, seed)
+        if out.exists() and not bad_frames(src, out):
+            return True
+        if out.exists():
+            out.rename(out.with_suffix(f".bad{seed}.mp4"))
+    return False
+
+
+def refine_canvas(w: int, h: int) -> tuple[int, int, int, int]:
+    """About 2.3x the source (the LoRA is trained for ~2x), height capped at 1088, multiples of 32.
+    Tiles of ~31x17 tokens (992x544 px, close to the 1024x576 training tile) at about 50% overlap."""
+    H = min(1088, max(576, 32 * round(h * 2.3 / 32)))
+    W = 32 * round(w * H / h / 32)
+    tw = max(1, round((W // 32 - 16) / 15))
+    th = max(1, round((H // 32 - 9) / 8))
+    return W, H, tw, th
+
+
+def run_refine(items: list[tuple[Path, Path, int]]) -> list[Path]:
+    """items: (src, out, n). Lanczos to the canvas, pad to 8k+1 frames, one refine process, trim back to n."""
+    done = []
+    with tempfile.TemporaryDirectory() as td:
+        groups: dict[tuple, list] = {}
+        for src, out, n in items:
+            w, h = size(src); W, H, tw, th = refine_canvas(w, h); N = 8 * math.ceil((n - 1) / 8) + 1
+            prep = Path(td) / src.name
+            sh("ffmpeg", "-v", "error", "-y", "-i", src, "-vf",
+               f"scale={W}:{H}:flags=lanczos,tpad=stop_mode=clone:stop={N - n + 1},trim=end_frame={N},setpts=N/{FPS}/TB",
+               "-r", str(FPS), "-c:v", "libx264", "-crf", "4", "-pix_fmt", "yuv420p", prep)
+            groups.setdefault((W, H, tw, th), []).append((prep, out, n))
+        for (W, H, tw, th), its in groups.items():
+            r = subprocess.run([str(LTX_PY), "-u", str(REFINE), td, str(W), str(H), str(tw), str(th), "16", "9",
+                                *[str(p) for p, _, _ in its]], env={**__import__("os").environ, "LOW_RAM": "1"})
+            if r.returncode != 0:
+                print(f"upscale-route: refine process failed rc {r.returncode}", file=sys.stderr)
+            for p, out, n in its:
+                raw = Path(td) / f"{p.stem}_refine_{W}x{H}.mp4"
+                if raw.exists():
+                    sh("ffmpeg", "-v", "error", "-y", "-i", raw, "-frames:v", str(n), "-an", "-c:v", "libx264", "-crf", "8",
+                       "-pix_fmt", "yuv420p", out)
+                    if out.exists():
+                        done.append(out)
+    return done
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description="Per-shot upscale router: SeedVR2 by default, LTX-2.5 Refine for faces.")
+    ap.add_argument("project")
+    ap.add_argument("--edl", required=True, help="EDL json with a cuts[] list (relative to the project or absolute)")
+    ap.add_argument("--segs", required=True, help="folder of <k:02d>_<id>.mp4 segments to upscale")
+    ap.add_argument("--out", help="output folder (required unless --dry-run)")
+    ap.add_argument("--face-min", type=float, default=0.05, help="auto route: face area fraction that counts as a close-up")
+    ap.add_argument("--dry-run", action="store_true", help="print the plan, launch nothing")
+    ap.add_argument("--mark-beats", action="store_true", help="write face_auto (detected fraction) into beats.json shots")
+    ap.add_argument("--plan", help="also write the plan json here")
+    a = ap.parse_args()
+
+    P = Path(a.project).resolve()
+    rel = lambda x: Path(x) if Path(x).is_absolute() else P / x  # noqa: E731
+    edl = json.load(open(rel(a.edl)))
+    segs = rel(a.segs)
+    beats_p = P / "beats.json"
+    beats = json.load(open(beats_p)) if beats_p.exists() else {}
+    shots = beats.get("shots", [])
+
+    plan = []
+    for k, cut in enumerate(edl.get("cuts", [])):
+        if not cut.get("src") or cut.get("section") in ("title", "black"):
+            continue
+        seg = segs / f"{k:02d}_{cut['id']}.mp4"
+        shot = match_shot(cut, shots)
+        r, why, fr = route(cut, shot, seg, a.face_min)
+        n = nframes(seg) if seg.exists() else int(cut.get("frames", 0))
+        plan.append(dict(seg=seg.name, cut=cut["id"], shot=(shot or {}).get("id"), len=cut.get("len"), frames=n,
+                         route=r, why=why, face_auto=fr, exists=seg.exists()))
+        if a.mark_beats and shot is not None and fr is not None and "face" not in shot:
+            shot["face_auto"] = round(fr, 4)
+
+    est = {k: sum(p["frames"] for p in plan if p["route"] == k) * v for k, v in SEC_PER_FRAME.items()}
+    for p in plan:
+        print(f"{p['seg']:<34} {str(p['len']):>7}s {p['frames']:>4}f  {p['route']:<8} {p['why']}"
+              f"{'' if p['exists'] else '  [MISSING]'}")
+    counts = {k: sum(p["route"] == k for p in plan) for k in SEC_PER_FRAME}
+    print(f"\n{len(plan)} segments: " + ", ".join(f"{counts[k]} {k} (~{est[k]/60:.0f} min)" for k in SEC_PER_FRAME))
+    if a.plan:
+        Path(a.plan).write_text(json.dumps(plan, indent=1))
+    if a.mark_beats:
+        beats_p.write_text(json.dumps(beats, indent=1, ensure_ascii=False))
+        print(f"wrote face_auto into {beats_p}")
+    if a.dry_run:
+        print("dry run: nothing launched")
+        return 0
+
+    if not a.out:
+        sys.exit("upscale-route: --out is required to run")
+    out_dir = rel(a.out); out_dir.mkdir(parents=True, exist_ok=True)
+    b = gpu_busy()
+    if b:
+        sys.exit(f"upscale-route: GPU busy, not starting: {b}")
+    if subprocess.run([str(SF / "bin/mem-gate"), "upscale-route"]).returncode != 0:
+        sys.exit("upscale-route: mem-gate refused")
+    sys.path.insert(0, str(HOME / "SongForgeM5"))
+    from mem_client import reserve_ex
+    todo = [p for p in plan if p["exists"] and not (out_dir / p["seg"]).exists()]
+    for p in [p for p in todo if p["route"] == "lanczos"]:
+        out = out_dir / p["seg"]; w, h = size(segs / p["seg"]); H = 720; W = 2 * round(w * H / h / 2)
+        sh("ffmpeg", "-v", "error", "-y", "-i", segs / p["seg"], "-vf", f"scale={W}:{H}:flags=lanczos", "-c:v", "libx264",
+           "-crf", "8", "-pix_fmt", "yuv420p", out)
+        print(f"[lanczos] {p['seg']}", flush=True)
+    sv = [p for p in todo if p["route"] == "seedvr2"]
+    if sv:
+        with reserve_ex("seedvr2-3b", 34) as got:
+            if got[1] == "refused":
+                sys.exit("upscale-route: memory guard refused seedvr2")
+            for p in sv:
+                while songforge_busy():
+                    print("Song Forge job running, waiting 30s", flush=True); time.sleep(30)
+                t = time.time(); ok = run_seedvr2(segs / p["seg"], out_dir / p["seg"], p["frames"])
+                print(f"[seedvr2] {p['seg']} {'ok' if ok else 'FAILED'} {time.time()-t:.0f}s", flush=True)
+    rf = [p for p in todo if p["route"] == "refine"]
+    if rf:
+        while songforge_busy():
+            print("Song Forge job running, waiting 30s", flush=True); time.sleep(30)
+        with reserve_ex("ltx25-refine", 20) as got:
+            if got[1] == "refused":
+                sys.exit("upscale-route: memory guard refused refine")
+            t = time.time()
+            done = run_refine([(segs / p["seg"], out_dir / p["seg"], p["frames"]) for p in rf])
+            print(f"[refine] {len(done)}/{len(rf)} done in {time.time()-t:.0f}s", flush=True)
+    missing = [p["seg"] for p in plan if p["exists"] and not (out_dir / p["seg"]).exists()]
+    if missing:
+        print(f"upscale-route: missing {missing}", file=sys.stderr)
+        return 5
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

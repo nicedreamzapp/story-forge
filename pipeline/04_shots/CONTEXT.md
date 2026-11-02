@@ -32,15 +32,22 @@ Do NOT load: `voices/`, score files, `final/`, other films.
 
 5. Motion order, previs first (Matt 2026-10-31, "scale this differently... bake it in"):
    a. Animate EVERY shot with LTX 2.5 distilled first (~70 s a clip on the M5), into
-      `clips/previs/`. One model loaded, then unloaded.
+      `clips/previs/`. One model loaded, then unloaded. LTX-2.5 is the fast previs drafter only (plus a2v
+      lip-sync close-ups); it is no longer the quality engine.
    b. Cut a rough previs edit (`final/previs_cut.mp4`) against the script timings and
       decide which shots and which seconds actually make the cut.
-   c. The quality engine (LTX-2.5 `make-ltx25 --hq`, dev transformer + CFG two-stage; Wan 2.2 14B bf16
-      only if it is installed and the memory guard allows it) renders ONLY what makes the cut, at the
-      cut's length plus ~0.5 s handles (never a blanket 5 s); 3 takes for hero shots, 1-2 for the rest.
-      A previs draft that already holds up for a sub-second cut stays and skips the quality pass.
-   d. Render at the 480p-class native size (832x480); SeedVR2-3B upscales at assembly (held shots
-      >= ~0.9 s at 720p, then lanczos to 4K; sub-second cuts lanczos only; see LESSONS).
+   c. The quality engine is **Kandinsky 6.0 Pro** (29B, bf16, MIT; `bin/make-k6`, forge-shot's default
+      `"engine": "k6"`; Matt 2026-11-01 on its first clip: "That's the best I've ever seen"; details in
+      `../../VIDEO-MODEL-2026-11-01.md`). It renders ONLY what makes the cut, at the cut's length plus ~0.5 s
+      handles (never a blanket 5 s; 5 s is K6's maximum); 3 takes for hero shots, 1-2 for the rest.
+      Measured on the M5: 10 steps, 832x480 x 73 frames (3 s) = ~718 s a clip, peak 68.7 GB, so it runs
+      alone (one model loaded, nothing else heavy beside it). Dialogue close-ups that must lip-sync to a
+      real voice wav stay on LTX-2.5 a2v (`make-ltx25 --audio`) until a better acting engine is proven.
+   d. Render at the 480p-class native size (832x480). Upscaling happens at assembly through
+      `bin/upscale-route` (06_assemble step 7): SeedVR2-3B by default, LTX-2.5 Refine for faces and
+      close-ups, lanczos for sub-second cuts. Here, set `"face": true` on every beats.json shot whose
+      picture is a face or close-up (always for cartoon/animal characters, which the auto face probe
+      can't see), `"face": false` to force SeedVR2, or `"upscale": "..."` as a hard override.
    e. Precise motion (ships, vehicles, debris, camera moves) is blocked in Blender first
       and used as the i2v start frames/guide; AI video paints the organic realism on top.
 

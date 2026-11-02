@@ -1,0 +1,248 @@
+#!/usr/bin/env python3
+r"""make-k6 — Kandinsky 6.0 Pro (29B, bf16, diffusers on MPS) render with the make-video / make-ltx25 CLI contract.
+
+Added 2026-11-01: the Story Forge DEFAULT video model (VIDEO-MODEL-2026-11-01.md). Chosen from
+MODEL-CONSENSUS-2026-11.md: the #1 local video model there (MiniMax H3) is not licensed in the US at all,
+Kandinsky 6 Pro is the next one and is MIT (free for any commercial use, no revenue line).
+
+  make-k6 --i2v LOCKED.png --res 832x480 --duration 3 --seed 11 --label s1 "motion prompt"
+  make-k6 --static ...       # prepend the locked-off tripod wording (explicit; frozen rule 31)
+  make-k6 --keep-audio ...   # keep K6's own generated 44 kHz audio track (default: silent clip)
+
+Prints exactly what make-video prints on success:   done in 812.3s → /path/to/clip.mp4
+so forge-shot's `re.search(r"done in [\d.]+s → (\S+)")` keeps working unchanged.
+
+Weights: kandinskylab/Kandinsky-6.0-Pro-distill-5s-Diffusers (HF cache), the distilled Pro checkpoint:
+10 steps, guidance 1.0, PiFlow scheduler, clips up to 5 s at 24 fps. bf16 everywhere (Matt's no-quant rule).
+
+Rules honoured:
+  - Song Forge first: waits while 127.0.0.1:8767 reports jobs_running > 0 (frozen rule 16), and render_sentry
+    pauses this process if a customer job lands mid-render (it matches "make-k6").
+  - bin/mem-gate before any load (frozen rule 11) and a forge_guard lease "k6-<label>" (SongForgeM5/mem_client).
+    The guard knows the "make-k6" process and seats the lease over budget on measured headroom, like ltx25-.
+  - Staged load so the text encoder (Qwen2.5-VL-7B, 16.6 GB) and the 58 GB transformer are never resident together.
+"""
+from __future__ import annotations
+
+import os
+import sys
+from pathlib import Path
+
+HOME = Path.home()
+VENV_PY = HOME / "AI/krea2/venv/bin/python"   # diffusers 0.42.1 (has Kandinsky6TI2VAPipeline), torch 2.15
+# resolve() both sides: ~/AI is a symlink, and an unresolved compare re-execs forever (zimage_batch, 2026-11-01)
+if VENV_PY.exists() and Path(sys.prefix).resolve() != VENV_PY.parent.parent.resolve():
+    os.execv(str(VENV_PY), [str(VENV_PY), *sys.argv])
+
+import argparse
+import gc
+import glob
+import json
+import re
+import subprocess
+import threading
+import time
+import urllib.request
+
+SF = Path(__file__).resolve().parent.parent
+OUT_DIR = HOME / "AI/videopipe/outputs"
+FFMPEG = "/opt/homebrew/bin/ffmpeg" if Path("/opt/homebrew/bin/ffmpeg").exists() else "ffmpeg"
+REPO = "kandinskylab/Kandinsky-6.0-Pro-distill-5s-Diffusers"
+FPS = 24
+
+
+def pack_dir() -> Path:
+    env = os.environ.get("SF_K6_PACK")
+    if env:
+        return Path(env)
+    snaps = sorted(glob.glob(str(HOME / f".cache/huggingface/hub/models--{REPO.replace('/', '--')}/snapshots/*")))
+    if not snaps:
+        sys.exit(f"make-k6: no Kandinsky 6 Pro pack on disk ({REPO}) and SF_K6_PACK unset")
+    return Path(snaps[-1])
+
+
+def frames_for(seconds: float) -> int:
+    # K6 frame counts are 4k+1 (VAE temporal compression 4); the distilled checkpoint is trained on 5 s = 121 frames.
+    n = round(seconds * FPS / 4) * 4 + 1
+    return max(17, min(121, n))
+
+
+def wait_songforge() -> None:
+    said = False
+    while True:
+        try:
+            s = json.load(urllib.request.urlopen("http://127.0.0.1:8767/api/status", timeout=6))
+            if int(s.get("jobs_running", 0)) == 0:
+                return
+            if not said:
+                print("make-k6: Song Forge has a customer job running, waiting", file=sys.stderr, flush=True)
+                said = True
+        except Exception:
+            return   # forge unreachable = no customer to protect
+        time.sleep(20)
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description="Render a clip locally via Kandinsky 6.0 Pro (diffusers, MPS, bf16).")
+    ap.add_argument("prompt", nargs="+")
+    ap.add_argument("--i2v", help="animate this image (first frame)")
+    ap.add_argument("--duration", type=float, default=5.0, help="seconds, max 5 (121 frames at 24 fps)")
+    ap.add_argument("--res", default="832x480", help="WxH, multiples of 16")
+    ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--label", default="clip")
+    ap.add_argument("--steps", type=int, default=10, help="sampler steps (the distilled checkpoint wants 10)")
+    ap.add_argument("--keep-audio", action="store_true", help="also sample K6's audio track and keep it")
+    ap.add_argument("--gb", type=float, default=72.0, help="forge_guard lease in GB (see VIDEO-MODEL-2026-11-01.md)")
+    ap.add_argument("--static", action="store_true",
+                    help="prepend the locked-off tripod wording (an explicit choice, never the default; frozen rule 31)")
+    # accepted for CLI compatibility with make-video / make-ltx25; no effect here
+    ap.add_argument("--hq", action="store_true"); ap.add_argument("--low-ram", action="store_true")
+    ap.add_argument("--gguf", action="store_true"); ap.add_argument("--fp16-i2v", action="store_true")
+    ap.add_argument("--audio", help="not supported by make-k6 (use make-ltx25 for a2v)")
+    a = ap.parse_args()
+    if a.audio:
+        sys.exit("make-k6: --audio (a2v) is not supported; dialogue a2v stays on make-ltx25")
+
+    prompt = " ".join(a.prompt)
+    if a.static and a.i2v and not re.search(
+            r"\b(tracking|pan|pans|push[- ]in|pull[- ]back|dolly|orbit|zoom|crane|handheld)\b", prompt, re.I):
+        prompt = ("Static camera, locked-off tripod shot, the camera does not move at all and the framing "
+                  "never changes from the first frame. " + prompt)
+    w, h = (int(x) for x in a.res.lower().split("x"))
+    if w % 16 or h % 16:
+        sys.exit(f"make-k6: --res must be multiples of 16 (got {a.res})")
+    if a.i2v and not Path(a.i2v).exists():
+        sys.exit(f"make-k6: missing input {a.i2v}")
+    frames = frames_for(a.duration)
+    seed = a.seed or (int(time.time()) & 0x7FFFFFFF)
+    pack = pack_dir()
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    stamp = time.strftime("%Y%m%d_%H%M%S")
+    out = OUT_DIR / f"{a.label}_{stamp}_k6.mp4"
+
+    wait_songforge()
+    # frozen rule 11: never start a render the box can't afford
+    if subprocess.run([str(SF / "bin" / "mem-gate"), f"k6 {a.label}"]).returncode != 0:
+        sys.exit("make-k6: mem-gate refused")
+    sys.path.insert(0, str(HOME / "SongForgeM5"))
+    try:
+        from mem_client import reserve_ex
+    except Exception:
+        print("make-k6: forge_guard mem_client unavailable, rendering without a lease", file=sys.stderr)
+        from contextlib import contextmanager
+
+        @contextmanager
+        def reserve_ex(name, gb):
+            yield (None, "no-guard")
+
+    import numpy as np
+    import torch
+    from diffusers import AutoencoderKLHunyuanVideo, Kandinsky6TI2VAPipeline, Kandinsky6Transformer3DModel
+
+    peak = [0]
+
+    def _sample():
+        while True:
+            try:
+                peak[0] = max(peak[0], torch.mps.driver_allocated_memory())
+            except Exception:
+                pass
+            time.sleep(0.2)
+    threading.Thread(target=_sample, daemon=True).start()
+
+    def free():
+        gc.collect(); torch.mps.synchronize(); torch.mps.empty_cache()
+
+    dev, dt = torch.device("mps"), torch.bfloat16
+    t0 = time.time()
+    with reserve_ex(f"k6-{a.label}", a.gb) as got:
+        if got[1] == "refused":
+            sys.exit(f"make-k6: memory guard refused {a.gb:.0f}GB for k6-{a.label} (not enough room), not rendering")
+        t_lease = time.time() - t0
+
+        # stage 1: text encoders only -> embeddings on the CPU -> free
+        t = time.time()
+        enc = Kandinsky6TI2VAPipeline.from_pretrained(
+            str(pack), transformer=None, vae=None, audio_vae=None, vocoder=None, torch_dtype=dt).to(dev)
+        with torch.no_grad():
+            cached = enc.encode_prompt(prompt=prompt, do_classifier_free_guidance=False, device=dev, dtype=dt)
+        cached = tuple(x.to("cpu") if isinstance(x, torch.Tensor) else x for x in cached)
+        del enc; free()
+        t_enc = time.time() - t
+
+        # stage 2: transformer + video VAE (+ audio VAE/vocoder only with --keep-audio)
+        t = time.time()
+        tr = Kandinsky6Transformer3DModel.from_pretrained(str(pack), subfolder="transformer", torch_dtype=dt)
+        tr = tr.to(dev)
+        vae = AutoencoderKLHunyuanVideo.from_pretrained(str(pack), subfolder="vae", torch_dtype=dt).to(dev)
+        vae.enable_tiling()
+        extra = {} if a.keep_audio else {"audio_vae": None, "vocoder": None}
+        pipe = Kandinsky6TI2VAPipeline.from_pretrained(
+            str(pack), transformer=tr, vae=vae, text_encoder=None, text_encoder_2=None,
+            tokenizer=None, tokenizer_2=None, torch_dtype=dt, **extra).to(dev)
+
+        def _cached_prompt(**kw):
+            return tuple(x.to(dev) if isinstance(x, torch.Tensor) else x for x in cached)
+        pipe.encode_prompt = _cached_prompt
+        t_load = time.time() - t
+
+        image = None
+        if a.i2v:
+            from PIL import Image
+            image = Image.open(a.i2v).convert("RGB")
+        wait_songforge()
+        t = time.time()
+        g = torch.Generator("cpu").manual_seed(seed)
+        with torch.no_grad():
+            lat, alat = pipe(prompt=prompt, image=image, height=h, width=w, num_frames=frames, frame_rate=FPS,
+                             num_inference_steps=a.steps, guidance_scale=1.0, generator=g,
+                             sample_audio=a.keep_audio, output_type="latent", return_dict=False)
+        torch.mps.synchronize()
+        t_denoise = time.time() - t
+        peak_denoise = peak[0]
+        # Drop the 58 GB transformer BEFORE the VAE decode: decoding with it still resident peaked at 82.9 GB
+        # on the first smoke test (2026-11-01), over the 72 GB lease.
+        pipe.transformer = None
+        del tr; free()
+        with torch.no_grad():
+            video = vae.decode(lat.to(vae.dtype) / vae.config.scaling_factor, return_dict=False)[0]
+            video = pipe.video_processor.postprocess_video(video, output_type="np")[0]
+            audio = None
+            if a.keep_audio and alat is not None:
+                alat = alat.to(pipe.audio_vae.dtype) / pipe.audio_vae.config.scaling_factor
+                mel = pipe.audio_vae.decode(alat, return_dict=False)[0]
+                audio = pipe.vocoder(mel.to(pipe.vocoder.dtype), return_dict=False)[0][:, 0].float()[0]
+        torch.mps.synchronize()
+        t_render = time.time() - t
+        sr = getattr(pipe, "audio_sample_rate", 44100)
+        del pipe, vae, lat, alat; free()
+
+    arr = (np.clip(np.asarray(video), 0, 1) * 255).round().astype("uint8")
+    n, fh, fw = arr.shape[0], arr.shape[1], arr.shape[2]
+    raw = out.with_suffix(".noaudio.mp4") if audio is not None else out
+    p = subprocess.Popen([FFMPEG, "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{fw}x{fh}",
+                          "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "14",
+                          "-preset", "slow", str(raw)], stdin=subprocess.PIPE)
+    p.stdin.write(arr.tobytes()); p.stdin.close(); p.wait()
+    if audio is not None:
+        wav = out.with_suffix(".wav")
+        import wave
+        pcm = (np.clip(np.asarray(audio.float().cpu() if hasattr(audio, "cpu") else audio), -1, 1) * 32767).astype("<i2")
+        with wave.open(str(wav), "wb") as wf:
+            wf.setnchannels(1); wf.setsampwidth(2); wf.setframerate(int(sr)); wf.writeframes(pcm.tobytes())
+        subprocess.run([FFMPEG, "-v", "error", "-y", "-i", str(raw), "-i", str(wav), "-c:v", "copy", "-c:a", "aac",
+                        "-shortest", str(out)], check=True)
+        raw.unlink(missing_ok=True); wav.unlink(missing_ok=True)
+    if not out.exists() or out.stat().st_size < 20000:
+        print("make-k6: no output written", file=sys.stderr)
+        return 1
+    print(f"make-k6: lease wait {t_lease:.0f}s, encode {t_enc:.0f}s, load {t_load:.0f}s, render {t_render:.0f}s (denoise {t_denoise:.0f}s) "
+          f"({'i2v' if a.i2v else 't2v'}, {w}x{h}, {n}f, {a.steps} steps, seed {seed}), "
+          f"peak Metal {peak[0] / 1e9:.1f}GB (denoise {peak_denoise / 1e9:.1f}GB)",
+          file=sys.stderr)
+    print(f"done in {time.time() - t0:.1f}s → {out}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

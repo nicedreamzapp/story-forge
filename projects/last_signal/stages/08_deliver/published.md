@@ -10,3 +10,4 @@
 - Category: 1 (Film & Animation), not made for kids, embeddable
 - Description: the full pipeline description in the uploader, `ineedhemp website/youtube/upload_last_signal.py`
 - Verified with videos.list right after upload: exists, private, uploadStatus uploaded, processing, title matches.
+- 2026-10-31 9:52 PM: made PUBLIC on Matt's go ("Yes, go public"); Story Forge page + software card deployed 9:52 PM, verified live; YouTube added to launch-watch.

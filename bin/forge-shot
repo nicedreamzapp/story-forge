@@ -90,6 +90,7 @@ QWEN_PY = Path.home() / "AI_Models/qwen-image-2.1-test/venv/bin/python"
 QWEN_BLEND = Path.home() / "AI_Models/qwen-image-2.1-test/qwen_blend.py"
 MAKE_VIDEO = SF / "bin" / "make-video"
 MAKE_LTX25 = SF / "bin" / "make-ltx25"   # LTX-2.5 animate engine (2026-08-29)
+MAKE_K6 = SF / "bin" / "make-k6"         # Kandinsky 6 Pro, the DEFAULT animate engine "k6" (2026-11-01, VIDEO-MODEL-2026-11-01.md)
 MEM_GATE = SF / "bin" / "mem-gate"
 SONGFORGE = os.environ.get("SONGFORGE_URL", "http://127.0.0.1:8767")
 
@@ -861,7 +862,11 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
     # against the budget at the same time.
     mem_drop()
 
-    # BOUNCE ComfyUI immediately before every i2v, unconditionally.
+    # 2026-11-01: make-k6 (engine "k6") is pure diffusers/MPS and takes its OWN "k6-" lease sized to its real
+    # ~70GB peak, so it skips the ComfyUI bounce and the 46GB storyforge-animate lease (both would only steal room).
+    _engine_early = os.environ.get("SF_ANIMATE_ENGINE") or shot.get("engine") or defaults.get("engine", "k6")
+    _uses_comfy = _engine_early != "k6"
+    # BOUNCE ComfyUI immediately before every i2v (ComfyUI engines only).
     # Measured across two days: an animate succeeds when it starts on a freshly
     # restarted ComfyUI and dies loading Wan when it starts on one that has been
     # up a while. It used to get bounced by accident — mem-gate thought the box was
@@ -871,12 +876,13 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
     # cannot load its weights; the previous shot's clip is already written, so
     # nothing in flight is lost. See CLAUDE.md rule 16.
     try:
-        import core as _core
-        _core._restart_comfy()
-        log("  bounced ComfyUI so Wan loads into a clean process")
+        if _uses_comfy:
+            import core as _core
+            _core._restart_comfy()
+            log("  bounced ComfyUI so Wan loads into a clean process")
     except Exception as e:
         log(f"  could not bounce ComfyUI ({e}) — continuing, the animate may fail")
-    if not wait_for_comfy(180):
+    if _uses_comfy and not wait_for_comfy(180):
         log("  ComfyUI did not come back — still is locked, clip UNBUILT")
         out["state"] = "ANIMATE_HELD"
         return out
@@ -885,7 +891,7 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
     # have the guard charge us for the stale cached weights we are about to
     # throw away, and refuse a render the machine can perfectly well afford.
     # Measure the box you are about to render on, not the one you are leaving.
-    if mem_take(f"storyforge-animate {shot['id']}", ANIMATE_GB) == "refused":
+    if _engine_early != "k6" and mem_take(f"storyforge-animate {shot['id']}", ANIMATE_GB) == "refused":
         log("  no room for the animate pass — still is locked, clip HELD")
         out["state"] = "ANIMATE_HELD"
         return out
@@ -917,13 +923,18 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
     attempts_f.write_text(str(n_try + 1))
     anim_seed = seeds[n_try % len(seeds)]
     log(f"  animate attempt {n_try + 1}, seed {anim_seed}")
-    engine = os.environ.get("SF_ANIMATE_ENGINE") or shot.get("engine") or defaults.get("engine", "wan")
-    anim_bin = MAKE_LTX25 if engine == "ltx25" else MAKE_VIDEO
+    # 2026-11-01 (Matt, 4:02 PM, on the K6 smoke clip: "That's the best I've ever seen"): the DEFAULT engine is "k6",
+    # Kandinsky 6 Pro via bin/make-k6 (VIDEO-MODEL-2026-11-01.md). "ltx25" stays for previs drafts and a2v dialogue;
+    # "wan" (ComfyUI make-video) only if its weights are installed again.
+    engine = os.environ.get("SF_ANIMATE_ENGINE") or shot.get("engine") or defaults.get("engine", "k6")
+    anim_bin = {"ltx25": MAKE_LTX25, "k6": MAKE_K6}.get(engine, MAKE_VIDEO)
     log(f"  animate engine: {engine}")
     anim_cmd = [anim_bin, "--i2v", lock_path, "--res", res,
                 "--duration", shot.get("duration", defaults.get("duration", 5)),
                 "--seed", anim_seed,
                 "--label", shot["id"], corrected_prompt(shot["animate"], anim_lessons)]
+    if engine == "k6" and shot.get("static", defaults.get("static", True)):
+        anim_cmd.insert(1, "--static")   # same locked-still judging reason as the ltx25 branch below (frozen rule 31)
     if engine == "ltx25":
         # measured 2026-08-29: --low-ram renders the same frames (seed-deterministic) in
         # ~70s vs ~79s full, and keeps Metal peak small; full mode ended at 32GB swap.
@@ -939,7 +950,7 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
     r = run(anim_cmd, timeout=5400)
     metric(shot["id"], "animate", time.time() - t_anim)
     m = re.search(r"done in [\d.]+s → (\S+)", r.stdout or "")
-    if not m and engine != "ltx25" and not comfy_up():
+    if not m and engine not in ("ltx25", "k6") and not comfy_up():
         # A dead backend is NOT a failed idea — same rule the still path already has.
         # A Song Forge customer interrupt (or a guard bounce) can take ComfyUI down
         # exactly when make-video re-queues; on 2026-07-31 that surfaced as

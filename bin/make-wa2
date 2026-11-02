@@ -1,0 +1,186 @@
+#!/usr/bin/env python3
+r"""make-wa2 — Wan-Animate-2 14B (bf16, diffusers on MPS): a locked character still performs a driving video.
+
+Added 2026-11-01 (video bake-off). NOT a Story Forge default: Matt has not picked the route yet. Engine for
+character acting (performance transfer): the driving video's motion, face and mouth go onto OUR character.
+
+  make-wa2 --ref canon/doug_cu.png --drive performer.mp4 --label doug_l1 [--steps 40] [--distilled] \
+           [--audio line.wav] "appearance + background description of the reference"
+
+  --drive   any video of a performer (real footage, or an LTX-2.5 a2v talking human made from the voice wav)
+  --audio   mux this wav onto the result (the line the performer was speaking)
+
+Prints:   done in 812.3s → /path/to/clip.mp4   (same contract as make-video / make-ltx25 / make-k6)
+
+Weights: Wan-AI/Wan2.2-Animate-2-14B-Diffusers (Apache-2.0; 40 steps, CFG 3.0) or, with --distilled,
+Wan-AI/Wan2.2-Animate-2-14B-Distilled-Diffusers (10 steps, no CFG). bf16 everywhere.
+The flex-attention path is replaced by plain per-frame SDPA (tools/wan_animate2_mps.py), same math.
+
+Gates: Song Forge wait, bin/mem-gate, forge_guard lease "wa2-<label>" (guard + render_sentry know "make-wa2").
+"""
+from __future__ import annotations
+
+import os
+import sys
+from pathlib import Path
+
+HOME = Path.home()
+VENV_PY = HOME / "AI/krea2/venv/bin/python"   # diffusers 0.42.1 + torchvision
+if VENV_PY.exists() and Path(sys.prefix).resolve() != VENV_PY.parent.parent.resolve():
+    os.execv(str(VENV_PY), [str(VENV_PY), *sys.argv])
+
+import argparse
+import gc
+import glob
+import json
+import subprocess
+import threading
+import time
+import urllib.request
+
+SF = Path(__file__).resolve().parent.parent
+OUT_DIR = HOME / "AI/videopipe/outputs"
+FFMPEG = "/opt/homebrew/bin/ffmpeg" if Path("/opt/homebrew/bin/ffmpeg").exists() else "ffmpeg"
+REPOS = {False: "Wan-AI/Wan2.2-Animate-2-14B-Diffusers", True: "Wan-AI/Wan2.2-Animate-2-14B-Distilled-Diffusers"}
+FPS = 24
+
+
+def snap(repo: str) -> Path:
+    s = sorted(glob.glob(str(HOME / f".cache/huggingface/hub/models--{repo.replace('/', '--')}/snapshots/*")))
+    if not s:
+        sys.exit(f"make-wa2: {repo} not on disk")
+    return Path(s[-1])
+
+
+def wait_songforge() -> None:
+    said = False
+    while True:
+        try:
+            s = json.load(urllib.request.urlopen("http://127.0.0.1:8767/api/status", timeout=6))
+            if int(s.get("jobs_running", 0)) == 0:
+                return
+            if not said:
+                print("make-wa2: Song Forge has a customer job running, waiting", file=sys.stderr, flush=True)
+                said = True
+        except Exception:
+            return
+        time.sleep(20)
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description="Wan-Animate-2: a character still performs a driving video.")
+    ap.add_argument("prompt", nargs="+", help="appearance + background description of the reference image")
+    ap.add_argument("--ref", required=True, help="the locked character still")
+    ap.add_argument("--drive", required=True, help="driving performance video")
+    ap.add_argument("--audio", help="wav to mux onto the result")
+    ap.add_argument("--res", default="832x480", help="target AREA as WxH (aspect comes from --ref)")
+    ap.add_argument("--duration", type=float, default=0, help="trim the driving video to this many seconds")
+    ap.add_argument("--steps", type=int, default=0, help="default 40 (base) / 10 (distilled)")
+    ap.add_argument("--distilled", action="store_true")
+    ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--label", default="clip")
+    ap.add_argument("--gb", type=float, default=76.0)
+    a = ap.parse_args()
+    for p in (a.ref, a.drive, a.audio):
+        if p and not Path(p).exists():
+            sys.exit(f"make-wa2: missing input {p}")
+    w, h = (int(x) for x in a.res.lower().split("x"))
+    seed = a.seed or (int(time.time()) & 0x7FFFFFFF)
+    pack = snap(REPOS[a.distilled])
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    out = OUT_DIR / f"{a.label}_{time.strftime('%Y%m%d_%H%M%S')}_wa2.mp4"
+
+    wait_songforge()
+    if subprocess.run([str(SF / "bin" / "mem-gate"), f"wa2 {a.label}"]).returncode != 0:
+        sys.exit("make-wa2: mem-gate refused")
+    sys.path.insert(0, str(HOME / "SongForgeM5"))
+    from mem_client import reserve_ex
+
+    import numpy as np
+    import torch
+    sys.path.insert(0, str(SF / "tools"))
+    import wan_animate2_mps  # noqa: F401  (patches flex attention -> per-frame SDPA)
+    from diffusers import ModularPipeline
+    from diffusers.utils import load_image, load_video
+
+    peak = [0]
+
+    def _sample():
+        while True:
+            try:
+                peak[0] = max(peak[0], torch.mps.driver_allocated_memory())
+            except Exception:
+                pass
+            time.sleep(0.2)
+    threading.Thread(target=_sample, daemon=True).start()
+
+    image = load_image(a.ref)
+    frames, dfps = load_video(a.drive, return_fps=True)
+    if a.duration:
+        frames = frames[: max(1, int(round(a.duration * dfps)))]
+    t0 = time.time()
+    with reserve_ex(f"wa2-{a.label}", a.gb) as got:
+        if got[1] == "refused":
+            sys.exit(f"make-wa2: memory guard refused {a.gb:.0f}GB")
+        t_lease = time.time() - t0
+        t = time.time()
+        pipe = ModularPipeline.from_pretrained(str(pack))
+        # STAGED LOAD, each component straight onto MPS (device_map) and one at a time. Loading everything to the CPU
+        # first and then .to("mps") held a CPU and a Metal copy of the 33 GB transformer at once: 78 GB two minutes
+        # in, and forge_guard SIGTERMed it (2026-11-01 16:07). The base+CFG run with UMT5 resident held 91 GB.
+        import diffusers.modular_pipelines.wan_animate_2.encoders as _enc
+        prompt = " ".join(a.prompt)
+        prompt_ref = "人物动作的参考视频"   # the pipeline's own default reference prompt ("reference video of the motion")
+        pipe.load_components(names=["text_encoder", "tokenizer"], dtype=torch.bfloat16, device_map="mps")
+        cache = {}
+        with torch.no_grad():
+            for txt in (prompt, "", prompt_ref):
+                cache[txt] = _enc.get_t5_prompt_embeds(pipe.text_encoder, pipe.tokenizer, txt, 512, torch.device("mps")).cpu()
+        try:
+            pipe.text_encoder.to("meta")   # free UMT5 (11.4 GB); its embeddings are cached above
+        except Exception:
+            pass
+        type(pipe)._execution_device = property(lambda self: torch.device("mps"))
+        gc.collect(); torch.mps.empty_cache()
+        _enc.get_t5_prompt_embeds = lambda te, tok, txt, msl, dev: cache[txt if isinstance(txt, str) else txt[0]].to(dev)
+        for name in ("transformer", "image_encoder", "vae"):
+            pipe.load_components(names=[name], dtype=torch.bfloat16, device_map="mps")
+            gc.collect()
+        pipe.load_components(names=["scheduler"])
+        t_load = time.time() - t
+        wait_songforge()
+        t = time.time()
+        kw = dict(image=image, driving_video=frames, driving_video_fps=dfps, prompt=prompt, prompt_ref=prompt_ref,
+                  height=h, width=w, fps=FPS, generator=torch.Generator("cpu").manual_seed(seed), output="videos")
+        if a.steps:
+            kw["num_inference_steps"] = a.steps
+        with torch.no_grad():
+            videos = pipe(**kw)
+        torch.mps.synchronize()
+        t_render = time.time() - t
+        video = videos[0]
+        del pipe, videos
+        gc.collect(); torch.mps.empty_cache()
+
+    arr = np.asarray(video)
+    if arr.dtype != np.uint8:
+        arr = (np.clip(arr, 0, 1) * 255).round().astype("uint8")
+    n, fh, fw = arr.shape[:3]
+    raw = out.with_suffix(".noaudio.mp4") if a.audio else out
+    p = subprocess.Popen([FFMPEG, "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{fw}x{fh}",
+                          "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "14",
+                          "-preset", "slow", str(raw)], stdin=subprocess.PIPE)
+    p.stdin.write(arr.tobytes()); p.stdin.close(); p.wait()
+    if a.audio:
+        subprocess.run([FFMPEG, "-v", "error", "-y", "-i", str(raw), "-i", a.audio, "-c:v", "copy", "-c:a", "aac",
+                        "-shortest", str(out)], check=True)
+        raw.unlink(missing_ok=True)
+    print(f"make-wa2: lease wait {t_lease:.0f}s, load {t_load:.0f}s, render {t_render:.0f}s "
+          f"({fw}x{fh}, {n}f, {'distilled' if a.distilled else 'base'}, seed {seed}), peak Metal {peak[0] / 1e9:.1f}GB",
+          file=sys.stderr)
+    print(f"done in {time.time() - t0:.1f}s → {out}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
