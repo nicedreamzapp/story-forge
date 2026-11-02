@@ -116,12 +116,14 @@ def run_clips():
     order = sorted(RIDS, key=lambda r: r in LONG)   # 73-frame clips first, the two long ones last
     done = lambda r: (V2 / f"clips/{r}.mp4").exists()
     log(f"[clips] {sum(map(done, RIDS))}/{len(RIDS)} done, K6 i2v 832x480")
+    fails = 0   # consecutive failed make-k6 calls; 2 in a row stops the stage instead of burning the whole list
     for rid in order:
         stop_check()
         if done(rid): continue
         r = renders[rid]; still = V2 / f"stills/locked/LOCKED_{rid}.png"
         tries = [(LONG.get(rid, K6_FRAMES / FPS), K6_SEEDS[0]), (K6_FRAMES / FPS, K6_SEEDS[1])]
-        for dur, seed in tries:
+        while tries:
+            dur, seed = tries.pop(0)
             cmd = [str(KREA_PY), str(SF / "bin/make-k6"), "--i2v", str(still), "--res", "832x480", "--duration", f"{dur:.3f}",
                    "--seed", str(seed), "--label", f"ls_v2_{rid}", r["animate"]]
             t = time.time()
@@ -135,8 +137,14 @@ def run_clips():
                     "still": str(still), "animate": r["animate"], "finished": time.strftime("%Y-%m-%d %H:%M:%S"), "engine_log": (err or "")[-400:]}))
                 left = sum(not done(x) for x in RIDS)
                 log(f"[clips] DONE {rid} ({nfr(o)} frames, seed {seed}) in {secs/60:.1f} min - {len(RIDS)-left}/{len(RIDS)}, {left} left")
-                break
-            log(f"[clips] FAIL {rid} dur {dur:.2f}s seed {seed} rc={rc} after {secs:.0f}s :: {(err or '')[-500:]!r}")
+                fails = 0; break
+            fails += 1
+            # 2026-11-01: a forge_guard / mem-gate refusal is "no room yet", not a bad seed: retry the same take
+            held = "refused" in (err or "")
+            if held: tries.insert(0, (dur, seed))
+            log(f"[clips] FAIL {rid} dur {dur:.2f}s seed {seed} rc={rc} after {secs:.0f}s{' (memory guard held it)' if held else ''} :: {(err or '')[-2000:]!r}")
+            if fails >= 2:
+                log(f"[clips] {fails} make-k6 failures in a row - stopping the clips stage"); sys.exit(4)
     missing = [r for r in RIDS if not done(r)]
     if missing: log(f"[clips] missing {missing} - stopping"); sys.exit(4)
 
