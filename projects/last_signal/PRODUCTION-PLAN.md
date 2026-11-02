@@ -12,6 +12,7 @@ Phases run in model order (load, batch everything for that model, unload, next):
 8. Voices: Chatterbox (planet voice pitched/layered, captain whisper, ship computer)
 9. Mix: our own python panner -> 5.1 (ship sweeps front->rear, LFE on rumble) + stereo downmix
 10. QC: film_qc.py (Qwen3-VL + whisper), reports read before Matt sees it
+11. Run tools/qc_cuts.py and read every strip before calling a render done
 
 Add-ons proposed: Stable Audio Open (SFX), our own 5.1 panner script, film LUT pack.
 
