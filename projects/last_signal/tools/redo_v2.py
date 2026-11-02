@@ -43,6 +43,11 @@ FACE_LOCK = ("c06b_crew_walk", "c09_welcome", "c14b_sprint", "c15c_sprint")   # 
 REFINE = ("c02a_cockpit", "c02b_lever", "c06b_crew_walk", "c07b_captain_face", "c09_welcome", "c11_yanked")
 LTX_PY = HOME / "Desktop/PROJECTS/ltx-2-mlx-main/.venv/bin/python"
 REFINE_W, REFINE_H, REFINE_MAX = 1920, 800, 49   # 49 frames = the test's proven size (56 GB Metal peak)
+# 11/2 viewer note via Matt: R02's tall chrome floor lever looked weird. New still: a compact side-stick on the console
+# (Krea 2 seed 606 of 606/2606/3606, picked by eye), and the K6 motion prompt follows it. Only R02 changes.
+STILL_OVERRIDE = {"R02_cockpit_alarm": {"seed": 606, "prompt": 'Cinematic film still from a big-budget science fiction blockbuster, photorealistic, anamorphic lens, dramatic teal and orange grade, fine film grain, highly detailed, dynamic composition with strong depth. Medium side shot: the Captain: a weathered woman in her mid-forties with lightly sun-lined skin, grey-green eyes, dark brown hair streaked with grey tied back tightly, wearing a worn olive-grey zip-up flight suit with mission patches and a utility belt, sits in the pilot seat gripping a compact black flight side-stick mounted on the armrest console with her right hand, her left hand on the console beside it, both hands natural and relaxed-tense, no tall floor lever, no oversized handle; everything lit deep red by flashing alarm lamps, a raging orange lightning storm outside the windows. Inside the cockpit of a huge heavy industrial cargo starship: worn consoles with physical switches and small teal screens, thick angled windows.'}}
+ANIM_OVERRIDE = {"R02_cockpit_alarm": "red alarm lights pulse and strobe across the cockpit, the woman grips the compact flight "
+                 "side-stick and pushes it forward hard, the whole cabin shudders violently, sparks drift, the camera shakes with the turbulence"}
 STOP = V2 / "logs/STOP"
 PROG = V2 / "logs/progress.log"
 T0 = time.time()
@@ -75,6 +80,7 @@ def still_jobs():
         if j and not j.get("init"):
             t2i.append({"out": str(V2 / f"stills/full/{rid}.png"), "prompt": j["prompt"], "w": j.get("w", 1248),
                         "h": j.get("h", 720), "seed": j.get("seed", 1)})
+            t2i[-1].update(STILL_OVERRIDE.get(rid, {}))
         elif j and "--rerun-i2i" in sys.argv:
             copy.append((rid, dict(j, out=str(V2 / f"stills/full/{rid}.png"))))
         else:
@@ -133,7 +139,7 @@ def run_clips():
         while tries:
             dur, seed = tries.pop(0)
             cmd = [str(KREA_PY), str(SF / "bin/make-k6"), "--i2v", str(still), "--res", "832x480", "--duration", f"{dur:.3f}",
-                   "--seed", str(seed), "--label", f"ls_v2_{rid}", r["animate"]]
+                   "--seed", str(seed), "--label", f"ls_v2_{rid}", ANIM_OVERRIDE.get(rid, r["animate"])]
             t = time.time()
             try: p = subprocess.run(cmd, capture_output=True, text=True, timeout=90 * 60); rc = p.returncode; out, err = p.stdout, p.stderr
             except subprocess.TimeoutExpired: rc, out, err = "timeout", "", ""
@@ -142,7 +148,7 @@ def run_clips():
             if rc == 0 and m and Path(m.group(1)).exists():
                 o = V2 / f"clips/{rid}.mp4"; shutil.move(m.group(1), o)
                 (V2 / f"clips/{rid}.done").write_text(json.dumps({"seed": seed, "secs": round(secs), "frames": nfr(o), "duration_arg": dur,
-                    "still": str(still), "animate": r["animate"], "finished": time.strftime("%Y-%m-%d %H:%M:%S"), "engine_log": (err or "")[-400:]}))
+                    "still": str(still), "animate": ANIM_OVERRIDE.get(rid, r["animate"]), "finished": time.strftime("%Y-%m-%d %H:%M:%S"), "engine_log": (err or "")[-400:]}))
                 left = sum(not done(x) for x in RIDS)
                 log(f"[clips] DONE {rid} ({nfr(o)} frames, seed {seed}) in {secs/60:.1f} min - {len(RIDS)-left}/{len(RIDS)}, {left} left")
                 fails = 0; break
