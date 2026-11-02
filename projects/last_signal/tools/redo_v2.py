@@ -228,7 +228,7 @@ def run_upscale():
     todo = [(f"{k:02d}_{c['id']}.mp4") for k, c in enumerate(e["cuts"]) if c["src"] and c["section"] != "title" and c["len"] >= 0.9]
     frames = {nm: nfr(S / "scope" / nm) for nm in todo}
     log(f"[upscale] {sum((S / 'up' / nm).exists() for nm in todo)}/{len(todo)} done, {sum(frames.values())} frames total")
-    with reserve("seedvr2-3b", 34):
+    with reserve("seedvr2-3b", 60):
         for i, nm in enumerate(todo, 1):
             stop_check()
             out, src, n = S / "up" / nm, S / "scope" / nm, frames[nm]
@@ -236,9 +236,9 @@ def run_upscale():
             while songforge_busy(): print("Song Forge job running, waiting 30s", flush=True); time.sleep(30)
             t = time.time()
             for seed in (42, 7, 1234):
-                k = math.ceil(n / 49)
+                k = math.ceil(n / 37)   # 11/2: a 49-frame batch on 13_c09_welcome hit ~111 GB and rebooted the M5; 37 is the largest proven batch
                 if k >= 3:   # 3 temporal batches came back grey/smeared twice on 10/31 (c04): run as single-batch chunks of <= 57
-                    parts = math.ceil(n / 57); per = math.ceil(n / parts); chunks = []
+                    parts = math.ceil(n / 37); per = math.ceil(n / parts); chunks = []
                     for j in range(parts):
                         a, z = j * per, min(n, (j + 1) * per); cs, co = S / "up" / f"chunk{j}_{nm}", S / "up" / f"chunkup{j}_{nm}"
                         ff("-i", src, "-vf", f"select='between(n\\,{a}\\,{z-1})',setpts=N/{FPS}/TB", "-c:v", "libx264", "-crf", "4", "-pix_fmt", "yuv420p", cs)

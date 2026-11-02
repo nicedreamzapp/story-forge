@@ -4,7 +4,7 @@
 # straight minutes (5 polls, 2 min apart). Gives up after 10 h. Never touches a running job.
 #   nohup tools/redo_v2_wait.sh > renders_v2_krea_k6/logs/waiter.log 2>&1 < /dev/null &
 P="$(cd "$(dirname "$0")/.." && pwd)"; V2="$P/renders_v2_krea_k6"; mkdir -p "$V2/logs"
-PAT='make-k6|make-wa2|make-ltx|wan|kandinsky|seedvr|zimage|krea|comfy|mflux|blender|face_lock'
+PAT='make-k6|make-wa2|ltx|wan|kandinsky|seedvr|zimage|krea|comfy|mflux|blender|face_lock'
 busy() { ps -axo command= | grep -iE 'python|blender' | grep -v -e grep -e redo_v2 | grep -iE "$PAT" | cut -c1-160; }
 end=$(( $(date +%s) + 10*3600 )); free=0
 while [ $free -lt 5 ]; do
