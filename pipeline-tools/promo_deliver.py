@@ -45,6 +45,15 @@ def main() -> int:
     if ag["verdict"] == "FAIL":
         print("[deliver] stopped: the final master is not deliverable (final/audio_gate.json)", file=sys.stderr)
         return 1
+    vmp4 = film / "final" / "vertical" / f"{film.name}_vertical.mp4"
+    if vmp4.exists():   # the 9:16 composition is a deliverable too: same master rules
+        vg = audio_gate(vmp4, vmp4, lufs=float(g.get("deliver_lufs", -14.0)), tp_max=float(g.get("true_peak_max", -1.0)))
+        (film / "final" / "vertical" / "audio_gate.json").write_text(json.dumps(vg, indent=1))
+        print(f"[deliver] FINAL AUDIO GATE (vertical) {vg['verdict']}: {vg['why']}")
+        if vg["verdict"] == "FAIL":
+            print("[deliver] stopped: the vertical master is not deliverable (final/vertical/audio_gate.json)",
+                  file=sys.stderr)
+            return 1
     edl = json.loads((film / "edl.json").read_text())
     words = json.loads((film / "vo" / "words.json").read_text())
     t = (edl["titles"][0]["rec_in"] + 0.8) if edl.get("titles") else \
@@ -88,7 +97,6 @@ def main() -> int:
     raw.unlink()
     # a poster.jpg per deliverable (2026-11-02): the best real frame of the final beat, each from its own composition
     posters = {}
-    vmp4 = film / "final" / "vertical" / f"{film.name}_vertical.mp4"
     for key, vid, edl_p, outp in (("poster", mp4, film / "edl.json", film / "final" / "poster.jpg"),
                                    ("vertical_poster", vmp4, film / "final" / "vertical" / "edl.json",
                                     film / "final" / "vertical" / "poster.jpg")):

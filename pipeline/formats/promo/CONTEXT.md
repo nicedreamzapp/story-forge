@@ -31,7 +31,8 @@ contract for every file is `SCHEMAS.md` next to this file. The worked example an
 | `07_callouts` | arrows and diagrams on their words | 06 | `callouts.json`, overlays | `callout_check.py` (in 09) | none |
 | `08_mix` | bed, duck, SFX, sting, static loudness, the render | 06, 07 | `music/`, `final/mix.wav`, `final/<film>.mp4`, `stages/08_mix/score_pick.md` | render probe | Matt picks the score by ear (at READY) |
 | `09_gates` | every gate, strips, then the FULL watch | 08 | `final/*report*.md`, `final/strips/`, `stages/09_gates/known_defects.md` | `promo_gates.py` + cue + callout | Matt watches only at READY FOR MATT |
-| `10_deliver` | thumbnail, youtube.json, publish | 09 | `final/thumbnail.png`, `final/youtube.json`, `stages/10_deliver/published.md` | none | Matt says ship it |
+| (vertical) | the 9:16 as its own composition (`vertical_compose.py`, `_shared/composition-and-motion.md`) | 08, 09 | `final/vertical/` (mp4, edl, report, contact sheet), `promo.json "vertical_rerender"` | flagged shots listed, never padded | Matt watches it with the wide cut |
+| `10_deliver` | thumbnail, poster per deliverable, youtube.json, publish | 09 | `final/thumbnail.png`, `final/youtube.json`, `stages/10_deliver/published.md` | none | Matt says ship it |
 
 ## The proven recipe (the defaults in `pipeline-tools/promo_common.py`)
 - **Voice:** ChatterBox `matt2`, exaggeration 0.40, cfg 0.5; finish = silence trim → pitch 0.92 via

@@ -24,8 +24,13 @@ design.json are written (the template has every field). Stages and their gates:
   gates     cue_check.py, promo_gates.py (whisper the FINAL mix vs the script, loudness, voice over music,
             ending lands, design of every used shot, reading time, frame strips), callout_check.py when
             callouts exist (reading time of every label first)
+  vertical  vertical_compose.py: the 9:16 as its OWN composition from the same timeline and mix (subject-aware
+            crop paths, vertical type sizes and safe areas, <= 2 elements at once), final/vertical/<film>_vertical.mp4
+            + its contact sheet; shots it cannot reframe are FLAGGED and written into promo.json "vertical_rerender"
+            (the vertical stays a DRAFT until they come back). promo.json "vertical": false skips it.
   deliver   promo_deliver.py: FINAL AUDIO GATE (two-pass loudnorm to -14 LUFS / TP <= -1 dBTP, audio never
             shorter than the picture; final_audio_gate.py), then final/thumbnail.png + final/youtube.json
+            + a poster.jpg per deliverable (final/poster.jpg, final/vertical/poster.jpg)
 
 Human checks (Matt approves the script and the design facts, picks the score, watches at READY FOR MATT)
 are NOT skipped: the runner builds the draft cut and says which approvals are still open, and
@@ -52,7 +57,7 @@ PY = sys.executable
 CB = str(HOME / "chatterbox-env" / "bin" / "python")      # mlx-whisper, soundfile, scipy, PIL, librosa
 MLX = str(HOME / ".local" / "mlx-server" / "bin" / "python")  # the Qwen3-VL judge
 MARKER = "<!-- TEMPLATE:"
-STAGES = ["story", "voice", "coverage", "footage", "selects", "edit", "mix", "gates", "deliver"]
+STAGES = ["story", "voice", "coverage", "footage", "selects", "edit", "mix", "gates", "vertical", "deliver"]
 T0 = time.time()
 
 
@@ -194,6 +199,19 @@ def stage_gates(film: Path, a) -> None:
             rc = rc or 1
     if rc:
         raise Stop("a gate FAILED: read final/promo_gates_report.md")
+
+
+def stage_vertical(film: Path, a) -> None:
+    cfg = json.loads((film / "promo.json").read_text())
+    if cfg.get("vertical") is False:
+        say("  promo.json \"vertical\": false: no 9:16 composition for this film")
+        return
+    song_forge_idle()
+    rc = step("VERTICAL 9:16 composition (reframe per shot, vertical text layout, own contact sheet)",
+              [CB, TOOLS / "vertical_compose.py", film, "--render", "--write-spec"], ok_codes=(0, 3))
+    if rc == 3:
+        say("  note: some shots could not be reframed; the vertical is a DRAFT until their 9:16 re-renders come back "
+            "(final/vertical/report.md, promo.json vertical_rerender)")
 
 
 def stage_deliver(film: Path, a) -> None:

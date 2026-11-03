@@ -302,8 +302,11 @@ def write_spec(film: Path, fmt: str, reqs: list) -> list:
             for s in shots:
                 sid = s.get("id", "")
                 if sid and (sid == r["cid"] or (src and src.startswith(sid))):
-                    s["vertical"] = {"rerender": True, "aspect": "9:16", "res": r["res"], "why": r["why"],
-                                     "cut": r["cid"], "requested": time.strftime("%Y-%m-%d")}
+                    prev = s.get("vertical") if isinstance(s.get("vertical"), dict) else {}
+                    cuts = prev.get("cuts", []) + [r["cid"]]
+                    whys = prev.get("why", []) + [f"{r['cid']}: {r['why']}"]
+                    s["vertical"] = {"rerender": True, "aspect": "9:16", "res": r["res"], "cuts": cuts, "why": whys,
+                                     "requested": time.strftime("%Y-%m-%d")}
                     n += 1
         if n:
             sp.write_text(json.dumps(d, indent=1))
@@ -329,8 +332,10 @@ def plan_sheet(plans: list, out: Path) -> None:
         for f in m.get("faces", []):
             d.rectangle([f[0] * w, f[1] * h, (f[0] + f[2]) * w, (f[1] + f[3]) * h], outline=(250, 204, 21), width=2)
         if p.get("keys"):
-            c = reframe.window_at(p, m["t"])
-            cw = float(p["cw"])
+            cw = min(1.0, float(p["cw"]))
+            c = min(max(reframe.window_at(p, m["t"]), cw / 2), 1 - cw / 2)
+            if c - cw / 2 < 0 or c + cw / 2 > 1:
+                print(f"[vertical] {p['cid']}: window off the frame ({c:.3f} +/- {cw / 2:.3f})", file=sys.stderr)
             col = (248, 113, 113) if p["verdict"] == "flagged" else (45, 212, 191)
             shade = Image.new("RGBA", (w, h), (0, 0, 0, 0))
             sd = ImageDraw.Draw(shade)

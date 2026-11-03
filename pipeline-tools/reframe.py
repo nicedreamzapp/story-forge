@@ -237,6 +237,18 @@ def plan_shot(times: list, dets: list, cw: float, pins: list | None = None) -> d
         return {"verdict": "flagged", "cw": cw, "kind": main_kind, "subjects": kinds, "keys": keys,
                 "reason": "the subject moves faster than a smooth camera can follow without cutting a face: "
                           "needs a vertical re-render"}
+    # a graphic or text card: real lines of text that the window would slice (a parts table, a 16:9 title card)
+    cut_text = 0
+    for t, d in zip(times, dets):
+        lines = [x for x in d.get("text", []) if len(x) >= 6 and x[5] >= 3]
+        if len(lines) >= 2 and sum(x[5] for x in lines) >= 20:
+            c = mt.camera_path(keys, t)
+            if any(x[0] < c - cw / 2 - 0.005 or x[0] + x[2] > c + cw / 2 + 0.005 for x in lines):
+                cut_text += 1
+    if cut_text >= max(1, round(0.25 * len(times))):
+        return {"verdict": "flagged", "cw": cw, "kind": "text", "subjects": kinds, "keys": keys,
+                "reason": f"on-screen text would be cut by the 9:16 window on {cut_text}/{len(times)} samples "
+                          f"(a graphic or text card): lay it out again for 9:16"}
     # soft coverage (saliency shots): how much of the salient subject the window shows
     cov, widths = [], []
     for t, s in zip(times, subs):

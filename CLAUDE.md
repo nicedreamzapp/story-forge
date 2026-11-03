@@ -16,6 +16,7 @@ This directory is the home of **Story Forge**, a robust local-first generative V
 | Real footage driving a character | `_shared/motion-transfer.md` |
 | Story, sound and QC gates before Matt sees a film | `_shared/gates-and-qc.md` |
 | Services, ports, the mini, folder layout, narrator voice | `_shared/machines-and-layout.md` |
+| A 9:16 vertical, matching a reference look, code-rendered motion, posters | `_shared/composition-and-motion.md` |
 
 ## Never skip, whatever the task
 - Nothing is "checked/verified/done" until the gates in `_shared/gates-and-qc.md` ran and their reports were read.

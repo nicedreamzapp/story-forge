@@ -94,5 +94,21 @@ class TestPackExpansionInPlan(unittest.TestCase):
         self.assertEqual(fm["scene_duration"], 3.0)
 
 
+class CompanionTests(unittest.TestCase):
+    """2026-11-02: a 16:9 format delivers its 9:16 as a separate composition."""
+
+    def test_promo_has_a_vertical_companion(self):
+        comp = packs.companions("promo")
+        self.assertEqual([c["name"] for c in comp], ["promo-vertical"])
+        v = comp[0]
+        self.assertTrue(v["vertical"])
+        self.assertEqual((v["width"], v["height"]), (1080, 1920))
+        x0, y0, x1, y1 = v["safe"]
+        self.assertTrue(0 < x0 < x1 < 1 and 0 < y0 < y1 < 1)
+
+    def test_vertical_has_no_companion(self):
+        self.assertEqual(packs.companions("reel"), [])
+
+
 if __name__ == "__main__":
     unittest.main()

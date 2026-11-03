@@ -280,7 +280,7 @@ def main() -> int:
         "already passed the gates and made the cut — not written from imagination.\n\n"
         f"## The contract\n\n{paragraph}\n\n"
         + (reference_section(ref) + "\n" if ref else "")
-        + f"## Read from\n\n" + "\n".join(f"- {f.name}" for f in frames) + "\n\n"
+        + "## Read from\n\n" + "\n".join(f"- {f.name}" for f in frames) + "\n\n"
         "## Raw readings\n\n```\n" + "\n\n".join(readings) + "\n```\n"
     )
     print(f"\n[style] contract written → {out}\n")
