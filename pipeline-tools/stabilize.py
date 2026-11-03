@@ -14,8 +14,8 @@ Homebrew ffmpeg on PATH has no vidstab and is left untouched). Override: $FFMPEG
 
     ~/.local/finish-env/bin/python pipeline-tools/stabilize.py IN.mov [OUT.mp4] --real
         [--smooth-seconds 0.5] [--zoom 0] [--optzoom 1] [--shakiness 6] [--tripod]
-    --project projects/<film>    stabilize every flagged-real take in acquired/ into
-                                 acquired/stabilized/<name>_stab.mp4 (+ sidecar copy)
+    --project projects/<film>    stabilize every flagged-real take in acquired/ or footage/
+                                 into <that dir>/stabilized/<name>_stab.mp4 (+ sidecar copy)
 
 Prints camera jitter before and after (phase-correlation of consecutive frames, px of
 residual shake per frame after removing the intended move: the path smoothed over 1 s).
@@ -185,10 +185,11 @@ def main() -> int:
         sys.exit(f"no vidstab ffmpeg at {FF} (see docstring; set $FFMPEG_VIDSTAB)")
     rows = []
     if a.project:
-        acq = Path(a.project) / "acquired"
-        dest = acq / "stabilized"
-        for p in sorted(acq.iterdir()):
+        cands = [p for d in ("acquired", "footage") if (Path(a.project) / d).is_dir()
+                 for p in sorted((Path(a.project) / d).iterdir())]
+        for p in cands:
             if p.suffix.lower() in VID_EXT and classify(p)[0] == "real":
+                dest = p.parent / "stabilized"
                 dest.mkdir(exist_ok=True)
                 o = dest / f"{p.stem}_stab.mp4"
                 rows.append(one(p, o, a))
@@ -197,7 +198,7 @@ def main() -> int:
                     d = json.loads(side.read_text()); d.update(stabilized_from=str(p.name), file=str(o.relative_to(a.project)))
                     o.with_name(o.name + ".json").write_text(json.dumps(d, indent=1))
         if not rows:
-            print("[stabilize] no take in acquired/ is flagged real/handheld; nothing to do")
+            print("[stabilize] no take in acquired/ or footage/ is flagged real/handheld; nothing to do")
     else:
         if not a.src:
             ap.error("give IN or --project")

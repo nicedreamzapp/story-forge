@@ -21,6 +21,9 @@ One job: turn the coverage plan into takes on disk, every one with provenance an
 2. **Local i2v** (`promo.json "i2v"` → `bin/make-ltx25`, LTX-2.5): motion the CAD rig can't do. The
    prompt names an action or a motivated move; static is an explicit flag.
 3. **Real footage** placed in `footage/` and listed in coverage.json.
+   Prep it first (2026-11-02, CPU, `~/.local/finish-env/bin/python`): `pipeline-tools/cut_dead_air.py IN OUT --render`
+   (auto-editor; writes `OUT.cuts.json`, an EDL our tools read) for talking footage, then `pipeline-tools/stabilize.py
+   IN --real` (or `--project` for every take whose sidecar says `"kind": "handheld"`) for shaky footage. Never on AI takes.
 4. **Browser takes (optional, never required):** `bin/browser-acquire projects/<film>/acquire.json`, only
    with `bin/make-promo --acquire`. Matt's Brave on the mini, hidden lease tabs, never an API, `refs[]` of
    matching CAD stills REQUIRED (best match first; Grok animates from the first), the fidelity clause on

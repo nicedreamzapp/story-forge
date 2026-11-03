@@ -7,6 +7,12 @@ Usage:
   record-and-remix "ghibli anime style, soft watercolor lighting"
   record-and-remix --duration 15 "cyberpunk neon noir with heavy rain"
   record-and-remix --skip-record /path/to/existing.mp4 "your prompt"
+  record-and-remix --skip-record phone.mov --stabilize --cut-dead-air "your prompt"
+
+Real-footage prep (2026-11-02), applied to the source before keyframes are pulled:
+  --stabilize     two-pass vid.stab (pipeline-tools/stabilize.py), for handheld phone footage
+  --cut-dead-air  drop silences with auto-editor (pipeline-tools/cut_dead_air.py); keeps the
+                  .cuts.json timeline next to the cut
 """
 import argparse
 import subprocess
@@ -21,6 +27,8 @@ from core import (  # noqa
 )
 
 STUDIO = "http://127.0.0.1:17494"
+SF = Path(__file__).resolve().parent.parent
+FINISH_PY = Path.home() / ".local/finish-env/bin/python"
 REC_DIR = Path.home() / "Desktop/Screen Recordings"
 
 
@@ -40,6 +48,22 @@ def newest_recording() -> Path:
     return mp4s[0]
 
 
+def prep_real_footage(src: Path, work: Path, args) -> Path:
+    """Dead air first (fewer frames to stabilize), then stabilization."""
+    if args.cut_dead_air:
+        stem = work / f"{src.stem}_cut"
+        subprocess.run([str(FINISH_PY), str(SF / "pipeline-tools/cut_dead_air.py"), str(src), str(stem),
+                        "--render"], check=True)
+        src = stem.with_suffix(".mp4")
+    if args.stabilize:
+        out = work / f"{src.stem}_stab.mp4"
+        # --real: the caller passing --stabilize vouches this is camera footage
+        subprocess.run([str(FINISH_PY), str(SF / "pipeline-tools/stabilize.py"), str(src), str(out), "--real"],
+                       check=True)
+        src = out
+    return src
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("style", nargs="+", help="style prompt (applied to each keyframe)")
@@ -48,6 +72,10 @@ def main():
                     help="keyframe every N seconds (default 2)")
     ap.add_argument("--skip-record", metavar="MP4",
                     help="use an existing video instead of recording")
+    ap.add_argument("--stabilize", action="store_true",
+                    help="stabilize the source first (real handheld footage only)")
+    ap.add_argument("--cut-dead-air", action="store_true",
+                    help="cut silences out of the source first (auto-editor)")
     args = ap.parse_args()
 
     style = " ".join(args.style)
@@ -68,6 +96,7 @@ def main():
 
     work = OUT_DIR / f"remix_{int(time.time())}"
     work.mkdir(parents=True, exist_ok=True)
+    src = prep_real_footage(src, work, args)
     frames = extract_frames(src, work / "frames", every_s=args.every)
     print(f"[remix] {len(frames)} keyframes extracted")
 

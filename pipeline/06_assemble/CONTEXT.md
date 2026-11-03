@@ -49,6 +49,11 @@ Do NOT load: `_ARCHIVE_UNUSED_not_in_film/`, review folders, declined takes.
    with a LUT from `../../luts/` (teal_orange_blockbuster, bleach_bypass, cold_space_teal,
    warm_alien_haze, kodak_2383_style, neutral_filmic; regenerate with tools/make_luts.py).
    Pick the LUT per film in `final/timeline.json`; `--scope` for 2.39:1 cinema bars.
+   Shot colour match (2026-11-02) runs inside bin/grade before the LUT, ON by default when an EDL is known
+   (`--edl` or `edl_final.json` beside the input; `--match off` to skip, `"footage": "real"` in timeline.json
+   turns auto off): `pipeline-tools/color_match.py` (color-matcher MKL, strength 0.6, one LUT per shot so no
+   flicker) pulls each cut toward `canon/color_refs.json` / timeline `color_match` refs, else the medoid shot;
+   writes `<out>_color_match.json` with per-shot Lab dE before/after. HM-MVGD-HM can amplify luma jumps; keep MKL.
 
 ## Outputs
 - `projects/<film>/final/<Film>.mp4`, `final/timeline.json`
