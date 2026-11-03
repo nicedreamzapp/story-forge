@@ -35,7 +35,15 @@ Requirements: a Mac with Apple Silicon (I build on an M5 Max with 128GB of memor
 <picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-banner-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-banner-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-banner.svg" width="100%" alt="02. Watch the films. The Oldest Tree, The Bear Sister and The Lucid Engine"></picture>
 <picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-r1-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-r1-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-r1.svg" width="100%" alt="The Oldest Tree. October 2026 progress film, 2:53, 49 shots. The Bear Sister. Made on the first pipeline, May and June 2026. The Lucid Engine. Made on the first pipeline, May and June 2026."></picture>
 
-### 🛸 Newest: THE LAST SIGNAL v2 (November 2 2026)
+### 🤖 Newest: I Painted a Movie in MS Paint (November 2, 2026)
+
+<a href="https://youtu.be/xV0TARs8QnQ"><img src="./robot-explainer-thumb.jpg" width="100%" alt="I Painted a Movie in MS Paint: a mossy robot in a sunlit forest. Click to watch on YouTube"></a>
+
+A giant robot has knelt in a forest so long that moss grows over it, then it wakes up and launches into the sky. **Every frame was painted into [MattPaint](https://github.com/nicedreamzapp/MattPaint)**, my Paint app, about 90 million strokes per 10 second shot. No image or video model, no stock assets: the whole world was written as Blender Python from one sentence, Blender 5.1.1 Cycles on Metal worked out the light, and MattPaint painted every frame on screen. Song Forge scored it, the narration is my cloned voice (ChatterBox), and Story Forge cut it. The scene writing is the one cloud step; everything else ran on the M5.
+
+[▶ **Watch the explainer**](https://youtu.be/xV0TARs8QnQ) · [🎨 MattPaint, the sister project](https://github.com/nicedreamzapp/MattPaint) · [📜 The scene code](https://github.com/nicedreamzapp/MattPaint/tree/gen6-scene-engine/fast/blender)
+
+### 🛸 THE LAST SIGNAL v2 (November 2 2026)
 
 [▶ **Watch v2**](https://youtu.be/hbihC91Bgkc) · [v1 for comparison](https://youtu.be/HSgm6hOsLTs)
 
@@ -50,7 +58,7 @@ The same trailer rebuilt after v1 went up on Reddit. Same story, same cut and sa
 
 **New: frame by frame QC.** The v1 review looked at one frame every 1.5 s and missed a sub-second sprint cut where the captain's face changed from frame to frame while she ran in place. [`tools/qc_cuts.py`](tools/qc_cuts.py) now walks every cut in the edit at 12 fps (every frame when a cut is shorter than that), writes a strip of consecutive frames per cut, scores each face against the cut and the cast reference (InsightFace ArcFace), and checks that running and walking cuts actually move forward. The final v2 pass: 50 cuts checked, 0 flagged, and every strip read by eye before calling it done.
 
-<img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/07120e9950a8f31489af730ebf01be7b6dba8990/assets/readme/last-signal-v2-qc-sprint.jpg" width="100%" alt="qc_cuts strip of the v2 sprint cut: eight consecutive frames of the captain running toward the camera, each with its face identity score between 0.97 and 0.99">
+<img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/07120e9950a8f31489af730ebf01be7b6dba8990/assets/readme/last-signal-v2-qc-sprint.jpg" width="640" alt="qc_cuts strip of the v2 sprint cut: eight consecutive frames of the captain running toward the camera, each with its face identity score between 0.97 and 0.99">
 
 *The fixed sprint cut in v2, every frame with its identity score.*
 
@@ -58,19 +66,9 @@ Tools: Krea 2 Turbo · Z-Image Turbo i2i · Blender (opening) · Kandinsky 6 Pro
 
 [▶ Watch v2](https://youtu.be/hbihC91Bgkc) · [📁 Project folder](./projects/last_signal/) · [🔍 qc_cuts.py](tools/qc_cuts.py)
 
-### 🤖 New: Robot in the Forest, painted stroke by stroke in MattPaint (November 2, 2026)
-
-![Robot in the Forest](./robot-in-the-forest.jpg)
-
-A giant robot has knelt in a forest so long that moss grows over it. The sun breaks through and its chest light flickers on. **10 s**, 120 frames, and **every frame painted into [MattPaint](https://github.com/nicedreamzapp/MattPaint)**, my Paint app, about 67 million strokes in all.
-
-How it was made: the whole scene was written as Blender Python from a text prompt, no image or video model and no stock assets. Blender 5.1.1 Cycles on Metal rendered each frame in about 3.6 s, and MattPaint painted every frame on screen. The whole shot took 7 minutes. The scene writing is the one cloud step; the rendering and painting are local. Sound, score and the full cut come next, through Story Forge.
-
-[🎨 MattPaint, the sister project](https://github.com/nicedreamzapp/MattPaint) · [📜 The scene code](https://github.com/nicedreamzapp/MattPaint/tree/gen6-scene-engine/fast/blender)
-
 ### 🛸 THE LAST SIGNAL v1 (sci-fi teaser, October 31 2026)
 
-[![THE LAST SIGNAL](./last-signal-hero.jpg)](https://youtu.be/HSgm6hOsLTs)
+<a href="https://youtu.be/HSgm6hOsLTs"><img src="./last-signal-hero.jpg" width="480" alt="THE LAST SIGNAL"></a>
 
 A cargo ship follows a signal nobody has charted, and the planet at the end of it already knows the captain's name. **46.6 s**, 50 cuts, 4K deliverable, 5.1 surround plus stereo.
 
@@ -86,7 +84,7 @@ Honest about the rough spots: [known defects](projects/last_signal/stages/07_gat
 
 ### 🌲 The Oldest Tree (October 2026 progress film)
 
-[![The Oldest Tree](./oldest-tree-hero.jpg)](https://youtu.be/OaGwc2lGpCo)
+<a href="https://youtu.be/OaGwc2lGpCo"><img src="./oldest-tree-hero.jpg" width="480" alt="The Oldest Tree"></a>
 
 A girl, her grandfather, and the oldest redwood in the forest. He's starting to forget things; the tree remembers for him. Photoreal, **2:53**, 49 shots, narrated, original score.
 
@@ -102,7 +100,7 @@ Stack: Qwen-Image stills · LTX-2.5 image-to-video · LTX-2 distilled audio-to-v
 <tr>
 <td width="50%" valign="top">
 
-[![The Bear Sister](./hero-screenshot.jpg)](https://youtu.be/_bFQTl7_vF4)
+<a href="https://youtu.be/_bFQTl7_vF4"><img src="./hero-screenshot.jpg" width="480" alt="The Bear Sister"></a>
 
 ### 🐻 The Bear Sister
 A lost child, a mother bear, and a homecoming twenty winters later. Two acts, two art styles, **4:08**, 43 scenes.
@@ -112,7 +110,7 @@ A lost child, a mother bear, and a homecoming twenty winters later. Two acts, tw
 </td>
 <td width="50%" valign="top">
 
-[![The Lucid Engine](./lucid-hero.jpg)](https://www.youtube.com/watch?v=31ZeFu-ePcc)
+<a href="https://www.youtube.com/watch?v=31ZeFu-ePcc"><img src="./lucid-hero.jpg" width="480" alt="The Lucid Engine"></a>
 
 ### 🌀 The Lucid Engine
 An uploaded mind pieces together how the world ended. Psychedelic sci-fi, five acts, **~4:30**, original score.
