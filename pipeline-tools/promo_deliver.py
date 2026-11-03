@@ -9,6 +9,8 @@ Nothing is uploaded here (publishing waits for Matt's OK, then stages/10_deliver
   * final/thumbnail.png, 1280x720: the CLEAN source frame of the shot under the title slam + 0.8 s
     (else the middle of line 1), graded down on the left, the brand in big type and promo.json youtube.thumb_text
     (default: the end card tagline) under it.
+  * final/poster.jpg (+ final/vertical/poster.jpg when the 9:16 composition exists): poster_frame.py, the
+    best real frame of the final beat, or the QC jury's pick when a report names one (2026-11-02).
   * final/youtube.json: title, description, tags, category, language, made_for_kids false, files
     (the Sitka youtube.json shape). Title/description/tags come from promo.json "youtube"; the
     description gets the script's lines appended when promo.json leaves it empty.
@@ -23,6 +25,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from final_audio_gate import gate as audio_gate  # noqa: E402
+from poster_frame import make_poster  # noqa: E402
 from promo_common import load_promo, parse_script, run  # noqa: E402
 
 FONT = "/System/Library/Fonts/Avenir Next.ttc"
@@ -83,6 +86,20 @@ def main() -> int:
     thumb = film / "final" / "thumbnail.png"
     im.convert("RGB").save(thumb)
     raw.unlink()
+    # a poster.jpg per deliverable (2026-11-02): the best real frame of the final beat, each from its own composition
+    posters = {}
+    vmp4 = film / "final" / "vertical" / f"{film.name}_vertical.mp4"
+    for key, vid, edl_p, outp in (("poster", mp4, film / "edl.json", film / "final" / "poster.jpg"),
+                                   ("vertical_poster", vmp4, film / "final" / "vertical" / "edl.json",
+                                    film / "final" / "vertical" / "poster.jpg")):
+        if not vid.exists():
+            continue
+        try:
+            pm = make_poster(vid, outp, film, json.loads(edl_p.read_text()) if edl_p.exists() else None)
+            posters[key] = str(outp.relative_to(film / "final"))
+            print(f"[deliver] {outp.relative_to(film)} ({pm['t']:.2f}s, {pm['source']})")
+        except Exception as e:
+            print(f"[deliver] POSTER NOT WRITTEN for {vid.name}: {e}", file=sys.stderr)
     yt = cfg["youtube"]
     desc = yt.get("description") or "\n\n".join(ln["text"] for ln in parse_script(film / "script.md"))
     chapters, why = [], ""
@@ -107,7 +124,8 @@ def main() -> int:
             desc = desc.rstrip() + "\n\nChapters\n" + "\n".join(f"{c['stamp']} {c['title']}" for c in chapters)
     meta = {"title": yt.get("title") or cfg.get("title") or brand, "description": desc, "tags": yt.get("tags", []),
             "category": yt.get("category", "Science & Technology"), "language": "en", "made_for_kids": False,
-            "files": {"video": mp4.name, "thumbnail": thumb.name},
+            "files": {"video": mp4.name, "thumbnail": thumb.name, **posters,
+                      **({"vertical": str(vmp4.relative_to(film / "final"))} if vmp4.exists() else {})},
             **({"chapters": [{"start": c["stamp"], "title": c["title"]} for c in chapters]} if chapters else {})}
     (film / "final" / "youtube.json").write_text(json.dumps(meta, indent=1))
     print(f"[deliver] final/thumbnail.png (frame at {t:.2f}s) + final/youtube.json ('{meta['title'][:60]}')")

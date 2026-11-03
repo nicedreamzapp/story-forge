@@ -2,7 +2,7 @@
 // usage: subject_probe img1.png [img2.png ...]
 // prints one JSON object per image, boxes normalized 0..1 with the origin at the TOP-LEFT:
 // {"path": "...", "faces": [[x,y,w,h,conf]], "humans": [[x,y,w,h,conf]], "saliency": [[x,y,w,h,conf]],
-//  "objects": [[x,y,w,h,conf]]}
+//  "objects": [[x,y,w,h,conf]], "text": [[x,y,w,h,conf,chars]]}
 // faces = VNDetectFaceRectangles, humans = VNDetectHumanRectangles (full body), saliency = attention-based
 // salient objects, objects = objectness-based salient objects. Cartoon / animal faces are often missed:
 // saliency is the fallback the reframer uses then.
@@ -26,7 +26,14 @@ for path in CommandLine.arguments.dropFirst() {
     humanReq.upperBodyOnly = false
     let attReq = VNGenerateAttentionBasedSaliencyImageRequest()
     let objReq = VNGenerateObjectnessBasedSaliencyImageRequest()
-    try? VNImageRequestHandler(cgImage: img, options: [:]).perform([faceReq, humanReq, attReq, objReq])
+    let textReq = VNRecognizeTextRequest()
+    textReq.recognitionLevel = .fast
+    textReq.usesLanguageCorrection = false
+    try? VNImageRequestHandler(cgImage: img, options: [:]).perform([faceReq, humanReq, attReq, objReq, textReq])
+    let texts: [[Double]] = (textReq.results ?? []).map {
+        let n = Double($0.topCandidates(1).first?.string.count ?? 0)
+        return box($0.boundingBox, $0.confidence) + [n]
+    }
     let faces = (faceReq.results ?? []).map { box($0.boundingBox, $0.confidence) }
     let humans = (humanReq.results ?? []).map { box($0.boundingBox, $0.confidence) }
     var sal: [[Double]] = []
@@ -38,5 +45,5 @@ for path in CommandLine.arguments.dropFirst() {
         objs = (o.salientObjects ?? []).map { box($0.boundingBox, $0.confidence) }
     }
     let p = path.replacingOccurrences(of: "\"", with: "\\\"")
-    print("{\"path\": \"\(p)\", \"faces\": \(fmt(faces)), \"humans\": \(fmt(humans)), \"saliency\": \(fmt(sal)), \"objects\": \(fmt(objs))}")
+    print("{\"path\": \"\(p)\", \"faces\": \(fmt(faces)), \"humans\": \(fmt(humans)), \"saliency\": \(fmt(sal)), \"objects\": \(fmt(objs)), \"text\": \(fmt(texts))}")
 }
