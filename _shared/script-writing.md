@@ -66,8 +66,9 @@ time. We know what happens because we wrote it; they don't. So for every shot:
 - **Fast actions, slow meanings.** A move can be quick when it is anticipated; what it MEANS needs a held
   beat after it. Hold after every fast action before the next read. Lead the eye to a read first (a look, a
   camera move, light) and give it time to get there.
-- **Text is a read too.** Every title, callout, card and subtitle stays fully visible for chars/15 s
-  (CJK 4.5 per second) + 1.5 s; `pipeline-tools/text_readtime_check.py` enforces it.
+- **Text is a read too.** Every title, callout and card stays fully visible for chars/15 s (CJK 4.5 per
+  second) + 1.5 s; subtitles stay at or under 17 characters per second (CJK 7) and at least 0.83 s on screen.
+  `pipeline-tools/text_readtime_check.py` enforces both.
 
 **Emotion transitions: faces act, they never snap.** When a face changes emotion inside a shot, prompt the
 change as a sequence, never a swap (the recipe ClaudeAnimationBase's `emotions()` builds in code):

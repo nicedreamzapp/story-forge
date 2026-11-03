@@ -14,6 +14,8 @@ CLI
     surround-mix plan.json --out mix_51.wav --stereo mix_stereo.wav
     surround-mix plan.json --out mix_51.wav --stereo mix_stereo.wav --video in.mp4 --mux out.mp4
 Options: --lufs-51 -24  --lufs-stereo -14  --no-loudnorm  --ceiling -1.0  --codec auto|eac3|aac
+--mux ends with pipeline-tools/final_audio_gate.py on the stereo track (-14 LUFS, TP <= -1 dBTP, every audio
+track at least as long as the picture); a FAIL exits 1 (report: <mux>.audio_gate.json).
 
 Coordinates
 -----------
@@ -510,6 +512,17 @@ def main(argv=None):
         finally:
             if tmp_st:
                 tmp_st.unlink(missing_ok=True)
+        # FINAL AUDIO GATE (2026-11-02): the stereo track (a:1) is the one streaming plays, so it is
+        # mastered to -14 LUFS / TP <= -1 dBTP in place; the 5.1 track keeps its film target and is
+        # stream-copied. Every audio track must decode at least as long as the picture, or the mux fails.
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "pipeline-tools"))
+        from final_audio_gate import gate as final_audio_gate
+        mp4 = Path(a.mux).resolve()
+        ag = final_audio_gate(mp4, mp4, lufs=-14.0, audio_index=1)
+        mp4.with_suffix(".audio_gate.json").write_text(json.dumps(ag, indent=1))
+        print(f"[audio_gate] {ag['verdict']}: {ag['why']}")
+        if ag["verdict"] == "FAIL":
+            return 1
     return 0
 
 

@@ -24,8 +24,8 @@ So four gates now run, in this order, and all four reports are read before showi
    angles, counted facts, must_not). Faces passing says nothing about a leg drawn in the wrong place.
 READING TIME + FINAL AUDIO (2026-11-02, no models, seconds of CPU):
 - `python3 pipeline-tools/text_readtime_check.py projects/<film>`: every title, callout label, end-card line,
-  overlay with `"text"`, subtitle (.srt, the lower third) and film `texts.json` entry is FULLY visible for
-  chars/15 s (CJK 4.5/s) + 1.5 s. make-promo runs it after the edit (before any render) and in promo_gates;
+  overlay with `"text"` and film `texts.json` entry is FULLY visible for chars/15 s (CJK 4.5/s) + 1.5 s;
+  subtitles (.srt, the lower third) use reading speed instead: <= 17 cps (CJK 7), >= 0.83 s, WARN 17-20, FAIL > 20. make-promo runs it after the edit (before any render) and in promo_gates;
   callout_check runs it on every label first; build-episode checks its cards. FAIL names the block and the
   rec_out it needs. Kinetic type baked into an overlay .mov is invisible to it unless the overlay carries `"text"`.
 - `python3 pipeline-tools/final_audio_gate.py FILM.mp4 --in-place`: the last touch on the sound. Two-pass,

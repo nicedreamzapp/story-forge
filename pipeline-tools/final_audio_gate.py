@@ -64,21 +64,25 @@ def video_duration(path: Path) -> tuple[float, float]:
     return float(d), fps or 24.0
 
 
-def decoded_audio_seconds(path: Path) -> float:
-    """Seconds of the first audio stream that actually decode (the container can claim more)."""
-    if not _run([FFPROBE, "-v", "error", "-select_streams", "a:0", "-show_entries", "stream=codec_type",
-                 "-of", "csv=p=0", path]).stdout.strip():
-        raise GateFail(f"no audio stream in {path.name}")
-    r = _run([FFMPEG, "-v", "error", "-nostats", "-i", path, "-map", "0:a:0", "-f", "null", "-",
+def audio_streams(path: Path) -> int:
+    return len(_run([FFPROBE, "-v", "error", "-select_streams", "a", "-show_entries", "stream=index",
+                     "-of", "csv=p=0", path]).stdout.split())
+
+
+def decoded_audio_seconds(path: Path, a: int = 0) -> float:
+    """Seconds of audio stream `a` that actually decode (the container can claim more)."""
+    if audio_streams(path) <= a:
+        raise GateFail(f"no audio stream {a} in {path.name}")
+    r = _run([FFMPEG, "-v", "error", "-nostats", "-i", path, "-map", f"0:a:{a}", "-f", "null", "-",
               "-progress", "pipe:1"])
     us = [int(m) for m in re.findall(r"^out_time_us=(\d+)", r.stdout, re.M)]
     if not us:
-        raise GateFail(f"the audio in {path.name} does not decode: {(r.stderr or '').strip()[-200:]}")
+        raise GateFail(f"audio stream {a} in {path.name} does not decode: {(r.stderr or '').strip()[-200:]}")
     return max(us) / 1e6
 
 
-def ebur128(path: Path) -> dict:
-    r = _run([FFMPEG, "-hide_banner", "-nostats", "-i", path, "-map", "0:a:0",
+def ebur128(path: Path, a: int = 0) -> dict:
+    r = _run([FFMPEG, "-hide_banner", "-nostats", "-i", path, "-map", f"0:a:{a}",
               "-af", "ebur128=peak=true", "-f", "null", "-"])
     txt = r.stderr
     summ = txt[txt.rfind("Summary:"):] if "Summary:" in txt else ""
@@ -90,8 +94,8 @@ def ebur128(path: Path) -> dict:
             "LRA": grab(r"LRA:\s+(-?[\d.]+) LU")}
 
 
-def loudnorm_measure(path: Path, lufs: float, tp: float) -> dict:
-    r = _run([FFMPEG, "-hide_banner", "-nostats", "-i", path, "-map", "0:a:0",
+def loudnorm_measure(path: Path, lufs: float, tp: float, a: int = 0) -> dict:
+    r = _run([FFMPEG, "-hide_banner", "-nostats", "-i", path, "-map", f"0:a:{a}",
               "-af", f"loudnorm=I={lufs}:TP={tp}:LRA=11:print_format=json", "-f", "null", "-"])
     js = r.stderr[r.stderr.rfind("{"):r.stderr.rfind("}") + 1]
     try:
@@ -105,9 +109,12 @@ def loudnorm_measure(path: Path, lufs: float, tp: float) -> dict:
     return out
 
 
-def _apply(src: Path, out: Path, af: str) -> None:
-    r = _run([FFMPEG, "-v", "error", "-y", "-i", src, "-map", "0:v:0", "-map", "0:a:0", "-c:v", "copy",
-              "-af", af, "-c:a", "aac", "-b:a", "320k", "-ar", "48000", "-movflags", "+faststart", out])
+def _apply(src: Path, out: Path, af: str, a: int = 0) -> None:
+    """Re-encode audio stream `a` through `af`; the picture and every other audio stream (a 5.1 track
+    next to the stereo one, bin/surround-mix) are stream-copied with their titles and dispositions."""
+    r = _run([FFMPEG, "-v", "error", "-y", "-i", src, "-map", "0:v:0", "-map", "0:a", "-c", "copy",
+              f"-filter:a:{a}", af, f"-c:a:{a}", "aac", f"-b:a:{a}", "320k", f"-ar:a:{a}", "48000",
+              "-movflags", "+faststart", out])
     if r.returncode != 0 or not out.exists() or out.stat().st_size == 0:
         out.unlink(missing_ok=True)
         raise GateFail(f"ffmpeg failed writing {out.name}: {(r.stderr or '').strip()[-300:]}")
@@ -129,21 +136,26 @@ def _filter(m: dict, lufs: float, ceiling: float) -> tuple[str, str]:
 
 
 def gate(src: Path, out: Path | None = None, lufs: float = -14.0, tp_max: float = -1.0,
-         tol: float = 0.5) -> dict:
-    """Run the gate. Returns the report dict ("verdict": PASS | FIXED | FAIL, "why")."""
+         tol: float = 0.5, audio_index: int = 0) -> dict:
+    """Run the gate on audio stream `audio_index` (loudness); truncation is checked on EVERY audio
+    stream. Returns the report dict ("verdict": PASS | FIXED | FAIL, "why")."""
     src = Path(src)
+    ai = audio_index
     rep = {"ran": time.strftime("%Y-%m-%dT%H:%M:%S"), "file": str(src), "target_lufs": lufs, "tp_max": tp_max,
-           "tol": tol, "steps": []}
+           "tol": tol, "audio_index": ai, "steps": []}
     tmp = None
     try:
         vdur, fps = video_duration(src)
         slack = max(1.0 / fps, 0.034)
-        adur = decoded_audio_seconds(src)
-        rep.update(video_s=round(vdur, 3), audio_in_s=round(adur, 3))
+        if audio_streams(src) <= ai:
+            raise GateFail(f"no audio stream {ai} in {src.name}")
+        adurs = [decoded_audio_seconds(src, k) for k in range(audio_streams(src))]
+        adur = min(adurs)
+        rep.update(video_s=round(vdur, 3), audio_in_s=[round(x, 3) for x in adurs])
         if adur < vdur - slack:
             raise GateFail(f"TRUNCATED INPUT: audio decodes {adur:.3f}s, picture runs {vdur:.3f}s "
                            f"({(vdur - adur) * 1000:.0f} ms short). Fix the mix/mux upstream; padding would hide it")
-        before = ebur128(src)
+        before = ebur128(src, ai)
         rep["before"] = before
         on_target = (before["I"] is not None and abs(before["I"] - lufs) <= tol
                      and before["TP"] is not None and before["TP"] <= tp_max)
@@ -158,12 +170,12 @@ def gate(src: Path, out: Path | None = None, lufs: float = -14.0, tp_max: float 
         out = Path(out)
         tmp = out.with_name(out.stem + ".audiogate_tmp" + out.suffix)
         ceiling = tp_max - CEILING_MARGIN
-        m = loudnorm_measure(src, lufs, ceiling)
+        m = loudnorm_measure(src, lufs, ceiling, ai)
         target = lufs
         for attempt in (1, 2):
             af, method = _filter(m, target, ceiling)
-            _apply(src, tmp, af)
-            after = ebur128(tmp)
+            _apply(src, tmp, af, ai)
+            after = ebur128(tmp, ai)
             rep["steps"].append({"attempt": attempt, "method": method, "measured_in": m, "after": after})
             okI = after["I"] is not None and abs(after["I"] - lufs) <= tol
             okT = after["TP"] is not None and after["TP"] <= tp_max
@@ -177,7 +189,7 @@ def gate(src: Path, out: Path | None = None, lufs: float = -14.0, tp_max: float 
             if after["I"] is not None:
                 target = round(target + (lufs - after["I"]), 2)
             ceiling -= 0.5
-        aout = decoded_audio_seconds(tmp)
+        aout = min(decoded_audio_seconds(tmp, k) for k in range(audio_streams(tmp)))
         vout, _ = video_duration(tmp)
         rep.update(audio_out_s=round(aout, 3), video_out_s=round(vout, 3), after=after)
         if aout < vout - slack or aout < adur - slack:
@@ -206,6 +218,7 @@ def main() -> int:
     ap.add_argument("--lufs", type=float, default=-14.0)
     ap.add_argument("--tp", type=float, default=-1.0)
     ap.add_argument("--tol", type=float, default=0.5)
+    ap.add_argument("--audio-index", type=int, default=0, help="which audio stream to master (truncation: all)")
     ap.add_argument("--report", default=None, help="write the report JSON here")
     a = ap.parse_args()
     src = Path(a.film).resolve()
@@ -213,7 +226,7 @@ def main() -> int:
         print(f"[audio_gate] no file {src}", file=sys.stderr)
         return 2
     out = src if a.in_place else (Path(a.out).resolve() if a.out else None)
-    rep = gate(src, out, a.lufs, a.tp, a.tol)
+    rep = gate(src, out, a.lufs, a.tp, a.tol, a.audio_index)
     if a.report:
         Path(a.report).write_text(json.dumps(rep, indent=1))
     print(f"[audio_gate] {rep['verdict']}: {rep['why']}")
