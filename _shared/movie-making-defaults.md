@@ -8,4 +8,6 @@ These are standing direction. Apply them automatically to every film; do not mak
 4. **Coverage, then cut to the best (2026-10-22).** For every format: >= 3 setups per line/beat from >= 2 sources, acquired seconds >= 3x runtime, alternates kept until the film is approved, selects ranked with a why (frozen rules 13 amended, 29).
 5. **Motivated motion, cut to words (2026-10-22).** Every shot names an action or a camera move chosen for it; static is an explicit flag, drift is never a default. Cuts land on word onsets; dissolves only where a cue asks (frozen rules 31, 32).
 
+6. **Motivated, shaped light (2026-11-02).** Every still and i2v prompt names its key side, softness, motivating source, background practical and negative fill; shoot the shadow side, one soft key beats flat three-point. Full rules: `_shared/lighting.md`.
+
 Full detail: SCENE_BUILDING_METHOD.md.
