@@ -12,6 +12,7 @@ This directory is the home of **Story Forge**, a robust local-first generative V
 | The rules enforced in code | `RULES.md` (its own numbering) |
 | Writing the story before any render | `_shared/script-writing.md` |
 | Givens on every video (coverage, mouth motion, LoRAs) | `_shared/movie-making-defaults.md` |
+| Lighting any still or shot (key, shadow side, motivated sources, troubleshooting) | `_shared/lighting.md` |
 | Talking-character scenes | `_shared/dialogue-scenes.md` |
 | Real footage driving a character | `_shared/motion-transfer.md` |
 | Story, sound and QC gates before Matt sees a film | `_shared/gates-and-qc.md` |
