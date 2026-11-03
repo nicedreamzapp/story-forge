@@ -1,14 +1,55 @@
 #!/usr/bin/env bash
 # grade in.mp4 out.mp4 --lut NAME [--grain 0-1] [--scope]
+#       [--match auto|on|off] [--edl edl.json] [--match-ref IMG|VIDEO@S|CUT_ID]
+#       [--match-strength 0-1] [--match-method mkl|hm-mvgd-hm] [--per-section]
+#
+# Shot colour matching (pipeline-tools/color_match.py) runs BEFORE the LUT, per cut, so the
+# LUT lands on shots that already agree. --match auto (default) turns it on when an EDL is
+# known (--edl, or edl_final.json next to IN) whose length matches IN, and the project's
+# final/timeline.json does not say "footage": "real". AI-generated films get it by default.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-IN="${1:?usage: grade in.mp4 out.mp4 --lut NAME [--grain 0-1] [--scope]}"; OUT="${2:?}"; shift 2
-LUT=""; GRAIN=0; SCOPE=0
+IN="${1:?usage: grade in.mp4 out.mp4 --lut NAME [--grain 0-1] [--scope] [--match auto|on|off] [--edl E]}"; OUT="${2:?}"; shift 2
+LUT=""; GRAIN=0; SCOPE=0; MATCH=auto; EDL=""; MREF=""; MSTR=0.6; MMETH=mkl; PERSEC=""
 while [ $# -gt 0 ]; do case "$1" in
   --lut) LUT="$2"; shift 2;; --grain) GRAIN="$2"; shift 2;; --scope) SCOPE=1; shift;;
+  --match) MATCH="$2"; shift 2;; --edl) EDL="$2"; shift 2;; --match-ref) MREF="$2"; shift 2;;
+  --match-strength) MSTR="$2"; shift 2;; --match-method) MMETH="$2"; shift 2;; --per-section) PERSEC=--per-section; shift;;
   *) echo "unknown arg $1" >&2; exit 2;; esac; done
 [ -n "$LUT" ] || { echo "need --lut NAME ($(ls "$ROOT/luts" | sed 's/.cube//' | tr '\n' ' '))" >&2; exit 2; }
 F="$ROOT/luts/$LUT.cube"; [ -f "$F" ] || { echo "no such LUT: $LUT" >&2; exit 2; }
+
+# ---- shot colour match (before the LUT)
+PY="${FINISH_PY:-$HOME/.local/finish-env/bin/python}"
+if [ "$MATCH" != off ]; then
+  [ -n "$EDL" ] || { C="$(dirname "$IN")/edl_final.json"; [ -f "$C" ] && EDL="$C"; }
+  why=""
+  if [ -z "$EDL" ]; then why="no EDL (pass --edl)"
+  elif [ ! -x "$PY" ]; then why="no finish venv at $PY"
+  else
+    PROJ="$(cd "$(dirname "$EDL")/.." && pwd)"
+    TL="$PROJ/final/timeline.json"
+    if [ -f "$TL" ] && grep -q '"footage"[[:space:]]*:[[:space:]]*"real"' "$TL" && [ "$MATCH" = auto ]; then why="timeline says real footage"; fi
+    if [ -z "$why" ]; then
+      FD=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$IN")
+      ED=$(python3 -c "import json,sys;d=json.load(open(sys.argv[1]));c=d['cuts'][-1];print(d.get('duration') or c['start']+c['len'])" "$EDL")
+      awk "BEGIN{d=$FD-$ED; if(d<0)d=-d; exit !(d>0.15)}" && why="EDL length $ED s != film $FD s"
+    fi
+  fi
+  if [ -n "$why" ]; then
+    [ "$MATCH" = on ] && { echo "color match requested but: $why" >&2; exit 2; }
+    echo "[grade] colour match skipped: $why"
+  else
+    TMPD="$(mktemp -d)"; trap 'rm -rf "$TMPD"' EXIT
+    ARGS=(--film "$IN" --edl "$EDL" --project "$PROJ" --method "$MMETH" --strength "$MSTR" --out "$TMPD/matched.mp4" --report "${OUT%.*}_color_match.json")
+    [ -n "$MREF" ] && ARGS+=(--ref "$MREF")
+    [ -n "$PERSEC" ] && ARGS+=("$PERSEC")
+    "$PY" "$ROOT/pipeline-tools/color_match.py" "${ARGS[@]}" | grep -E "^\[color_match\]|before |after |reference" || true
+    [ -s "$TMPD/matched.mp4" ] || { echo "color match failed" >&2; exit 1; }
+    IN="$TMPD/matched.mp4"
+  fi
+fi
+
 VF="lut3d=file='$F':interp=tetrahedral"
 if awk "BEGIN{exit !($GRAIN>0)}"; then
   S=$(awk "BEGIN{printf \"%d\", $GRAIN*30}")
