@@ -446,7 +446,11 @@ def _jury_json(ans):
     return out
 
 
-def jury_film(film, man, tmp, shots, frames=4, log=print):
+def _log_flush(msg):
+    print(msg, flush=True)
+
+
+def jury_film(film, man, tmp, shots, frames=4, log=_log_flush):
     """Two-round jury over every shot. Returns list of per-shot dicts."""
     chars = man.get("characters") or {}
     char_desc = "; ".join(f"{k} = {v}" for k, v in chars.items()) or "(no cast listed)"
