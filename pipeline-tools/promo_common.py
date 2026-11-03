@@ -40,7 +40,9 @@ DEFAULTS = {
     "blender": [],
     "i2v": [],
     "youtube": {"title": "", "tags": [], "category": "Science & Technology", "description": ""},
-    "gates": {"lufs": -16.0, "lufs_tol": 1.0, "true_peak_max": -1.0, "design_votes": 3},
+    # lufs: the mix stage's level (promo_mix, checked in 09). deliver_lufs: the FINAL master that
+    # final_audio_gate.py writes in 10_deliver (-14 LUFS integrated, the streaming level, 2026-11-02).
+    "gates": {"lufs": -16.0, "lufs_tol": 1.0, "true_peak_max": -1.0, "design_votes": 3, "deliver_lufs": -14.0},
 }
 
 

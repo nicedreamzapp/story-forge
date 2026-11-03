@@ -19,10 +19,13 @@ design.json are written (the template has every field). Stages and their gates:
             ingest_acquired.py -> manifest.json, design_check.py (every take vs design.json)
   selects   promo_draft.py drafts selects.json if missing; coverage_gate.py must PASS (>= 3x footage)
   edit      words_align.py -> promo_draft.py drafts cues.json if missing -> edit_to_words.py -> cue_check.py
+            -> text_readtime_check.py (every on-screen text block readable before any render)
   mix       promo_music.py (only if no bed) -> promo_mix.py -> render_edl.py --audio final/mix.wav
   gates     cue_check.py, promo_gates.py (whisper the FINAL mix vs the script, loudness, voice over music,
-            ending lands, design of every used shot, frame strips), callout_check.py when callouts exist
-  deliver   promo_deliver.py: final/thumbnail.png + final/youtube.json
+            ending lands, design of every used shot, reading time, frame strips), callout_check.py when
+            callouts exist (reading time of every label first)
+  deliver   promo_deliver.py: FINAL AUDIO GATE (two-pass loudnorm to -14 LUFS / TP <= -1 dBTP, audio never
+            shorter than the picture; final_audio_gate.py), then final/thumbnail.png + final/youtube.json
 
 Human checks (Matt approves the script and the design facts, picks the score, watches at READY FOR MATT)
 are NOT skipped: the runner builds the draft cut and says which approvals are still open, and
@@ -146,6 +149,7 @@ def stage_edit(film: Path, a) -> None:
         say("  note: cues.json is promo_draft's DRAFT; pick the cue words yourself before calling it done")
     step("edit_to_words: cut to the words -> edl.json", [PY, TOOLS / "edit_to_words.py", film])
     step("CUE CHECK (every cut/title/overlay on its word, slam after the last word)", [PY, TOOLS / "cue_check.py", film])
+    step("READING TIME (every title/callout/end-card line up chars/15 + 1.5 s)", [PY, TOOLS / "text_readtime_check.py", film])
 
 
 def stage_mix(film: Path, a) -> None:
@@ -193,7 +197,8 @@ def stage_gates(film: Path, a) -> None:
 
 
 def stage_deliver(film: Path, a) -> None:
-    step("thumbnail + youtube.json", [CB, TOOLS / "promo_deliver.py", film])
+    step("FINAL AUDIO GATE (-14 LUFS, TP <= -1 dBTP, no truncation) + thumbnail + youtube.json",
+         [CB, TOOLS / "promo_deliver.py", film])
 
 
 def main() -> int:

@@ -22,6 +22,17 @@ So four gates now run, in this order, and all four reports are read before showi
 5. `~/.local/mlx-server/bin/python pipeline-tools/design_check.py projects/<film>` (added 2026-10-22) —
    any film that shows a real product: every candidate is checked against `design.json` (reference
    angles, counted facts, must_not). Faces passing says nothing about a leg drawn in the wrong place.
+READING TIME + FINAL AUDIO (2026-11-02, no models, seconds of CPU):
+- `python3 pipeline-tools/text_readtime_check.py projects/<film>`: every title, callout label, end-card line,
+  overlay with `"text"` and film `texts.json` entry is FULLY visible for chars/15 s (CJK 4.5/s) + 1.5 s;
+  subtitles (.srt, the lower third) use reading speed instead: <= 17 cps (CJK 7), >= 0.83 s, WARN 17-20, FAIL > 20. make-promo runs it after the edit (before any render) and in promo_gates;
+  callout_check runs it on every label first; build-episode checks its cards. FAIL names the block and the
+  rec_out it needs. Kinetic type baked into an overlay .mov is invisible to it unless the overlay carries `"text"`.
+- `python3 pipeline-tools/final_audio_gate.py FILM.mp4 --in-place`: the last touch on the sound. Two-pass,
+  STATIC gain to -14 LUFS integrated (a 4x-oversampled peak limiter only when the gain would push peaks over
+  the ceiling), true peak <= -1 dBTP, verified by an independent ebur128 decode of the output (loudnorm's own
+  summary can under-report), and REJECTED when the decoded audio is shorter than the picture, in or out.
+  promo_deliver.py and build-episode's assemble stage run it; a FAIL stops delivery.
 COVERAGE GATE (2026-10-22): `pipeline-tools/coverage_gate.py` blocks the edit stage until coverage
 holds (frozen rule 29); `bin/film-status` reports it.
 FULL WATCH (2026-10-22, frozen rule 30): after the gates, the agent watches the whole cut start to

@@ -13,12 +13,14 @@ arrow lands on the thigh strap teaches the viewer the wrong product. For every c
   4. JUDGE: on the same crop, "does the marker sit on <part>?" yes/no, the blind answer given as
      context it may overrule (the blind answer is saved for the report).
 Unreadable answers are UNCHECKED, never a pass (RULES 7).
+  0. READ TIME (no model, runs first): every label is fully readable for chars/15 + 1.5 s
+     (text_readtime_check.py); a label up too short is a FAIL even when its tip is right.
 
 Usage:
   ~/.local/mlx-server/bin/python pipeline-tools/callout_check.py projects/<film>
-        [--film final/x.mp4 | --edl] [--votes 1]
-Writes callout_report.json + callout_report.md. Exit 0 = every callout hits its part;
-1 = a miss or unchecked; 2 = could not run (no callouts, no film/edl, Song Forge busy,
+        [--film final/x.mp4 | --edl] [--votes 1] [--readtime-only]
+Writes callout_report.json + callout_report.md. Exit 0 = every callout hits its part and is up long
+enough to read; 1 = a miss, unchecked or a label too short to read (--readtime-only: only that check, no VL); 2 = could not run (no callouts, no film/edl, Song Forge busy,
 memory guard critical).
 """
 from __future__ import annotations
@@ -34,6 +36,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from design_check import Ballots, parse_yesno, run_with_vl  # noqa: E402
+from text_readtime_check import check as readtime_check  # noqa: E402
 
 CROP = 0.32          # crop box = 32% of the frame's width/height, centred on the tip
 # the rendered callouts are a white leader line ending in a teal dot (render_edl / Remotion); the
@@ -196,11 +199,20 @@ def main() -> int:
     ap.add_argument("--film", default=None, help="rendered film (default final/<dirname>.mp4)")
     ap.add_argument("--edl", action="store_true", help="judge source frames via edl.json, dot simulated")
     ap.add_argument("--votes", type=int, default=1, help="frames per callout (1 = midpoint)")
+    ap.add_argument("--readtime-only", action="store_true", help="only the reading-time check (no VL model)")
     a = ap.parse_args()
     film = Path(a.film_dir).resolve()
     if not (film / "callouts.json").exists():
         print("[callout_check] no callouts.json", file=sys.stderr)
         return 2
+    # 0. reading time: string-and-number, before any model loads
+    rt = [r for r in readtime_check(film)[0] if r["kind"] == "callout"]
+    rt_bad = [r for r in rt if not r["ok"]]
+    for r in rt:
+        print(f"[{'READ OK' if r['ok'] else 'TOO SHORT':9}] {r['id']}: '{r['text']}' readable {r['got']:.2f}s, "
+              f"needs {r['need']:.2f}s" + (f" ({r['why']})" if r["why"] else ""), flush=True)
+    if a.readtime_only:
+        return 1 if rt_bad else 0
     video = None if a.edl else (Path(a.film) if a.film else film / "final" / f"{film.name}.mp4")
     if video is not None and not video.is_absolute() and not video.exists():
         video = film / video   # a --film relative to the film folder
@@ -225,10 +237,13 @@ def main() -> int:
         recs = check(film, video, edl, a.votes, B, tmp)
         (film / "callout_report.json").write_text(json.dumps(
             {"ran": time.strftime("%Y-%m-%dT%H:%M:%S"), "from": str(video or "edl.json"),
-             "callouts": recs}, indent=1))
+             "callouts": recs, "readtime": rt}, indent=1))
         L = [f"# Callout check — {film.name}", "", f"_from {video or 'edl.json (simulated red dot)'}_", "",
              "| id | part | verdict | why |", "|---|---|---|---|"]
         L += [f"| {r['id']} | {r['part']} | **{r['verdict'].upper()}** | {r['why'][:150]} |" for r in recs]
+        L += ["", "## Reading time (chars/15 + 1.5 s fully visible)", ""]
+        L += [f"- {r['id']} '{r['text']}': **{'OK' if r['ok'] else 'TOO SHORT'}** readable {r['got']:.2f}s, "
+              f"needs {r['need']:.2f}s {r['why']}" for r in rt]
         for r in recs:
             L += ["", f"## {r['id']} — {r['verdict'].upper()}"]
             for b in r["ballots"]:
@@ -237,7 +252,7 @@ def main() -> int:
                          f"judge: {b.get('judge_raw', '')[:80]}")
         (film / "callout_report.md").write_text("\n".join(L) + "\n")
         print(f"[callout_check] VL calls {B.calls}, cache hits {B.hits} → callout_report.md")
-        return 0 if all(r["verdict"] == "pass" for r in recs) else 1
+        return 0 if all(r["verdict"] == "pass" for r in recs) and not rt_bad else 1
 
     return run_with_vl("callout_check", body)
 

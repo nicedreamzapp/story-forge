@@ -8,7 +8,8 @@ The Sitka QC log (sitka-video/PRODUCTION.md §9, 2026-10-22), made a tool. On fi
      mix): missed there too = FAIL (music or an SFX masking a word); heard there = WARN, named in
      the report for the full watch (whisper's long-context pass flips borderline words). Also the median
      offset of the heard words vs the planned vo/words.json times (WARN > 120 ms).
-  2. LOUDNESS: ebur128 integrated within promo.json gates.lufs +/- lufs_tol (default -16 +/- 1),
+  2. LOUDNESS: ebur128 integrated within promo.json gates.lufs +/- lufs_tol (default -16 +/- 1; after
+     10_deliver re-mastered the file, final/audio_gate.json's target, -14),
      true peak <= gates.true_peak_max (-1 dBFS). Voice stem vs ducked-music stem (final/_vo.wav vs
      final/_music.wav from promo_mix): >= 10 dB apart, WARN under 10, FAIL under 6.
   3. ENDING LANDS: the end-card slam starts AFTER the last heard word ends (never masks it), the
@@ -16,6 +17,8 @@ The Sitka QC log (sitka-video/PRODUCTION.md §9, 2026-10-22), made a tool. On fi
      > -30 dBFS) and the card itself is on screen (dark frame with bright type).
   4. DESIGN: every shot the EDL uses has design_check verdict "pass" in manifest.json; "fail" =
      FAIL, null/"unchecked" = UNCHECKED (never a pass, frozen rule 22).
+  4b. READING TIME: every title, callout label, end-card line, overlay with "text" and subtitle is
+     fully visible for chars/15 s (CJK 4.5 cps) + 1.5 s (text_readtime_check.py); FAIL names the block.
   5. FRAME STRIPS: final/strips/line<N>.jpg (8 frames across each narration line) and
      final/strips/ev_<kind>_<t>.jpg (frames -2..+3 around every title, callout, overlay and the
      slam). Made for the agent's eyes; they are NOT verification. The full start-to-finish watch
@@ -39,6 +42,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from promo_common import WHISPER_ID, compare_words, ebur128, load_promo, norm_words, parse_script, run  # noqa: E402
+from text_readtime_check import check as readtime_check, summary as readtime_summary  # noqa: E402
 
 
 def heard_words(audio: Path) -> tuple[str, list[dict]]:
@@ -145,13 +149,22 @@ def main() -> int:
     # ---- 2. loudness
     lo = ebur128(mp4)
     I, TP = lo.get("I"), lo.get("TP")
+    # a re-run AFTER 10_deliver sees the -14 LUFS master final_audio_gate wrote, not the -16 mix: judge it
+    # against the gate's target when its report describes this exact file
+    tgt = g["lufs"]
+    try:
+        agr = json.loads((film / "final" / "audio_gate.json").read_text())
+        if agr.get("verdict") in ("PASS", "FIXED") and agr.get("output_bytes") == mp4.stat().st_size:
+            tgt = float(agr["target_lufs"])
+    except Exception:  # noqa: BLE001
+        pass
     if I is None:
         add("loudness", "UNCHECKED", "ebur128 unreadable")
     else:
-        okI = abs(I - g["lufs"]) <= g["lufs_tol"]
+        okI = abs(I - tgt) <= g["lufs_tol"]
         okT = TP is None or TP <= g["true_peak_max"]
         add("loudness", "PASS" if okI and okT else "FAIL",
-            f"integrated {I:.1f} LUFS (target {g['lufs']}+/-{g['lufs_tol']}), true peak {TP} dBFS "
+            f"integrated {I:.1f} LUFS (target {tgt}+/-{g['lufs_tol']}), true peak {TP} dBFS "
             f"(max {g['true_peak_max']}), LRA {lo.get('LRA')}")
     vs, ms = film / "final" / "_vo.wav", film / "final" / "_music.wav"
     if vs.exists() and ms.exists():
@@ -217,6 +230,9 @@ def main() -> int:
         add("design (shots in the cut)", "UNCHECKED", f"{len(unch)} of {len(used)} used shots never judged: {', '.join(unch)}")
     else:
         add("design (shots in the cut)", "PASS", f"all {len(used)} used shots passed design_check")
+
+    # ---- 4b. every on-screen text block up long enough to read (no model)
+    add("reading time (on-screen text)", *readtime_summary(readtime_check(film)[0]))
 
     # ---- 5. frame strips for the agent's eyes
     sd = film / "final" / "strips"
