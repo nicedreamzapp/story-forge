@@ -90,3 +90,13 @@ engineering" article, and an infographic-explainer prompt. Ideas only; never cop
 PySceneDetect (shots), Auto-Editor (dead air), vid.stab (stabilize), color-matcher, rembg (background
 removal), RIFE (slow-mo), Demucs (stems), librosa (beats), MMS_FA/wav2vec2 (forced alignment),
 Playwright+Chromium (render HTML/canvas films), Remotion / HyperFrames (HTML video frameworks).
+
+## Originality gate (before any concept is pitched or rendered)
+A short ask ("robot in forest") gets filled with the most common picture the model knows. On 11/02 that
+gave a dormant, moss-covered robot with a glowing chest light that wakes and flies off: the same image
+as the most shared AI demo on X that week and as the Castle in the Sky robot. Matt called it cheesy.
+- Write down the 3 most obvious versions of the idea first (the trope, the famous film, the viral demo)
+  and do not make any of them.
+- Pick a specific angle only this film has: a real place, a strange job, a surprising relationship,
+  Matt's own world (Humboldt, the shop, the coast). Say in one line why it isn't the default.
+- Show Matt the concept line and the "what we're avoiding" line before any render.
