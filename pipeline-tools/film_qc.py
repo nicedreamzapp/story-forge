@@ -358,7 +358,21 @@ JURY_SCALE = ("Scale: 5 = competent student work, 6 = decent template level, "
               "7 = solid professional, 8 = high-end agency work, 9 = award "
               "shortlist, 10 = best in the world. Most first renders deserve 5-7. "
               "Do not inflate. Kindness is useless here; specificity is everything.")
+JURY_NA = ("If a dimension has truly nothing to judge in this shot (identity or anatomy "
+           "when no person or creature is visible), give null instead of a number and say "
+           "why. Never give a high score just because there is nothing to fault. The cast "
+           "list is reference only: not every character appears in every shot, and a "
+           "character's absence is not a flaw.")
 JURY_TOKENS = 520
+
+
+def _num(x):
+    return "n/a" if x is None else f"{x:g}"
+
+
+def _mean(vals):
+    vals = [v for v in vals if v is not None]
+    return sum(vals) / len(vals) if vals else None
 
 
 def jury_shots(film, man, edl_path=None, max_shots=None):
@@ -410,10 +424,10 @@ def _jury_json(ans):
     except Exception:
         d = {}
         for key, _ in JURY_DIMS:
-            mm = re.search(r'"%s"\s*:\s*[\[{]\s*(?:"score"\s*:\s*)?(\d+(?:\.\d+)?)\s*,\s*'
+            mm = re.search(r'"%s"\s*:\s*[\[{]\s*(?:"score"\s*:\s*)?(\d+(?:\.\d+)?|null)\s*,\s*'
                            r'(?:"reason"\s*:\s*|"argument"\s*:\s*)?"([^"]*)"' % key, txt)
             if mm:
-                d[key] = [float(mm.group(1)), mm.group(2)]
+                d[key] = [None if mm.group(1) == "null" else float(mm.group(1)), mm.group(2)]
     out = {}
     for key, _ in JURY_DIMS:
         v = d.get(key)
@@ -421,10 +435,13 @@ def _jury_json(ans):
             v = [v.get("score"), v.get("reason") or v.get("argument") or ""]
         if not isinstance(v, (list, tuple)) or not v:
             return None
-        try:
-            sc = max(1.0, min(10.0, float(v[0])))
-        except Exception:
-            return None
+        if v[0] is None or str(v[0]).strip().lower() in ("null", "n/a", "na"):
+            sc = None   # nothing to judge (no people in the shot): excluded, never a free 10
+        else:
+            try:
+                sc = max(1.0, min(10.0, float(v[0])))
+            except Exception:
+                return None
         out[key] = (sc, str(v[1] if len(v) > 1 else "").strip())
     return out
 
@@ -461,9 +478,9 @@ def jury_film(film, man, tmp, shots, frames=4, log=print):
         q1 = (f"You are a senior film jury member. You did NOT make this film. Judge it "
               f"harshly and precisely. The image is a strip of {len(pics)} frames from ONE "
               f"shot, in time order left to right, {span / len(pics):.2f}s apart. {ctx}\n"
-              f"Score 1-10 on each dimension:\n{dims_txt}\n{JURY_SCALE}\n"
+              f"Score 1-10 on each dimension:\n{dims_txt}\n{JURY_SCALE}\n{JURY_NA}\n"
               f"Reply with ONLY one JSON object, keys {keys}, each value "
-              f"[score, \"one short concrete reason naming what you see\"]. No other text.")
+              f"[score or null, \"one short concrete reason naming what you see\"]. No other text.")
         r1 = None
         for attempt in range(2):
             ans = vl_ask(sheet, q1 if attempt == 0 else
@@ -480,16 +497,17 @@ def jury_film(film, man, tmp, shots, frames=4, log=print):
             continue
         row["r1"] = r1
         final = dict(r1)
-        high = [d for d, (sc, _) in r1.items() if sc >= 8]
+        high = [d for d, (sc, _) in r1.items() if sc is not None and sc >= 8]
         if high:
-            r1_txt = "; ".join(f"{d}={sc:g} ({why})" for d, (sc, why) in r1.items())
+            r1_txt = "; ".join(f"{d}={_num(sc)} ({why})" for d, (sc, why) in r1.items())
             q2 = (f"You are the SECOND, harsher juror. Same strip: {len(pics)} frames of one "
                   f"shot, time order left to right. {ctx}\nRound 1 scored: {r1_txt}\n"
                   f"{JURY_SCALE}\nFor EVERY score of 8 or more ({', '.join(high)}) you must "
                   f"argue against it: name the concrete visible flaw that keeps it below "
                   f"high-end agency level, then give the final score. Scores under 8 may be "
-                  f"kept or lowered, never raised. Reply with ONLY one JSON object, keys "
-                  f"{keys}, each value [final_score, \"your argument\"]. No other text.")
+                  f"kept or lowered, never raised; keep null where round 1 gave null. "
+                  f"{JURY_NA} Reply with ONLY one JSON object, keys "
+                  f"{keys}, each value [final_score or null, \"your argument\"]. No other text.")
             r2 = None
             for attempt in range(2):
                 ans = vl_ask(sheet, q2 if attempt == 0 else
@@ -501,20 +519,28 @@ def jury_film(film, man, tmp, shots, frames=4, log=print):
                     break
             if r2:
                 # the jury may only argue a score down
-                final = {d: (min(r1[d][0], r2[d][0]),
-                             r2[d][1] if r2[d][0] < r1[d][0] or d in high else r1[d][1])
-                         for d in r1}
+                final = {}
+                for d in r1:
+                    a, b = r1[d][0], r2[d][0]
+                    if a is None:
+                        final[d] = r1[d]          # round 1 said nothing to judge
+                    elif b is None:
+                        final[d] = (a, r1[d][1])  # round 2 cannot erase a score
+                    else:
+                        final[d] = (min(a, b), r2[d][1] if b < a or d in high else r1[d][1])
             else:
                 # round 2 never ruled: the inflated scores are not trusted
                 final = {d: ((7.0, f"capped: round 2 unparsed, round 1 said {sc:g}")
-                             if sc >= 8 else (sc, why)) for d, (sc, why) in r1.items()}
+                             if sc is not None and sc >= 8 else (sc, why))
+                         for d, (sc, why) in r1.items()}
                 row["error"] = "round 2 unparsed, 8+ scores capped at 7"
         row["final"] = final
         row["round2"] = bool(high)
         results.append(row)
-        mean = sum(v[0] for v in final.values()) / len(final)
-        log(f"[JURY] {sh['name']}: " + " ".join(f"{d}={final[d][0]:g}" for d, _ in JURY_DIMS)
-            + f"  mean {mean:.2f}" + ("  (round 2 argued down)" if high else ""))
+        mean = _mean(v[0] for v in final.values())
+        log(f"[JURY] {sh['name']}: " + " ".join(f"{d}={_num(final[d][0])}" for d, _ in JURY_DIMS)
+            + f"  mean {_num(round(mean, 2)) if mean is not None else 'n/a'}"
+            + ("  (round 2 ran on " + ",".join(high) + ")" if high else ""))
     return results
 
 
@@ -526,16 +552,18 @@ def jury_verdict(results, dim_min=6.0, mean_min=7.0, shot_floor=4.0):
     unjudged = [r for r in results if not r.get("final")]
     reasons = []
     film = {}
+    # n/a scores (nothing to judge) are left out of every mean, never counted as 10.
     for d, _ in JURY_DIMS:
-        vals = [r["final"][d][0] for r in judged]
-        film[d] = (sum(vals) / len(vals), min(vals)) if vals else (0.0, 0.0)
+        vals = [r["final"][d][0] for r in judged if r["final"][d][0] is not None]
+        film[d] = (sum(vals) / len(vals), min(vals)) if vals else (None, None)
         if vals and film[d][0] < dim_min:
             reasons.append(f"{d} {film[d][0]:.2f} < {dim_min:g}")
-    overall = (sum(v[0] for v in film.values()) / len(film)) if judged else 0.0
+    overall = _mean(v[0] for v in film.values()) or 0.0
     if judged and overall < mean_min:
         reasons.append(f"mean {overall:.2f} < {mean_min:g}")
     floor_hits = [(r["name"], d, r["final"][d][0], r["final"][d][1]) for r in judged
-                  for d, _ in JURY_DIMS if r["final"][d][0] < shot_floor]
+                  for d, _ in JURY_DIMS
+                  if r["final"][d][0] is not None and r["final"][d][0] < shot_floor]
     if floor_hits:
         reasons.append(f"{len(floor_hits)} shot score(s) under the floor {shot_floor:g}")
     if unjudged:
@@ -556,7 +584,8 @@ def jury_report_lines(results, v, thresholds):
          f"Film mean: **{v['overall']:.2f}**", "",
          "| dimension | film mean | worst shot |", "|---|---|---|"]
     for d, _ in JURY_DIMS:
-        L.append(f"| {d} | {v['film'][d][0]:.2f} | {v['film'][d][1]:g} |")
+        m, w = v["film"][d]
+        L.append(f"| {d} | {'n/a' if m is None else f'{m:.2f}'} | {_num(w)} |")
     if v["reasons"]:
         L += ["", "Why it failed:"] + [f"- {r}" for r in v["reasons"]]
     if v["floor_hits"]:
@@ -571,15 +600,17 @@ def jury_report_lines(results, v, thresholds):
             continue
         cells = []
         for d, _ in JURY_DIMS:
-            f, o = r["final"][d][0], r["r1"][d][0]
-            cells.append(f"{f:g}" + (f" (r1 {o:g})" if f != o else ""))
-        mean = sum(x[0] for x in r["final"].values()) / len(r["final"])
-        L.append(f"| {r['name']} | {r['start']:.2f} | " + " | ".join(cells) + f" | {mean:.2f} |")
+            f = r["final"][d][0]
+            o = r["r1"][d][0] if r.get("r1") else f
+            cells.append(_num(f) + (f" (r1 {_num(o)})" if f != o else ""))
+        mean = _mean(x[0] for x in r["final"].values())
+        L.append(f"| {r['name']} | {r['start']:.2f} | " + " | ".join(cells) +
+                 f" | {'n/a' if mean is None else f'{mean:.2f}'} |")
     L += ["", "### Jury reasons (final)"]
     for r in results:
         if r.get("final"):
             L.append(f"- **{r['name']}**: " + " / ".join(
-                f"{d} {r['final'][d][0]:g}: {r['final'][d][1]}" for d, _ in JURY_DIMS))
+                f"{d} {_num(r['final'][d][0])}: {r['final'][d][1]}" for d, _ in JURY_DIMS))
     return L
 
 
@@ -630,7 +661,9 @@ def run_extras(args, film, man):
         failed |= not v["pass"]
         args._jury_summary = (f"JURY: {'PASS' if v['pass'] else 'FAIL'} (mean "
                               f"{v['overall']:.2f}; " + ", ".join(
-                                  f"{d} {v['film'][d][0]:.1f}" for d, _ in JURY_DIMS) + ")")
+                                  f"{d} " + ("n/a" if v["film"][d][0] is None else
+                                             f"{v['film'][d][0]:.1f}")
+                                  for d, _ in JURY_DIMS) + ")")
         if args.jury_json:
             Path(args.jury_json).write_text(json.dumps(
                 {"film": str(film), "verdict": "PASS" if v["pass"] else "FAIL",
