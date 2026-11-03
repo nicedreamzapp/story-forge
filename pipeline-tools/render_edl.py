@@ -35,7 +35,6 @@ still run before anyone calls the film checked.
 """
 import argparse
 import json
-import math
 import os
 import shutil
 import subprocess
@@ -49,6 +48,9 @@ KEN_BURNS = SF / "bin" / "ken_burns.py"
 FONT = "/System/Library/Fonts/Avenir Next.ttc"  # index 2 = Demi Bold, 0 = Bold
 TEAL = (45, 212, 191)
 AMBER = (251, 191, 36)
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import motion_tokens as mt  # noqa: E402  (2026-11-02: one motion vocabulary, _shared/composition-and-motion.md)
+from layouts import fit_font, layout_for, wrap  # noqa: E402
 
 
 def run(cmd, **kw):
@@ -92,27 +94,34 @@ def tip_at(tip, t):
 
 def callout_frames(co, W, H, fps, outdir):
     """One RGBA PNG per frame: label pill, arrow line drawn in from the label to the tip,
-    dot at the tip. Supersampled 2x for clean edges."""
-    from PIL import Image, ImageDraw, ImageFont
+    dot at the tip. Supersampled 2x for clean edges. Motion (2026-11-02): the pill is a PANEL
+    token (spring settle), the arrow draws on with the camera ease, the dot lands with MICRO.
+    Type size and the safe box come from layouts.py (bigger on a vertical)."""
+    from PIL import Image, ImageDraw
     S = 2
+    lay = layout_for(W, H)
     t0, t1 = float(co["rec_in"]), float(co["rec_out"])
     n = max(1, round((t1 - t0) * fps))
-    font = ImageFont.truetype(FONT, 44 * S, index=2)
     label = co.get("label", co.get("id", ""))
+    probe_d = ImageDraw.Draw(Image.new("RGBA", (8, 8)))
+    font = fit_font(probe_d, label, lay.callout_px * S, lay.safe_w * S - 56 * S, index=2)
     tx, ty = co.get("text_at", [0.7, 0.3])
+    sx0, sy0, sx1, sy1 = (v * S for v in lay.safe_px)
     for k in range(n):
         t = t0 + k / fps
         age = t - t0
-        fade = smooth((t1 - t) / 0.25) if t1 - t < 0.25 else 1.0
+        fade = mt.smoothstep((t1 - t) / mt.TOKENS["panel"]["fade_out"])   # the exit fade for the arrow + dot
         im = Image.new("RGBA", (W * S, H * S), (0, 0, 0, 0))
         d = ImageDraw.Draw(im)
         # label pill
         bx, by = tx * W * S, ty * H * S
         l, tp, r, b = d.textbbox((0, 0), label, font=font)
         pw, ph = (r - l) + 56 * S, (b - tp) + 36 * S
-        pop = ease_out_back(age / 0.35)
-        a_lab = int(255 * smooth(age / 0.2) * fade)
+        pop = mt.panel(age)
+        a_lab = int(255 * mt.panel_alpha(age, t1 - t0))
         sc = 0.85 + 0.15 * pop
+        bx = min(max(bx, sx0 + pw / 2), sx1 - pw / 2)   # the pill stays inside the safe box
+        by = min(max(by, sy0 + ph / 2), sy1 - ph / 2)
         x0, y0 = bx - pw * sc / 2, by - ph * sc / 2
         d.rounded_rectangle([x0, y0, x0 + pw * sc, y0 + ph * sc], radius=ph * sc / 2,
                             fill=(12, 18, 28, int(a_lab * 0.82)), outline=TEAL + (a_lab,), width=3 * S)
@@ -123,12 +132,12 @@ def callout_frames(co, W, H, fps, outdir):
         ex, ey = px * W * S, py * H * S
         sx = min(max(ex, x0 + 20 * S), x0 + pw * sc - 20 * S)
         sy = y0 + ph * sc if ey > by else y0
-        grow = smooth((age - 0.12) / 0.4)
+        grow = mt.camera_ease((age - 0.12) / 0.4)
         if grow > 0:
             cx, cy = sx + (ex - sx) * grow, sy + (ey - sy) * grow
             d.line([(sx, sy), (cx, cy)], fill=(255, 255, 255, int(255 * fade)), width=5 * S)
             if grow >= 1:
-                rr = (9 + 5 * (1 - smooth((age - 0.52) / 0.2))) * S
+                rr = (9 + 5 * (1 - mt.micro_snap(age - 0.52))) * S
                 d.ellipse([ex - rr - 4 * S, ey - rr - 4 * S, ex + rr + 4 * S, ey + rr + 4 * S],
                           fill=(255, 255, 255, int(110 * fade)))
                 d.ellipse([ex - rr, ey - rr, ex + rr, ey + rr], fill=TEAL + (int(255 * fade),))
@@ -137,33 +146,38 @@ def callout_frames(co, W, H, fps, outdir):
 
 
 def title_frames(tt, W, H, fps, outdir):
-    """Kinetic title card: spring scale-in (1.25 -> 1.0) with opacity, fade out at the end."""
-    from PIL import Image, ImageDraw, ImageFilter, ImageFont
+    """Kinetic title card on the HEADLINE motion token (2026-11-02): fast in (readable by 0.15 s),
+    scale 1.22 -> 1.0, dead-still hold, 0.30 s fade out, a white slam flash. Size and height come
+    from layouts.py: on a vertical the type is fitted to the safe width and sits in the upper third."""
+    from PIL import Image, ImageDraw, ImageFilter
+    lay = layout_for(W, H)
     t0, t1 = float(tt["rec_in"]), float(tt["rec_out"])
     n = max(1, round((t1 - t0) * fps))
     text = tt["text"]
+    spaced = " ".join(text) if len(text) <= 8 else text
+    probe_d = ImageDraw.Draw(Image.new("RGBA", (8, 8)))
+    base = fit_font(probe_d, spaced, lay.title_px, lay.safe_w / 1.22, index=8).size
     for k in range(n):
         age = k / fps
-        left = (t1 - t0) - age
-        alpha = smooth(age / 0.18) * (smooth(left / 0.3) if left < 0.3 else 1.0)
-        sc = 1.0 + 0.25 * (1 - ease_out_back(age / 0.45, 1.2))
-        size = max(8, int(190 * sc))
+        hl = mt.headline(age, t1 - t0)
+        alpha, sc = hl["alpha"], hl["scale"]
+        size = max(8, int(base * sc))
+        from PIL import ImageFont
         font = ImageFont.truetype(FONT, size, index=8)
-        spaced = " ".join(text) if len(text) <= 8 else text
         im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         d = ImageDraw.Draw(im)
         l, tp, r, b = d.textbbox((0, 0), spaced, font=font)
-        x, y = (W - (r - l)) / 2 - l, (H - (b - tp)) / 2 - tp
+        x, y = (W - (r - l)) / 2 - l, lay.title_y * H - (b - tp) / 2 - tp
         sh = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         ImageDraw.Draw(sh).text((x, y + 6), spaced, font=font, fill=(0, 0, 0, int(170 * alpha)))
         im = Image.alpha_composite(sh.filter(ImageFilter.GaussianBlur(10)), im)
         d = ImageDraw.Draw(im)
         d.text((x, y), spaced, font=font, fill=(255, 255, 255, int(255 * alpha)))
-        if age < 0.2:   # the slam: a white flash that decays in ~6 frames (Sitka recipe)
-            fl = Image.new("RGBA", (W, H), (255, 255, 255, int(200 * (1 - age / 0.2) ** 2)))
+        if hl["flash"] > 0:   # the slam: a white flash that decays in ~6 frames (Sitka recipe)
+            fl = Image.new("RGBA", (W, H), (255, 255, 255, int(200 * hl["flash"])))
             im = Image.alpha_composite(im, fl)
             d = ImageDraw.Draw(im)
-        bar_w = (r - l) * smooth((age - 0.15) / 0.4)
+        bar_w = (r - l) * hl["bar"]
         d.rectangle([W / 2 - bar_w / 2, y + (b - tp) + tp + 28, W / 2 + bar_w / 2, y + (b - tp) + tp + 36],
                     fill=AMBER + (int(255 * alpha),))
         im.save(outdir / f"{k:05d}.png")
@@ -181,29 +195,37 @@ def endcard_frames(ec, W, H, fps, outdir, brand_font_index=8):
     vig = Image.new("L", (W, H), 0)
     ImageDraw.Draw(vig).ellipse([-W * 0.2, -H * 0.5, W * 1.2, H * 1.5], fill=60)
     bg = Image.composite(Image.new("RGB", (W, H), (22, 30, 40)), bg, vig.filter(ImageFilter.GaussianBlur(220)))
-    f_tag = ImageFont.truetype(FONT, 58, index=2)
-    f_url = ImageFont.truetype(FONT, 38, index=2)
+    lay = layout_for(W, H)
+    ecl = lay.endcard
+    probe_d = ImageDraw.Draw(Image.new("RGBA", (8, 8)))
+    f_tag = fit_font(probe_d, tag, ecl["tag_px"], lay.safe_w * (1.0 if not lay.vertical else 9), index=2)
+    f_url = fit_font(probe_d, url, ecl["url_px"], lay.safe_w, index=2)
+    tag_lines = wrap(probe_d, tag, f_tag, lay.safe_w) if (tag and lay.vertical) else ([tag] if tag else [])
+    spaced = " ".join(title) if len(title) <= 8 else title
+    brand_base = fit_font(probe_d, spaced, ecl["brand_px"], lay.safe_w / 1.35, index=brand_font_index).size
     for k in range(n):
         age = k / fps
         im = bg.copy().convert("RGBA")
         d = ImageDraw.Draw(im)
-        sc = 1.0 + 0.35 * (1 - ease_out_back(age / 0.32, 1.1))
-        font = ImageFont.truetype(FONT, max(8, int(230 * sc)), index=brand_font_index)
-        spaced = " ".join(title) if len(title) <= 8 else title
+        # the brand slams like a headline but from further out (1.35x), then holds for the card
+        sc = 1.0 + 0.35 * (1 - mt.ease_out_expo(age / 0.32))
+        font = ImageFont.truetype(FONT, max(8, int(brand_base * sc)), index=brand_font_index)
         l, tp, r, b = d.textbbox((0, 0), spaced, font=font)
-        x, y = (W - (r - l)) / 2 - l, H * 0.40 - (b - tp) / 2 - tp
+        x, y = (W - (r - l)) / 2 - l, H * ecl["brand_y"] - (b - tp) / 2 - tp
         d.text((x, y), spaced, font=font, fill=(255, 255, 255, 255))
-        bar = (r - l) * smooth((age - 0.1) / 0.45)
+        bar = (r - l) * mt.camera_ease((age - 0.1) / 0.45)
         d.rectangle([W / 2 - bar / 2, y + b + 26, W / 2 + bar / 2, y + b + 34], fill=AMBER + (255,))
-        for txt, f_, yy, t0 in ((tag, f_tag, H * 0.64, 0.45), (url, f_url, H * 0.76, 0.85)):
-            if not txt:
-                continue
-            a_ = smooth((age - t0) / 0.4)
+        rows = [(ln, f_tag, H * ecl["tag_y"] + j * f_tag.size * 1.25, 0.45, True) for j, ln in enumerate(tag_lines)]
+        if url:
+            rows.append((url, f_url, H * ecl["url_y"] + max(0, len(tag_lines) - 1) * f_tag.size * 1.25, 0.85, False))
+        for txt, f_, yy, t0, is_tag in rows:
+            a_ = mt.panel_alpha(age - t0) if age > t0 else 0.0
             if a_ <= 0:
                 continue
+            rise = 1 - min(1.0, mt.panel(age - t0))
             l2, t2, r2, b2 = d.textbbox((0, 0), txt, font=f_)
-            d.text(((W - (r2 - l2)) / 2 - l2, yy + 18 * (1 - a_) - t2), txt, font=f_,
-                   fill=(255, 255, 255, int(235 * a_)) if f_ is f_tag else TEAL + (int(235 * a_),))
+            d.text(((W - (r2 - l2)) / 2 - l2, yy + 18 * rise - t2), txt, font=f_,
+                   fill=(255, 255, 255, int(235 * a_)) if is_tag else TEAL + (int(235 * a_),))
         if age < 0.25:
             im = Image.alpha_composite(im, Image.new("RGBA", (W, H), (255, 255, 255, int(235 * (1 - age / 0.25) ** 2))))
         im.save(outdir / f"{k:05d}.png")
@@ -213,13 +235,28 @@ def endcard_frames(ec, W, H, fps, outdir, brand_font_index=8):
 def bug_png(text, W, H, out):
     """The corner logo bug ("SITKA", top right, 70% white), on screen until the end card."""
     from PIL import Image, ImageDraw, ImageFont
+    lay = layout_for(W, H)
     im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
-    f_ = ImageFont.truetype(FONT, int(H * 0.034), index=8)
+    f_ = ImageFont.truetype(FONT, lay.bug_px, index=8)
     spaced = " ".join(text) if len(text) <= 8 else text
     l, t, r, b = d.textbbox((0, 0), spaced, font=f_)
-    d.text((W - (r - l) - W * 0.035 - l, H * 0.045 - t), spaced, font=f_, fill=(255, 255, 255, 178))
+    bx, by, side = lay.bug_at
+    x = (bx * W - (r - l) - l) if side == "right" else (bx * W - l)
+    d.text((x, by * H - t), spaced, font=f_, fill=(255, 255, 255, 178))
     im.save(out)
+
+
+def reframe_still(src, rf, out):
+    """Crop a still to the reframe window at its first key (stills hold one subject position)."""
+    from PIL import Image
+    im = Image.open(src).convert("RGB")
+    w, h = im.size
+    cw = float(rf["cw"]) * w
+    cx = float(rf["keys"][0][1]) * w if rf.get("keys") else w / 2
+    x0 = int(round(min(max(cx - cw / 2, 0), w - cw)))
+    im.crop((x0, 0, x0 + int(round(cw)), h)).save(out)
+    return out
 
 
 def png_seq_to_mov(src_dir, fps, out):
@@ -240,19 +277,34 @@ def render_ffmpeg(film, edl, callouts, out, a):
         hf, tf = round(s.get("head", 0) * fps), round(s.get("tail", 0) * fps)
         nfr = (f_out - f_in) + hf + tf
         seg = work / f"seg{i:03d}.mp4"
-        src = film / s["file"]
+        src = film / s["file"] if s.get("file") else None
+        rf = s.get("reframe")
+        if s.get("kind") == "black" or not s.get("file"):
+            run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi", "-i", f"color=c=black:s={W}x{H}:r={fps}",
+                 "-frames:v", str(nfr), "-pix_fmt", "yuv420p", "-c:v", "libx264", "-preset", "fast", "-crf", "12", str(seg)])
+            segs.append(seg)
+            seg_frames.append(nfr)
+            continue
         if s.get("kind") == "image":
+            if rf:   # vertical: crop the still to its subject window first, ken_burns then moves inside it
+                src = reframe_still(src, rf, work / f"still{i:03d}.png")
             run([sys.executable, str(KEN_BURNS), str(src), str(seg), "--dur", f"{nfr / fps:.4f}",
                  "--mode", s.get("move", "pushslow"), "--fps", str(fps), "--size", f"{W}x{H}"])
         else:
             start = max(0.0, s["src_in"] - s.get("head", 0))
-            if a.fit == "pad":
+            if rf:   # 2026-11-02 vertical composition: the subject-aware crop path (vertical_compose.py)
+                from reframe import reframe_vf
+                vf = reframe_vf(rf, W, H, seg_start=start, fps=fps)
+            elif a.fit == "pad" or s.get("fit") == "pad":
                 vf = f"scale={W}:{H}:force_original_aspect_ratio=decrease,pad={W}:{H}:(ow-iw)/2:(oh-ih)/2"
             else:
                 vf = f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H}"
+            if rf:
+                pass   # reframe_vf already conformed fps/sar/format and pads the tail
+            else:
+                vf += f",fps={fps},setsar=1,format=yuv420p,tpad=stop_mode=clone:stop_duration=0.1"
             # tpad only guards a 1-2 frame rounding shortfall at the very end of a clip;
             # edit_to_words already refused any shot that runs past its source.
-            vf += f",fps={fps},setsar=1,format=yuv420p,tpad=stop_mode=clone:stop_duration=0.1"
             run(["ffmpeg", "-y", "-v", "error", "-ss", f"{start:.4f}", "-i", str(src), "-frames:v", str(nfr),
                  "-vf", vf, "-an", "-c:v", "libx264", "-preset", "fast", "-crf", "12", str(seg)])
         segs.append(seg)
@@ -445,13 +497,20 @@ def main():
     ap.add_argument("--lower-third", action="store_true", help="word-synced lower third (remotion)")
     ap.add_argument("--concurrency", default=None, help="remotion --concurrency")
     ap.add_argument("--keep-work", action="store_true")
+    ap.add_argument("--edl", default="edl.json", help="the EDL to play, relative to the film (vertical_compose writes "
+                    "final/vertical/edl.json for the 9:16 composition)")
     a = ap.parse_args()
     film = Path(a.film).resolve()
     try:
-        edl = json.loads((film / "edl.json").read_text())
+        edl = json.loads((film / a.edl).read_text())
+        if edl.get("layout") == "vertical" and a.renderer == "remotion":
+            print("[render_edl] the vertical EDL carries crop paths the Remotion comp does not read yet; "
+                  "rendering it with ffmpeg", file=sys.stderr)
+            a.renderer = "ffmpeg"
         cpath = film / edl.get("callouts", "callouts.json")
         callouts = json.loads(cpath.read_text()).get("callouts", []) if cpath.exists() else []
-        words = json.loads((film / edl.get("words", "vo/words.json")).read_text())
+        wp = film / edl.get("words", "vo/words.json")
+        words = json.loads(wp.read_text()) if wp.exists() else {"words": [], "lines": []}   # film EDLs have none
     except Exception as e:
         print(f"[render_edl] could not read inputs: {e}", file=sys.stderr)
         sys.exit(2)
