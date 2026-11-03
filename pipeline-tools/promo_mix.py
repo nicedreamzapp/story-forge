@@ -188,7 +188,24 @@ def main() -> int:
     sf.write(str(final / "_fx.wav"), fx, SR)
 
     bed_len = duration(bed)
-    bed_hit = float(mu["hit"]) if mu.get("hit") is not None else find_hit(bed, slam)
+    bed_hit = float(mu["hit"]) if mu.get("hit") is not None else None
+    if bed_hit is None:
+        # 2026-11-02: the hit is a real DOWNBEAT from audio_analyze.py's beat grid (bed.analysis.json,
+        # computed and cached on first use); the old loudest-onset finder is the fallback
+        try:
+            sys.path.insert(0, str(Path(__file__).resolve().parent))
+            from audio_analyze import load_analysis, pick_hit
+            bed_hit = pick_hit(load_analysis(bed), slam)
+            if bed_hit is not None:
+                print(f"[mix] bed hit = downbeat at {bed_hit:.2f}s (audio_analyze grid)")
+        except Exception as e:  # noqa: BLE001
+            print(f"[mix] beat grid unavailable ({e}); loudest-onset hit finder")
+        if bed_hit is None:
+            bed_hit = find_hit(bed, slam)
+    bg = edl.get("beat_grid") or {}
+    if bg.get("hit") is not None and abs(float(bg["hit"]) - bed_hit) > 1e-3:
+        print(f"[mix] WARNING: edit_to_words snapped cuts to a grid with hit {bg['hit']:.2f}s, the mix uses "
+              f"{bed_hit:.2f}s; re-run edit_to_words so J-cuts sit on the beats you hear")
     off = bed_hit - slam          # seconds of bed skipped so its downbeat lands on the slam
     if off + total > bed_len + 0.5 and bed_len > total + 0.5:
         # 10/26 moonstone: the downbeat finder picked a hit near the bed's end, leaving ~4 s of music

@@ -83,6 +83,9 @@ def main():
     ap.add_argument("--tail", type=float, default=0.6, help="picture after the last word ends")
     ap.add_argument("--title-dur", type=float, default=1.6)
     ap.add_argument("--lines", default=None, help="only cut these lines, e.g. 1-3 (for tests)")
+    ap.add_argument("--beat-snap", action="store_true",
+                    help="put each J-cut line boundary on the music bed's nearest beat inside its J-cut "
+                         "window (also on when promo.json music.beat_snap is true)")
     a = ap.parse_args()
     film = Path(a.film).resolve()
 
@@ -155,6 +158,46 @@ def main():
                        "tagline": ec.get("tagline", ""), "url": ec.get("url", ""),
                        "after_word": (words[-1]["word"] if words else None), "last_word_end": round(last_end, 4)}
     bounds.append(endcard["rec_in"] if endcard else total)
+
+    # ---- BEAT SNAP (2026-11-02): a line boundary is the one cut nothing pins to a word: with a
+    # J-cut it may sit anywhere from just after the previous line's last word to the new line's
+    # voice. Inside that window, put it on the music's nearest beat (downbeat if one is within
+    # 1.5 frames of the best beat). Word cues are never moved. The grid is the bed's beat grid
+    # (audio_analyze.py) offset exactly as promo_mix offsets the bed (its hit on the slam).
+    beat_grid = None
+    cfg_mu = (json.loads(pj.read_text()).get("music") or {}) if pj.exists() else {}
+    if a.beat_snap or cfg_mu.get("beat_snap"):
+        snap_win = a.jcut if a.jcut > 0 else 0.5   # beat snap needs a J-cut window to move in
+        if a.jcut <= 0:
+            notes.append("beat snap: no --jcut given, boundaries may lead their line's voice by up to 0.5 s")
+        bed = film / (cfg_mu.get("bed") or "music/bed.wav")
+        slam = endcard["rec_in"] if endcard else total - 1.5
+        try:
+            sys.path.insert(0, str(Path(__file__).resolve().parent))
+            from audio_analyze import timeline_grid, nearest
+            beat_grid = timeline_grid(bed, slam, cfg_mu.get("hit")) if bed.exists() else None
+        except Exception as e:  # noqa: BLE001
+            notes.append(f"beat snap off: no beat grid for {bed.name} ({e})")
+        if beat_grid is None:
+            notes.append(f"beat snap off: no music bed/grid at {bed.relative_to(film) if bed.exists() else bed}")
+        else:
+            snapped = 0
+            for k in range(1, len(lines)):
+                prev_end = last_word_end(lines[k - 1]["line"]) or lines[k - 1]["end"]
+                lo_w = max(prev_end + 2 * frame, lines[k]["start"] - snap_win)
+                hi_w = lines[k]["start"]
+                b = nearest(beat_grid["beats"], bounds[k], lo=lo_w, hi=hi_w)
+                if b is None:
+                    continue
+                d = nearest(beat_grid["downbeats"], b, max_d=1.5 * frame, lo=lo_w, hi=hi_w)
+                nb = q(d if d is not None else b)
+                if abs(nb - bounds[k]) >= frame / 2:
+                    notes.append(f"line {lines[k]['line']}: boundary {bounds[k]:.2f}->{nb:.2f} onto the "
+                                 f"{'downbeat' if d is not None else 'beat'} (beat snap)")
+                    bounds[k] = nb
+                snapped += 1
+            beat_grid = {"bed": str(bed.relative_to(film)), "hit": beat_grid["hit"],
+                         "offset": beat_grid["offset"], "bpm": beat_grid["bpm"], "boundaries_on_beat": snapped}
 
     sel_by_line = {s["line"]: sorted(s.get("takes", []), key=lambda t: t.get("rank", 99)) for s in sel}
     shots, titles = [], []
@@ -341,7 +384,7 @@ def main():
     edl = {"fps": fps, "w": int(man.get("w", 1920)), "h": int(man.get("h", 1080)), "dur": total,
            "shots": shots, "audio": audio, "titles": titles, "overlays": overlays, "events": events,
            "callouts": "callouts.json", "words": "vo/words.json", "tail": a.tail, "endcard": endcard,
-           "jcut": a.jcut, "notes": notes}
+           "jcut": a.jcut, "notes": notes, **({"beat_grid": beat_grid} if beat_grid else {})}
 
     # ---- summary
     out_lines = [f"EDL  {film.name}  {total:.2f}s  {len(shots)} shots  fps {fps}  jcut {a.jcut}", ""]

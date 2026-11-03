@@ -91,6 +91,10 @@ Every line ranks >= 2 takes. The coverage gate reads the ratio `(acquired + clip
  "words": [{"i": 0, "line": 1, "word": "What", "start": 0.12, "end": 0.31}]}
 ```
 Line starts are the narration layout on the final timeline (lines in order, `gap` silence between).
+Since 2026-11-02 word times come from the fused CTC forced aligner (`"align": "ctc"`); each word also
+carries `conf` (0-1; under 0.6 = look before cueing on it), `w_start` (whisper's start) and `ctc_start`.
+Optional `vo/anchors.json` pins hard words: `{"anchors": [{"line": 8, "word": "stairs", "start": 61.2,
+"end": 61.8}], "pron": {"Sitka": "sit ka"}}` (timeline seconds; start = earliest, end = latest).
 
 ## cues.json (06_edit, written by the agent; `promo_draft.py` drafts one)
 ```json

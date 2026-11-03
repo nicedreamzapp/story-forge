@@ -128,6 +128,15 @@ def main():
     n = len(rows)
     print(f"[cue_check] {n} cues: {n - misses} hit, {misses} missed (tol {a.tol * 1000:.0f} ms); "
           f"{len(struct)} structural problem(s)")
+    bg = edl.get("beat_grid")
+    if bg:  # informational, never gates: line boundaries edit_to_words put on the bed's beats
+        print(f"[cue_check] beat grid {bg.get('bpm')} BPM (bed {bg.get('bed')}, hit {bg.get('hit')}s): "
+              f"{bg.get('boundaries_on_beat')} line boundaries on the beat")
+    low = [w for w in W["words"] if w.get("conf") is not None and w["conf"] < 0.6]
+    cued = {resolve_cue(c, W["words"])["i"] for c in cues if resolve_cue(c, W["words"])}
+    for w in low:  # informational: a cue on a word the aligner was unsure of deserves a look
+        if w["i"] in cued:
+            print(f"[cue_check] NOTE: cue word '{w['word']}' (line {w['line']}) has alignment conf {w['conf']}")
     sys.exit(1 if (misses or struct) else 0)
 
 

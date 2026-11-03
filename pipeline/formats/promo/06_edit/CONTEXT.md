@@ -12,6 +12,12 @@ One job: an EDL whose cuts, titles and overlays land on the narration's words, e
 
 ## Commands (inside `bin/make-promo`)
 1. `~/chatterbox-env/bin/python pipeline-tools/words_align.py projects/<film> --gap <promo.gap> --lead <promo.lead>`
+   Word times are a fused CTC forced alignment (MMS_FA + wav2vec2, `ctc_align.py`; 2026-11-02 test on
+   Kokoro speech with known word times: 95% of starts within 50 ms vs ~50% for whisper). Read the WARN
+   lines: a word under conf 0.6 gets checked or pinned in `vo/anchors.json` before a cut goes on it.
+   Music: `audio_analyze.py music/bed.wav` writes the beat grid (tempo, beats, downbeats, sections,
+   onsets); `promo.json music.beat_snap: true` (or `edit_to_words.py --beat-snap`) puts line
+   boundaries on the bed's beats inside the J-cut window, and promo_mix lands the slam on a real downbeat.
 2. `cues.json`: the agent picks the words (`cut`, `xfade`, `title`, `callout`, `overlay`). `promo_draft.py --cues`
    drafts one if missing (a title on the brand word, cuts ~2.4 s apart on long words, plus
    `promo.json "extra_cues"`), marked `"draft": true`.
