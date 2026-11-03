@@ -35,6 +35,12 @@ Usage:
                   against every 8+; scores can only hold or drop. PASS = every
                   dimension's film mean >= 6, overall mean >= 7, no shot under 4
                   (all configurable: --jury-dim-min/--jury-mean-min/--jury-shot-floor).
+                  After scoring, the jury writes the THREE largest defects (one per
+                  shot: t, shot, dimension, score, evidence = strip cell + frame time,
+                  fix = a local change to that shot) as JSON into the report and to
+                  <report>.defects.json, so a later step can re-render only those
+                  shots; and saves <report>_poster.jpg, the best non-black frame of
+                  the last 3 s.
   Spec and jury results get their own report sections and SPEC:/JURY: lines;
   the classic "Checks run | passed | failed" counts are untouched by them. Exit
   code is 1 if ANY requested gate fails.
@@ -363,7 +369,7 @@ JURY_NA = ("If a dimension has truly nothing to judge in this shot (identity or 
            "why. Never give a high score just because there is nothing to fault. The cast "
            "list is reference only: not every character appears in every shot, and a "
            "character's absence is not a flaw.")
-JURY_TOKENS = 520
+JURY_TOKENS = 900
 
 
 def _num(x):
@@ -415,6 +421,8 @@ def _jury_json(ans):
     {"identity": [6, "..."]} or {"identity": {"score": 6, "reason": "..."}}.
     Returns None unless every dimension parsed."""
     import re
+    # The judge sometimes writes N/A unquoted; make that valid JSON before parsing.
+    ans = re.sub(r'(?<=[\[:,])\s*(?:N/?A|n/?a)\s*(?=[,\]])', ' null', ans)
     m = re.search(r"\{.*\}", ans, re.S)
     if not m:
         return None
@@ -461,20 +469,23 @@ def jury_film(film, man, tmp, shots, frames=4, log=_log_flush):
     for n, sh in enumerate(shots):
         span = max(0.04, sh["end"] - sh["start"])
         k = max(2, min(frames, int(span * 12)))
-        pics = []
+        pics, times = [], []
         for i in range(k):
             t = sh["start"] + span * (i + 0.5) / k
             f = tmp / f"jury_{n}_{i}.png"
             if extract_frame(film, t, f):
                 pics.append(f)
+                times.append(round(t, 3))
         row = {"name": sh["name"], "start": sh["start"], "end": sh["end"],
-               "r1": None, "final": None, "raw1": "", "raw2": ""}
+               "r1": None, "final": None, "raw1": "", "raw2": "",
+               "frame_times": times, "note": sh.get("note", "")}
         if not pics:
             row["error"] = "no frames extracted"
             results.append(row)
             continue
         sheet = tmp / f"jury_{n}.png"
         tile(pics, sheet, cols=len(pics))
+        row["sheet"] = str(sheet)
         ctx = (f"Shot '{sh['name']}' at {sh['start']:.2f}-{sh['end']:.2f}s of the film "
                f"(shot {n + 1} of {len(shots)}). Cast: {char_desc}."
                + (f" Shot notes: {sh['note']}." if sh.get("note") else "")
@@ -484,7 +495,7 @@ def jury_film(film, man, tmp, shots, frames=4, log=_log_flush):
               f"shot, in time order left to right, {span / len(pics):.2f}s apart. {ctx}\n"
               f"Score 1-10 on each dimension:\n{dims_txt}\n{JURY_SCALE}\n{JURY_NA}\n"
               f"Reply with ONLY one JSON object, keys {keys}, each value "
-              f"[score or null, \"one short concrete reason naming what you see\"]. No other text.")
+              f"[score or null, \"reason, at most 20 words, naming what you see\"]. No other text.")
         r1 = None
         for attempt in range(2):
             ans = vl_ask(sheet, q1 if attempt == 0 else
@@ -511,7 +522,8 @@ def jury_film(film, man, tmp, shots, frames=4, log=_log_flush):
                   f"high-end agency level, then give the final score. Scores under 8 may be "
                   f"kept or lowered, never raised; keep null where round 1 gave null. "
                   f"{JURY_NA} Reply with ONLY one JSON object, keys "
-                  f"{keys}, each value [final_score or null, \"your argument\"]. No other text.")
+                  f"{keys}, each value [final_score or null, \"your argument, at most 25 words\"]. "
+                  f"No other text.")
             r2 = None
             for attempt in range(2):
                 ans = vl_ask(sheet, q2 if attempt == 0 else
@@ -618,6 +630,107 @@ def jury_report_lines(results, v, thresholds):
     return L
 
 
+def jury_top_defects(results, n=3):
+    """The n largest defects for a targeted re-render: the lowest final scores
+    (n/a never counts), one per shot so three defects mean three shots to fix.
+    For each, the judge is asked once more which strip cell shows it and what
+    LOCAL change fixes it (that shot's prompt, spec or edit, never the whole film).
+    Returns [{t, shot, dimension, score, evidence, fix}]."""
+    import re
+    cands = sorted(((r["final"][d][0], r, d) for r in results if r.get("final")
+                    for d, _ in JURY_DIMS if r["final"][d][0] is not None),
+                   key=lambda x: (x[0], x[1]["start"]))
+    picked, seen = [], set()
+    for sc, r, d in cands:
+        if r["name"] in seen:
+            continue
+        seen.add(r["name"])
+        picked.append((sc, r, d))
+        if len(picked) == n:
+            break
+    out = []
+    for sc, r, d in picked:
+        why = r["final"][d][1]
+        times = r.get("frame_times") or [r["start"]]
+        cell, fix = None, ""
+        q = (f"This strip is {len(times)} frames of shot '{r['name']}' (cells numbered 1 to "
+             f"{len(times)}, left to right)." + (f" Shot notes: {r['note']}." if r.get("note") else "")
+             + f" A harsh jury scored its {d} {sc:g}/10 because: {why}\n"
+             f"Which ONE cell shows this defect most clearly, and what is the smallest LOCAL "
+             f"fix (change this shot's generation prompt, seed/spec, or its edit: trim, "
+             f"swap take, reframe) that would remove it? Reply with ONLY JSON: "
+             f'{{"cell": <number>, "evidence": "what is visible in that cell, at most 20 '
+             f'words", "fix": "concrete change, at most 30 words"}}')
+        evidence = why
+        try:
+            ans = vl_ask(r["sheet"], q, max_tokens=300)
+            m = re.search(r"\{.*\}", ans, re.S)
+            j = json.loads(m.group(0)) if m else {}
+            c = int(j.get("cell", 0))
+            if 1 <= c <= len(times):
+                cell = c
+            evidence = str(j.get("evidence") or why).strip()
+            fix = str(j.get("fix") or "").strip()
+        except Exception:
+            pass
+        idx = (cell or (len(times) + 1) // 2) - 1
+        out.append({"t": times[idx], "shot": r["name"], "dimension": d, "score": sc,
+                    "evidence": (f"cell {cell} of {len(times)} in the shot strip "
+                                 f"(frame @{times[idx]:.2f}s): " if cell else
+                                 f"shot strip, middle frame @{times[idx]:.2f}s (judge named "
+                                 f"no cell): ") + evidence,
+                    "fix": fix or f"re-render {r['name']} addressing: {why}"})
+    return out
+
+
+def poster_candidate(film, out_path, tmp, window=3.0, n=6):
+    """Save the best-looking frame from the last `window` seconds as a poster
+    candidate. Near-black frames are dropped; the judge rates the rest on one
+    sheet; if it gives no usable answer, edge detail (sharpness) decides.
+    Returns (path or None, detail)."""
+    import re
+    from PIL import Image, ImageFilter, ImageStat
+    dur = ffprobe_duration(film)
+    t0 = max(0.0, dur - window)
+    cands = []
+    for i in range(n):
+        t = t0 + (dur - t0) * (i + 0.5) / n
+        f = tmp / f"poster_{i}.png"
+        if extract_frame(film, t, f):
+            im = Image.open(f).convert("L")
+            luma = ImageStat.Stat(im).mean[0]
+            sharp = ImageStat.Stat(im.filter(ImageFilter.FIND_EDGES)).var[0]
+            if luma >= 12:
+                cands.append({"t": t, "f": f, "luma": luma, "sharp": sharp})
+    if not cands:
+        return None, f"no poster: every sampled frame in the last {window:g}s is black"
+    pick, how = max(cands, key=lambda c: c["sharp"]), "sharpest (judge not asked)"
+    if len(cands) > 1:
+        sheet = tmp / "poster_sheet.png"
+        tile([c["f"] for c in cands], sheet, cols=len(cands))
+        try:
+            ans = vl_ask(sheet, f"These are {len(cands)} candidate poster frames, cells 1 to "
+                                f"{len(cands)} left to right. Score each 1-10 as a film poster "
+                                f"/ thumbnail (clear subject, striking composition, no blur or "
+                                f"artifacts). Reply with ONLY JSON: {{\"scores\": [one number "
+                                f"per cell]}}", max_tokens=120)
+            m = re.search(r"\{.*\}", ans, re.S)
+            sc = json.loads(m.group(0)).get("scores") if m else None
+            if isinstance(sc, list) and len(sc) == len(cands):
+                best = max(range(len(cands)), key=lambda i: (float(sc[i]), cands[i]["sharp"]))
+                pick, how = cands[best], f"judge scored {float(sc[best]):g}/10 of " + \
+                    ", ".join(f"{float(x):g}" for x in sc)
+            else:
+                how = "sharpest (judge gave no usable scores)"
+        except Exception:
+            how = "sharpest (judge unavailable)"
+    _run(["ffmpeg", "-y", "-v", "error", "-ss", f"{pick['t']:.3f}", "-i", str(film),
+          "-frames:v", "1", "-q:v", "2", str(out_path)])
+    if not Path(out_path).exists():
+        return None, "poster frame could not be written"
+    return str(out_path), f"@{pick['t']:.2f}s, {how}"
+
+
 def songforge_wait(max_wait=1800):
     """Song Forge customer jobs outrank QC (frozen rule 11): wait while
     jobs_running > 0 on :8767 before loading the VL judge. Unreachable = go."""
@@ -663,6 +776,25 @@ def run_extras(args, film, man):
         v = jury_verdict(res, *th)
         lines += jury_report_lines(res, v, th)
         failed |= not v["pass"]
+        # Top 3 defects as machine-readable JSON for a shot-only re-render step,
+        # plus a poster candidate next to the report. Additions only.
+        report_out = Path(getattr(args, "_report_out", None) or
+                          str(film.with_suffix("")) + "_jury.md")
+        top = jury_top_defects(res)
+        defects_doc = {"film": str(film), "defects": top}
+        dpath = report_out.with_name(report_out.stem + ".defects.json")
+        dpath.write_text(json.dumps(defects_doc, indent=1))
+        lines += ["", "## Jury: three largest defects (machine-readable)",
+                  f"Also written to `{dpath}`. Re-render only these shots.", "", "```json",
+                  json.dumps(defects_doc, indent=1), "```"]
+        for dft in top:
+            print(f"[DEFECT] {dft['shot']} @{dft['t']:.2f}s {dft['dimension']}="
+                  f"{dft['score']:g}: {dft['fix']}", flush=True)
+        ppath, pdet = poster_candidate(film, report_out.with_name(report_out.stem + "_poster.jpg"),
+                                       tmp)
+        lines += ["", "## Poster candidate (last 3 s)",
+                  f"- {ppath or 'none'}: {pdet}"]
+        print(f"[POSTER] {ppath or 'none'}: {pdet}", flush=True)
         args._jury_summary = (f"JURY: {'PASS' if v['pass'] else 'FAIL'} (mean "
                               f"{v['overall']:.2f}; " + ", ".join(
                                   f"{d} " + ("n/a" if v["film"][d][0] is None else
@@ -672,11 +804,13 @@ def run_extras(args, film, man):
             Path(args.jury_json).write_text(json.dumps(
                 {"film": str(film), "verdict": "PASS" if v["pass"] else "FAIL",
                  "overall": v["overall"], "reasons": v["reasons"],
+                 "defects": top, "poster": ppath,
                  "dims": {d: {"mean": v["film"][d][0], "worst": v["film"][d][1]}
                           for d, _ in JURY_DIMS},
                  "shots": [{"name": r["name"], "start": r["start"], "end": r["end"],
                             "round1": r["r1"], "final": r["final"],
-                            "error": r.get("error")} for r in res]}, indent=1))
+                            "error": r.get("error"), "raw1": r.get("raw1", ""),
+                            "raw2": r.get("raw2", "")} for r in res]}, indent=1))
     return lines, failed
 
 
@@ -808,6 +942,8 @@ def _main():
                 _state["use_server"] = requests.get(f"{PE_URL}/status", timeout=3).json().get("loaded", False)
             except Exception:
                 _state["use_server"] = False
+        args._report_out = args.report or str(film.with_suffix("")) + (
+            "_jury.md" if args.jury_only else "_spec.md")
         try:
             extra, failed = run_extras(args, film, man)
         except Exception as e:
@@ -1052,6 +1188,7 @@ def _main():
     # ---- optional spec check + jury (own sections, own verdicts) ----------
     extra, extra_failed = [], False
     if args.spec or args.jury:
+        args._report_out = args.report or str(film.with_suffix("")) + "_qc.md"
         try:
             extra, extra_failed = run_extras(args, film, man)
         except Exception as e:
