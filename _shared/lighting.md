@@ -1,7 +1,7 @@
 ## LIGHTING — a given on every still and shot (Matt, 2026-11-02)
 
-Source: the one-page "Lighting Guide to Master in AI Filmmaking" (credit: shailesh, beginnersblog.org), saved at
-`_shared/refs/lighting-guide-ai-filmmaking.jpg`. Read the image when a lighting call is not covered below.
+Source: the one-page "Lighting Guide to Master in AI Filmmaking" (credit: shailesh, beginnersblog.org), saved locally at
+`_shared/refs/lighting-guide-ai-filmmaking.jpg` (M5 only, kept out of the public repo). Read the image when a lighting call is not covered below.
 
 Every still prompt and every i2v prompt names its light on purpose, the same way rule 5 makes every move motivated.
 A shot whose lighting is not stated is a flag, never a default.
