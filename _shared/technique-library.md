@@ -99,4 +99,6 @@ as the most shared AI demo on X that week and as the Castle in the Sky robot. Ma
   and do not make any of them.
 - Pick a specific angle only this film has: a real place, a strange job, a surprising relationship,
   Matt's own world (Humboldt, the shop, the coast). Say in one line why it isn't the default.
+- Matt chooses the story, plot and look. When his ask is short, ask him for the angle instead of
+  picking one; never fill the gap with my own creative choice.
 - Show Matt the concept line and the "what we're avoiding" line before any render.
