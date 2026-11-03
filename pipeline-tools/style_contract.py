@@ -61,6 +61,42 @@ SYNTHESISE = (
 )
 
 
+def load_reference(proj: Path, arg) -> dict | None:
+    """The measured target from reference_analyze.py (2026-11-02). arg: a path, "" for the project default
+    (reference/reference_analysis.json), None when the flag was not given (the default file is still used
+    when it exists: a measured reference outranks adjectives)."""
+    p = Path(arg) if arg else proj / "reference" / "reference_analysis.json"
+    if not p.is_file():
+        if arg:
+            print(f"[style] no reference analysis at {p} (run pipeline-tools/reference_analyze.py first)")
+        return None
+    return json.loads(p.read_text())
+
+
+def reference_section(ref: dict) -> str:
+    """The measured target as a contract section: the look (prompt-pasteable) + the edit numbers."""
+    out = [f"## Measured target (reference: {ref.get('name')}, measured {ref.get('analysed')})", "",
+           ref["measured_target"], ""]
+    pal = " ".join(p["hex"] for p in ref.get("palette", [])[:6])
+    if pal:
+        out.append(f"- palette hexes, by share: {pal}")
+    c = ref.get("cuts", {})
+    if c:
+        rh = c.get("rhythm", {})
+        out.append(f"- edit target: shots average {rh.get('avg')} s (median {rh.get('median')}), {c.get('per_minute')} "
+                   f"cuts/min, rhythm {rh.get('feel')}, {rh.get('arc')}")
+    m = ref.get("motion")
+    if m:
+        out.append(f"- motion target: optical flow mean {m['mean']} frame-widths/s (p90 {m['p90']}), "
+                   f"{m['calm_share']:.0%} of shots near still")
+    tx = ref.get("text") or {}
+    if tx.get("share_with_text") is not None:
+        out.append(f"- text: on {tx['share_with_text']:.0%} of frames, line height ~{tx.get('median_text_height')} of the frame")
+    out += ["", "Numbers only. Read the DO NOT COPY list in reference/reference_analysis.md before using any of it; "
+            "never name the reference in a prompt.", ""]
+    return "\n".join(out)
+
+
 def approved_stills(proj: Path, limit: int) -> list:
     """Locked stills whose clip made the cut. A still that never became a kept
     clip is not proof of anything (rule 13: approved work is the only work)."""
@@ -129,6 +165,9 @@ def main() -> int:
     ap.add_argument("--images", nargs="*", default=None,
                     help="explicit frames to read instead of the approved stills")
     ap.add_argument("--limit", type=int, default=8)
+    ap.add_argument("--reference", nargs="?", const="", default=None,
+                    help="reference_analysis.json to use as the measured target (default: the project's "
+                         "reference/reference_analysis.json, picked up automatically when it exists)")
     ap.add_argument("--reread", action="store_true",
                     help="look at the frames again instead of reusing banked readings")
     ap.add_argument("--mem-timeout", type=float, default=3600,
@@ -139,6 +178,18 @@ def main() -> int:
     frames = [Path(p).resolve() for p in args.images] if args.images \
         else approved_stills(proj, args.limit)
     frames = [f for f in frames if f.is_file()]
+    ref = load_reference(proj, args.reference)
+    if not frames and ref:
+        # a new film with no proven frames yet: the measured reference IS the contract until frames earn it
+        out = proj / "canon" / "STYLE_CONTRACT.md"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text("# Style contract\n\nNo approved frames yet, so this contract is the MEASURED reference "
+                       "target alone. Re-run once locked stills have made the cut; the proven frames then lead and "
+                       "the reference stays as the target they are checked against.\n\n## The contract\n\n"
+                       f"{ref['measured_target']}\n\n" + reference_section(ref))
+        print(f"[style] no approved frames; contract written from the measured reference → {out}")
+        print(ref["measured_target"])
+        return 0
     if not frames:
         print("no approved locked stills found — nothing proven to read a style from")
         return 2
@@ -228,7 +279,8 @@ def main() -> int:
         "this project. It was measured from the frames listed below — frames that "
         "already passed the gates and made the cut — not written from imagination.\n\n"
         f"## The contract\n\n{paragraph}\n\n"
-        f"## Read from\n\n" + "\n".join(f"- {f.name}" for f in frames) + "\n\n"
+        + (reference_section(ref) + "\n" if ref else "")
+        + "## Read from\n\n" + "\n".join(f"- {f.name}" for f in frames) + "\n\n"
         "## Raw readings\n\n```\n" + "\n\n".join(readings) + "\n```\n"
     )
     print(f"\n[style] contract written → {out}\n")

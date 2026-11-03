@@ -16,7 +16,10 @@ first the FINAL AUDIO GATE (`final_audio_gate.py`): `final/<film>.mp4` re-master
 (promo.json `gates.deliver_lufs`), true peak <= -1 dBTP, rejected if its audio is shorter than the picture
 (`final/audio_gate.json`; a FAIL stops delivery), then
 `final/thumbnail.png` (1280x720, the frame under the title slam, brand + tagline) and `final/youtube.json`
-(title, description, tags, category, files) from `promo.json "youtube"`.
+(title, description, tags, category, files) from `promo.json "youtube"`, and a `poster.jpg` per deliverable
+(`final/poster.jpg`, `final/vertical/poster.jpg`; `poster_frame.py`: the QC jury's pick or the best frame of the
+last line). The 9:16 (`final/vertical/<film>_vertical.mp4`, make-promo's `vertical` stage) passes the same
+audio gate (`final/vertical/audio_gate.json`).
 
 ## Writes
 `stages/10_deliver/published.md`: URL, date, title, description. Lessons into `LESSONS.json` (frozen rule 15).

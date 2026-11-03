@@ -76,3 +76,4 @@ projects/*/refs/*.png
 projects/*/final/_*
 projects/*/design_report.*
 projects/*/callout_report.*
+bin/subject_probe

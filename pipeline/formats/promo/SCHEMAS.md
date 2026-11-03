@@ -169,6 +169,16 @@ fewer than 3 or any under 10 s, and writes them to youtube.json "chapters" and t
 `music.hit` = seconds into the bed of its big downbeat (null = auto-detect); it lands on the slam.
 `camera.move`: orbit, push, pull, truck, crane, static. Material presets: see `pipeline-tools/blender_render.py`.
 
+## final/vertical/ (the 9:16 composition, vertical_compose.py, added 2026-11-02)
+`edl.json` is the wide EDL with `"layout": "vertical"`, `w`/`h` 1080x1920 and, per shot, `"reframe": {"keys": [[src_t, cx], ...],
+"cw", "src_w", "src_h"}` (window center as a fraction of the source width, eased with the camera token between keys;
+`render_edl.py --edl final/vertical/edl.json` plays it), `"vertical_flag"` on a flagged shot, `"fit": "pad"` on a
+letterboxed stand-in. `callouts.json` has tips re-mapped through the crop path and `text_at` in the vertical bands.
+`plan.json` (verdict per shot: static | pan | native | center | flagged, reasons, pan speed), `report.md`,
+`rerender_requests.json`, `reframe_plan.jpg`, `contact_sheet.jpg`, `<film>_vertical.mp4`, `poster.jpg`.
+promo.json `"vertical": false` skips the stage; `"vertical_rerender"` is written by `--write-spec`:
+`[{"cid", "line", "why", "kind": "blender"|"footage", "job"?: <the blender job, id + "_v", res [1080,1920]>, "ask"}]`.
+
 ## vo/voice.json (02_voice, written by `pipeline-tools/promo_voice.py`)
 ```json
 {"voice": {...}, "lines": [{"line": 1, "text": "...", "spoken": "...", "wav": "vo/final/part000.wav",

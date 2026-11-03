@@ -17,6 +17,7 @@ This directory is the home of **Story Forge**, a robust local-first generative V
 | Story, sound and QC gates before Matt sees a film | `_shared/gates-and-qc.md` |
 | Services, ports, the mini, folder layout, narrator voice | `_shared/machines-and-layout.md` |
 | Planning any new film, promo or explainer: outside tricks to reuse (timing, code motion, flat character rigs, cutouts, QC, finishing) | `_shared/technique-library.md` |
+| A 9:16 vertical, matching a reference look, code-rendered motion, posters | `_shared/composition-and-motion.md` |
 
 ## Never skip, whatever the task
 - Nothing is "checked/verified/done" until the gates in `_shared/gates-and-qc.md` ran and their reports were read.

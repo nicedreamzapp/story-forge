@@ -102,10 +102,16 @@ FORMAT_PACKS: dict[str, dict[str, Any]] = {
     "film": {
         "label": "16:9 film", "width": 1280, "height": 720,
         "fps": 30, "aspect": "16:9", "scene_dur": 5.0,
+        "companions": ["reel"],
     },
+    # 2026-11-02: a vertical is its own composition, never the wide film padded on a blur.
+    # A companion of a 16:9 pack is rendered by pipeline-tools/vertical_compose.py from the
+    # same timeline: subject-aware crop paths, vertical text layout (pipeline-tools/layouts.py),
+    # at most max_elements text/overlay elements at once, everything inside `safe`.
     "reel": {
         "label": "9:16 vertical reel", "width": 720, "height": 1280,
         "fps": 30, "aspect": "9:16", "scene_dur": 5.0,
+        "vertical": True, "safe": [0.06, 0.12, 0.88, 0.78], "max_elements": 2,
     },
     "square": {
         "label": "1:1 square", "width": 1080, "height": 1080,
@@ -123,6 +129,13 @@ FORMAT_PACKS: dict[str, dict[str, Any]] = {
     "promo": {
         "label": "16:9 product promo", "width": 1920, "height": 1080,
         "fps": 30, "aspect": "16:9", "scene_dur": 4.0,
+        "companions": ["promo-vertical"],
+    },
+    # the promo's 9:16 companion (make-promo's "vertical" stage, final/vertical/)
+    "promo-vertical": {
+        "label": "9:16 product promo (vertical composition)", "width": 1080, "height": 1920,
+        "fps": 30, "aspect": "9:16", "scene_dur": 4.0,
+        "vertical": True, "safe": [0.06, 0.12, 0.88, 0.78], "max_elements": 2,
     },
 }
 
@@ -168,6 +181,13 @@ def get_format(name: Any) -> dict[str, Any] | None:
             f"unknown format '{name}'. Known formats: {', '.join(sorted(FORMAT_PACKS))}"
         )
     return {"name": key, **FORMAT_PACKS[key]}
+
+
+def companions(name: Any) -> list[dict[str, Any]]:
+    """The extra compositions a format delivers next to itself (a 16:9 film -> its 9:16 vertical).
+    Each one is its OWN composition from the same timeline, never a crop or pad of the first."""
+    fmt = get_format(name)
+    return [get_format(c) for c in (fmt or {}).get("companions", [])]
 
 
 def list_styles() -> list[dict[str, str]]:

@@ -182,8 +182,19 @@ which the lean renderer does not use.
 | `square` | 1080x1080 | 30 | 1:1 | 5.0 |
 | `narrated-doc` | 1280x720 | 30 | 16:9 | 8.0 |
 | `cinematic` | 1280x536 | 24 | 2.39:1 | 6.0 |
+| `promo` | 1920x1080 | 30 | 16:9 | 4.0 |
+| `promo-vertical` | 1080x1920 | 30 | 9:16 | 4.0 |
 
 A format is only applied when the script asks for one.
+
+**Companions and vertical packs** (added 2026-11-02). `film` lists `reel` and `promo` lists
+`promo-vertical` under `companions`: the extra deliverables made from the same timeline
+(`packs.companions(name)`). A vertical pack carries `vertical: true`, `safe` (the box text stays
+inside, as fractions of the frame: left 6 %, top 12 %, right 12 % for the action rail, bottom 22 %
+for caption and CTA) and `max_elements` (2: titles, callouts and overlays on screen at once).
+`pipeline-tools/vertical_compose.py` builds the companion as its own composition (per-shot
+subject-aware crop paths, vertical type sizes from `pipeline-tools/layouts.py`); it never pads the
+wide film onto a blur. See `_shared/composition-and-motion.md`.
 
 ## Environment variables
 

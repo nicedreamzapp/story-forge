@@ -243,8 +243,13 @@ move = cam_spec.get("move", "orbit")
 nf = int(SPEC.get("frames", 120))
 
 
-def ease(u):
-    return u * u * (3 - 2 * u)
+try:   # 2026-11-02: camera moves use the shared CAMERA motion token (quintic, no jolt at either end)
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from motion_tokens import camera_ease as ease
+except Exception:   # Blender's python without the repo on its path: the same curve, inline
+    def ease(u):
+        u = min(max(u, 0.0), 1.0)
+        return u * u * u * (u * (u * 6 - 15) + 10)
 
 
 def cam_at(u):
