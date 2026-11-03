@@ -16,3 +16,7 @@ Voices (ChatterBox, ~/chatterbox-env, via bin/character_voice.py):
 - I cannot hear audio — voice identity must be confirmed by Matt once (or via a working speaker meter); the VoiceEncoder similarity meter is degenerate, don't trust it.
 
 Assembly: build DIALOGUE-ONLY scenes, concat, then lay ONE continuous song over the whole episode (music strings across all scenes; only mouth+voice need per-scene perfection). Intro = LTX-animated scenic title card + PIL text overlays (title + credits) faded in.
+
+Pacing and faces (2026-11-02): one read at a time, hold after fast action, and every on-camera emotion
+change follows the transition recipe (anticipation, squint, take, overshoot, settle; never a snap). Both
+live in `_shared/script-writing.md`, "Model the viewer"; `spec_lint.py` advises on shots that break them.

@@ -51,3 +51,31 @@ staged differently or checked by eye and marked UNCHECKED; it is not cut from th
 **Dialogue caveat specific to this pipeline:** lines still get density-matched to the
 mouth motion we prompt for (rule 9 / rule 3 below). A beautifully written speech that a
 shot's mouth motion cannot carry gets rewritten shorter — the mouth wins, always.
+
+**Model the viewer: pacing per shot (2026-11-02, from ClaudeAnimationBase's ANIMATION_GUIDE §4 and
+lemo-opuscar's DIRECTOR §7, both MIT).** The viewer sees each shot once, at full speed, for the first
+time. We know what happens because we wrote it; they don't. So for every shot:
+- **List the reads.** In the shot list, write in order what the viewer has to understand in that shot
+  (`reads: 1. the door is locked  2. Doug notices  3. Hank's grin`). Each read needs time for the eye to
+  find it, to understand it, and to register before the next starts. Small, distant, fast or subtle reads
+  take longer. A shot with many reads cannot be short; the reads set the length, the last shot included.
+- **One read at a time.** Never start a read while the last one is still landing. Two things at once = the
+  viewer sees one. Cause, then reaction, in sequence, never on top of each other. One subject plus its
+  ambience ("the hand stays still while light spreads") is one read; two events joined by "while", "as",
+  "meanwhile" or "at the same time" are two, so split them across beats or shots.
+- **Fast actions, slow meanings.** A move can be quick when it is anticipated; what it MEANS needs a held
+  beat after it. Hold after every fast action before the next read. Lead the eye to a read first (a look, a
+  camera move, light) and give it time to get there.
+- **Text is a read too.** Every title, callout, card and subtitle stays fully visible for chars/15 s
+  (CJK 4.5 per second) + 1.5 s; `pipeline-tools/text_readtime_check.py` enforces it.
+
+**Emotion transitions: faces act, they never snap.** When a face changes emotion inside a shot, prompt the
+change as a sequence, never a swap (the recipe ClaudeAnimationBase's `emotions()` builds in code):
+1. **Anticipation**: a small opposite move first (a dip of the head, a breath in) so the eye is ready.
+2. **Squint / blink**: the eyes close a little for a split second at the change.
+3. **The take**: the new emotion arrives with a body reaction (head pulls back, shoulders lift).
+4. **Overshoot**: the new expression goes a touch past its mark (brows a little too high, grin too wide).
+5. **Settle** into the held new emotion, and hold it long enough to read.
+Prompt wording: "eyes narrow for a beat, then widen in surprise, brows overshooting high, then settle into a
+wide grin", never "smiling, then suddenly furious". `spec_lint.py` prints an advisory (⚠, never a block) on
+any shot field that stacks simultaneous reads or changes emotion with no transition beat.

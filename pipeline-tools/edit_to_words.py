@@ -43,6 +43,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from text_readtime_check import readable_window  # noqa: E402
+
 DEFAULT_XFADE = 0.4
 
 
@@ -308,8 +311,12 @@ def main():
     # ---- titles and callouts land on their words
     for c, w in resolved:
         if c["kind"] == "title":
-            titles.append({"text": c.get("text") or w["word"], "rec_in": q(w["start"]),
-                           "rec_out": q(min(total, w["start"] + float(c.get("dur", a.title_dur)))),
+            # 11/02: the 1.6 s default left a 5-letter title 1.15 s readable (needs 1.83 s, chars/15 + 1.5,
+            # text_readtime_check). With no "dur" on the cue, the title is held long enough to read.
+            ttext = c.get("text") or w["word"]
+            tdur = float(c["dur"]) if c.get("dur") else max(a.title_dur, readable_window("title", ttext))
+            titles.append({"text": ttext, "rec_in": q(w["start"]),
+                           "rec_out": q(min(total, w["start"] + tdur)),
                            "line": c["line"], "word": w["word"], "i": w["i"]})
     if callouts:
         byid = {co["id"]: co for co in callouts.get("callouts", [])}
@@ -321,9 +328,10 @@ def main():
             if co is None:
                 errors.append(f"callout cue on '{c['word']}' names '{c.get('callout')}', not in callouts.json")
                 continue
-            dur = float(co.get("rec_out", 0) - co.get("rec_in", 0)) if "rec_out" in co else 2.5
+            dflt = max(2.5, readable_window("callout", co.get("label") or co.get("id", "")))
+            dur = float(co.get("rec_out", 0) - co.get("rec_in", 0)) if "rec_out" in co else dflt
             if dur <= 0:
-                dur = 2.5
+                dur = dflt
             new_in = q(w["start"])
             if abs(co.get("rec_in", -99) - new_in) > 1e-3:
                 shift = new_in - co.get("rec_in", new_in)

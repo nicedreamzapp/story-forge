@@ -111,9 +111,62 @@ CAUSAL = re.compile(r"\b(with each|in sync with|synchron\w+|as (he|she|it|they) 
                     r"in time with|caused by|sending \w+ (flying|up|out))\b", re.I)
 
 
+# ── PACING: model the viewer (2026-11-02, _shared/script-writing.md "Model the viewer") ──
+# The viewer sees each shot once, at full speed. Two reads stacked in one moment = they catch one;
+# a face that jumps from one emotion to the next with no beat between reads as a glitch, not acting.
+# Both are ADVICE (⚠, never the exit code) and deliberately narrow: one "while" is a subject plus
+# its ambience ("the hand stays still while teal light spreads") and is NOT flagged; it takes an
+# explicit stacking word or two simultaneity joins in one field.
+SIMUL_HARD = re.compile(r"\b(simultaneous\w*|at the same time|meanwhile|all at once)\b", re.I)
+SIMUL_SOFT = re.compile(r"\b(while|as (?:he|she|it|they|the \w+) (?!if\b)\w+s\b)", re.I)
+EMOTIONS = {
+    "happy": r"happ(y|ily|iness)|joy\w*|delight\w*|smil\w*|grin\w*|beam(s|ing)?|laugh\w*|chuckl\w*",
+    "sad": r"sad(ly|ness)?|sorrow\w*|tearful|cr(y|ies|ying)|sob\w*|downcast|glum",
+    "angry": r"angr(y|ily)|anger|furious|fury|rage|scowl\w*|glar\w*|snarl\w*",
+    "afraid": r"afraid|scared|fear\w*|terrif\w*|frighten\w*|panic\w*|cower\w*",
+    "surprised": r"surpris\w*|shock\w*|startl\w*|astonish\w*|stunned|gasp\w*",
+    "worried": r"worr\w*|anxious\w*|nervous\w*|uneasy|fret\w*",
+    "calm": r"calm\w*|serene|relax\w*|relie(f|ved)",
+    "confused": r"confus\w*|puzzl\w*|bewilder\w*|baffl\w*",
+    "determined": r"determin\w*|resolute|steel(y|s)",
+    "bored": r"bored|boredom|yawn\w*",
+}
+EMO_RE = {k: re.compile(rf"\b({v})\b", re.I) for k, v in EMOTIONS.items()}
+SNAP = re.compile(r"\b(suddenly|instantly|immediately|snaps?( in)?to|switch\w* to|flips? to|then|becomes?|"
+                  r"turns? (to|into)|changes? to|into)\b", re.I)
+TRANSITION_BEAT = re.compile(r"\b(squint\w*|anticipat\w*|beat|pause\w*|hold\w*|double[- ]take|takes? a|"
+                             r"blink\w*|eyes widen\w*|brows? (lift|rise|knit|draw)\w*|overshoot\w*|settl\w*|"
+                             r"slowly|gradually|melts?|softens?|dawns?|registers?|beat later)\b", re.I)
+PACING_FIELDS = ("beat", "animate", "clip_beat", "prompt", "action", "description")
+
+
+def pacing_notes(shot: dict) -> list:
+    """Advice only: stacked simultaneous reads, and emotion changes with no transition beat."""
+    notes, sid = [], shot.get("id", "?")
+    for field in PACING_FIELDS:
+        text = shot.get(field)
+        if not isinstance(text, str) or not text:
+            continue
+        hard, soft = SIMUL_HARD.findall(text), SIMUL_SOFT.findall(text)
+        if hard or len(soft) >= 2:
+            joins = [h if isinstance(h, str) else h[0] for h in hard] + \
+                    [x if isinstance(x, str) else x[0] for x in soft]
+            notes.append(
+                f"{sid}: [{field}] stacks reads in one moment ({', '.join(repr(j) for j in joins[:3])}): the viewer "
+                "catches one read at a time. Put them in sequence (cause, then reaction), each with time to land, "
+                "and hold after the fast action (_shared/script-writing.md, Model the viewer)")
+        emos = [k for k, rx in EMO_RE.items() if rx.search(text)]
+        if len(emos) >= 2 and SNAP.search(text) and not TRANSITION_BEAT.search(text):
+            notes.append(
+                f"{sid}: [{field}] changes emotion ({' -> '.join(emos[:3])}) with no transition beat: a face that "
+                "swaps expressions between two frames reads as a glitch. Prompt the recipe: anticipation, a "
+                "squint or blink, the take, a small overshoot, then settle (_shared/script-writing.md)")
+    return notes
+
+
 def advise_shot(shot: dict) -> list:
     """Non-blocking advice. Same shape as lint_shot, printed with ⚠."""
-    notes = []
+    notes = pacing_notes(shot)
     sid = shot.get("id", "?")
 
     for field in ("beat", "animate", "clip_beat"):

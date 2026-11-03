@@ -25,7 +25,9 @@ Do NOT load: `_ARCHIVE_UNUSED_not_in_film/`, review folders, declined takes.
    where a cue asks for one (frozen rule 32). Never a blanket crossfade.
 4. Run `bin/build-episode projects/<film>`. Its preflight cross-checks the EDL against
    `beats.json` and hard-stops on a mismatch; never bypass it.
-5. Static gain mix, never loudnorm dynamic.
+5. Static gain mix, never loudnorm dynamic. build-episode ends its assemble stage with the FINAL AUDIO
+   GATE (`pipeline-tools/final_audio_gate.py`: static two-pass gain to -14 LUFS, true peak <= -1 dBTP,
+   audio never shorter than the picture); run it by hand (`--in-place`) on any cut made another way.
 6. Surround (added 2026-10-31): render the mix with `bin/surround-mix sfx/mix_plan.json
    --out final/mix_51.wav --stereo final/mix_stereo.wav --no-loudnorm` (keep step 5: static
    gain, no dynamic loudnorm), then `--video final/<Film>.mp4 --mux final/<Film>_51.mp4`

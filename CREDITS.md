@@ -14,6 +14,8 @@ None of this starts from scratch. Here's whose work this is built on, and under 
 | 🎬 [FFmpeg](https://ffmpeg.org/) | Every cut, mux and grade | The FFmpeg project | LGPL/GPL depending on build |
 | 🧩 [Remotion](https://www.remotion.dev/) | Promo edit, kinetic type, springs, tracked callout arrows (`promo-remotion/`) | Jonny Burger and the Remotion team | Remotion License: free for individuals and companies of up to 3 people, which covers this solo-operator use; larger companies need a company license |
 | 📐 [Manim Community Edition](https://www.manim.community/) | Animated diagrams rendered as alpha clips (`pipeline-tools/manim/`) | The Manim Community developers (after 3Blue1Brown's Manim) | MIT |
+| 📖 [lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar) | The reading-time rule (chars/15, CJK 4.5/s, + 1.5 s) behind `pipeline-tools/text_readtime_check.py`, and the two-pass -14 LUFS / truncation checks behind `pipeline-tools/final_audio_gate.py` | lemomo-ai | MIT (ideas only, no code used) |
+| 🎭 [ClaudeAnimationBase](https://github.com/JohnHeibel/ClaudeAnimationBase) | "Model the viewer" pacing and the emotion-transition recipe (anticipation, squint, take, overshoot) in `_shared/script-writing.md` | John Heibel | MIT (ideas only, no code used) |
 | 👂 [mlx-whisper](https://github.com/ml-explore/mlx-examples/tree/main/whisper) | Word timestamps for cutting on words (`pipeline-tools/words_align.py`) | Apple's MLX team, on OpenAI's Whisper | MIT |
 
 ## A note on the FLUX weights

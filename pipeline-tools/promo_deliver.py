@@ -2,6 +2,10 @@
 """promo_deliver.py — promo stage 10 prep: the thumbnail and youtube.json next to the final mp4.
 
 Nothing is uploaded here (publishing waits for Matt's OK, then stages/10_deliver/published.md).
+  * FINAL AUDIO GATE first (final_audio_gate.py, 2026-11-02): final/<film>.mp4 is re-mastered in place to
+    promo.json gates.deliver_lufs (default -14 LUFS integrated) with a static two-pass gain, true peak
+    <= gates.true_peak_max (-1 dBTP), and REJECTED when its decoded audio is shorter than the picture.
+    Report: final/audio_gate.json. A FAIL stops here (exit 1): no thumbnail, no youtube.json.
   * final/thumbnail.png, 1280x720: the CLEAN source frame of the shot under the title slam + 0.8 s
     (else the middle of line 1), graded down on the left, the brand in big type and promo.json youtube.thumb_text
     (default: the end card tagline) under it.
@@ -9,7 +13,7 @@ Nothing is uploaded here (publishing waits for Matt's OK, then stages/10_deliver
     (the Sitka youtube.json shape). Title/description/tags come from promo.json "youtube"; the
     description gets the script's lines appended when promo.json leaves it empty.
 Usage:  ~/chatterbox-env/bin/python pipeline-tools/promo_deliver.py projects/<film>
-Exit 0 = both written; 2 = no final mp4.
+Exit 0 = audio gate passed, both written; 1 = the final audio gate FAILED (message says why); 2 = no final mp4.
 """
 from __future__ import annotations
 
@@ -18,6 +22,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from final_audio_gate import gate as audio_gate  # noqa: E402
 from promo_common import load_promo, parse_script, run  # noqa: E402
 
 FONT = "/System/Library/Fonts/Avenir Next.ttc"
@@ -30,6 +35,13 @@ def main() -> int:
     if not mp4.exists():
         print(f"[deliver] no {mp4.relative_to(film)}", file=sys.stderr)
         return 2
+    g = cfg["gates"]
+    ag = audio_gate(mp4, mp4, lufs=float(g.get("deliver_lufs", -14.0)), tp_max=float(g.get("true_peak_max", -1.0)))
+    (film / "final" / "audio_gate.json").write_text(json.dumps(ag, indent=1))
+    print(f"[deliver] FINAL AUDIO GATE {ag['verdict']}: {ag['why']}")
+    if ag["verdict"] == "FAIL":
+        print("[deliver] stopped: the final master is not deliverable (final/audio_gate.json)", file=sys.stderr)
+        return 1
     edl = json.loads((film / "edl.json").read_text())
     words = json.loads((film / "vo" / "words.json").read_text())
     t = (edl["titles"][0]["rec_in"] + 0.8) if edl.get("titles") else \

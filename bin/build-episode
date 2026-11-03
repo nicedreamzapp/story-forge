@@ -9,7 +9,9 @@ can't finish:
   1  SONG        pause and commission an original score from Song Forge
   2  CARDS       title + credit cards (Flux still, or a clean typeset fallback)
   3  SEGMENTS    normalise every scene/insert to one spec; place off-screen VO
-  4  ASSEMBLE    concat in story order, score underneath, ducked under dialogue
+  4  ASSEMBLE    concat in story order, score underneath, ducked under dialogue, then the
+                 FINAL AUDIO GATE (-14 LUFS static two-pass, TP <= -1 dBTP, audio never shorter
+                 than the picture; pipeline-tools/final_audio_gate.py) — a FAIL stops the build
   5  QC          film_qc over the finished cut; report verbatim, never paper over
 
 Design rules it follows (all learned the hard way, see CLAUDE.md):
@@ -48,6 +50,9 @@ MEM_GATE = SF / "bin" / "mem-gate"
 FILM_QC = SF / "pipeline-tools" / "film_qc.py"
 BEAT_GATE = SF / "pipeline-tools" / "beat_gate.py"
 MLX_PY = Path.home() / ".local/mlx-server/bin/python"
+sys.path.insert(0, str(SF / "pipeline-tools"))
+from final_audio_gate import gate as final_audio_gate  # noqa: E402
+from text_readtime_check import need_seconds  # noqa: E402
 SONGFORGE = os.environ.get("SONGFORGE_URL", "http://127.0.0.1:8767")
 
 W, H, FPS, AR = 832, 480, 24, 44100
@@ -492,13 +497,23 @@ def _card(path, title, subtitle, seconds):
     png.unlink(missing_ok=True)
 
 
+# (file, title, subtitle, seconds). Static PIL cards: the whole card is readable for its full length,
+# and it must be up chars/15 + 1.5 s (text_readtime_check.py, 2026-11-02) or the build stops here.
+CARDS = [("card_title.mp4", "Hank & Doug's Wild Rescue", "The Circus Train", 4.0),
+         ("card_credits.mp4", "The Wild Rescue rolls.", "Made locally on Story Forge", 5.0)]
+
+
 def stage_cards(proj, st):
     work = proj / "build"
     work.mkdir(exist_ok=True)
-    _card(work / "card_title.mp4", "Hank & Doug's Wild Rescue", "The Circus Train", 4.0)
-    _card(work / "card_credits.mp4", "The Wild Rescue rolls.",
-          "Made locally on Story Forge", 5.0)
-    log("  title + credit cards built")
+    short = [(f, need_seconds(f"{t} {s}"), sec) for f, t, s, sec in CARDS if sec < need_seconds(f"{t} {s}")]
+    for f, need, sec in short:
+        log(f"  READING TIME: {f} is up {sec:.1f}s, its text needs {need:.2f}s (chars/15 + 1.5 s)")
+    if short:
+        return False
+    for f, t, s, sec in CARDS:
+        _card(work / f, t, s, sec)
+    log("  title + credit cards built (reading time checked)")
     return True
 
 
@@ -664,6 +679,16 @@ def stage_assemble(proj, st):
         shutil.copy(silent, out)
         log("  no score available — cut is dialogue-only")
 
+    # FINAL AUDIO GATE (2026-11-02): -14 LUFS integrated by a static two-pass gain (peak limiter only
+    # over the ceiling), true peak <= -1 dBTP, verified by an independent ebur128 decode, and the
+    # decoded audio must cover the picture. Measured, fixed in place, or the build stops loudly.
+    ag = final_audio_gate(out, out)
+    (proj / "build" / "audio_gate.json").write_text(json.dumps(ag, indent=1))
+    st["audio_gate"] = f"{ag['verdict']}: {ag['why']}"
+    log(f"  FINAL AUDIO GATE {st['audio_gate']}")
+    if ag["verdict"] == "FAIL":
+        log("  the final master is not deliverable (build/audio_gate.json)")
+        return False
     st["film"] = str(out)
     st["runtime"] = duration(out)
     log(f"  FILM: {out}  ({st['runtime']:.1f}s)")

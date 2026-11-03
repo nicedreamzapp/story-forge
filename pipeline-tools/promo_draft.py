@@ -25,6 +25,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from promo_common import load_promo, norm_words  # noqa: E402
+from text_readtime_check import readable_window  # noqa: E402
 
 TRUST = ["blender-render", "cad", "real", "ltx25", "wan", "flux-img2img", "manim", "grok-image", "gemini-image",
          "chatgpt-edit", "grok-video", "still-kb", "chatgpt-image"]
@@ -96,7 +97,9 @@ def draft_cues(film: Path, cfg: dict) -> int:
                 if norm_words(w["word"]) == brand[:1]:
                     nth = sum(1 for x in ws[:k + 1] if norm_words(x["word"]) == norm_words(w["word"]))
                     cues.append({"line": ln["line"], "word": w["word"], "nth": nth, "kind": "title",
-                                 "text": cfg["brand"], "dur": 1.6})
+                                 "text": cfg["brand"],
+                                 # held long enough to read (text_readtime_check); 1.6 s left "SITKA" 1.15 s readable
+                                 "dur": max(1.6, readable_window("title", cfg["brand"]))})
                     titled = True
                     break
         end = ws[-1]["end"]
