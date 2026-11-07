@@ -708,7 +708,7 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
         # as ~19GB of unowned resident memory, so 19 + 45 > the 50GB budget and every
         # shot after the first was HELD forever (m_girl, oldest_tree). Drop it first;
         # the next vl_ask reloads it inside this phase's lease.
-        if unload_vl():
+        if not _SF_PARKED["on"] and unload_vl():
             log("  released the in-process VL judge before asking for the still lease")
         if mem_take(f"storyforge-still {shot['id']}", STILL_GB) == "refused":
             log("  no room for the still pass right now — shot HELD, nothing rolled")
@@ -1051,6 +1051,52 @@ def build_shot(shot: dict, proj: Path, defaults: dict, dry: bool,
     return out
 
 
+
+# ── PARK SONG FORGE FOR THE RUN (2026-11-07) ─────────────────────────────────
+# Song Forge's warm engines (ACE :8001, Gemma :9420) hold ~60GB the guard keeps
+# reserved, which left Story Forge ~50GB: the 48GB still pass could not sit next
+# to the ~19GB judge, so the judge was dropped and reloaded on every shot. Park
+# them for the run (same marker + restore as lastsignal-swap/m5_watch_v2c.sh);
+# the guard then owes Song Forge only what it still holds. Restored on exit.
+_SF_PARKED = {"on": False}
+
+
+def park_song_forge() -> None:
+    if os.environ.get("SF_NO_PARK") == "1":
+        return
+    try:
+        import json as _j, urllib.request as _u
+        st = _j.loads(_u.urlopen("http://127.0.0.1:8767/api/status", timeout=6).read())
+        if st.get("jobs_running") or st.get("queue_depth"):
+            log("  Song Forge is busy: not parking it, judge will reload per shot")
+            return
+    except Exception:
+        pass  # Song Forge down already: parking is just the marker
+    Path("/tmp/songforge_paused_by").write_text(f"{os.getpid()} forge-shot\n")
+    for port in ("8001", "9420"):
+        pids = subprocess.run(["lsof", "-ti", f"tcp:{port}", "-sTCP:LISTEN"],
+                              capture_output=True, text=True).stdout.split()
+        for pid in pids:
+            subprocess.run(["kill", pid])
+    _SF_PARKED["on"] = True
+    log("  parked Song Forge for this run (judge stays loaded between shots)")
+    import atexit
+    atexit.register(unpark_song_forge)
+
+
+def unpark_song_forge() -> None:
+    if not _SF_PARKED["on"]:
+        return
+    _SF_PARKED["on"] = False
+    try:
+        Path("/tmp/songforge_paused_by").unlink()
+    except FileNotFoundError:
+        pass
+    subprocess.run(["launchctl", "kickstart", f"gui/{os.getuid()}/com.nicedreamz.songforge-m5-stack"],
+                   capture_output=True)
+    log("  Song Forge restored")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("shots")
@@ -1093,6 +1139,7 @@ def main() -> int:
     except Exception:
         _state["use_server"] = False
     log(f"judge via {'server :8181' if _state['use_server'] else 'in-process VL'}")
+    park_song_forge()
 
     # ASK FOR THE ROOM (2026-07-31, rebuilt 2026-08-01). This used to be ONE 22GB
     # lease around the whole run — see the mem_take comment for why that number
