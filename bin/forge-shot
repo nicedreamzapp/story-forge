@@ -1097,6 +1097,49 @@ def unpark_song_forge() -> None:
     log("  Song Forge restored")
 
 
+
+# ── ETA BEFORE ANY RENDER (2026-11-07, Matt's rule) ──────────────────────────
+# "any new videos that are to be made must have a time eta for each part of the
+# rendering or it can not be produced". Every run prints the per-part estimate
+# from METRICS.jsonl (median of the last 300 runs of each step, real reject rate
+# included) before anything is rolled. --eta prints it and stops.
+def print_eta(shots: list, stage: str) -> None:
+    import datetime as _dt
+    rows: dict = {}
+    try:
+        for line in (SF / "METRICS.jsonl").read_text().splitlines():
+            try:
+                r = json.loads(line)
+            except ValueError:
+                continue
+            rows.setdefault(r.get("step"), []).append(r)
+    except FileNotFoundError:
+        pass
+
+    def med(step, default):
+        v = sorted(float(r.get("seconds") or 0) for r in rows.get(step, [])[-300:])
+        return v[len(v) // 2] if v else default
+
+    still, judge, anim = med("still", 39.0), med("judge_still", 77.0), med("animate", 99.0)
+    j = rows.get("judge_still", [])[-300:]
+    passes = sum(1 for r in j if r.get("verdict") == "PASS")
+    tries = min(len(j) / passes, 10.0) if passes else 3.6
+    per_still = tries * (still + judge)
+    per_anim = anim + judge  # the clip is re-judged once it is built
+    n = len(shots)
+    t_still = n * per_still if stage in ("all", "stills") else 0.0
+    t_anim = n * per_anim if stage in ("all", "animate") else 0.0
+    total = t_still + t_anim
+    end = _dt.datetime.now() + _dt.timedelta(seconds=total)
+    m = lambda x: f"{max(round(x / 60), 1)} min"
+    log(f"ETA ({n} shot(s), stage {stage}):")
+    if t_still:
+        log(f"  stills + judge  ~{m(t_still)}  ({tries:.1f} tries/shot x ({still:.0f}s still + {judge:.0f}s judge))")
+    if t_anim:
+        log(f"  animate + check ~{m(t_anim)}  ({anim:.0f}s animate + {judge:.0f}s clip judge per shot)")
+    log(f"  TOTAL ~{m(total)}, done about {end.strftime('%-I:%M %p')} (edit/finish not included)")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("shots")
@@ -1108,6 +1151,7 @@ def main() -> int:
     ap.add_argument("--only", action="append", default=None,
                     help="shot id to build; repeatable")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--eta", action="store_true", help="print the per-part time estimate and stop")
     # BATCH BY MODEL, NOT BY SHOT (RENDER_SPEED_RESEARCH.md Tier 1 #1, written
     # 2026-07-26 and ignored until it bit). One shot at a time means mflux (~10GB)
     # and Wan (~2x12GB GGUF) alternate on every shot, and each switch drives the box
@@ -1132,6 +1176,10 @@ def main() -> int:
                 f"{', '.join(sorted(missing))}")
         if not shots:
             return 2
+
+    print_eta(shots, args.stage)
+    if args.eta:
+        return 0
 
     try:
         import requests
