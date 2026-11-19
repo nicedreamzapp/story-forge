@@ -35,7 +35,21 @@ Requirements: a Mac with Apple Silicon (I build on an M5 Max with 128GB of memor
 <picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-banner-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-banner-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-banner.svg" width="100%" alt="02. Watch the films. The Oldest Tree, The Bear Sister and The Lucid Engine"></picture>
 <picture><source media="(max-width: 610px), (min-width: 768px) and (max-width: 895px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-r1-m.svg"><source media="(max-width: 1149px)" srcset="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-r1-mid.svg"><img src="https://raw.githubusercontent.com/nicedreamzapp/story-forge/4448170212ea4d89854a3f5c59f04bb3dd4cd44b/assets/readme/s02-r1.svg" width="100%" alt="The Oldest Tree. October 2026 progress film, 2:53, 49 shots. The Bear Sister. Made on the first pipeline, May and June 2026. The Lucid Engine. Made on the first pipeline, May and June 2026."></picture>
 
-### 🤖 Newest: I Painted a Movie in MS Paint (November 2, 2026)
+### 🐻 Newest: Hank & Doug's Wild Rescue (November 2026 progress film)
+
+<a href="https://youtu.be/8_0J0OSYS_k"><img src="./hank-doug-hero.jpg" width="480" alt="Hank and Doug's Wild Rescue: the animal rescue wagon crossing a hill at sunset under the painted title. Click to watch on YouTube"></a>
+
+A bloodhound who used to hunt bears, the bear who changed his mind, and the all-animal rescue wagon they run now. Painted storybook look, **64 s**, 16 shots, narrated, one original song all the way through. Every still, every animated shot, every voice and the mix ran on one **M5 Max with 128GB**; the song came from Song Forge on our Mac mini.
+
+**New this month.** One anthem through the whole film: Song Forge (ACE-Step) wrote twelve takes and take 9 was the only one where Whisper could hear the chorus, so its instrumental runs under the story, three sung "Hank and Doug" hooks sit in the narration gaps, and the full chorus carries the rescues and the title. Sound effects are 17 real CC0 recordings from Freesound ([licences](projects/hank_doug_trailer/sfx/library/LICENSES.md)), each filtered and placed on its action frame, with a click and hiss audit on the delivered mix and every stem (0 hiss windows, 0 clipping).
+
+**Doug keeps his colour.** Krea painted Doug caramel with a black saddle on every seed, and recolouring after animation went olive in motion. Now the coat is fixed on the still (FLUX.2 klein reference edits against his master portrait, plus a coat recolour inside his box) and only then does LTX-2.5 animate it; the continuity judge's Doug colour check passed 9 of 9 on the final cut. The matte painting look comes from one style prefix on every Krea 2 still: gouache and oil brush strokes, sage, slate, ochre and rust, no glossy CG.
+
+Stack: Krea 2 Turbo stills · FLUX.2 klein 9B reference edits · LTX-2.5 image-to-video and audio-to-video · Chatterbox and Kokoro voices · Song Forge (ACE-Step) anthem · Demucs · 17 CC0 Freesound effects · Qwen3-VL-32B + Whisper QC · FFmpeg.
+
+[▶ Watch](https://youtu.be/8_0J0OSYS_k) · [📁 Project folder](./projects/hank_doug_trailer/) · [🔍 Known defects](projects/hank_doug_trailer/stages/07_gates/known_defects.md)
+
+### 🤖 I Painted a Movie in MS Paint (November 2, 2026)
 
 <a href="https://youtu.be/xV0TARs8QnQ"><img src="./robot-explainer-thumb.jpg" width="100%" alt="I Painted a Movie in MS Paint: a mossy robot in a sunlit forest. Click to watch on YouTube"></a>
 

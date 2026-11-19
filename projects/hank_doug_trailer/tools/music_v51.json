@@ -1,0 +1,16 @@
+{
+ "note": "v5.1 score sources for mix_v51.py. Baseline = the v5 sources (theme_2 verse/title, theme_1 sting, breakdown_1 box); swap 'theme' + cut points to a regenerated clean theme once it measures cleaner (music/NAME_cuts.json). | 11/18 1:40 PM: theme_2_v51/theme_1_v51 = the v5 themes with highshelf 5k -3 dB + 3x lowpass 10 kHz (the ACE-Step HF bed cannot be denoised or gated away and two regenerated themes measured the same; this is the honest fix). Same cut points (filters keep time).",
+ "box": "music/breakdown_1_v51.wav",
+ "theme": "music/theme_2_v51.wav",
+ "sting_file": "music/theme_1_v51.wav",
+ "verse_src": 5.9,
+ "title_phrase_src": [
+  55.7,
+  59.9
+ ],
+ "t_its": 55.74,
+ "sting_src": [
+  4.9,
+  6.0
+ ]
+}

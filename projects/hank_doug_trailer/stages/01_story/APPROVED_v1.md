@@ -1,0 +1,1 @@
+2026-11-17 4:09 PM PST — Matt approved the premise, script and theme song lyrics for the 60-second trailer "Hank & Doug's Wild Rescue" (14 shots, written by Fable). His words: "Go + approve script". Look note from Matt: "super pure looking like a painting from mattpaint" (pure hand-painted matte-painting look).
