@@ -1,0 +1,225 @@
+{
+ "rules": [
+  {
+   "id": "no_humans",
+   "question": "Is a human, a hand, an arm, a boot or a gun visible anywhere in this frame?",
+   "expect": "NO",
+   "shots": [
+    "r01_hunt",
+    "r02_lookback",
+    "r03_found",
+    "r04_fox",
+    "r05_watch",
+    "r08_hi",
+    "r09_walkaway",
+    "r10_bench",
+    "r11_rollout",
+    "r12_goat",
+    "r13_turtle",
+    "r14_kitten",
+    "r15_otters",
+    "r16_title"
+   ],
+   "note_v52": "11/18 2:00 PM Matt: 'Yes, show him'. Rows 6-7 show Doug's owner (the hunter) from behind / in silhouette only; every other row stays human-free."
+  },
+  {
+   "id": "no_text_outside_title",
+   "question": "Is there any legible text, lettering or numbers anywhere in this frame?",
+   "expect": "NO",
+   "from": "b00_goat",
+   "to": "b12_walkaway"
+  },
+  {
+   "id": "hank_colour",
+   "question": "Is the bear dark chocolate brown with a lighter tan muzzle, not black, grey, white or reddish?",
+   "expect": "YES",
+   "shots": [
+    "b03_bench",
+    "b04_rollout",
+    "b08_otters",
+    "b14_button",
+    "r10_bench",
+    "r11_rollout",
+    "r15_otters"
+   ]
+  },
+  {
+   "id": "young_hank_is_hank",
+   "question": "Is the bear dark chocolate brown with a tan muzzle, and smaller and rounder than a full-grown bear?",
+   "expect": "YES",
+   "shots": [
+    "b09_forest",
+    "b10_hi",
+    "b12_walkaway",
+    "r03_found",
+    "r08_hi",
+    "r09_walkaway"
+   ]
+  },
+  {
+   "id": "doug_colour",
+   "question": "Is the dog one solid russet red all over, with no black saddle, no white legs and no white chest?",
+   "expect": "YES",
+   "shots": [
+    "b03_bench",
+    "b04_rollout",
+    "b09_forest",
+    "b10_hi",
+    "b12_walkaway",
+    "b14_button",
+    "r10_bench",
+    "r11_rollout",
+    "r03_found",
+    "r08_hi",
+    "r09_walkaway",
+    "r01_hunt",
+    "r02_lookback",
+    "r05_watch",
+    "r06_lead"
+   ]
+  },
+  {
+   "id": "lantern_on_post",
+   "question": "Is a dented brass hand lantern hanging from the iron hook on the wagon's front post?",
+   "expect": "YES",
+   "shots": [
+    "b03_bench",
+    "b04_rollout",
+    "b14_button",
+    "r10_bench",
+    "r11_rollout"
+   ]
+  },
+  {
+   "id": "lantern_light_on_post_b13",
+   "question": "Is there a small amber point of light on the front post of the wagon on the hilltop?",
+   "expect": "YES",
+   "shots": [
+    "b13_title",
+    "r16_title"
+   ]
+  },
+  {
+   "id": "lantern_unlit_3_4",
+   "question": "Is the lantern on the wagon lit, glowing or giving off amber light?",
+   "expect": "NO",
+   "from": "b03_bench",
+   "to": "b04_rollout"
+  },
+  {
+   "id": "lantern_lit_13_14",
+   "question": "Is the lantern on the wagon's front post lit, giving off warm amber light?",
+   "expect": "YES",
+   "from": "b13_title",
+   "to": "b14_button"
+  },
+  {
+   "id": "lantern_alone_in_ditch",
+   "question": "Is the lantern the only object in the frame, with no animal, person or hand visible?",
+   "expect": "YES",
+   "shots": [
+    "b11_ditch"
+   ],
+   "note_v52": "11/18 v5.2: row 7 now shows the owner falling in with the lantern (Matt: 'Yes, show him'); the lantern-only rule applies to the old b11 shot only"
+  },
+  {
+   "id": "no_lantern_holder_flashback",
+   "question": "Is a lantern, a person or a hand holding a light visible in this frame?",
+   "expect": "NO",
+   "shots": [
+    "b09_forest",
+    "b10_hi",
+    "b12_walkaway",
+    "r03_found",
+    "r08_hi",
+    "r09_walkaway"
+   ]
+  },
+  {
+   "id": "flashback_cast_only",
+   "question": "Are there any animals in this frame other than one bloodhound and one bear?",
+   "expect": "NO",
+   "shots": [
+    "b09_forest",
+    "b10_hi",
+    "b12_walkaway",
+    "r03_found",
+    "r08_hi",
+    "r09_walkaway"
+   ]
+  },
+  {
+   "id": "one_wagon",
+   "question": "Is more than one wagon visible in this frame?",
+   "expect": "NO",
+   "shots": [
+    "b03_bench",
+    "b04_rollout",
+    "b13_title",
+    "b14_button",
+    "r10_bench",
+    "r11_rollout",
+    "r16_title"
+   ]
+  },
+  {
+   "id": "camel_one_hump",
+   "question": "Does any camel in this frame have two humps?",
+   "expect": "NO",
+   "shots": [
+    "b04_rollout",
+    "b13_title",
+    "r11_rollout",
+    "r16_title"
+   ]
+  },
+  {
+   "id": "wagon_rolls_right",
+   "question": "Is the team out in front of the wagon on the right side of the frame, with the wagon behind them on the left?",
+   "expect": "YES",
+   "shots": [
+    "b04_rollout",
+    "r11_rollout"
+   ]
+  },
+  {
+   "id": "team_is_four",
+   "question": "Is the line of harnessed animals pulling the wagon exactly four animals: horse, zebra, camel and cow?",
+   "expect": "YES",
+   "shots": [
+    "b04_rollout",
+    "r11_rollout"
+   ]
+  },
+  {
+   "id": "bench_cast_only",
+   "question": "Are there any animals in this frame other than one bear and one bloodhound?",
+   "expect": "NO",
+   "shots": [
+    "b03_bench",
+    "r10_bench"
+   ]
+  },
+  {
+   "id": "owner_faceless",
+   "question": "If a person is visible, is he seen only from behind or as a dark silhouette, with his face never visible?",
+   "expect": "YES",
+   "shots": [
+    "r06_lead",
+    "r07_ditch"
+   ],
+   "note": "v5.2 owner rule"
+  },
+  {
+   "id": "one_person_max",
+   "question": "Is there at most ONE person in the picture (no second human, no extra limbs on him)?",
+   "expect": "YES",
+   "shots": [
+    "r06_lead",
+    "r07_ditch"
+   ]
+  }
+ ],
+ "note_v5": "2026-11-18: v5 row ids (r01_hunt..r16_title) added next to the old b-ids so the rules fire on timeline_v5; continuity_check drops ids not in the film, so both sets are safe.",
+ "note_v52": "11/18 3:15 PM: lantern_goes_dark_ditch removed: continuity_check samples 3 frames across a row (start/mid/end) and cannot ask about the LAST second only; the ditch light-out is checked by eye on the 2 fps strip (glow gone by 2.0 s) and the end-frame answer was NO."
+}

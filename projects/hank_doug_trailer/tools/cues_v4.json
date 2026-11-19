@@ -1,0 +1,203 @@
+[
+ {
+  "row": "r03_found",
+  "sfx": "dog_sniffs",
+  "action": 0.3,
+  "what": "Doug's nose dips to the trail (G_forest_r2 grid: nose on the ground from the first frame, dipping through 0.3-3.5)",
+  "db": -16,
+  "len": 3.4,
+  "seen": "G_forest_r2 6-frame grid, nose down at frames 1-6"
+ },
+ {
+  "row": "r07_ditch",
+  "sfx": "lantern_fall",
+  "action": 0.2,
+  "what": "lantern tumbles end over end (code parabola 0.0-1.2 of the row), the clank-tumble part of the file",
+  "db": -12,
+  "len": 1.0,
+  "seen": "code: parabola frames 0.0-1.2, rotation 420 deg"
+ },
+ {
+  "row": "r07_ditch",
+  "sfx": "lantern_fall",
+  "action": 1.2,
+  "what": "SPLASH on the landing frame (row 1.2 = 27.2, the word 'ditch')",
+  "db": -10,
+  "len": 1.2,
+  "start_in": 1.0,
+  "onset_db": -20,
+  "seen": "code: landing frame at row 1.20, 4-frame painted splash 1.2-1.37"
+ },
+ {
+  "row": "r07_ditch",
+  "sfx": "lantern_fall",
+  "action": 2.4,
+  "what": "hiss as the flame dies (grade ramp 2.4-3.0)",
+  "db": -18,
+  "len": 0.7,
+  "start_in": 2.2,
+  "onset_db": -40,
+  "seen": "code: grade ramp starts row 2.4"
+ },
+ {
+  "row": "r09_walkaway",
+  "sfx": "paws_walking",
+  "action": 0.2,
+  "what": "the pair walking away (I_walkaway_r2 grid: legs moving from frame 1)",
+  "db": -20,
+  "len": 3.2,
+  "fo": 0.8,
+  "seen": "I_walkaway_r2 grid frames 1-6 walking"
+ },
+ {
+  "row": "r11_rollout",
+  "sfx": "hooves_wheels",
+  "action": 0.0,
+  "what": "team walking, wheels turning from the first frame (K6 grid)",
+  "db": -16,
+  "len": 5.0,
+  "fi": 0.3,
+  "fo": 0.6,
+  "seen": "D_rollout_k6 grid frames 1-6"
+ },
+ {
+  "row": "r12_goat",
+  "sfx": "wing_beats",
+  "action": 0.0,
+  "what": "geese wings beating (L_airlift grid: wings mid-beat at clip 0.8)",
+  "db": -16,
+  "len": 1.9,
+  "fi": 0.1,
+  "fo": 0.3,
+  "seen": "L_airlift grid frame 2"
+ },
+ {
+  "row": "r13_turtle",
+  "sfx": "water_spray",
+  "action": 0.0,
+  "what": "two trunks already pouring at clip 0.6 (E_turtle_r2 grid frame 3 at 1.0 s shows both streams)",
+  "db": -12,
+  "len": 2.3,
+  "fi": 0.05,
+  "fo": 0.4,
+  "seen": "E_turtle_r2 2 fps grid frames 3-7"
+ },
+ {
+  "row": "r14_kitten",
+  "sfx": "kitten_mew",
+  "action": 0.3,
+  "what": "kitten's mouth open (F_kitten grid: open at clip 1.5-3.0; row in-point 1.2 -> row 0.3)",
+  "db": -10,
+  "len": 1.1,
+  "seen": "F_kitten grid frames 3-5"
+ },
+ {
+  "row": "r15_otters",
+  "sfx": "otter_chirps",
+  "action": 0.0,
+  "what": "otters hauling, mouths/bodies moving from clip 1.4",
+  "db": -16,
+  "len": 1.8,
+  "fi": 0.1,
+  "fo": 0.3,
+  "seen": "M_otters grid frames 3-5"
+ },
+ {
+  "row": "r17_button",
+  "sfx": "chipmunk_squeak",
+  "action": 0.45,
+  "what": "chipmunk pops onto the rim (code composite pop 0.4-0.7 of the row; squeak on the top of the pop)",
+  "db": -9,
+  "len": 0.7,
+  "seen": "code: pop eased 0.4-0.7"
+ },
+ {
+  "row": "r17_button",
+  "sfx": "tuba_note",
+  "action": 1.4,
+  "what": "one soft tuba note on Hank's 'Rolling.' (mouth opens at clip 2.0 = row 1.4; K_button_r2 grid frame 3)",
+  "db": -17,
+  "len": 0.6,
+  "fo": 0.15,
+  "seen": "K_button_r2 grid frame 3 at 2.0 s"
+ },
+ {
+  "row": "r01_hunt",
+  "sfx": "dog_sniffs",
+  "action": 0.1,
+  "what": "nose on the trail from the first frame, dipping at ~0.5/1.5/2.5/3.5 s (NEW1 2 fps grid)",
+  "db": -15,
+  "len": 4.6,
+  "fo": 0.4,
+  "seen": "NEW1_hunt 2 fps grid tiles 1-10: nose down throughout"
+ },
+ {
+  "row": "r02_lookback",
+  "sfx": "whistle_two_note",
+  "action": 0.9,
+  "what": "the owner's two-note whistle: Doug flinches, head dips and eyes close at row 1.0 (NEW2 2 fps grid tile 3), whistle onset 100 ms ahead of the flinch",
+  "db": -14,
+  "len": 1.4,
+  "seen": "NEW2_lookback 2 fps grid tile 3 (1.0 s): head down, eyes shut; tiles 4-8 eyes low"
+ },
+ {
+  "row": "r04_fox",
+  "sfx": "fox_yips",
+  "action": 0.3,
+  "what": "fox kicking in the wire, mouth open (NEW3 2 fps tiles 1-5, 0-2.0 s)",
+  "db": -12,
+  "len": 2.0,
+  "fo": 0.3,
+  "seen": "NEW3_fox 2 fps grid tiles 1-5"
+ },
+ {
+  "row": "r04_fox",
+  "sfx": "wire_twang",
+  "action": 2.4,
+  "what": "the bear pulls the wire apart and the fox drops free at 2.5-3.0 (tiles 6-7); creak+twang file placed so the loud twang lands on the drop",
+  "db": -12,
+  "len": 1.6,
+  "onset_db": -16,
+  "seen": "NEW3_fox 2 fps grid tiles 6-7 (2.5-3.0 s): fox dropping out of the wire"
+ },
+ {
+  "row": "r04_fox",
+  "sfx": "paws_running",
+  "action": 3.4,
+  "what": "the fox bolts right (tile 8 at 3.5 s)",
+  "db": -16,
+  "len": 1.0,
+  "fo": 0.3,
+  "seen": "NEW3_fox 2 fps grid tile 8"
+ },
+ {
+  "row": "r05_watch",
+  "sfx": "tail_thumps",
+  "action": 1.5,
+  "what": "Doug's tail rises and wags against the ferns from 1.5 s (NEW4 2 fps tiles 4-8)",
+  "db": -16,
+  "len": 2.3,
+  "fo": 0.3,
+  "seen": "NEW4_watch 2 fps grid tiles 4-8: tail up and swinging"
+ },
+ {
+  "row": "r06_lead",
+  "sfx": "paws_running",
+  "action": 0.0,
+  "what": "Doug running toward us from the first frame (NEW5 2 fps tiles 1-8)",
+  "db": -16,
+  "len": 4.0,
+  "fi": 0.1,
+  "fo": 0.4,
+  "seen": "NEW5_lead 2 fps grid, running throughout"
+ },
+ {
+  "row": "r06_lead",
+  "sfx": "dog_barks",
+  "action": 2.4,
+  "what": "mouth opens barking at 2.5-3.0 (tiles 6-7)",
+  "db": -11,
+  "len": 1.4,
+  "seen": "NEW5_lead 2 fps grid tiles 6-7: mouth open"
+ }
+]

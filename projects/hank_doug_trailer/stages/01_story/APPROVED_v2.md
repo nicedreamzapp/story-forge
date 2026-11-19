@@ -1,0 +1,1 @@
+2026-11-17 7:14 PM PST — Matt approved script_v2.md + premise_v2.md (one-canvas "sound paints the world" trailer, lantern kept as the wagon lamp, "Same nose. Same light. Different job."), theme_song.md lyrics unchanged, and the full ~2 hour build. His words: "Approve + build".
