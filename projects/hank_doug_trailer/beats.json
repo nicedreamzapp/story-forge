@@ -1,0 +1,479 @@
+{
+ "_note": "HANK & DOUG'S WILD RESCUE trailer, script v2 (one travelling shot). beat = visible state judgeable from a frame; clip_beat = what stays true for the duration. 'still' is the Krea plate; b01 and b11 use two plates. start/end in seconds.",
+ "spine": [
+  "b00_linen",
+  "b03_bench",
+  "b04_rollout",
+  "b06_turtle",
+  "b08_otters",
+  "b09_oldpaint",
+  "b10_hi",
+  "b11_ditch",
+  "b13_title",
+  "b14_button"
+ ],
+ "shots": [
+  {
+   "id": "b00_linen",
+   "beat": "raw linen canvas with a few faint pencil lines of a mountain face and a ledge, and a pencil-grey goat on the ledge with four feet together, head turned down and mouth open; a ring of wet ochre and white paint at her mouth with full-colour rock and a white goat inside the ring",
+   "clip_beat": "pencil-grey goat on a ledge on raw linen, mouth open, a ring of ochre and white paint at her mouth with full colour inside it",
+   "start": 0,
+   "end": 3,
+   "still": "stills/A_ledge_goat.png",
+   "motion": "paint ring pushes out from the goat's mouth and reveals colour; pebbles trickle off the ledge",
+   "sources": [
+    "krea_still+code_camera",
+    "ltx25_previs"
+   ],
+   "sentiment": "wait, what is happening; a lean-in",
+   "set": "mountain ledge at dawn",
+   "cast": [
+    "goat"
+   ],
+   "must_not": [
+    "a second goat",
+    "any colour outside the ring before it arrives",
+    "a human, hand, boot or gun anywhere in frame",
+    "extra creatures beyond the named cast",
+    "legible text, letters or numbers anywhere in frame",
+    "a photographic live-action look instead of a painted oil look"
+   ],
+   "src": "clips/b00_linen.mp4"
+  },
+  {
+   "id": "b01_ripple",
+   "beat": "a grey rock face with a ring of wet paint on it and a green meadow coloured in below, and a yellow-brown marmot on a boulder with her head up, mouth closed",
+   "clip_beat": "a coloured meadow below a grey mountain face, a marmot on a sun-warmed boulder with her head up",
+   "start": 3,
+   "end": 6,
+   "still": [
+    "stills/A_ledge_goat.png",
+    "stills/B_marmot.png"
+   ],
+   "motion": "whip-tilt down the rock face riding the ring, landing on the boulder",
+   "sources": [
+    "krea_still+code_camera",
+    "ltx25_previs",
+    "code_whip"
+   ],
+   "sentiment": "wonder",
+   "set": "mountain face down to meadow",
+   "cast": [
+    "marmot",
+    "goat"
+   ],
+   "must_not": [
+    "a marmot standing on hind legs",
+    "a human, hand, boot or gun anywhere in frame",
+    "extra creatures beyond the named cast",
+    "legible text, letters or numbers anywhere in frame",
+    "a photographic live-action look instead of a painted oil look"
+   ],
+   "src": "clips/b01_ripple.mp4"
+  },
+  {
+   "id": "b02_whistle",
+   "beat": "a yellow-brown marmot standing tall on her hind legs, chest out, mouth a small round O, with two large rings of ochre and white paint around her head",
+   "clip_beat": "a yellow-brown marmot upright on hind legs with a round open mouth and two large paint rings around her",
+   "start": 6,
+   "end": 9,
+   "still": "stills/B_marmot.png",
+   "motion": "two big rings burst out and the camera whips along them across the meadow to a dirt road under oaks",
+   "sources": [
+    "krea_still+code_camera",
+    "ltx25_previs",
+    "code_whip"
+   ],
+   "sentiment": "somebody noticed; a lift",
+   "set": "sage meadow, dirt road under oaks",
+   "cast": [
+    "marmot"
+   ],
+   "must_not": [
+    "a second marmot",
+    "a human, hand, boot or gun anywhere in frame",
+    "extra creatures beyond the named cast",
+    "legible text, letters or numbers anywhere in frame",
+    "a photographic live-action look instead of a painted oil look"
+   ],
+   "src": "clips/b02_whistle.mp4"
+  },
+  {
+   "id": "b03_bench",
+   "beat": "a red wooden fire-wagon with ochre trim parked on a dirt road under oaks, a russet-red bloodhound on the left with long ears lifted, a dark chocolate-brown bear on the right in profile with one paw closed around the reins, and an unlit dented brass lantern hanging on the iron hook on the wagon's front post beside the bear",
+   "clip_beat": "a red wagon parked under oaks, a russet bloodhound with ears up beside a brown bear in profile holding reins, an unlit brass lantern on the front post",
+   "start": 9,
+   "end": 13,
+   "still": "stills/C_bench.png",
+   "motion": "slow push in on the paw and the reins; the bear's mouth moves once",
+   "sources": [
+    "krea_still+code_camera",
+    "ltx25_previs",
+    "k6_i2v"
+   ],
+   "sentiment": "a grin; these two have done this a hundred times",
+   "set": "dirt road under oaks, morning light",
+   "cast": [
+    "hank",
+    "doug",
+    "wagon",
+    "lantern"
+   ],
+   "must_not": [
+    "a lit lantern",
+    "a second wagon",
+    "a visible driver other than the bear",
+    "a human, hand, boot or gun anywhere in frame",
+    "extra creatures beyond the named cast",
+    "legible text, letters or numbers anywhere in frame",
+    "a photographic live-action look instead of a painted oil look"
+   ],
+   "src": "clips/b03_bench.mp4"
+  },
+  {
+   "id": "b04_rollout",
+   "beat": "side profile left to right: a single line of four harnessed animals (horse, zebra, one-humped camel, cow) out in front, the red wagon behind them with a bear and a dog small on the bench and a brass lantern on its front post, two giraffes at the back, two elephants with oak barrels behind, all moving right, with unpainted linen road ahead of the horse's nose",
+   "clip_beat": "the team out in front pulling the red wagon behind them toward the right, giraffes and elephants following, unpainted linen road ahead of the horse",
+   "start": 13,
+   "end": 18,
+   "still": "stills/D_rollout.png",
+   "motion": "camera tracks beside the wagon as it rolls right; the road paints in just ahead of the horse",
+   "sources": [
+    "krea_still+code_camera",
+    "ltx25_previs",
+    "k6_i2v"
+   ],
+   "sentiment": "joy; here comes the cavalry",
+   "set": "rolling sage-green hills",
+   "cast": [
+    "team",
+    "wagon",
+    "hank",
+    "doug",
+    "giraffes",
+    "elephants",
+    "lantern"
+   ],
+   "must_not": [
+    "a two-humped camel",
+    "loose animals",
+    "a second wagon",
+    "more heads than bodies",
+    "a lit lantern",
+    "the wagon travelling left",
+    "a human, hand, boot or gun anywhere in frame",
+    "extra creatures beyond the named cast",
+    "legible text, letters or numbers anywhere in frame",
+    "a photographic live-action look instead of a painted oil look"
+   ],
+   "src": "clips/b04_rollout.mp4"
+  },
+  {
+   "id": "b05_airlift",
+   "beat": "a flat wooden platform at a mountain ledge held up by four ropes in the beaks of a dozen white geese with wings spread, a white goat with all four hooves on the platform",
+   "clip_beat": "a wooden platform on four ropes held by white geese beside a ledge, a white goat standing on it",
+   "start": 18,
+   "end": 22,
+   "still": "stills/L_airlift.png",
+   "motion": "tilt up the mountain face as the platform rises level with the ledge and the goat steps on",
+   "sources": [
+    "k6_i2v",
+    "ltx25_previs",
+    "krea_still+code_camera"
+   ],
+   "sentiment": "that's how they do it",
+   "set": "mountain ledge",
+   "cast": [
+    "goat",
+    "geese"
+   ],
+   "must_not": [
+    "fewer than four ropes",
+    "a second goat",
+    "a human, hand, boot or gun anywhere in frame",
+    "extra creatures beyond the named cast",
+    "legible text, letters or numbers anywhere in frame",
+    "a photographic live-action look instead of a painted oil look"
+   ],
+   "src": "clips/b05_airlift.mp4"
+  },
+  {
+   "id": "b06_turtle",
+   "beat": "a shrunken pond with cracked mud edges, a green-brown turtle sunk to the rim of his shell, and two grey elephant trunks entering from the left and right edges spraying arcs of water into the mud",
+   "clip_beat": "a green-brown turtle low in drying cracked mud with two grey elephant trunks spraying water at the left and right edges",
+   "start": 22,
+   "end": 27,
+   "still": "stills/E_turtle.png",
+   "motion": "trunks swing in and spray; the mud darkens and the turtle rises and floats",
+   "sources": [
+    "krea_still+code_camera",
+    "ltx25_previs",
+    "k6_i2v"
+   ],
+   "sentiment": "worry, then a laugh of relief",
+   "set": "drying pond",
+   "cast": [
+    "turtle",
+    "elephants"
+   ],
+   "must_not": [
+    "a whole elephant body in frame",
+    "a second turtle",
+    "a human, hand, boot or gun anywhere in frame",
+    "extra creatures beyond the named cast",
+    "legible text, letters or numbers anywhere in frame",
+    "a photographic live-action look instead of a painted oil look"
+   ],
+   "src": "clips/b06_turtle.mp4"
+  },
+  {
+   "id": "b07_kitten",
+   "beat": "a view straight down through the bars of an iron storm-drain grate in cobblestones, a tiny grey tabby kitten far below with her mouth open standing in a shallow puddle, and a small paint ring rising up the shaft through the bars",
+   "clip_beat": "an iron grate seen from above with a tiny grey tabby kitten at the bottom of the shaft, mouth open, a small paint ring rising",
+   "start": 27,
+   "end": 30,
+   "still": "stills/F_drain.png",
+   "motion": "slow push down toward the grate as the tiny ring rises and colours the cobbles",
+   "sources": [
+    "krea_still+code_camera",
+    "ltx25_previs",
+    "k6_i2v"
+   ],
+   "sentiment": "tenderness; even that small, somebody hears",
+   "set": "cobblestone lane drain",
+   "cast": [
+    "kitten"
+   ],
+   "must_not": [
+    "a ring bigger than the kitten's head",
+    "a second kitten",
+    "vehicles or signs",
+    "a human, hand, boot or gun anywhere in frame",
+    "extra creatures beyond the named cast",
+    "legible text, letters or numbers anywhere in frame",
+    "a photographic live-action look instead of a painted oil look"
+   ],
+   "src": "clips/b07_kitten.mp4"
+  },
+  {
+   "id": "b08_otters",
+   "beat": "a chain of four dark-brown otters hanging into an open drain, each holding the next one's hind feet, the top otter's hind feet held by two dark chocolate-brown bear forearms and paws at the top of frame, the bottom otter holding a grey tabby kitten by the scruff above the hole",
+   "clip_beat": "four otters in a chain above an open drain, the bottom one carrying a kitten, bear paws holding the top otter's feet",
+   "start": 30,
+   "end": 34,
+   "still": "stills/M_otters.png",
+   "motion": "chain hauls up and the kitten rises out of the hole; camera drifts right toward the forest edge",
+   "sources": [
+    "k6_i2v",
+    "ltx25_previs",
+    "krea_still+code_camera"
+   ],
+   "sentiment": "yes!",
+   "set": "cobblestone lane drain",
+   "cast": [
+    "otters",
+    "kitten",
+    "hank"
+   ],
+   "must_not": [
+    "Hank's head or body in frame",
+    "a fifth otter",
+    "a human hand",
+    "a human, hand, boot or gun anywhere in frame",
+    "extra creatures beyond the named cast",
+    "legible text, letters or numbers anywhere in frame",
+    "a photographic live-action look instead of a painted oil look"
+   ],
+   "src": "clips/b08_otters.mp4"
+  },
+  {
+   "id": "b09_oldpaint",
+   "beat": "a night forest in cold silver-blue old cracked varnish-yellow paint, a russet-red bloodhound smaller than usual walking nose-down along a trail toward the left with a warm amber glow on the ground and trunks behind him, and a small dark chocolate-brown bear crouched behind a fallen log with wide eyes and flat ears; no lantern visible",
+   "clip_beat": "a cracked blue night forest, a russet bloodhound nose-down on a trail with amber glow behind him, a small brown bear crouched behind a log",
+   "start": 34,
+   "end": 39,
+   "still": "stills/G_forest.png",
+   "motion": "slow push along the dog's trail as the road ages and the paint cracks",
+   "sources": [
+    "krea_still+code_camera",
+    "ltx25_previs",
+    "k6_i2v"
+   ],
+   "sentiment": "hush; wait, Doug was a hunter?",
+   "set": "night forest in moonlight, old cracked paint",
+   "cast": [
+    "doug",
+    "young_hank"
+   ],
+   "must_not": [
+    "a visible lantern",
+    "a person holding a light",
+    "a hand",
+    "a boot",
+    "a gun",
+    "a human, hand, boot or gun anywhere in frame",
+    "extra creatures beyond the named cast",
+    "legible text, letters or numbers anywhere in frame",
+    "a photographic live-action look instead of a painted oil look"
+   ],
+   "src": "clips/b09_oldpaint.mp4"
+  },
+  {
+   "id": "b10_hi",
+   "beat": "over a fallen log in moonlight and cracked paint, a russet-red bloodhound's face on the left and a small dark chocolate-brown bear's face on the right with noses almost touching, the bear's eyes wide, with warm russet and brown and sage colour spreading from the two noses",
+   "clip_beat": "two noses almost touching over a log, a bloodhound left and a small bear right, warm colour spreading from the noses into cracked blue paint, the dog's tail wagging behind him",
+   "start": 39,
+   "end": 43,
+   "still": "stills/N_nose.png",
+   "motion": "the bear's mouth says one word, then the colour blooms from the noses, the cracks heal and the tail wags",
+   "sources": [
+    "k6_i2v",
+    "ltx25_previs",
+    "krea_still+code_camera"
+   ],
+   "sentiment": "the catch in the throat",
+   "set": "night forest in moonlight, old cracked paint",
+   "cast": [
+    "doug",
+    "young_hank"
+   ],
+   "must_not": [
+    "a visible lantern",
+    "a person holding a light",
+    "a hand",
+    "a human, hand, boot or gun anywhere in frame",
+    "extra creatures beyond the named cast",
+    "legible text, letters or numbers anywhere in frame",
+    "a photographic live-action look instead of a painted oil look"
+   ],
+   "src": "clips/b10_hi.mp4"
+  },
+  {
+   "id": "b11_ditch",
+   "beat": "a muddy roadside ditch at a forest edge in moonlight with only a dented brass lantern in frame, falling end over end into the mud with a splash and then dark, the amber glow gone",
+   "clip_beat": "a dented brass lantern lying dark in a muddy ditch in moonlight, nothing else in frame",
+   "start": 43,
+   "end": 46,
+   "still": [
+    "stills/H1_ditch.png",
+    "stills/H2_lantern.png"
+   ],
+   "motion": "camera drifts right to the ditch; the lantern tumbles in, splashes, hisses and goes dark",
+   "sources": [
+    "krea_still+code_camera",
+    "code_cutout"
+   ],
+   "sentiment": "he chose the bear",
+   "set": "roadside ditch at forest edge, night",
+   "cast": [
+    "lantern"
+   ],
+   "must_not": [
+    "any animal",
+    "a hand or a person holding the lantern",
+    "a lit lantern after the splash",
+    "a human, hand, boot or gun anywhere in frame",
+    "extra creatures beyond the named cast",
+    "legible text, letters or numbers anywhere in frame",
+    "a photographic live-action look instead of a painted oil look"
+   ],
+   "src": "clips/b11_ditch.mp4"
+  },
+  {
+   "id": "b12_walkaway",
+   "beat": "from behind on a moonlit road, a russet-red bloodhound with his tail up and a bear a head taller walking away side by side, the road ahead of them freshly coloured and the sky warming at the top of frame",
+   "clip_beat": "a bloodhound and a taller dark brown bear seen from behind walking side by side up a road, colour on the road ahead of them",
+   "start": 46,
+   "end": 49,
+   "still": "stills/I_walkaway.png",
+   "motion": "camera pulls back and rises leading them; fresh colour runs up the road ahead of their feet",
+   "sources": [
+    "krea_still+code_camera",
+    "ltx25_previs",
+    "k6_i2v"
+   ],
+   "sentiment": "warmth",
+   "set": "moonlit road into hills, dawning sky",
+   "cast": [
+    "doug",
+    "young_hank"
+   ],
+   "must_not": [
+    "a visible lantern",
+    "a third animal",
+    "a human, hand, boot or gun anywhere in frame",
+    "extra creatures beyond the named cast",
+    "legible text, letters or numbers anywhere in frame",
+    "a photographic live-action look instead of a painted oil look"
+   ],
+   "src": "clips/b12_walkaway.mp4"
+  },
+  {
+   "id": "b13_title",
+   "beat": "a warm ochre and rust sunset over sage-green hills, a dark silhouette of the wagon with its team and two giraffes in profile on the hilltop, a tiny amber point of light on the wagon's front post, and the painted title HANK & DOUG'S over WILD RESCUE",
+   "clip_beat": "a sunset hilltop with the wagon, team and giraffes in silhouette, a small amber light on the front post, and the painted title in two lines",
+   "start": 49,
+   "end": 54,
+   "still": "stills/J_title_hill.png",
+   "motion": "camera rises clear of the trees; the title paints on stroke by stroke over the silhouette",
+   "sources": [
+    "krea_still+code_camera",
+    "ltx25_previs"
+   ],
+   "sentiment": "pride; singing along",
+   "set": "sunset hilltop",
+   "cast": [
+    "wagon",
+    "team",
+    "giraffes",
+    "lantern"
+   ],
+   "must_not": [
+    "a two-humped camel",
+    "a second wagon",
+    "any text other than the title",
+    "a human, hand, boot or gun anywhere in frame",
+    "extra creatures beyond the named cast",
+    "a photographic live-action look instead of a painted oil look",
+    "legible text other than the two-line title"
+   ],
+   "src": "clips/b13_title.mp4"
+  },
+  {
+   "id": "b14_button",
+   "beat": "under an oak at golden sunset, a parked wagon with a dark chocolate-brown bear slumped asleep on the bench with head back and mouth open, a russet-red bloodhound sprawled across his lap, a giraffe neck over the wagon, a marmot curled on the bear's head, a lit brass lantern on the front post, and a chipmunk on the near wheel rim",
+   "clip_beat": "a sleeping pile on a parked wagon under an oak, a lit brass lantern on the front post, a chipmunk on the near wheel rim",
+   "start": 54,
+   "end": 60,
+   "still": "stills/K_sleeping.png",
+   "motion": "chipmunk pops up and squeaks a thumbnail ring, the dog's ears shoot up, the bear speaks with eyes shut",
+   "sources": [
+    "k6_i2v",
+    "ltx25_previs",
+    "krea_still+code_camera"
+   ],
+   "sentiment": "a laugh; I want more",
+   "set": "oak at golden sunset",
+   "cast": [
+    "hank",
+    "doug",
+    "wagon",
+    "lantern",
+    "giraffe",
+    "marmot",
+    "chipmunk"
+   ],
+   "must_not": [
+    "an unlit lantern",
+    "a two-humped camel",
+    "a second wagon",
+    "the bear's eyes open",
+    "a human, hand, boot or gun anywhere in frame",
+    "extra creatures beyond the named cast",
+    "legible text, letters or numbers anywhere in frame",
+    "a photographic live-action look instead of a painted oil look"
+   ],
+   "src": "clips/b14_button.mp4"
+  }
+ ]
+}

@@ -1,0 +1,120 @@
+[
+ {
+  "id": "N01",
+  "file": "voices/v4/N01.wav",
+  "row": "r01_hunt",
+  "at": 0.5,
+  "who": "narrator",
+  "text": "This is Doug. Doug used to hunt bears.",
+  "db": -3
+ },
+ {
+  "id": "N02",
+  "file": "voices/v4/N02.wav",
+  "row": "r02_lookback",
+  "at": 0.2,
+  "who": "narrator",
+  "text": "Not because he wanted to. His owner made him.",
+  "db": -3
+ },
+ {
+  "id": "N03",
+  "file": "voices/v4/N03.wav",
+  "row": "r03_found",
+  "at": 0.2,
+  "who": "narrator",
+  "text": "One night, his nose found a bear.",
+  "db": -3
+ },
+ {
+  "id": "N04",
+  "file": "voices/v4/N04.wav",
+  "row": "r04_fox",
+  "at": 0.2,
+  "who": "narrator",
+  "text": "But this bear wasn't hurting anybody. He was saving a fox.",
+  "db": -3
+ },
+ {
+  "id": "D01",
+  "file": "voices/v4/D01_s303.wav",
+  "row": "r05_watch",
+  "at": 0.6,
+  "who": "doug",
+  "text": "Huh. That bear is... cool.",
+  "db": -2
+ },
+ {
+  "id": "N05",
+  "file": "voices/v4/N05.wav",
+  "row": "r06_lead",
+  "at": 0.2,
+  "who": "narrator",
+  "text": "So Doug led his owner away from the bear...",
+  "db": -3
+ },
+ {
+  "id": "N06",
+  "file": "voices/v4/N06.wav",
+  "row": "r07_ditch",
+  "at": 0.0,
+  "who": "narrator",
+  "text": "...right into a ditch.",
+  "db": -3
+ },
+ {
+  "id": "N07",
+  "file": "voices/v4/N07.wav",
+  "row": "r08_hi",
+  "at": 0.0,
+  "who": "narrator",
+  "text": "Then he went back.",
+  "db": -3
+ },
+ {
+  "id": "L4",
+  "file": "voices/L4_hank_hi.wav",
+  "row": "r08_hi",
+  "at": 2.0,
+  "who": "young_hank",
+  "text": "Hi.",
+  "db": -1,
+  "v52_note": "11/18 2:00 PM: same wr3_hank voice + settings + -1.5 st 'hank' processing as L1 'Rolling.' (f0 ~80 vs 75 Hz); the +4 st 'young' pitch is gone (Matt: 'the bear's voice is different')"
+ },
+ {
+  "id": "N08",
+  "file": "voices/v4/N08.wav",
+  "row": "r09_walkaway",
+  "at": 0.2,
+  "who": "narrator",
+  "text": "That bear was Hank. Doug never hunted again.",
+  "db": -3
+ },
+ {
+  "id": "N09",
+  "file": "voices/v4/N09.wav",
+  "row": "r09_walkaway",
+  "at": 3.2,
+  "who": "narrator",
+  "text": "Now they rescue animals.",
+  "db": -3
+ },
+ {
+  "id": "L1",
+  "file": "voices/L1_hank_rolling.wav",
+  "row": "r10_bench",
+  "at": 2.0,
+  "who": "hank",
+  "text": "Rolling.",
+  "db": -1
+ },
+ {
+  "id": "N10",
+  "file": "voices/v4/N10.wav",
+  "row": "r11_rollout",
+  "at": 0.2,
+  "who": "narrator",
+  "text": "A fire wagon, and a crew that's all animals.",
+  "db": -3
+ }
+]
