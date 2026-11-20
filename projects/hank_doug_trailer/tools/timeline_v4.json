@@ -1,0 +1,146 @@
+{
+ "note": "script_v4 timed table; starts/durs re-laid from the measured voice durations by tools/layout_v4.py. clip in-points per row. Montage cuts moved to the sung word onsets measured by whisper on the v4 film itself: 'And a turtle' 46.60, 'stuck in a drain' 50.16 (12:17 AM).",
+ "rows": [
+  {
+   "n": 1,
+   "id": "r01_hunt",
+   "start": 0.0,
+   "dur": 5.0,
+   "clip": "clips/v4/NEW1_hunt.mp4",
+   "in": 0.0
+  },
+  {
+   "n": 2,
+   "id": "r02_lookback",
+   "start": 5.0,
+   "dur": 4.0,
+   "clip": "clips/v4/NEW2_lookback.mp4",
+   "in": 0.0
+  },
+  {
+   "n": 3,
+   "id": "r03_found",
+   "start": 9.0,
+   "dur": 4.0,
+   "clip": "clips/v3/G_forest_r2.mp4",
+   "in": 0.0
+  },
+  {
+   "n": 4,
+   "id": "r04_fox",
+   "start": 13.0,
+   "dur": 4.2,
+   "clip": "clips/v4/NEW3_fox.mp4",
+   "in": 0.0
+  },
+  {
+   "n": 5,
+   "id": "r05_watch",
+   "start": 17.2,
+   "dur": 4.0,
+   "clip": "clips/v4/NEW4_watch.mp4",
+   "in": 0.0
+  },
+  {
+   "n": 6,
+   "id": "r06_lead",
+   "start": 21.2,
+   "dur": 4.0,
+   "clip": "clips/v4/NEW5_lead.mp4",
+   "in": 0.0
+  },
+  {
+   "n": 7,
+   "id": "r07_ditch",
+   "start": 25.2,
+   "dur": 3.4,
+   "clip": "code:lantern+clips/v3/H_ditch.mp4",
+   "in": 1.0
+  },
+  {
+   "n": 8,
+   "id": "r08_hi",
+   "start": 28.6,
+   "dur": 4.0,
+   "clip": "clips/previs/N_hi.mp4",
+   "in": 0.0
+  },
+  {
+   "n": 9,
+   "id": "r09_walkaway",
+   "start": 32.6,
+   "dur": 3.7,
+   "clip": "clips/v3/I_walkaway_r2.mp4",
+   "in": 0.3
+  },
+  {
+   "n": 10,
+   "id": "r10_bench",
+   "start": 36.3,
+   "dur": 3.0,
+   "clip": "clips/v3/C_bench.mp4",
+   "in": 0.4
+  },
+  {
+   "n": 11,
+   "id": "r11_rollout",
+   "start": 39.3,
+   "dur": 5.0,
+   "clip": "clips/D_rollout_k6.mp4",
+   "in": 0.0
+  },
+  {
+   "n": 12,
+   "id": "r12_goat",
+   "start": 44.3,
+   "dur": 2.3,
+   "clip": "clips/previs/L_airlift.mp4",
+   "in": 0.8
+  },
+  {
+   "n": 13,
+   "id": "r13_turtle",
+   "start": 46.6,
+   "dur": 1.9,
+   "clip": "clips/v3/E_turtle_r2.mp4",
+   "in": 0.6
+  },
+  {
+   "n": 14,
+   "id": "r14_kitten",
+   "start": 48.5,
+   "dur": 1.66,
+   "clip": "clips/v3/F_kitten.mp4",
+   "in": 1.2
+  },
+  {
+   "n": 15,
+   "id": "r15_otters",
+   "start": 50.16,
+   "dur": 1.54,
+   "clip": "clips/previs/M_otters.mp4",
+   "in": 1.4
+  },
+  {
+   "n": 16,
+   "id": "r16_title",
+   "start": 51.7,
+   "dur": 5.0,
+   "clip": "clips/v3/J_title.mp4",
+   "in": 0.0,
+   "title_in": 0.2,
+   "title_dur": 1.2
+  },
+  {
+   "n": 17,
+   "id": "r17_button",
+   "start": 56.7,
+   "dur": 3.3,
+   "clip": "clips/v3/K_button_r2.mp4",
+   "in": 0.6,
+   "chipmunk_pop": 0.4,
+   "black_at": 2.4
+  }
+ ],
+ "total": 60.0
+}

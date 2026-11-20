@@ -1,0 +1,190 @@
+{
+ "note": "timeline_v5 (plan_v5 A3, 2026-11-18 ~2:05 AM). Copied from timeline_v4 with: ending A (Matt 1:57 AM) - no button, no chipmunk, no row-17 dusk wagon; title row on the hflipped hill clip, stopdown 51.30-51.70, sung title downbeat 51.80, black at 55.90 + sting, end 57.40 (no padding still). Row 7 has no code lantern/parabola/painted splash. 'replace_with' = the plan part D clip; finish_v5 uses it when the file exists, else 'clip'. | 11/18 doug_all: rows 2 and 5 replace_with the klein-red re-renders (Doug the same russet in every row). | 11/18 doug_all: rows 2 and 5 replace_with the klein-red re-renders (Doug the same russet in every row). | v5.1: row 1 = G_hunt_red_s12 (no hand).",
+ "music": {
+  "box_start": 0.0,
+  "box_ramp": [
+   -30,
+   -23,
+   6.0
+  ],
+  "stopdown": [
+   51.3,
+   51.7,
+   -30
+  ],
+  "title_downbeat": 51.8,
+  "title_phrase_src": [
+   55.7,
+   59.9
+  ],
+  "sting_src": [
+   4.9,
+   6.0
+  ]
+ },
+ "rows": [
+  {
+   "n": 1,
+   "id": "r01_hunt",
+   "start": 0.0,
+   "dur": 5.0,
+   "clip": "clips/v4/NEW1_hunt.mp4",
+   "in": 0.0,
+   "replace_with": "clips/v5/G_hunt_red_s12.mp4",
+   "replace_note": "v5.1 (Matt 1:01 PM): seed 12 re-render, no hand; the lantern hangs on the right-edge tree as in the still (seed 13 showed the owner walking in, deleted)"
+  },
+  {
+   "n": 2,
+   "id": "r02_lookback",
+   "start": 5.0,
+   "dur": 4.0,
+   "clip": "clips/v4/NEW2_lookback.mp4",
+   "in": 0.0,
+   "replace_with": "clips/v5/NEW2_lookback_red.mp4",
+   "replace_note": "Doug colour (Matt 11/18 9:47): klein red edit of Doug_close_glow_fix, v4 motion prompt; cue re-pick: whistle flinch was row 1.0 on NEW2"
+  },
+  {
+   "n": 3,
+   "id": "r03_found",
+   "start": 9.0,
+   "dur": 4.0,
+   "clip": "clips/v3/G_forest_r2.mp4",
+   "in": 0.0,
+   "replace_with": "clips/v5/G_forest_red.mp4",
+   "replace_note": "plan D1 (from stills/v5/G_forest_red.png, the B1 proof still)"
+  },
+  {
+   "n": 4,
+   "id": "r04_fox",
+   "start": 13.0,
+   "dur": 4.2,
+   "clip": "clips/v4/NEW3_fox.mp4",
+   "in": 0.0,
+   "replace_with": "clips/v5/FOX_fence_v5.mp4",
+   "replace_note": "plan D4"
+  },
+  {
+   "n": 5,
+   "id": "r05_watch",
+   "start": 17.2,
+   "dur": 4.0,
+   "clip": "clips/v4/NEW4_watch.mp4",
+   "in": 0.0,
+   "replace_with": "clips/v5/NEW4_watch_red.mp4",
+   "replace_note": "Doug colour (Matt 11/18 9:47): klein red edit of Doug_watch_fix, v4 motion prompt"
+  },
+  {
+   "n": 6,
+   "id": "r06_lead",
+   "start": 21.2,
+   "dur": 4.0,
+   "clip": "clips/v4/NEW5_lead.mp4",
+   "in": 0.0,
+   "replace_with": "clips/v5/ROAD_lead_v5.mp4",
+   "replace_note": "plan D5"
+  },
+  {
+   "n": 7,
+   "id": "r07_ditch",
+   "start": 25.2,
+   "dur": 3.4,
+   "clip": "clips/v3/H_ditch.mp4",
+   "in": 0.0,
+   "replace_with": "clips/v5/H3_ditch_key.mp4",
+   "replace_note": "plan D6 keyframe lit->unlit; fallback stays H_ditch + light-out ramp, never the cutout",
+   "light_out": 0.6,
+   "speed": 0.89,
+   "speed_note": "fallback only: H_ditch is 3.04 s, played at 0.89x to fill 3.4 s without a held frame; the D6 clip plays at 1.0"
+  },
+  {
+   "n": 8,
+   "id": "r08_hi",
+   "start": 28.6,
+   "dur": 4.0,
+   "clip": "clips/previs/N_hi.mp4",
+   "in": 0.0
+  },
+  {
+   "n": 9,
+   "id": "r09_walkaway",
+   "start": 32.6,
+   "dur": 3.7,
+   "clip": "clips/v3/I_walkaway_r2.mp4",
+   "in": 0.3,
+   "replace_with": "clips/v5/I_walkaway_red.mp4",
+   "replace_note": "plan D3"
+  },
+  {
+   "n": 10,
+   "id": "r10_bench",
+   "start": 36.3,
+   "dur": 3.0,
+   "clip": "clips/v3/C_bench.mp4",
+   "in": 0.4,
+   "replace_with": "clips/v5/C_bench_red.mp4",
+   "replace_note": "plan D8 a2v"
+  },
+  {
+   "n": 11,
+   "id": "r11_rollout",
+   "start": 39.3,
+   "dur": 5.0,
+   "clip": "clips/D_rollout_k6.mp4",
+   "in": 0.0,
+   "replace_with": "clips/v5/D_rollout_right.mp4",
+   "replace_note": "plan D9 K6; fallback = hflip of the v4 K6 clip 0-4.3 s + bench +0.7 s"
+  },
+  {
+   "n": 12,
+   "id": "r12_goat",
+   "start": 44.3,
+   "dur": 2.3,
+   "clip": "clips/previs/L_airlift.mp4",
+   "in": 0.8
+  },
+  {
+   "n": 13,
+   "id": "r13_turtle",
+   "start": 46.6,
+   "dur": 1.9,
+   "clip": "clips/v3/E_turtle_r2.mp4",
+   "in": 0.6
+  },
+  {
+   "n": 14,
+   "id": "r14_kitten",
+   "start": 48.5,
+   "dur": 1.66,
+   "clip": "clips/v3/F_kitten.mp4",
+   "in": 1.2
+  },
+  {
+   "n": 15,
+   "id": "r15_otters",
+   "start": 50.16,
+   "dur": 1.54,
+   "clip": "clips/previs/M_otters.mp4",
+   "in": 1.4
+  },
+  {
+   "n": 16,
+   "id": "r16_title",
+   "start": 51.7,
+   "dur": 4.2,
+   "clip": "clips/v5/J_title_flip.mp4",
+   "in": 0.0,
+   "title_in": 0.3,
+   "title_dur": 1.2
+  },
+  {
+   "n": 17,
+   "id": "r17_black",
+   "start": 55.9,
+   "dur": 1.5,
+   "clip": "black",
+   "in": 0.0,
+   "note": "black; theme_1 'Here we go!' sting 55.95-57.05 (Matt's ending A, no button)"
+  }
+ ],
+ "total": 57.4
+}

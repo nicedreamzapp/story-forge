@@ -1,0 +1,186 @@
+{
+ "note": "timeline_v52 (cut_v52b): one continuous song from film 0; story rows proportional to v5 up to the chorus bar, rescues share the chorus, title on the sung title line, black to the final chord.",
+ "music": {
+  "song": "music/anthem_9_end.wav",
+  "song_offset": 2.4,
+  "tempo": 100.45,
+  "spb": 0.5973,
+  "chorus_bar": 44.277,
+  "title_bar": 53.835,
+  "end": 64.34,
+  "song_bed": "music/stems/htdemucs/anthem_9/no_vocals.wav",
+  "vocal_in": 44.277,
+  "vocal_xfade": 2.4,
+  "ramp_from": 38.277,
+  "bed_db": -22.0,
+  "full_db": -11.0,
+  "duck_db": -9.0,
+  "stopdown_db": -8.0,
+  "bed_lp": 7500.0
+ },
+ "rows": [
+  {
+   "id": "r01_hunt",
+   "clip": "clips/v5/G_hunt_red_s12.mp4",
+   "in": 0.0,
+   "v5_clip": "clips/v5/G_hunt_red_s12.mp4",
+   "start": 0.0,
+   "dur": 5.013,
+   "n": 1
+  },
+  {
+   "id": "r02_lookback",
+   "clip": "clips/v5/NEW2_lookback_red.mp4",
+   "in": 0.0,
+   "v5_clip": "clips/v5/NEW2_lookback_red.mp4",
+   "start": 5.013,
+   "dur": 4.043,
+   "n": 2
+  },
+  {
+   "id": "r03_found",
+   "clip": "clips/v5/G_forest_red.mp4",
+   "in": 0.0,
+   "v5_clip": "clips/v5/G_forest_red.mp4",
+   "start": 9.056,
+   "dur": 3.989,
+   "n": 3
+  },
+  {
+   "id": "r04_fox",
+   "clip": "clips/v52/FOX_tangle_v52.mp4",
+   "in": 0.0,
+   "v5_clip": "clips/v5/FOX_fence_v5.mp4",
+   "start": 13.045,
+   "dur": 4.363,
+   "n": 4
+  },
+  {
+   "id": "r05_watch",
+   "clip": "clips/v5/NEW4_watch_red.mp4",
+   "in": 0.0,
+   "v5_clip": "clips/v5/NEW4_watch_red.mp4",
+   "start": 17.408,
+   "dur": 3.584,
+   "n": 5
+  },
+  {
+   "id": "r06_lead",
+   "clip": "clips/v52/ROAD_owner_v52.mp4",
+   "in": 0.0,
+   "v5_clip": "clips/v5/ROAD_lead_v5.mp4",
+   "start": 20.992,
+   "dur": 4.181,
+   "n": 6,
+   "speed": 0.97,
+   "speed_note": "v5.2: beat-snapped row runs a little longer than the clip; played slower instead of holding a frozen last frame"
+  },
+  {
+   "id": "r07_ditch",
+   "clip": "clips/v52/DITCH_owner_v52.mp4",
+   "in": 0.0,
+   "v5_clip": "clips/v5/H3_ditch_key.mp4",
+   "start": 25.173,
+   "dur": 3.606,
+   "n": 7,
+   "speed": 0.94,
+   "speed_note": "v5.2: beat-snapped row runs a little longer than the clip; played slower instead of holding a frozen last frame"
+  },
+  {
+   "id": "r08_hi",
+   "clip": "clips/previs/N_hi.mp4",
+   "in": 0.0,
+   "v5_clip": "clips/previs/N_hi.mp4",
+   "start": 28.779,
+   "dur": 3.573,
+   "n": 8
+  },
+  {
+   "id": "r09_walkaway",
+   "clip": "clips/v5/I_walkaway_red.mp4",
+   "in": 0.0,
+   "v5_clip": "clips/v5/I_walkaway_red.mp4",
+   "start": 32.352,
+   "dur": 4.171,
+   "n": 9,
+   "speed": 0.89,
+   "speed_note": "v5.2: beat-snapped row runs a little longer than the clip; played slower instead of holding a frozen last frame"
+  },
+  {
+   "id": "r10_bench",
+   "clip": "clips/v5/C_bench_red.mp4",
+   "in": 0.4,
+   "v5_clip": "clips/v5/C_bench_red.mp4",
+   "start": 36.523,
+   "dur": 2.986,
+   "n": 10
+  },
+  {
+   "id": "r11_rollout",
+   "clip": "clips/v52/ROLLOUT_track_v52.mp4",
+   "in": 0.0,
+   "v5_clip": "clips/v5/D_rollout_right.mp4",
+   "start": 39.509,
+   "dur": 4.768,
+   "n": 11,
+   "note": "v5.2 3:16 PM: tracking shot so the whole team stays framed (the locked-off take walked the horse out of frame: team_is_four / doug_colour judge FAILs)"
+  },
+  {
+   "id": "r12_goat",
+   "clip": "clips/v52/GOAT_airlift_v52.mp4",
+   "in": 0.0,
+   "v5_clip": "clips/previs/L_airlift.mp4",
+   "start": 44.277,
+   "dur": 2.39,
+   "n": 12
+  },
+  {
+   "id": "r13_turtle",
+   "clip": "clips/v52/TURTLE_sunk_v52.mp4",
+   "in": 0.0,
+   "v5_clip": "clips/v3/E_turtle_r2.mp4",
+   "start": 46.667,
+   "dur": 2.389,
+   "n": 13
+  },
+  {
+   "id": "r14_kitten",
+   "clip": "clips/v3/F_kitten.mp4",
+   "in": 1.2,
+   "v5_clip": "clips/v3/F_kitten.mp4",
+   "start": 49.056,
+   "dur": 2.389,
+   "n": 14
+  },
+  {
+   "id": "r15_otters",
+   "clip": "clips/v52/OTTERS_v52_s2.mp4",
+   "in": 0.0,
+   "v5_clip": "clips/previs/M_otters.mp4",
+   "start": 51.445,
+   "dur": 2.39,
+   "n": 15
+  },
+  {
+   "id": "r16_title",
+   "clip": "clips/v52/J_title_v52.mp4",
+   "in": 0.0,
+   "v5_clip": "clips/v5/J_title_flip.mp4",
+   "start": 53.835,
+   "dur": 8.0,
+   "n": 16,
+   "title_in": 0.3,
+   "title_dur": 1.2
+  },
+  {
+   "id": "r17_black",
+   "start": 61.835,
+   "dur": 2.505,
+   "clip": "black",
+   "in": 0.0,
+   "note": "v5.2: the song's final chord rings over black",
+   "n": 17
+  }
+ ],
+ "total": 64.34
+}
