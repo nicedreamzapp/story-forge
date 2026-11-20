@@ -1,0 +1,17 @@
+ℹ️  blenderkit: Verbose is enabled [23:26:39.459, addon_updater.py:150]
+ℹ️  blenderkit: Read in JSON settings from file [23:26:39.460, addon_updater.py:150]
+ℹ️  blenderkit: Ports reordered so first port is now 62485 (previous index was 0) [23:26:39.460, client_lib.py:129]
+Created history step bf460629-9b9e-4032-93cd-6983ec713707
+ℹ️  blenderkit: Created new search history step [23:26:39.463, search.py:2525]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:26:39.463, download.py:416]
+ℹ️  blenderkit: Unregistering BlenderKit add-on [23:26:39.476, __init__.py:2881]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:26:39.476, download.py:416]
+/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/build_wagon.py:489: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  dm.use_nodes = True
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+Info: Saved as "wagon.blend"
+SAVED wagon.blend
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:46:23)
+
+Blender quit

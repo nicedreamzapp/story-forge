@@ -45,9 +45,22 @@ def neutral_filmic(c):
     c = scurve(np.clip(c, 0, 1), 0.45); c = rolloff(c, 0.78)
     return c * 0.97 + 0.01
 
+def warm_feature_pop(c):
+    # animated-feature daylight (2026-11-01, WILD RESCUE): gentle contrast, rich warm saturation, golden highlights,
+    # clean (not crushed) blacks, soft highlight shoulder so sunlit fur and sky never clip
+    c = np.clip(c, 0, 1); c = scurve(c, 0.35); c = rolloff(c, 0.86)
+    c = split_tone(c, (0.0, 0.004, 0.018), (0.035, 0.018, -0.025), 1.0)
+    return sat(c, 1.18) * 0.985 + 0.008
+def moonlit_feature(c):
+    # animated-feature night: cool blue shadows and mids, highlights kept warm so the amber lantern stays amber
+    c = np.clip(c, 0, 1); c = scurve(c, 0.3); c = rolloff(c, 0.84)
+    c = split_tone(c, (-0.02, 0.0, 0.05), (0.03, 0.012, -0.02), 1.0)
+    return sat(c, 1.08)
+
 LUTS = dict(teal_orange_blockbuster=teal_orange_blockbuster, bleach_bypass=bleach_bypass,
             cold_space_teal=cold_space_teal, warm_alien_haze=warm_alien_haze,
-            kodak_2383_style=kodak_2383_style, neutral_filmic=neutral_filmic)
+            kodak_2383_style=kodak_2383_style, neutral_filmic=neutral_filmic,
+            warm_feature_pop=warm_feature_pop, moonlit_feature=moonlit_feature)
 
 def write(name, fn):
     g = np.linspace(0, 1, N)

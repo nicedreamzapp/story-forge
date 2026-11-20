@@ -1,0 +1,122 @@
+# film_qc report — hank_doug_wild_rescue_trailer_v4.mp4
+**Verdict: FAIL — 20 defect(s)**
+Checks run: 95 | passed: 75 | failed: 20
+
+## Defects
+- lipsync@0.2s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- lipsync@4.9s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- lipsync@8.9s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- lipsync@12.9s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- lipsync@17.8s: doug's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- lipsync@21.1s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%) — and 1 sample(s) showed the WRONG character speaking
+- lipsync@24.9s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%) — and 1 sample(s) showed the WRONG character speaking
+- lipsync@28.3s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- lipsync@30.6s: young_hank's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%) — and 1 sample(s) showed the WRONG character speaking
+- lipsync@32.5s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- lipsync@35.5s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%) — and 1 sample(s) showed the WRONG character speaking
+- lipsync@38.3s: hank's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- lipsync@39.2s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%) — and 1 sample(s) showed the WRONG character speaking
+- artifact@12.5s: The image depicts two animals in a forest setting: a brown bear and a dog (resembling a basset hound). Both are rendered
+- artifact@47.5s: The image shows a turtle partially submerged in a shallow pool of water, with two large, dark, elephant-like feet (or po
+- artifact@48.5s: The image features a cat peeking through the slats of a rusted metal drain grate. The cat’s face is visible, with clear 
+- artifact@49.5s: The image shows a cat peeking through the slats of a rusted metal drain grate. The cat’s face is visible, with wide, exp
+- artifact@50.5s: The image features several animated characters: a group of otters and a small cat, seemingly emerging from a drain or se
+- artifact@51.5s: The image features three animated characters: two otters and one small kitten. The otters are depicted in a vertical sta
+- audio@30.6s: 'Hi.' NOT HEARD anywhere near @30.6s (no transcript segment covers that moment)
+
+## Full log
+- [FAIL] lipsync@0.2s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- [FAIL] lipsync@4.9s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- [FAIL] lipsync@8.9s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- [FAIL] lipsync@12.9s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- [FAIL] lipsync@17.8s: doug's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- [FAIL] lipsync@21.1s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%) — and 1 sample(s) showed the WRONG character speaking
+- [FAIL] lipsync@24.9s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%) — and 1 sample(s) showed the WRONG character speaking
+- [FAIL] lipsync@28.3s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- [FAIL] lipsync@30.6s: young_hank's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%) — and 1 sample(s) showed the WRONG character speaking
+- [FAIL] lipsync@32.5s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- [FAIL] lipsync@35.5s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%) — and 1 sample(s) showed the WRONG character speaking
+- [FAIL] lipsync@38.3s: hank's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- [FAIL] lipsync@39.2s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%) — and 1 sample(s) showed the WRONG character speaking
+- [PASS] lipsync@58.1s: hank's mouth moving in 4/6 samples (67% of a 1.2s line; need 50%)
+- [PASS] silence@3.8s: no. none of the characters are depicted with their mouths wide open; they are al
+- [PASS] silence@8.1s: no. none of the characters are depicted with their mouths wide open; the dog (do
+- [PASS] silence@12.1s: no. none of the characters are depicted with their mouths wide open; all are sho
+- [PASS] silence@16.6s: no. none of the characters have their mouths wide open; they are all depicted in
+- [PASS] silence@24.2s: no. the only character visible is doug, the bloodhound, and his mouth is wide op
+- [PASS] silence@49.9s: no. the image shows a small tabby kitten peeking through a rusted metal grate, w
+- [PASS] identity-across-scenes: CONSISTENT — The characters maintain consistent species, body proportions, head and ear shapes, and markings across all scenes.
+- [PASS] artifact@0.5s: clean
+- [PASS] artifact@1.5s: clean
+- [PASS] artifact@2.5s: clean
+- [PASS] artifact@3.5s: clean
+- [PASS] artifact@4.5s: clean
+- [PASS] artifact@5.5s: clean
+- [PASS] artifact@6.5s: clean
+- [PASS] artifact@7.5s: clean
+- [PASS] artifact@8.5s: clean
+- [PASS] artifact@9.5s: clean
+- [PASS] artifact@10.5s: clean
+- [PASS] artifact@11.5s: clean
+- [FAIL] artifact@12.5s: The image depicts two animals in a forest setting: a brown bear and a dog (resembling a basset hound). Both are rendered
+- [PASS] artifact@13.5s: clean
+- [PASS] artifact@14.5s: clean
+- [PASS] artifact@15.5s: clean
+- [PASS] artifact@16.5s: clean
+- [PASS] artifact@17.5s: clean
+- [PASS] artifact@18.5s: clean
+- [PASS] artifact@19.5s: clean
+- [PASS] artifact@20.5s: clean
+- [PASS] artifact@21.5s: clean
+- [PASS] artifact@22.5s: clean
+- [PASS] artifact@23.5s: clean
+- [PASS] artifact@24.5s: clean
+- [PASS] artifact@25.5s: clean
+- [PASS] artifact@26.5s: clean
+- [PASS] artifact@27.5s: clean
+- [PASS] artifact@28.5s: clean
+- [PASS] artifact@29.5s: clean
+- [PASS] artifact@30.5s: clean
+- [PASS] artifact@31.5s: clean
+- [PASS] artifact@32.5s: clean
+- [PASS] artifact@33.5s: clean
+- [PASS] artifact@34.5s: clean
+- [PASS] artifact@35.5s: clean
+- [PASS] artifact@36.5s: clean
+- [PASS] artifact@37.5s: clean
+- [PASS] artifact@38.5s: clean
+- [PASS] artifact@39.5s: clean
+- [PASS] artifact@40.5s: clean
+- [PASS] artifact@41.5s: clean
+- [PASS] artifact@42.5s: clean
+- [PASS] artifact@43.5s: clean
+- [PASS] artifact@44.5s: clean
+- [PASS] artifact@45.5s: clean
+- [PASS] artifact@46.5s: clean
+- [FAIL] artifact@47.5s: The image shows a turtle partially submerged in a shallow pool of water, with two large, dark, elephant-like feet (or po
+- [FAIL] artifact@48.5s: The image features a cat peeking through the slats of a rusted metal drain grate. The cat’s face is visible, with clear 
+- [FAIL] artifact@49.5s: The image shows a cat peeking through the slats of a rusted metal drain grate. The cat’s face is visible, with wide, exp
+- [FAIL] artifact@50.5s: The image features several animated characters: a group of otters and a small cat, seemingly emerging from a drain or se
+- [FAIL] artifact@51.5s: The image features three animated characters: two otters and one small kitten. The otters are depicted in a vertical sta
+- [PASS] artifact@52.5s: clean
+- [PASS] artifact@53.5s: clean
+- [PASS] artifact@54.5s: clean
+- [PASS] artifact@55.5s: clean
+- [PASS] artifact@56.5s: clean
+- [PASS] artifact@57.5s: clean
+- [PASS] artifact@58.5s: clean
+- [PASS] artifact@59.5s: clean
+- [PASS] audio@0.2s: 'This is Doug. Doug used to hun' expected @0.2s, heard @0.0s (4/4 words)
+- [PASS] audio@4.9s: 'Not because he wanted to. His ' expected @4.9s, heard @5.0s (4/4 words)
+- [PASS] audio@8.9s: 'One night, his nose found a be' expected @8.9s, heard @9.0s (4/4 words)
+- [PASS] audio@12.9s: 'But this bear wasn't hurting a' expected @12.9s, heard @13.0s (4/4 words)
+- [PASS] audio@17.8s: 'Huh. That bear is... cool.' expected @17.8s, heard @18.0s (3/3 words)
+- [PASS] audio@21.1s: 'So Doug led his owner away fro' expected @21.1s, heard @21.0s (4/4 words)
+- [PASS] audio@24.9s: '...right into a ditch.' expected @24.9s, heard @25.0s (3/3 words)
+- [PASS] audio@28.3s: 'Then he went back.' expected @28.3s, heard @28.0s (3/3 words)
+- [FAIL] audio@30.6s: 'Hi.' NOT HEARD anywhere near @30.6s (no transcript segment covers that moment)
+- [PASS] audio@32.5s: 'That bear was Hank. Doug never' expected @32.5s, heard @32.0s (4/4 words)
+- [PASS] audio@35.5s: 'Now they rescue animals.' expected @35.5s, heard @35.0s (3/3 words)
+- [PASS] audio@38.3s: 'Rolling.' expected @38.3s, heard @38.0s (1/1 words)
+- [PASS] audio@39.2s: 'A fire wagon, and a crew that'' expected @39.2s, heard @39.0s (4/4 words)
+- [PASS] audio@58.1s: 'Rolling.' expected @58.1s, heard @57.0s (1/1 words)

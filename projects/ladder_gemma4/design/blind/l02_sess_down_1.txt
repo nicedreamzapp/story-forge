@@ -1,0 +1,5 @@
+(1) The image shows a digital interface, likely from a software application or operating system, displaying a list of tasks or projects across three devices: M1, M2, and PC. Each entry includes a title, a brief description, a status indicator (e.g., "NEEDS YOU", "NEW ANSWER", "cooking"), and timestamps or resource usage (CPU, RAM, GPU).
+
+(2) The interface is vertically arranged, with device-specific task lists stacked one above the other. The M1 section is at the top, followed by M2, then PC. Each section has a colored header (purple for M1, blue for M2, orange for PC) and contains task cards with icons, text, and status badges. At the bottom, there is a control panel with device selection buttons (M1, M2, PC) and toggles for "CLOUD" and "LOCAL".
+
+(3) Nothing in the image touches the ground, as

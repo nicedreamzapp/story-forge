@@ -14,6 +14,7 @@
 #   bin/forge-session "hank and doug"
 set -u
 SF="$HOME/Desktop/PROJECTS/story-forge"
+BRIEF_ONLY=0; [ "${1:-}" = "--brief-only" ] && { BRIEF_ONLY=1; shift; }
 WHAT="${1:-}"
 
 cd "$SF" || exit 1
@@ -48,6 +49,10 @@ BRIEF="/tmp/forge_session_brief.txt"
   echo "Give me a one-screen summary of where the film stands and the single most useful"
   echo "next action, then ask what I want to work on. Keep it short — table first."
 } > "$BRIEF"
+
+# Moonstone (2026-10-05, Matt: "fix story forge to open a chat too, not some stupid window"):
+# --brief-only stops here and prints the briefing; the Moonstone dock sends it as the chat's first message.
+if [ "${BRIEF_ONLY:-0}" = 1 ]; then cat "$BRIEF"; exit 0; fi
 
 # 4. hand over to a real terminal session, with the briefing as the opening prompt
 #    (Ghostty since 2026-09-16 — Terminal.app crashes on macOS 27.0; the old

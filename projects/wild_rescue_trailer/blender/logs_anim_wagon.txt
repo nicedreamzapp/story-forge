@@ -1,0 +1,64 @@
+ℹ️  blenderkit: Verbose is enabled [23:44:22.618, addon_updater.py:150]
+ℹ️  blenderkit: Read in JSON settings from file [23:44:22.618, addon_updater.py:150]
+ℹ️  blenderkit: Ports reordered so first port is now 62485 (previous index was 0) [23:44:22.619, client_lib.py:129]
+Created history step bf6e2bb9-7e91-47af-864e-438b1389843a
+ℹ️  blenderkit: Created new search history step [23:44:22.621, search.py:2525]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:44:22.621, download.py:416]
+00:00.337  blend            | Read blend: "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/wagon.blend"
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:44:22.663, download.py:416]
+00:02.816  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0001.png'
+00:03.827  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0002.png'
+00:04.755  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0003.png'
+00:05.747  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0004.png'
+00:07.189  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0005.png'
+00:08.442  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0006.png'
+00:09.527  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0007.png'
+00:10.431  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0008.png'
+00:11.203  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0009.png'
+00:12.005  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0010.png'
+00:12.874  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0011.png'
+00:13.875  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0012.png'
+00:14.645  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0013.png'
+00:15.416  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0014.png'
+00:16.212  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0015.png'
+00:17.202  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0016.png'
+00:17.961  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0017.png'
+00:18.764  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0018.png'
+00:19.542  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0019.png'
+00:20.595  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0020.png'
+00:21.347  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0021.png'
+00:22.087  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0022.png'
+00:22.925  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0023.png'
+00:23.993  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0024.png'
+00:24.773  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0025.png'
+00:25.537  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0026.png'
+00:26.274  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0027.png'
+00:27.403  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0028.png'
+00:28.175  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0029.png'
+00:28.956  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0030.png'
+00:29.850  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0031.png'
+00:30.617  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0032.png'
+00:31.207  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0033.png'
+00:32.009  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0034.png'
+00:32.911  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0035.png'
+00:33.799  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0036.png'
+00:34.579  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0037.png'
+00:35.730  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0038.png'
+00:36.553  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0039.png'
+00:37.401  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0040.png'
+00:38.257  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0041.png'
+00:39.282  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0042.png'
+00:40.109  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0043.png'
+00:40.950  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0044.png'
+00:41.795  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0045.png'
+00:42.655  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0046.png'
+00:43.480  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0047.png'
+00:44.307  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_wagon_track/f_0048.png'
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+ANIM_TIME A_wagon_track 43.9s (0.9s/frame)
+ℹ️  blenderkit: Unregistering BlenderKit add-on [23:45:06.679, __init__.py:2881]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:45:06.679, download.py:416]
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:46:23)
+
+Blender quit

@@ -281,3 +281,5 @@ Scene 2's call → Scene 8's goodbye → full assembly with song, titles, and QC
 
 Ellie first, because she is the fix that matters most: the moment the audience sees who
 is behind that door, every other scene starts working.
+
+> **CANON CONFLICT RESOLVED 2026-10-31 10:57 PM:** Matt: "Follow all of Jeremy's ideas." The circus train story is Jeremy's version (train derailing at a gap, army of metal-strapped ants). The new trailer lives in projects/wild_rescue_trailer, built fresh.

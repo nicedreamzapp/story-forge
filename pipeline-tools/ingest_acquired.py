@@ -29,9 +29,8 @@ from pathlib import Path
 
 IMG_EXT = {".png", ".jpg", ".jpeg", ".webp"}
 VID_EXT = {".mp4", ".mov", ".webm", ".m4v", ".mkv"}
-# PySceneDetect is not in the mlx venv; the LatentSync venv carries it (0.6.1).
-SCENE_PYS = [Path.home() / "AI_Models/LatentSync/.venv/bin/python",
-             Path.home() / ".local/mlx-server/bin/python"]
+# PySceneDetect 0.6.1 lives in the mlx-server venv (moved there 2026-10-24 when LatentSync was deleted).
+SCENE_PYS = [Path.home() / ".local/mlx-server/bin/python"]
 SCENE_SNIPPET = r"""
 import json, sys
 from scenedetect import detect, ContentDetector

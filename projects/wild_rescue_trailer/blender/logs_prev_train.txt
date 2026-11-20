@@ -1,0 +1,29 @@
+ℹ️  blenderkit: Verbose is enabled [23:41:52.085, addon_updater.py:150]
+ℹ️  blenderkit: Read in JSON settings from file [23:41:52.085, addon_updater.py:150]
+ℹ️  blenderkit: Ports reordered so first port is now 62485 (previous index was 0) [23:41:52.086, client_lib.py:129]
+Created history step a435f987-4846-47b4-87d0-a03961828e77
+ℹ️  blenderkit: Created new search history step [23:41:52.089, search.py:2525]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:41:52.090, download.py:416]
+00:00.353  blend            | Read blend: "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/train.blend"
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:41:52.187, download.py:416]
+00:02.432  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_preview_B18_track_end.png'
+00:04.707  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_preview_B31_wheels_edge.png'
+00:07.000  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_preview_B27_whistle.png'
+00:09.359  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_preview_B17_train_wide.png'
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME _preview_B18_track_end.png 2.0s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME _preview_B31_wheels_edge.png 2.2s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME _preview_B27_whistle.png 2.2s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME _preview_B17_train_wide.png 2.3s
+ℹ️  blenderkit: Unregistering BlenderKit add-on [23:42:01.151, __init__.py:2881]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:42:01.151, download.py:416]
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:46:23)
+
+Blender quit

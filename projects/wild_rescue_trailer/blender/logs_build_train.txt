@@ -1,0 +1,19 @@
+ℹ️  blenderkit: Verbose is enabled [23:45:43.960, addon_updater.py:150]
+ℹ️  blenderkit: Read in JSON settings from file [23:45:43.960, addon_updater.py:150]
+ℹ️  blenderkit: Ports reordered so first port is now 62485 (previous index was 0) [23:45:43.961, client_lib.py:129]
+Created history step 3d91e1d1-cffc-4e88-b836-07f9079ce1e7
+ℹ️  blenderkit: Created new search history step [23:45:43.963, search.py:2525]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:45:43.963, download.py:416]
+ℹ️  blenderkit: Unregistering BlenderKit add-on [23:45:43.971, __init__.py:2881]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:45:43.971, download.py:416]
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+terrain grid 684 x 640
+INSTANCER ant_river 30002
+INSTANCER ant_bridge 14093
+INSTANCER ant_macro 21
+Info: Saved as "train.blend"
+SAVED train.blend
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:46:23)
+
+Blender quit

@@ -1,0 +1,49 @@
+ℹ️  blenderkit: Verbose is enabled [23:43:45.121, addon_updater.py:150]
+ℹ️  blenderkit: Read in JSON settings from file [23:43:45.122, addon_updater.py:150]
+ℹ️  blenderkit: Ports reordered so first port is now 62485 (previous index was 0) [23:43:45.123, client_lib.py:129]
+Created history step 68b79cf7-60c4-4ef8-bc12-f2db2c181014
+ℹ️  blenderkit: Created new search history step [23:43:45.126, search.py:2525]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:43:45.126, download.py:416]
+00:00.334  blend            | Read blend: "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/train.blend"
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:43:45.216, download.py:416]
+00:04.655  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B18_track_end.png'
+00:08.425  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B31_wheels_edge.png'
+00:11.621  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B27_whistle.png'
+00:14.400  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B17_train_wide.png'
+00:18.494  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B07_train_wheels.png'
+00:21.679  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B21_ground.png'
+00:25.185  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B22_ant_river.png'
+00:28.512  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B23_ant_macro.png'
+00:32.687  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B24_ant_bridge.png'
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B18_track_end.png 4.2s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B31_wheels_edge.png 3.7s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B27_whistle.png 3.1s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B17_train_wide.png 2.7s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B07_train_wheels.png 4.0s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B21_ground.png 3.1s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B22_ant_river.png 3.5s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B23_ant_macro.png 3.3s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B24_ant_bridge.png 4.1s
+ℹ️  blenderkit: Unregistering BlenderKit add-on [23:44:17.537, __init__.py:2881]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:44:17.538, download.py:416]
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:46:23)
+
+Blender quit

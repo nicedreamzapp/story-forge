@@ -1,0 +1,132 @@
+# continuity_check — hank_doug_wild_rescue_trailer_v52.mp4
+**Verdict: FAIL** — 25 violation(s)
+Rules only catch what someone thought of. ALSO read final/story_sheet.png + story_sheet.md against the story.
+
+- no_text_outside_title broken in r16_title at 53.8s
+- young_hank_is_hank broken in r03_found at 9.1s
+- young_hank_is_hank broken in r09_walkaway at 32.4s
+- lantern_on_post broken in r11_rollout at 39.5s
+- lantern_unlit_3_4 broken in r06_lead at 21.0s
+- lantern_unlit_3_4 broken in r07_ditch at 25.2s
+- lantern_unlit_3_4 broken in r16_title at 53.8s
+- lantern_lit_13_14 broken in r01_hunt at 0.0s
+- lantern_lit_13_14 broken in r02_lookback at 5.0s
+- lantern_lit_13_14 broken in r03_found at 9.1s
+- lantern_lit_13_14 broken in r04_fox at 13.0s
+- lantern_lit_13_14 broken in r05_watch at 17.4s
+- lantern_lit_13_14 broken in r06_lead at 21.0s
+- lantern_lit_13_14 broken in r07_ditch at 25.2s
+- lantern_lit_13_14 broken in r08_hi at 28.8s
+- lantern_lit_13_14 broken in r09_walkaway at 32.4s
+- lantern_lit_13_14 broken in r10_bench at 36.5s
+- lantern_lit_13_14 broken in r11_rollout at 39.5s
+- lantern_lit_13_14 broken in r12_goat at 44.3s
+- lantern_lit_13_14 broken in r13_turtle at 46.7s
+- lantern_lit_13_14 broken in r14_kitten at 49.1s
+- lantern_lit_13_14 broken in r15_otters at 51.4s
+- lantern_lit_13_14 broken in r17_black at 61.8s
+- wagon_rolls_right broken in r11_rollout at 39.5s
+- one_person_max broken in r07_ditch at 25.2s
+
+## Full log
+- [PASS] no_humans @ r01_hunt (0.0s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_humans @ r02_lookback (5.0s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_humans @ r03_found (9.1s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_humans @ r04_fox (13.0s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_humans @ r05_watch (17.4s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_humans @ r08_hi (28.8s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_humans @ r09_walkaway (32.4s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_humans @ r10_bench (36.5s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_humans @ r11_rollout (39.5s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_humans @ r12_goat (44.3s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_humans @ r13_turtle (46.7s): ['NO', 'YES', 'NO'] (expect NO)
+- [PASS] no_humans @ r14_kitten (49.1s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_humans @ r15_otters (51.4s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_humans @ r16_title (53.8s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_text_outside_title @ r01_hunt (0.0s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_text_outside_title @ r02_lookback (5.0s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_text_outside_title @ r03_found (9.1s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_text_outside_title @ r04_fox (13.0s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_text_outside_title @ r05_watch (17.4s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_text_outside_title @ r06_lead (21.0s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_text_outside_title @ r07_ditch (25.2s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_text_outside_title @ r08_hi (28.8s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_text_outside_title @ r09_walkaway (32.4s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_text_outside_title @ r10_bench (36.5s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_text_outside_title @ r11_rollout (39.5s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_text_outside_title @ r12_goat (44.3s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_text_outside_title @ r13_turtle (46.7s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_text_outside_title @ r14_kitten (49.1s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_text_outside_title @ r15_otters (51.4s): ['NO', 'NO', 'NO'] (expect NO)
+- [FAIL] no_text_outside_title @ r16_title (53.8s): ['YES', 'YES', 'YES'] (expect NO)
+- [PASS] no_text_outside_title @ r17_black (61.8s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] hank_colour @ r10_bench (36.5s): ['YES', 'YES', 'YES'] (expect YES)
+- [PASS] hank_colour @ r11_rollout (39.5s): ['YES', 'YES', 'YES'] (expect YES)
+- [PASS] hank_colour @ r15_otters (51.4s): ['YES', 'YES', 'YES'] (expect YES)
+- [FAIL] young_hank_is_hank @ r03_found (9.1s): ['YES', 'NO', 'NO'] (expect YES)
+- [PASS] young_hank_is_hank @ r08_hi (28.8s): ['YES', 'YES', 'YES'] (expect YES)
+- [FAIL] young_hank_is_hank @ r09_walkaway (32.4s): ['NO', 'NO', 'NO'] (expect YES)
+- [PASS] doug_colour @ r10_bench (36.5s): ['YES', 'YES', 'YES'] (expect YES)
+- [PASS] doug_colour @ r11_rollout (39.5s): ['YES', 'NO', 'YES'] (expect YES)
+- [PASS] doug_colour @ r03_found (9.1s): ['YES', 'YES', 'YES'] (expect YES)
+- [PASS] doug_colour @ r08_hi (28.8s): ['YES', 'YES', 'YES'] (expect YES)
+- [PASS] doug_colour @ r09_walkaway (32.4s): ['YES', 'YES', 'YES'] (expect YES)
+- [PASS] doug_colour @ r01_hunt (0.0s): ['YES', 'YES', 'YES'] (expect YES)
+- [PASS] doug_colour @ r02_lookback (5.0s): ['YES', 'YES', 'YES'] (expect YES)
+- [PASS] doug_colour @ r05_watch (17.4s): ['YES', 'YES', 'YES'] (expect YES)
+- [PASS] doug_colour @ r06_lead (21.0s): ['YES', 'YES', 'YES'] (expect YES)
+- [PASS] lantern_on_post @ r10_bench (36.5s): ['YES', 'YES', 'YES'] (expect YES)
+- [FAIL] lantern_on_post @ r11_rollout (39.5s): ['NO', 'NO', 'YES'] (expect YES)
+- [PASS] lantern_light_on_post_b13 @ r16_title (53.8s): ['YES', 'YES', 'YES'] (expect YES)
+- [PASS] lantern_unlit_3_4 @ r01_hunt (0.0s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] lantern_unlit_3_4 @ r02_lookback (5.0s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] lantern_unlit_3_4 @ r03_found (9.1s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] lantern_unlit_3_4 @ r04_fox (13.0s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] lantern_unlit_3_4 @ r05_watch (17.4s): ['NO', 'NO', 'NO'] (expect NO)
+- [FAIL] lantern_unlit_3_4 @ r06_lead (21.0s): ['YES', 'YES', 'YES'] (expect NO)
+- [FAIL] lantern_unlit_3_4 @ r07_ditch (25.2s): ['YES', 'YES', 'NO'] (expect NO)
+- [PASS] lantern_unlit_3_4 @ r08_hi (28.8s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] lantern_unlit_3_4 @ r09_walkaway (32.4s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] lantern_unlit_3_4 @ r10_bench (36.5s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] lantern_unlit_3_4 @ r11_rollout (39.5s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] lantern_unlit_3_4 @ r12_goat (44.3s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] lantern_unlit_3_4 @ r13_turtle (46.7s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] lantern_unlit_3_4 @ r14_kitten (49.1s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] lantern_unlit_3_4 @ r15_otters (51.4s): ['NO', 'NO', 'NO'] (expect NO)
+- [FAIL] lantern_unlit_3_4 @ r16_title (53.8s): ['YES', 'YES', 'YES'] (expect NO)
+- [PASS] lantern_unlit_3_4 @ r17_black (61.8s): ['NO', 'NO', 'NO'] (expect NO)
+- [FAIL] lantern_lit_13_14 @ r01_hunt (0.0s): ['NO', 'NO', 'NO'] (expect YES)
+- [FAIL] lantern_lit_13_14 @ r02_lookback (5.0s): ['NO', 'NO', 'NO'] (expect YES)
+- [FAIL] lantern_lit_13_14 @ r03_found (9.1s): ['NO', 'NO', 'NO'] (expect YES)
+- [FAIL] lantern_lit_13_14 @ r04_fox (13.0s): ['NO', 'NO', 'NO'] (expect YES)
+- [FAIL] lantern_lit_13_14 @ r05_watch (17.4s): ['NO', 'NO', 'NO'] (expect YES)
+- [FAIL] lantern_lit_13_14 @ r06_lead (21.0s): ['NO', 'NO', 'NO'] (expect YES)
+- [FAIL] lantern_lit_13_14 @ r07_ditch (25.2s): ['NO', 'YES', 'NO'] (expect YES)
+- [FAIL] lantern_lit_13_14 @ r08_hi (28.8s): ['NO', 'NO', 'NO'] (expect YES)
+- [FAIL] lantern_lit_13_14 @ r09_walkaway (32.4s): ['NO', 'NO', 'NO'] (expect YES)
+- [FAIL] lantern_lit_13_14 @ r10_bench (36.5s): ['NO', 'NO', 'NO'] (expect YES)
+- [FAIL] lantern_lit_13_14 @ r11_rollout (39.5s): ['NO', 'NO', 'NO'] (expect YES)
+- [FAIL] lantern_lit_13_14 @ r12_goat (44.3s): ['NO', 'NO', 'NO'] (expect YES)
+- [FAIL] lantern_lit_13_14 @ r13_turtle (46.7s): ['NO', 'NO', 'NO'] (expect YES)
+- [FAIL] lantern_lit_13_14 @ r14_kitten (49.1s): ['NO', 'NO', 'NO'] (expect YES)
+- [FAIL] lantern_lit_13_14 @ r15_otters (51.4s): ['NO', 'NO', 'NO'] (expect YES)
+- [PASS] lantern_lit_13_14 @ r16_title (53.8s): ['YES', 'YES', 'YES'] (expect YES)
+- [FAIL] lantern_lit_13_14 @ r17_black (61.8s): ['NO', 'NO', 'NO'] (expect YES)
+- [PASS] no_lantern_holder_flashback @ r03_found (9.1s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_lantern_holder_flashback @ r08_hi (28.8s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] no_lantern_holder_flashback @ r09_walkaway (32.4s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] flashback_cast_only @ r03_found (9.1s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] flashback_cast_only @ r08_hi (28.8s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] flashback_cast_only @ r09_walkaway (32.4s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] one_wagon @ r10_bench (36.5s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] one_wagon @ r11_rollout (39.5s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] one_wagon @ r16_title (53.8s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] camel_one_hump @ r11_rollout (39.5s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] camel_one_hump @ r16_title (53.8s): ['NO', 'NO', 'NO'] (expect NO)
+- [FAIL] wagon_rolls_right @ r11_rollout (39.5s): ['NO', 'NO', 'NO'] (expect YES)
+- [PASS] team_is_four @ r11_rollout (39.5s): ['YES', 'YES', 'YES'] (expect YES)
+- [PASS] bench_cast_only @ r10_bench (36.5s): ['NO', 'NO', 'NO'] (expect NO)
+- [PASS] owner_faceless @ r06_lead (21.0s): ['YES', 'YES', 'YES'] (expect YES)
+- [PASS] owner_faceless @ r07_ditch (25.2s): ['YES', 'YES', 'NO'] (expect YES)
+- [PASS] one_person_max @ r06_lead (21.0s): ['YES', 'YES', 'YES'] (expect YES)
+- [FAIL] one_person_max @ r07_ditch (25.2s): ['YES', 'NO', 'NO'] (expect YES)

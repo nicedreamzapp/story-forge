@@ -1,0 +1,29 @@
+ℹ️  blenderkit: Verbose is enabled [23:56:49.326, addon_updater.py:150]
+ℹ️  blenderkit: Read in JSON settings from file [23:56:49.327, addon_updater.py:150]
+ℹ️  blenderkit: Ports reordered so first port is now 62485 (previous index was 0) [23:56:49.328, client_lib.py:129]
+Created history step 5ecb8467-152b-407a-aab1-b5b249c94064
+ℹ️  blenderkit: Created new search history step [23:56:49.331, search.py:2525]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:56:49.331, download.py:416]
+00:00.291  blend            | Read blend: "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/train.blend"
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:56:49.405, download.py:416]
+00:04.011  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B18_track_end.png'
+00:07.902  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B31_wheels_edge.png'
+00:11.679  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B22_ant_river.png'
+00:15.518  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B17_train_wide.png'
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B18_track_end.png 3.6s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B31_wheels_edge.png 3.8s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B22_ant_river.png 3.7s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B17_train_wide.png 3.8s
+ℹ️  blenderkit: Unregistering BlenderKit add-on [23:57:04.624, __init__.py:2881]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:57:04.625, download.py:416]
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:46:23)
+
+Blender quit

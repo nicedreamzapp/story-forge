@@ -1,0 +1,32 @@
+R01_night_hunt r505 r404
+R02_bear_hiding n111 n333
+R03_eye_contact s101 s202
+R04_doug_leads_away n222 n333
+R05_lantern_ditch s202 s303
+R06_rails_scream b202 b303
+R07_rabbit_ears s202 s303
+R08_rabbit_thump s101 s202
+R09_hawk_cry s101 s202
+R10_prairie_whistle s101 s202
+R11_wagon_burst b101 b303
+R12_wheel b202 b303
+R13_team b202 b303
+R14_crew_side m808 m707
+R15_bench c202 c101
+R16_train_desert b202 b303
+R17_tracks_end b202 b101
+R18_hank_line c202 s202
+R19_doug_line c101 s202
+R20_ground_moves a121 a232 b303
+R21_ant_river v242 v131 b303
+R22_ant_hero s202 s303
+R23_ant_bridge b303 b202
+R24_giraffes_spot s202 s303
+R25_elephant_trumpet r505 r606
+R26_whistle b303 b101
+R27_monkey_eyes s303 s101
+R28_bridge_link a121 a343 s202
+R29_doug_tense c101 c202
+R30_wheels_edge b303 b202
+R31_ant_salute s101 s202
+R32_doug_salute s101 s303

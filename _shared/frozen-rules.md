@@ -498,3 +498,6 @@ Note: two different rules are numbered 26 (rule 26 `clip_beat`, and rule 26 the 
    (`cues.json`), and hard cuts landing on word onsets by default. A dissolve exists only
    where a cue asks for `xfade`. VO is never just laid over picture; the picture changes
    because a word said so.
+
+## Matt's voice is never altered (Matt 2026-11-13)
+Never time-stretch, pitch-shift, speed-change or effect Matt's voice (no atempo on narration). The picture is retimed to the voice, never the reverse. His own recording comes first; if a line must change, ask him to record it. A cloned line is only used after he has heard that line by itself and OK'd it, and approved lines are never re-voiced without asking. ("Why would you think I would want my voice to be changed at all? Can you bake that in.")

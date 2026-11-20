@@ -1,0 +1,17 @@
+ℹ️  blenderkit: Verbose is enabled [23:57:31.012, addon_updater.py:150]
+ℹ️  blenderkit: Read in JSON settings from file [23:57:31.013, addon_updater.py:150]
+ℹ️  blenderkit: Ports reordered so first port is now 62485 (previous index was 0) [23:57:31.014, client_lib.py:129]
+Created history step 78849e0d-34b2-4ef9-a54e-6855f0fcda1a
+ℹ️  blenderkit: Created new search history step [23:57:31.018, search.py:2525]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:57:31.018, download.py:416]
+00:00.339  blend            | Read blend: "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/wagon.blend"
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:57:31.060, download.py:416]
+00:03.063  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B16_bench.png'
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B16_bench.png 2.7s
+ℹ️  blenderkit: Unregistering BlenderKit add-on [23:57:33.802, __init__.py:2881]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:57:33.803, download.py:416]
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:46:23)
+
+Blender quit

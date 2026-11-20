@@ -1,0 +1,19 @@
+EDL  ladder_lfm25b  30.43s  12 shots  fps 30  jcut 0.0
+
+   0.00-   2.53 (2.53s) CUT   L1  on 'I'm'  kb1_1  src 0.40-2.93
+   2.53-   4.40 (1.87s) CUT   L1  on 'this'  kb2_1  src 0.40-2.27
+   4.40-   5.70 (1.30s) CUT   L1  on 'picture'  kb3_1  src 0.40-1.70
+   5.70-   8.00 (2.30s) CUT   L2  on 'I'  kb4_1  src 0.40-2.70
+   8.00-   9.93 (1.93s) CUT   L2  on 'render'  kb5_1  src 0.40-2.33
+   9.93-  12.47 (2.53s) CUT   L2  on 'all'  kb6_1  src 0.40-2.93
+  12.47-  14.67 (2.20s) CUT   L3  on 'The'  kb7_1  src 0.40-2.60
+  14.67-  17.10 (2.43s) CUT   L3  on 'zoom'  kb8_1  src 0.40-2.83
+  17.10-  18.33 (1.23s) CUT   L3  on 'frame'  kb9_1  src 0.40-1.63
+  18.33-  20.60 (2.27s) CUT   L4  on 'Every'  kb10_1  src 0.40-2.67
+  20.60-  23.03 (2.43s) CUT   L4  on 'machine'  kb11_1  src 0.40-2.83
+  23.03-  24.43 (1.40s) CUT   L4  on 'story-forge'  kb12_1  src 0.40-1.80
+  24.43-  30.43 END CARD 'LFM' (slam 0.15s after the last word)
+
+NOTES:
+  - line 1: select kb2_1 has 2.80s for a 3.17s span; it plays 1.87s, then the next select takes over on 'picture' at 4.40s
+  - line 3: select kb8_1 has 2.80s for a 3.67s span; it plays 2.43s, then the next select takes over on 'frame' at 17.10s

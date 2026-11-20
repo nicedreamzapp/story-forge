@@ -1,0 +1,5 @@
+(1) The image displays a digital interface for a software tool called "Moonstone," featuring multiple windows and panels related to code tasks, with a focus on a conversation with "Claude Code" about refactoring middleware in a codebase.
+
+(2) The interface is split into two main vertical panels. On the left, there are three stacked rectangular panels labeled M1, M2, and PC, each showing system resources (GPU, RAM) and task lists. Below these, a smaller panel shows "Claude Code on M2" with tabs for CLOUD, LOCAL, and TASKS. On the right, a larger chat-style panel shows a conversation with Claude Code, including code suggestions and user responses, with a "Send" button at the bottom right. The entire interface is set against a dark, gradient purple background with a crescent moon logo in the top-left corner.
+
+(3) Nothing in the image touches the ground; it is a digital screen interface with no physical

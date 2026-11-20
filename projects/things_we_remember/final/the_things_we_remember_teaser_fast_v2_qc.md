@@ -1,0 +1,76 @@
+# film_qc report — the_things_we_remember_teaser_fast_v2.mp4
+**Verdict: FAIL — 5 defect(s)**
+Checks run: 59 | passed: 54 | failed: 5
+
+## Defects
+- identity-across-scenes: DRIFT — The characters’ appearances vary significantly across scenes, particularly in facial features, hair, and clothing, indicating inconsistent design.
+- artifact@8.5s: The image shows a photograph being held by a hand. In the photograph, there are three figures: a man and a woman in the 
+- artifact@9.5s: The image shows a photograph being held by a hand, depicting a man and a woman posing together outdoors, with greenery i
+- artifact@10.5s: The image shows a photograph being held by a hand. In the photograph, there are two people in the foreground — a man and
+- artifact@11.5s: The image contains no animated characters. It appears to be a photograph being held by a hand, showing two figures: one 
+
+## Full log
+- [SKIP] lipsync@7.4s: claire is off-screen by design — audio-only line
+- [SKIP] lipsync@10.3s: ruth is off-screen by design — audio-only line
+- [PASS] lipsync@22.4s: lily's mouth moving in 7/7 samples (100% of a 1.4s line; need 50%)
+- [SKIP] lipsync@25.4s: daniel is off-screen by design — audio-only line
+- [SKIP] lipsync@33.6s: rememberer is off-screen by design — audio-only line
+- [SKIP] lipsync@44.3s: daniel is off-screen by design — audio-only line
+- [PASS] silence@17.6s: no. the scene is described as having no one speaking, and the characters are eit
+- [PASS] silence@30.8s: no. none of the characters are depicted with their mouths wide open as if talkin
+- [PASS] silence@40.2s: no. no character is shown with their mouth wide open; all are either still, in s
+- [FAIL] identity-across-scenes: DRIFT — The characters’ appearances vary significantly across scenes, particularly in facial features, hair, and clothing, indicating inconsistent design.
+- [PASS] artifact@0.5s: clean
+- [PASS] artifact@1.5s: clean
+- [PASS] artifact@2.5s: clean
+- [PASS] artifact@3.5s: clean
+- [PASS] artifact@4.5s: clean
+- [PASS] artifact@5.5s: clean
+- [PASS] artifact@6.5s: clean
+- [PASS] artifact@7.5s: clean
+- [FAIL] artifact@8.5s: The image shows a photograph being held by a hand. In the photograph, there are three figures: a man and a woman in the 
+- [FAIL] artifact@9.5s: The image shows a photograph being held by a hand, depicting a man and a woman posing together outdoors, with greenery i
+- [FAIL] artifact@10.5s: The image shows a photograph being held by a hand. In the photograph, there are two people in the foreground — a man and
+- [FAIL] artifact@11.5s: The image contains no animated characters. It appears to be a photograph being held by a hand, showing two figures: one 
+- [PASS] artifact@12.5s: clean
+- [PASS] artifact@13.5s: clean
+- [PASS] artifact@14.5s: clean
+- [PASS] artifact@15.5s: clean
+- [PASS] artifact@16.5s: clean
+- [PASS] artifact@17.5s: clean
+- [PASS] artifact@18.5s: clean
+- [PASS] artifact@19.5s: clean
+- [PASS] artifact@20.5s: clean
+- [PASS] artifact@21.5s: clean
+- [PASS] artifact@22.5s: clean
+- [PASS] artifact@23.5s: clean
+- [PASS] artifact@24.5s: clean
+- [PASS] artifact@25.5s: clean
+- [PASS] artifact@26.5s: clean
+- [PASS] artifact@27.5s: clean
+- [PASS] artifact@28.5s: clean
+- [PASS] artifact@29.5s: clean
+- [PASS] artifact@30.5s: clean
+- [PASS] artifact@31.5s: clean
+- [PASS] artifact@32.5s: clean
+- [PASS] artifact@33.5s: clean
+- [PASS] artifact@34.5s: clean
+- [PASS] artifact@35.5s: clean
+- [PASS] artifact@36.5s: clean
+- [PASS] artifact@37.5s: clean
+- [PASS] artifact@38.5s: clean
+- [PASS] artifact@39.5s: clean
+- [PASS] artifact@40.5s: clean
+- [PASS] artifact@41.5s: clean
+- [PASS] artifact@42.5s: clean
+- [PASS] artifact@43.5s: clean
+- [PASS] artifact@44.5s: clean
+- [PASS] artifact@45.5s: clean
+- [PASS] artifact@46.5s: clean
+- [PASS] artifact@47.5s: clean
+- [PASS] audio@7.4s: 'Mom... I don't have an uncle.' expected @7.4s, heard @0.0s (2/2 words)
+- [PASS] audio@10.3s: 'Not anymore.' expected @10.3s, heard @10.3s (1/1 words)
+- [PASS] audio@22.4s: 'He's eating with us.' expected @22.4s, heard @21.8s (2/2 words)
+- [PASS] audio@25.4s: 'Don't wake her.' expected @25.4s, heard @24.9s (1/1 words)
+- [PASS] audio@33.6s: 'I remember you... before you w' expected @33.6s, heard @35.3s (3/4 words)
+- [PASS] audio@44.3s: 'Why did you forget me?' expected @44.3s, heard @43.8s (1/1 words)

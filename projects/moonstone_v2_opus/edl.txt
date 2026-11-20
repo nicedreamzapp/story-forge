@@ -1,0 +1,13 @@
+EDL  moonstone_v2_opus  29.40s  9 shots  fps 30  jcut 0.0
+
+   0.00-   3.00 (3.00s) CUT   L1  on 'Meet'  l01_kb_icon_1  src 0.00-3.00
+   3.00-   5.53 (2.53s) CUT   L1  on 'command'  l01_kb_hero_1  src 0.00-2.53
+   5.53-   9.00 (3.47s) CUT   L1  on 'zero'  l01_kb_panels_1  src 0.00-3.47
+   9.00-  12.53 (3.53s) CUT   L2  on 'A'  l02_kb_sessions_1  src 0.00-3.53
+  12.53-  16.43 (3.90s) CUT   L2  on 'code'  l02_kb_conversation_1  src 0.00-3.90
+  16.43-  20.83 (4.40s) CUT   L2  on 'Moonstone'  l02_kb_panels_1  src 0.00-4.40
+  20.83-  21.83 (1.00s) CUT   L3  on 'Full'  l03_kb_permission_1  src 0.00-1.00
+  21.83-  23.07 (1.23s) CUT   L3  on 'Complete'  l03_kb_hero_1  src 0.00-1.23
+  23.07-  24.40 (1.33s) CUT   L3  on 'This'  l03_kb_icon_1  src 0.00-1.33
+  24.40-  29.40 END CARD 'MOONSTONE' (slam 0.15s after the last word)
+   0.80-   2.40 TITLE 'MOONSTONE' on 'Moonstone'

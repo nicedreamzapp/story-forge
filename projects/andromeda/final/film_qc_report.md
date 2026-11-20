@@ -1,0 +1,133 @@
+# film_qc report — sitka_v3.mp4
+**Verdict: FAIL — 3 defect(s)**
+Checks run: 112 | passed: 109 | failed: 3
+
+## Defects
+- artifact@32.5s: The animated character in the image is a human figure viewed from behind, standing on a rocky terrain. The figure is wea
+- artifact@33.5s: The animated character in the image is shown from behind, standing on a rocky, barren landscape. The figure appears to b
+- artifact@36.5s: The image shows a 3D-rendered character viewed from behind, bent over a small wooden chair. The character appears to be 
+
+## Full log
+- [SKIP] lipsync@0.5s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@5.7s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@15.1s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@22.6s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@31.2s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@35.7s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@44.8s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@51.8s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@62.5s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@74.9s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@81.8s: narrator is off-screen by design — audio-only line
+- [PASS] silence@4.3s: no. the man’s mouth is closed and neutral, not wide open as if talking.
+- [PASS] silence@11.6s: no. the character is shown mid-stride with no visible facial features, and there
+- [PASS] silence@20.1s: no. the man’s mouth is closed and not wide open, indicating he is not speaking.
+- [PASS] silence@28.2s: no. the image does not show any character's mouth wide open; the man is depicted
+- [PASS] silence@34.7s: no. the man’s mouth is closed and his expression is neutral, not indicating spee
+- [PASS] silence@41.5s: no. the man’s mouth is closed and he is not speaking.
+- [PASS] identity-across-scenes: CONSISTENT — The character maintains uniform design across all scenes, with consistent species, body proportions, head and ear shape, and no visible markings or alterations.
+- [PASS] artifact@0.5s: clean
+- [PASS] artifact@1.5s: clean
+- [PASS] artifact@2.5s: clean
+- [PASS] artifact@3.5s: clean
+- [PASS] artifact@4.5s: clean
+- [PASS] artifact@5.5s: clean
+- [PASS] artifact@6.5s: clean
+- [PASS] artifact@7.5s: clean
+- [PASS] artifact@8.5s: clean
+- [PASS] artifact@9.5s: clean
+- [PASS] artifact@10.5s: clean
+- [PASS] artifact@11.5s: clean
+- [PASS] artifact@12.5s: clean
+- [PASS] artifact@13.5s: clean
+- [PASS] artifact@14.5s: clean
+- [PASS] artifact@15.5s: clean
+- [PASS] artifact@16.5s: clean
+- [PASS] artifact@17.5s: clean
+- [PASS] artifact@18.5s: clean
+- [PASS] artifact@19.5s: clean
+- [PASS] artifact@20.5s: clean
+- [PASS] artifact@21.5s: clean
+- [PASS] artifact@22.5s: clean
+- [PASS] artifact@23.5s: clean
+- [PASS] artifact@24.5s: clean
+- [PASS] artifact@25.5s: clean
+- [PASS] artifact@26.5s: clean
+- [PASS] artifact@27.5s: clean
+- [PASS] artifact@28.5s: clean
+- [PASS] artifact@29.5s: clean
+- [PASS] artifact@30.5s: clean
+- [PASS] artifact@31.5s: clean
+- [FAIL] artifact@32.5s: The animated character in the image is a human figure viewed from behind, standing on a rocky terrain. The figure is wea
+- [FAIL] artifact@33.5s: The animated character in the image is shown from behind, standing on a rocky, barren landscape. The figure appears to b
+- [PASS] artifact@34.5s: clean
+- [PASS] artifact@35.5s: clean
+- [FAIL] artifact@36.5s: The image shows a 3D-rendered character viewed from behind, bent over a small wooden chair. The character appears to be 
+- [PASS] artifact@37.5s: clean
+- [PASS] artifact@38.5s: clean
+- [PASS] artifact@39.5s: clean
+- [PASS] artifact@40.5s: clean
+- [PASS] artifact@41.5s: clean
+- [PASS] artifact@42.5s: clean
+- [PASS] artifact@43.5s: clean
+- [PASS] artifact@44.5s: clean
+- [PASS] artifact@45.5s: clean
+- [PASS] artifact@46.5s: clean
+- [PASS] artifact@47.5s: clean
+- [PASS] artifact@48.5s: clean
+- [PASS] artifact@49.5s: clean
+- [PASS] artifact@50.5s: clean
+- [PASS] artifact@51.5s: clean
+- [PASS] artifact@52.5s: clean
+- [PASS] artifact@53.5s: clean
+- [PASS] artifact@54.5s: clean
+- [PASS] artifact@55.5s: clean
+- [PASS] artifact@56.5s: clean
+- [PASS] artifact@57.5s: clean
+- [PASS] artifact@58.5s: clean
+- [PASS] artifact@59.5s: clean
+- [PASS] artifact@60.5s: clean
+- [PASS] artifact@61.5s: clean
+- [PASS] artifact@62.5s: clean
+- [PASS] artifact@63.5s: clean
+- [PASS] artifact@64.5s: clean
+- [PASS] artifact@65.5s: clean
+- [PASS] artifact@66.5s: clean
+- [PASS] artifact@67.5s: clean
+- [PASS] artifact@68.5s: clean
+- [PASS] artifact@69.5s: clean
+- [PASS] artifact@70.5s: clean
+- [PASS] artifact@71.5s: clean
+- [PASS] artifact@72.5s: clean
+- [PASS] artifact@73.5s: clean
+- [PASS] artifact@74.5s: clean
+- [PASS] artifact@75.5s: clean
+- [PASS] artifact@76.5s: clean
+- [PASS] artifact@77.5s: clean
+- [PASS] artifact@78.5s: clean
+- [PASS] artifact@79.5s: clean
+- [PASS] artifact@80.5s: clean
+- [PASS] artifact@81.5s: clean
+- [PASS] artifact@82.5s: clean
+- [PASS] artifact@83.5s: clean
+- [PASS] artifact@84.5s: clean
+- [PASS] artifact@85.5s: clean
+- [PASS] artifact@86.5s: clean
+- [PASS] artifact@87.5s: clean
+- [PASS] artifact@88.5s: clean
+- [PASS] artifact@89.5s: clean
+- [PASS] artifact@90.5s: clean
+- [PASS] artifact@91.5s: clean
+- [PASS] artifact@92.5s: clean
+- [PASS] artifact@93.5s: clean
+- [PASS] audio@0.5s: 'Most exoskeletons fight your b' expected @0.5s, heard @0.6s (4/4 words)
+- [PASS] audio@5.7s: 'This is Sitka. Named after the' expected @5.7s, heard @5.7s (4/4 words)
+- [PASS] audio@15.1s: 'Your bones already carry the w' expected @15.1s, heard @11.5s (4/4 words)
+- [PASS] audio@22.6s: 'Sit down anywhere, and a light' expected @22.6s, heard @17.6s (2/4 words)
+- [PASS] audio@31.2s: 'Lean back, and two simple stra' expected @31.2s, heard @28.2s (4/4 words)
+- [PASS] audio@35.7s: 'Bend to lift, and a tendon alo' expected @35.7s, heard @33.5s (4/4 words)
+- [PASS] audio@44.8s: 'Walking and running, elastic b' expected @44.8s, heard @39.6s (4/4 words)
+- [PASS] audio@51.8s: 'Want more? Smart clutches swit' expected @51.8s, heard @46.8s (4/4 words)
+- [PASS] audio@62.5s: 'It's fully modular. The seat a' expected @62.5s, heard @58.2s (4/4 words)
+- [PASS] audio@74.9s: 'Most of the frame is 3D printe' expected @74.9s, heard @70.6s (4/4 words)
+- [PASS] audio@81.8s: 'Sitka is completely open. The ' expected @81.8s, heard @77.4s (4/4 words)

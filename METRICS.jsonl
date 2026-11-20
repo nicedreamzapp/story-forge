@@ -4525,3 +4525,211 @@
 {"shot": "s7_wide", "step": "still", "seconds": 73.1, "verdict": ""}
 {"shot": "s7_wide", "step": "judge_still", "seconds": 112.4, "verdict": "PASS"}
 {"shot": "s7_wide", "step": "animate", "seconds": 97.9, "verdict": ""}
+{"shot": "s2_wide_walk", "step": "still", "seconds": 72.1, "verdict": ""}
+{"shot": "s2_wide_walk", "step": "judge_still", "seconds": 113.3, "verdict": "PASS"}
+{"shot": "s2_wide_walk", "step": "still", "seconds": 77.7, "verdict": ""}
+{"shot": "s2_wide_walk", "step": "judge_still", "seconds": 115.2, "verdict": "PASS"}
+{"shot": "s2_wide_walk", "step": "still", "seconds": 77.8, "verdict": ""}
+{"shot": "s2_wide_walk", "step": "judge_still", "seconds": 114.2, "verdict": "PASS"}
+{"shot": "s2_wide_walk", "step": "still", "seconds": 80.1, "verdict": ""}
+{"shot": "s2_wide_walk", "step": "judge_still", "seconds": 119.6, "verdict": "PASS"}
+{"shot": "s2_wide_walk", "step": "still", "seconds": 78.4, "verdict": ""}
+{"shot": "s2_wide_walk", "step": "judge_still", "seconds": 117.5, "verdict": "PASS"}
+{"shot": "s2_wide_walk", "step": "still", "seconds": 78.0, "verdict": ""}
+{"shot": "s2_wide_walk", "step": "judge_still", "seconds": 116.1, "verdict": "PASS"}
+{"shot": "s2_wide_walk", "step": "still", "seconds": 78.5, "verdict": ""}
+{"shot": "s2_wide_walk", "step": "judge_still", "seconds": 114.6, "verdict": "PASS"}
+{"shot": "s2_wide_walk", "step": "still", "seconds": 80.1, "verdict": ""}
+{"shot": "s2_wide_walk", "step": "judge_still", "seconds": 119.7, "verdict": "PASS"}
+{"shot": "s2_wide_walk", "step": "still", "seconds": 80.4, "verdict": ""}
+{"shot": "s2_wide_walk", "step": "judge_still", "seconds": 115.4, "verdict": "PASS"}
+{"shot": "s2_wide_walk", "step": "animate", "seconds": 116.4, "verdict": ""}
+{"shot": "s4_walkback", "step": "still", "seconds": 65.6, "verdict": ""}
+{"shot": "s4_walkback", "step": "judge_still", "seconds": 102.2, "verdict": "FAIL"}
+{"shot": "s4_walkback", "step": "still", "seconds": 68.4, "verdict": ""}
+{"shot": "s4_walkback", "step": "judge_still", "seconds": 103.7, "verdict": "PASS"}
+{"shot": "s4_walkback", "step": "still", "seconds": 73.2, "verdict": ""}
+{"shot": "s4_walkback", "step": "judge_still", "seconds": 110.4, "verdict": "PASS"}
+{"shot": "s4_walkback", "step": "animate", "seconds": 119.4, "verdict": ""}
+{"shot": "s7_kneel", "step": "still", "seconds": 77.4, "verdict": ""}
+{"shot": "s7_kneel", "step": "judge_still", "seconds": 117.8, "verdict": "PASS"}
+{"shot": "s7_kneel", "step": "still", "seconds": 79.5, "verdict": ""}
+{"shot": "s7_kneel", "step": "judge_still", "seconds": 118.3, "verdict": "PASS"}
+{"shot": "s7_kneel", "step": "animate", "seconds": 110.3, "verdict": ""}
+{"shot": "s4_creek", "step": "animate", "seconds": 143.2, "verdict": ""}
+{"shot": "s8_wide", "step": "animate", "seconds": 110.3, "verdict": ""}
+{"shot": "s2_wide_walk", "step": "still", "seconds": 73.8, "verdict": ""}
+{"shot": "s2_wide_walk", "step": "judge_still", "seconds": 115.6, "verdict": "FAIL"}
+{"shot": "s2_wide_walk", "step": "still", "seconds": 77.1, "verdict": ""}
+{"shot": "s2_wide_walk", "step": "judge_still", "seconds": 115.2, "verdict": "PASS"}
+{"shot": "s2_wide_walk", "step": "animate", "seconds": 109.6, "verdict": ""}
+{"shot": "s2_wide_walk", "step": "animate", "seconds": 101.8, "verdict": ""}
+{"shot": "s2_wide_walk", "step": "animate", "seconds": 102.3, "verdict": ""}
+{"shot": "s4_walkback", "step": "animate", "seconds": 107.1, "verdict": ""}
+{"shot": "s2_wide_walk", "step": "animate", "seconds": 108.7, "verdict": ""}
+{"shot": "s4_walkback", "step": "animate", "seconds": 106.5, "verdict": ""}
+{"shot": "s2_wide_walk", "step": "animate", "seconds": 136.3, "verdict": ""}
+{"shot": "s4_walkback", "step": "animate", "seconds": 138.6, "verdict": ""}
+{"shot": "m_woman40", "step": "still", "seconds": 269.9, "verdict": ""}
+{"shot": "m_woman40", "step": "judge_still", "seconds": 375.0, "verdict": "PASS"}
+{"shot": "m_woman40", "step": "still", "seconds": 183.9, "verdict": ""}
+{"shot": "m_woman40", "step": "judge_still", "seconds": 286.0, "verdict": "PASS"}
+{"shot": "m_woman40", "step": "still", "seconds": 137.9, "verdict": ""}
+{"shot": "m_woman40", "step": "judge_still", "seconds": 233.2, "verdict": "PASS"}
+{"shot": "s7_coat", "step": "still", "seconds": 95.2, "verdict": ""}
+{"shot": "s7_coat", "step": "judge_still", "seconds": 201.5, "verdict": "PASS"}
+{"shot": "s7_coat", "step": "animate", "seconds": 173.2, "verdict": ""}
+{"shot": "s6_breath", "step": "still", "seconds": 91.2, "verdict": ""}
+{"shot": "s6_breath", "step": "judge_still", "seconds": 193.0, "verdict": "PASS"}
+{"shot": "s6_breath", "step": "animate", "seconds": 113.6, "verdict": ""}
+{"shot": "t1_hand", "step": "still", "seconds": 50.2, "verdict": ""}
+{"shot": "t1_hand", "step": "judge_still", "seconds": 92.4, "verdict": "PASS"}
+{"shot": "t2_bluff", "step": "still", "seconds": 46.8, "verdict": ""}
+{"shot": "t2_bluff", "step": "judge_still", "seconds": 65.6, "verdict": "PASS"}
+{"shot": "t2_bluff_real", "step": "still", "seconds": 65.8, "verdict": ""}
+{"shot": "t2_bluff_real", "step": "judge_still", "seconds": 86.5, "verdict": "PASS"}
+{"shot": "t3_window", "step": "still", "seconds": 44.1, "verdict": ""}
+{"shot": "t3_window", "step": "judge_still", "seconds": 85.1, "verdict": "PASS"}
+{"shot": "t3_real", "step": "still", "seconds": 59.3, "verdict": ""}
+{"shot": "t3_real", "step": "judge_still", "seconds": 93.6, "verdict": "PASS"}
+{"shot": "t4_road", "step": "still", "seconds": 42.9, "verdict": ""}
+{"shot": "t4_road", "step": "judge_still", "seconds": 79.7, "verdict": "FAIL"}
+{"shot": "t4_road", "step": "still", "seconds": 43.7, "verdict": ""}
+{"shot": "t4_road", "step": "judge_still", "seconds": 78.3, "verdict": "FAIL"}
+{"shot": "t4_road", "step": "still", "seconds": 43.6, "verdict": ""}
+{"shot": "t4_road", "step": "judge_still", "seconds": 83.9, "verdict": "FAIL"}
+{"shot": "t4_road", "step": "still", "seconds": 43.7, "verdict": ""}
+{"shot": "t4_road", "step": "judge_still", "seconds": 80.2, "verdict": "FAIL"}
+{"shot": "t4_road", "step": "still", "seconds": 46.4, "verdict": ""}
+{"shot": "t4_road", "step": "judge_still", "seconds": 83.4, "verdict": "FAIL"}
+{"shot": "t4_road", "step": "still", "seconds": 47.1, "verdict": ""}
+{"shot": "t4_road", "step": "judge_still", "seconds": 83.6, "verdict": "FAIL"}
+{"shot": "t4_road", "step": "still", "seconds": 46.5, "verdict": ""}
+{"shot": "t4_road", "step": "judge_still", "seconds": 84.1, "verdict": "FAIL"}
+{"shot": "t4_road", "step": "still", "seconds": 47.1, "verdict": ""}
+{"shot": "t4_road", "step": "judge_still", "seconds": 85.9, "verdict": "FAIL"}
+{"shot": "t4_road", "step": "still", "seconds": 47.7, "verdict": ""}
+{"shot": "t4_road", "step": "judge_still", "seconds": 82.4, "verdict": "FAIL"}
+{"shot": "t4_road", "step": "still", "seconds": 47.0, "verdict": ""}
+{"shot": "t4_road", "step": "judge_still", "seconds": 85.7, "verdict": "FAIL"}
+{"shot": "t4_road", "step": "still", "seconds": 47.4, "verdict": ""}
+{"shot": "t4_road", "step": "judge_still", "seconds": 83.1, "verdict": "FAIL"}
+{"shot": "t4_road", "step": "still", "seconds": 47.3, "verdict": ""}
+{"shot": "t4_road", "step": "judge_still", "seconds": 89.1, "verdict": "FAIL"}
+{"shot": "t4_road_real", "step": "still", "seconds": 40.8, "verdict": ""}
+{"shot": "t4_road_real", "step": "judge_still", "seconds": 83.1, "verdict": "PASS"}
+{"shot": "t4_road_painted", "step": "still", "seconds": 63.6, "verdict": ""}
+{"shot": "t4_road_painted", "step": "judge_still", "seconds": 97.1, "verdict": "PASS"}
+{"shot": "t5_level", "step": "still", "seconds": 44.3, "verdict": ""}
+{"shot": "t5_level", "step": "judge_still", "seconds": 72.9, "verdict": "PASS"}
+{"shot": "t5_level_painted", "step": "still", "seconds": 60.3, "verdict": ""}
+{"shot": "t5_level_painted", "step": "judge_still", "seconds": 84.2, "verdict": "PASS"}
+{"shot": "t1_hand", "step": "animate", "seconds": 154.6, "verdict": ""}
+{"shot": "t2_bluff", "step": "animate", "seconds": 150.7, "verdict": ""}
+{"shot": "t3_window", "step": "animate", "seconds": 142.8, "verdict": ""}
+{"shot": "t4_road_real", "step": "animate", "seconds": 141.9, "verdict": ""}
+{"shot": "t5_level", "step": "animate", "seconds": 145.5, "verdict": ""}
+{"shot": "c1_hand", "step": "still", "seconds": 42.5, "verdict": ""}
+{"shot": "c1_hand", "step": "judge_still", "seconds": 74.2, "verdict": "PASS"}
+{"shot": "c1_hand", "step": "animate", "seconds": 140.8, "verdict": ""}
+{"shot": "c2_bluff", "step": "still", "seconds": 44.6, "verdict": ""}
+{"shot": "c2_bluff", "step": "judge_still", "seconds": 65.8, "verdict": "PASS"}
+{"shot": "c2_bluff", "step": "animate", "seconds": 133.5, "verdict": ""}
+{"shot": "r3_dance", "step": "still", "seconds": 64.2, "verdict": ""}
+{"shot": "r3_dance", "step": "judge_still", "seconds": 101.1, "verdict": "FAIL"}
+{"shot": "r3_dance", "step": "still", "seconds": 61.3, "verdict": ""}
+{"shot": "r3_dance", "step": "judge_still", "seconds": 101.0, "verdict": "FAIL"}
+{"shot": "r3_dance", "step": "still", "seconds": 71.4, "verdict": ""}
+{"shot": "r3_dance", "step": "judge_still", "seconds": 114.4, "verdict": "PASS"}
+{"shot": "r3_dance", "step": "animate", "seconds": 177.0, "verdict": ""}
+{"shot": "r4_signal", "step": "still", "seconds": 63.8, "verdict": ""}
+{"shot": "r4_signal", "step": "judge_still", "seconds": 101.2, "verdict": "PASS"}
+{"shot": "r4_signal", "step": "animate", "seconds": 147.4, "verdict": ""}
+{"shot": "r5_answer", "step": "still", "seconds": 64.0, "verdict": ""}
+{"shot": "r5_answer", "step": "judge_still", "seconds": 100.1, "verdict": "FAIL"}
+{"shot": "r5_answer", "step": "still", "seconds": 59.6, "verdict": ""}
+{"shot": "r5_answer", "step": "judge_still", "seconds": 94.5, "verdict": "FAIL"}
+{"shot": "r5_answer", "step": "still", "seconds": 59.9, "verdict": ""}
+{"shot": "r5_answer", "step": "judge_still", "seconds": 88.0, "verdict": "PASS"}
+{"shot": "r5_answer", "step": "animate", "seconds": 149.1, "verdict": ""}
+{"shot": "r3_dance", "step": "animate", "seconds": 137.4, "verdict": ""}
+{"shot": "r5_answer", "step": "animate", "seconds": 147.1, "verdict": ""}
+{"shot": "c3_dance", "step": "still", "seconds": 68.5, "verdict": ""}
+{"shot": "c3_dance", "step": "judge_still", "seconds": 109.9, "verdict": "PASS"}
+{"shot": "c3_dance", "step": "animate", "seconds": 153.2, "verdict": ""}
+{"shot": "c4_signal", "step": "still", "seconds": 64.4, "verdict": ""}
+{"shot": "c4_signal", "step": "judge_still", "seconds": 102.2, "verdict": "FAIL"}
+{"shot": "c4_signal", "step": "still", "seconds": 60.1, "verdict": ""}
+{"shot": "c4_signal", "step": "judge_still", "seconds": 96.7, "verdict": "PASS"}
+{"shot": "c4_signal", "step": "animate", "seconds": 149.6, "verdict": ""}
+{"shot": "n3_backlit", "step": "still", "seconds": 66.5, "verdict": ""}
+{"shot": "n3_backlit", "step": "judge_still", "seconds": 109.3, "verdict": "PASS"}
+{"shot": "n3_backlit", "step": "animate", "seconds": 148.9, "verdict": ""}
+{"shot": "n4_lights", "step": "still", "seconds": 56.7, "verdict": ""}
+{"shot": "n4_lights", "step": "judge_still", "seconds": 95.3, "verdict": "PASS"}
+{"shot": "n4_lights", "step": "animate", "seconds": 147.7, "verdict": ""}
+{"shot": "n5_face", "step": "still", "seconds": 70.4, "verdict": ""}
+{"shot": "n5_face", "step": "judge_still", "seconds": 106.2, "verdict": "PASS"}
+{"shot": "n5_face", "step": "animate", "seconds": 155.0, "verdict": ""}
+{"shot": "twr_teaser", "step": "stills_krea2_x26", "seconds": 728}
+{"shot": "twr_teaser", "step": "i2v_ltx25_lowram_5s", "seconds": 118}
+{"shot": "twr_s07", "step": "a2v_ltx25_lowram", "seconds": 749}
+{"shot": "twr_teaser", "step": "voices_qwen3tts_x29", "seconds": 240}
+{"shot": "twr_teaser", "step": "film_qc", "seconds": 300}
+{"shot": "twr_trailer", "step": "stills_krea2_x28", "seconds": 840}
+{"shot": "twr_trailer", "step": "voices_qwen3tts_x20_score", "seconds": 860}
+{"shot": "twr_trailer_t10", "step": "i2v_ltx25_lowram_3s", "seconds": 76}
+{"shot": "twr_trailer_t01", "step": "i2v_ltx25_lowram_5s", "seconds": 132}
+{"shot": "twr_trailer_t03", "step": "i2v_ltx25_lowram_3s", "seconds": 83}
+{"shot": "twr_trailer_t04", "step": "i2v_ltx25_lowram_4s", "seconds": 116}
+{"shot": "twr_trailer_t13", "step": "i2v_ltx25_lowram_5s", "seconds": 110}
+{"shot": "twr_trailer_t17", "step": "i2v_ltx25_lowram_3s", "seconds": 76}
+{"shot": "twr_trailer_t18", "step": "i2v_ltx25_lowram_3s", "seconds": 76}
+{"shot": "twr_trailer_t11", "step": "a2v_ltx25_lowram", "seconds": 868}
+{"shot": "twr_trailer_t14", "step": "a2v_ltx25_lowram", "seconds": 894}
+{"shot": "twr_trailer_t10", "step": "i2v_ltx25_lowram_3s", "seconds": 78}
+{"shot": "twr_trailer_t03r", "step": "i2v_ltx25_lowram_3s", "seconds": 77}
+{"shot": "twr_trailer", "step": "compose_picture_90s", "seconds": 45}
+{"shot": "twr_trailer", "step": "film_qc_90s", "seconds": 215}
+{"shot": "twr_trailer_90_fast", "step": "compose_mix_mux", "seconds": 174}
+{"shot": "twr_trailer_90_fast", "step": "film_qc", "seconds": 186}
+{"shot": "twr_trailer_t13", "step": "i2v_ltx25_hq_4s", "seconds": 830}
+{"shot": "twr_trailer_t18", "step": "i2v_ltx25_hq_3s", "seconds": 867}
+{"shot": "twr_trailer_t04", "step": "i2v_ltx25_hq_4s", "seconds": 652}
+{"shot": "twr_trailer_t01", "step": "i2v_ltx25_hq_4s", "seconds": 682}
+{"shot": "twr_trailer_t14", "step": "a2v_ltx25_hq", "seconds": 761}
+{"shot": "twr_trailer_upscale", "step": "upscale_route_x5", "seconds": 0}
+{"shot": "twr_trailer", "step": "upscale_seedvr2_x5", "seconds": 4543}
+{"shot": "twr_trailer", "step": "upscale_seedvr2_x5", "seconds": 2622}
+{"shot": "twr_trailer_90_best", "step": "compose_mix_mux", "seconds": 192}
+{"shot": "twr_trailer_90_best", "step": "film_qc", "seconds": 187}
+{"shot": "twr_short", "step": "stills_krea2_x38", "seconds": 1154}
+{"shot": "twr_short", "step": "voices_qwen3tts_x32_score", "seconds": 44}
+{"shot": "twr_sh06", "step": "i2v_ltx25_lowram_4s", "seconds": 99}
+{"shot": "twr_sh10", "step": "i2v_ltx25_lowram_4s", "seconds": 93}
+{"shot": "twr_sh12", "step": "i2v_ltx25_lowram_4s", "seconds": 90}
+{"shot": "twr_sh13", "step": "i2v_ltx25_lowram_5s", "seconds": 107}
+{"shot": "twr_sh13b", "step": "i2v_ltx25_lowram_3s", "seconds": 76}
+{"shot": "twr_sh14", "step": "i2v_ltx25_lowram_4s", "seconds": 89}
+{"shot": "twr_sh15", "step": "i2v_ltx25_lowram_4s", "seconds": 89}
+{"shot": "twr_sh16", "step": "i2v_ltx25_lowram_4s", "seconds": 90}
+{"shot": "twr_sh18", "step": "i2v_ltx25_lowram_4s", "seconds": 89}
+{"shot": "twr_sh21", "step": "i2v_ltx25_lowram_5s", "seconds": 103}
+{"shot": "twr_sh22", "step": "i2v_ltx25_lowram_4s", "seconds": 89}
+{"shot": "twr_sh29", "step": "i2v_ltx25_lowram_5s", "seconds": 103}
+{"shot": "twr_sh30", "step": "i2v_ltx25_lowram_5s", "seconds": 104}
+{"shot": "twr_sh31", "step": "i2v_ltx25_lowram_4s", "seconds": 88}
+{"shot": "twr_sh34", "step": "i2v_ltx25_lowram_5s", "seconds": 104}
+{"shot": "twr_sh37", "step": "i2v_ltx25_lowram_4s", "seconds": 89}
+{"shot": "twr_sh38", "step": "i2v_ltx25_lowram_5s", "seconds": 103}
+{"shot": "twr_sh32", "step": "a2v_ltx25_lowram", "seconds": 672}
+{"shot": "twr_sh36", "step": "a2v_ltx25_lowram", "seconds": 616}
+{"shot": "twr_short_3min_fast", "step": "compose_mix_mux", "seconds": 228}
+{"shot": "twr_short_3min_fast", "step": "film_qc", "seconds": 318}
+{"shot": "twr_short_3min_fast", "step": "compose_mix_mux", "seconds": 527}
+{"shot": "twr_short_sh06", "step": "i2v_ltx25_hq_4s", "seconds": 858}
+{"shot": "twr_short_sh10", "step": "i2v_ltx25_hq_4s", "seconds": 618}
+{"shot": "twr_short_3min_fast", "step": "film_qc", "seconds": 1986}
+{"shot": "twr_short_sh13", "step": "i2v_ltx25_hq_5s", "seconds": 1053}
+{"shot": "twr_short_sh14", "step": "i2v_ltx25_hq_4s", "seconds": 1102}
+{"shot": "twr_short_sh15", "step": "i2v_ltx25_hq_4s", "seconds": 1199}

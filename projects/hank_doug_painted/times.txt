@@ -1,0 +1,38 @@
+plan2 start 01:04:57
+voice done 01:05:43
+01:10:49 stills done in 288s
+01:11:21 voice s1_gull 5.91s
+01:11:58 voice s2_listen 4.37s
+01:12:35 voice s4_tangled 4.60s
+01:12:51 voice s5_found 3.51s
+01:13:08 voice s6_count 3.52s
+01:13:23 voice s7_free 1.68s
+01:13:54 voice s8_sunset 4.46s
+01:13:54 voices done in 180s
+01:14:21 music rc=0 in 20s :: 46s 'gentle warm acoustic folk, soft fingerpicked guitar, light strings, hopeful, storybook adventure, instrumental, no vocals'
+[music] saved music/bed.wav (8625 KB) after 15s
+
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]
+Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 17623.13it/s]
+
+01:14:24 music done (~30s)
+01:21:25 clip s1_gull FAILED: stral):  75%|███████▌  | 6/8 [00:20<00:06,  3.16s/it]
+Denoising (ancestral):  88%|████████▊ | 7/8 [00:23<00:03,  3.12s/it]
+Denoising (ancestral):  88%|████████▊ | 7/8 [00:26<00:03,  3.83s/it]
+
+Denoising:   0%|          | 0/3 [00:00<?, ?it/s]
+Denoising:  33%|███▎      | 1/3 [00:14<00:28, 14.47s/it]/opt/homebrew/Cellar/python@3.11/3.11.15_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+
+
+01:22 clip s1 paused by memory guard (52GB > 34GB grant) ~7 min lost; switched to --low-ram
+01:29:42 clip s1_gull 6.04s in 490s (i2v)
+01:43:35 clip s2_listen 4.38s in 833s (a2v)
+01:44:02 Song Forge off on M5 (Matt 1:43a): s4 restarted, normal distilled mode, --gb 82
+01:45:31 s3 paused by guard (103GB used > 82 grant, tight); retry --gb 105
+01:46:41 clip s3_roll 4.71s in 70s (i2v)
+01:53:12 clip s4_tangled 4.71s in 391s (a2v)
+01:59:10 clip s5_found 4.04s in 359s (a2v)
+02:05:10 clip s6_count 4.04s in 360s (a2v)
+02:06:26 clip s7_free 4.71s in 76s (i2v)
+02:06:42 clip s8_sunset FAILED: 

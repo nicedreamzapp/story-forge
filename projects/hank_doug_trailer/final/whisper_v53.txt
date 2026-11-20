@@ -1,0 +1,119 @@
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 1997.05it/s]
+== final/film_v53_audio.wav
+  0.00-  2.42 This is Doug. Doug used to hunt bears.
+  4.84-  7.60 Not because he wanted to. His owner made him.
+  8.86- 10.98 One night, his nose found a bear.
+ 12.76- 16.36 But this bear wasn't hurting anybody. He was saving a fox.
+ 17.64- 20.00 Huh. That bear is cool.
+ 20.78- 23.20 So Doug led his owner away from the bear.
+ 24.82- 26.06 Right into a ditch.
+ 28.34- 29.58 Then he went back.
+ 30.34- 31.02 Hi.
+ 32.00- 34.80 That bear was Hank. Doug never hunted again.
+ 35.50- 36.78 Now they rescue animals.
+ 36.94- 37.96 Hank and Doug.
+ 38.16- 38.84 Rolling.
+ 39.36- 42.06 A fire wagon and a crew that's all animals.
+ 44.80- 45.84 Hank and Doug.
+ 46.02- 46.96 Hank and Doug.
+ 47.50- 51.38 Over the hills when the wild things come.
+ 53.92- 55.30 Hank and Doug.
+ 55.62- 56.48 Hank and Doug.
+ 57.12- 58.76 Nobody's too big.
+ 58.76- 60.78 And nobody's too slow.
+ 61.62- 61.72 Thank you.
+ 64.26- 64.30 Thank you.
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.28- 64.28 
+== final/film_v52_audio.wav
+  0.00-  2.42 This is Doug. Doug used to hunt bears.
+  4.84-  7.60 Not because he wanted to. His owner made him.
+  8.88- 10.98 One night, his nose found a bear.
+ 12.76- 16.34 But this bear wasn't hurting anybody. He was saving a fox.
+ 17.68- 20.00 Huh. That bear is cool.
+ 20.80- 23.20 So Doug led his owner away from the bear.
+ 24.86- 26.06 Right into a ditch.
+ 28.36- 29.58 Then he went back.
+ 30.34- 31.02 Hi.
+ 32.00- 34.80 That bear was Hank. Doug never hunted again.
+ 35.48- 36.76 Now they rescue animals.
+ 38.16- 38.84 Rolling.
+ 39.34- 42.06 A fire wagon and a crew that's all animals.
+ 44.32- 45.78 Hank and Doug.
+ 45.98- 46.94 Hank and Doug.
+ 47.38- 51.42 Over the hills when the wild things call.
+ 54.36- 55.30 Hank and Doug.
+ 55.58- 56.48 Hank and Doug.
+ 57.02- 58.76 Nobody's too big.
+ 59.14- 60.72 And nobody's too...
+ 60.72- 61.86 One day.
+ 61.86- 62.02 One day.
+ 63.46- 64.26 One day.
+ 64.26- 64.26 
+ 64.26- 64.30 One day.
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.30- 64.30 
+ 64.28- 64.28 

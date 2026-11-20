@@ -1,0 +1,29 @@
+EDL  model_review_h3  105.60s  26 shots  fps 30  jcut 0.0
+
+   0.00-   2.97 (2.97s) CUT   L1  on 'This'  l01_manim_a_1  src 0.00-2.97
+   2.97-   7.77 (4.80s) CUT   L1  on 'A'  l01_manim_b_1  src 2.98-7.78
+   7.77-   9.13 (1.37s) CUT   L2  on 'On'  l02_manim_a_1  src 0.00-1.37
+   9.13-  15.10 (5.97s) CUT   L2  on 'Two'  l02_manim_b_1  src 1.36-7.32
+  15.10-  20.10 (5.00s) CUT   L3  on 'Plus'  l03_manim_a_1  src 0.00-5.00
+  20.10-  25.03 (4.93s) CUT   L3  on 'And'  l03_manim_b_1  src 4.99-9.92
+  25.03-  29.33 (4.30s) CUT   L4  on 'And'  l04_manim_a_1  src 0.00-4.30
+  29.33-  32.40 (3.07s) CUT   L5  on 'But'  l05_manim_a_1  src 0.00-3.07
+  32.40-  36.00 (3.60s) CUT   L5  on 'The'  l05_manim_b_1  src 3.05-6.65
+  36.00-  38.43 (2.43s) CUT   L6  on 'Every'  l06_manim_a_1  src 0.00-2.43
+  38.43-  41.97 (3.53s) CUT   L6  on 'So'  l06_manim_b_1  src 2.42-5.95
+  41.97-  49.17 (7.20s) CUT   L7  on 'And'  l07_manim_a_1  src 0.00-7.20
+  49.17-  50.97 (1.80s) CUT   L7  on 'Outputs'  l07_manim_b_1  src 7.18-8.98
+  50.97-  52.73 (1.77s) CUT   L8  on 'We're'  l08_manim_a_1  src 0.00-1.77
+  52.73-  57.57 (4.83s) CUT   L8  on 'And'  l08_manim_b_1  src 1.77-6.61
+  57.57-  61.17 (3.60s) CUT   L9  on 'It'  l09_manim_a_1  src 0.00-3.60
+  61.17-  63.83 (2.67s) CUT   L9  on 'We'  l09_manim_b_1  src 3.57-6.24
+  63.83-  65.10 (1.27s) CUT   L10 on 'So'  l10_manim_a_1  src 0.00-1.27
+  65.10-  74.40 (9.30s) CUT   L10 on 'We'  l10_manim_b_1  src 1.25-10.55
+  74.40-  77.77 (3.37s) CUT   L11 on 'On'  l11_manim_a_1  src 0.00-3.37
+  77.77-  81.47 (3.70s) CUT   L11 on 'And'  l11_manim_b_1  src 3.35-7.05
+  81.47-  84.23 (2.77s) CUT   L12 on 'Now'  l12_manim_a_1  src 0.00-2.77
+  84.23-  89.53 (5.30s) CUT   L12 on 'License'  l12_manim_b_1  src 2.75-8.05
+  89.53-  96.03 (6.50s) CUT   L13 on 'If'  l13_manim_a_1  src 0.00-6.50
+  96.03-  97.53 (1.50s) CUT   L14 on 'That's'  l14_manim_a_1  src 0.00-1.50
+  97.53-  99.60 (2.07s) CUT   L14 on 'Read'  l14_manim_b_1  src 1.50-3.56
+  99.60- 105.60 END CARD 'STORY FORGE' (slam 0.16s after the last word)

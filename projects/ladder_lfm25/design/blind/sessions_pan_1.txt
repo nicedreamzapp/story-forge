@@ -1,0 +1,5 @@
+(1) The image shows a digital interface, likely from a mobile or tablet device, displaying a task management or AI assistant application with multiple tabs labeled M1, M2, and PC. Each tab contains a list of tasks or queries, some marked with status indicators like "NEEDS YOU" or "NEW ANSWER," and includes metadata such as CPU/GPU usage, RAM, and timestamps.
+
+(2) The interface is vertically oriented, with a dark, gradient background transitioning from purple to blue. The top section shows M1 with tasks related to a website and AI models, followed by M2 with API and documentation tasks, and then PC with tasks involving code and error explanations. At the bottom, a section labeled "Claude Code" shows active tabs (M1, M2, PC) and options for "CLOUD" and "LOCAL." The layout is stacked, with each section clearly separated by color and borders.
+
+(3) Nothing in the image touches the ground

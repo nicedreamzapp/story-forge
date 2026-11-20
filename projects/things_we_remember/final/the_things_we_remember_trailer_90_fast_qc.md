@@ -1,0 +1,133 @@
+# film_qc report — the_things_we_remember_trailer_90_fast.mp4
+**Verdict: FAIL — 6 defect(s)**
+Checks run: 111 | passed: 105 | failed: 6
+
+## Defects
+- artifact@19.5s: The image shows a photograph being held by a hand. In the photograph, there are two people in the foreground—a man and a
+- artifact@20.5s: The image shows a photograph being held by a hand, featuring a man and a woman in the foreground, smiling, with a third 
+- artifact@21.5s: The image contains a photograph being held by a hand, showing two people in the foreground (a man and a woman) and a thi
+- artifact@22.5s: The image shows a photograph being held by a hand. On the left, there is a man with a mustache, smiling, wearing a light
+- artifact@28.5s: The image does not contain any animated characters. It depicts a dimly lit, vintage-style kitchen with a person (or shad
+- artifact@42.5s: The image does not contain any animated characters. It depicts a dimly lit bedroom scene with a child sleeping under a q
+
+## Full log
+- [SKIP] lipsync@11.5s: ruth is off-screen by design — audio-only line
+- [SKIP] lipsync@18.4s: claire is off-screen by design — audio-only line
+- [SKIP] lipsync@21.4s: ruth is off-screen by design — audio-only line
+- [SKIP] lipsync@30.0s: claire is off-screen by design — audio-only line
+- [PASS] lipsync@36.4s: lily's mouth moving in 7/7 samples (100% of a 1.4s line; need 50%)
+- [SKIP] lipsync@39.4s: daniel is off-screen by design — audio-only line
+- [PASS] lipsync@45.9s: lily's mouth moving in 12/18 samples (67% of a 3.7s line; need 50%)
+- [SKIP] lipsync@52.7s: daniel is off-screen by design — audio-only line
+- [PASS] lipsync@59.4s: lily3's mouth moving in 12/12 samples (100% of a 2.5s line; need 50%)
+- [SKIP] lipsync@71.5s: tom is off-screen by design — audio-only line
+- [SKIP] lipsync@76.0s: rememberer is off-screen by design — audio-only line
+- [SKIP] lipsync@86.7s: daniel is off-screen by design — audio-only line
+- [PASS] silence@16.2s: no. the scene is described as "nobody is speaking at this moment," and there is 
+- [PASS] silence@26.9s: no. the scene is described as having no one speaking, and no character is indica
+- [PASS] silence@34.4s: no. the scene is described as having no one speaking at the moment, and no chara
+- [PASS] silence@43.9s: no. the scene is described as silent, with no characters speaking, and no indica
+- [PASS] silence@50.5s: no. no character is depicted with their mouth wide open as if talking; the scene
+- [PASS] silence@57.3s: no. the image shows claire with her mouth closed, looking down at a radio, and n
+- [PASS] artifact@0.5s: clean
+- [PASS] artifact@1.5s: clean
+- [PASS] artifact@2.5s: clean
+- [PASS] artifact@3.5s: clean
+- [PASS] artifact@4.5s: clean
+- [PASS] artifact@5.5s: clean
+- [PASS] artifact@6.5s: clean
+- [PASS] artifact@7.5s: clean
+- [PASS] artifact@8.5s: clean
+- [PASS] artifact@9.5s: clean
+- [PASS] artifact@10.5s: clean
+- [PASS] artifact@11.5s: clean
+- [PASS] artifact@12.5s: clean
+- [PASS] artifact@13.5s: clean
+- [PASS] artifact@14.5s: clean
+- [PASS] artifact@15.5s: clean
+- [PASS] artifact@16.5s: clean
+- [PASS] artifact@17.5s: clean
+- [PASS] artifact@18.5s: clean
+- [FAIL] artifact@19.5s: The image shows a photograph being held by a hand. In the photograph, there are two people in the foreground—a man and a
+- [FAIL] artifact@20.5s: The image shows a photograph being held by a hand, featuring a man and a woman in the foreground, smiling, with a third 
+- [FAIL] artifact@21.5s: The image contains a photograph being held by a hand, showing two people in the foreground (a man and a woman) and a thi
+- [FAIL] artifact@22.5s: The image shows a photograph being held by a hand. On the left, there is a man with a mustache, smiling, wearing a light
+- [PASS] artifact@23.5s: clean
+- [PASS] artifact@24.5s: clean
+- [PASS] artifact@25.5s: clean
+- [PASS] artifact@26.5s: clean
+- [PASS] artifact@27.5s: clean
+- [FAIL] artifact@28.5s: The image does not contain any animated characters. It depicts a dimly lit, vintage-style kitchen with a person (or shad
+- [PASS] artifact@29.5s: clean
+- [PASS] artifact@30.5s: clean
+- [PASS] artifact@31.5s: clean
+- [PASS] artifact@32.5s: clean
+- [PASS] artifact@33.5s: clean
+- [PASS] artifact@34.5s: clean
+- [PASS] artifact@35.5s: clean
+- [PASS] artifact@36.5s: clean
+- [PASS] artifact@37.5s: clean
+- [PASS] artifact@38.5s: clean
+- [PASS] artifact@39.5s: clean
+- [PASS] artifact@40.5s: clean
+- [PASS] artifact@41.5s: clean
+- [FAIL] artifact@42.5s: The image does not contain any animated characters. It depicts a dimly lit bedroom scene with a child sleeping under a q
+- [PASS] artifact@43.5s: clean
+- [PASS] artifact@44.5s: clean
+- [PASS] artifact@45.5s: clean
+- [PASS] artifact@46.5s: clean
+- [PASS] artifact@47.5s: clean
+- [PASS] artifact@48.5s: clean
+- [PASS] artifact@49.5s: clean
+- [PASS] artifact@50.5s: clean
+- [PASS] artifact@51.5s: clean
+- [PASS] artifact@52.5s: clean
+- [PASS] artifact@53.5s: clean
+- [PASS] artifact@54.5s: clean
+- [PASS] artifact@55.5s: clean
+- [PASS] artifact@56.5s: clean
+- [PASS] artifact@57.5s: clean
+- [PASS] artifact@58.5s: clean
+- [PASS] artifact@59.5s: clean
+- [PASS] artifact@60.5s: clean
+- [PASS] artifact@61.5s: clean
+- [PASS] artifact@62.5s: clean
+- [PASS] artifact@63.5s: clean
+- [PASS] artifact@64.5s: clean
+- [PASS] artifact@65.5s: clean
+- [PASS] artifact@66.5s: clean
+- [PASS] artifact@67.5s: clean
+- [PASS] artifact@68.5s: clean
+- [PASS] artifact@69.5s: clean
+- [PASS] artifact@70.5s: clean
+- [PASS] artifact@71.5s: clean
+- [PASS] artifact@72.5s: clean
+- [PASS] artifact@73.5s: clean
+- [PASS] artifact@74.5s: clean
+- [PASS] artifact@75.5s: clean
+- [PASS] artifact@76.5s: clean
+- [PASS] artifact@77.5s: clean
+- [PASS] artifact@78.5s: clean
+- [PASS] artifact@79.5s: clean
+- [PASS] artifact@80.5s: clean
+- [PASS] artifact@81.5s: clean
+- [PASS] artifact@82.5s: clean
+- [PASS] artifact@83.5s: clean
+- [PASS] artifact@84.5s: clean
+- [PASS] artifact@85.5s: clean
+- [PASS] artifact@86.5s: clean
+- [PASS] artifact@87.5s: clean
+- [PASS] artifact@88.5s: clean
+- [PASS] artifact@89.5s: clean
+- [PASS] audio@11.5s: 'Some things you forget... beca' expected @11.5s, heard @0.0s (3/4 words)
+- [PASS] audio@18.4s: 'Mom... I don't have an uncle.' expected @18.4s, heard @18.7s (2/2 words)
+- [PASS] audio@21.4s: 'Not anymore.' expected @21.4s, heard @20.8s (1/1 words)
+- [PASS] audio@30.0s: 'Where did this come from?' expected @30.0s, heard @30.0s (4/4 words)
+- [PASS] audio@36.4s: 'He's eating with us.' expected @36.4s, heard @36.4s (2/2 words)
+- [PASS] audio@39.4s: 'Don't wake her.' expected @39.4s, heard @39.4s (1/1 words)
+- [PASS] audio@45.9s: 'Mommy... you weren't supposed ' expected @45.9s, heard @45.9s (3/3 words)
+- [PASS] audio@52.7s: 'Why did you forget me?' expected @52.7s, heard @52.8s (1/1 words)
+- [PASS] audio@59.4s: 'Daddy, who's that man behind y' expected @59.4s, heard @59.0s (3/3 words)
+- [PASS] audio@71.5s: 'Whose bed is that?' expected @71.5s, heard @71.1s (2/2 words)
+- [PASS] audio@76.0s: 'I remember you... before you w' expected @76.0s, heard @76.9s (3/4 words)
+- [PASS] audio@86.7s: 'Why did you forget me?' expected @86.7s, heard @78.8s (1/1 words)

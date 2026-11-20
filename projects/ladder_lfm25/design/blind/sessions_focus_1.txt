@@ -1,0 +1,5 @@
+(1) The image shows a digital interface, likely from a software application or operating system, displaying a list of tasks or projects across three devices: M1, M2, and PC. Each entry includes a title, status (e.g., "NEEDS YOU", "NEW ANSWER", "cooking"), and metadata like time elapsed or resource usage.
+
+(2) The interface is vertically arranged with three distinct sections labeled M1, M2, and PC, each showing a list of tasks. At the bottom, there is a navigation bar with "Claude Code on M2" selected, and tabs for M1, M2, and PC, along with "CLOUD" and "LOCAL" options. The background has a gradient of purple, pink, and blue hues, and the layout is clean and modern, with rounded rectangular cards for each task.
+
+(3) There is no physical object or ground visible in the image; it is entirely a digital screen display with

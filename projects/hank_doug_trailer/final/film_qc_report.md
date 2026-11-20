@@ -1,0 +1,111 @@
+# film_qc report — hank_doug_wild_rescue_trailer.mp4
+**Verdict: FAIL — 17 defect(s)**
+Checks run: 79 | passed: 62 | failed: 17
+
+## Defects
+- lipsync@12.3s: hank's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- lipsync@14.6s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- lipsync@35.2s: doug's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- lipsync@39.4s: doug's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%) — and 1 sample(s) showed the WRONG character speaking
+- lipsync@41.0s: young_hank's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%) — and 1 sample(s) showed the WRONG character speaking
+- lipsync@46.3s: doug's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- lipsync@58.5s: hank's mouth moving in 2/6 samples (33% of a 1.2s line; need 50%)
+- artifact@27.5s: The image shows a stylized, sketch-like drawing of a rectangular object resembling a keyboard or a set of vertical bars,
+- artifact@30.5s: The image features a group of animated otters and a small kitten, arranged in a vertical stack emerging from a sewer gra
+- artifact@31.5s: The image features several animated characters: a group of otters and a small kitten, all interacting near an open manho
+- artifact@32.5s: The image features three animated characters: two otters and a small kitten. The otters are depicted in a playful, anthr
+- artifact@33.5s: The image features three animated characters: two otters and one small kitten. The otters are standing upright, with one
+- artifact@35.5s: The image features two animals in a forest setting: a bear and a dog. Both appear to be rendered in a painterly, stylize
+- artifact@36.5s: The image depicts two animals in a forest setting: a bear and a dog. Both appear to be rendered in a stylized, painterly
+- artifact@37.5s: The image features two animated characters: a bear and a dog, both rendered in a painterly, stylized animation style.
+
+-
+- artifact@38.5s: The image features two animated characters: a bear and a dog, both in a forest setting.
+
+- The **bear** appears anatomic
+- audio@41.0s: 'Hi.' NOT HEARD anywhere near @41.0s (no transcript segment covers that moment)
+
+## Full log
+- [FAIL] lipsync@12.3s: hank's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- [FAIL] lipsync@14.6s: narrator's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- [FAIL] lipsync@35.2s: doug's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- [FAIL] lipsync@39.4s: doug's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%) — and 1 sample(s) showed the WRONG character speaking
+- [FAIL] lipsync@41.0s: young_hank's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%) — and 1 sample(s) showed the WRONG character speaking
+- [FAIL] lipsync@46.3s: doug's mouth moving in 0/6 samples (0% of a 1.2s line; need 50%)
+- [FAIL] lipsync@58.5s: hank's mouth moving in 2/6 samples (33% of a 1.2s line; need 50%)
+- [PASS] silence@26.2s: no. the image shows a turtle in a cracked, dry pond with water being poured from
+- [PASS] silence@38.5s: no. none of the characters have their mouths wide open; they are all depicted in
+- [PASS] silence@44.9s: no. there are no characters visible on screen, and no one is speaking.
+- [PASS] silence@53.6s: no. no characters are shown with their mouths open; the scene is a still illustr
+- [PASS] identity-across-scenes: CONSISTENT — The two main characters maintain consistent species, body proportions, head and ear shapes, and markings across all scenes.
+- [PASS] artifact@0.5s: clean
+- [PASS] artifact@1.5s: clean
+- [PASS] artifact@2.5s: clean
+- [PASS] artifact@3.5s: clean
+- [PASS] artifact@4.5s: clean
+- [PASS] artifact@5.5s: clean
+- [PASS] artifact@6.5s: clean
+- [PASS] artifact@7.5s: clean
+- [PASS] artifact@8.5s: clean
+- [PASS] artifact@9.5s: clean
+- [PASS] artifact@10.5s: clean
+- [PASS] artifact@11.5s: clean
+- [PASS] artifact@12.5s: clean
+- [PASS] artifact@13.5s: clean
+- [PASS] artifact@14.5s: clean
+- [PASS] artifact@15.5s: clean
+- [PASS] artifact@16.5s: clean
+- [PASS] artifact@17.5s: clean
+- [PASS] artifact@18.5s: clean
+- [PASS] artifact@19.5s: clean
+- [PASS] artifact@20.5s: clean
+- [PASS] artifact@21.5s: clean
+- [PASS] artifact@22.5s: clean
+- [PASS] artifact@23.5s: clean
+- [PASS] artifact@24.5s: clean
+- [PASS] artifact@25.5s: clean
+- [PASS] artifact@26.5s: clean
+- [FAIL] artifact@27.5s: The image shows a stylized, sketch-like drawing of a rectangular object resembling a keyboard or a set of vertical bars,
+- [PASS] artifact@28.5s: clean
+- [PASS] artifact@29.5s: clean
+- [FAIL] artifact@30.5s: The image features a group of animated otters and a small kitten, arranged in a vertical stack emerging from a sewer gra
+- [FAIL] artifact@31.5s: The image features several animated characters: a group of otters and a small kitten, all interacting near an open manho
+- [FAIL] artifact@32.5s: The image features three animated characters: two otters and a small kitten. The otters are depicted in a playful, anthr
+- [FAIL] artifact@33.5s: The image features three animated characters: two otters and one small kitten. The otters are standing upright, with one
+- [PASS] artifact@34.5s: clean
+- [FAIL] artifact@35.5s: The image features two animals in a forest setting: a bear and a dog. Both appear to be rendered in a painterly, stylize
+- [FAIL] artifact@36.5s: The image depicts two animals in a forest setting: a bear and a dog. Both appear to be rendered in a stylized, painterly
+- [FAIL] artifact@37.5s: The image features two animated characters: a bear and a dog, both rendered in a painterly, stylized animation style.
+
+-
+- [FAIL] artifact@38.5s: The image features two animated characters: a bear and a dog, both in a forest setting.
+
+- The **bear** appears anatomic
+- [PASS] artifact@39.5s: clean
+- [PASS] artifact@40.5s: clean
+- [PASS] artifact@41.5s: clean
+- [PASS] artifact@42.5s: clean
+- [PASS] artifact@43.5s: clean
+- [PASS] artifact@44.5s: clean
+- [PASS] artifact@45.5s: clean
+- [PASS] artifact@46.5s: clean
+- [PASS] artifact@47.5s: clean
+- [PASS] artifact@48.5s: clean
+- [PASS] artifact@49.5s: clean
+- [PASS] artifact@50.5s: clean
+- [PASS] artifact@51.5s: clean
+- [PASS] artifact@52.5s: clean
+- [PASS] artifact@53.5s: clean
+- [PASS] artifact@54.5s: clean
+- [PASS] artifact@55.5s: clean
+- [PASS] artifact@56.5s: clean
+- [PASS] artifact@57.5s: clean
+- [PASS] artifact@58.5s: clean
+- [PASS] artifact@59.5s: clean
+- [PASS] audio@12.3s: 'Rolling.' expected @12.3s, heard @0.0s (1/1 words)
+- [PASS] audio@14.6s: 'Somebody always hears the call' expected @14.6s, heard @12.0s (4/4 words)
+- [PASS] audio@35.2s: 'Long time ago... I hunted bear' expected @35.2s, heard @30.0s (4/4 words)
+- [PASS] audio@39.4s: 'Then I met one.' expected @39.4s, heard @37.0s (1/1 words)
+- [FAIL] audio@41.0s: 'Hi.' NOT HEARD anywhere near @41.0s (no transcript segment covers that moment)
+- [PASS] audio@46.3s: 'Same nose. Same light. Differe' expected @46.3s, heard @46.0s (3/4 words)
+- [PASS] audio@58.5s: 'Rolling.' expected @58.5s, heard @49.0s (1/1 words)

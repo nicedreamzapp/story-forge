@@ -35,9 +35,15 @@ contract for every file is `SCHEMAS.md` next to this file. The worked example an
 | `10_deliver` | thumbnail, poster per deliverable, youtube.json, publish | 09 | `final/thumbnail.png`, `final/youtube.json`, `stages/10_deliver/published.md` | none | Matt says ship it |
 
 ## The proven recipe (the defaults in `pipeline-tools/promo_common.py`)
-- **Voice:** ChatterBox `matt2`, exaggeration 0.40, cfg 0.5; finish = silence trim → pitch 0.92 via
-  `asetrate` (never rubberband) → EQ +3 dB @180 Hz, −3 dB @5 kHz → 0.25 s pad → −16 LUFS → 48 kHz mono.
-  Every line is whispered back AFTER the finish (the pitch shift once turned "camp chair" into "cam chair").
+- **Voice:** ChatterBox `matt2`, exaggeration 0.50, cfg 0.45, NO pitch shift (pitch 1.0); finish = silence trim
+  → EQ +3 dB @180 Hz (no 5 kHz cut, 10/26 "far in the back") → 0.25 s pad → −16 LUFS → 48 kHz mono.
+  Target a calm, conversational guy explaining something to a friend: whole-film F0 std-dev about 2.6–3.0 st.
+  11/03: exag 0.40 + pitch 0.92 = "monotone" (1.90 st); 0.60/0.4 + a punchy script = "way too much emphasis,
+  Hugging Face was sounding way too much" (3.77 st); 0.50/0.45 + a calm script = 2.64 st, the keeper.
+  Script: plain sentences, no exclamation marks, few questions; put every proper noun mid-sentence, never as the
+  last or first stressed word, and run `stress_check` (projects/model_review_h3/tools/stress_check.py): flag any
+  name > 4 dB or > 3 st hotter than the words around it, then reword and re-voice that line.
+  Every line is whispered back AFTER the finish (a pitch shift once turned "camp chair" into "cam chair").
 - **Footage:** `blender-render` from the CAD GLBs is the PRIMARY photoreal source (PBR presets per
   material name, studio rims or an HDRI world, a motivated camera move, a flat object-ID pass for
   callouts). Local i2v (LTX-2.5) is allowed. Browser takes are an optional extra, never needed.

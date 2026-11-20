@@ -1,0 +1,238 @@
+# film_qc report — the_things_we_remember_short_3min_fast.mp4
+**Verdict: FAIL — 8 defect(s)**
+Checks run: 207 | passed: 199 | failed: 8
+
+## Defects
+- identity-across-scenes: DRIFT — The characters’ appearances vary significantly across scenes, particularly in facial features, hair, and clothing, indicating inconsistent design.
+- artifact@12.5s: The image shows a dimly lit interior staircase leading up to a landing where a small child is seated in a wooden chair, 
+- artifact@30.5s: The image shows a photograph being held by a hand. In the photograph, there are two people in the foreground — a man and
+- artifact@31.5s: The image shows a photograph being held by a hand, depicting a man and a woman in the foreground, smiling, with a third 
+- artifact@32.5s: The image shows a photograph being held by a hand. In the photo, there are two people in the foreground — a man and a wo
+- artifact@33.5s: The image shows a photograph being held by a hand. On the left, there is a man in a light-colored shirt, smiling, with a
+- artifact@41.5s: The image shows an old, worn photograph resting in a wooden drawer. The photograph appears to be a sepia-toned or black-
+- artifact@79.5s: The image is extremely blurry and low-resolution, making detailed analysis difficult. However, upon close inspection:
+
+-
+
+## Full log
+- [SKIP] lipsync@13.4s: ruth is off-screen by design — audio-only line
+- [SKIP] lipsync@22.0s: claire is off-screen by design — audio-only line
+- [SKIP] lipsync@26.2s: ruth is off-screen by design — audio-only line
+- [SKIP] lipsync@29.3s: claire is off-screen by design — audio-only line
+- [SKIP] lipsync@34.1s: ruth is off-screen by design — audio-only line
+- [SKIP] lipsync@59.9s: tom is off-screen by design — audio-only line
+- [SKIP] lipsync@64.1s: claire is off-screen by design — audio-only line
+- [PASS] lipsync@70.2s: lily's mouth moving in 7/7 samples (100% of a 1.4s line; need 50%)
+- [SKIP] lipsync@89.9s: daniel is off-screen by design — audio-only line
+- [PASS] lipsync@97.0s: lily's mouth moving in 12/18 samples (67% of a 3.7s line; need 50%)
+- [SKIP] lipsync@107.2s: rememberer is off-screen by design — audio-only line
+- [SKIP] lipsync@127.4s: claire is off-screen by design — audio-only line
+- [PASS] lipsync@131.3s: lily's mouth moving in 7/9 samples (78% of a 1.9s line; need 50%)
+- [PASS] lipsync@148.8s: lily's mouth moving in 13/14 samples (93% of a 2.9s line; need 50%)
+- [SKIP] lipsync@166.2s: rememberer is off-screen by design — audio-only line
+- [SKIP] lipsync@176.7s: daniel is off-screen by design — audio-only line
+- [PASS] silence@18.9s: no. the scene is described as "nobody is speaking at this moment," and there is 
+- [PASS] silence@25.4s: no. all characters are either shown in still, quiet moments or in footage where 
+- [PASS] silence@33.0s: no. the image shows a photograph being held, with one man smiling and another fi
+- [PASS] silence@48.2s: no. the scene is described as having no one speaking, and there is no indication
+- [PASS] silence@63.2s: no. all characters are depicted in still, quiet moments; none have their mouths 
+- [PASS] silence@68.4s: no. all characters are depicted either in stillness, in shadow, or in old footag
+- [FAIL] identity-across-scenes: DRIFT — The characters’ appearances vary significantly across scenes, particularly in facial features, hair, and clothing, indicating inconsistent design.
+- [PASS] artifact@0.5s: clean
+- [PASS] artifact@1.5s: clean
+- [PASS] artifact@2.5s: clean
+- [PASS] artifact@3.5s: clean
+- [PASS] artifact@4.5s: clean
+- [PASS] artifact@5.5s: clean
+- [PASS] artifact@6.5s: clean
+- [PASS] artifact@7.5s: clean
+- [PASS] artifact@8.5s: clean
+- [PASS] artifact@9.5s: clean
+- [PASS] artifact@10.5s: clean
+- [PASS] artifact@11.5s: clean
+- [FAIL] artifact@12.5s: The image shows a dimly lit interior staircase leading up to a landing where a small child is seated in a wooden chair, 
+- [PASS] artifact@13.5s: clean
+- [PASS] artifact@14.5s: clean
+- [PASS] artifact@15.5s: clean
+- [PASS] artifact@16.5s: clean
+- [PASS] artifact@17.5s: clean
+- [PASS] artifact@18.5s: clean
+- [PASS] artifact@19.5s: clean
+- [PASS] artifact@20.5s: clean
+- [PASS] artifact@21.5s: clean
+- [PASS] artifact@22.5s: clean
+- [PASS] artifact@23.5s: clean
+- [PASS] artifact@24.5s: clean
+- [PASS] artifact@25.5s: clean
+- [PASS] artifact@26.5s: clean
+- [PASS] artifact@27.5s: clean
+- [PASS] artifact@28.5s: clean
+- [PASS] artifact@29.5s: clean
+- [FAIL] artifact@30.5s: The image shows a photograph being held by a hand. In the photograph, there are two people in the foreground — a man and
+- [FAIL] artifact@31.5s: The image shows a photograph being held by a hand, depicting a man and a woman in the foreground, smiling, with a third 
+- [FAIL] artifact@32.5s: The image shows a photograph being held by a hand. In the photo, there are two people in the foreground — a man and a wo
+- [FAIL] artifact@33.5s: The image shows a photograph being held by a hand. On the left, there is a man in a light-colored shirt, smiling, with a
+- [PASS] artifact@34.5s: clean
+- [PASS] artifact@35.5s: clean
+- [PASS] artifact@36.5s: clean
+- [PASS] artifact@37.5s: clean
+- [PASS] artifact@38.5s: clean
+- [PASS] artifact@39.5s: clean
+- [PASS] artifact@40.5s: clean
+- [FAIL] artifact@41.5s: The image shows an old, worn photograph resting in a wooden drawer. The photograph appears to be a sepia-toned or black-
+- [PASS] artifact@42.5s: clean
+- [PASS] artifact@43.5s: clean
+- [PASS] artifact@44.5s: clean
+- [PASS] artifact@45.5s: clean
+- [PASS] artifact@46.5s: clean
+- [PASS] artifact@47.5s: clean
+- [PASS] artifact@48.5s: clean
+- [PASS] artifact@49.5s: clean
+- [PASS] artifact@50.5s: clean
+- [PASS] artifact@51.5s: clean
+- [PASS] artifact@52.5s: clean
+- [PASS] artifact@53.5s: clean
+- [PASS] artifact@54.5s: clean
+- [PASS] artifact@55.5s: clean
+- [PASS] artifact@56.5s: clean
+- [PASS] artifact@57.5s: clean
+- [PASS] artifact@58.5s: clean
+- [PASS] artifact@59.5s: clean
+- [PASS] artifact@60.5s: clean
+- [PASS] artifact@61.5s: clean
+- [PASS] artifact@62.5s: clean
+- [PASS] artifact@63.5s: clean
+- [PASS] artifact@64.5s: clean
+- [PASS] artifact@65.5s: clean
+- [PASS] artifact@66.5s: clean
+- [PASS] artifact@67.5s: clean
+- [PASS] artifact@68.5s: clean
+- [PASS] artifact@69.5s: clean
+- [PASS] artifact@70.5s: clean
+- [PASS] artifact@71.5s: clean
+- [PASS] artifact@72.5s: clean
+- [PASS] artifact@73.5s: clean
+- [PASS] artifact@74.5s: clean
+- [PASS] artifact@75.5s: clean
+- [PASS] artifact@76.5s: clean
+- [PASS] artifact@77.5s: clean
+- [PASS] artifact@78.5s: clean
+- [FAIL] artifact@79.5s: The image is extremely blurry and low-resolution, making detailed analysis difficult. However, upon close inspection:
+
+-
+- [PASS] artifact@80.5s: clean
+- [PASS] artifact@81.5s: clean
+- [PASS] artifact@82.5s: clean
+- [PASS] artifact@83.5s: clean
+- [PASS] artifact@84.5s: clean
+- [PASS] artifact@85.5s: clean
+- [PASS] artifact@86.5s: clean
+- [PASS] artifact@87.5s: clean
+- [PASS] artifact@88.5s: clean
+- [PASS] artifact@89.5s: clean
+- [PASS] artifact@90.5s: clean
+- [PASS] artifact@91.5s: clean
+- [PASS] artifact@92.5s: clean
+- [PASS] artifact@93.5s: clean
+- [PASS] artifact@94.5s: clean
+- [PASS] artifact@95.5s: clean
+- [PASS] artifact@96.5s: clean
+- [PASS] artifact@97.5s: clean
+- [PASS] artifact@98.5s: clean
+- [PASS] artifact@99.5s: clean
+- [PASS] artifact@100.5s: clean
+- [PASS] artifact@101.5s: clean
+- [PASS] artifact@102.5s: clean
+- [PASS] artifact@103.5s: clean
+- [PASS] artifact@104.5s: clean
+- [PASS] artifact@105.5s: clean
+- [PASS] artifact@106.5s: clean
+- [PASS] artifact@107.5s: clean
+- [PASS] artifact@108.5s: clean
+- [PASS] artifact@109.5s: clean
+- [PASS] artifact@110.5s: clean
+- [PASS] artifact@111.5s: clean
+- [PASS] artifact@112.5s: clean
+- [PASS] artifact@113.5s: clean
+- [PASS] artifact@114.5s: clean
+- [PASS] artifact@115.5s: clean
+- [PASS] artifact@116.5s: clean
+- [PASS] artifact@117.5s: clean
+- [PASS] artifact@118.5s: clean
+- [PASS] artifact@119.5s: clean
+- [PASS] artifact@120.5s: clean
+- [PASS] artifact@121.5s: clean
+- [PASS] artifact@122.5s: clean
+- [PASS] artifact@123.5s: clean
+- [PASS] artifact@124.5s: clean
+- [PASS] artifact@125.5s: clean
+- [PASS] artifact@126.5s: clean
+- [PASS] artifact@127.5s: clean
+- [PASS] artifact@128.5s: clean
+- [PASS] artifact@129.5s: clean
+- [PASS] artifact@130.5s: clean
+- [PASS] artifact@131.5s: clean
+- [PASS] artifact@132.5s: clean
+- [PASS] artifact@133.5s: clean
+- [PASS] artifact@134.5s: clean
+- [PASS] artifact@135.5s: clean
+- [PASS] artifact@136.5s: clean
+- [PASS] artifact@137.5s: clean
+- [PASS] artifact@138.5s: clean
+- [PASS] artifact@139.5s: clean
+- [PASS] artifact@140.5s: clean
+- [PASS] artifact@141.5s: clean
+- [PASS] artifact@142.5s: clean
+- [PASS] artifact@143.5s: clean
+- [PASS] artifact@144.5s: clean
+- [PASS] artifact@145.5s: clean
+- [PASS] artifact@146.5s: clean
+- [PASS] artifact@147.5s: clean
+- [PASS] artifact@148.5s: clean
+- [PASS] artifact@149.5s: clean
+- [PASS] artifact@150.5s: clean
+- [PASS] artifact@151.5s: clean
+- [PASS] artifact@152.5s: clean
+- [PASS] artifact@153.5s: clean
+- [PASS] artifact@154.5s: clean
+- [PASS] artifact@155.5s: clean
+- [PASS] artifact@156.5s: clean
+- [PASS] artifact@157.5s: clean
+- [PASS] artifact@158.5s: clean
+- [PASS] artifact@159.5s: clean
+- [PASS] artifact@160.5s: clean
+- [PASS] artifact@161.5s: clean
+- [PASS] artifact@162.5s: clean
+- [PASS] artifact@163.5s: clean
+- [PASS] artifact@164.5s: clean
+- [PASS] artifact@165.5s: clean
+- [PASS] artifact@166.5s: clean
+- [PASS] artifact@167.5s: clean
+- [PASS] artifact@168.5s: clean
+- [PASS] artifact@169.5s: clean
+- [PASS] artifact@170.5s: clean
+- [PASS] artifact@171.5s: clean
+- [PASS] artifact@172.5s: clean
+- [PASS] artifact@173.5s: clean
+- [PASS] artifact@174.5s: clean
+- [PASS] artifact@175.5s: clean
+- [PASS] artifact@176.5s: clean
+- [PASS] artifact@177.5s: clean
+- [PASS] artifact@178.5s: clean
+- [PASS] artifact@179.5s: clean
+- [PASS] audio@13.4s: 'Some things you forget... beca' expected @13.4s, heard @0.0s (3/4 words)
+- [PASS] audio@22.0s: 'Mom... who's this? Behind Dad?' expected @22.0s, heard @17.8s (1/2 words)
+- [PASS] audio@26.2s: 'Your uncle.' expected @26.2s, heard @26.1s (2/2 words)
+- [PASS] audio@29.3s: 'Mom... I don't have an uncle.' expected @29.3s, heard @29.6s (2/2 words)
+- [PASS] audio@34.1s: 'Not anymore.' expected @34.1s, heard @31.7s (1/1 words)
+- [PASS] audio@59.9s: 'That one's for Daniel.' expected @59.9s, heard @35.1s (2/2 words)
+- [PASS] audio@64.1s: 'Who's Daniel?' expected @64.1s, heard @62.7s (1/1 words)
+- [PASS] audio@70.2s: 'He's eating with us.' expected @70.2s, heard @69.8s (2/2 words)
+- [PASS] audio@89.9s: 'Don't wake her.' expected @89.9s, heard @87.8s (1/1 words)
+- [PASS] audio@97.0s: 'Mommy... you weren't supposed ' expected @97.0s, heard @91.8s (3/3 words)
+- [PASS] audio@107.2s: 'I remember you... before you w' expected @107.2s, heard @108.1s (3/4 words)
+- [PASS] audio@127.4s: 'Who are you drawing, baby?' expected @127.4s, heard @110.0s (2/2 words)
+- [PASS] audio@131.3s: 'Someone who misses you.' expected @131.3s, heard @131.2s (2/2 words)
+- [PASS] audio@148.8s: 'See, Mommy? You remember him n' expected @148.8s, heard @149.5s (2/2 words)
+- [PASS] audio@166.2s: 'Thank you... for remembering.' expected @166.2s, heard @151.5s (2/2 words)
+- [PASS] audio@176.7s: 'Why did you forget me?' expected @176.7s, heard @168.0s (1/1 words)

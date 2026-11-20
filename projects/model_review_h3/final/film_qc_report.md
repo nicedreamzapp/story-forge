@@ -1,0 +1,149 @@
+# film_qc report — model_review_h3.mp4
+**Verdict: PASS**
+Checks run: 127 | passed: 127 | failed: 0
+
+## Defects
+- (none)
+
+## Full log
+- [SKIP] lipsync@0.5s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@7.8s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@15.1s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@25.0s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@29.3s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@36.0s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@42.0s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@51.0s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@57.6s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@63.8s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@74.4s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@81.5s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@89.5s: narrator is off-screen by design — audio-only line
+- [SKIP] lipsync@96.0s: narrator is off-screen by design — audio-only line
+- [PASS] silence@5.4s: no. there are no on-screen characters, and the film consists of code-rendered mo
+- [PASS] silence@12.7s: no. there are no on-screen characters in the image; it is a motion graphics visu
+- [PASS] silence@21.3s: no. there are no on-screen characters, and the film consists of code-rendered mo
+- [PASS] silence@28.4s: no. there are no on-screen characters, and the film consists only of motion grap
+- [PASS] silence@33.9s: no. there are no on-screen characters, and the scene consists only of motion gra
+- [PASS] silence@40.2s: no. there are no on-screen characters, and the film consists only of motion grap
+- [PASS] identity-across-scenes: CONSISTENT — The design elements such as species, body proportions, head and ear shape, and markings remain uniform across all scenes, indicating a consistent character design.
+- [PASS] artifact@0.5s: clean
+- [PASS] artifact@1.5s: clean
+- [PASS] artifact@2.5s: clean
+- [PASS] artifact@3.5s: clean
+- [PASS] artifact@4.5s: clean
+- [PASS] artifact@5.5s: clean
+- [PASS] artifact@6.5s: clean
+- [PASS] artifact@7.5s: clean
+- [PASS] artifact@8.5s: clean
+- [PASS] artifact@9.5s: clean
+- [PASS] artifact@10.5s: clean
+- [PASS] artifact@11.5s: clean
+- [PASS] artifact@12.5s: clean
+- [PASS] artifact@13.5s: clean
+- [PASS] artifact@14.5s: clean
+- [PASS] artifact@15.5s: clean
+- [PASS] artifact@16.5s: clean
+- [PASS] artifact@17.5s: clean
+- [PASS] artifact@18.5s: clean
+- [PASS] artifact@19.5s: clean
+- [PASS] artifact@20.5s: clean
+- [PASS] artifact@21.5s: clean
+- [PASS] artifact@22.5s: clean
+- [PASS] artifact@23.5s: clean
+- [PASS] artifact@24.5s: clean
+- [PASS] artifact@25.5s: clean
+- [PASS] artifact@26.5s: clean
+- [PASS] artifact@27.5s: clean
+- [PASS] artifact@28.5s: clean
+- [PASS] artifact@29.5s: clean
+- [PASS] artifact@30.5s: clean
+- [PASS] artifact@31.5s: clean
+- [PASS] artifact@32.5s: clean
+- [PASS] artifact@33.5s: clean
+- [PASS] artifact@34.5s: clean
+- [PASS] artifact@35.5s: clean
+- [PASS] artifact@36.5s: clean
+- [PASS] artifact@37.5s: clean
+- [PASS] artifact@38.5s: clean
+- [PASS] artifact@39.5s: clean
+- [PASS] artifact@40.5s: clean
+- [PASS] artifact@41.5s: clean
+- [PASS] artifact@42.5s: clean
+- [PASS] artifact@43.5s: clean
+- [PASS] artifact@44.5s: clean
+- [PASS] artifact@45.5s: clean
+- [PASS] artifact@46.5s: clean
+- [PASS] artifact@47.5s: clean
+- [PASS] artifact@48.5s: clean
+- [PASS] artifact@49.5s: clean
+- [PASS] artifact@50.5s: clean
+- [PASS] artifact@51.5s: clean
+- [PASS] artifact@52.5s: clean
+- [PASS] artifact@53.5s: clean
+- [PASS] artifact@54.5s: clean
+- [PASS] artifact@55.5s: clean
+- [PASS] artifact@56.5s: clean
+- [PASS] artifact@57.5s: clean
+- [PASS] artifact@58.5s: clean
+- [PASS] artifact@59.5s: clean
+- [PASS] artifact@60.5s: clean
+- [PASS] artifact@61.5s: clean
+- [PASS] artifact@62.5s: clean
+- [PASS] artifact@63.5s: clean
+- [PASS] artifact@64.5s: clean
+- [PASS] artifact@65.5s: clean
+- [PASS] artifact@66.5s: clean
+- [PASS] artifact@67.5s: clean
+- [PASS] artifact@68.5s: clean
+- [PASS] artifact@69.5s: clean
+- [PASS] artifact@70.5s: clean
+- [PASS] artifact@71.5s: clean
+- [PASS] artifact@72.5s: clean
+- [PASS] artifact@73.5s: clean
+- [PASS] artifact@74.5s: clean
+- [PASS] artifact@75.5s: clean
+- [PASS] artifact@76.5s: clean
+- [PASS] artifact@77.5s: clean
+- [PASS] artifact@78.5s: clean
+- [PASS] artifact@79.5s: clean
+- [PASS] artifact@80.5s: clean
+- [PASS] artifact@81.5s: clean
+- [PASS] artifact@82.5s: clean
+- [PASS] artifact@83.5s: clean
+- [PASS] artifact@84.5s: clean
+- [PASS] artifact@85.5s: clean
+- [PASS] artifact@86.5s: clean
+- [PASS] artifact@87.5s: clean
+- [PASS] artifact@88.5s: clean
+- [PASS] artifact@89.5s: clean
+- [PASS] artifact@90.5s: clean
+- [PASS] artifact@91.5s: clean
+- [PASS] artifact@92.5s: clean
+- [PASS] artifact@93.5s: clean
+- [PASS] artifact@94.5s: clean
+- [PASS] artifact@95.5s: clean
+- [PASS] artifact@96.5s: clean
+- [PASS] artifact@97.5s: clean
+- [PASS] artifact@98.5s: clean
+- [PASS] artifact@99.5s: clean
+- [PASS] artifact@100.5s: clean
+- [PASS] artifact@101.5s: clean
+- [PASS] artifact@102.5s: clean
+- [PASS] artifact@103.5s: clean
+- [PASS] artifact@104.5s: clean
+- [PASS] artifact@105.5s: clean
+- [PASS] audio@0.5s: 'This morning our model watcher' expected @0.5s, heard @0.0s (4/4 words)
+- [PASS] audio@7.8s: 'On paper it's a dream. Two Min' expected @7.8s, heard @7.6s (2/4 words)
+- [PASS] audio@15.1s: 'Plus two distillation adapters' expected @15.1s, heard @14.8s (4/4 words)
+- [PASS] audio@25.0s: 'And H3 ranked number one in ou' expected @25.0s, heard @24.8s (4/4 words)
+- [PASS] audio@29.3s: 'But every new model starts at ' expected @29.3s, heard @28.4s (4/4 words)
+- [PASS] audio@36.0s: 'Every merge inherits its base ' expected @36.0s, heard @36.0s (4/4 words)
+- [PASS] audio@42.0s: 'And there it is. Excluded terr' expected @42.0s, heard @43.7s (3/4 words)
+- [PASS] audio@51.0s: 'We're in California, so it's o' expected @51.0s, heard @52.7s (3/4 words)
+- [PASS] audio@57.6s: 'It also only ships in eight bi' expected @57.6s, heard @56.6s (3/4 words)
+- [PASS] audio@63.8s: 'So what do we use instead? We ' expected @63.8s, heard @63.9s (2/4 words)
+- [PASS] audio@74.4s: 'On its very first clip, I said' expected @74.4s, heard @73.4s (4/4 words)
+- [PASS] audio@81.5s: 'Now every new model goes throu' expected @81.5s, heard @81.2s (4/4 words)
+- [PASS] audio@89.5s: 'If the license on MiniMax H3 e' expected @89.5s, heard @89.3s (4/4 words)
+- [PASS] audio@96.0s: 'That's how we pick our tools. ' expected @96.0s, heard @95.2s (3/4 words)

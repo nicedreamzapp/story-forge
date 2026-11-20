@@ -1,0 +1,10 @@
+BEST pass ETA (written 21:21, measured speeds): K6 5 hero takes 832x480 3 s, ~12 min each = 60 min (21:19 -> ~22:20)
+LatentSync on s07 (Lily) ~5 min -> ~22:25
+Upscale: Refine-Details on faces s04/s07/s11 (~200 frames x 18 s = ~60 min), SeedVR2 on s01/s08 (~146 frames x 13 s = ~32 min) -> ~00:00
+Re-cut + gate + film_qc ~10 min -> ~00:10
+K6 refused at 21:34 (forge_guard, 72 GB, after 15 min wait; mem_client headroom read 75.6). Per rule: no shrink, no Song Forge unload -> LTX-2.5 --hq --low-ram.
+HQ speed measured: 755 s per 4 s take (s11 done 21:47). Takes done ~22:40, upscale ~00:10, cut + QC ~00:20.
+Upscale started 22:41:58: trimmed to used frames, plan ~100 min -> ~00:25; cut + QC -> ~00:40.
+22:54 upscale actually started (a stale 34 GB seedvr2 lease from the killed first launch blocked it 12 min; released by id). New ETA: upscale ~00:35, cut + QC ~00:50.
+23:56 refine runs ~30 min per face shot (3 shots), not 18 s/frame: upscale ~01:05, best cut + QC ~01:20.
+00:26 third refine pass running (~23-27 min each, 3 passes, outputs land together at the end): upscale ~00:47, best cut + QC ~01:05.

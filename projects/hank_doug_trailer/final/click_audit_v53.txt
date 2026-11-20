@@ -1,0 +1,50 @@
+== final/film_v53_audio.wav  windows 129  flagged 48  (HISS 0, CLICK 21, FLUX 44, CLIP 0)
+    t    row            rms  hissfloor flat  clicks flux clip  why            stem(s)
+    0.5  r01_hunt        -18.1    -53.6  0.19     28    9    0  CLICK,FLUX     voices sfx
+    1.0  r01_hunt        -26.1    -77.2  0.52      0    8    0  FLUX           voices sfx
+    1.5  r01_hunt        -17.4    -56.9  0.18      2   52    0  CLICK,FLUX     voices sfx
+    2.0  r01_hunt        -21.9    -69.9  0.28      0   46    0  FLUX           music voices sfx
+    2.5  r01_hunt        -34.1    -80.0  0.51      0   17    0  FLUX           music voices sfx
+    3.0  r01_hunt        -41.2    -81.7  0.47      0    3    0  FLUX           sfx
+    3.5  r01_hunt        -43.0    -84.1  0.41      0    2    0  FLUX           sfx
+    5.0  r02_lookback    -19.6    -80.0  0.35      0   27    0  FLUX           voices
+    5.5  r02_lookback    -19.0    -61.3  0.14     73   37    0  CLICK,FLUX     voices sfx
+    6.0  r02_lookback    -20.0    -78.0  0.37      5   21    0  CLICK,FLUX     voices sfx
+    6.5  r02_lookback    -18.4    -70.3  0.30     24   38    0  CLICK,FLUX     voices sfx
+    7.0  r02_lookback    -17.6    -65.9  0.17      0    7    0  FLUX           music voices
+    7.5  r02_lookback    -35.3    -86.6  0.59      0    2    0  FLUX           voices
+    9.0  r03_found       -19.3    -86.6  0.42      0    2    0  FLUX           voices sfx
+    9.5  r03_found       -20.9    -70.0  0.37      0   17    0  FLUX           voices
+   10.0  r03_found       -18.6    -52.7  0.30    108   19    0  CLICK,FLUX     voices
+   13.0  r04_fox         -22.2    -84.3  0.45     11    1    0  CLICK,FLUX     voices
+   13.5  r04_fox         -18.4    -61.8  0.56     11    0    0  CLICK          voices sfx
+   14.0  r04_fox         -20.3    -62.4  0.50      0    1    0  FLUX           music voices sfx
+   15.5  r04_fox         -18.0    -51.0  0.12     57    5    0  CLICK,FLUX     voices sfx
+   16.0  r04_fox         -21.2    -79.8  0.51      0    9    0  FLUX           voices
+   18.0  r05_watch       -13.0    -84.3  0.48      0   24    0  FLUX           voices
+   18.5  r05_watch       -13.1    -87.1  0.45      0   18    0  FLUX           voices sfx
+   19.0  r05_watch        -7.0    -78.3  0.46      0   73    0  FLUX           music voices sfx
+   19.5  r05_watch       -11.9    -73.3  0.28      0   32    0  FLUX           voices
+   21.0  r06_lead        -21.0    -67.2  0.49     51    7    0  CLICK,FLUX     voices sfx
+   21.5  r06_lead        -18.4    -54.6  0.11      8    9    0  CLICK,FLUX     music voices sfx
+   22.0  r06_lead        -20.0    -67.3  0.31      6    7    0  CLICK,FLUX     voices sfx
+   25.5  r07_ditch       -19.7    -63.6  0.37      1    1    0  CLICK,FLUX     voices sfx
+   26.5  r07_ditch       -21.4    -74.4  0.36      0    3    0  FLUX           voices sfx
+   28.5  r07_ditch       -18.9    -94.6  0.68      0    7    0  FLUX           voices
+   29.0  r08_hi          -18.8    -75.4  0.24      0   39    0  FLUX           voices
+   29.5  r08_hi          -40.9    -97.3  0.71      0    6    0  FLUX           voices
+   30.5  r08_hi          -12.5    -94.2  0.56      0   32    0  FLUX           voices sfx
+   31.0  r08_hi          -20.9    -69.8  0.32      0   23    0  FLUX           music voices sfx
+   32.5  r09_walkaway    -18.2    -77.4  0.32      0   23    0  FLUX           voices sfx
+   33.0  r09_walkaway    -22.1    -71.2  0.32     18   20    0  CLICK,FLUX     voices sfx
+   33.5  r09_walkaway    -18.7    -70.2  0.26      2   13    0  CLICK,FLUX     voices sfx
+   34.0  r09_walkaway    -18.3    -57.2  0.15     17    2    0  CLICK,FLUX     voices sfx
+   35.5  r09_walkaway    -17.4    -78.9  0.38      0    4    0  FLUX           voices
+   36.0  r09_walkaway    -20.3    -56.2  0.21      5    4    0  CLICK,FLUX     voices
+   38.5  r10_bench        -9.1    -64.1  0.40      0   24    0  FLUX           voices
+   39.5  r11_rollout     -20.5    -70.9  0.26      0    2    0  FLUX           voices
+   40.5  r11_rollout     -21.6    -71.1  0.24      0    1    0  FLUX           music voices
+   41.0  r11_rollout     -19.9    -50.9  0.08     21    3    0  CLICK,FLUX     music voices sfx
+   42.0  r11_rollout     -27.0    -68.2  0.38     14    0    0  CLICK          music voices
+   51.0  r14_kitten      -15.5    -43.1  0.67      1    0    0  CLICK          music
+   55.5  r16_title       -14.7    -39.3  0.66      1    0    0  CLICK          music sfx

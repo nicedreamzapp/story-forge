@@ -1,0 +1,15 @@
+EDL  moonstone_showcase  29.30s  10 shots  fps 30  jcut 0.0
+
+   0.00-   3.33 (3.33s) CUT   L1  on 'Meet'  kb_1_1  src 0.00-3.33
+   3.33-   5.47 (2.13s) CUT   L1  on 'command'  kb_2_1  src 0.00-2.13
+   5.47-   7.43 (1.97s) CUT   L1  on 'hardware'  kb_3_1  src 0.00-1.97
+   7.43-   9.70 (2.27s) CUT   L1  on 'zero'  kb_1_1  src 4.70-6.97
+   9.70-  12.13 (2.43s) CUT   L2  on 'A'  kb_4_1  src 0.00-2.43
+  12.13-  14.27 (2.13s) CUT   L2  on 'run'  kb_5_1  src 0.00-2.13
+  14.27-  16.43 (2.17s) CUT   L2  on 'five'  kb_6_1  src 0.00-2.17
+  16.43-  18.63 (2.20s) CUT   L2  on 'Moonstone'  kb_4_1  src 4.70-6.90
+  18.63-  20.83 (2.20s) CUT   L2  on 'shipments'  kb_5_1  src 4.70-6.90
+  20.83-  24.30 (3.47s) CUT   L3  on 'Full'  kb_7_1  src 0.00-3.47
+  24.30-  29.30 END CARD 'MOONSTONE' (slam 0.15s after the last word)
+   0.83-   2.43 TITLE 'MOONSTONE' on 'Moonstone'
+  20.87-  22.47 TITLE 'Full' on 'Full'

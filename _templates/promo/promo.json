@@ -2,8 +2,8 @@
 {
  "title": "Product name: one-line promise",
  "brand": "BRAND",
- "voice": {"character": "matt2", "exaggeration": 0.40, "cfg": 0.5, "pitch": 0.92,
-           "eq": [[180, 3.0], [5000, -3.0]], "lufs": -16.0, "retakes": 3},
+ "voice": {"character": "matt2", "exaggeration": 0.50, "cfg": 0.45, "pitch": 1.0,
+           "eq": [[180, 3.0]], "lufs": -16.0, "retakes": 3},
  "gap": 0.6,
  "lead": 0.5,
  "music": {"bed": null, "style": "cinematic orchestral and piano build, hopeful, instrumental",

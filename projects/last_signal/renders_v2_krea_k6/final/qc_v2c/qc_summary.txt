@@ -1,0 +1,2 @@
+qc_cuts: 50 cuts checked, 0 flagged  (LAST_SIGNAL_v2c_1080p.mp4)
+Read every strip in renders_v2_krea_k6/final/qc_v2c/strips before calling this render done.

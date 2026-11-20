@@ -1,0 +1,5 @@
+(1) The image shows a digital interface, likely a software development or AI-assisted coding environment, with multiple panels displaying tasks, code changes, and system resource usage. The interface is branded "Moonstone" and includes sections for different devices (M1, M2, PC) and tasks such as "Claude Code" and "Website."
+
+(2) The interface is divided into two main vertical panels. The left panel lists tasks and system resources (GPU, RAM) for M1, M2, and PC, with colored indicators for status (e.g., "NEEDS YOU," "NEW ANSWER"). The right panel shows a conversation or chat log with code-related instructions, diffs, and commands, including search results and test outputs. The layout is dark-themed with glowing text and buttons, arranged in a clean, modern UI.
+
+(3) There is no physical object or ground visible in the image; it is entirely a digital screen display with no indication of what it

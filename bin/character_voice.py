@@ -44,6 +44,10 @@ VOICES = {
     # nia: younger (26-35), same register as ruby but lighter
     "nia": {"ref": str(VOICES_DIR / "nia.wav"),
             "exaggeration": 0.5, "cfg": 0.4, "seed": 0},
+    # wes (The Heading, 2026-11-07): 57, dry Humboldt man; ref = Kokoro am_eric passage.
+    # Never reuse for other characters.
+    "wes": {"ref": str(VOICES_DIR / "wes_ref.wav"),
+            "exaggeration": 0.4, "cfg": 0.4, "seed": 7},
 }
 
 

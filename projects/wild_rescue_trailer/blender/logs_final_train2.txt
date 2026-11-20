@@ -1,0 +1,99 @@
+[mem-gate] waiting for memory before 'wildrescue blender' (free=44% swap=5.4GB pressure=2)
+[mem-gate] waiting for memory before 'wildrescue blender' (free=40% swap=5.4GB pressure=2)
+[mem-gate] waiting for memory before 'wildrescue blender' (free=45% swap=5.4GB pressure=2)
+[mem-gate] waiting for memory before 'wildrescue blender' (free=43% swap=5.4GB pressure=2)
+[mem-gate] waiting for memory before 'wildrescue blender' (free=43% swap=5.4GB pressure=2)
+[mem-gate] waiting for memory before 'wildrescue blender' (free=43% swap=5.4GB pressure=2)
+[mem-gate] waiting for memory before 'wildrescue blender' (free=48% swap=5.4GB pressure=2)
+[mem-gate] waiting for memory before 'wildrescue blender' (free=43% swap=5.4GB pressure=2)
+[mem-gate] waiting for memory before 'wildrescue blender' (free=44% swap=5.4GB pressure=2)
+[mem-gate] waiting for memory before 'wildrescue blender' (free=46% swap=5.4GB pressure=2)
+[mem-gate] waiting for memory before 'wildrescue blender' (free=43% swap=5.4GB pressure=2)
+[mem-gate] waiting for memory before 'wildrescue blender' (free=43% swap=5.4GB pressure=2)
+[mem-gate] waiting for memory before 'wildrescue blender' (free=44% swap=5.4GB pressure=2)
+[mem-gate] waiting for memory before 'wildrescue blender' (free=43% swap=5.4GB pressure=2)
+[mem-gate] waiting for memory before 'wildrescue blender' (free=49% swap=5.4GB pressure=2)
+ℹ️  blenderkit: Verbose is enabled [23:54:38.462, addon_updater.py:150]
+ℹ️  blenderkit: Read in JSON settings from file [23:54:38.463, addon_updater.py:150]
+ℹ️  blenderkit: Ports reordered so first port is now 62485 (previous index was 0) [23:54:38.463, client_lib.py:129]
+Created history step ded77676-d0ea-45bf-a2f1-141b5d3928fa
+ℹ️  blenderkit: Created new search history step [23:54:38.466, search.py:2525]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:54:38.466, download.py:416]
+00:00.275  blend            | Read blend: "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/train.blend"
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:54:38.538, download.py:416]
+00:03.092  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B18_track_end.png'
+00:07.212  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B31_wheels_edge.png'
+00:11.690  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B24_ant_bridge.png'
+00:15.134  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B22_ant_river.png'
+00:18.841  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B17_train_wide.png'
+00:21.209  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0001.png'
+00:22.102  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0002.png'
+00:22.924  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0003.png'
+00:23.758  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0004.png'
+00:24.588  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0005.png'
+00:25.446  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0006.png'
+00:26.336  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0007.png'
+00:27.264  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0008.png'
+00:28.114  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0009.png'
+00:29.031  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0010.png'
+00:30.003  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0011.png'
+00:30.969  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0012.png'
+00:31.743  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0013.png'
+00:32.374  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0014.png'
+00:33.017  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0015.png'
+00:33.613  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0016.png'
+00:34.308  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0017.png'
+00:35.017  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0018.png'
+00:35.760  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0019.png'
+00:36.442  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0020.png'
+00:37.013  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0021.png'
+00:37.701  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0022.png'
+00:38.471  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0023.png'
+00:39.136  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0024.png'
+00:39.715  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0025.png'
+00:40.367  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0026.png'
+00:41.070  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0027.png'
+00:41.739  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0028.png'
+00:42.504  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0029.png'
+00:43.220  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0030.png'
+00:43.862  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0031.png'
+00:44.534  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0032.png'
+00:45.236  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0033.png'
+00:45.910  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0034.png'
+00:46.627  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0035.png'
+00:47.278  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0036.png'
+00:48.020  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0037.png'
+00:48.740  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0038.png'
+00:49.486  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0039.png'
+00:50.184  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0040.png'
+00:50.875  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0041.png'
+00:51.544  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0042.png'
+00:52.250  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0043.png'
+00:52.914  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0044.png'
+00:53.629  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0045.png'
+00:54.248  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0046.png'
+00:54.813  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0047.png'
+00:55.365  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_frames_A_track_end_rush/f_0048.png'
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B18_track_end.png 2.7s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B31_wheels_edge.png 4.0s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B24_ant_bridge.png 4.4s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B22_ant_river.png 3.4s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B17_train_wide.png 3.6s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+ANIM_TIME A_track_end_rush 36.5s (0.8s/frame)
+ℹ️  blenderkit: Unregistering BlenderKit add-on [23:55:33.600, __init__.py:2881]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:55:33.600, download.py:416]
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:46:23)
+
+Blender quit

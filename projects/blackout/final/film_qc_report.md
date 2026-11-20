@@ -1,0 +1,130 @@
+# film_qc report — blackout_1920x1080.mp4
+**Verdict: PASS**
+Checks run: 105 | passed: 105 | failed: 0
+
+## Defects
+- (none)
+
+## Full log
+- [SKIP] lipsync@5.5s: anchor is off-screen by design — audio-only line
+- [SKIP] lipsync@56.2s: builder is off-screen by design — audio-only line
+- [SKIP] lipsync@63.4s: builder is off-screen by design — audio-only line
+- [SKIP] lipsync@64.5s: builder is off-screen by design — audio-only line
+- [SKIP] lipsync@65.5s: builder is off-screen by design — audio-only line
+- [SKIP] lipsync@69.2s: stranger is off-screen by design — audio-only line
+- [PASS] lipsync@72.1s: builder's mouth moving in 6/6 samples (100% of a 1.2s line; need 50%)
+- [PASS] silence@32.1s: no. no character is visible speaking or with their mouth open; the scene is sile
+- [PASS] silence@61.0s: no. no character is speaking or has their mouth open; the scene is silent and st
+- [PASS] silence@68.6s: no. the stranger is a silhouette with no visible facial features, and the builde
+- [PASS] identity-across-scenes: CONSISTENT — The builder and stranger maintain consistent physical traits across all scenes, with no noticeable changes in species, body proportions, head or ear shape, or markings.
+- [PASS] artifact@0.5s: clean
+- [PASS] artifact@1.5s: clean
+- [PASS] artifact@2.5s: clean
+- [PASS] artifact@3.5s: clean
+- [PASS] artifact@4.5s: clean
+- [PASS] artifact@5.5s: clean
+- [PASS] artifact@6.5s: clean
+- [PASS] artifact@7.5s: clean
+- [PASS] artifact@8.5s: clean
+- [PASS] artifact@9.5s: clean
+- [PASS] artifact@10.5s: clean
+- [PASS] artifact@11.5s: clean
+- [PASS] artifact@12.5s: clean
+- [PASS] artifact@13.5s: clean
+- [PASS] artifact@14.5s: clean
+- [PASS] artifact@15.5s: clean
+- [PASS] artifact@16.5s: clean
+- [PASS] artifact@17.5s: clean
+- [PASS] artifact@18.5s: clean
+- [PASS] artifact@19.5s: clean
+- [PASS] artifact@20.5s: clean
+- [PASS] artifact@21.5s: clean
+- [PASS] artifact@22.5s: clean
+- [PASS] artifact@23.5s: clean
+- [PASS] artifact@24.5s: clean
+- [PASS] artifact@25.5s: clean
+- [PASS] artifact@26.5s: clean
+- [PASS] artifact@27.5s: clean
+- [PASS] artifact@28.5s: clean
+- [PASS] artifact@29.5s: clean
+- [PASS] artifact@30.5s: clean
+- [PASS] artifact@31.5s: clean
+- [PASS] artifact@32.5s: clean
+- [PASS] artifact@33.5s: clean
+- [PASS] artifact@34.5s: clean
+- [PASS] artifact@35.5s: clean
+- [PASS] artifact@36.5s: clean
+- [PASS] artifact@37.5s: clean
+- [PASS] artifact@38.5s: clean
+- [PASS] artifact@39.5s: clean
+- [PASS] artifact@40.5s: clean
+- [PASS] artifact@41.5s: clean
+- [PASS] artifact@42.5s: clean
+- [PASS] artifact@43.5s: clean
+- [PASS] artifact@44.5s: clean
+- [PASS] artifact@45.5s: clean
+- [PASS] artifact@46.5s: clean
+- [PASS] artifact@47.5s: clean
+- [PASS] artifact@48.5s: clean
+- [PASS] artifact@49.5s: clean
+- [PASS] artifact@50.5s: clean
+- [PASS] artifact@51.5s: clean
+- [PASS] artifact@52.5s: clean
+- [PASS] artifact@53.5s: clean
+- [PASS] artifact@54.5s: clean
+- [PASS] artifact@55.5s: clean
+- [PASS] artifact@56.5s: clean
+- [PASS] artifact@57.5s: clean
+- [PASS] artifact@58.5s: clean
+- [PASS] artifact@59.5s: clean
+- [PASS] artifact@60.5s: clean
+- [PASS] artifact@61.5s: clean
+- [PASS] artifact@62.5s: clean
+- [PASS] artifact@63.5s: clean
+- [PASS] artifact@64.5s: clean
+- [PASS] artifact@65.5s: clean
+- [PASS] artifact@66.5s: clean
+- [PASS] artifact@67.5s: clean
+- [PASS] artifact@68.5s: clean
+- [PASS] artifact@69.5s: clean
+- [PASS] artifact@70.5s: clean
+- [PASS] artifact@71.5s: clean
+- [PASS] artifact@72.5s: clean
+- [PASS] artifact@73.5s: clean
+- [PASS] artifact@74.5s: clean
+- [PASS] artifact@75.5s: clean
+- [PASS] artifact@76.5s: clean
+- [PASS] artifact@77.5s: clean
+- [PASS] artifact@78.5s: clean
+- [PASS] artifact@79.5s: clean
+- [PASS] artifact@80.5s: clean
+- [PASS] artifact@81.5s: clean
+- [PASS] artifact@82.5s: clean
+- [PASS] artifact@83.5s: clean
+- [PASS] artifact@84.5s: clean
+- [PASS] artifact@85.5s: clean
+- [PASS] artifact@86.5s: clean
+- [PASS] artifact@87.5s: clean
+- [PASS] artifact@88.5s: clean
+- [PASS] artifact@89.5s: clean
+- [PASS] artifact@90.5s: clean
+- [PASS] artifact@91.5s: clean
+- [PASS] artifact@92.5s: clean
+- [PASS] audio@5.5s: 'Every major AI service is down' expected @5.5s, heard @0.0s (4/4 words)
+- [PASS] audio@56.2s: 'Fixing the bug. Running the te' expected @56.2s, heard on targeted re-listen (2/3 words; full-film transcript had a hole here)
+- [PASS] audio@63.4s: 'Flashlight.' expected @63.4s, heard @63.5s (1/1 words)
+- [PASS] audio@64.5s: 'Radio.' expected @64.5s, heard @64.8s (1/1 words)
+- [PASS] audio@65.5s: 'Door open.' expected @65.5s, heard @65.6s (1/2 words)
+- [PASS] audio@69.2s: 'Yours still works?' expected @69.2s, heard @68.5s (3/3 words)
+- [PASS] audio@72.1s: 'It never needed the internet.' expected @72.1s, heard @72.0s (3/3 words)
+
+## Spec check (no model)
+**Spec verdict: PASS**
+- [PASS] spec-width: 1920 px, manifest wants 1920
+- [PASS] spec-height: 1080 px, manifest wants 1080
+- [PASS] spec-fps: 24.000 fps, manifest wants 24
+- [INFO] spec-duration: 92.800 s
+- [PASS] spec-loudness: -14.4 LUFS integrated (LRA 21.7 LU), target -14 +-1.0
+- [PASS] spec-true-peak: -1.8 dBTP, ceiling -1.0
+- [PASS] spec-black-frames: 5 black span(s) >= 0.15s, 0 unintended
+- [PASS] spec-frozen-frames: 0 static span(s) >= 1.0s, 0 unintended

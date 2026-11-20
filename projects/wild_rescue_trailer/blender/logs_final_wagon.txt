@@ -1,0 +1,33 @@
+ℹ️  blenderkit: Verbose is enabled [23:38:05.866, addon_updater.py:150]
+ℹ️  blenderkit: Read in JSON settings from file [23:38:05.867, addon_updater.py:150]
+ℹ️  blenderkit: Ports reordered so first port is now 62485 (previous index was 0) [23:38:05.867, client_lib.py:129]
+Created history step 778a826b-cf36-4267-8ea7-d97ccc97889f
+ℹ️  blenderkit: Created new search history step [23:38:05.870, search.py:2525]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:38:05.870, download.py:416]
+00:00.278  blend            | Read blend: "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/wagon.blend"
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:38:05.919, download.py:416]
+00:12.116  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B12_wagon_burst.png'
+00:16.374  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B13_wheel_close.png'
+00:19.687  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B14_team_front.png'
+00:23.445  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B15_wagon_side.png'
+00:27.038  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/B16_bench.png'
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B12_wagon_burst.png 11.8s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B13_wheel_close.png 4.1s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B14_team_front.png 3.2s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B15_wagon_side.png 3.7s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME B16_bench.png 3.5s
+ℹ️  blenderkit: Unregistering BlenderKit add-on [23:38:32.744, __init__.py:2881]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:38:32.745, download.py:416]
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:46:23)
+
+Blender quit

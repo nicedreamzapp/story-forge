@@ -1,0 +1,5 @@
+(1) The image displays a digital interface, likely a task or project management dashboard, showing three devices (M1, M2, PC) with active tasks, resource usage (GPU, RAM), and timestamps. Each device has a list of tasks with titles, statuses, and time indicators.
+
+(2) The interface is vertically organized: at the top is the "Moonstone" header, followed by three rectangular panels for M1, M2, and PC, each showing resource bars (GPU/RAM) on the right and task lists on the left. Below these panels is a section labeled "Claude Code on M2" with tabs for CLOUD, LOCAL, and TASKS. The layout is clean, with dark backgrounds and colorful accents (purple, blue, orange).
+
+(3) Nothing in the image touches the ground, as it is a digital screen interface with no physical objects or environment depicted.

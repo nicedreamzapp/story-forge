@@ -1,0 +1,38 @@
+ℹ️  blenderkit: Verbose is enabled [23:56:25.053, addon_updater.py:150]
+ℹ️  blenderkit: Read in JSON settings from file [23:56:25.053, addon_updater.py:150]
+ℹ️  blenderkit: Ports reordered so first port is now 62485 (previous index was 0) [23:56:25.054, client_lib.py:129]
+Created history step 913d65fb-0b03-4b58-be11-4945b38df5f2
+ℹ️  blenderkit: Created new search history step [23:56:25.056, search.py:2525]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:56:25.056, download.py:416]
+00:00.289  blend            | Read blend: "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/train.blend"
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:56:25.124, download.py:416]
+00:02.331  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_preview_B18_track_end.png'
+00:04.239  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_preview_B31_wheels_edge.png'
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME _preview_B18_track_end.png 2.0s
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME _preview_B31_wheels_edge.png 1.9s
+ℹ️  blenderkit: Unregistering BlenderKit add-on [23:56:29.064, __init__.py:2881]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:56:29.065, download.py:416]
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:46:23)
+
+Blender quit
+ℹ️  blenderkit: Verbose is enabled [23:56:30.063, addon_updater.py:150]
+ℹ️  blenderkit: Read in JSON settings from file [23:56:30.064, addon_updater.py:150]
+ℹ️  blenderkit: Ports reordered so first port is now 62485 (previous index was 0) [23:56:30.064, client_lib.py:129]
+Created history step 78c69bc5-409f-484e-8a3e-e3f136660d9a
+ℹ️  blenderkit: Created new search history step [23:56:30.067, search.py:2525]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:56:30.067, download.py:416]
+00:00.310  blend            | Read blend: "/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/wagon.blend"
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:56:30.104, download.py:416]
+00:05.278  render           | Saved: '/Users/dtribe/Desktop/PROJECTS/story-forge/projects/wild_rescue_trailer/blender/renders/_preview_B12_wagon_burst.png'
+GPU_DEVICES: ['Apple M5 Max (GPU - 40 cores)[METAL]'] compute_device_type: METAL scene.device: GPU
+LOOK: AgX AgX - Punchy
+RENDER_TIME _preview_B12_wagon_burst.png 4.9s
+ℹ️  blenderkit: Unregistering BlenderKit add-on [23:56:35.103, __init__.py:2881]
+ℹ️  blenderkit: No temporarily enabled addons to clean up [23:56:35.103, download.py:416]
+Blender 5.1.1 (hash b70da489d7f4 built 2026-04-14 01:46:23)
+
+Blender quit

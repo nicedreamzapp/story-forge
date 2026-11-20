@@ -1,0 +1,3 @@
+# Story test (from the shot list alone, no narration)
+"A warm old family house. A woman finds a man in an old photo her mother won't explain ('Not anymore'). Then something unseen is in the house: a figure in a doorway that knows a glass will fall, a fork moving at an empty place, a little girl who says 'he's eating with us', a boy in a bed who shouldn't be there. The same man is in every family photo going back a hundred years, and at the end he is standing behind the woman in the window, saying he remembers her before she was born."
+Premise match: yes. Gap: Daniel (the forgotten son) is only implied (the boy in the bed, the last whisper); that is intended for a teaser and is paid off in the feature.

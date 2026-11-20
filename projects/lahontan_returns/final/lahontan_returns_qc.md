@@ -1,0 +1,164 @@
+# film_qc report — lahontan_returns.mp4
+**Verdict: FAIL — 5 defect(s)**
+Checks run: 132 | passed: 127 | failed: 5
+
+## Defects
+- identity-across-scenes: DRIFT — The scientist’s facial features and proportions differ noticeably from the anchor and reporter, suggesting inconsistent design across characters.
+- artifact@82.5s: The image features a large, prehistoric-looking fish (resembling a sturgeon or a fictionalized version) floating in floo
+- artifact@84.5s: The image features a large, prehistoric-looking fish (resembling a fossilized or ancient sturgeon) swimming in a flooded
+- artifact@85.5s: The image features a large, prehistoric-looking fish (resembling a Dunkleosteus or similar armored fish) swimming in a f
+- artifact@86.5s: The image features a large, prehistoric-looking fish (resembling a sturgeon or a fictionalized version of a Lake Lahonta
+
+## Full log
+- [PASS] lipsync@2.7s: anchor's mouth moving in 19/25 samples (76% of a 5.1s line; need 50%)
+- [PASS] lipsync@8.5s: anchor's mouth moving in 14/16 samples (88% of a 3.3s line; need 50%)
+- [SKIP] lipsync@11.7s: anchor is off-screen by design — audio-only line
+- [PASS] lipsync@17.7s: anchor's mouth moving in 2/3 samples (67% of a 0.6s line; need 50%)
+- [SKIP] lipsync@18.5s: anchor is off-screen by design — audio-only line
+- [SKIP] lipsync@22.2s: anchor is off-screen by design — audio-only line
+- [PASS] lipsync@28.1s: reporter's mouth moving in 30/32 samples (94% of a 6.5s line; need 50%)
+- [SKIP] lipsync@35.6s: reporter is off-screen by design — audio-only line
+- [SKIP] lipsync@40.4s: reporter is off-screen by design — audio-only line
+- [PASS] lipsync@44.2s: scientist's mouth moving in 23/27 samples (85% of a 5.5s line; need 50%)
+- [SKIP] lipsync@50.4s: scientist is off-screen by design — audio-only line
+- [PASS] lipsync@52.5s: scientist's mouth moving in 9/10 samples (90% of a 2.1s line; need 50%)
+- [PASS] lipsync@55.1s: resident's mouth moving in 14/17 samples (82% of a 3.5s line; need 50%)
+- [SKIP] lipsync@59.3s: resident is off-screen by design — audio-only line
+- [PASS] lipsync@65.2s: anchor's mouth moving in 23/33 samples (70% of a 6.7s line; need 50%)
+- [PASS] lipsync@72.3s: anchor's mouth moving in 18/21 samples (86% of a 4.2s line; need 50%)
+- [SKIP] lipsync@77.1s: anchor is off-screen by design — audio-only line
+- [SKIP] lipsync@82.3s: anchor is off-screen by design — audio-only line
+- [PASS] lipsync@87.5s: anchor's mouth moving in 19/29 samples (66% of a 5.9s line; need 50%)
+- [PASS] silence@6.8s: no. all characters are shown with their mouths closed or slightly parted, not wi
+- [PASS] silence@15.9s: no. none of the characters are depicted with their mouths wide open; they are al
+- [PASS] silence@21.6s: no. none of the characters are depicted with their mouths wide open; all are sho
+- [PASS] silence@26.4s: no. none of the characters are depicted with their mouths wide open; they are al
+- [PASS] silence@33.1s: no. none of the characters have their mouths wide open as if talking; the report
+- [PASS] silence@39.2s: no. none of the characters are depicted with their mouths wide open as if speaki
+- [FAIL] identity-across-scenes: DRIFT — The scientist’s facial features and proportions differ noticeably from the anchor and reporter, suggesting inconsistent design across characters.
+- [PASS] artifact@0.5s: clean
+- [PASS] artifact@1.5s: clean
+- [PASS] artifact@2.5s: clean
+- [PASS] artifact@3.5s: clean
+- [PASS] artifact@4.5s: clean
+- [PASS] artifact@5.5s: clean
+- [PASS] artifact@6.5s: clean
+- [PASS] artifact@7.5s: clean
+- [PASS] artifact@8.5s: clean
+- [PASS] artifact@9.5s: clean
+- [PASS] artifact@10.5s: clean
+- [PASS] artifact@11.5s: clean
+- [PASS] artifact@12.5s: clean
+- [PASS] artifact@13.5s: clean
+- [PASS] artifact@14.5s: clean
+- [PASS] artifact@15.5s: clean
+- [PASS] artifact@16.5s: clean
+- [PASS] artifact@17.5s: clean
+- [PASS] artifact@18.5s: clean
+- [PASS] artifact@19.5s: clean
+- [PASS] artifact@20.5s: clean
+- [PASS] artifact@21.5s: clean
+- [PASS] artifact@22.5s: clean
+- [PASS] artifact@23.5s: clean
+- [PASS] artifact@24.5s: clean
+- [PASS] artifact@25.5s: clean
+- [PASS] artifact@26.5s: clean
+- [PASS] artifact@27.5s: clean
+- [PASS] artifact@28.5s: clean
+- [PASS] artifact@29.5s: clean
+- [PASS] artifact@30.5s: clean
+- [PASS] artifact@31.5s: clean
+- [PASS] artifact@32.5s: clean
+- [PASS] artifact@33.5s: clean
+- [PASS] artifact@34.5s: clean
+- [PASS] artifact@35.5s: clean
+- [PASS] artifact@36.5s: clean
+- [PASS] artifact@37.5s: clean
+- [PASS] artifact@38.5s: clean
+- [PASS] artifact@39.5s: clean
+- [PASS] artifact@40.5s: clean
+- [PASS] artifact@41.5s: clean
+- [PASS] artifact@42.5s: clean
+- [PASS] artifact@43.5s: clean
+- [PASS] artifact@44.5s: clean
+- [PASS] artifact@45.5s: clean
+- [PASS] artifact@46.5s: clean
+- [PASS] artifact@47.5s: clean
+- [PASS] artifact@48.5s: clean
+- [PASS] artifact@49.5s: clean
+- [PASS] artifact@50.5s: clean
+- [PASS] artifact@51.5s: clean
+- [PASS] artifact@52.5s: clean
+- [PASS] artifact@53.5s: clean
+- [PASS] artifact@54.5s: clean
+- [PASS] artifact@55.5s: clean
+- [PASS] artifact@56.5s: clean
+- [PASS] artifact@57.5s: clean
+- [PASS] artifact@58.5s: clean
+- [PASS] artifact@59.5s: clean
+- [PASS] artifact@60.5s: clean
+- [PASS] artifact@61.5s: clean
+- [PASS] artifact@62.5s: clean
+- [PASS] artifact@63.5s: clean
+- [PASS] artifact@64.5s: clean
+- [PASS] artifact@65.5s: clean
+- [PASS] artifact@66.5s: clean
+- [PASS] artifact@67.5s: clean
+- [PASS] artifact@68.5s: clean
+- [PASS] artifact@69.5s: clean
+- [PASS] artifact@70.5s: clean
+- [PASS] artifact@71.5s: clean
+- [PASS] artifact@72.5s: clean
+- [PASS] artifact@73.5s: clean
+- [PASS] artifact@74.5s: clean
+- [PASS] artifact@75.5s: clean
+- [PASS] artifact@76.5s: clean
+- [PASS] artifact@77.5s: clean
+- [PASS] artifact@78.5s: clean
+- [PASS] artifact@79.5s: clean
+- [PASS] artifact@80.5s: clean
+- [PASS] artifact@81.5s: clean
+- [FAIL] artifact@82.5s: The image features a large, prehistoric-looking fish (resembling a sturgeon or a fictionalized version) floating in floo
+- [PASS] artifact@83.5s: clean
+- [FAIL] artifact@84.5s: The image features a large, prehistoric-looking fish (resembling a fossilized or ancient sturgeon) swimming in a flooded
+- [FAIL] artifact@85.5s: The image features a large, prehistoric-looking fish (resembling a Dunkleosteus or similar armored fish) swimming in a f
+- [FAIL] artifact@86.5s: The image features a large, prehistoric-looking fish (resembling a sturgeon or a fictionalized version of a Lake Lahonta
+- [PASS] artifact@87.5s: clean
+- [PASS] artifact@88.5s: clean
+- [PASS] artifact@89.5s: clean
+- [PASS] artifact@90.5s: clean
+- [PASS] artifact@91.5s: clean
+- [PASS] artifact@92.5s: clean
+- [PASS] artifact@93.5s: clean
+- [PASS] artifact@94.5s: clean
+- [PASS] artifact@95.5s: clean
+- [PASS] audio@2.7s: 'Good evening. We're interrupti' expected @2.7s, heard @0.0s (4/4 words)
+- [PASS] audio@8.5s: 'Scientists now confirm that an' expected @8.5s, heard @7.1s (4/4 words)
+- [PASS] audio@11.7s: 'prehistoric inland sea that co' expected @11.7s, heard @7.1s (3/4 words)
+- [PASS] audio@17.7s: 'tomorrow.' expected @17.7s, heard @12.8s (1/1 words)
+- [PASS] audio@18.5s: 'Water has been rising out of t' expected @18.5s, heard @12.8s (2/4 words)
+- [PASS] audio@22.2s: 'At the current rate, Silver Sp' expected @22.2s, heard @19.2s (4/4 words)
+- [PASS] audio@28.1s: 'Dan, I'm standing on Highway 5' expected @28.1s, heard on targeted re-listen (3/4 words; full-film transcript had a hole here)
+- [PASS] audio@35.6s: 'The Lahontan Reservoir behind ' expected @35.6s, heard on targeted re-listen (3/4 words; full-film transcript had a hole here)
+- [PASS] audio@40.4s: 'Locals say the sagebrush start' expected @40.4s, heard on targeted re-listen (4/4 words; full-film transcript had a hole here)
+- [PASS] audio@44.2s: 'We always knew the old shoreli' expected @44.2s, heard @24.7s (4/4 words)
+- [PASS] audio@50.4s: 'The lake was just waiting.' expected @50.4s, heard @47.4s (3/3 words)
+- [PASS] audio@52.5s: 'Honestly, it looks like it wan' expected @52.5s, heard @47.4s (3/4 words)
+- [PASS] audio@55.1s: 'I've been here 30 years, never' expected @55.1s, heard @53.7s (4/4 words)
+- [PASS] audio@59.3s: 'Now I'm gonna have underwater ' expected @59.3s, heard @60.4s (3/4 words)
+- [PASS] audio@65.2s: 'Officials are urging residents' expected @65.2s, heard @60.4s (4/4 words)
+- [PASS] audio@72.3s: 'Fill your boats with gas. Brin' expected @72.3s, heard @66.8s (4/4 words)
+- [PASS] audio@77.1s: 'Fernley and Dayton should expe' expected @77.1s, heard @74.2s (4/4 words)
+- [PASS] audio@82.3s: 'If you see a prehistoric fish ' expected @82.3s, heard @79.9s (4/4 words)
+- [PASS] audio@87.5s: 'We'll stay on this story as it' expected @87.5s, heard @88.3s (3/4 words)
+
+## Spec check (no model)
+**Spec verdict: PASS**
+- [PASS] spec-width: 1080 px, manifest wants 1080
+- [PASS] spec-height: 1920 px, manifest wants 1920
+- [PASS] spec-fps: 25.000 fps, manifest wants 25
+- [INFO] spec-duration: 96.020 s
+- [PASS] spec-loudness: -14.6 LUFS integrated (LRA 7.5 LU), target -14.5 +-1.0
+- [PASS] spec-true-peak: -2.2 dBTP, ceiling -1.0
+- [PASS] spec-black-frames: 0 black span(s) >= 0.15s, 0 unintended
+- [PASS] spec-frozen-frames: 0 static span(s) >= 1.0s, 0 unintended

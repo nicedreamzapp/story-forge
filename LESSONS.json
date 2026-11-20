@@ -1,679 +1,1073 @@
 {
- "_note": "House rules earned the hard way. Matched by keyword against any future shot's beat/prompt so a lesson is paid for once, ever.",
- "lessons": [
-  {
-   "when": [
-    "clip",
-    "animation",
-    "moving",
-    "steps",
-    "widens"
-   ],
-   "lesson": "a beat used to judge a CLIP must be judgeable from a single frame — describe a STATE, not a change over time. 'the crack of light widens' and 'she steps down out of the doorway' were rejected on every probe because no single frame can show a change.",
-   "learned_on": "s6_interior / s7_dooropen animations 2026-07-26"
-  },
-  {
-   "when": [
-    "wide",
-    "arrive",
-    "train",
-    "distance",
-    "heroes"
-   ],
-   "lesson": "identity drifts hardest when a character is SMALL in frame — wide shots came back with a smaller head and lighter orange fur and failed the identity gate. Frame characters large enough to read on-model, or build the wide as a plate and place characters via crops/inserts.",
-   "learned_on": "s4_arrival 2026-07-26"
-  },
-  {
-   "when": [
-    "train",
-    "locomotive",
-    "stopped",
-    "broken",
-    "trouble"
-   ],
-   "lesson": "a diffusion model draws 'circus train' as a happy train rolling along. To read as trouble it must be described as STOPPED DEAD and in distress with no motion cues at all — cold, stranded, crooked on the rails, smoke pouring up.",
-   "learned_on": "s2_thecall 2026-07-26"
-  },
-  {
-   "when": [
-    "impact",
-    "door",
-    "smash",
-    "burst",
-    "splinters"
-   ],
-   "lesson": "NEVER prompt an impact or collision. Wan converts 'splinters bursting' into a continuous particle spray that reads as drilling. Render the effort, and let the bang be felt from elsewhere — dust, shudder, a widening light crack.",
-   "learned_on": "s6_heave 2026-07-24"
-  },
-  {
-   "when": [
-    "render",
-    "queue",
-    "batch",
-    "speed",
-    "memory"
-   ],
-   "lesson": "batch a queue BY MODEL, not by shot — all stills first, then all animations. Alternating mflux and Wan GGUF per shot pushes the box into swap and the memory gate bounces ComfyUI (~90s, six times in one hour = ~15% of wall clock).",
-   "learned_on": "forge-shot first instrumented run 2026-07-26"
-  },
-  {
-   "when": [
-    "beat",
-    "shot",
-    "depict",
-    "frame",
-    "judge"
-   ],
-   "lesson": "a beat is a VISIBLE STATE. No intent ('trying to reach'), no offscreen facts ('the frightened animal inside'), no change over time ('the door widens'). Anything a viewer with no script cannot see in one frame will fail every probe and the fault is the spec, not the judge.",
-   "learned_on": "whole queue 0/7 2026-07-26"
-  },
-  {
-   "when": [
-    "identity",
-    "canon",
-    "master",
-    "wide",
-    "distance"
-   ],
-   "lesson": "identity questions must allow for scale, distance, lighting and angle. Comparing a close portrait master to a wide shot literally makes every wide 'drift' — ask about DESIGN (species, build, head/ear shape, colour scheme, art style), never about apparent size or warmth.",
-   "learned_on": "s4_arrival 2026-07-26"
-  },
-  {
-   "when": [
-    "gate",
-    "check",
-    "verdict",
-    "trust",
-    "calibrate"
-   ],
-   "lesson": "audit the auditor: keep a calibration set of shots with KNOWN human verdicts and re-run it whenever wording changes. First run agreed 5/6; the single disagreement was a badly worded beat. A gate that disagrees with the human under 80% of the time is not strict, it is broken.",
-   "learned_on": "beat_gate calibration 2026-07-26"
-  },
-  {
-   "when": [
-    "vote",
-    "ballot",
-    "frame",
-    "sample",
-    "majority"
-   ],
-   "lesson": "majority voting is load-bearing, not a nicety: two shots Matt approved scored 2/3 with one pedantic dissent ('the stick is not a fishing rod'). Single-frame judging would have rejected work he had already accepted.",
-   "learned_on": "calibration run 2026-07-26"
-  },
-  {
-   "when": [
-    "quality",
-    "grain",
-    "upscale",
-    "resolution",
-    "steps"
-   ],
-   "lesson": "the local-AI videos that actually earn thousands of upvotes use MANY steps (up to 60) and finish at high resolution with ZERO film grain — grain is how people hide smeared texture after upscaling. 24 steps at 832x480 is a draft, not a finish.",
-   "learned_on": "r/StableDiffusion 1774-upvote Wan 2.2 realism post"
-  },
-  {
-   "when": [
-    "consistency",
-    "character",
-    "scene",
-    "long",
-    "chain"
-   ],
-   "lesson": "what earns upvotes is CONSISTENCY across a whole scene, not one pretty clip — the 2.6k-upvote local anime post chained image-to-video off the last frame to reach 30-second continuous scenes with the same characters.",
-   "learned_on": "r/StableDiffusion 2610-upvote Wan 2.1 anime post"
-  },
-  {
-   "when": [
-    "empty",
-    "plate",
-    "deserted",
-    "no characters",
-    "scene"
-   ],
-   "lesson": "FLUX.2 accepts NO negative prompt and treats 'NO animals/people' in a positive prompt as an instruction to draw them. To get an empty plate, describe it positively — deserted, abandoned, silent, not a soul in sight — and let the gate's must_not do the rejecting.",
-   "learned_on": "s4/s8 plates 2026-07-26"
-  },
-  {
-   "when": [
-    "set",
-    "train",
-    "boxcar",
-    "door",
-    "location"
-   ],
-   "lesson": "LOCK THE SET, not just the characters. The door Hank pushes and the door that opens were different cars entirely — sliding wooden panel on a plain red car vs double hinged doors on a yellow-banded car in a different landscape. beat_gate supports set_masters and this film never armed it. Any shot sharing a location declares its set and is checked against the locked plate.",
-   "learned_on": "circus_train door continuity 2026-07-26"
-  },
-  {
-   "lesson": "Never put a word in CAPITAL LETTERS in an image prompt — the model renders capitalised words as literal painted signage. 'boxcars with SHUT doors' put the word SHUT in yellow capitals across two train cars. Use lower case, and add 'no lettering or writing anywhere' for vehicles.",
-   "learned_on": "circus_train s4_arrival 2026-07-27",
-   "when": [
-    "flux",
-    "still",
-    "prompt",
-    "mflux",
-    "text",
-    "signage",
-    "caps",
-    "lettering"
-   ]
-  },
-  {
-   "lesson": "A beat must name PHYSICAL VISIBLE facts. A single frame cannot show absence-of-motion ('stopped') or an internal state ('clearly worried') — both failed every ballot until restated. If independent runs fail with the SAME words, the beat is wrong, not the roll: stop re-rolling.",
-   "learned_on": "circus_train s2_thecall + s4_arrival 2026-07-27",
-   "when": [
-    "beat",
-    "beat_gate",
-    "spec",
-    "judge",
-    "fail",
-    "re-roll"
-   ]
-  },
-  {
-   "lesson": "A set-continuity master only works against shots at COMPARABLE SCALE. One master cannot serve both: a door close-up flunks every wide shot, a wide establishing view flunks every close-up. Keep a wide master and a detail master, and have each shot name the one at its scale.",
-   "learned_on": "circus_train 2026-07-27",
-   "when": [
-    "set",
-    "continuity",
-    "master",
-    "canon",
-    "scale",
-    "close-up",
-    "wide"
-   ]
-  },
-  {
-   "lesson": "A gate that writes the WRONG lesson is worse than no gate. Distinct rejection reasons must stay distinct — text-in-frame recorded as identity DRIFT taught 'draw the character on-model and larger', a correction unrelated to the defect, saved permanently and carried into later films.",
-   "learned_on": "circus_train s4_arrival 2026-07-27",
-   "when": [
-    "gate",
-    "lesson",
-    "learning",
-    "identity",
-    "drift"
-   ]
-  },
-  {
-   "lesson": "i2v dies silently with NO crash log when jetsam SIGKILLs it, while memory_pressure reports 93% free — the nearly-full swap file is what runs out, and nothing measures it. Bounce ComfyUI immediately before every animate, and reclaim on BOTH sides of the render, not just before.",
-   "learned_on": "circus_train 2026-07-27",
-   "when": [
-    "i2v",
-    "wan",
-    "memory",
-    "jetsam",
-    "swap",
-    "comfyui",
-    "animate"
-   ]
-  },
-  {
-   "lesson": "Gates judge ASSETS; nothing judges the POINTER. An EDL entry aimed at the wrong file gets a truthful verdict to the wrong question. Cross-check EDL ids against beats.json by id before any model loads — it is a string compare.",
-   "learned_on": "circus_train s4_arrival 2026-07-27",
-   "when": [
-    "edl",
-    "pointer",
-    "assembly",
-    "cut",
-    "beats"
-   ]
-  },
-  {
-   "when": [
-    "dog",
-    "doug",
-    "bloodhound"
-   ],
-   "lesson": "never describe Doug as lanky, slim or long-legged in any prompt — he is a STURDY bloodhound (deep chest, heavy build, long dark ears past the jaw, droopy eyes); prompt adjectives override the LoRA and produce a skinny off-model dog (Matt rejected it 2026-07-31)",
-   "learned_on": "s8_goodbye"
-  },
-  {
-   "when": [
-    "goodbye",
-    "hug",
-    "handshake",
-    "paw",
-    "touch",
-    "shoulder",
-    "chin",
-    "holding",
-    "embrace",
-    "high-five"
-   ],
-   "lesson": "NEVER prompt physical contact between two characters — a paw under a chin, a hug, a handshake. Wan fuses the touching limbs into a mangled lump (rule 6). Stage characters with clear air between them; warmth comes from posture, gaze and light, not touch.",
-   "learned_on": "s8_goodbye declined by Matt 2026-07-31"
-  },
-  {
-   "id": "stale-lease-blocks-everything",
-   "date": "2026-08-29",
-   "keywords": [
-    "forge_guard",
-    "lease",
-    "mem_client",
-    "film_qc",
-    "make-ltx25",
-    "hang",
-    "900s"
-   ],
-   "lesson": "A process killed while holding a forge_guard lease keeps the lease until its TTL (film_qc: 1h). Every later ask that would exceed the 50GB non-forge budget then silently waits the full 900s timeout and only THEN proceeds. Three renders and one QC lost 15 minutes each on 2026-08-29. Before diagnosing a 'stuck' judge or render: `python3 ~/SongForgeM5/mem_client.py state` → release orphan leases. Ask for what the job really needs (≤20GB with --low-ram)."
-  },
-  {
-   "id": "ltx25-scene-engine",
-   "date": "2026-08-29",
-   "keywords": [
-    "ltx-2.5",
-    "make-ltx25",
-    "animate",
-    "i2v",
-    "wan",
-    "speed",
-    "low-ram"
-   ],
-   "lesson": "Scene i2v: LTX-2.5 distilled --low-ram ≈ 70s per 5s clip vs Wan 13–16 min, same composition held. Dialogue a2v: keep mlx-video LTX-2 distilled (42s) — ltx-2-mlx a2v is dev+CFG and takes 4+ min with a swap spike. Numbers in RENDER_SPEED_RESEARCH.md 2026-08-29."
-  },
-  {
-   "id": "ltx25-invents-camera-moves",
-   "date": "2026-08-29",
-   "keywords": [
-    "ltx-2.5",
-    "make-ltx25",
-    "animate",
-    "camera",
-    "drift",
-    "clip gate"
-   ],
-   "lesson": "LTX-2.5 i2v adds push-ins, pans and pull-backs on its own; a clip then fails a beat the still passed (s1_coldopen 3 fails, s4_arrival 2 fails). 'Static camera, locked-off tripod shot, the camera does not move at all and the framing never changes from the first frame' held the frame; make-ltx25 now prepends it to every i2v prompt that does not ask for a move."
-  },
-  {
-   "id": "physically-impossible-passes-the-beat",
-   "date": "2026-08-30",
-   "keywords": [
-    "beat_gate",
-    "must_not",
-    "wagon",
-    "horse",
-    "trim",
-    "kept clips",
-    "review"
-   ],
-   "lesson": "The rollout shipped with the horse BEHIND the wagon it pulls (Matt: 'the wagon is pulling the horse, it makes no sense'). Three failures stacked: (1) the beat gate only asks 'does this depict the beat' — a horse + wagon + dust is a PASS with no physics check; (2) the trim rule kept a 2s window (t=3.5–4.5s) that passed the same question while the full clip failed 1/5; (3) nobody looked at KEPT clips — only failed ones got eyeballed. Fixes: HOUSE_MUST_NOT in beat_gate fails impossible geometry on every ballot; a pulling shot must state the geometry in beat AND must_not ('horses out in front, wagon behind them'); and every kept clip gets a frame-grid look by the agent before assembly."
-  },
-  {
-   "id": "pulled-rig-stage-in-profile",
-   "date": "2026-08-30",
-   "keywords": [
-    "wagon",
-    "horse",
-    "harness",
-    "pull",
-    "cart",
-    "carriage",
-    "init",
-    "plate",
-    "denoise",
-    "convoy",
-    "prescribe",
-    "kept clips"
-   ],
-   "lesson": "Second rollout failure the same morning, AFTER HOUSE_MUST_NOT shipped: both wagon shots came back as a CONVOY (a horse's rump at frame left, two loose horses charging at camera behind the wagon) and the judge passed the clips 5/5. Causes: (1) the init plate wagon_canon.png is a REAR three-quarter view, so from that angle a horse in front of the wagon is hidden by the wagon body and the model invents horses elsewhere; (2) the stored prescribe() lessons said 'add a galloping horse in the foreground on the left' — written for that plate, they kept manufacturing the rump; (3) a VL judge cannot be trusted on who-pulls-whom geometry even when told the rule. Fixes: any shot where one thing pulls another is staged in clean SIDE PROFILE or a low three-quarter FRONT view with no init plate, the prompt says 'a single wagon, the only vehicle on the road', must_not forbids a second wagon/convoy, loose horses, head-on horses, a horse cut by the frame edge and a rear end in the foreground; retire prescriptions when the staging changes; and every kept clip is eyeballed at full frame at 4+ timestamps before it goes near the cut."
-  },
-  {
-   "id": "count-heads-against-bodies",
-   "date": "2026-08-30",
-   "keywords": [
-    "horse",
-    "team",
-    "pair",
-    "two",
-    "side by side",
-    "heads",
-    "merge",
-    "profile",
-    "kept clips",
-    "review"
-   ],
-   "lesson": "Matt caught a THREE-headed pair of horses in the first frame of the rebuilt rollout after the agent had looked at it and called it right ('two-to-three horses' was written down and waved through). Any shot with two or more of the same animal side by side: count heads, count bodies, count legs — they must match — and put 'three or more heads / more heads than bodies / animals merged into each other' in must_not. Give a pair different coats so the model keeps them separate. A defect the reviewer can name in words and still ships is worse than one never seen."
-  },
-  {
-   "lesson": "A clip_beat must describe what ONE frame shows at any moment of the motion, never the CHANGE itself. 's6c: the seam of light steadily WIDENING' failed 0/5 on a clip that widened perfectly, because each sampled frame was judged alone and no single frame depicts 'widening'. Write clip_beats as a state true of every frame (e.g. 'light pouring through a partly or fully open doorway'), and let a human confirm the motion.",
-   "keywords": [
-    "clip_beat",
-    "widening",
-    "motion",
-    "judge",
-    "frame",
-    "animate",
-    "gate"
-   ],
-   "added": "2026-08-30",
-   "project": "circus_train"
-  },
-  {
-   "when": [
-    "stopped",
-    "rolling",
-    "racing",
-    "moving",
-    "still",
-    "repaired",
-    "broken"
-   ],
-   "lesson": "never put a MOTION or STATE-CHANGE claim in a beat used to judge a STILL — the judge infers motion from smoke shape and leg pose and fails BOTH directions ('smoke plume is dynamic so the train is moving' killed 'stopped train'; 'legs not blurred so not rolling' killed 'wagon rolling away'; 'steaming so not repaired' killed 'repaired train'). State only what pixels can prove: doors shut, smoke pouring, horses out front, dust behind the wheels.",
-   "learned_on": "s2b_smoke / s4_arrival / s8_goodbye base rolls 2026-08-31"
-  },
-  {
-   "when": [
-    "celebrating",
-    "joyful",
-    "alarmed",
-    "triumphant",
-    "dazed",
-    "relaxed"
-   ],
-   "lesson": "emotion and vibe words in a beat or clip_beat make the judge rule on mood it cannot verify — 'celebrating/joyfully' failed a frame that showed every required animal present. Name observable cues (ears swaying, head tipped back, mouth open) or drop the word.",
-   "learned_on": "c1_celebration / s7b_hank_flat 2026-08-31"
-  },
-  {
-   "when": [
-    "coverage",
-    "take",
-    "takes",
-    "alternate",
-    "alternates",
-    "seed",
-    "edit",
-    "cut",
-    "selects",
-    "assemble"
-   ],
-   "lesson": "one clip per beat is not a film: shoot >= 3 setups per line from >= 2 sources (acquired seconds >= 3x runtime), keep alternates in acquired/ and clips/alternates/ listed in manifest.json until the FILM is approved, rank >= 2 takes per line in selects.json, and cut to the best. coverage_gate.py blocks the edit until this holds (frozen rules 13 amended, 29).",
-   "learned_on": "Fable review + Sitka promo 2026-10-22"
-  },
-  {
-   "when": [
-    "motion",
-    "camera",
-    "push-in",
-    "push",
-    "drift",
-    "ambient",
-    "static",
-    "locked-off",
-    "pan",
-    "animate"
-   ],
-   "lesson": "drift is not motion: 'gentle ambient motion, subtle camera push-in' and a forced 'static camera, locked-off' prefix gave every shot the same nothing, and Matt rejected that look three times. Name the subject's action and a camera move chosen for THIS shot (push in as the realization lands, track alongside the walk, pull back to reveal); static is an explicit --static / \"static\": true choice (frozen rule 31).",
-   "learned_on": "Fable review + Sitka promo 2026-10-22"
-  },
-  {
-   "when": [
-    "narration",
-    "vo",
-    "voiceover",
-    "voice-over",
-    "crossfade",
-    "xfade",
-    "dissolve",
-    "transition",
-    "words",
-    "timing"
-   ],
-   "lesson": "narration laid over a run of clips with a 0.5 s crossfade at every join reads as a slideshow. Align the VO to words (words_align.py), pick cue words per line (cues.json), hard-cut on word onsets, and dissolve only where a cue says xfade (frozen rule 32).",
-   "learned_on": "Fable review + Sitka promo 2026-10-22"
-  },
-  {
-   "when": [
-    "product",
-    "design",
-    "cad",
-    "exoskeleton",
-    "leg",
-    "legs",
-    "geometry",
-    "part",
-    "parts",
-    "device",
-    "sitka"
-   ],
-   "lesson": "QC that checks faces never notices a product drawn wrong (an extra leg, a motor in the wrong place). Every product shot is checked against design.json (reference angles, counted facts, must_not) by design_check.py before it can be selected (RULES.md 29).",
-   "learned_on": "Fable review + Sitka promo 2026-10-22"
-  },
-  {
-   "when": [
-    "grok",
-    "chatgpt",
-    "acquired",
-    "browser",
-    "acquire",
-    "imagine",
-    "dall-e",
-    "sora"
-   ],
-   "lesson": "ChatGPT images and Grok Imagine video are allowed ONLY via bin/browser-acquire in Matt's Brave on the mini (hidden lease tabs, never focus-stealing, never an API), each take with a provenance sidecar, and they pass every gate including design_check. Grok free tier = 480p and 6 s; never click the upsell (frozen rule 28).",
-   "learned_on": "Fable review + Sitka promo 2026-10-22"
-  },
-  {
-   "when": [
-    "show",
-    "matt",
-    "review",
-    "ready",
-    "watch",
-    "final",
-    "known_defects",
-    "deliver",
-    "done"
-   ],
-   "lesson": "never show Matt a cut the agent has not watched start to finish: all gate reports read, then known_defects.md dated, confirming the full watch, newer than the newest final/*.mp4. bin/film-status prints READY FOR MATT: no until then (frozen rule 30).",
-   "learned_on": "Fable review + Sitka promo 2026-10-22"
-  },
-  {
-   "when": [
-    "script",
-    "story",
-    "premise",
-    "beat",
-    "beats",
-    "sentiment",
-    "feel",
-    "judge",
-    "viewer"
-   ],
-   "lesson": "scripts were written for the VL judge, not the viewer, and no spec ever said what the viewer should feel. Every line/beat carries a SENTIMENT line; write the story for the viewer, then stage the shot so the judge can verify it, never the other way round (RULES.md 32).",
-   "learned_on": "Fable review + Sitka promo 2026-10-22"
-  },
-  {
-   "when": [
-    "grok",
-    "chatgpt",
-    "acquire",
-    "acquired",
-    "refs",
-    "reference",
-    "cad",
-    "design",
-    "fidelity",
-    "prompt"
-   ],
-   "lesson": "a browser generation that does not look like OUR design is a wrong shot, however pretty (Matt was upset by one). Every browser-acquire job uploads CAD stills of the matching pose/angle as refs, best match FIRST (Grok animates from the first ref only), and every prompt carries the design.json fidelity_clause telling the tool to reproduce that exact design, photoreal. browser-acquire refuses empty refs (frozen rule 28).",
-   "learned_on": "Fable review + Sitka promo 2026-10-22"
-  },
-  {
-   "when": [
-    "voice",
-    "narration",
-    "chatterbox",
-    "whisper",
-    "pitch",
-    "tts",
-    "clone"
-   ],
-   "lesson": "a voice line is only usable once whisper hears every word of it AFTER the finish chain: the pitch shift turned 'camp chair' into 'cam chair' (Sitka) and 'This is Sitka' into 'to Sitka' three takes running (sitka_demo). promo_voice.py retakes, then auto-rewords (alt: lines, numbers as words, the misheard word set off by commas), and every later gate checks what was SPOKEN.",
-   "learned_on": "promo mode build (sitka_demo fixture) 2026-10-22"
-  },
-  {
-   "when": [
-    "blender",
-    "hdri",
-    "render",
-    "cad",
-    "ground",
-    "shadow catcher",
-    "floating"
-   ],
-   "lesson": "an HDRI world with only a shadow catcher left the product floating over the photo's far-away ground (sitka_demo l02, struts in the air). HDRI shots get a real rough ground under the product that fades to transparent at ~3x its size; studio shots get a dark sweep that fades to black so no horizon line shows.",
-   "learned_on": "promo mode build (sitka_demo fixture) 2026-10-22"
-  },
-  {
-   "when": [
-    "ending",
-    "end card",
-    "slam",
-    "sting",
-    "music",
-    "last word"
-   ],
-   "lesson": "the end-card slam (flash + hit + the bed's downbeat + the sting) lands AFTER the last word ends (slam_after 0.15 s), never on it: on Sitka the hit masked 'Come'. edit_to_words stops the shots at the slam, promo_mix offsets the bed's downbeat onto it, cue_check and promo_gates fail a slam that starts before the last heard word ends.",
-   "learned_on": "promo mode build (sitka_demo fixture) 2026-10-22"
-  },
-  {
-   "when": [
-    "browser",
-    "acquire",
-    "test",
-    "grok",
-    "chatgpt",
-    "gemini",
-    "mock"
-   ],
-   "lesson": "never run a live browser generation to test a tool: bin/browser-acquire --mock runs the same validation, prompt building, numbering, sidecars and provenance with no browser and no mini, and its fake takes go to acquired/_mock/, which ingest never reads.",
-   "learned_on": "promo mode build (sitka_demo fixture) 2026-10-22"
-  },
-  {
-   "when": [
-    "plan",
-    "model",
-    "inventory",
-    "wan",
-    "flux",
-    "qwen"
-   ],
-   "lesson": "before writing any production plan, list the model weights actually on disk (du the real files, not the cache folder names): on 10/31 the plan named Wan 2.2 and Flux, both deleted on 10/25, and the Qwen-Image cache entry was 4 KB. Plan only with what is there.",
-   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
-  },
-  {
-   "when": [
-    "estimate",
-    "eta",
-    "timing",
-    "ltx"
-   ],
-   "lesson": "never give a finish time before the first clip is timed. Measured on the M5 10/31: LTX-2.5 --hq --low-ram at 832x480 ~9-10 min per ~3.5 s take (~160 s per second of footage); LTX previs ~106 s per 5 s clip; Blender Cycles ship stills 11-41 s, volumetric 6 min, animation ~12 s/frame at 48 samples.",
-   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
-  },
-  {
-   "when": [
-    "memory",
-    "guard",
-    "stall",
-    "image"
-   ],
-   "lesson": "check the memory guard's free allowance BEFORE the image phase and pick a model that fits: on 10/31 Qwen-Image needed 48 GB, the guard allowed 23 because of another job, and the phase stalled 16 min until Z-Image-Turbo (bf16, fits) took over.",
-   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
-  },
-  {
-   "when": [
-    "ltx",
-    "haze",
-    "length",
-    "previs"
-   ],
-   "lesson": "LTX shots on this film degraded into haze/darkness after 2-3.5 s: render each shot at the cut length plus ~0.5 s handles, never a blanket 5 s (baked into 04_shots step 5).",
-   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
-  },
-  {
-   "when": [
-    "sfx",
-    "gated",
-    "login",
-    "huggingface"
-   ],
-   "lesson": "a gated download is never a reason to ask Matt to sign in: swap to a model already on disk (Stable Audio Open was HF-gated, MMAudio already local and Matt approved its rumble by ear).",
-   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
-  },
-  {
-   "when": [
-    "seedvr2",
-    "upscale",
-    "4k",
-    "budget",
-    "mps"
-   ],
-   "lesson": "SeedVR2-3B fp16 on the M5 (torch MPS) runs ~13 s per OUTPUT frame at 720p short side; the VAE decode is ~70% of it, VAE tiling does not speed it up, and 4K direct is ~6x slower (7 min just to encode 21 frames). Budget the upscale before promising 4K: SeedVR2 only the held shots (>= ~0.9 s) to ~2x, lanczos to 4K, and lanczos the sub-second cuts.",
-   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
-  },
-  {
-   "when": [
-    "seedvr2",
-    "flash_attn",
-    "transformers",
-    "crash"
-   ],
-   "lesson": "the SeedVR2 node CLI stubs a fake flash_attn module on Macs; newer transformers then dies with KeyError 'flash_attn'. Launch it through projects/last_signal/tools/seedvr2_run.py, which imports transformers' flash-attention probe before the stub exists.",
-   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
-  },
-  {
-   "when": [
-    "clip_beat",
-    "beat_gate",
-    "clip",
-    "motion",
-    "gate"
-   ],
-   "lesson": "the VL clip gate failed 34 of 44 good takes because clip_beats said motion ('rushes toward', 'keeps rising', 'for the whole shot') and the judge reads each sampled frame as 'static'. Write clip_beats as what ONE frame can show at any point of the shot (the ship large in frame with streaking rocks, the giant towering over the monoliths), never a verb of motion.",
-   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
-  },
-  {
-   "when": [
-    "mix",
-    "surround",
-    "silence",
-    "clamp",
-    "score"
-   ],
-   "lesson": "when a mix plan clamps sources out of a silence window (dead stop, black), never clamp the full-length timeline tracks (score, beep, sub hits): the first pass cut the score at the dead stop and the whole ramp went near-silent. Check per-half-second RMS of every render against the beat map before calling a mix done.",
-   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
-  },
-  {
-   "when": [
-    "sfx",
-    "mmaudio",
-    "noise",
-    "riser"
-   ],
-   "lesson": "MMAudio text-mode 'long riser' came back as white-noise hiss (spectral flatness 0.45, centroid 10.7 kHz). Measure flatness + centroid of every generated SFX and drop anything noise-like before it reaches the mix.",
-   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
-  },
-  {
-   "when": [
-    "wait",
-    "pgrep",
-    "background",
-    "monitor"
-   ],
-   "lesson": "an 'until ! pgrep -f PATTERN' waiter matches its OWN command line and never exits; wait on the job's PID or its log file instead.",
-   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
-  },
-  {
-   "when": [
-    "seedvr2",
-    "batch",
-    "grey",
-    "artifact",
-    "validate"
-   ],
-   "lesson": "SeedVR2 CLI on MPS: in a run with THREE temporal batches the middle batch came back grey with white smears, twice (batch 45 and 41, seeds unchanged); 1- and 2-batch runs were clean. Keep every run to <= 2 batches (split long shots into chunks of one batch each) and compare every output frame to its source at thumbnail size before using it (tools/seedvr2_batch.py bad_frames).",
-   "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
-  }
- ]
+  "_note": "House rules earned the hard way. Matched by keyword against any future shot's beat/prompt so a lesson is paid for once, ever.",
+  "lessons": [
+    {
+      "when": [
+        "clip",
+        "animation",
+        "moving",
+        "steps",
+        "widens"
+      ],
+      "lesson": "a beat used to judge a CLIP must be judgeable from a single frame — describe a STATE, not a change over time. 'the crack of light widens' and 'she steps down out of the doorway' were rejected on every probe because no single frame can show a change.",
+      "learned_on": "s6_interior / s7_dooropen animations 2026-07-26"
+    },
+    {
+      "when": [
+        "wide",
+        "arrive",
+        "train",
+        "distance",
+        "heroes"
+      ],
+      "lesson": "identity drifts hardest when a character is SMALL in frame — wide shots came back with a smaller head and lighter orange fur and failed the identity gate. Frame characters large enough to read on-model, or build the wide as a plate and place characters via crops/inserts.",
+      "learned_on": "s4_arrival 2026-07-26"
+    },
+    {
+      "when": [
+        "train",
+        "locomotive",
+        "stopped",
+        "broken",
+        "trouble"
+      ],
+      "lesson": "a diffusion model draws 'circus train' as a happy train rolling along. To read as trouble it must be described as STOPPED DEAD and in distress with no motion cues at all — cold, stranded, crooked on the rails, smoke pouring up.",
+      "learned_on": "s2_thecall 2026-07-26"
+    },
+    {
+      "when": [
+        "impact",
+        "door",
+        "smash",
+        "burst",
+        "splinters"
+      ],
+      "lesson": "NEVER prompt an impact or collision. Wan converts 'splinters bursting' into a continuous particle spray that reads as drilling. Render the effort, and let the bang be felt from elsewhere — dust, shudder, a widening light crack.",
+      "learned_on": "s6_heave 2026-07-24"
+    },
+    {
+      "when": [
+        "render",
+        "queue",
+        "batch",
+        "speed",
+        "memory"
+      ],
+      "lesson": "batch a queue BY MODEL, not by shot — all stills first, then all animations. Alternating mflux and Wan GGUF per shot pushes the box into swap and the memory gate bounces ComfyUI (~90s, six times in one hour = ~15% of wall clock).",
+      "learned_on": "forge-shot first instrumented run 2026-07-26"
+    },
+    {
+      "when": [
+        "beat",
+        "shot",
+        "depict",
+        "frame",
+        "judge"
+      ],
+      "lesson": "a beat is a VISIBLE STATE. No intent ('trying to reach'), no offscreen facts ('the frightened animal inside'), no change over time ('the door widens'). Anything a viewer with no script cannot see in one frame will fail every probe and the fault is the spec, not the judge.",
+      "learned_on": "whole queue 0/7 2026-07-26"
+    },
+    {
+      "when": [
+        "identity",
+        "canon",
+        "master",
+        "wide",
+        "distance"
+      ],
+      "lesson": "identity questions must allow for scale, distance, lighting and angle. Comparing a close portrait master to a wide shot literally makes every wide 'drift' — ask about DESIGN (species, build, head/ear shape, colour scheme, art style), never about apparent size or warmth.",
+      "learned_on": "s4_arrival 2026-07-26"
+    },
+    {
+      "when": [
+        "gate",
+        "check",
+        "verdict",
+        "trust",
+        "calibrate"
+      ],
+      "lesson": "audit the auditor: keep a calibration set of shots with KNOWN human verdicts and re-run it whenever wording changes. First run agreed 5/6; the single disagreement was a badly worded beat. A gate that disagrees with the human under 80% of the time is not strict, it is broken.",
+      "learned_on": "beat_gate calibration 2026-07-26"
+    },
+    {
+      "when": [
+        "vote",
+        "ballot",
+        "frame",
+        "sample",
+        "majority"
+      ],
+      "lesson": "majority voting is load-bearing, not a nicety: two shots Matt approved scored 2/3 with one pedantic dissent ('the stick is not a fishing rod'). Single-frame judging would have rejected work he had already accepted.",
+      "learned_on": "calibration run 2026-07-26"
+    },
+    {
+      "when": [
+        "quality",
+        "grain",
+        "upscale",
+        "resolution",
+        "steps"
+      ],
+      "lesson": "the local-AI videos that actually earn thousands of upvotes use MANY steps (up to 60) and finish at high resolution with ZERO film grain — grain is how people hide smeared texture after upscaling. 24 steps at 832x480 is a draft, not a finish.",
+      "learned_on": "r/StableDiffusion 1774-upvote Wan 2.2 realism post"
+    },
+    {
+      "when": [
+        "consistency",
+        "character",
+        "scene",
+        "long",
+        "chain"
+      ],
+      "lesson": "what earns upvotes is CONSISTENCY across a whole scene, not one pretty clip — the 2.6k-upvote local anime post chained image-to-video off the last frame to reach 30-second continuous scenes with the same characters.",
+      "learned_on": "r/StableDiffusion 2610-upvote Wan 2.1 anime post"
+    },
+    {
+      "when": [
+        "empty",
+        "plate",
+        "deserted",
+        "no characters",
+        "scene"
+      ],
+      "lesson": "FLUX.2 accepts NO negative prompt and treats 'NO animals/people' in a positive prompt as an instruction to draw them. To get an empty plate, describe it positively — deserted, abandoned, silent, not a soul in sight — and let the gate's must_not do the rejecting.",
+      "learned_on": "s4/s8 plates 2026-07-26"
+    },
+    {
+      "when": [
+        "set",
+        "train",
+        "boxcar",
+        "door",
+        "location"
+      ],
+      "lesson": "LOCK THE SET, not just the characters. The door Hank pushes and the door that opens were different cars entirely — sliding wooden panel on a plain red car vs double hinged doors on a yellow-banded car in a different landscape. beat_gate supports set_masters and this film never armed it. Any shot sharing a location declares its set and is checked against the locked plate.",
+      "learned_on": "circus_train door continuity 2026-07-26"
+    },
+    {
+      "lesson": "Never put a word in CAPITAL LETTERS in an image prompt — the model renders capitalised words as literal painted signage. 'boxcars with SHUT doors' put the word SHUT in yellow capitals across two train cars. Use lower case, and add 'no lettering or writing anywhere' for vehicles.",
+      "learned_on": "circus_train s4_arrival 2026-07-27",
+      "when": [
+        "flux",
+        "still",
+        "prompt",
+        "mflux",
+        "text",
+        "signage",
+        "caps",
+        "lettering"
+      ]
+    },
+    {
+      "lesson": "A beat must name PHYSICAL VISIBLE facts. A single frame cannot show absence-of-motion ('stopped') or an internal state ('clearly worried') — both failed every ballot until restated. If independent runs fail with the SAME words, the beat is wrong, not the roll: stop re-rolling.",
+      "learned_on": "circus_train s2_thecall + s4_arrival 2026-07-27",
+      "when": [
+        "beat",
+        "beat_gate",
+        "spec",
+        "judge",
+        "fail",
+        "re-roll"
+      ]
+    },
+    {
+      "lesson": "A set-continuity master only works against shots at COMPARABLE SCALE. One master cannot serve both: a door close-up flunks every wide shot, a wide establishing view flunks every close-up. Keep a wide master and a detail master, and have each shot name the one at its scale.",
+      "learned_on": "circus_train 2026-07-27",
+      "when": [
+        "set",
+        "continuity",
+        "master",
+        "canon",
+        "scale",
+        "close-up",
+        "wide"
+      ]
+    },
+    {
+      "lesson": "A gate that writes the WRONG lesson is worse than no gate. Distinct rejection reasons must stay distinct — text-in-frame recorded as identity DRIFT taught 'draw the character on-model and larger', a correction unrelated to the defect, saved permanently and carried into later films.",
+      "learned_on": "circus_train s4_arrival 2026-07-27",
+      "when": [
+        "gate",
+        "lesson",
+        "learning",
+        "identity",
+        "drift"
+      ]
+    },
+    {
+      "lesson": "i2v dies silently with NO crash log when jetsam SIGKILLs it, while memory_pressure reports 93% free — the nearly-full swap file is what runs out, and nothing measures it. Bounce ComfyUI immediately before every animate, and reclaim on BOTH sides of the render, not just before.",
+      "learned_on": "circus_train 2026-07-27",
+      "when": [
+        "i2v",
+        "wan",
+        "memory",
+        "jetsam",
+        "swap",
+        "comfyui",
+        "animate"
+      ]
+    },
+    {
+      "lesson": "Gates judge ASSETS; nothing judges the POINTER. An EDL entry aimed at the wrong file gets a truthful verdict to the wrong question. Cross-check EDL ids against beats.json by id before any model loads — it is a string compare.",
+      "learned_on": "circus_train s4_arrival 2026-07-27",
+      "when": [
+        "edl",
+        "pointer",
+        "assembly",
+        "cut",
+        "beats"
+      ]
+    },
+    {
+      "when": [
+        "dog",
+        "doug",
+        "bloodhound"
+      ],
+      "lesson": "never describe Doug as lanky, slim or long-legged in any prompt — he is a STURDY bloodhound (deep chest, heavy build, long dark ears past the jaw, droopy eyes); prompt adjectives override the LoRA and produce a skinny off-model dog (Matt rejected it 2026-07-31)",
+      "learned_on": "s8_goodbye"
+    },
+    {
+      "when": [
+        "goodbye",
+        "hug",
+        "handshake",
+        "paw",
+        "touch",
+        "shoulder",
+        "chin",
+        "holding",
+        "embrace",
+        "high-five"
+      ],
+      "lesson": "NEVER prompt physical contact between two characters — a paw under a chin, a hug, a handshake. Wan fuses the touching limbs into a mangled lump (rule 6). Stage characters with clear air between them; warmth comes from posture, gaze and light, not touch.",
+      "learned_on": "s8_goodbye declined by Matt 2026-07-31"
+    },
+    {
+      "id": "stale-lease-blocks-everything",
+      "date": "2026-08-29",
+      "keywords": [
+        "forge_guard",
+        "lease",
+        "mem_client",
+        "film_qc",
+        "make-ltx25",
+        "hang",
+        "900s"
+      ],
+      "lesson": "A process killed while holding a forge_guard lease keeps the lease until its TTL (film_qc: 1h). Every later ask that would exceed the 50GB non-forge budget then silently waits the full 900s timeout and only THEN proceeds. Three renders and one QC lost 15 minutes each on 2026-08-29. Before diagnosing a 'stuck' judge or render: `python3 ~/SongForgeM5/mem_client.py state` → release orphan leases. Ask for what the job really needs (≤20GB with --low-ram)."
+    },
+    {
+      "id": "ltx25-scene-engine",
+      "date": "2026-08-29",
+      "keywords": [
+        "ltx-2.5",
+        "make-ltx25",
+        "animate",
+        "i2v",
+        "wan",
+        "speed",
+        "low-ram"
+      ],
+      "lesson": "Scene i2v: LTX-2.5 distilled --low-ram ≈ 70s per 5s clip vs Wan 13–16 min, same composition held. Dialogue a2v: keep mlx-video LTX-2 distilled (42s) — ltx-2-mlx a2v is dev+CFG and takes 4+ min with a swap spike. Numbers in RENDER_SPEED_RESEARCH.md 2026-08-29."
+    },
+    {
+      "id": "ltx25-invents-camera-moves",
+      "date": "2026-08-29",
+      "keywords": [
+        "ltx-2.5",
+        "make-ltx25",
+        "animate",
+        "camera",
+        "drift",
+        "clip gate"
+      ],
+      "lesson": "LTX-2.5 i2v adds push-ins, pans and pull-backs on its own; a clip then fails a beat the still passed (s1_coldopen 3 fails, s4_arrival 2 fails). 'Static camera, locked-off tripod shot, the camera does not move at all and the framing never changes from the first frame' held the frame; make-ltx25 now prepends it to every i2v prompt that does not ask for a move."
+    },
+    {
+      "id": "physically-impossible-passes-the-beat",
+      "date": "2026-08-30",
+      "keywords": [
+        "beat_gate",
+        "must_not",
+        "wagon",
+        "horse",
+        "trim",
+        "kept clips",
+        "review"
+      ],
+      "lesson": "The rollout shipped with the horse BEHIND the wagon it pulls (Matt: 'the wagon is pulling the horse, it makes no sense'). Three failures stacked: (1) the beat gate only asks 'does this depict the beat' — a horse + wagon + dust is a PASS with no physics check; (2) the trim rule kept a 2s window (t=3.5–4.5s) that passed the same question while the full clip failed 1/5; (3) nobody looked at KEPT clips — only failed ones got eyeballed. Fixes: HOUSE_MUST_NOT in beat_gate fails impossible geometry on every ballot; a pulling shot must state the geometry in beat AND must_not ('horses out in front, wagon behind them'); and every kept clip gets a frame-grid look by the agent before assembly."
+    },
+    {
+      "id": "pulled-rig-stage-in-profile",
+      "date": "2026-08-30",
+      "keywords": [
+        "wagon",
+        "horse",
+        "harness",
+        "pull",
+        "cart",
+        "carriage",
+        "init",
+        "plate",
+        "denoise",
+        "convoy",
+        "prescribe",
+        "kept clips"
+      ],
+      "lesson": "Second rollout failure the same morning, AFTER HOUSE_MUST_NOT shipped: both wagon shots came back as a CONVOY (a horse's rump at frame left, two loose horses charging at camera behind the wagon) and the judge passed the clips 5/5. Causes: (1) the init plate wagon_canon.png is a REAR three-quarter view, so from that angle a horse in front of the wagon is hidden by the wagon body and the model invents horses elsewhere; (2) the stored prescribe() lessons said 'add a galloping horse in the foreground on the left' — written for that plate, they kept manufacturing the rump; (3) a VL judge cannot be trusted on who-pulls-whom geometry even when told the rule. Fixes: any shot where one thing pulls another is staged in clean SIDE PROFILE or a low three-quarter FRONT view with no init plate, the prompt says 'a single wagon, the only vehicle on the road', must_not forbids a second wagon/convoy, loose horses, head-on horses, a horse cut by the frame edge and a rear end in the foreground; retire prescriptions when the staging changes; and every kept clip is eyeballed at full frame at 4+ timestamps before it goes near the cut."
+    },
+    {
+      "id": "count-heads-against-bodies",
+      "date": "2026-08-30",
+      "keywords": [
+        "horse",
+        "team",
+        "pair",
+        "two",
+        "side by side",
+        "heads",
+        "merge",
+        "profile",
+        "kept clips",
+        "review"
+      ],
+      "lesson": "Matt caught a THREE-headed pair of horses in the first frame of the rebuilt rollout after the agent had looked at it and called it right ('two-to-three horses' was written down and waved through). Any shot with two or more of the same animal side by side: count heads, count bodies, count legs — they must match — and put 'three or more heads / more heads than bodies / animals merged into each other' in must_not. Give a pair different coats so the model keeps them separate. A defect the reviewer can name in words and still ships is worse than one never seen."
+    },
+    {
+      "lesson": "A clip_beat must describe what ONE frame shows at any moment of the motion, never the CHANGE itself. 's6c: the seam of light steadily WIDENING' failed 0/5 on a clip that widened perfectly, because each sampled frame was judged alone and no single frame depicts 'widening'. Write clip_beats as a state true of every frame (e.g. 'light pouring through a partly or fully open doorway'), and let a human confirm the motion.",
+      "keywords": [
+        "clip_beat",
+        "widening",
+        "motion",
+        "judge",
+        "frame",
+        "animate",
+        "gate"
+      ],
+      "added": "2026-08-30",
+      "project": "circus_train"
+    },
+    {
+      "when": [
+        "stopped",
+        "rolling",
+        "racing",
+        "moving",
+        "still",
+        "repaired",
+        "broken"
+      ],
+      "lesson": "never put a MOTION or STATE-CHANGE claim in a beat used to judge a STILL — the judge infers motion from smoke shape and leg pose and fails BOTH directions ('smoke plume is dynamic so the train is moving' killed 'stopped train'; 'legs not blurred so not rolling' killed 'wagon rolling away'; 'steaming so not repaired' killed 'repaired train'). State only what pixels can prove: doors shut, smoke pouring, horses out front, dust behind the wheels.",
+      "learned_on": "s2b_smoke / s4_arrival / s8_goodbye base rolls 2026-08-31"
+    },
+    {
+      "when": [
+        "celebrating",
+        "joyful",
+        "alarmed",
+        "triumphant",
+        "dazed",
+        "relaxed"
+      ],
+      "lesson": "emotion and vibe words in a beat or clip_beat make the judge rule on mood it cannot verify — 'celebrating/joyfully' failed a frame that showed every required animal present. Name observable cues (ears swaying, head tipped back, mouth open) or drop the word.",
+      "learned_on": "c1_celebration / s7b_hank_flat 2026-08-31"
+    },
+    {
+      "when": [
+        "coverage",
+        "take",
+        "takes",
+        "alternate",
+        "alternates",
+        "seed",
+        "edit",
+        "cut",
+        "selects",
+        "assemble"
+      ],
+      "lesson": "one clip per beat is not a film: shoot >= 3 setups per line from >= 2 sources (acquired seconds >= 3x runtime), keep alternates in acquired/ and clips/alternates/ listed in manifest.json until the FILM is approved, rank >= 2 takes per line in selects.json, and cut to the best. coverage_gate.py blocks the edit until this holds (frozen rules 13 amended, 29).",
+      "learned_on": "Fable review + Sitka promo 2026-10-22"
+    },
+    {
+      "when": [
+        "motion",
+        "camera",
+        "push-in",
+        "push",
+        "drift",
+        "ambient",
+        "static",
+        "locked-off",
+        "pan",
+        "animate"
+      ],
+      "lesson": "drift is not motion: 'gentle ambient motion, subtle camera push-in' and a forced 'static camera, locked-off' prefix gave every shot the same nothing, and Matt rejected that look three times. Name the subject's action and a camera move chosen for THIS shot (push in as the realization lands, track alongside the walk, pull back to reveal); static is an explicit --static / \"static\": true choice (frozen rule 31).",
+      "learned_on": "Fable review + Sitka promo 2026-10-22"
+    },
+    {
+      "when": [
+        "narration",
+        "vo",
+        "voiceover",
+        "voice-over",
+        "crossfade",
+        "xfade",
+        "dissolve",
+        "transition",
+        "words",
+        "timing"
+      ],
+      "lesson": "narration laid over a run of clips with a 0.5 s crossfade at every join reads as a slideshow. Align the VO to words (words_align.py), pick cue words per line (cues.json), hard-cut on word onsets, and dissolve only where a cue says xfade (frozen rule 32).",
+      "learned_on": "Fable review + Sitka promo 2026-10-22"
+    },
+    {
+      "when": [
+        "product",
+        "design",
+        "cad",
+        "exoskeleton",
+        "leg",
+        "legs",
+        "geometry",
+        "part",
+        "parts",
+        "device",
+        "sitka"
+      ],
+      "lesson": "QC that checks faces never notices a product drawn wrong (an extra leg, a motor in the wrong place). Every product shot is checked against design.json (reference angles, counted facts, must_not) by design_check.py before it can be selected (RULES.md 29).",
+      "learned_on": "Fable review + Sitka promo 2026-10-22"
+    },
+    {
+      "when": [
+        "grok",
+        "chatgpt",
+        "acquired",
+        "browser",
+        "acquire",
+        "imagine",
+        "dall-e",
+        "sora"
+      ],
+      "lesson": "ChatGPT images and Grok Imagine video are allowed ONLY via bin/browser-acquire in Matt's Brave on the mini (hidden lease tabs, never focus-stealing, never an API), each take with a provenance sidecar, and they pass every gate including design_check. Grok free tier = 480p and 6 s; never click the upsell (frozen rule 28).",
+      "learned_on": "Fable review + Sitka promo 2026-10-22"
+    },
+    {
+      "when": [
+        "show",
+        "matt",
+        "review",
+        "ready",
+        "watch",
+        "final",
+        "known_defects",
+        "deliver",
+        "done"
+      ],
+      "lesson": "never show Matt a cut the agent has not watched start to finish: all gate reports read, then known_defects.md dated, confirming the full watch, newer than the newest final/*.mp4. bin/film-status prints READY FOR MATT: no until then (frozen rule 30).",
+      "learned_on": "Fable review + Sitka promo 2026-10-22"
+    },
+    {
+      "when": [
+        "script",
+        "story",
+        "premise",
+        "beat",
+        "beats",
+        "sentiment",
+        "feel",
+        "judge",
+        "viewer"
+      ],
+      "lesson": "scripts were written for the VL judge, not the viewer, and no spec ever said what the viewer should feel. Every line/beat carries a SENTIMENT line; write the story for the viewer, then stage the shot so the judge can verify it, never the other way round (RULES.md 32).",
+      "learned_on": "Fable review + Sitka promo 2026-10-22"
+    },
+    {
+      "when": [
+        "grok",
+        "chatgpt",
+        "acquire",
+        "acquired",
+        "refs",
+        "reference",
+        "cad",
+        "design",
+        "fidelity",
+        "prompt"
+      ],
+      "lesson": "a browser generation that does not look like OUR design is a wrong shot, however pretty (Matt was upset by one). Every browser-acquire job uploads CAD stills of the matching pose/angle as refs, best match FIRST (Grok animates from the first ref only), and every prompt carries the design.json fidelity_clause telling the tool to reproduce that exact design, photoreal. browser-acquire refuses empty refs (frozen rule 28).",
+      "learned_on": "Fable review + Sitka promo 2026-10-22"
+    },
+    {
+      "when": [
+        "voice",
+        "narration",
+        "chatterbox",
+        "whisper",
+        "pitch",
+        "tts",
+        "clone"
+      ],
+      "lesson": "a voice line is only usable once whisper hears every word of it AFTER the finish chain: the pitch shift turned 'camp chair' into 'cam chair' (Sitka) and 'This is Sitka' into 'to Sitka' three takes running (sitka_demo). promo_voice.py retakes, then auto-rewords (alt: lines, numbers as words, the misheard word set off by commas), and every later gate checks what was SPOKEN.",
+      "learned_on": "promo mode build (sitka_demo fixture) 2026-10-22"
+    },
+    {
+      "when": [
+        "blender",
+        "hdri",
+        "render",
+        "cad",
+        "ground",
+        "shadow catcher",
+        "floating"
+      ],
+      "lesson": "an HDRI world with only a shadow catcher left the product floating over the photo's far-away ground (sitka_demo l02, struts in the air). HDRI shots get a real rough ground under the product that fades to transparent at ~3x its size; studio shots get a dark sweep that fades to black so no horizon line shows.",
+      "learned_on": "promo mode build (sitka_demo fixture) 2026-10-22"
+    },
+    {
+      "when": [
+        "ending",
+        "end card",
+        "slam",
+        "sting",
+        "music",
+        "last word"
+      ],
+      "lesson": "the end-card slam (flash + hit + the bed's downbeat + the sting) lands AFTER the last word ends (slam_after 0.15 s), never on it: on Sitka the hit masked 'Come'. edit_to_words stops the shots at the slam, promo_mix offsets the bed's downbeat onto it, cue_check and promo_gates fail a slam that starts before the last heard word ends.",
+      "learned_on": "promo mode build (sitka_demo fixture) 2026-10-22"
+    },
+    {
+      "when": [
+        "browser",
+        "acquire",
+        "test",
+        "grok",
+        "chatgpt",
+        "gemini",
+        "mock"
+      ],
+      "lesson": "never run a live browser generation to test a tool: bin/browser-acquire --mock runs the same validation, prompt building, numbering, sidecars and provenance with no browser and no mini, and its fake takes go to acquired/_mock/, which ingest never reads.",
+      "learned_on": "promo mode build (sitka_demo fixture) 2026-10-22"
+    },
+    {
+      "when": [
+        "plan",
+        "model",
+        "inventory",
+        "wan",
+        "flux",
+        "qwen"
+      ],
+      "lesson": "before writing any production plan, list the model weights actually on disk (du the real files, not the cache folder names): on 10/31 the plan named Wan 2.2 and Flux, both deleted on 10/25, and the Qwen-Image cache entry was 4 KB. Plan only with what is there.",
+      "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+    },
+    {
+      "when": [
+        "estimate",
+        "eta",
+        "timing",
+        "ltx"
+      ],
+      "lesson": "never give a finish time before the first clip is timed. Measured on the M5 10/31: LTX-2.5 --hq --low-ram at 832x480 ~9-10 min per ~3.5 s take (~160 s per second of footage); LTX previs ~106 s per 5 s clip; Blender Cycles ship stills 11-41 s, volumetric 6 min, animation ~12 s/frame at 48 samples.",
+      "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+    },
+    {
+      "when": [
+        "memory",
+        "guard",
+        "stall",
+        "image"
+      ],
+      "lesson": "check the memory guard's free allowance BEFORE the image phase and pick a model that fits: on 10/31 Qwen-Image needed 48 GB, the guard allowed 23 because of another job, and the phase stalled 16 min until Z-Image-Turbo (bf16, fits) took over.",
+      "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+    },
+    {
+      "when": [
+        "ltx",
+        "haze",
+        "length",
+        "previs"
+      ],
+      "lesson": "LTX shots on this film degraded into haze/darkness after 2-3.5 s: render each shot at the cut length plus ~0.5 s handles, never a blanket 5 s (baked into 04_shots step 5).",
+      "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+    },
+    {
+      "when": [
+        "sfx",
+        "gated",
+        "login",
+        "huggingface"
+      ],
+      "lesson": "a gated download is never a reason to ask Matt to sign in: swap to a model already on disk (Stable Audio Open was HF-gated, MMAudio already local and Matt approved its rumble by ear).",
+      "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+    },
+    {
+      "when": [
+        "seedvr2",
+        "upscale",
+        "4k",
+        "budget",
+        "mps"
+      ],
+      "lesson": "SeedVR2-3B fp16 on the M5 (torch MPS) runs ~13 s per OUTPUT frame at 720p short side; the VAE decode is ~70% of it, VAE tiling does not speed it up, and 4K direct is ~6x slower (7 min just to encode 21 frames). Budget the upscale before promising 4K: SeedVR2 only the held shots (>= ~0.9 s) to ~2x, lanczos to 4K, and lanczos the sub-second cuts.",
+      "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+    },
+    {
+      "when": [
+        "seedvr2",
+        "flash_attn",
+        "transformers",
+        "crash"
+      ],
+      "lesson": "the SeedVR2 node CLI stubs a fake flash_attn module on Macs; newer transformers then dies with KeyError 'flash_attn'. Launch it through projects/last_signal/tools/seedvr2_run.py, which imports transformers' flash-attention probe before the stub exists.",
+      "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+    },
+    {
+      "when": [
+        "clip_beat",
+        "beat_gate",
+        "clip",
+        "motion",
+        "gate"
+      ],
+      "lesson": "the VL clip gate failed 34 of 44 good takes because clip_beats said motion ('rushes toward', 'keeps rising', 'for the whole shot') and the judge reads each sampled frame as 'static'. Write clip_beats as what ONE frame can show at any point of the shot (the ship large in frame with streaking rocks, the giant towering over the monoliths), never a verb of motion.",
+      "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+    },
+    {
+      "when": [
+        "mix",
+        "surround",
+        "silence",
+        "clamp",
+        "score"
+      ],
+      "lesson": "when a mix plan clamps sources out of a silence window (dead stop, black), never clamp the full-length timeline tracks (score, beep, sub hits): the first pass cut the score at the dead stop and the whole ramp went near-silent. Check per-half-second RMS of every render against the beat map before calling a mix done.",
+      "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+    },
+    {
+      "when": [
+        "sfx",
+        "mmaudio",
+        "noise",
+        "riser"
+      ],
+      "lesson": "MMAudio text-mode 'long riser' came back as white-noise hiss (spectral flatness 0.45, centroid 10.7 kHz). Measure flatness + centroid of every generated SFX and drop anything noise-like before it reaches the mix.",
+      "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+    },
+    {
+      "when": [
+        "wait",
+        "pgrep",
+        "background",
+        "monitor"
+      ],
+      "lesson": "an 'until ! pgrep -f PATTERN' waiter matches its OWN command line and never exits; wait on the job's PID or its log file instead.",
+      "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+    },
+    {
+      "when": [
+        "seedvr2",
+        "batch",
+        "grey",
+        "artifact",
+        "validate"
+      ],
+      "lesson": "SeedVR2 CLI on MPS: in a run with THREE temporal batches the middle batch came back grey with white smears, twice (batch 45 and 41, seeds unchanged); 1- and 2-batch runs were clean. Keep every run to <= 2 batches (split long shots into chunks of one batch each) and compare every output frame to its source at thumbnail size before using it (tools/seedvr2_batch.py bad_frames).",
+      "learned_on": "THE LAST SIGNAL trailer 2026-10-31"
+    },
+    {
+      "when": [
+        "zimage",
+        "style",
+        "set",
+        "empty",
+        "canon",
+        "creature"
+      ],
+      "lesson": "a style string written for characters ('big expressive animated eyes', 'fur shading') makes Z-Image put an invented cute creature into every EMPTY set or prop frame (9/9 set candidates on 10/31). Keep two style strings: a character one and an environment-only one ('empty of characters and creatures, no animals') for every frame with no character in it.",
+      "learned_on": "HANK & DOUG'S WILD RESCUE trailer 2026-10-31"
+    },
+    {
+      "when": [
+        "zimage",
+        "style",
+        "night",
+        "lantern",
+        "prop",
+        "prompt"
+      ],
+      "lesson": "any light SOURCE named in a style string becomes an object in every frame: 'warm amber lantern light' in the night style put a lantern on the ground beside the bear in 9/9 frames, even with 'no lantern visible' in the prompt. Name only the light quality (cold silver moonlight) in the style; put a prop in the prompt only for the shots that need it. Same for 'trumpet' (the elephant got a brass instrument): use the body action words ('raises its trunk and bellows').",
+      "learned_on": "HANK & DOUG'S WILD RESCUE trailer 2026-11-01"
+    },
+    {
+      "when": [
+        "train",
+        "vehicle",
+        "wheels",
+        "i2v",
+        "ltx",
+        "blender",
+        "mechanical"
+      ],
+      "lesson": "train/vehicle wheels: animate in Blender, never AI i2v. Matt 10:45 AM 11/1: the LTX train shots had wheels 'moving under the train unnaturally' (spinning wrong, sliding against the body). Every close or medium shot where wheels or rods show is a Blender animation: wheel rotation = distance travelled / radius, side rods on the crank pins, main rod on a sliding crosshead, the body riding the rails (blender/anim_train.py splits a joined vehicle into loose parts and rigs them). Use Cycles motion blur for spokes. AI may paint a wide shot only if the wheels are too small to read, and that goes in known_defects.",
+      "learned_on": "HANK & DOUG trailer 2026-11-01"
+    },
+    {
+      "when": [
+        "voice",
+        "casting",
+        "chatterbox",
+        "hank",
+        "doug",
+        "kokoro"
+      ],
+      "lesson": "a 'brand-new cast' must exclude every earlier voice of that franchise, including spare-pool voices used for side characters (voiceA/voiceB were circus_train's bird and Ellie). Kokoro-82M (local) passages make clean new ChatterBox references in seconds; audition 3-4 per character, whisper + pyin pitch check, and roll extra seeds when whisper mishears a name (am_onyx said 'Dug' on 2 of 6 seeds).",
+      "learned_on": "HANK & DOUG trailer 2026-11-01"
+    },
+    {
+      "when": [
+        "zimage",
+        "img2img",
+        "identity",
+        "composite",
+        "dog",
+        "bloodhound"
+      ],
+      "lesson": "img2img at 0.5-0.58 over a canon-cutout plate re-invents a character's coat (Doug became a tricolor beagle-like hound in R03 and R15, both LOCKED and rendered before anyone caught it). Use 0.40-0.42 plus an explicit coat clarifier after the canon description ('one solid russet-red coat, no black saddle, no white legs') and compare every locked character still against the canon master before animating.",
+      "learned_on": "HANK & DOUG trailer 2026-11-01"
+    },
+    {
+      "when": [
+        "mouth",
+        "dialogue",
+        "sync",
+        "pause",
+        "cut"
+      ],
+      "lesson": "a line with a pause ('Doug... that's a big hole.') can be split at the word gap and each half placed on a separate mouth-open beat from mouth_sync: pick the take whose beat pattern matches the line's shape (R18 t1: 0.12-0.38 + 1.54-2.83 s), not the take with the most motion.",
+      "learned_on": "HANK & DOUG trailer 2026-11-01"
+    },
+    {
+      "when": [
+        "mix",
+        "ramp",
+        "swell",
+        "trailer"
+      ],
+      "lesson": "an arranged score window can come out flat across a trailer ramp (-15 dB, quieter than the theme hit). Write a static gain curve on the score (reveal -2 -> +1 dB, ramp +1 -> +6 dB) and re-check per-half-second RMS; it is a written envelope, not loudnorm.",
+      "learned_on": "HANK & DOUG trailer 2026-11-01"
+    },
+    {
+      "when": [
+        "seedvr2",
+        "pipeline",
+        "restart",
+        "coverage"
+      ],
+      "lesson": "when a shot is replaced mid-pipeline (Blender re-render), make sure the long upscale queue skips it: SeedVR2 takes its todo list at start and skips segments whose up/ file exists, so write the replacement's up/ file before the queue reaches it (c04a's AI version was upscaled for nothing, ~7 min).",
+      "learned_on": "HANK & DOUG trailer 2026-11-01"
+    },
+    {
+      "when": [
+        "video",
+        "model",
+        "k6",
+        "kandinsky",
+        "default",
+        "i2v",
+        "scene"
+      ],
+      "lesson": "Kandinsky 6.0 Pro (29B, bf16, MIT) is the default scene video engine (Matt 11/1 on its first clip: 'That's the best I've ever seen'). bin/make-k6 on the M5: 10 steps (distilled checkpoint, guidance 1.0), 832x480 x 73 frames (3 s) = ~718 s a clip (encode 6 s, load 40 s, denoise 635 s, decode ~36 s), peak 68.7 GB, seed-deterministic. Max 5 s (121 frames) a clip. It runs alone: nothing else heavy beside it.",
+      "learned_on": "video bake-off 2026-11-01"
+    },
+    {
+      "when": [
+        "k6",
+        "kandinsky",
+        "decode",
+        "memory",
+        "vae",
+        "peak"
+      ],
+      "lesson": "decode AFTER dropping the transformer: K6 decoding the VAE with its 58 GB transformer still resident peaked at 82.9 GB (over its 72 GB lease); output_type='latent', del the transformer, empty the MPS cache, then vae.decode brought the peak to 68.7 GB with an identical clip. Apply the same staging (text encoder -> free -> transformer -> free -> VAE) to every big diffusers video model.",
+      "learned_on": "video bake-off 2026-11-01"
+    },
+    {
+      "when": [
+        "mps",
+        "progress",
+        "timing",
+        "eta",
+        "steps"
+      ],
+      "lesson": "on MPS a diffusers progress bar measures enqueue, not compute: Wan-Animate-2 showed 40/40 steps in 2:59 and then sat ~25 more minutes on the GPU. Time a render only after torch.mps.synchronize(), and never quote sec/step from the bar after the first few steps.",
+      "learned_on": "video bake-off 2026-11-01"
+    },
+    {
+      "when": [
+        "wan",
+        "animate",
+        "flex",
+        "mps",
+        "rope",
+        "float64",
+        "acting"
+      ],
+      "lesson": "diffusers' Wan-Animate-2 does not run on MPS as shipped: its generation self-attention is a flex BlockMask that needs torch.compile, and its RoPE runs in float64/complex128. tools/wan_animate2_mps.py replaces both with the same math (per-frame SDPA over [all generation keys + that frame's reference keys]; a float32 cos/sin RoPE), verified to 2e-7 against the dense mask and the original RoPE. Import it before building the pipeline (bin/make-wa2 does).",
+      "learned_on": "video bake-off 2026-11-01"
+    },
+    {
+      "when": [
+        "wan",
+        "animate",
+        "memory",
+        "cfg",
+        "kv",
+        "guard",
+        "swap"
+      ],
+      "lesson": "Wan-Animate-2 base (40 steps, CFG 3.0) with UMT5 resident held 91 GB at 832x480 (the per-layer reference KV cache alone is ~27 GB) and forge_guard SIGSTOPped it for swapping 1.1 GB/min after 25 minutes, unfinished. Use the distilled checkpoint (10 steps, no CFG), encode the prompts once and move UMT5 to meta before the denoise.",
+      "learned_on": "video bake-off 2026-11-01"
+    },
+    {
+      "when": [
+        "guard",
+        "forge_guard",
+        "render_sentry",
+        "new",
+        "engine",
+        "register"
+      ],
+      "lesson": "a new heavy render engine must be registered before its first run: forge_guard process family (cmdline pattern), LEASE_LABELS, and FORGE_OVERBUDGET_OK if its real peak is over the 50 GB budget; plus render_sentry HEAVY and ALIVE. Unregistered heavy processes get SIGTERMed. make-k6 (k6-) and make-wa2 (wa2-) were added 11/1.",
+      "learned_on": "video bake-off 2026-11-01"
+    },
+    {
+      "when": [
+        "huggingface",
+        "cache",
+        "disk",
+        "du",
+        "delete",
+        "inventory"
+      ],
+      "lesson": "the M5's HF cache keeps file contents in a shared hub/blobs/<xx>/<sha> store with .refs files, so `du` on a models--* folder reads 4 KB even for a 75 GB model. Inventory with `hf cache ls` (krea2 venv) or `du -shL <repo>/snapshots`, and delete with `hf cache rm model/<repo> -y` so the shared blobs and refs are cleaned too.",
+      "learned_on": "video bake-off 2026-11-01"
+    },
+    {
+      "when": [
+        "python",
+        "venv",
+        "symlink",
+        "execv",
+        "hang"
+      ],
+      "lesson": "a script that re-execs itself under a venv must compare RESOLVED paths: zimage_batch.py compared sys.prefix (/Users/dtribe/Desktop/PROJECTS/AI/krea2/venv) with ~/AI/krea2/venv (~/AI is a symlink), never matched, and re-exec'd forever at 100% CPU with no output (a Krea verify sat 17 min that way). Fixed with .resolve() on both sides.",
+      "learned_on": "video bake-off 2026-11-01"
+    },
+    {
+      "when": [
+        "wan",
+        "animate",
+        "load",
+        "device_map",
+        "mps",
+        "stall",
+        "acting"
+      ],
+      "lesson": "Wan-Animate-2 distilled on the M5, 11/1: loading every component to the CPU and then .to('mps') held two copies of the 33 GB transformer (78 GB two minutes in) and forge_guard SIGTERMed it; the staged load with device_map='mps' then sat 10 minutes in torch.mps.empty_cache() waiting on a Metal command buffer at 0% CPU and was killed so the GPU could go to Last Signal. Next attempt: load each component with the plain CPU path ONE at a time (move it to mps, del the CPU copy, gc) instead of device_map='mps', and skip empty_cache between loads. Status: performance transfer on Apple Silicon is UNPROVEN; no clip yet.",
+      "learned_on": "video bake-off 2026-11-01"
+    },
+    {
+      "when": [
+        "beat_gate",
+        "votes",
+        "still",
+        "gate",
+        "speed"
+      ],
+      "lesson": "beat_gate --votes 3 on a STILL judges the same image three times and the VL decode is greedy, so the votes are always unanimous (71 of 71 stills on 10/31-11/1: 39x '0 of 3', 32x '3 of 3'). Gate stills with --votes 1 (same verdict, a third of the time); keep 3 votes for CLIPS, where the votes are different frames.",
+      "learned_on": "HANK & DOUG trailer 2026-11-01"
+    },
+    {
+      "when": [
+        "blender",
+        "mini",
+        "forge_guard",
+        "memory",
+        "metal",
+        "songforge"
+      ],
+      "lesson": "forge_guard on the mini measures phys_footprint (RSS + Metal buffers), not RSS: a Blender wagon test at 4.8 GB RSS read as 20 GB (volume puffs + GPU OIDN) and was SIGSTOPped then SIGTERMed within a minute on a box at 5 GB available. Blender is not in the guard's ADJUSTABLE list, so below 12 GB it is never signalled: render with CPU denoise, 512 px tiles and no persistent data (peak ~5-10 GB) and log `footprint -p` yourself. (Matt 11/1 6 PM: the mini now only does songs; no film renders there at all.)",
+      "learned_on": "HANK & DOUG trailer 2026-11-01"
+    },
+    {
+      "when": [
+        "blender",
+        "motion blur",
+        "keyframes",
+        "first frame",
+        "pop"
+      ],
+      "lesson": "Cycles motion blur needs motion on both sides of the frame: when keys exist only on the render range, frames 1 and n come out sharp while every other frame is smeared, a visible pop at each end of the clip (c02a_rails). Key frame 0 and n+1 too (range(0, n + 2)) and render 1..n.",
+      "learned_on": "HANK & DOUG trailer 2026-11-01"
+    },
+    {
+      "when": [
+        "blender",
+        "wheel",
+        "spokes",
+        "strobe",
+        "wagon wheel effect"
+      ],
+      "lesson": "pick vehicle speed against spoke spacing: per-frame rotation (v / R / fps) must stay under half the spoke spacing or the spokes strobe backwards (14 spokes = 25.7 deg, so <= ~9 deg a frame, the c03b wagon wheel at 4.15 m/s). When the shot must be faster (train drivers at 34 deg a frame), raise the shutter (0.75) so spokes smear into a disc while crank pins, counterweights and rods stay readable.",
+      "learned_on": "HANK & DOUG trailer 2026-11-01"
+    },
+    {
+      "when": [
+        "blender",
+        "steam",
+        "dust",
+        "volume",
+        "cost"
+      ],
+      "lesson": "procedural volume puffs (Principled Volume + noise) cost ~45 s a frame at 832x480 on an M4 Pro and blew up GPU memory; soft surface puffs (transparent mix by camera-facing falloff x noise x per-object fade on ob.color) read the same in a stylised film at a fraction of the cost. Physics for the motion: p = p0 + u0 (1 - e^-k tau) / k with u0 = emitter velocity + jet, so steam peels back off a moving whistle and dust stays behind the wheel.",
+      "learned_on": "HANK & DOUG trailer 2026-11-01"
+    },
+    {
+      "when": [
+        "blender",
+        "ant",
+        "beetle",
+        "insect",
+        "model"
+      ],
+      "lesson": "an insect reads as a BEETLE when one big plate covers a fat body. For an ANT: three separate segments (head, long narrow thorax, rounder gaster), a visibly pinched waist (thin stalk + small petiole node), thin ELBOWED antennae with a tiny club, six thin three-part legs with high knees, and any armour plate kept small and on the gaster only (blender/anim_ants.py). Two alternating-tripod leg poses swapped by a per-ant gait clock make them step.",
+      "learned_on": "HANK & DOUG trailer 2026-11-01"
+    },
+    {
+      "when": [
+        "pc",
+        "windows",
+        "relay",
+        "powershell",
+        "transfer"
+      ],
+      "lesson": "driving the Windows PC through fia-run-on: cmd.exe caps a command near 8K chars, so send files in ~2.4K base64 chunks (Set/Add-Content then FromBase64String) and pull them as base64 slices; big files go through a random-token folder in the VPS nginx web root (only 22/80/443 are open; delete after). Set $ProgressPreference='SilentlyContinue' or CLIXML progress floods the output; never name a PowerShell function R (built-in alias r = Invoke-History, the queue silently ran nothing). EEVEE headless on the Iris Xe rendered garbage frames: use Cycles CPU there.",
+      "learned_on": "HANK & DOUG trailer 2026-11-01"
+    },
+    {
+      "when": [
+        "seedvr2",
+        "upscale",
+        "4k",
+        "ltx",
+        "refine",
+        "ic-lora",
+        "face",
+        "shimmer"
+      ],
+      "lesson": "LTX-2.5 IC-LoRA Refine-Details vs SeedVR2-3B on Last Signal K6 clips (832x348 scope source), M5 11/2: Refine (tools/ltx25_refine_tiled.py, upstream ltx-2-mlx worktree ~/Desktop/PROJECTS/ltx-2-mlx-main, 3x2 per-step fused tiles at 1920x800, --low-ram) ran 820-920 s per 49 frames, 56 GB Metal peak. It stays true to the source and steady over time: frame-to-frame change matched the source on the face and monoliths, where SeedVR2 added +53% and +29% (boiling texture, cracked skin, red eye rims). But it is softer than SeedVR2 on hard surfaces and wides, because the LoRA expects ~2x upscales and our sources need 4.6x. A native-4K Refine pass costs ~146 s per 1024x576 tile, so a full frame is ~95 min: hero tiles only. Matt has not picked yet, and the default stays SeedVR2; candidate router: faces/close-ups to Refine, wides/hard surfaces to SeedVR2. ltx-2-mlx ic-lora has no CLI tiling, so wrap the DiT in TiledLTXModel. The gated HF repo was accepted by POSTing to /<repo>/ask-access with the token. Details in UPSCALE-TEST-2026-11-02.md.",
+      "learned_on": "UPSCALE TEST 2026-11-02"
+    },
+    {
+      "when": [
+        "upscale",
+        "seedvr2",
+        "refine",
+        "face",
+        "close-up",
+        "4k",
+        "assemble"
+      ],
+      "lesson": "Matt picked on 2026-11-02 1:53 AM, after watching the side-by-side: SeedVR2 makes faces look fake ('her wrinkles on the first one look fake and AI'), and LTX-2.5 Refine looks 'more smoothed out and normal'. He saw no difference on the ship or the monoliths. The rule since: upscale through bin/upscale-route. SeedVR2-3B for everything, LTX-2.5 Refine for faces and close-ups, lanczos under 0.9 s. Stage 04 sets face:true per shot (always for cartoon/animal faces, because the Apple Vision probe bin/face_area only sees human faces; auto threshold 5% of the frame). Manual override: upscale:'seedvr2'|'refine'|'lanczos' on the cut or the shot. Never run one upscaler over a whole film again.",
+      "learned_on": "UPSCALE TEST 2026-11-02"
+    },
+    {
+      "when": [
+        "film_qc",
+        "qc",
+        "lease",
+        "memory",
+        "broker",
+        "kill",
+        "pkill",
+        "stuck"
+      ],
+      "lesson": "a film_qc killed with pkill kept its 32 GB film-qc-vl broker lease, and the next film_qc sat at '[mem] asking for 32GB' at 0% CPU for 20 minutes. film_qc now turns SIGTERM into a clean exit; if a run is ever stuck there, list leases at 127.0.0.1:8790 and release the stale one with ~/SongForgeM5/mem_client.py release <id>.",
+      "learned_on": "model_review_h3 2026-11-03"
+    },
+    {
+      "when": [
+        "thumbnail",
+        "brand",
+        "promo_deliver",
+        "youtube",
+        "poster"
+      ],
+      "lesson": "promo_deliver drew the thumbnail brand at a fixed 170 px, so 'STORY FORGE' ran off the right edge. It now shrinks the brand to fit the width minus 120 px; always look at final/thumbnail.png before READY.",
+      "learned_on": "model_review_h3 2026-11-03"
+    },
+    {
+      "when": [
+        "voice",
+        "whisper",
+        "lora",
+        "loras",
+        "version",
+        "numbers",
+        "ltx"
+      ],
+      "lesson": "whisper heard 'LoRAs' as 'lorays' and 'LTX two point five' as 'An LTX 2.5' on every take; reword to plain words ('distillation adapters', 'we use LTX') and keep the exact names on screen. audio_check scores numbers spoken as words against whisper's digits, so 'heard 75%' on a number-heavy line can be spelling only: re-run it with digit spellings before calling it masking.",
+      "learned_on": "model_review_h3 2026-11-03"
+    },
+    {
+      "when": [
+        "calm",
+        "chatterbox",
+        "clone",
+        "conversational",
+        "emphasis",
+        "energy",
+        "exaggeration",
+        "flat",
+        "hugging",
+        "matt2",
+        "monotone",
+        "narration",
+        "noun",
+        "overdone",
+        "pitch",
+        "promo",
+        "proper",
+        "stress",
+        "voice"
+      ],
+      "lesson": "promo voice: exag 0.40 + pitch 0.92 = monotone (Matt 11/3, F0 std-dev 1.90 st); exag 0.60 / cfg 0.4 + a punchy script (exclamations, 'On paper? It's a dream.', 'Then build!') = overdone (Matt 11/3: 'way too much emphasis, Hugging Face was sounding way too much', 3.77 st); the winner sits between: matt2, exag 0.50, cfg 0.45, no pitch shift, a calm conversational script (no exclamation marks, few questions), whole-film F0 std 2.64 st. Put proper nouns mid-sentence (not sentence-final or sentence-initial) and run a stress check: any name > 4 dB or > 3 st hotter than its neighbours gets reworded and re-voiced ('If MiniMax ever relicenses H3' -> 'If the license on MiniMax H3 ever changes' took MiniMax from +3.7 st to -0.4 st). Prefer a natural reword over promo_voice's comma auto-rewords ('MIT, licensed'), which pass whisper but sound chopped.",
+      "learned_on": "model_review_h3 2026-11-03"
+    },
+    {
+      "date": "2026-11-07",
+      "film": "the_heading",
+      "lesson": "Qwen-Image will not draw a tilted horizon or a half-real/half-painted split from a prompt (t4_road: 12 seeds, 0/3 every time, ~16 min lost). Ask the image model for a plain level frame; build tilts (rotate) and real/painted splits (twin still + soft mask) in the edit.",
+      "rule": "geometry and style splits are post work, never prompt work"
+    },
+    {
+      "date": "2026-11-07",
+      "film": "the_heading",
+      "lesson": "pkill on forge-shot leaves its forge_guard memory lease alive (SIGTERM skips atexit), so the next run waited 6 min for 71 GB held by a dead process. After killing a render: curl 127.0.0.1:8790/api/state and mem_client.release(<id>) any lease whose job is gone.",
+      "rule": "release the lease of every render you kill"
+    },
+    {
+      "when": [
+        "photoreal",
+        "news",
+        "talking",
+        "lip-sync",
+        "realistic",
+        "humans"
+      ],
+      "lesson": "Photoreal humans talking on camera read as 'super AI' to Matt: the mouths give it away even when film_qc passes every lip-sync check. For realistic formats (news parody etc.) keep faces off-mouth: voice-over on B-roll, backs/wides, or a stylized look; the gag scenes landed, the talking heads did not.",
+      "learned_on": "lahontan_returns news parody 2026-11-13"
+    }
+  ]
 }

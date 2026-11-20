@@ -1,0 +1,5 @@
+(1) The image shows a digital interface, likely a software application, with multiple panels displaying text, code, and status indicators. It includes sections labeled "Moonstone," "Claude Code," "PC," and "Claude Code on M2," with various tasks, code snippets, and system metrics.
+
+(2) The interface is arranged in a dark-themed layout with a vertical sidebar on the left listing different workspaces or projects (e.g., M1, M2, PC), each with status indicators like CPU/RAM usage and timestamps. The main panel on the right displays a conversation or code review with a chat-like format, including user messages, code blocks, and response timestamps. The layout is structured with distinct sections: the sidebar on the left, the main content area on the right, and a small control bar at the bottom with a "Send" button.
+
+(3) There is no physical object or ground visible in the image; it is entirely a digital screen display

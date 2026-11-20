@@ -1,0 +1,5 @@
+(1) The image displays a digital interface titled "Moonstone," showing multiple panels with code-related tasks and conversations, including a chat with "Claude Code" and various system metrics like CPU and RAM usage.
+
+(2) The interface is arranged in a dark-themed layout with a vertical sidebar on the left listing tasks (M1, M2, PC) and a larger chat window on the right. The sidebar contains colored boxes with labels and status indicators, while the main chat area shows text conversation and code snippets, all displayed on a single screen.
+
+(3) Nothing in the image touches the ground; it is a screen capture of a software interface with no physical objects or environment depicted.

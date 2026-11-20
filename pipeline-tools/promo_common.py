@@ -5,13 +5,14 @@ sub-lines), the text normalizer the whisper gates compare with, Song Forge's bus
 small ffmpeg helpers. Pure stdlib; num2words is used when the venv has it.
 
 The defaults below ARE the proven Sitka recipe (sitka-video/PRODUCTION.md, 2026-10-22):
-Matt's ChatterBox clone matt2, exaggeration 0.40, cfg 0.5, pitch 0.92 via asetrate (never
-rubberband), EQ +3 dB @180 Hz / -3 dB @5 kHz, -16 LUFS, 0.5-0.85 s line gaps, bed sidechain-
+Matt's ChatterBox clone, exaggeration 0.50, cfg 0.45, no pitch shift (11/03: 0.40 + pitch 0.92 read
+monotone, 0.60/0.4 overdone), EQ +3 dB @180 Hz (no 5 kHz cut since 10/26), -16 LUFS, 0.5-0.85 s line gaps, bed sidechain-
 ducked under the voice, the end-card slam AFTER the last word so the hit never masks it.
 """
 from __future__ import annotations
 
 import json
+import os
 import re
 import subprocess
 import urllib.request
@@ -22,14 +23,18 @@ HOME = Path.home()
 CHATTERBOX_PY = HOME / "chatterbox-env" / "bin" / "python"
 CHATTERBOX_BATCH = HOME / ".local" / "bin" / "chatterbox-batch"
 MLX_PY = HOME / ".local" / "mlx-server" / "bin" / "python"
-SONG_FORGE = "http://127.0.0.1:8767"
+SONG_FORGE = os.environ.get("SF_SONG_FORGE", "http://127.0.0.1:8767")  # override for another Song Forge (the mini only listens on its own localhost)
 WHISPER_ID = "mlx-community/whisper-large-v3-turbo"
 
 DEFAULTS = {
     "title": "",
     "brand": "",
-    "voice": {"character": "matt2", "exaggeration": 0.40, "cfg": 0.5, "pitch": 0.92,
-              "eq": [[180, 3.0], [5000, -3.0]], "lufs": -16.0, "retakes": 3},
+    # 10/26 Matt: "my voice, it just sounds like so far in the back": his own clip (matt30), no pitch-down, no
+    # 5 kHz presence cut (that cut is what pushed the voice back; the bed already gets carved under the voice)
+    # 11/03 Matt: 0.40 + pitch 0.92 "monotone" (F0 std 1.90 st), 0.60/0.4 + punchy script "way too much emphasis"
+    # (3.77 st); the middle, 0.50/0.45 + a calm script, measured 2.64 st and was the keeper
+    "voice": {"character": "matt30", "exaggeration": 0.50, "cfg": 0.45, "pitch": 1.0,
+              "eq": [], "lufs": -16.0, "retakes": 3},
     "gap": 0.6,
     "lead": 0.4,
     "music": {"bed": None, "style": "cinematic orchestral and piano build, hopeful, instrumental",
@@ -121,6 +126,18 @@ def compare_words(expected: str, heard: str) -> tuple[int, int, list[str]]:
     and adds it freely around numbers); everything else must match in order."""
     import difflib
     e, h = norm_words(expected), norm_words(heard)
+    # 11/03: whisper writes names joined or split at will ("Hugging Face"/"huggingface", "Comfy UI"/"comfyui");
+    # an adjacent pair whose join is a single token on the other side is the same spoken word, not a miss
+    def _join(toks, other):
+        out, k = [], 0
+        while k < len(toks):
+            if k + 1 < len(toks) and toks[k] + toks[k + 1] in other:
+                out.append(toks[k] + toks[k + 1]); k += 2
+            else:
+                out.append(toks[k]); k += 1
+        return out
+    e = _join(e, set(h))
+    h = _join(h, set(e))
     sm = difflib.SequenceMatcher(a=e, b=h, autojunk=False)
     matched = sum(b.size for b in sm.get_matching_blocks())
     notes = []

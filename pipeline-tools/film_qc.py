@@ -1210,6 +1210,11 @@ def _main():
 
 
 if __name__ == "__main__":
+    # 11/03: a SIGTERM'd run (pkill) skipped the `with _mem_reserve(...)` exit and left its 32 GB
+    # film-qc-vl lease held for an hour, so the next film_qc blocked at "asking for 32GB" for 20 min.
+    # Turn SIGTERM into SystemExit so the lease is released on the way out.
+    import signal
+    signal.signal(signal.SIGTERM, lambda *_: sys.exit(143))
     # main() returns 2 when it refuses to start; that must reach the shell as 2,
     # not 0 (a bare main() call turned every refusal into a silent "pass").
     sys.exit(main())

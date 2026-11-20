@@ -1,0 +1,5 @@
+(1) The image shows a digital interface, likely a software development or AI coding assistant application, with multiple panels displaying tasks, code snippets, and system resource usage. The interface includes sections labeled "M1", "M2", and "PC", each listing different tasks or projects, such as "Website", "API service", and "Port build scripts to PowerShell".
+
+(2) The layout is split into two main vertical sections. On the left, there are three stacked panels (M1, M2, PC) showing task lists with colored indicators (orange, blue, green) and resource usage (RAM, GPU). On the right, a larger panel displays detailed text, code, and instructions, including references to "auth middleware", "session", and "websocket". The interface uses dark mode with purple and blue accents, and the text is arranged in blocks with headers, bullet points, and code blocks.
+
+(3) There is no physical object or ground visible in the image;

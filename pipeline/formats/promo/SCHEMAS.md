@@ -145,8 +145,8 @@ arrow tip sits on the named part.
 ## promo.json (the project's settings, read by every promo tool; defaults = the Sitka recipe)
 ```json
 {"title": "...", "brand": "SITKA",
- "voice": {"character": "matt2", "exaggeration": 0.40, "cfg": 0.5, "pitch": 0.92,
-           "eq": [[180, 3.0], [5000, -3.0]], "lufs": -16.0, "retakes": 3},
+ "voice": {"character": "matt2", "exaggeration": 0.50, "cfg": 0.45, "pitch": 1.0,
+           "eq": [[180, 3.0]], "lufs": -16.0, "retakes": 3},
  "gap": 0.6, "lead": 0.5,
  "music": {"bed": "music/bed.wav", "style": "...", "gain": 0.55, "hit": 81.0, "fade": 1.6, "tail": 1.1},
  "endcard": {"title": "SITKA", "tagline": "Come build one with us.", "url": "github.com/...", "dur": 5.0, "slam_after": 0.15},

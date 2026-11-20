@@ -1,0 +1,33 @@
+# WR3 SFX job list (from the morning's tools/sfx_jobs.py, text-only now: no footage exists after the 1:12 PM erase).
+# name, seconds, prompt, seed. Ordered by need (task-named sounds first): 30 steps + a latent window >= seconds+1
+# (11/1 A/B: 16 steps or a window of ~seconds came back sub-bass mush). Cut lengths from beats.json + a natural tail.
+JOBS = [
+ ('rails_scream', 2.5, 'steam locomotive steel wheels screeching on the rails, loud metal grinding squeal', 7),
+ ('rabbit_thump', 1.5, 'a rabbit thumping its hind foot hard on dry dirt, two deep soft thuds', 7),
+ ('prairie_whistle', 2.0, 'a prairie dog giving a sharp high-pitched alarm whistle chirp', 7),
+ ('wagon_thunder', 4.0, 'galloping horses thundering hoofbeats, a heavy wooden wagon rumbling and creaking on big wooden wheels, harness bells jingling', 7),
+ ('elephant_trumpet', 2.5, 'an elephant trumpeting loudly', 7),
+ ('train_whistle', 2.5, 'a steam train whistle screaming, a violent blast of steam', 7),
+ ('ant_swarm', 4.0, 'a huge swarm of insects skittering, thousands of tiny metal plates clinking and rattling', 7),
+ ('monkey_screech', 2.0, 'a monkey screeching in panic, loud chimpanzee shriek', 7),
+ ('theme_punch', 4.0, 'deep cinematic trailer boom hit, huge impact, sub bass', 32),
+ ('title_slam', 5.0, 'colossal warm cinematic final impact boom with long reverb tail', 37),
+ ('ant_rumble', 5.0, 'a deep low ground rumble growing louder, the earth trembling, thousands of tiny legs skittering', 7),
+ ('lantern_tumble', 2.5, 'a metal oil lantern tumbling down a muddy bank, glass and tin clanking, a soft thud into mud', 7),
+ ('forest_sniff', 3.0, 'a dog sniffing the ground in a quiet night forest, crickets chirping, soft footsteps on leaves', 7),
+ ('team_gallop', 3.0, 'horses, camels and cows galloping, thundering hooves, snorting, harness jingling', 7),
+ ('wheels_edge', 3.0, 'heavy train wheels grinding on rails, sparks crackling, pebbles falling into a deep canyon', 7),
+ ('smash_hit', 2.0, 'massive cinematic impact hit, metal crash slam', 36),
+ ('riser', 4.0, 'cinematic tension riser, rising whoosh building up, reverse swell', 35),
+ ('whoosh_1', 2.0, 'fast whoosh swish transition', 33),
+ ('canyon_wind', 4.0, 'howling wind across a deep canyon, hollow echo', 7),
+ ('ground_moves', 3.0, 'sand trickling, pebbles rattling, many tiny insect legs skittering', 7),
+ ('ant_march', 2.5, 'tiny marching footsteps, small metal armor plates clinking in rhythm', 7),
+ ('bridge_lock', 2.5, 'many small metal plates clinking and locking together, creaking strain', 7),
+ ('water_slosh', 3.0, 'water sloshing in big wooden barrels, heavy elephant footsteps, wooden wagon creaking', 7),
+ ('train_chug', 3.0, 'a steam train chugging fast, steam puffing, wheels clacking on the rails', 7),
+ ('salute_pop', 1.0, 'tiny cartoon pop, light playful click', 41),
+ ('night_bed', 6.0, 'a calm night forest, crickets, a distant owl, soft breeze in pine trees', 40),
+ ('wind_bed', 6.0, 'steady desert wind blowing, soft and hollow, no birds', 39),
+ ('hawk_cry', 2.5, 'a red-tailed hawk screeching a loud piercing cry, wings flapping', 7),
+]

@@ -1,0 +1,11 @@
+# lahontan_returns known defects (2026-11-13, after full frame watch + film_qc)
+- Runtime 96.0 s, not ~75 s: the approved words alone take ~82 s at natural rate; no time-stretching allowed, gaps already tightened.
+- film_qc 132 checks, 127 passed, 5 failed:
+  - identity-across-scenes: judge compared different characters (scientist vs anchor/reporter) as if one person; false positive.
+  - artifact@82.5/84.5/85.5/86.5 s: the judge flags the scripted prehistoric fish itself; frames watched by eye, no melt.
+- Resident line "Now I'm gonna have underwater property" lip-sync barely moved under the beard (film_qc 25%); trimmed to the pontoon cutaway, so the whole X02 line is voice-over.
+- Whisper hears the resident's "I been here" as "I've been here" in all 6 takes (ChatterBox reading).
+- Reservoir b-roll does not visibly flow uphill (LTX made a calm reservoir); hwy clip yellow line wobbles slightly mid-clip.
+- Anchor squints/blinks often in the A06-A07 block (source clip ping-pong).
+- UNCHECKED: phoneme-level lip precision, voice casting by ear (Matt has not heard the new KSSN voices), mix balance by ear, comedy timing.
+- Other story-forge gates (audio_check, continuity, face_check, readtime, final_audio_gate) not run; loudness verified by ebur128: -14.6 LUFS, -2.2 dBTP.

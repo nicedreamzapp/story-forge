@@ -81,7 +81,12 @@ def main() -> int:
     d = ImageDraw.Draw(im)
     brand = cfg.get("brand") or cfg["endcard"].get("title") or film.name
     sub = cfg["youtube"].get("thumb_text") or cfg["endcard"].get("tagline") or ""
-    fb = ImageFont.truetype(FONT, 170, index=8)
+    # 11/03: a fixed 170 px clipped long brands ("STORY FORGE" ran off the right edge); shrink to fit W - 120
+    size = 170
+    fb = ImageFont.truetype(FONT, size, index=8)
+    while size > 60 and ImageDraw.Draw(im).textlength(brand, font=fb) > W - 120:
+        size -= 6
+        fb = ImageFont.truetype(FONT, size, index=8)
     fs = ImageFont.truetype(FONT, 56, index=2)
     sh = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     ImageDraw.Draw(sh).text((64, 196), brand, font=fb, fill=(0, 0, 0, 200))
