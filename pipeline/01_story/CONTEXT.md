@@ -20,6 +20,9 @@ no still, no `.sf` yet.
 Do NOT load: other films' folders, `RULES.md` render rules, any pipeline-tools source.
 
 ## Process
+0. Real material first (11/24): gather Matt's real footage, screenshots, photos and recordings of the subject
+   into `MATERIAL.md` and get his references for the look into `LOOK.md`. The script is written around them;
+   every beat shows the real subject literally, with someone doing something. No metaphors unless he asks.
 1. Fill `premise.md`: controlling idea, who wants what, what stops them, the ending.
 2. Write `script.md` in ordinary screenplay terms: scenes, beats, every spoken line.
    Every beat carries a `Sentiment:` line, what the VIEWER should feel there ("dread, then

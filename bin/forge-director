@@ -296,6 +296,14 @@ def main() -> int:
     args = ap.parse_args()
 
     proj = Path(args.project).resolve()
+    # 11/24 cliche gate: no still is drawn until the shot list passes (own LOOK.md, no repeated motifs,
+    # no camera-only motion, no scene a past film used). Plain code, seconds. A FAIL stops the director.
+    gate = subprocess.run([sys.executable, str(Path(__file__).resolve().parent.parent / "pipeline-tools" / "cliche_gate.py"),
+                           str(proj)], capture_output=True, text=True)
+    print(gate.stdout.rstrip())
+    if gate.returncode != 0:
+        log("STOP: the cliche gate failed (above). Fix the shots or LOOK.md; nothing is drawn until it passes.")
+        return 1
     catalog = {s["id"]: s for s in read_json(proj / "shots.json", {}).get("shots", [])}
     state = read_json(proj / "director_state.json",
                       {"attempts": {}, "blocked": {}, "history": []})

@@ -5,6 +5,12 @@ https://github.com/jtydhr88/screenwriting-skills — 19 books plus the Chekhov a
 corpora). It is the WRITING half of Story Forge; the pipeline below is the RENDER half.
 Nothing in it touches the pipeline, and it never overrides a rule in this file.
 
+**Step zero (Matt 2026-11-24): real material before the script.** Gather Matt's real footage, screenshots,
+photos and recordings of the subject into `MATERIAL.md` FIRST, and write the script around what they show.
+Shots are literal: the real subject, people doing real actions; never a metaphor standing in for the subject
+(no glowing cursor gates, vault doors for "security", rivers of light) unless Matt asks. Never "nobody in the
+room". The cliche gate (`pipeline-tools/cliche_gate.py`) blocks these before any still is drawn.
+
 **Standing direction: every new film starts in the script, not the queue.** Before a
 bible is written or a single still is generated, invoke the skills that fit the story and
 use them to settle premise, structure, character conflict, and the dialogue — then carry

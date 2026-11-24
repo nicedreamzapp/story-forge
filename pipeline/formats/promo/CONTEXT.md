@@ -23,7 +23,7 @@ contract for every file is `SCHEMAS.md` next to this file. The worked example an
 | Stage | Job | Reads | Writes (in `projects/<film>/`) | Gate | Human check |
 |---|---|---|---|---|---|
 | `01_story` | the script, a sentiment per line | Matt's idea | `script.md`, `promo.json`, `stages/01_story/premise.md` | not the template | Matt approves the script |
-| `02_voice` | matt2 clone, finish chain, heard back | 01 | `vo/final/part*.wav`, `vo/voice.json` | whisper hears every word (retakes, auto-reword) | none |
+| `02_voice` | Matt's locked voice (matt_voice.py), silence trim only, heard back | 01 | `vo/final/part*.wav`, `vo/voice.json` | whisper hears every word (retakes, auto-reword) | none |
 | `03_coverage` | coverage plan + design facts | 01 | `coverage.json`, `design.json` | `coverage_lint.py` | Matt confirms the design facts |
 | `04_footage` | Blender CAD renders (+ local i2v, + optional browser takes), ingest, design check | 03 | `acquired/`, `manifest.json`, `design_report.md` | every take has provenance + a design verdict | none |
 | `05_selects` | rank takes per line, with a why | 04 | `selects.json` | `coverage_gate.py` (>= 3x footage) | none |
@@ -35,8 +35,8 @@ contract for every file is `SCHEMAS.md` next to this file. The worked example an
 | `10_deliver` | thumbnail, poster per deliverable, youtube.json, publish | 09 | `final/thumbnail.png`, `final/youtube.json`, `stages/10_deliver/published.md` | none | Matt says ship it |
 
 ## The proven recipe (the defaults in `pipeline-tools/promo_common.py`)
-- **Voice:** ChatterBox `matt2`, exaggeration 0.50, cfg 0.45, NO pitch shift (pitch 1.0); finish = silence trim
-  → EQ +3 dB @180 Hz (no 5 kHz cut, 10/26 "far in the back") → 0.25 s pad → −16 LUFS → 48 kHz mono.
+- **Voice (LOCKED 11/24):** `pipeline-tools/matt_voice.py` only: ChatterBox, matt_real_ref.wav, exaggeration 0.45,
+  cfg 0.5, temperature 0.75, seed 7; finish = silence trim + 0.25 s pad, 48 kHz mono. No pitch, EQ, loudnorm or limiter.
   Target a calm, conversational guy explaining something to a friend: whole-film F0 std-dev about 2.6–3.0 st.
   11/03: exag 0.40 + pitch 0.92 = "monotone" (1.90 st); 0.60/0.4 + a punchy script = "way too much emphasis,
   Hugging Face was sounding way too much" (3.77 st); 0.50/0.45 + a calm script = 2.64 st, the keeper.

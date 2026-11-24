@@ -6,7 +6,7 @@ Run with the chatterbox env:
 
 Casting (locked 2026-05-25):
   hank (bear) = ChatterBox built-in voice (NO reference clip — reproducible, not Matt)
-  doug (dog)  = Matt's cloned voice (reference: StoryForge-voices/voice2_matt.wav)
+  doug (dog)  = Matt's voice, LOCKED: pipeline-tools/matt_voice.py (matt_real_ref.wav, 0.45/0.5/temp 0.75/seed 7)
 
 Add a character: drop a clean 3-10s reference wav and add an entry below.
 """
@@ -29,9 +29,12 @@ VOICES = {
     # voice (collides with Doug). No reference + fixed seed = distinct & stable.
     "hank": {"ref": None,
              "exaggeration": 0.7, "cfg": 0.4, "seed": 44},
-    # dog: Matt's own voice
-    "doug": {"ref": str(VOICES_DIR / "voice2_matt.wav"),
-             "exaggeration": 0.7, "cfg": 0.4, "seed": 0},
+    # dog / narrator: Matt's own voice, LOCKED 2026-11-24 (pipeline-tools/matt_voice.py). voice2_matt.wav is
+    # retired for Matt; never change these numbers or add pitch/EQ/effects to his voice.
+    "doug": {"ref": str(Path.home() / "Desktop/PROJECTS/avatar-assets/matt-inputs/matt_real_ref.wav"),
+             "exaggeration": 0.45, "cfg": 0.5, "temperature": 0.75, "seed": 7},
+    "matt": {"ref": str(Path.home() / "Desktop/PROJECTS/avatar-assets/matt-inputs/matt_real_ref.wav"),
+             "exaggeration": 0.45, "cfg": 0.5, "temperature": 0.75, "seed": 7},
     # spare casting pool — distinct voices Matt liked, for new characters
     "voiceA": {"ref": str(VOICES_DIR / "spare_voiceA.wav"),
                "exaggeration": 0.7, "cfg": 0.4, "seed": 0},
@@ -69,6 +72,8 @@ def main():
     dev = "mps" if torch.backends.mps.is_available() else "cpu"
     m = ChatterboxTTS.from_pretrained(device=dev)
     kw = {"exaggeration": ex, "cfg_weight": cfg}
+    if v.get("temperature") is not None:
+        kw["temperature"] = v["temperature"]
     if v["ref"]:
         kw["audio_prompt_path"] = v["ref"]
     wav = m.generate(args.line, **kw)

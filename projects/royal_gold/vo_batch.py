@@ -4,7 +4,7 @@ from pathlib import Path
 import torch, torchaudio
 from chatterbox.tts import ChatterboxTTS
 
-REF = str(Path.home() / "Desktop" / "PROJECTS" / "story-forge" / "voices" / "voice2_matt.wav")
+REF = str(Path.home() / "Desktop/PROJECTS/avatar-assets/matt-inputs/matt_real_ref.wav")  # Matt LOCKED 11/24, see pipeline-tools/matt_voice.py
 OUT = Path.home() / "Desktop/PROJECTS/story-forge/projects/royal_gold/vo"
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -22,10 +22,10 @@ dev = "mps" if torch.backends.mps.is_available() else "cpu"
 print(f"[vo] loading ChatterBox on {dev} ...", flush=True)
 m = ChatterboxTTS.from_pretrained(device=dev)
 # measured, confident commercial-narration delivery
-EX, CFG = 0.5, 0.5
+EX, CFG, TEMP = 0.45, 0.5, 0.75   # Matt's locked voice (pipeline-tools/matt_voice.py)
 for tag, line in LINES.items():
-    torch.manual_seed(0)
-    wav = m.generate(line, exaggeration=EX, cfg_weight=CFG, audio_prompt_path=REF)
+    torch.manual_seed(7)
+    wav = m.generate(line, exaggeration=EX, cfg_weight=CFG, temperature=TEMP, audio_prompt_path=REF)
     p = OUT / f"{tag}.wav"
     torchaudio.save(str(p), wav.cpu() if hasattr(wav, "cpu") else wav, m.sr)
     print(f"[vo] {tag} -> {p}", flush=True)

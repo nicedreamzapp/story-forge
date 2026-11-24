@@ -32,7 +32,7 @@ A robust **100% LOCAL generative VIDEO system** for making video of ANY kind —
 - Match dialogue DENSITY to mouth motion; one talker per beat; `silencedetect` to confirm no cross-scene voice bleed.
 
 ## Voices (ChatterBox, ~/chatterbox-env, via bin/character_voice.py)
-- Doug = Matt's cloned voice (StoryForge-voices/voice2_matt.wav). Hank = built-in "other male voice" (no clone, seed 44).
+- Doug = Matt's LOCKED voice (11/24): `pipeline-tools/matt_voice.py` = ChatterBox, `~/Desktop/PROJECTS/avatar-assets/matt-inputs/matt_real_ref.wav`, exaggeration 0.45, cfg 0.5, temperature 0.75, seed 7, silence trim only. voice2_matt.wav is retired for Matt. Hank = built-in "other male voice" (no clone, seed 44).
 - spare_voiceA/B/C = backups for new characters.
 
 ## Where to take the SYSTEM next (Matt's direction)

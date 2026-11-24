@@ -44,15 +44,28 @@ from promo_common import (CHATTERBOX_BATCH, CHATTERBOX_PY, WHISPER_ID, _say_int,
                           load_promo, norm_words, parse_script, run, song_forge_busy)
 
 
+MATT = ("matt", "matt2", "matt30", "doug")   # every name that has ever meant Matt's voice
+
+
 def finish(src: Path, dst: Path, v: dict) -> None:
+    if v.get("character") in MATT:
+        # Matt's voice is LOCKED (11/24): silence trim + 0.25 s pad, nothing else. No pitch, EQ, loudnorm, limiter.
+        if abs(float(v.get("pitch", 1.0)) - 1) > 1e-3 or v.get("eq"):
+            raise SystemExit("[voice] promo.json asks for pitch/EQ on Matt's voice; his voice is never altered "
+                             "(pipeline-tools/matt_voice.py). Remove voice.pitch / voice.eq.")
+        trim = ("silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,areverse,"
+                "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,areverse")
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        run(["ffmpeg", "-y", "-v", "error", "-i", src, "-af", trim + ",apad=pad_dur=0.25", "-ar", "48000", "-ac", "1", dst])
+        return
     sr = int(run(["ffprobe", "-v", "error", "-show_entries", "stream=sample_rate", "-of", "csv=p=0", src]).stdout.split()[0])
-    p = float(v.get("pitch", 0.92))
+    p = float(v.get("pitch", 1.0))
     trim = ("silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,areverse,"
             "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,areverse")
     pitch = f"asetrate={int(round(sr * p))},aresample={sr},atempo={1 / p:.6f}" if abs(p - 1) > 1e-3 else "anull"
     eq = ",".join(f"equalizer=f={f}:t=q:w=1:g={g}" for f, g in v.get("eq", []))
     chain = ",".join(x for x in (trim, pitch, eq, "apad=pad_dur=0.25",
-                                 f"loudnorm=I={v.get('lufs', -16)}:TP=-1.5:LRA=11", "aresample=48000") if x)
+                                 f"loudnorm=I={v.get('lufs') or -16}:TP=-1.5:LRA=11", "aresample=48000") if x)
     dst.parent.mkdir(parents=True, exist_ok=True)
     run(["ffmpeg", "-y", "-v", "error", "-i", src, "-af", chain, "-ar", "48000", "-ac", "1", dst])
 
@@ -64,7 +77,10 @@ def tts(texts: list[str], out_dir: Path, v: dict) -> list[Path]:
     out_dir.mkdir(parents=True)
     env = dict(os.environ, CHATTERBOX_EXAG=str(v["exaggeration"]), CHATTERBOX_CFG=str(v["cfg"]))
     req = json.dumps({"character": v["character"], "lines": texts, "out_dir": str(out_dir)})
-    r = subprocess.run([str(CHATTERBOX_PY), str(CHATTERBOX_BATCH)], input=req, text=True,
+    # Matt's voice only ever comes from the locked tool (11/24); other characters keep chatterbox-batch
+    cmd = ([str(CHATTERBOX_PY), str(Path(__file__).resolve().parent / "matt_voice.py"), "--batch"]
+           if v["character"] in MATT else [str(CHATTERBOX_PY), str(CHATTERBOX_BATCH)])
+    r = subprocess.run(cmd, input=req, text=True,
                        capture_output=True, env=env, timeout=3600)
     if r.returncode != 0 and not any(out_dir.glob("part*.wav")):
         raise RuntimeError("chatterbox-batch failed:\n" + "\n".join(r.stderr.strip().splitlines()[-8:]))
@@ -116,7 +132,7 @@ def main() -> int:
         return 2
     state_p = film / "vo" / "voice.json"
     state = {ln["line"]: ln for ln in (json.loads(state_p.read_text()).get("lines", []) if state_p.exists() else [])}
-    vkey = json.dumps({k: v[k] for k in ("character", "exaggeration", "cfg", "pitch", "eq", "lufs")}, sort_keys=True)
+    vkey = json.dumps({k: v.get(k) for k in ("character", "exaggeration", "cfg", "pitch", "eq", "lufs")}, sort_keys=True)
 
     todo = []
     for idx, ln in enumerate(lines):

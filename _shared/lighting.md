@@ -1,4 +1,9 @@
-## LIGHTING — a given on every still and shot (Matt, 2026-11-02)
+## LIGHTING — craft reference (Matt, 2026-11-02; amended 2026-11-24)
+
+**11/24: this is NOT a house style.** Applied to every film, it produced the same dark room, one lamp, haze and
+dust in the beam every time. Each film's light comes from its own `LOOK.md` (Matt's references). Daylight,
+flat practical shop light or a phone's look are all valid when the references say so. The cliche gate rejects
+the lone desk lamp, "only light source", haze/mist and dust-in-beam defaults.
 
 Source: the one-page "Lighting Guide to Master in AI Filmmaking" (credit: shailesh, beginnersblog.org), saved locally at
 `_shared/refs/lighting-guide-ai-filmmaking.jpg` (M5 only, kept out of the public repo). Read the image when a lighting call is not covered below.
@@ -13,7 +18,7 @@ A shot whose lighting is not stated is a flag, never a default.
 4. **Soft unless there is a reason.** Big, close sources wrap and flatter. Hard light is a choice (drama, noon sun, stylized scenes).
 5. **Light the background.** The room should say something about the scene. A practical lamp or a gradient on the wall separates the subject.
 6. **Shape and contrast.** Cut and guide the eye; do not light everything evenly.
-7. **Texture and atmosphere.** Haze or backlit dust shows the light and adds depth.
+7. **Texture and atmosphere.** Only when the film's references have it. Haze and dust in light beams are banned defaults (cliche gate).
 8. **Negative fill.** Remove bounce (a dark wall or flag on the shadow side) to deepen shadows and sculpt the face.
 9. **Build in layers.** Expose for the room first, then bring the key up.
 10. **Grow your kit slowly.** One good key beats five lights.

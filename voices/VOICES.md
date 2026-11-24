@@ -9,7 +9,7 @@ Generate a line:
 
 ## LOCKED
 - hank (bear)  -> hank.wav         (Tone 4 — Matt's pick, 2026-05-25)
-- doug (dog)   -> voice2_matt.wav  (Matt's own voice)
+- doug (dog) and every Matt narration -> Matt's LOCKED voice (11/24): `pipeline-tools/matt_voice.py` = ChatterBox, `~/Desktop/PROJECTS/avatar-assets/matt-inputs/matt_real_ref.wav`, exaggeration 0.45, cfg 0.5, temperature 0.75, seed 7, silence trim only. voice2_matt.wav is retired for Matt and must never voice him again
 
 ## SPARE POOL — ready to cast to new characters this episode
 - voiceA -> spare_voiceA.wav

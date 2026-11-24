@@ -8,8 +8,9 @@ for films). On FILM.mp4:
   2. MEASURE (pass 1): ffmpeg loudnorm print_format=json, integrated loudness + true peak.
   3. FIX (pass 2), always a STATIC gain to the target (gates-and-qc: "static gain, never loudnorm dynamic"):
        * the gain fits under the peak ceiling -> loudnorm linear=true with the pass-1 measurements;
-       * it does not -> the same static gain + a 4x-oversampled lookahead peak limiter
-         (alimiter, latency-compensated, auto-level off) that only shaves the peaks over the ceiling.
+       * it does not -> PEAK-NORMALIZE (11/24): a static gain that puts the true peak at the ceiling and no
+         further. The film lands quieter than the target and the report says by how much. There is NO limiter
+         any more: the mix carries Matt's voice, and his voice is never limited (captcha film, 11/24).
      The picture is stream-copied; audio AAC 320k 48 kHz.
   4. VERIFY on the OUTPUT with an independent ebur128 decode (loudnorm's own summary can under-report,
      lemo-opuscar mux.sh): integrated within +/-tol of the target, true peak <= the max. Off target ->
@@ -120,19 +121,20 @@ def _apply(src: Path, out: Path, af: str, a: int = 0) -> None:
         raise GateFail(f"ffmpeg failed writing {out.name}: {(r.stderr or '').strip()[-300:]}")
 
 
-def _filter(m: dict, lufs: float, ceiling: float) -> tuple[str, str]:
-    """(audio filter, method) for a STATIC gain from measurement m to `lufs`, peaks held under `ceiling`."""
+def _filter(m: dict, lufs: float, ceiling: float) -> tuple[str, str, bool]:
+    """(audio filter, method, peak_normalized) for a STATIC gain from measurement m to `lufs`, peaks held under
+    `ceiling`. When the loudness target would push the peaks over the ceiling, the gain stops at the ceiling
+    (peak-normalize): never a limiter, never compression."""
     gain = lufs - m["input_i"]
     if m["input_tp"] + gain <= ceiling:
         return (f"loudnorm=I={lufs}:TP={ceiling}:LRA=11:linear=true:measured_I={m['input_i']}:"
                 f"measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:"
                 f"offset={m['target_offset']}:print_format=summary,aresample=48000",
-                f"static gain {gain:+.2f} dB (loudnorm linear)")
-    lim = 10 ** (ceiling / 20)
-    return (f"volume={gain:.3f}dB,aresample=192000,alimiter=limit={lim:.5f}:attack=2:release=60:level=false:"
-            f"latency=true,aresample=48000",
-            f"static gain {gain:+.2f} dB + 4x-oversampled peak limiter at {ceiling} dBTP "
-            f"(peaks would reach {m['input_tp'] + gain:+.1f})")
+                f"static gain {gain:+.2f} dB (loudnorm linear)", False)
+    pg = ceiling - m["input_tp"]
+    return (f"volume={pg:.3f}dB,aresample=48000",
+            f"PEAK-NORMALIZED: static gain {pg:+.2f} dB to a {ceiling} dBTP peak, no limiter (the {lufs} LUFS target "
+            f"needed {gain:+.2f} dB and would have pushed peaks to {m['input_tp'] + gain:+.1f} dBTP)", True)
 
 
 def gate(src: Path, out: Path | None = None, lufs: float = -14.0, tp_max: float = -1.0,
@@ -173,11 +175,11 @@ def gate(src: Path, out: Path | None = None, lufs: float = -14.0, tp_max: float 
         m = loudnorm_measure(src, lufs, ceiling, ai)
         target = lufs
         for attempt in (1, 2):
-            af, method = _filter(m, target, ceiling)
+            af, method, peaknorm = _filter(m, target, ceiling)
             _apply(src, tmp, af, ai)
             after = ebur128(tmp, ai)
             rep["steps"].append({"attempt": attempt, "method": method, "measured_in": m, "after": after})
-            okI = after["I"] is not None and abs(after["I"] - lufs) <= tol
+            okI = after["I"] is not None and (abs(after["I"] - lufs) <= tol or (peaknorm and after["I"] < lufs))
             okT = after["TP"] is not None and after["TP"] <= tp_max
             if okI and okT:
                 break
@@ -198,6 +200,9 @@ def gate(src: Path, out: Path | None = None, lufs: float = -14.0, tp_max: float 
         os.replace(tmp, out)
         tmp = None
         rep["verdict"], rep["output"], rep["output_bytes"] = "FIXED", str(out), out.stat().st_size
+        if peaknorm:
+            rep["peak_normalized"] = True
+            rep["lufs_short_by"] = round(lufs - after["I"], 2) if after["I"] is not None else None
         rep["why"] = (f"{before['I']} LUFS / {before['TP']} dBTP -> {after['I']} LUFS / {after['TP']} dBTP "
                       f"({rep['steps'][-1]['method']}); audio {aout:.2f}s covers picture {vout:.2f}s")
         return rep

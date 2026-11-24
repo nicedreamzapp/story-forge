@@ -20,6 +20,10 @@ is reported UNBUILT, never quietly used.
 Do NOT load: `voices/`, score files, `final/`, other films.
 
 ## Process
+0. **Cliche gate, before ANY still (11/24):** `python3 pipeline-tools/cliche_gate.py projects/<film>` must exit 0.
+   It needs the film's own `LOOK.md`, blocks the repeated motifs, camera-only motion, "nobody in the room",
+   metaphors and scenes past films already used. forge-director and runner_lib.sh run it and stop on a FAIL.
+   Render runners source `pipeline-tools/runner_lib.sh` (render protect pid, loud stop on an unrun judge).
 1. Health-check Song Forge (`127.0.0.1:8767/api/status`) before heavy GPU work.
 2. Write `shots.json`, then run `bin/forge-director projects/<film>` (or one shot at a
    time: `~/.local/mlx-server/bin/python bin/forge-shot projects/<film>/shots.json --only ID`).

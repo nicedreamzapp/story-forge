@@ -35,7 +35,7 @@ For any shot that carries a line, WRITE THE i2v MOTION PROMPT so that character'
 5. Show the scene STANDALONE with a descriptive FILENAME label (the drawtext filter is NOT installed; filenames show in the player title bar). Get Matt's explicit OK → LOCK.
 
 ## Voices (ChatterBox — `~/chatterbox-env`, via `bin/character_voice.py`)
-- **Doug (dog) = Matt's cloned voice** (`StoryForge-voices/voice2_matt.wav`).
+- **Doug (dog) = Matt's voice** (Matt's LOCKED voice (11/24): `pipeline-tools/matt_voice.py` = ChatterBox, `~/Desktop/PROJECTS/avatar-assets/matt-inputs/matt_real_ref.wav`, exaggeration 0.45, cfg 0.5, temperature 0.75, seed 7, silence trim only. voice2_matt.wav is retired for Matt).
 - **Hank (bear) = the "other male voice"** = ChatterBox BUILT-IN voice, NO clone, `torch.manual_seed(44)`. Do NOT clone a synthetic clip for Hank — it drifts toward Matt's voice and collides with Doug.
 - **spare_voiceA/B/C = BACKUPS for future characters.** Never use a backup for Hank.
 - I cannot hear audio. Voice identity must be confirmed by Matt once; the ChatterBox VoiceEncoder similarity meter is degenerate — don't trust it.

@@ -33,8 +33,10 @@ DEFAULTS = {
     # 5 kHz presence cut (that cut is what pushed the voice back; the bed already gets carved under the voice)
     # 11/03 Matt: 0.40 + pitch 0.92 "monotone" (F0 std 1.90 st), 0.60/0.4 + punchy script "way too much emphasis"
     # (3.77 st); the middle, 0.50/0.45 + a calm script, measured 2.64 st and was the keeper
-    "voice": {"character": "matt30", "exaggeration": 0.50, "cfg": 0.45, "pitch": 1.0,
-              "eq": [], "lufs": -16.0, "retakes": 3},
+    # 11/24 Matt's voice is LOCKED: pipeline-tools/matt_voice.py (matt_real_ref.wav, 0.45 / 0.5 / temp 0.75 /
+    # seed 7, silence trim only). Fixed seed = a retake is the same take, so a miss goes straight to rewording.
+    "voice": {"character": "matt", "exaggeration": 0.45, "cfg": 0.5, "pitch": 1.0,
+              "eq": [], "lufs": None, "retakes": 0},
     "gap": 0.6,
     "lead": 0.4,
     "music": {"bed": None, "style": "cinematic orchestral and piano build, hopeful, instrumental",

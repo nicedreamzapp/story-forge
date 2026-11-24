@@ -501,3 +501,23 @@ Note: two different rules are numbered 26 (rule 26 `clip_beat`, and rule 26 the 
 
 ## Matt's voice is never altered (Matt 2026-11-13)
 Never time-stretch, pitch-shift, speed-change or effect Matt's voice (no atempo on narration). The picture is retimed to the voice, never the reverse. His own recording comes first; if a line must change, ask him to record it. A cloned line is only used after he has heard that line by itself and OK'd it, and approved lines are never re-voiced without asking. ("Why would you think I would want my voice to be changed at all? Can you bake that in.")
+
+33. EVERY FILM LOOKED THE SAME (Matt 2026-11-24). Robot hands, red alarm beacons, empty corridors, vault doors,
+   padlocks, a lone desk lamp, mist, dust in light beams, night cities from above, glowing monitors, moonlight,
+   "slow push" shots where nothing happens, one shared house look, metaphors instead of the real subject and
+   "nobody in the room". Now: (a) real material first (`MATERIAL.md`), shots built around Matt's footage,
+   screenshots and photos; (b) literal shots of the real subject, people doing actions, no metaphors unless he
+   asks; (c) no house style, each film's own `LOOK.md` from his references; (d) `pipeline-tools/cliche_gate.py`
+   blocks all of it plus any scene a past film used (`_shared/used_scenes.jsonl`) before a still is drawn;
+   only Matt's own ask, written in the film's `ALLOW.md`, lets a motif through.
+
+34. MATT'S VOICE IS LOCKED (Matt 2026-11-24). `pipeline-tools/matt_voice.py`: ChatterBox (~/chatterbox-env),
+   `~/Desktop/PROJECTS/avatar-assets/matt-inputs/matt_real_ref.wav`, exaggeration 0.45, cfg_weight 0.5,
+   temperature 0.75, torch seed 7; output untouched except a silence trim. No pitch, EQ, effects, limiter or
+   loudnorm on his voice. voices/voice2_matt.wav, pitch 0.92 and the warm EQ are never used for him again.
+
+35. A JUDGE THAT DID NOT RUN STOPS THE RUN (2026-11-24, captcha film). still_judge called `claude -p` with the
+   prompt swallowed by `--allowedTools`, so every still went unjudged and the runner used them anyway; a clip
+   judge at its usage limit let the assembler borrow fallback crops. An unrun judge now stops the runner with a
+   plain message (runner_lib.sh `judge_or_stop`), and renders hold a protect pid (`bigjob_protect`) so another
+   job's cleanup can not kill them mid-clip.

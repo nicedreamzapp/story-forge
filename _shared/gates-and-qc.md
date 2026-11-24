@@ -42,6 +42,33 @@ Then tell Matt what is still wrong BEFORE he finds it. Rules 21–25 and 26–32
 Score requests: always `"lyrics": "[instrumental]"`; Matt picks the score by ear from 2–3 screened candidates.
 Mix: static gain, never loudnorm dynamic. Hands: ken_burns on a locked still. Foley (MMAudio)
 only after audio_check proves it isn't noise.
+CLIP JUDGE + HISS GATE (2026-11-21, Matt: "hallucinations on faces and tools" / "static... every video"):
+- Every K6/video clip, before it enters a cut:
+  `python3 pipeline-tools/clip_judge.py CLIP.mp4 --prompt "<the shot's prompt>" --json CLIP_judge.json`
+  (4 frames 2x2 -> Opus via `claude -p`). Exit 0 PASS, 1 FAIL (melted/duplicated faces, tools appearing,
+  vanishing or bending, fused bodies, fire/glow in stone, modern objects, wrong subject/framing), 2 = did
+  not run, never a pass. FAIL -> ONE remake on a new seed; a second FAIL is reported to Matt, never cut in.
+- K6 shots of people stay WIDE (no readable faces, no close tool swings); relief/stone prompts say
+  "no fire, no flames, no glow".
+- `bin/make-sfx` measures every take (flatness > 0.30 AND > 45% energy above 6 kHz = hiss), retries
+  seed+1..+3, then deletes the file and exits 3; accepted beds get a 10 kHz low-pass. Old beds:
+  `python3 pipeline-tools/sfx_hiss_scan.py sfx/` (needs scipy + soundfile; ComfyUI venv has them).
+- audio_check's HISS check FAILs any film with >= 1 s of flat noise above 7 kHz whose floor sits over the
+  film's median; fix the bed, never ship it.
+
+## CLICHE GATE + RUNNER RULES (2026-11-24, learned on the captcha film)
+- Before any still: `python3 pipeline-tools/cliche_gate.py projects/<film>` (plain code, seconds). Exit 1 = the
+  shot list repeats the old motifs / house style / a past film's scene, or LOOK.md is missing. Fix the shots;
+  only Matt's own ask goes into ALLOW.md. After the film is delivered: `cliche_gate.py --record projects/<film>`.
+- Every render runner sources `pipeline-tools/runner_lib.sh` and calls `bigjob_protect <film>` first: its pid sits
+  in `~/.local/bigjob-protect/<film>` while it runs, so another job's `m5-bigjob end` skips killing its renders.
+- A judge that could not run (still_judge or clip_judge exit 2, usage limit, empty answer) STOPS the run with a
+  plain message. Never a pass, never an unjudged still sent to K6, never a fallback crop borrowed in its place.
+  (11/24: still_judge sent its prompt where `--allowedTools` swallowed it, every still went unjudged silently;
+  the shared `pipeline-tools/still_judge.py` sends it on stdin.)
+- Final loudness: `final_audio_gate.py` never limits. When the target would push peaks over the ceiling it
+  peak-normalizes (static gain to the ceiling) and reports how far under the target it landed.
+- Matt's voice: `pipeline-tools/matt_voice.py` only, silence trim only (movie-making-defaults rule 0e).
 
 ## MANDATORY QC STAGE — `pipeline-tools/film_qc.py` (added 2026-07-22, non-negotiable)
 No film, scene, or demo is EVER reported to Matt as "checked/verified/done" until this
